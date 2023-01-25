@@ -21,26 +21,34 @@ class CustomContainer extends StatelessWidget {
         elevation: 5,
         color: containerModel.backgroundColor,
         shadowColor: containerModel.shadowColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(containerModel.borderRadius),
-          side: BorderSide(color: containerModel.shadowColor ?? Colors.transparent,width: containerModel.shadowColor!=null ? 2 : 0 ) 
-        ),
+        shape: customContainerShape(),
         child: SizedBox(
           height: containerModel.height,
           width: containerModel.width,
           child: Column(
             children: [
-              ListTile(
-                leading: customCircleAvatar(cardModel.imagePath, false, false),
-                title: Text(cardModel.title),
-                subtitle: Text(cardModel.subtitle),
-                trailing: Text(time),
-              ),
+              listTile(),
               widget ?? const SizedBox(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  ListTile listTile() {
+    return ListTile(
+              leading: customCircleAvatar(cardModel.imagePath, false, false),
+              title: Text(cardModel.title),
+              subtitle: Text(cardModel.subtitle),
+              trailing: Text(time),
+            );
+  }
+
+  RoundedRectangleBorder customContainerShape() {
+    return RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(containerModel.borderRadius),
+        side: BorderSide(color: containerModel.shadowColor ?? Colors.transparent,width: containerModel.shadowColor!=null ? 2 : 0 ) 
+      );
   }
 }

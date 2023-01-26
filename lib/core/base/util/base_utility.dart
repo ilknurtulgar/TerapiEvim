@@ -23,3 +23,30 @@ class AppColors {
   static const Color royalBlue = Color.fromRGBO(99, 86, 229, 1);
   //login buton
 }
+
+class IconUtility {
+  static const Icon visibilityIcon = Icon(Icons.visibility);
+  static const Icon visibilityoffIcon = Icon(Icons.visibility_off);
+  static const Icon homeIcon = Icon(Icons.home);
+  static const Icon activityIcon =
+      Icon(Icons.laptop_windows_sharp); //browse_activity yok
+  static const Icon groupsIcon = Icon(Icons.groups);
+  static const Icon chatIcon = Icon(Icons.chat);
+  static const Icon profileIcon = Icon(Icons.account_circle);
+  static const Icon windowsIcon = Icon(Icons.desktop_windows);
+  static const Icon personIcon = Icon(Icons.person);
+  static const Icon clockIcon = Icon(Icons.alarm);
+  static const Icon logoutIcon = Icon(Icons.logout);
+  static const Icon searchIcon = Icon(Icons.search);
+  static const Icon fiterIcon = Icon(Icons.list);
+  static const Icon fileIcon = Icon(Icons.description);
+  static const Icon micIcon = Icon(Icons.mic);
+  static const Icon micoffIcon = Icon(Icons.mic_off);
+  static const Icon videcamIcon = Icon(Icons.videocam);
+  static const Icon videocammoffIcon = Icon(Icons.videocam_off);
+  static const Icon callendIcon = Icon(Icons.call_end);
+  static const Icon sendIcon = Icon(Icons.send);
+  static const Icon settingIcon = Icon(Icons.settings);
+  static const Icon editIcon = Icon(Icons.edit);
+  static const Icon deleteIcon = Icon(Icons.delete);
+}

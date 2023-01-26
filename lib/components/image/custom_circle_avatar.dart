@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../../core/base/util/base_utility.dart';
 
 Widget customCircleAvatar(

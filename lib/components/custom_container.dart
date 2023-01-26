@@ -64,7 +64,9 @@ class SeminarMin extends StatelessWidget {
       required this.heading,
       required this.width,
       required this.height,
-      required this.border_color});
+      required this.border_color,
+      required this.onTap});
+  final Function onTap;
   final Color border_color;
   final Icon icon;
   final String heading;
@@ -75,14 +77,17 @@ class SeminarMin extends StatelessWidget {
   Widget build(BuildContext context) {
     final RowModel row =
         RowModel(leadingIcon: icon, text: heading, trailingIcon: Space());
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-          border: Border.all(color: border_color.withOpacity(1)),
-          borderRadius: BorderRadius.circular(8),
-          color: AppColors.white),
-      child: row_view(row),
+    return InkWell(
+      onTap: () => onTap,
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+            border: Border.all(color: border_color.withOpacity(1)),
+            borderRadius: BorderRadius.circular(8),
+            color: AppColors.white),
+        child: row_view(row),
+      ),
     );
   }
 }
@@ -106,7 +111,9 @@ class SeminarMax extends StatelessWidget {
     required this.width,
     required this.height,
     required this.border_color,
+    required this.onTap,
   });
+  final Function onTap;
   final Color border_color;
   final Icon icon;
   final Icon icon2;
@@ -125,17 +132,20 @@ class SeminarMax extends StatelessWidget {
         RowModel(leadingIcon: icon2, text: heading2, trailingIcon: Space());
     final RowModel row3 =
         RowModel(leadingIcon: icon3, text: heading3, trailingIcon: Space());
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-          border: Border.all(color: border_color.withOpacity(1)),
-          borderRadius: BorderRadius.circular(8),
-          color: AppColors.white),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [row_view(row), row_view(row2), row_view(row3)],
+    return InkWell(
+      onTap: () => onTap,
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+            border: Border.all(color: border_color.withOpacity(1)),
+            borderRadius: BorderRadius.circular(8),
+            color: AppColors.white),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [row_view(row), row_view(row2), row_view(row3)],
+        ),
       ),
     );
   }
@@ -152,9 +162,10 @@ class Group extends StatelessWidget {
     required this.width,
     required this.height,
     required this.border_color,
+    required this.onTap,
   });
   final Color border_color;
-
+  final Function onTap;
   final Icon icon;
   final Icon icon2;
   final String heading;
@@ -170,31 +181,34 @@ class Group extends StatelessWidget {
     final RowModel row2 =
         RowModel(leadingIcon: icon2, text: heading3, trailingIcon: Space());
 
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-          border: Border.all(color: border_color.withOpacity(1)),
-          borderRadius: BorderRadius.circular(8),
-          color: AppColors.white),
-      child: Column(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8),
-            child: Center(
-              child: Text(
-                heading,
-                style: TextStyle(
-                  fontSize: 14,
+    return InkWell(
+      onTap: () => onTap,
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+            border: Border.all(color: border_color.withOpacity(1)),
+            borderRadius: BorderRadius.circular(8),
+            color: AppColors.white),
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Center(
+                child: Text(
+                  heading,
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
                 ),
               ),
             ),
-          ),
-          row_view(row),
-          row_view(row2),
-        ],
+            row_view(row),
+            row_view(row2),
+          ],
+        ),
       ),
     );
   }
@@ -209,7 +223,9 @@ class PersonMin extends StatelessWidget {
     required this.height,
     required this.border_color,
     required this.icon_trailing,
+    required this.onTap,
   });
+  final Function onTap;
   final Color border_color;
   final Icon icon;
   final Icon icon_trailing;
@@ -221,13 +237,16 @@ class PersonMin extends StatelessWidget {
   Widget build(BuildContext context) {
     final RowModel row =
         RowModel(leadingIcon: icon, text: heading, trailingIcon: icon_trailing);
-    return Container(
-        height: height,
-        width: width,
-        decoration: BoxDecoration(
-            border: Border.all(color: border_color.withOpacity(1)),
-            borderRadius: BorderRadius.circular(8),
-            color: AppColors.white),
-        child: row_view(row));
+    return InkWell(
+      onTap: () => onTap,
+      child: Container(
+          height: height,
+          width: width,
+          decoration: BoxDecoration(
+              border: Border.all(color: border_color.withOpacity(1)),
+              borderRadius: BorderRadius.circular(8),
+              color: AppColors.white),
+          child: row_view(row)),
+    );
   }
 }

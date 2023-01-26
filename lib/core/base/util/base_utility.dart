@@ -24,7 +24,7 @@ class AppColors {
   //login buton
 }
 
-<<<<<<< Updated upstream
+
 class IconUtility {
   static const Icon visibilityIcon = Icon(Icons.visibility);
   static const Icon visibilityoffIcon = Icon(Icons.visibility_off);
@@ -50,7 +50,7 @@ class IconUtility {
   static const Icon settingIcon = Icon(Icons.settings);
   static const Icon editIcon = Icon(Icons.edit);
   static const Icon deleteIcon = Icon(Icons.delete);
-=======
+}
 class AppTextStyles {
   static TextStyle loginPageTextStyle(bool isTitle, bool isTextFieldExplanation,
           bool isTextButton, bool isButton) =>
@@ -168,5 +168,5 @@ class AppTextStyles {
       fontWeight: FontWeight.w400,
       fontSize: isMessage ? 14 : 24,
       color: isMessage ? AppColors.black : AppColors.deepCove);
->>>>>>> Stashed changes
+
 }

@@ -41,7 +41,8 @@ class CustomContainer extends StatelessWidget {
 
   ListTile listTile() {
     return ListTile(
-      leading: customCircleAvatar(cardModel.imagePath, false, false),
+      leading: CustomCircleAvatar(
+          imagePath: cardModel.imagePath, big: false, shadow: false),
       title: Text(cardModel.title),
       subtitle: Text(cardModel.subtitle),
       trailing: Text(time),

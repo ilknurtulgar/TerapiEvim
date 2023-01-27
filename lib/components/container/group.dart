@@ -48,14 +48,12 @@ class Group extends StatelessWidget {
               child: Center(
                 child: Text(
                   heading,
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
+                  style: AppTextStyles.heading(false),
                 ),
               ),
             ),
-            row_view(row1),
-            row_view(row2),
+            RowView(row1),
+            RowView(row2),
           ],
         ),
       ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../core/base/util/base_utility.dart';
 import '../../model_view/row_view.dart';
 import '../../models/row_model.dart';
@@ -33,7 +32,7 @@ class SeminarMin extends StatelessWidget {
             border: Border.all(color: border_color!.withOpacity(1)),
             borderRadius: BorderRadius.circular(8),
             color: AppColors.white),
-        child: row_view(row),
+        child: RowView(row),
       ),
     );
   }
@@ -77,7 +76,7 @@ class SeminarMax extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [row_view(row1), row_view(row2), row_view(row3)],
+          children: [RowView(row1), RowView(row2), RowView(row3)],
         ),
       ),
     );

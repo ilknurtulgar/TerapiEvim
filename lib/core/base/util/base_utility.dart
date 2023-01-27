@@ -24,7 +24,6 @@ class AppColors {
   //login buton
 }
 
-
 class IconUtility {
   static const Icon visibilityIcon = Icon(Icons.visibility);
   static const Icon visibilityoffIcon = Icon(Icons.visibility_off);
@@ -51,6 +50,7 @@ class IconUtility {
   static const Icon editIcon = Icon(Icons.edit);
   static const Icon deleteIcon = Icon(Icons.delete);
 }
+
 class AppTextStyles {
   static TextStyle loginPageTextStyle(bool isTitle, bool isTextFieldExplanation,
           bool isTextButton, bool isButton) =>
@@ -168,5 +168,10 @@ class AppTextStyles {
       fontWeight: FontWeight.w400,
       fontSize: isMessage ? 14 : 24,
       color: isMessage ? AppColors.black : AppColors.deepCove);
-
+  static TextStyle heading(bool isMainHeading) => TextStyle(
+      color: AppColors.meteorite,
+      fontSize: isMainHeading ? 32 : 24,
+      fontFamily: "Roboto",
+      fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
+      letterSpacing: 0.07);
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../models/row_model.dart';
 
-Widget row_view(RowModel rowModel) {
+Widget RowView(RowModel rowModel) {
   return Padding(
     padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
     child: Row(

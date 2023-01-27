@@ -50,3 +50,128 @@ class IconUtility {
   static const Icon editIcon = Icon(Icons.edit);
   static const Icon deleteIcon = Icon(Icons.delete);
 }
+
+class AppTextStyles {
+  static TextStyle loginPageTextStyle(bool isTitle, bool isTextFieldExplanation,
+          bool isTextButton, bool isButton) =>
+      TextStyle(
+          fontFamily: 'Inter',
+          fontWeight: isButton ? FontWeight.w600 : FontWeight.w400,
+          fontSize: isTitle ? 49 : 16,
+          color: isButton
+              ? AppColors.white
+              : isTextFieldExplanation
+                  ? AppColors.black
+                  : isTextButton
+                      ? AppColors.butterflyBush
+                      : AppColors.deepCove);
+  static TextStyle pagesBoldTitleStyle(bool isBig) => TextStyle(
+      fontFamily: 'Roboto',
+      fontWeight: FontWeight.w500,
+      fontSize: isBig ? 24 : 18,
+      color: isBig
+          ? AppColors.deepCove
+          : AppColors //seminer konu başlıkları bu kısımda small olarak
+              .black); // baş etme metotları başlığı bu kısımda bulunuyor small olarak
+  static TextStyle testPageTextStyle(
+          bool isQuestion, bool isOption, bool isButton) =>
+      TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: isQuestion
+            ? 18
+            : isOption
+                ? 12
+                : 14,
+        color: isOption
+            ? AppColors.deepCove
+            : isButton
+                ? AppColors.white
+                : AppColors.black,
+      );
+  static TextStyle appNameTextStyle = const TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w600,
+    fontSize: 32,
+    color: AppColors.deepCove,
+  );
+  static TextStyle mainPageTextStyle(
+          bool isTitle, bool isSubTitle, bool isButton) =>
+      TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: isButton ? FontWeight.w500 : FontWeight.w400,
+        fontSize: isTitle
+            ? 16
+            : isButton
+                ? 14
+                : 12,
+        color: isButton
+            ? AppColors.white
+            : isSubTitle
+                ? AppColors.dustyGray
+                : AppColors.black,
+      );
+  static TextStyle searchTextStyle = TextStyle(
+    fontFamily: 'Roboto',
+    fontWeight: FontWeight.w400,
+    fontSize: 16,
+    color: AppColors.dustyGray,
+  );
+  static TextStyle informationBoxTextStyle(
+          //bu kategoriye etkinlik kutucukları ve grup sayfasındaki katılımcı kutucuğu dahil
+          bool isInformationText,
+          bool isBold) =>
+      TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: isBold
+            ? FontWeight.w500
+            : FontWeight.w400, // katıl butonları için isBold true
+        fontSize: isInformationText ? 16 : 14,
+        color: isInformationText ? AppColors.black : AppColors.white,
+      );
+  static TextStyle methodsPageTextStyle(bool isDateText, bool isOrderButton,
+          bool isExplanationText, bool isDocument) =>
+      TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: isDateText ? FontWeight.w400 : FontWeight.w500,
+        fontSize: isOrderButton
+            ? 12
+            : isExplanationText || isDocument
+                ? 14
+                : 16,
+        color: isDocument
+            ? AppColors.butterflyBush
+            : isOrderButton || isExplanationText
+                ? AppColors.black
+                : AppColors.deepCove,
+      );
+  static TextStyle filterPagesTextStyle(
+          bool isFilterButton, bool isCategory, bool isPageTitle) =>
+      TextStyle(
+          fontFamily: isFilterButton ? 'Roboto' : 'Inter',
+          fontWeight: isFilterButton ? FontWeight.w500 : FontWeight.w400,
+          color: isFilterButton ? AppColors.white : AppColors.black,
+          fontSize: isCategory
+              ? 24
+              : isPageTitle
+                  ? 20
+                  : 16);
+  static TextStyle aboutMeTextStyle(bool isName) => TextStyle(
+        //seminer detay sayfasındaki hakkında kısmı
+        fontFamily: isName ? 'Inter' : 'Roboto',
+        fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
+        color: isName ? AppColors.black : AppColors.deepCove,
+        fontSize: isName ? 31 : 14,
+      );
+  static TextStyle messagePageTextStyle(bool isMessage) => TextStyle(
+      fontFamily: isMessage ? 'Inter' : 'Roboto',
+      fontWeight: FontWeight.w400,
+      fontSize: isMessage ? 14 : 24,
+      color: isMessage ? AppColors.black : AppColors.deepCove);
+  static TextStyle heading(bool isMainHeading) => TextStyle(
+      color: AppColors.meteorite,
+      fontSize: isMainHeading ? 32 : 24,
+      fontFamily: "Roboto",
+      fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
+      letterSpacing: 0.07);
+}

@@ -3,15 +3,16 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import '../../models/card_model.dart';
 import '../buttons/custom_button.dart';
 import 'custom_container.dart';
+
 class MethodDownloadingContainer extends StatelessWidget {
-  const MethodDownloadingContainer(
-      {super.key,
-      required this.cardModel,
-      required this.time,
-      required this.explanation,
-      required this.buttonOnTap,
-      required this.buttonText,
-      });
+  const MethodDownloadingContainer({
+    super.key,
+    required this.cardModel,
+    required this.time,
+    required this.explanation,
+    required this.buttonOnTap,
+    required this.buttonText,
+  });
   final CardModel cardModel;
   final String time;
   final String explanation;
@@ -27,13 +28,19 @@ class MethodDownloadingContainer extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20),
         child: Align(
           alignment: Alignment.centerLeft,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-            Text(explanation,style: AppTextStyles.normalTextStyle('medium'),),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              explanation,
+              //style: AppTextStyles.normalTextStyle('medium'),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 17),
-              child: CustomButton(container: AppContainers.documentContainer, onTap: buttonOnTap,text: buttonText,icon: IconUtility.fileIcon),
+              child: CustomButton(
+                  container: AppContainers.documentContainer,
+                  onTap: buttonOnTap,
+                  text: buttonText,
+                  icon: IconUtility.fileIcon),
             )
           ]),
         ),

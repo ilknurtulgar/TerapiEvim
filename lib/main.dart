@@ -1,6 +1,8 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/components/button/questions_button.dart';
+import 'package:terapievim/components/text/row_text.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 import 'Screen/activities.dart';
@@ -77,7 +79,11 @@ class _TerapiEvimState extends State<TerapiEvim> {
       backgroundColor: AppColors.blueChalk,
       body: Center(
         child: Column(
-          children: [currentScreen],
+          children: [
+            RowText(),
+            ToggleQuestions(),
+            currentScreen,
+          ],
         ),
       ),
     ));

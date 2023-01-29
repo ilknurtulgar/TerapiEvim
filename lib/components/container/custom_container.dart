@@ -4,7 +4,7 @@ import 'package:terapievim/models/card_model.dart';
 import 'package:terapievim/models/container_model.dart';
 
 import '../../core/base/util/base_utility.dart';
-import '../../model_view/row_view.dart';
+import '../../models/model_view/row_view.dart';
 import '../../models/row_model.dart';
 
 class CustomContainer extends StatelessWidget {

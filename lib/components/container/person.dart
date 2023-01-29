@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/models/row_model.dart';
 
 import '../../core/base/util/base_utility.dart';
-import '../../model_view/row_view.dart';
+import '../../models/model_view/row_view.dart';
 
 class PersonMin extends StatelessWidget {
   PersonMin({

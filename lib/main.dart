@@ -43,29 +43,31 @@ class _TerapiEvimState extends State<TerapiEvim> {
     ];
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        home: Scaffold(
-          bottomNavigationBar: Obx(
-            () => AnimatedBottomNavigationBar(
-              icons: icons,
-              activeIndex: _controller.currentScreenIndex.toInt(),
-              leftCornerRadius: 20,
-              rightCornerRadius: 20,
-              iconSize: 30,
-              gapLocation: GapLocation.none,
-              height: 72,
-              backgroundColor: AppColors.white,
-              inactiveColor: AppColors.dustyGray,
-              activeColor: Colors.black,
-              onTap: (int) {
-                _controller.ChangeScreen(int);
-              },
+        home: SafeArea(
+          child: Scaffold(
+            bottomNavigationBar: Obx(
+              () => AnimatedBottomNavigationBar(
+                icons: icons,
+                activeIndex: _controller.currentScreenIndex.toInt(),
+                leftCornerRadius: 20,
+                rightCornerRadius: 20,
+                iconSize: 30,
+                gapLocation: GapLocation.none,
+                height: 72,
+                backgroundColor: AppColors.white,
+                inactiveColor: AppColors.dustyGray,
+                activeColor: Colors.black,
+                onTap: (int) {
+                  _controller.ChangeScreen(int);
+                },
+              ),
             ),
-          ),
-          backgroundColor: AppColors.blueChalk,
-          body: Center(
-            child: Obx(
-              () => Container(
-                child: Screen[_controller.currentScreenIndex.toInt()],
+            backgroundColor: AppColors.blueChalk,
+            body: Center(
+              child: Obx(
+                () => Container(
+                  child: Screen[_controller.currentScreenIndex.toInt()],
+                ),
               ),
             ),
           ),

@@ -2,7 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/service/mainController.dart';
-import '../core/base/util/base_utility.dart';
+import '../../core/base/util/base_utility.dart';
 
 class LockScreen extends StatelessWidget {
   LockScreen({super.key});

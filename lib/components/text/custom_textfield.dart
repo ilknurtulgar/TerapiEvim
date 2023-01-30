@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class CustomTextField extends StatelessWidget {
+/*class CustomTextField extends StatelessWidget {
   CustomTextField({Key? key, required this.loginText}) : super(key: key);
   String? loginText;
   @override
@@ -12,8 +12,10 @@ class CustomTextField extends StatelessWidget {
           decoration: InputDecoration(
               labelText: loginText,
               hintText: "abcdef@gmail.com",
-              border:
-                  OutlineInputBorder(borderRadius: BorderRadius.circular(8))),
-        ));
+              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
+                  ),
+        )
+        );
   }
 }
+*/

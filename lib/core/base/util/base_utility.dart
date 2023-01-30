@@ -37,6 +37,7 @@ class AppColors {
   //isolated call'daki şeffaf siyah renk
   static const Color red = Colors.red;
   static const Color orange = Colors.orange;
+  static const Color transparent = Colors.transparent;
 }
 
 class IconUtility {
@@ -87,6 +88,7 @@ class IconUtility {
   static const IconData navMessage = Icons.chat;
   static const IconData navGroup = Icons.groups;
   static const IconData navProfile = Icons.account_circle;
+  static const IconData lock = Icons.lock_outline;
 }
 
 class AppTextStyles {
@@ -114,7 +116,6 @@ class AppTextStyles {
       color: buttonColor == AppColors.butterflyBush
           ? AppColors.white
           : AppColors.butterflyBush);
-
   static TextStyle methodsPageTextStyle(bool isDateText, bool isOrderButton,
           bool isExplanationText, bool isDocument) =>
       TextStyle(
@@ -140,6 +141,7 @@ class AppTextStyles {
       );
   static TextStyle heading(bool isMainHeading) => TextStyle(
       //basliklarin hepsi
+
       color: AppColors.meteorite,
       fontSize: isMainHeading ? 32 : 24,
       fontFamily: "Roboto",
@@ -174,4 +176,38 @@ class AppContainers {
 class AppPaddings {
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
       0, 15, 20, 15); // sağ alt bütün mor butonlar için geçerli
+
+}
+
+class AppBorderRadius {
+  static const BorderRadius generalBorderRadius =
+      BorderRadius.all(Radius.circular(8));
+}
+
+class LockScreenUtil {
+  static const double lockScreenHeight = 40;
+  static const double lockScreenHeight2 = 50;
+  static const double lockScreenContainerWidth = 250;
+  static const double lockScreenContainerHeight = 100;
+  static const double lockScreenBigContainerWidth = 340;
+  static const double lockScreenBigContainerHeight = 200;
+  static const double lockIconSize = 100;
+  static const EdgeInsets lockScreenContainerPadding = EdgeInsets.all(20);
+
+  static const String text =
+      "Henüz Grubunuz Belli Olmadığı İçin Burası Kilitli";
+  static const String text2 =
+      "Henüz Grubunuz Belli Olmadığı İçin Burası Kilitli";
+  static const String buttonText = "Testi Cozmek Icin Tiklayiniz";
+}
+
+class AppBoxDecoration {
+  static BoxDecoration lockScreenBox = BoxDecoration(
+      color: AppColors.white,
+      borderRadius: AppBorderRadius.generalBorderRadius,
+      border: Border.all(color: AppColors.cornFlowerBlue));
+
+  static BoxDecoration lockScreenButton = BoxDecoration(
+      color: AppColors.cornFlowerBlue,
+      borderRadius: AppBorderRadius.generalBorderRadius);
 }

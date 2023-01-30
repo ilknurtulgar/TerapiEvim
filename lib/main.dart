@@ -5,7 +5,7 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/scl90/test_for_users.dart';
 import 'package:terapievim/service/mainController.dart';
 import 'screen/activities.dart';
-import 'screen/group.dart';
+import 'screen/group_pages.dart/group.dart';
 import 'screen/home.dart';
 import 'screen/message.dart';
 import 'screen/profile.dart';
@@ -42,38 +42,31 @@ class _TerapiEvimState extends State<TerapiEvim> {
       ProfileScreen()
     ];
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        bottomNavigationBar: Obx(
-          () => AnimatedBottomNavigationBar(
-            icons: icons,
-            activeIndex: _controller.currentScreenIndex.toInt(),
-            leftCornerRadius: 20,
-            rightCornerRadius: 20,
-            iconSize: 30,
-            gapLocation: GapLocation.none,
-            height: 72,
-            backgroundColor: AppColors.white,
-            inactiveColor: AppColors.dustyGray,
-            activeColor: Colors.black,
-            onTap: (int) {
-              _controller.ChangeScreen(int);
-            },
-          ),
-        ),
-        backgroundColor: AppColors.blueChalk,
-        body: Column(
-          children: [
-            Test(),
-            Center(
-              child: Obx(
-                () => Container(
-                  child: Screen[_controller.currentScreenIndex.toInt()],
-                ),
-              ),
+          bottomNavigationBar: Obx(
+            () => AnimatedBottomNavigationBar(
+              icons: icons,
+              activeIndex: _controller.currentScreenIndex.toInt(),
+              leftCornerRadius: 20,
+              rightCornerRadius: 20,
+              iconSize: 30,
+              gapLocation: GapLocation.none,
+              height: 72,
+              backgroundColor: AppColors.white,
+              inactiveColor: AppColors.dustyGray,
+              activeColor: Colors.black,
+              onTap: (int) {
+                _controller.ChangeScreen(int);
+              },
             ),
-          ],
-        ),
-      ),
+          ),
+          backgroundColor: AppColors.blueChalk,
+          body: Obx(
+            () => Container(
+              child: Screen[_controller.currentScreenIndex.toInt()],
+            ),
+          )),
     );
   }
 }

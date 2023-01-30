@@ -10,7 +10,7 @@ class Test extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [ToggleQuestions(), RowText()],
+      children: [ToggleQuestions(), RowText()], //component hazir degil
     );
   }
 }

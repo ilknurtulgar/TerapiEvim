@@ -32,7 +32,7 @@ class PersonMin extends StatelessWidget {
           width: width,
           decoration: BoxDecoration(
               border: Border.all(color: border_color!.withOpacity(1)),
-              borderRadius: BorderRadius.circular(8),
+              borderRadius: AppBorderRadius.generalBorderRadius,
               color: AppColors.white),
           child: RowView(row)),
     );

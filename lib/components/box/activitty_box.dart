@@ -1,8 +1,8 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:terapievim/components/buttons/custom_icon_button.dart';
 import 'package:terapievim/models/card_model.dart';
+
+import '../../models/model_view/row_view.dart';
 
 class ActivityBox extends StatelessWidget {
   ActivityBox({super.key, required this.customButton});
@@ -16,6 +16,7 @@ class ActivityBox extends StatelessWidget {
           /* row_view(rowModel),
           row_view(rowModel),
           row_view(rowModel),*/
+
           CustomButton(
               onTap: () {},
               buttonWidth: customButton.buttonWidth,

@@ -1,6 +1,8 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/components/button/questions_button.dart';
+import 'package:terapievim/components/text/row_text.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/scl90/lock_screen.dart';
 import 'package:terapievim/service/mainController.dart';
@@ -42,6 +44,7 @@ class _TerapiEvimState extends State<TerapiEvim> {
       ProfileScreen()
     ];
     return GetMaterialApp(
+
         debugShowCheckedModeBanner: false,
         home: SafeArea(
           child: Scaffold(
@@ -72,5 +75,7 @@ class _TerapiEvimState extends State<TerapiEvim> {
             ),
           ),
         ));
+
+
   }
 }

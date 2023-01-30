@@ -3,6 +3,13 @@ import 'package:terapievim/components/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/models/card_model.dart';
 import 'package:terapievim/models/container_model.dart';
+
+
+import '../../core/base/util/base_utility.dart';
+import '../../models/model_view/row_view.dart';
+import '../../models/row_model.dart';
+
+
 class CustomContainer extends StatelessWidget {
   const CustomContainer(
       {super.key,

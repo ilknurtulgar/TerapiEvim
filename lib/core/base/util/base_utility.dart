@@ -1,5 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:terapievim/models/container_model.dart';
+
+import '../../../components/video_call_components/buttons/video_call_buttons.dart';
+import '../../../models/video_call_view_model.dart';
+import '../../../models/person_in_call_model.dart';
 
 class AppColors {
   static const Color blueChalk = Color.fromRGBO(238, 227, 255, 1);
@@ -23,6 +29,14 @@ class AppColors {
   //mesaj
   static const Color royalBlue = Color.fromRGBO(99, 86, 229, 1);
   //login buton
+  static const Color doveGray = Color.fromRGBO(98, 98, 98, 1);
+  //kamera kapandığında gözüken renk
+  static const Color mineShaft = Color.fromRGBO(56, 56, 56, 1);
+  //videolu görüşmedeki arka plan rengi
+  static const Color lightBlack = Color.fromRGBO(0, 0, 0, 0.7);
+  //isolated call'daki şeffaf siyah renk
+  static const Color red = Colors.red;
+  static const Color orange = Colors.orange;
   static const Color transparent = Colors.transparent;
 }
 
@@ -45,11 +59,26 @@ class IconUtility {
     Icons.description_outlined,
     color: AppColors.butterflyBush,
   );
-  static const Icon micIcon = Icon(Icons.mic);
-  static const Icon micoffIcon = Icon(Icons.mic_off);
-  static const Icon videcamIcon = Icon(Icons.videocam);
-  static const Icon videocammoffIcon = Icon(Icons.videocam_off);
-  static const Icon callendIcon = Icon(Icons.call_end);
+  static Icon micIcon(bool isInCircularContainer) => Icon(
+        Icons.mic,
+        color: isInCircularContainer ? AppColors.black : AppColors.white,
+      );
+  static const Icon micoffIcon = Icon(
+    Icons.mic_off,
+    color: AppColors.red,
+  );
+  static const Icon videcamIcon = Icon(
+    Icons.videocam,
+    color: AppColors.black,
+  );
+  static const Icon videocamoffIcon = Icon(
+    Icons.videocam_off,
+    color: AppColors.black,
+  );
+  static const Icon callendIcon = Icon(
+    Icons.call_end,
+    color: AppColors.white,
+  );
   static const Icon sendIcon = Icon(Icons.send);
   static const Icon settingIcon = Icon(Icons.settings);
   static const Icon editIcon = Icon(Icons.edit);
@@ -85,9 +114,8 @@ class AppTextStyles {
       fontWeight: FontWeight.w500,
       fontSize: 16,
       color: buttonColor == AppColors.butterflyBush
-          ? AppColors.butterflyBush
-          : AppColors.white);
-
+          ? AppColors.white
+          : AppColors.butterflyBush);
   static TextStyle methodsPageTextStyle(bool isDateText, bool isOrderButton,
           bool isExplanationText, bool isDocument) =>
       TextStyle(
@@ -148,6 +176,7 @@ class AppContainers {
 class AppPaddings {
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
       0, 15, 20, 15); // sağ alt bütün mor butonlar için geçerli
+
 }
 
 class AppBorderRadius {

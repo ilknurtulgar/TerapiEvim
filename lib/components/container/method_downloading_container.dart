@@ -28,12 +28,10 @@ class MethodDownloadingContainer extends StatelessWidget {
         padding: const EdgeInsets.only(left: 20),
         child: Align(
           alignment: Alignment.centerLeft,
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              explanation,
-              //style: AppTextStyles.normalTextStyle('medium'),
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+            Text(explanation,style: AppTextStyles.normalTextStyle('medium',false),),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 17),
               child: CustomButton(

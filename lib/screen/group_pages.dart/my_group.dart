@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:terapievim/components/box/activitty_box.dart';
+
 import 'package:terapievim/components/buttons/custom_button.dart';
 import 'package:terapievim/components/container/person.dart';
 import 'package:terapievim/components/image/custom_circle_avatar.dart';

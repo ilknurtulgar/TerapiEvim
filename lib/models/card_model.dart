@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class CardModel {
   String imagePath;
   String title;
@@ -5,6 +7,6 @@ class CardModel {
   CardModel({
     required this.imagePath,
     required this.title,
-    this.subtitle,
-});
+    required this.subtitle,
+  });
 }

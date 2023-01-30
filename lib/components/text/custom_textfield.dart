@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
 
-/*class CustomTextField extends StatelessWidget {
-  CustomTextField({Key? key, required this.loginText}) : super(key: key);
-  String? loginText;
+class CustomTextField extends StatelessWidget {
+  CustomTextField({Key? key, required this.labelText, required this.hintText})
+      : super(key: key);
+  String? labelText;
+  String? hintText;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -10,12 +13,22 @@ import 'package:flutter/material.dart';
         child: TextField(
           textAlign: TextAlign.start,
           decoration: InputDecoration(
-              labelText: loginText,
-              hintText: "abcdef@gmail.com",
-              border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
-                  ),
-        )
-        );
+            labelText: labelText,
+            hintText: hintText,
+            enabledBorder: enabledBorder(),
+            focusedBorder: enabledBorder(),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ));
+  }
+
+  OutlineInputBorder enabledBorder() {
+    return OutlineInputBorder(
+        borderSide: BorderSide(
+      color: AppColors.dustyGray,
+      width: 2,
+    ));
   }
 }
-*/

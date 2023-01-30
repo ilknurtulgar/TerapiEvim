@@ -80,6 +80,10 @@ class _TerapiEvimState extends State<TerapiEvim> {
       body: Center(
         child: Column(
           children: [
+            SizedBox(
+              width: 50,
+              height: 50,
+            ),
             RowText(),
             ToggleQuestions(),
             currentScreen,

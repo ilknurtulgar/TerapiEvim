@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/scl90/test_for_users.dart';
 import 'package:terapievim/service/mainController.dart';
 import 'screen/activities.dart';
 import 'screen/group.dart';
@@ -60,12 +61,17 @@ class _TerapiEvimState extends State<TerapiEvim> {
           ),
         ),
         backgroundColor: AppColors.blueChalk,
-        body: Center(
-          child: Obx(
-            () => Container(
-              child: Screen[_controller.currentScreenIndex.toInt()],
+        body: Column(
+          children: [
+            Test(),
+            Center(
+              child: Obx(
+                () => Container(
+                  child: Screen[_controller.currentScreenIndex.toInt()],
+                ),
+              ),
             ),
-          ),
+          ],
         ),
       ),
     );

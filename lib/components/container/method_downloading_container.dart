@@ -30,7 +30,7 @@ class MethodDownloadingContainer extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-            Text(explanation,style: AppTextStyles.normalTextStyle('medium'),),
+            Text(explanation,style: AppTextStyles.normalTextStyle('medium',false),),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 17),
               child: CustomButton(container: AppContainers.documentContainer, onTap: buttonOnTap,text: buttonText,icon: IconUtility.fileIcon),

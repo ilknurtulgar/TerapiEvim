@@ -4,12 +4,14 @@ import 'package:get/get.dart';
 import 'package:terapievim/components/button/questions_button.dart';
 import 'package:terapievim/components/text/row_text.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/scl90/lock_screen.dart';
+import 'package:terapievim/service/mainController.dart';
 
-import 'Screen/activities.dart';
-import 'Screen/group.dart';
-import 'Screen/home.dart';
-import 'Screen/message.dart';
-import 'Screen/profile.dart';
+import 'screen/activities.dart';
+import 'screen/group.dart';
+import 'screen/home.dart';
+import 'screen/message.dart';
+import 'screen/profile.dart';
 
 void main() {
   runApp(TerapiEvim());
@@ -23,7 +25,7 @@ class TerapiEvim extends StatefulWidget {
 }
 
 class _TerapiEvimState extends State<TerapiEvim> {
-  Widget currentScreen = HomeScreen();
+  MainController _controller = Get.put(MainController());
   List<IconData> icons = <IconData>[
     IconUtility.navHome,
     IconUtility.navActivities,
@@ -32,10 +34,15 @@ class _TerapiEvimState extends State<TerapiEvim> {
     IconUtility.navProfile
   ];
 
-  int currentScreenIndex = 0;
-
   @override
   Widget build(BuildContext context) {
+    List<Widget> Screen = <Widget>[
+      HomeScreen(),
+      ActivitiesScreen(),
+      GroupScreen(),
+      MessageScreen(),
+      ProfileScreen()
+    ];
     return GetMaterialApp(
         home: Scaffold(
       bottomNavigationBar: AnimatedBottomNavigationBar(
@@ -80,10 +87,6 @@ class _TerapiEvimState extends State<TerapiEvim> {
       body: Center(
         child: Column(
           children: [
-            SizedBox(
-              width: 50,
-              height: 50,
-            ),
             RowText(),
             ToggleQuestions(),
             currentScreen,

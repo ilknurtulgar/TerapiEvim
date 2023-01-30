@@ -1,4 +1,11 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:terapievim/models/container_model.dart';
+
+import '../../../components/video_call_components/buttons/video_call_buttons.dart';
+import '../../../models/video_call_view_model.dart';
+import '../../../models/person_in_call_model.dart';
 
 class AppColors {
   static const Color blueChalk = Color.fromRGBO(238, 227, 255, 1);
@@ -22,6 +29,15 @@ class AppColors {
   //mesaj
   static const Color royalBlue = Color.fromRGBO(99, 86, 229, 1);
   //login buton
+  static const Color doveGray = Color.fromRGBO(98, 98, 98, 1);
+  //kamera kapandığında gözüken renk
+  static const Color mineShaft = Color.fromRGBO(56, 56, 56, 1);
+  //videolu görüşmedeki arka plan rengi
+  static const Color lightBlack = Color.fromRGBO(0, 0, 0, 0.7);
+  //isolated call'daki şeffaf siyah renk
+  static const Color red = Colors.red;
+  static const Color orange = Colors.orange;
+  static const Color transparent = Colors.transparent;
 }
 
 class IconUtility {
@@ -39,12 +55,30 @@ class IconUtility {
   static const Icon logoutIcon = Icon(Icons.logout);
   static const Icon searchIcon = Icon(Icons.search);
   static const Icon fiterIcon = Icon(Icons.list);
-  static const Icon fileIcon = Icon(Icons.description);
-  static const Icon micIcon = Icon(Icons.mic);
-  static const Icon micoffIcon = Icon(Icons.mic_off);
-  static const Icon videcamIcon = Icon(Icons.videocam);
-  static const Icon videocammoffIcon = Icon(Icons.videocam_off);
-  static const Icon callendIcon = Icon(Icons.call_end);
+  static const Icon fileIcon = Icon(
+    Icons.description_outlined,
+    color: AppColors.butterflyBush,
+  );
+  static Icon micIcon(bool isInCircularContainer) => Icon(
+        Icons.mic,
+        color: isInCircularContainer ? AppColors.black : AppColors.white,
+      );
+  static const Icon micoffIcon = Icon(
+    Icons.mic_off,
+    color: AppColors.red,
+  );
+  static const Icon videcamIcon = Icon(
+    Icons.videocam,
+    color: AppColors.black,
+  );
+  static const Icon videocamoffIcon = Icon(
+    Icons.videocam_off,
+    color: AppColors.black,
+  );
+  static const Icon callendIcon = Icon(
+    Icons.call_end,
+    color: AppColors.white,
+  );
   static const Icon sendIcon = Icon(Icons.send);
   static const Icon settingIcon = Icon(Icons.settings);
   static const Icon editIcon = Icon(Icons.edit);
@@ -54,86 +88,34 @@ class IconUtility {
   static const IconData navMessage = Icons.chat;
   static const IconData navGroup = Icons.groups;
   static const IconData navProfile = Icons.account_circle;
+  static const IconData lock = Icons.lock_outline;
 }
 
 class AppTextStyles {
-  static TextStyle loginPageTextStyle(bool isTitle, bool isTextFieldExplanation,
-          bool isTextButton, bool isButton) =>
-      TextStyle(
-          fontFamily: 'Inter',
-          fontWeight: isButton ? FontWeight.w600 : FontWeight.w400,
-          fontSize: isTitle ? 49 : 16,
-          color: isButton
-              ? AppColors.white
-              : isTextFieldExplanation
-                  ? AppColors.black
-                  : isTextButton
-                      ? AppColors.butterflyBush
-                      : AppColors.deepCove);
-  static TextStyle pagesBoldTitleStyle(bool isBig) => TextStyle(
+  static TextStyle normalTextStyle(String size, bool isGreyText) => TextStyle(
+        // sizeları big medium small olarak 3 çeşit aldım
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: size == 'big'
+            ? 24
+            : size == 'medium'
+                ? 16
+                : 12,
+        color: isGreyText ? AppColors.dustyGray : AppColors.black,
+      );
+  // small size --> psikolojik test sorularının seçenekleri,psikolog paylaşımlarındaki açıklamalar
+  // big size --> Filtreleme sayfasındaki başlıklar
+  // medium size --> textfield yazıları,mesajlar,test soruları,test hakkında bilgilendirme yazıları,card'daki titlelar,seminer containerlerı içindeki bold olmayan başlıklar
+  //                 profil sayfaları(o sayfadaki yazılar figmada çok küçük durduğu için medium'a aldık),
+  // grey text --> arama kısımlarındaki textler 'Ne aramıştınız?' texti gibi
+
+  static TextStyle buttonTextStyle(Color buttonColor) => TextStyle(
       fontFamily: 'Roboto',
       fontWeight: FontWeight.w500,
-      fontSize: isBig ? 24 : 18,
-      color: isBig
-          ? AppColors.deepCove
-          : AppColors //seminer konu başlıkları bu kısımda small olarak
-              .black); // baş etme metotları başlığı bu kısımda bulunuyor small olarak
-  static TextStyle testPageTextStyle(
-          bool isQuestion, bool isOption, bool isButton) =>
-      TextStyle(
-        fontFamily: 'Roboto',
-        fontWeight: FontWeight.w500,
-        fontSize: isQuestion
-            ? 18
-            : isOption
-                ? 12
-                : 14,
-        color: isOption
-            ? AppColors.deepCove
-            : isButton
-                ? AppColors.white
-                : AppColors.black,
-      );
-  static TextStyle appNameTextStyle = const TextStyle(
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w600,
-    fontSize: 32,
-    color: AppColors.deepCove,
-  );
-  static TextStyle mainPageTextStyle(
-          bool isTitle, bool isSubTitle, bool isButton) =>
-      TextStyle(
-        fontFamily: 'Roboto',
-        fontWeight: isButton ? FontWeight.w500 : FontWeight.w400,
-        fontSize: isTitle
-            ? 16
-            : isButton
-                ? 14
-                : 12,
-        color: isButton
-            ? AppColors.white
-            : isSubTitle
-                ? AppColors.dustyGray
-                : AppColors.black,
-      );
-  static TextStyle searchTextStyle = TextStyle(
-    fontFamily: 'Roboto',
-    fontWeight: FontWeight.w400,
-    fontSize: 16,
-    color: AppColors.dustyGray,
-  );
-  static TextStyle informationBoxTextStyle(
-          //bu kategoriye etkinlik kutucukları ve grup sayfasındaki katılımcı kutucuğu dahil
-          bool isInformationText,
-          bool isBold) =>
-      TextStyle(
-        fontFamily: 'Roboto',
-        fontWeight: isBold
-            ? FontWeight.w500
-            : FontWeight.w400, // katıl butonları için isBold true
-        fontSize: isInformationText ? 16 : 14,
-        color: isInformationText ? AppColors.black : AppColors.white,
-      );
+      fontSize: 16,
+      color: buttonColor == AppColors.butterflyBush
+          ? AppColors.white
+          : AppColors.butterflyBush);
   static TextStyle methodsPageTextStyle(bool isDateText, bool isOrderButton,
           bool isExplanationText, bool isDocument) =>
       TextStyle(
@@ -150,17 +132,6 @@ class AppTextStyles {
                 ? AppColors.black
                 : AppColors.deepCove,
       );
-  static TextStyle filterPagesTextStyle(
-          bool isFilterButton, bool isCategory, bool isPageTitle) =>
-      TextStyle(
-          fontFamily: isFilterButton ? 'Roboto' : 'Inter',
-          fontWeight: isFilterButton ? FontWeight.w500 : FontWeight.w400,
-          color: isFilterButton ? AppColors.white : AppColors.black,
-          fontSize: isCategory
-              ? 24
-              : isPageTitle
-                  ? 20
-                  : 16);
   static TextStyle aboutMeTextStyle(bool isName) => TextStyle(
         //seminer detay sayfasındaki hakkında kısmı
         fontFamily: isName ? 'Inter' : 'Roboto',
@@ -168,16 +139,75 @@ class AppTextStyles {
         color: isName ? AppColors.black : AppColors.deepCove,
         fontSize: isName ? 31 : 14,
       );
-  static TextStyle messagePageTextStyle(bool isMessage) => TextStyle(
-      fontFamily: isMessage ? 'Inter' : 'Roboto',
-      fontWeight: FontWeight.w400,
-      fontSize: isMessage ? 14 : 24,
-      color: isMessage ? AppColors.black : AppColors.deepCove);
   static TextStyle heading(bool isMainHeading) => TextStyle(
       //basliklarin hepsi
+
       color: AppColors.meteorite,
       fontSize: isMainHeading ? 32 : 24,
       fontFamily: "Roboto",
       fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
       letterSpacing: 0.07);
+}
+
+class AppContainers {
+  static ContainerModel classicWhiteContainer = ContainerModel(
+      width: 342,
+      borderRadius: 8,
+      backgroundColor: AppColors
+          .white); // bunun height'ı içindeki child'ın uzunluğuna göre değişiyor
+  static ContainerModel participantContainer = ContainerModel(
+      width: 342,
+      height: 52,
+      borderRadius: 8,
+      backgroundColor: AppColors.white);
+  static ContainerModel documentContainer = ContainerModel(
+      height: 40,
+      borderRadius: 360,
+      backgroundColor: AppColors.white,
+      shadowColor: AppColors
+          .dustyGray); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
+  static ContainerModel purpleButtonContainer = ContainerModel(
+    height: 30,
+    borderRadius: 100,
+    backgroundColor: AppColors.butterflyBush,
+  ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
+}
+
+class AppPaddings {
+  static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
+      0, 15, 20, 15); // sağ alt bütün mor butonlar için geçerli
+
+}
+
+class AppBorderRadius {
+  static const BorderRadius generalBorderRadius =
+      BorderRadius.all(Radius.circular(8));
+}
+
+class LockScreenUtil {
+  static const double lockScreenHeight = 40;
+  static const double lockScreenHeight2 = 50;
+  static const double lockScreenContainerWidth = 250;
+  static const double lockScreenContainerHeight = 100;
+  static const double lockScreenBigContainerWidth = 340;
+  static const double lockScreenBigContainerHeight = 200;
+  static const double lockIconSize = 100;
+  static const EdgeInsets lockScreenContainerPadding = EdgeInsets.all(20);
+
+  static const String text =
+      "Henüz Grubunuz Belli Olmadığı İçin Burası Kilitli";
+  static const String text2 =
+      "Henüz Grubunuz Belli Olmadığı İçin Burası Kilitli";
+  static const String buttonText = "Testi Cozmek Icin Tiklayiniz";
+}
+
+class AppBoxDecoration {
+  static BoxDecoration lockScreenBox = BoxDecoration(
+      color: AppColors.white,
+      borderRadius: AppBorderRadius.generalBorderRadius,
+      border: Border.all(color: AppColors.cornFlowerBlue));
+
+  static BoxDecoration lockScreenButton = BoxDecoration(
+      color: AppColors.cornFlowerBlue,
+      borderRadius: AppBorderRadius.generalBorderRadius);
 }

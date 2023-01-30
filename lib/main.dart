@@ -1,6 +1,7 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/components/text/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/scl90/test_for_users.dart';
 import 'package:terapievim/service/mainController.dart';
@@ -42,6 +43,7 @@ class _TerapiEvimState extends State<TerapiEvim> {
       ProfileScreen()
     ];
     return GetMaterialApp(
+      theme: ThemeData(primarySwatch: Colors.purple),
       home: Scaffold(
         bottomNavigationBar: Obx(
           () => AnimatedBottomNavigationBar(
@@ -63,7 +65,11 @@ class _TerapiEvimState extends State<TerapiEvim> {
         backgroundColor: AppColors.blueChalk,
         body: Column(
           children: [
-            Test(),
+            SizedBox(
+              width: 15,
+              height: 100,
+            ),
+            CustomTextField(labelText: "vv", hintText: "hintText"),
             Center(
               child: Obx(
                 () => Container(

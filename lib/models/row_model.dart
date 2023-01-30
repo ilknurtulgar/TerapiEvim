@@ -15,8 +15,8 @@ class RowModel {
   }
   Widget Space() {
     return SizedBox(
-      height: 20,
-      width: 20,
+      height: 0,
+      width: 0,
     );
   }
 }

@@ -1,12 +1,8 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/route_manager.dart';
-import 'package:terapievim/scl90/lock_screen.dart';
 import 'package:terapievim/service/mainController.dart';
 
-import '../core/base/util/base_utility.dart';
+import 'scl90/lock_screen.dart';
 
 class GroupScreen extends StatelessWidget {
   GroupScreen({super.key});

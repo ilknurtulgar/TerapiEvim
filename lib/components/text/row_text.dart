@@ -8,14 +8,22 @@ class RowText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [Text(rowText.toString())],
+      children: [
+        RotatedBox(
+          quarterTurns: 3,
+          child: ListView(
+            children: List.generate(
+                rowText.length, (index) => Text(index.toString())),
+          ),
+        )
+      ],
     );
   }
 }
 
-void selection(int index) {
-  for (var element in rowText) {
-    Text(rowText.toString());
+void change(int index) {
+  while (rowText[index] == rowText[index]) {
+    Text(rowText.reversed.toString());
   }
 }
 

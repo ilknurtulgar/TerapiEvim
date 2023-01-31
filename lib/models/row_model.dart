@@ -10,13 +10,9 @@ class RowModel {
     required this.text,
     this.trailingIcon,
   }) {
-    leadingIcon ??= Space();
-    trailingIcon ??= Space();
+    leadingIcon ??= space();
+    trailingIcon ??= space();
   }
-  Widget Space() {
-    return SizedBox(
-      height: 0,
-      width: 0,
-    );
-  }
+
+  SizedBox space() => SizedBox();
 }

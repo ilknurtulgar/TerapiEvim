@@ -34,7 +34,7 @@ class PersonMin extends StatelessWidget {
               border: Border.all(color: border_color!.withOpacity(1)),
               borderRadius: BorderRadius.circular(8),
               color: AppColors.white),
-          child: RowView(row)),
+          child: rowView(row)),
     );
   }
 }

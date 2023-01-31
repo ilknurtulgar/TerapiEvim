@@ -17,6 +17,7 @@ class RowModel {
     this.textStyle2,
     this.trailingIcon,
   }) {
+
     leadingIcon ??= Space();
     trailingIcon ??= Space();
     text2 ??= "";
@@ -24,8 +25,11 @@ class RowModel {
   }
   Widget Space() {
     return SizedBox(
-      height: 20,
-      width: 20,
+      height: 0,
+      width: 0,
     );
+
   }
+
+  SizedBox space() => SizedBox();
 }

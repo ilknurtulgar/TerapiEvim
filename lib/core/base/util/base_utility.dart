@@ -1,11 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:terapievim/models/container_model.dart';
-
-import '../../../components/video_call_components/buttons/video_call_buttons.dart';
-import '../../../models/video_call_view_model.dart';
-import '../../../models/person_in_call_model.dart';
 
 class AppColors {
   static const Color blueChalk = Color.fromRGBO(238, 227, 255, 1);
@@ -59,6 +53,10 @@ class IconUtility {
     Icons.description_outlined,
     color: AppColors.butterflyBush,
   );
+  /*
+  static Icon visiblIcon(bool ff) =>
+      ff ? IconUtility.visibilityIcon : IconUtility.visibilityoffIcon;*/
+
   static Icon micIcon(bool isInCircularContainer) => Icon(
         Icons.mic,
         color: isInCircularContainer ? AppColors.black : AppColors.white,
@@ -89,6 +87,7 @@ class IconUtility {
   static const IconData navGroup = Icons.groups;
   static const IconData navProfile = Icons.account_circle;
   static const IconData lock = Icons.lock_outline;
+  static const Icon emailIcon = Icon(Icons.mail);
 }
 
 class AppTextStyles {

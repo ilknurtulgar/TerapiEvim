@@ -15,14 +15,14 @@ class CustomText extends StatelessWidget {
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(containerModel.borderRadius),
           color: containerModel.backgroundColor,
-          boxShadow: [BoxShadow(color: AppColors.coldPurple, spreadRadius: 4)]),
-      child: Text(customText),
+          boxShadow: [BoxShadow(color: AppColors.coldPurple, spreadRadius: 3)]),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(customText),
+      ),
     );
   }
 }
 
-ContainerModel container_Model = ContainerModel(
-    width: 342, height: 208, borderRadius: 8, backgroundColor: AppColors.white);
-
-ContainerModel container_model = ContainerModel(
-    width: 342, height: 114, borderRadius: 8, backgroundColor: AppColors.white);
+ContainerModel customTextModel = ContainerModel(
+    width: 342, borderRadius: 8, backgroundColor: AppColors.white);

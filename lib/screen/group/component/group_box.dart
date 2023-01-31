@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/components/buttons/button.dart';
 import 'package:terapievim/components/text/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/models/model_view/row_view.dart';
+import 'package:terapievim/models/row_view.dart';
 
 class ActivityBox extends StatelessWidget {
   ActivityBox({super.key, required this.customButton});

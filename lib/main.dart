@@ -5,13 +5,14 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/group_pages.dart/group.dart';
 import 'package:terapievim/components/box/activitty_box.dart';
-import 'package:terapievim/components/text/custom_textfield.dart';
+import 'package:terapievim/components/text/custom_text.dart';
+
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/service/mainController.dart';
 
 import 'screen/activities.dart';
 import 'screen/home.dart';
-import 'screen/message.dart';
+import 'screen/message/message.dart';
 import 'screen/profile.dart';
 
 void main() {
@@ -74,11 +75,16 @@ class _TerapiEvimState extends State<TerapiEvim> {
               height: 100,
             ),
             ActivityBox(customButton: customButton),
-            /* SizedBox(
+            SizedBox(
               width: 15,
               height: 100,
             ),
-            CustomTextField(
+            CustomText(
+                containerModel: customTextModel,
+                customText:
+                    "cldlxlccxccccccllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll"),
+
+            /* CustomTextField(
                 labelText: "vv", hintText: "hintText", rowModel: trailingModel),
             SizedBox(
               width: 15,

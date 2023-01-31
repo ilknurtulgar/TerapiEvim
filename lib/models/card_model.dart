@@ -1,5 +1,3 @@
-import 'package:flutter/material.dart';
-
 class CardModel {
   String imagePath;
   String title;

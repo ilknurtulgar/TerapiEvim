@@ -32,7 +32,7 @@ class SeminarMin extends StatelessWidget {
             border: Border.all(color: border_color!.withOpacity(1)),
             borderRadius: BorderRadius.circular(8),
             color: AppColors.white),
-        child: RowView(row),
+        child: rowView(row),
       ),
     );
   }
@@ -76,7 +76,7 @@ class SeminarMax extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [RowView(row1), RowView(row2), RowView(row3)],
+          children: [rowView(row1), rowView(row2), rowView(row3)],
         ),
       ),
     );

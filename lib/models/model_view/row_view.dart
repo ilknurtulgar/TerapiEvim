@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../models/row_model.dart';
+import '../row_model.dart';
 
 Widget RowView(RowModel rowModel) {
   return Padding(

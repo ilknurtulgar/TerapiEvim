@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/components/image/custom_circle_avatar.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/models/card_model.dart';
 import 'package:terapievim/models/container_model.dart';
 
+
 import '../../core/base/util/base_utility.dart';
-import '../../model_view/row_view.dart';
+import '../../models/model_view/row_view.dart';
 import '../../models/row_model.dart';
+
 
 class CustomContainer extends StatelessWidget {
   const CustomContainer(
       {super.key,
       required this.containerModel,
       required this.cardModel,
-      required this.time,
+      this.time,
       this.widget});
   final ContainerModel containerModel;
   final CardModel cardModel;
-  final String time;
+  final String? time;
   final Widget? widget;
   @override
   Widget build(BuildContext context) {
@@ -27,9 +30,9 @@ class CustomContainer extends StatelessWidget {
         shadowColor: containerModel.shadowColor,
         shape: customContainerShape(),
         child: SizedBox(
-          height: containerModel.height,
           width: containerModel.width,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               listTile(),
               widget ?? const SizedBox(),
@@ -42,19 +45,17 @@ class CustomContainer extends StatelessWidget {
 
   ListTile listTile() {
     return ListTile(
-      leading: CustomCircleAvatar(
-          imagePath: cardModel.imagePath, big: false, shadow: false),
-      title: Text(cardModel.title),
-      subtitle: Text(cardModel.subtitle),
-      trailing: Text(time),
-    );
+              leading: CustomCircleAvatar(imagePath:cardModel.imagePath,big:false,shadow:false),
+              title: Text(cardModel.title,style: AppTextStyles.normalTextStyle('medium',false),),
+              subtitle: cardModel.subtitle!=null ? Text(cardModel.subtitle ?? "")  : null,
+              trailing: Text(time ?? "") ,
+            );
   }
 
   RoundedRectangleBorder customContainerShape() {
     return RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(containerModel.borderRadius),
-        side: BorderSide(
-            color: containerModel.shadowColor ?? Colors.transparent,
-            width: containerModel.shadowColor != null ? 2 : 0));
+        side: BorderSide(color: containerModel.shadowColor ?? Colors.transparent,width: containerModel.shadowColor!=null ? 2 : 0 ) 
+      );
   }
 }

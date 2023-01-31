@@ -1,14 +1,15 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/components/box/activitty_box.dart';
+import 'package:terapievim/components/text/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/service/mainController.dart';
-
-import 'Screen/activities.dart';
-import 'Screen/group.dart';
-import 'Screen/home.dart';
-import 'Screen/message.dart';
-import 'Screen/profile.dart';
+import 'screen/activities.dart';
+import 'screen/group.dart';
+import 'screen/home.dart';
+import 'screen/message.dart';
+import 'screen/profile.dart';
 
 void main() {
   runApp(TerapiEvim());
@@ -23,6 +24,7 @@ class TerapiEvim extends StatefulWidget {
 
 class _TerapiEvimState extends State<TerapiEvim> {
   MainController _controller = Get.put(MainController());
+
   List<IconData> icons = <IconData>[
     IconUtility.navHome,
     IconUtility.navActivities,
@@ -41,32 +43,55 @@ class _TerapiEvimState extends State<TerapiEvim> {
       ProfileScreen()
     ];
     return GetMaterialApp(
-        home: Scaffold(
-      bottomNavigationBar: Obx(
-        () => AnimatedBottomNavigationBar(
-          icons: icons,
-          activeIndex: _controller.currentScreenIndex.toInt(),
-          leftCornerRadius: 20,
-          rightCornerRadius: 20,
-          iconSize: 30,
-          gapLocation: GapLocation.none,
-          height: 72,
-          backgroundColor: AppColors.white,
-          inactiveColor: AppColors.dustyGray,
-          activeColor: Colors.black,
-          onTap: (int) {
-            _controller.ChangeScreen(int);
-          },
-        ),
-      ),
-      backgroundColor: AppColors.blueChalk,
-      body: Center(
-        child: Obx(
-          () => Container(
-            child: Screen[_controller.currentScreenIndex.toInt()],
+      theme: ThemeData(primarySwatch: Colors.purple),
+      home: Scaffold(
+        bottomNavigationBar: Obx(
+          () => AnimatedBottomNavigationBar(
+            icons: icons,
+            activeIndex: _controller.currentScreenIndex.toInt(),
+            leftCornerRadius: 20,
+            rightCornerRadius: 20,
+            iconSize: 30,
+            gapLocation: GapLocation.none,
+            height: 72,
+            backgroundColor: AppColors.white,
+            inactiveColor: AppColors.dustyGray,
+            activeColor: Colors.black,
+            onTap: (int) {
+              _controller.ChangeScreen(int);
+            },
           ),
         ),
+        backgroundColor: AppColors.blueChalk,
+        body: Column(
+          children: [
+            SizedBox(
+              width: 15,
+              height: 100,
+            ),
+            ActivityBox(customButton: customButton),
+            /* SizedBox(
+              width: 15,
+              height: 100,
+            ),
+            CustomTextField(
+                labelText: "vv", hintText: "hintText", rowModel: trailingModel),
+            SizedBox(
+              width: 15,
+              height: 100,
+            ),
+          CustomTextField(
+                labelText: "vv", hintText: "hintText", rowModel: leadingModel),*/
+            Center(
+              child: Obx(
+                () => Container(
+                  child: Screen[_controller.currentScreenIndex.toInt()],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
-    ));
+    );
   }
 }

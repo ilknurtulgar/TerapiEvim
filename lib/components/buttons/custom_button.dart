@@ -34,22 +34,32 @@ class _CustomButtonState extends State<CustomButton> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            widget.icon ?? const SizedBox(),
-            widget.icon!=null ? const SizedBox(width: 10,) : const SizedBox(),
-            Text(widget.text,style: AppTextStyles.buttonTextStyle(widget.container.backgroundColor),),
-          ],
-        ),
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          widget.icon ?? const SizedBox(),
+          widget.icon != null
+              ? const SizedBox(
+                  width: 10,
+                )
+              : const SizedBox(),
+          Text(
+            widget.text,
+            style:
+                AppTextStyles.buttonTextStyle(widget.container.backgroundColor),
+          ),
+        ],
+      ),
     );
   }
 
   BoxDecoration containerDecoration() {
     return BoxDecoration(
-          border: Border.all(color: widget.container.shadowColor ?? Colors.transparent,width: widget.container.shadowColor!=null ? 2 : 0),
-          borderRadius: BorderRadius.circular(widget.container.borderRadius),
-          color: widget.container.backgroundColor,
-        );
+      border: Border.all(
+          color: widget.container.shadowColor ?? Colors.transparent,
+          width: widget.container.shadowColor != null ? 2 : 0),
+      borderRadius: BorderRadius.circular(widget.container.borderRadius),
+      color: widget.container.backgroundColor,
+    );
   }
 }

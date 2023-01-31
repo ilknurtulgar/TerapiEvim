@@ -4,8 +4,8 @@ import '../../core/base/util/base_utility.dart';
 import '../../models/model_view/row_view.dart';
 import '../../models/row_model.dart';
 
-class Group extends StatelessWidget {
-  Group({
+class GroupClass extends StatelessWidget {
+  GroupClass({
     super.key,
     required this.heading,
     this.width,

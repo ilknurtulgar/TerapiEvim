@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
   String? labelText;
   String? hintText;
   RowModel rowModel;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -48,6 +49,7 @@ RowModel trailingModel = RowModel(
         print("tiklandi");
       }),
       child: IconUtility.visibilityIcon,
-    ));
-RowModel leadingModel =
-    RowModel(text: "cx", leadingIcon: IconUtility.emailIcon);
+    ),
+    textStyle: TextStyle());
+RowModel leadingModel = RowModel(
+    text: "cx", leadingIcon: IconUtility.emailIcon, textStyle: TextStyle());

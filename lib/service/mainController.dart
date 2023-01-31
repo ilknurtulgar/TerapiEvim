@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 class MainController extends GetxController {
   var currentScreenIndex = 0.obs;
   var isViewPlaceChanged = false.obs;
-  var isTestSolved = false.obs;
+  var isTestSolved = true.obs;
   var isTestResultReady = true.obs;
 
   ChangeScreen(int index) {
@@ -26,7 +26,8 @@ class MainController extends GetxController {
     }
   }
 
-  changeViewPlaces() { // isolated call'da çift tıklayınca terapist ile danışanın görüntü olarak yerlerinin değişmesi fonksiyonu
+  changeViewPlaces() {
+    // isolated call'da çift tıklayınca terapist ile danışanın görüntü olarak yerlerinin değişmesi fonksiyonu
     isViewPlaceChanged.value = !isViewPlaceChanged.value;
   }
 }

@@ -146,6 +146,10 @@ class AppTextStyles {
       fontFamily: "Roboto",
       fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
       letterSpacing: 0.07);
+  static TextStyle GroupTextStyle(bool isName) => TextStyle(
+      fontSize: isName ? 16 : 18,
+      fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
+      color: AppColors.black);
 }
 
 class AppContainers {

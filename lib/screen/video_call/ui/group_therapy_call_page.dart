@@ -1,13 +1,14 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import '../../components/video_call_components/buttons/video_call_buttons.dart';
-import '../../components/video_call_components/video_call_person_view_component.dart';
-import '../../core/base/util/base_utility.dart';
-import '../../core/base/util/video_call_utility.dart';
-import '../../models/person_in_call_model.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/screen/video_call/base_utility/video_call_utility.dart';
+import 'package:terapievim/screen/video_call/components/buttons/video_call_buttons.dart';
+import 'package:terapievim/screen/video_call/components/video_call_container/video_call_person_view_component.dart';
+import 'package:terapievim/screen/video_call/model/person_in_call_model.dart';
 
 class GroupTherapyCallPage extends StatelessWidget {
-  const GroupTherapyCallPage({super.key, required this.therapist, required this.participants});
+  const GroupTherapyCallPage(
+      {super.key, required this.therapist, required this.participants});
   final List<PersonInCallModel> participants;
   final PersonInCallModel therapist;
 
@@ -16,7 +17,9 @@ class GroupTherapyCallPage extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          VideoCallPersonView(videoCallViewModel: VideoCallUtility.personBigView(therapist,true)),
+          VideoCallPersonView(
+              videoCallViewModel:
+                  VideoCallUtility.personBigView(therapist, true)),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -25,7 +28,9 @@ class GroupTherapyCallPage extends StatelessWidget {
                 width: window.physicalSize.width,
                 child: Column(
                   children: [
-                    const SizedBox(height: 20,),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     participantRow(),
                     VideoCallButtonsRow(),
                   ],
@@ -44,7 +49,9 @@ class GroupTherapyCallPage extends StatelessWidget {
           itemBuilder: ((context, index) {
             return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: VideoCallPersonView(videoCallViewModel: VideoCallUtility.personSmallView(participants[index],true)));
+                child: VideoCallPersonView(
+                    videoCallViewModel: VideoCallUtility.personSmallView(
+                        participants[index], true)));
           })),
     );
   }

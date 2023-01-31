@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:terapievim/screen/group/component/custom_heading.dart';
+import 'package:terapievim/screen/group/component/person.dart';
 
-import '../../components/container/person.dart';
-import '../../components/image/custom_circle_avatar.dart';
-import '../../components/text/custom_heading.dart';
-import '../../core/base/util/base_utility.dart';
-import '../../models/row_model.dart';
+import 'package:terapievim/components/image/custom_circle_avatar.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/models/row_model.dart';
 
-class MyGroup2 extends StatelessWidget {
-  const MyGroup2({super.key});
+class MyGroup extends StatelessWidget {
+  const MyGroup({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -73,7 +71,7 @@ class MyGroup2 extends StatelessWidget {
               PersonMin(
                 onTap: () {},
                 row: row,
-                border_color: AppColors.cornFlowerBlue,
+                borderColor: AppColors.cornFlowerBlue,
               ),
               SizedBox(
                 height: 16,
@@ -81,7 +79,7 @@ class MyGroup2 extends StatelessWidget {
               PersonMin(
                   onTap: () {},
                   row: row,
-                  border_color: AppColors.cornFlowerBlue),
+                  borderColor: AppColors.cornFlowerBlue),
               SizedBox(
                 height: 20,
               ),

@@ -1,8 +1,11 @@
 import 'dart:ui';
-import '../../../components/video_call_components/buttons/video_call_buttons.dart';
-import '../../../models/person_in_call_model.dart';
-import '../../../models/video_call_view_model.dart';
-import 'base_utility.dart';
+
+import 'package:terapievim/screen/video_call/components/buttons/video_call_buttons.dart';
+
+import '../model/person_in_call_model.dart';
+import '../model/video_call_view_model.dart';
+import '../../../core/base/util/base_utility.dart';
+
 class VideoCallUtility {
   static VideoCallViewModel personBigView(
           PersonInCallModel person, bool isTherapistInGroupTherapy) =>

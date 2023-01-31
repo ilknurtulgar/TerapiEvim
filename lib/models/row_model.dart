@@ -17,18 +17,10 @@ class RowModel {
     this.textStyle2,
     this.trailingIcon,
   }) {
-
-    leadingIcon ??= Space();
-    trailingIcon ??= Space();
+    leadingIcon ??= space();
+    trailingIcon ??= space();
     text2 ??= "";
     textStyle2 ??= AppTextStyles.aboutMeTextStyle(true);
-  }
-  Widget Space() {
-    return SizedBox(
-      height: 0,
-      width: 0,
-    );
-
   }
 
   SizedBox space() => SizedBox();

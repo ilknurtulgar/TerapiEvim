@@ -1,11 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:terapievim/models/container_model.dart';
-
-import '../../../components/video_call_components/buttons/video_call_buttons.dart';
-import '../../../models/video_call_view_model.dart';
-import '../../../models/person_in_call_model.dart';
 
 class AppColors {
   static const Color blueChalk = Color.fromRGBO(238, 227, 255, 1);
@@ -152,6 +146,10 @@ class AppTextStyles {
       fontFamily: "Roboto",
       fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
       letterSpacing: 0.07);
+  static TextStyle GroupTextStyle(bool isName) => TextStyle(
+      fontSize: isName ? 16 : 18,
+      fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
+      color: AppColors.black);
 }
 
 class AppContainers {

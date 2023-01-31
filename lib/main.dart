@@ -2,15 +2,15 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/group_pages.dart/group.dart';
-import 'package:terapievim/components/box/activitty_box.dart';
 import 'package:terapievim/components/text/custom_text.dart';
+import 'package:terapievim/screen/group/component/group_box.dart';
+import 'package:terapievim/screen/group/group.dart';
 import 'package:terapievim/service/mainController.dart';
 
-import 'screen/activities.dart';
-import 'screen/home.dart';
+import 'screen/activity/activities.dart';
+import 'screen/home/home.dart';
 import 'screen/message/message.dart';
-import 'screen/profile.dart';
+import 'screen/profile/profile.dart';
 
 void main() {
   runApp(TerapiEvim());
@@ -39,7 +39,7 @@ class _TerapiEvimState extends State<TerapiEvim> {
     List<Widget> Screen = <Widget>[
       HomeScreen(),
       ActivitiesScreen(),
-      Group(),
+      GroupScreen(),
       MessageScreen(),
       ProfileScreen()
     ];
@@ -70,7 +70,6 @@ class _TerapiEvimState extends State<TerapiEvim> {
               width: 15,
               height: 100,
             ),
-            ActivityBox(customButton: customButton),
             SizedBox(
               width: 15,
               height: 100,

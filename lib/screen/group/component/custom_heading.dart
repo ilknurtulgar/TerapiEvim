@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
-import '../../core/base/util/base_utility.dart';
+import '../../../../core/base/util/base_utility.dart';
 
 class CustomHeading extends StatelessWidget {
   CustomHeading({super.key, required this.text});

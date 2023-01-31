@@ -2,12 +2,14 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/scl90/test_for_users.dart';
+import 'package:terapievim/screen/group_pages.dart/group.dart';
+import 'package:terapievim/components/box/activitty_box.dart';
+import 'package:terapievim/components/text/custom_text.dart';
 import 'package:terapievim/service/mainController.dart';
+
 import 'screen/activities.dart';
-import 'screen/group.dart';
 import 'screen/home.dart';
-import 'screen/message.dart';
+import 'screen/message/message.dart';
 import 'screen/profile.dart';
 
 void main() {
@@ -37,11 +39,12 @@ class _TerapiEvimState extends State<TerapiEvim> {
     List<Widget> Screen = <Widget>[
       HomeScreen(),
       ActivitiesScreen(),
-      GroupScreen(),
+      Group(),
       MessageScreen(),
       ProfileScreen()
     ];
     return GetMaterialApp(
+      theme: ThemeData(primarySwatch: Colors.purple),
       home: Scaffold(
         bottomNavigationBar: Obx(
           () => AnimatedBottomNavigationBar(
@@ -63,7 +66,28 @@ class _TerapiEvimState extends State<TerapiEvim> {
         backgroundColor: AppColors.blueChalk,
         body: Column(
           children: [
-            Test(),
+            SizedBox(
+              width: 15,
+              height: 100,
+            ),
+            ActivityBox(customButton: customButton),
+            SizedBox(
+              width: 15,
+              height: 100,
+            ),
+            CustomText(
+                containerModel: customTextModel,
+                customText:
+                    "cldlxlccxccccccllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll"),
+
+            /* CustomTextField(
+                labelText: "vv", hintText: "hintText", rowModel: trailingModel),
+            SizedBox(
+              width: 15,
+              height: 100,
+            ),
+          CustomTextField(
+                labelText: "vv", hintText: "hintText", rowModel: leadingModel),*/
             Center(
               child: Obx(
                 () => Container(

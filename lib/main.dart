@@ -1,7 +1,9 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/components/container/group.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/screen/group_pages.dart/group.dart';
 import 'package:terapievim/service/mainController.dart';
 import 'screen/activities.dart';
 
@@ -36,6 +38,7 @@ class _TerapiEvimState extends State<TerapiEvim> {
     List<Widget> Screen = <Widget>[
       HomeScreen(),
       ActivitiesScreen(),
+      Group(),
       MessageScreen(),
       ProfileScreen()
     ];

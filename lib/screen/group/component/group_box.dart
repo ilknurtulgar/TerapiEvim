@@ -29,11 +29,12 @@ class ActivityBox extends StatelessWidget {
         ),
         child: Column(
           children: [
-
-            rowView(arowModel,EdgeInsets.symmetric(horizontal: 30)),
-            rowView(ayrowwModel,EdgeInsets.symmetric(horizontal: 30)),
-            rowView(clockModel,EdgeInsets.symmetric(horizontal: 30)),
-
+            rowView(
+                arowModel, EdgeInsets.symmetric(horizontal: 15, vertical: 7)),
+            rowView(
+                ayrowwModel, EdgeInsets.symmetric(horizontal: 15, vertical: 7)),
+            rowView(
+                clockModel, EdgeInsets.symmetric(horizontal: 15, vertical: 7)),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -60,13 +61,18 @@ Custombutton customButton = Custombutton(
     buttonText: "katil");
 
 RowModel arow_model = RowModel(
+    isAlignmentBetween: true,
     text: "anapsikolog",
     textStyle: TextStyle(),
     leadingIcon: IconUtility.personIcon);
 
 RowModel ayrow_model = RowModel(
+    isAlignmentBetween: true,
     text: "yardımcıpsikolog",
     textStyle: TextStyle(),
     leadingIcon: IconUtility.personIcon);
 RowModel clock_model = RowModel(
-    text: "saat", textStyle: TextStyle(), leadingIcon: IconUtility.clockIcon);
+    isAlignmentBetween: true,
+    text: "saat",
+    textStyle: TextStyle(),
+    leadingIcon: IconUtility.clockIcon);

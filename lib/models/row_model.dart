@@ -23,5 +23,8 @@ class RowModel {
     textStyle2 ??= AppTextStyles.aboutMeTextStyle(true);
   }
 
-  SizedBox space() => SizedBox();
+  SizedBox space() => SizedBox(
+        height: 20,
+        width: 20,
+      );
 }

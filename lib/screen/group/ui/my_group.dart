@@ -17,13 +17,13 @@ class MyGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     String imagePath = "assets/images/doctorfotosu.jpeg";
     RowModel row = RowModel(
-        isAlignmentBetween: true,
-        leadingIcon: IconUtility.personIcon,
-        text: "Grup Terapisti : ",
-        textStyle: AppTextStyles.GroupTextStyle(false),
-        text2: "Simay Odabasi",
-        textStyle2: AppTextStyles.GroupTextStyle(true),
-        trailingIcon: IconUtility.sendIcon);
+      isAlignmentBetween: true,
+      leadingIcon: IconUtility.personIcon,
+      text: "Grup Terapisti : ",
+      textStyle: AppTextStyles.GroupTextStyle(false),
+      text2: "Simay Odabasi",
+      textStyle2: AppTextStyles.GroupTextStyle(true),
+    );
     RowModel row2 = RowModel(
         isAlignmentBetween: true,
         leadingIcon: IconUtility.personIcon,
@@ -55,7 +55,11 @@ class MyGroup extends StatelessWidget {
                 height: 40,
               ),
               CustomHeading(text: yaklasanToplanti),
-              ActivityBox(customButton: customButton),
+              ActivityBox(
+                  customButton: customButton,
+                  arowModel: row,
+                  ayrowwModel: row,
+                  clockModel: row),
               SizedBox(
                 height: 20,
               ),

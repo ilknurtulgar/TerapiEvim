@@ -43,6 +43,7 @@ class CustomTextField extends StatelessWidget {
 }
 
 RowModel trailingModel = RowModel(
+    isAlignmentBetween: true,
     text: "cx",
     trailingIcon: InkWell(
       onTap: (() {
@@ -52,4 +53,7 @@ RowModel trailingModel = RowModel(
     ),
     textStyle: TextStyle());
 RowModel leadingModel = RowModel(
-    text: "cx", leadingIcon: IconUtility.emailIcon, textStyle: TextStyle());
+    isAlignmentBetween: true,
+    text: "cx",
+    leadingIcon: IconUtility.emailIcon,
+    textStyle: TextStyle());

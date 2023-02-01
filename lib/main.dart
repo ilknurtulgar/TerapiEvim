@@ -1,4 +1,5 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
@@ -6,13 +7,18 @@ import 'package:terapievim/components/text/custom_text.dart';
 import 'package:terapievim/screen/group/component/group_box.dart';
 import 'package:terapievim/screen/group/group.dart';
 import 'package:terapievim/service/mainController.dart';
-
+import 'firebase_options.dart';
 import 'screen/activity/activities.dart';
 import 'screen/home/home.dart';
 import 'screen/message/message.dart';
 import 'screen/profile/profile.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+
   runApp(TerapiEvim());
 }
 
@@ -42,8 +48,9 @@ class _TerapiEvimState extends State<TerapiEvim> {
       GroupScreen(),
       MessageScreen(),
       ProfileScreen()
-    ];
+    ]; 
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.purple),
       home: Scaffold(
         bottomNavigationBar: Obx(
@@ -64,37 +71,12 @@ class _TerapiEvimState extends State<TerapiEvim> {
           ),
         ),
         backgroundColor: AppColors.blueChalk,
-        body: Column(
-          children: [
-            SizedBox(
-              width: 15,
-              height: 100,
+        body: Center(
+          child: Obx(
+            () => Container(
+              child: Screen[_controller.currentScreenIndex.toInt()],
             ),
-            SizedBox(
-              width: 15,
-              height: 100,
-            ),
-            CustomText(
-                containerModel: customTextModel,
-                customText:
-                    "cldlxlccxccccccllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll"),
-
-            /* CustomTextField(
-                labelText: "vv", hintText: "hintText", rowModel: trailingModel),
-            SizedBox(
-              width: 15,
-              height: 100,
-            ),
-          CustomTextField(
-                labelText: "vv", hintText: "hintText", rowModel: leadingModel),*/
-            Center(
-              child: Obx(
-                () => Container(
-                  child: Screen[_controller.currentScreenIndex.toInt()],
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

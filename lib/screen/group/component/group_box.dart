@@ -11,19 +11,20 @@ class ActivityBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(0),
       child: Container(
-        width: 250,
-        height: 150,
+        width: 350,
+        height: 165,
         decoration: BoxDecoration(
+          color: AppColors.white,
           border: Border.all(color: AppColors.cornFlowerBlue, width: 2),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           children: [
-            rowView(leadingModel),
-            rowView(leadingModel),
-            rowView(leadingModel),
+            rowView(leadingModel, EdgeInsets.symmetric(horizontal: 5)),
+            rowView(leadingModel, EdgeInsets.symmetric(horizontal: 5)),
+            rowView(leadingModel, EdgeInsets.symmetric(horizontal: 5)),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -44,7 +45,7 @@ class ActivityBox extends StatelessWidget {
 
 Custombutton customButton = Custombutton(
     onTap: () {},
-    buttonWidth: 100,
-    buttonHeight: 25,
+    buttonWidth: 123,
+    buttonHeight: 30,
     buttonColor: Colors.deepPurple,
     buttonText: "katil");

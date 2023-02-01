@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>279850256529-rjue6gstgu9rhv3cv1ra8hm3b507fqiq.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.279850256529-rjue6gstgu9rhv3cv1ra8hm3b507fqiq</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDPq1xuX1YJv2reoeUxHmKTDapQLSn62ro</string>
+	<key>GCM_SENDER_ID</key>
+	<string>279850256529</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.terapievim</string>
+	<key>PROJECT_ID</key>
+	<string>terapi-evim</string>
+	<key>STORAGE_BUCKET</key>
+	<string>terapi-evim.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:279850256529:ios:9deb909aa3e5ae1976d730</string>
+</dict>
+</plist>

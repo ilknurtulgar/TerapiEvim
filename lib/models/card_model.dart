@@ -5,6 +5,6 @@ class CardModel {
   CardModel({
     required this.imagePath,
     required this.title,
-    required this.subtitle,
+    this.subtitle,
   });
 }

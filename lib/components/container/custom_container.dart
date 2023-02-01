@@ -4,11 +4,7 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/models/card_model.dart';
 import 'package:terapievim/models/container_model.dart';
 
-
 import '../../core/base/util/base_utility.dart';
-import '../../models/model_view/row_view.dart';
-import '../../models/row_model.dart';
-
 
 class CustomContainer extends StatelessWidget {
   const CustomContainer(
@@ -45,17 +41,23 @@ class CustomContainer extends StatelessWidget {
 
   ListTile listTile() {
     return ListTile(
-              leading: CustomCircleAvatar(imagePath:cardModel.imagePath,big:false,shadow:false),
-              title: Text(cardModel.title,style: AppTextStyles.normalTextStyle('medium',false),),
-              subtitle: cardModel.subtitle!=null ? Text(cardModel.subtitle ?? "")  : null,
-              trailing: Text(time ?? "") ,
-            );
+      leading: CustomCircleAvatar(
+          imagePath: cardModel.imagePath, big: false, shadow: false),
+      title: Text(
+        cardModel.title,
+        style: AppTextStyles.normalTextStyle('medium', false),
+      ),
+      subtitle:
+          cardModel.subtitle != null ? Text(cardModel.subtitle ?? "") : null,
+      trailing: Text(time ?? ""),
+    );
   }
 
   RoundedRectangleBorder customContainerShape() {
     return RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(containerModel.borderRadius),
-        side: BorderSide(color: containerModel.shadowColor ?? Colors.transparent,width: containerModel.shadowColor!=null ? 2 : 0 ) 
-      );
+        side: BorderSide(
+            color: containerModel.shadowColor ?? Colors.transparent,
+            width: containerModel.shadowColor != null ? 2 : 0));
   }
 }

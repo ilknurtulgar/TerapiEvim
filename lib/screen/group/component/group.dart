@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../core/base/util/base_utility.dart';
-import '../../models/model_view/row_view.dart';
-import '../../models/row_model.dart';
+import '../../../../core/base/util/base_utility.dart';
+import '../../../../models/row_view.dart';
+import '../../../../models/row_model.dart';
 
 class GroupClass extends StatelessWidget {
   GroupClass({
@@ -10,12 +10,12 @@ class GroupClass extends StatelessWidget {
     required this.heading,
     this.width,
     this.height,
-    this.border_color,
+    this.borderColor,
     required this.onTap,
     required this.row1,
     required this.row2,
   });
-  Color? border_color;
+  Color? borderColor;
   final Function onTap;
   final RowModel row1;
   final RowModel row2;
@@ -28,7 +28,7 @@ class GroupClass extends StatelessWidget {
   Widget build(BuildContext context) {
     width ??= 237;
     height ??= 120;
-    border_color ??= AppColors.dustyGray;
+    borderColor ??= AppColors.dustyGray;
 
     return InkWell(
       onTap: () => onTap,
@@ -36,7 +36,7 @@ class GroupClass extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-            border: Border.all(color: border_color!.withOpacity(1)),
+            border: Border.all(color: borderColor!.withOpacity(1)),
             borderRadius: BorderRadius.circular(8),
             color: AppColors.white),
         child: Column(

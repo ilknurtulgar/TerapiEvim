@@ -1,8 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import '../../models/video_call_view_model.dart';
-import '../container/circular_container.dart';
+import 'package:terapievim/screen/video_call/components/video_call_container/circular_container.dart';
+
+import '../../model/video_call_view_model.dart';
 
 class VideoCallPersonView extends StatefulWidget {
   const VideoCallPersonView(
@@ -16,14 +17,22 @@ class VideoCallPersonView extends StatefulWidget {
 class _VideoCallPersonViewState extends State<VideoCallPersonView> {
   void cameraOnOffFunc() {
     setState(() {
-      widget.videoCallViewModel.person.isCamOn = !widget.videoCallViewModel.person.isCamOn; // bu fonksiyonu kamera açılıp kapandığında görüntünün nasıl değişeceğini gözlemlemek için geçici olarak koydum
+      widget.videoCallViewModel.person.isCamOn = !widget
+          .videoCallViewModel
+          .person
+          .isCamOn; // bu fonksiyonu kamera açılıp kapandığında görüntünün nasıl değişeceğini gözlemlemek için geçici olarak koydum
     });
   }
-  void micOnOffFunc(){
-     setState(() {
-      widget.videoCallViewModel.person.isMicOn = !widget.videoCallViewModel.person.isMicOn; // bu fonksiyonu mikrofon açılıp kapandığında görüntünün nasıl değişeceğini gözlemlemek için geçici olarak koydum
-  });  
+
+  void micOnOffFunc() {
+    setState(() {
+      widget.videoCallViewModel.person.isMicOn = !widget
+          .videoCallViewModel
+          .person
+          .isMicOn; // bu fonksiyonu mikrofon açılıp kapandığında görüntünün nasıl değişeceğini gözlemlemek için geçici olarak koydum
+    });
   }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -37,10 +46,7 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
             InkWell(
               onTap: () => cameraOnOffFunc(),
               onDoubleTap: widget.onDoubleTap,
-              child: Stack(children: [
-                personView(),
-                micIconButton()
-              ]),
+              child: Stack(children: [personView(), micIconButton()]),
             ),
             widget.videoCallViewModel.isNameShown
                 ? nameSurnameText(widget.videoCallViewModel.person.name)
@@ -56,24 +62,25 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
 
   Align micIconButton() {
     return Align(
-                alignment: Alignment.topRight,
-                child: IconButton(
-                    onPressed: () => micOnOffFunc(),
-                    icon: widget.videoCallViewModel.person.isMicOn == false
-                        ? IconUtility.micoffIcon
-                        : IconUtility.micIcon(false)),
-              );
+      alignment: Alignment.topRight,
+      child: IconButton(
+          onPressed: () => micOnOffFunc(),
+          icon: widget.videoCallViewModel.person.isMicOn == false
+              ? IconUtility.micoffIcon
+              : IconUtility.micIcon(false)),
+    );
   }
 
   Container personView() {
     return Container(
-                  height: widget.videoCallViewModel.height,
-                  decoration: BoxDecoration(
-                      color: AppColors.doveGray,
-                      borderRadius: BorderRadius.circular(widget.videoCallViewModel.borderRadius)),
-                  child: widget.videoCallViewModel.person.isCamOn
-                      ? cameraOnView()
-                      : initialLetterContainer());
+        height: widget.videoCallViewModel.height,
+        decoration: BoxDecoration(
+            color: AppColors.doveGray,
+            borderRadius:
+                BorderRadius.circular(widget.videoCallViewModel.borderRadius)),
+        child: widget.videoCallViewModel.person.isCamOn
+            ? cameraOnView()
+            : initialLetterContainer());
   }
 
   Text nameSurnameText(String text) => Text(
@@ -101,7 +108,8 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
 
   ClipRRect cameraOnView() {
     return ClipRRect(
-        borderRadius: BorderRadius.circular(widget.videoCallViewModel.borderRadius),
+        borderRadius:
+            BorderRadius.circular(widget.videoCallViewModel.borderRadius),
         child: Image(
           image: AssetImage(widget.videoCallViewModel.person.imagePath),
           fit: BoxFit.fitHeight,

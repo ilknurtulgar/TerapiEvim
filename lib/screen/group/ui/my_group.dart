@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/components/container/participant_container.dart';
+import 'package:terapievim/models/card_model.dart';
 import 'package:terapievim/screen/group/component/custom_heading.dart';
+import 'package:terapievim/screen/group/component/group_box.dart';
 import 'package:terapievim/screen/group/component/person.dart';
 
 import 'package:terapievim/components/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/models/row_model.dart';
+import 'package:terapievim/screen/group/ui/group_out.dart';
 
 class MyGroup extends StatelessWidget {
   const MyGroup({super.key});
@@ -13,6 +17,7 @@ class MyGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     String imagePath = "assets/images/doctorfotosu.jpeg";
     RowModel row = RowModel(
+        isAlignmentBetween: true,
         leadingIcon: IconUtility.personIcon,
         text: "Grup Terapisti : ",
         textStyle: AppTextStyles.GroupTextStyle(false),
@@ -20,6 +25,7 @@ class MyGroup extends StatelessWidget {
         textStyle2: AppTextStyles.GroupTextStyle(true),
         trailingIcon: IconUtility.sendIcon);
     RowModel row2 = RowModel(
+        isAlignmentBetween: true,
         leadingIcon: IconUtility.personIcon,
         text: "Yardimci Psikolog: ",
         textStyle: AppTextStyles.GroupTextStyle(false),
@@ -27,6 +33,7 @@ class MyGroup extends StatelessWidget {
         textStyle2: AppTextStyles.GroupTextStyle(true),
         trailingIcon: IconUtility.sendIcon);
     RowModel person = RowModel(
+        isAlignmentBetween: true,
         leadingIcon:
             CustomCircleAvatar(big: false, shadow: false, imagePath: imagePath),
         text: "Aleyna Tilki",
@@ -43,60 +50,60 @@ class MyGroup extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
-              Row(
-                children: [
-                  SizedBox(width: 130),
-                  Text(
-                    "Grubum",
-                    style: AppTextStyles.heading(true),
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(
-                    width: 100,
-                  ),
-                  Container(
-                    child: Icon(Icons.arrow_back),
-                  )
-                ],
-              ),
+              Appbar(),
               SizedBox(
                 height: 40,
               ),
               CustomHeading(text: yaklasanToplanti),
-              SizedBox(
-                height: 166,
-                width: 342,
-              ),
-              CustomHeading(text: grupBilgiler),
-              PersonMin(
-                onTap: () {},
-                row: row,
-                borderColor: AppColors.cornFlowerBlue,
-              ),
-              SizedBox(
-                height: 16,
-              ),
-              PersonMin(
-                  onTap: () {},
-                  row: row,
-                  borderColor: AppColors.cornFlowerBlue),
+              ActivityBox(customButton: customButton),
               SizedBox(
                 height: 20,
               ),
+              CustomHeading(text: grupBilgiler),
+              Therapist(row),
+              Therapist(row),
               CustomHeading(text: katilimcilar),
-              Container(
-                child: ListView.builder(
-                    physics: NeverScrollableScrollPhysics(),
-                    padding: EdgeInsets.only(left: 25, right: 25),
-                    shrinkWrap: true,
-                    itemCount: 5,
-                    itemBuilder: ((context, index) =>
-                        PersonMin(onTap: () {}, row: person))),
-              ),
+              Participants(person),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  PersonMin Therapist(RowModel row) {
+    return PersonMin(
+      onTap: () {},
+      row: row,
+      borderColor: AppColors.cornFlowerBlue,
+    );
+  }
+
+  ListView Participants(RowModel person) {
+    String imagePath = "assets/images/doctorfotosu.jpeg";
+    return ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        padding: EdgeInsets.only(left: 25, right: 25),
+        shrinkWrap: true,
+        itemCount: 5,
+        itemBuilder: ((context, index) => participantContainer(
+            CardModel(imagePath: imagePath, title: "Aleyna Tilki"))));
+  }
+
+  Widget Appbar() {
+    return Row(
+      children: [
+        SizedBox(width: 130),
+        Text(
+          "Grubum",
+          style: AppTextStyles.heading(true),
+          textAlign: TextAlign.center,
+        ),
+        SizedBox(
+          width: 90,
+        ),
+        GroupOut(),
+      ],
     );
   }
 }

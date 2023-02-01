@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/components/buttons/button.dart';
-import 'package:terapievim/components/text/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/models/row_model.dart';
 import 'package:terapievim/models/row_view.dart';
 
 class ActivityBox extends StatelessWidget {
-  ActivityBox({super.key, required this.customButton});
+  ActivityBox(
+      {super.key,
+      required this.customButton,
+      required this.arowModel,
+      required this.ayrowwModel,
+      required this.clockModel});
   Custombutton customButton;
-
+  RowModel arowModel;
+  RowModel ayrowwModel;
+  RowModel clockModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -22,9 +29,11 @@ class ActivityBox extends StatelessWidget {
         ),
         child: Column(
           children: [
-            rowView(leadingModel, EdgeInsets.symmetric(horizontal: 5)),
-            rowView(leadingModel, EdgeInsets.symmetric(horizontal: 5)),
-            rowView(leadingModel, EdgeInsets.symmetric(horizontal: 5)),
+
+            rowView(arowModel,EdgeInsets.symmetric(horizontal: 30)),
+            rowView(ayrowwModel,EdgeInsets.symmetric(horizontal: 30)),
+            rowView(clockModel,EdgeInsets.symmetric(horizontal: 30)),
+
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -49,3 +58,15 @@ Custombutton customButton = Custombutton(
     buttonHeight: 30,
     buttonColor: Colors.deepPurple,
     buttonText: "katil");
+
+RowModel arow_model = RowModel(
+    text: "anapsikolog",
+    textStyle: TextStyle(),
+    leadingIcon: IconUtility.personIcon);
+
+RowModel ayrow_model = RowModel(
+    text: "yardımcıpsikolog",
+    textStyle: TextStyle(),
+    leadingIcon: IconUtility.personIcon);
+RowModel clock_model = RowModel(
+    text: "saat", textStyle: TextStyle(), leadingIcon: IconUtility.clockIcon);

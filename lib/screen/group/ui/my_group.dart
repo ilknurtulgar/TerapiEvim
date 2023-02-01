@@ -17,6 +17,7 @@ class MyGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     String imagePath = "assets/images/doctorfotosu.jpeg";
     RowModel row = RowModel(
+        isAlignmentBetween: true,
         leadingIcon: IconUtility.personIcon,
         text: "Grup Terapisti : ",
         textStyle: AppTextStyles.GroupTextStyle(false),
@@ -24,6 +25,7 @@ class MyGroup extends StatelessWidget {
         textStyle2: AppTextStyles.GroupTextStyle(true),
         trailingIcon: IconUtility.sendIcon);
     RowModel row2 = RowModel(
+        isAlignmentBetween: true,
         leadingIcon: IconUtility.personIcon,
         text: "Yardimci Psikolog: ",
         textStyle: AppTextStyles.GroupTextStyle(false),
@@ -31,6 +33,7 @@ class MyGroup extends StatelessWidget {
         textStyle2: AppTextStyles.GroupTextStyle(true),
         trailingIcon: IconUtility.sendIcon);
     RowModel person = RowModel(
+        isAlignmentBetween: true,
         leadingIcon:
             CustomCircleAvatar(big: false, shadow: false, imagePath: imagePath),
         text: "Aleyna Tilki",
@@ -83,8 +86,8 @@ class MyGroup extends StatelessWidget {
         padding: EdgeInsets.only(left: 25, right: 25),
         shrinkWrap: true,
         itemCount: 5,
-        itemBuilder: ((context, index) => participantContainer(CardModel(
-            imagePath: imagePath, title: "Aleyna Tilki", subtitle: ""))));
+        itemBuilder: ((context, index) => participantContainer(
+            CardModel(imagePath: imagePath, title: "Aleyna Tilki"))));
   }
 
   Widget Appbar() {

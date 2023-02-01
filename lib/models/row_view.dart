@@ -6,11 +6,17 @@ Widget rowView(RowModel rowModel, EdgeInsets padding) {
   return Padding(
     padding: padding,
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: rowModel.isAlignmentBetween
+          ? MainAxisAlignment.spaceBetween
+          : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         rowModel.leadingIcon!,
-        Texts(rowModel),
+        Padding(
+          padding: EdgeInsets.only(
+              left: rowModel.isAlignmentBetween == false ? 15 : 0),
+          child: Texts(rowModel),
+        ),
         rowModel.trailingIcon!
       ],
     ),

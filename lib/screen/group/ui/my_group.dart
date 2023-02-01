@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/screen/group/component/custom_heading.dart';
+import 'package:terapievim/screen/group/component/group_box.dart';
 import 'package:terapievim/screen/group/component/person.dart';
 
 import 'package:terapievim/components/image/custom_circle_avatar.dart';
@@ -55,7 +56,7 @@ class MyGroup extends StatelessWidget {
                     width: 100,
                   ),
                   Container(
-                    child: Icon(Icons.arrow_back),
+                    child: IconUtility.logoutIcon,
                   )
                 ],
               ),
@@ -63,9 +64,9 @@ class MyGroup extends StatelessWidget {
                 height: 40,
               ),
               CustomHeading(text: yaklasanToplanti),
+              ActivityBox(customButton: customButton),
               SizedBox(
-                height: 166,
-                width: 342,
+                height: 20,
               ),
               CustomHeading(text: grupBilgiler),
               PersonMin(
@@ -73,16 +74,10 @@ class MyGroup extends StatelessWidget {
                 row: row,
                 borderColor: AppColors.cornFlowerBlue,
               ),
-              SizedBox(
-                height: 16,
-              ),
               PersonMin(
                   onTap: () {},
                   row: row,
                   borderColor: AppColors.cornFlowerBlue),
-              SizedBox(
-                height: 20,
-              ),
               CustomHeading(text: katilimcilar),
               Container(
                 child: ListView.builder(

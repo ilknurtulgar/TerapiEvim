@@ -44,6 +44,7 @@ class _TerapiEvimState extends State<TerapiEvim> {
       ProfileScreen()
     ];
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(primarySwatch: Colors.purple),
       home: Scaffold(
         bottomNavigationBar: Obx(
@@ -64,37 +65,12 @@ class _TerapiEvimState extends State<TerapiEvim> {
           ),
         ),
         backgroundColor: AppColors.blueChalk,
-        body: Column(
-          children: [
-            SizedBox(
-              width: 15,
-              height: 100,
+        body: Center(
+          child: Obx(
+            () => Container(
+              child: Screen[_controller.currentScreenIndex.toInt()],
             ),
-            SizedBox(
-              width: 15,
-              height: 100,
-            ),
-            CustomText(
-                containerModel: customTextModel,
-                customText:
-                    "cldlxlccxccccccllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllllll"),
-
-            /* CustomTextField(
-                labelText: "vv", hintText: "hintText", rowModel: trailingModel),
-            SizedBox(
-              width: 15,
-              height: 100,
-            ),
-          CustomTextField(
-                labelText: "vv", hintText: "hintText", rowModel: leadingModel),*/
-            Center(
-              child: Obx(
-                () => Container(
-                  child: Screen[_controller.currentScreenIndex.toInt()],
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

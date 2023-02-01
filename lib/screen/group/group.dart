@@ -12,6 +12,10 @@ class GroupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _controller.isTestSolved.isTrue ? MyGroup() : LockScreen();
+    return _controller.isTestNotSolved.isTrue
+        ? LockScreen()
+        : _controller.isTestResultReady.isTrue
+            ? MyGroup()
+            : LockScreen();
   }
 }

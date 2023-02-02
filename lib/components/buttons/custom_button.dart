@@ -24,6 +24,7 @@ class _CustomButtonState extends State<CustomButton> {
       onTap: widget.onTap,
       child: Container(
         height: widget.container.height,
+        width: widget.container.width,
         decoration: containerDecoration(),
         child: insideTheButton(),
       ),
@@ -32,22 +33,14 @@ class _CustomButtonState extends State<CustomButton> {
 
   Padding insideTheButton() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+      padding: EdgeInsets.symmetric(horizontal: widget.container.width==null ? 15 : 0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.min,
+        mainAxisSize: widget.container.width!=null ? MainAxisSize.max : MainAxisSize.min,
         children: [
           widget.icon ?? const SizedBox(),
-          widget.icon != null
-              ? const SizedBox(
-                  width: 10,
-                )
-              : const SizedBox(),
-          Text(
-            widget.text,
-            style:
-                AppTextStyles.buttonTextStyle(widget.container.backgroundColor),
-          ),
+          widget.icon != null ? const SizedBox(width: 10,) : const SizedBox(),
+          Text(widget.text,style: AppTextStyles.buttonTextStyle(widget.container.backgroundColor),),
         ],
       ),
     );

@@ -20,4 +20,6 @@ class LockScreenUtil {
 class paddings {
   static const EdgeInsets rowViewPadding =
       EdgeInsets.symmetric(vertical: 4, horizontal: 16);
+  static const EdgeInsets rowViewProfilePadding =
+      EdgeInsets.only(top: 15, left: 24, right: 24);
 }

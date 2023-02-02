@@ -91,6 +91,7 @@ class IconUtility {
   static const IconData navProfile = Icons.account_circle;
   static const IconData lock = Icons.lock_outline;
   static const Icon emailIcon = Icon(Icons.mail);
+  static const IconData lockopen = Icons.lock_open;
 }
 
 class AppTextStyles {

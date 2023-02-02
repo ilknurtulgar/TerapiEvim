@@ -9,6 +9,7 @@ import 'package:terapievim/components/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/models/row_model.dart';
 import 'package:terapievim/screen/group/ui/group_out.dart';
+import 'package:terapievim/service/mainController.dart';
 
 class MyGroup extends StatelessWidget {
   const MyGroup({super.key});

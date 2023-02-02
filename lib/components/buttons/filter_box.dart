@@ -45,5 +45,8 @@ InkWell clickbox() {
   );
 }
 
-RowModel rowModel =
-    RowModel(text: "cxçxççxç", textStyle: TextStyle(), leadingIcon: clickbox());
+RowModel rowModel = RowModel(
+    isAlignmentBetween: true,
+    text: "cxçxççxç",
+    textStyle: TextStyle(),
+    leadingIcon: clickbox());

@@ -53,6 +53,9 @@ class IconUtility {
     Icons.description_outlined,
     color: AppColors.butterflyBush,
   );
+  static const Icon fileIconBlack = Icon(
+    Icons.description_outlined,
+  );
   /*
   static Icon visiblIcon(bool ff) =>
       ff ? IconUtility.visibilityIcon : IconUtility.visibilityoffIcon;*/

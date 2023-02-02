@@ -1,29 +1,40 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/components/buttons/button.dart';
-import 'package:terapievim/components/text/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/models/row_model.dart';
 import 'package:terapievim/models/row_view.dart';
 
 class ActivityBox extends StatelessWidget {
-  ActivityBox({super.key, required this.customButton});
+  ActivityBox(
+      {super.key,
+      required this.customButton,
+      required this.arowModel,
+      required this.ayrowwModel,
+      required this.clockModel});
   Custombutton customButton;
-
+  RowModel arowModel;
+  RowModel ayrowwModel;
+  RowModel clockModel;
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(0),
       child: Container(
-        width: 250,
-        height: 150,
+        width: 350,
+        height: 165,
         decoration: BoxDecoration(
+          color: AppColors.white,
           border: Border.all(color: AppColors.cornFlowerBlue, width: 2),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           children: [
-            rowView(leadingModel),
-            rowView(leadingModel),
-            rowView(leadingModel),
+            rowView(
+                arowModel, EdgeInsets.symmetric(horizontal: 15, vertical: 7)),
+            rowView(
+                ayrowwModel, EdgeInsets.symmetric(horizontal: 15, vertical: 7)),
+            rowView(
+                clockModel, EdgeInsets.symmetric(horizontal: 15, vertical: 7)),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -44,7 +55,24 @@ class ActivityBox extends StatelessWidget {
 
 Custombutton customButton = Custombutton(
     onTap: () {},
-    buttonWidth: 100,
-    buttonHeight: 25,
+    buttonWidth: 123,
+    buttonHeight: 30,
     buttonColor: Colors.deepPurple,
     buttonText: "katil");
+
+RowModel arow_model = RowModel(
+    isAlignmentBetween: true,
+    text: "anapsikolog",
+    textStyle: TextStyle(),
+    leadingIcon: IconUtility.personIcon);
+
+RowModel ayrow_model = RowModel(
+    isAlignmentBetween: true,
+    text: "yardımcıpsikolog",
+    textStyle: TextStyle(),
+    leadingIcon: IconUtility.personIcon);
+RowModel clock_model = RowModel(
+    isAlignmentBetween: true,
+    text: "saat",
+    textStyle: TextStyle(),
+    leadingIcon: IconUtility.clockIcon);

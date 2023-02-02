@@ -70,7 +70,8 @@ class DefaultFirebaseOptions {
     messagingSenderId: '279850256529',
     projectId: 'terapi-evim',
     storageBucket: 'terapi-evim.appspot.com',
-    iosClientId: '279850256529-rjue6gstgu9rhv3cv1ra8hm3b507fqiq.apps.googleusercontent.com',
+    iosClientId:
+        '279850256529-rjue6gstgu9rhv3cv1ra8hm3b507fqiq.apps.googleusercontent.com',
     iosBundleId: 'com.example.terapievim',
   );
 }

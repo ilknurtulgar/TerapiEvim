@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../models/row_view.dart';
 import '../../../../models/row_model.dart';
+import '../util/lockScreenutility.dart';
 
 class GroupClass extends StatelessWidget {
   GroupClass({
@@ -52,8 +53,8 @@ class GroupClass extends StatelessWidget {
                 ),
               ),
             ),
-            rowView(row1),
-            rowView(row2),
+            rowView(row1, paddings.rowViewPadding),
+            rowView(row2, paddings.rowViewPadding),
           ],
         ),
       ),

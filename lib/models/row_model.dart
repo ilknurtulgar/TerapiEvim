@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
+
+import 'package:flutter/material.dart';
 
 class RowModel {
   Widget? leadingIcon;
@@ -8,6 +9,7 @@ class RowModel {
   TextStyle textStyle;
   TextStyle? textStyle2;
   Widget? trailingIcon;
+  bool isAlignmentBetween;
 
   RowModel({
     this.leadingIcon,
@@ -16,12 +18,16 @@ class RowModel {
     this.text2,
     this.textStyle2,
     this.trailingIcon,
+    required this.isAlignmentBetween,
   }) {
     leadingIcon ??= space();
     trailingIcon ??= space();
     text2 ??= "";
-    textStyle2 ??= AppTextStyles.aboutMeTextStyle(true);
+    textStyle2 ??= TextStyle(fontSize: 15);
   }
 
-  SizedBox space() => SizedBox();
+  SizedBox space() => SizedBox(
+        height: 20,
+        width: 20,
+      );
 }

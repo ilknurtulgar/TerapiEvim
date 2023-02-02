@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/service/mainController.dart';
 
+import '../../util/lockScreenutility.dart';
+
 class LockScreen extends StatelessWidget {
   LockScreen({super.key});
 

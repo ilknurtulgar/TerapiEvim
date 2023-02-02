@@ -2,15 +2,21 @@ import 'package:flutter/material.dart';
 
 import 'row_model.dart';
 
-Widget rowView(RowModel rowModel) {
+Widget rowView(RowModel rowModel, EdgeInsets padding) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+    padding: padding,
     child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: rowModel.isAlignmentBetween
+          ? MainAxisAlignment.spaceBetween
+          : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         rowModel.leadingIcon!,
-        Texts(rowModel),
+        Padding(
+          padding: EdgeInsets.only(
+              left: rowModel.isAlignmentBetween == false ? 15 : 0),
+          child: Texts(rowModel),
+        ),
         rowModel.trailingIcon!
       ],
     ),

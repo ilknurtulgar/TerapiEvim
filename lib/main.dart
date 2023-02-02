@@ -6,6 +6,8 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/components/text/custom_text.dart';
 import 'package:terapievim/screen/group/component/group_box.dart';
 import 'package:terapievim/screen/group/group.dart';
+import 'package:terapievim/screen/home/main_home.dart';
+import 'package:terapievim/screen/login/login.dart';
 import 'package:terapievim/service/mainController.dart';
 import 'firebase_options.dart';
 import 'screen/activity/activities.dart';
@@ -13,7 +15,7 @@ import 'screen/home/home.dart';
 import 'screen/message/message.dart';
 import 'screen/profile/profile.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -32,53 +34,12 @@ class TerapiEvim extends StatefulWidget {
 class _TerapiEvimState extends State<TerapiEvim> {
   MainController _controller = Get.put(MainController());
 
-  List<IconData> icons = <IconData>[
-    IconUtility.navHome,
-    IconUtility.navActivities,
-    IconUtility.navGroup,
-    IconUtility.navMessage,
-    IconUtility.navProfile
-  ];
-
   @override
   Widget build(BuildContext context) {
-    List<Widget> Screen = <Widget>[
-      HomeScreen(),
-      ActivitiesScreen(),
-      GroupScreen(),
-      MessageScreen(),
-      ProfileScreen()
-    ]; 
+    List<Widget> Screen = <Widget>[];
     return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(primarySwatch: Colors.purple),
-      home: Scaffold(
-        bottomNavigationBar: Obx(
-          () => AnimatedBottomNavigationBar(
-            icons: icons,
-            activeIndex: _controller.currentScreenIndex.toInt(),
-            leftCornerRadius: 20,
-            rightCornerRadius: 20,
-            iconSize: 30,
-            gapLocation: GapLocation.none,
-            height: 72,
-            backgroundColor: AppColors.white,
-            inactiveColor: AppColors.dustyGray,
-            activeColor: Colors.black,
-            onTap: (int) {
-              _controller.ChangeScreen(int);
-            },
-          ),
-        ),
-        backgroundColor: AppColors.blueChalk,
-        body: Center(
-          child: Obx(
-            () => Container(
-              child: Screen[_controller.currentScreenIndex.toInt()],
-            ),
-          ),
-        ),
-      ),
-    );
+        debugShowCheckedModeBanner: false,
+        theme: ThemeData(primarySwatch: Colors.purple),
+        home: _controller.isLogged.isTrue ? TerapiEvimLogged() : Login());
   }
 }

@@ -15,6 +15,8 @@ class LockScreenUtil {
   static const String text2 =
       "Henüz Grubunuz Belli Olmadığı İçin Burası Kilitli";
   static const String buttonText = "Testi Cozmek Icin Tiklayiniz";
+  static const String checkedTestString =
+      "Grup kategorileriniz belirlenmistir. Lutfen ilerleyiniz";
 }
 
 class paddings {

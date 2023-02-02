@@ -162,9 +162,9 @@ class AppContainers {
       borderRadius: 8,
       backgroundColor: AppColors
           .white); // bunun height'ı içindeki child'ın uzunluğuna göre değişiyor
-  static ContainerModel participantContainer = ContainerModel(
-      width: 342,
-      height: 52,
+  static ContainerModel participantContainer(double height,double width) => ContainerModel(
+      height: height, //52,
+      width: width, //342,
       borderRadius: 8,
       backgroundColor: AppColors.white);
   static ContainerModel documentContainer = ContainerModel(

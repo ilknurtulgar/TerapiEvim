@@ -16,7 +16,7 @@ class PersonMin extends StatelessWidget {
       this.padding});
   final EdgeInsets? padding;
   final RowModel row;
-  final Function onTap;
+  final Function() onTap;
   Color? borderColor;
 
   double? width;
@@ -28,7 +28,7 @@ class PersonMin extends StatelessWidget {
     width ??= 342;
     height ??= 52;
     return InkWell(
-      onTap: () => onTap,
+      onTap: onTap,
       child: Container(
           margin: padding == null ? EdgeInsets.only(bottom: 16) : padding,
           height: height,

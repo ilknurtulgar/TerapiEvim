@@ -53,6 +53,9 @@ class IconUtility {
     Icons.description_outlined,
     color: AppColors.butterflyBush,
   );
+  static const Icon fileIconBlack = Icon(
+    Icons.description_outlined,
+  );
   /*
   static Icon visiblIcon(bool ff) =>
       ff ? IconUtility.visibilityIcon : IconUtility.visibilityoffIcon;*/
@@ -88,6 +91,7 @@ class IconUtility {
   static const IconData navProfile = Icons.account_circle;
   static const IconData lock = Icons.lock_outline;
   static const Icon emailIcon = Icon(Icons.mail);
+  static const IconData lockopen = Icons.lock_open;
 }
 
 class AppTextStyles {

@@ -9,6 +9,7 @@ import 'package:terapievim/components/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/models/row_model.dart';
 import 'package:terapievim/screen/group/ui/group_out.dart';
+import 'package:terapievim/service/mainController.dart';
 
 class MyGroup extends StatelessWidget {
   const MyGroup({super.key});
@@ -17,13 +18,15 @@ class MyGroup extends StatelessWidget {
   Widget build(BuildContext context) {
     String imagePath = "assets/images/doctorfotosu.jpeg";
     RowModel row = RowModel(
-        leadingIcon: IconUtility.personIcon,
-        text: "Grup Terapisti : ",
-        textStyle: AppTextStyles.GroupTextStyle(false),
-        text2: "Simay Odabasi",
-        textStyle2: AppTextStyles.GroupTextStyle(true),
-        trailingIcon: IconUtility.sendIcon);
+      isAlignmentBetween: true,
+      leadingIcon: IconUtility.personIcon,
+      text: "Grup Terapisti : ",
+      textStyle: AppTextStyles.GroupTextStyle(false),
+      text2: "Simay Odabasi",
+      textStyle2: AppTextStyles.GroupTextStyle(true),
+    );
     RowModel row2 = RowModel(
+        isAlignmentBetween: true,
         leadingIcon: IconUtility.personIcon,
         text: "Yardimci Psikolog: ",
         textStyle: AppTextStyles.GroupTextStyle(false),
@@ -31,6 +34,7 @@ class MyGroup extends StatelessWidget {
         textStyle2: AppTextStyles.GroupTextStyle(true),
         trailingIcon: IconUtility.sendIcon);
     RowModel person = RowModel(
+        isAlignmentBetween: true,
         leadingIcon:
             CustomCircleAvatar(big: false, shadow: false, imagePath: imagePath),
         text: "Aleyna Tilki",
@@ -52,7 +56,11 @@ class MyGroup extends StatelessWidget {
                 height: 40,
               ),
               CustomHeading(text: yaklasanToplanti),
-              ActivityBox(customButton: customButton),
+              ActivityBox(
+                  customButton: customButton,
+                  arowModel: row,
+                  ayrowwModel: row,
+                  clockModel: row),
               SizedBox(
                 height: 20,
               ),
@@ -83,8 +91,8 @@ class MyGroup extends StatelessWidget {
         padding: EdgeInsets.only(left: 25, right: 25),
         shrinkWrap: true,
         itemCount: 5,
-        itemBuilder: ((context, index) => participantContainer(CardModel(
-            imagePath: imagePath, title: "Aleyna Tilki", subtitle: ""))));
+        itemBuilder: ((context, index) => participantContainer(
+            CardModel(imagePath: imagePath, title: "Aleyna Tilki"))));
   }
 
   Widget Appbar() {

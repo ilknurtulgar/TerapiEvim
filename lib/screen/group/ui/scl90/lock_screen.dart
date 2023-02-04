@@ -5,6 +5,7 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/service/mainController.dart';
 
 import '../../../../components/buttons/custom_button.dart';
+import '../../component/purple_border_text_ccontainer.dart';
 import '../../util/lockScreenutility.dart';
 
 class LockScreen extends StatelessWidget {
@@ -124,17 +125,7 @@ Column NoTest() {
       SizedBox(
         height: LockScreenUtil.lockScreenHeight,
       ),
-      Container(
-        padding: LockScreenUtil.lockScreenContainerPadding,
-        child: Text(
-          LockScreenUtil.text2,
-          textAlign: TextAlign.center,
-          style: AppTextStyles.aboutMeTextStyle(false),
-        ),
-        width: LockScreenUtil.lockScreenBigContainerWidth,
-        height: LockScreenUtil.lockScreenBigContainerHeight,
-        decoration: AppBoxDecoration.lockScreenBox,
-      ),
+      PurpleBorderWhiteInsideTextContainer(text: LockScreenUtil.text2),
       SizedBox(
         height: LockScreenUtil.lockScreenHeight,
       ),

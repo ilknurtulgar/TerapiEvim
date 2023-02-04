@@ -44,42 +44,22 @@ class IconUtility {
   static const Icon chatIcon = Icon(Icons.chat);
   static const Icon profileIcon = Icon(Icons.account_circle);
   static const Icon windowsIcon = Icon(Icons.desktop_windows);
-  static const Icon personIcon = Icon(Icons.person);
-  static const Icon clockIcon = Icon(Icons.alarm);
+  static const Icon personIcon = Icon(Icons.person,color: AppColors.black,);
+  static const Icon clockIcon = Icon(Icons.alarm,color: AppColors.black,);
   static const Icon logoutIcon = Icon(Icons.logout);
   static const Icon searchIcon = Icon(Icons.search);
   static const Icon fiterIcon = Icon(Icons.list);
-  static const Icon fileIcon = Icon(
-    Icons.description_outlined,
-    color: AppColors.butterflyBush,
-  );
-  static const Icon fileIconBlack = Icon(
-    Icons.description_outlined,
-  );
+  static const Icon fileIcon = Icon(Icons.description_outlined,color: AppColors.butterflyBush,);
+  static const Icon fileIconBlack = Icon(Icons.description_outlined,);
   /*
   static Icon visiblIcon(bool ff) =>
       ff ? IconUtility.visibilityIcon : IconUtility.visibilityoffIcon;*/
 
-  static Icon micIcon(bool isInCircularContainer) => Icon(
-        Icons.mic,
-        color: isInCircularContainer ? AppColors.black : AppColors.white,
-      );
-  static const Icon micoffIcon = Icon(
-    Icons.mic_off,
-    color: AppColors.red,
-  );
-  static const Icon videcamIcon = Icon(
-    Icons.videocam,
-    color: AppColors.black,
-  );
-  static const Icon videocamoffIcon = Icon(
-    Icons.videocam_off,
-    color: AppColors.black,
-  );
-  static const Icon callendIcon = Icon(
-    Icons.call_end,
-    color: AppColors.white,
-  );
+  static Icon micIcon(bool isInCircularContainer) => Icon(Icons.mic,color: isInCircularContainer ? AppColors.black : AppColors.white,);
+  static const Icon micoffIcon = Icon(Icons.mic_off,color: AppColors.red,);
+  static const Icon videcamIcon = Icon(Icons.videocam,color: AppColors.black,);
+  static const Icon videocamoffIcon = Icon(Icons.videocam_off,color: AppColors.black,);
+  static const Icon callendIcon = Icon(Icons.call_end,color: AppColors.white,);
   static const Icon sendIcon = Icon(Icons.send);
   static const Icon settingIcon = Icon(Icons.settings);
   static const Icon editIcon = Icon(Icons.edit);
@@ -92,6 +72,8 @@ class IconUtility {
   static const IconData lock = Icons.lock_outline;
   static const Icon emailIcon = Icon(Icons.mail);
   static const IconData lockopen = Icons.lock_open;
+  static const Icon calendarIcon = Icon(Icons.calendar_month_outlined,color: AppColors.black,);                      
+  static const IconData checkCircleIcon =  Icons.check_circle_outline;
 }
 
 class AppTextStyles {

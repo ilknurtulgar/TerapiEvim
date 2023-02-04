@@ -92,7 +92,7 @@ class MyGroup extends StatelessWidget {
         shrinkWrap: true,
         itemCount: 5,
         itemBuilder: ((context, index) => participantContainer(
-            CardModel(imagePath: imagePath, title: "Aleyna Tilki"))));
+            CardModel(imagePath: imagePath, title: "Aleyna Tilki"),52,342)));
   }
 
   Widget Appbar() {

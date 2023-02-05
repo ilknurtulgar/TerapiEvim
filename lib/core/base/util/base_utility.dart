@@ -44,14 +44,23 @@ class IconUtility {
   static const Icon chatIcon = Icon(Icons.chat);
   static const Icon profileIcon = Icon(Icons.account_circle);
   static const Icon windowsIcon = Icon(Icons.desktop_windows);
-  static const Icon personIcon = Icon(Icons.person);
-  static const Icon clockIcon = Icon(Icons.alarm);
+  static const Icon personIcon = Icon(
+    Icons.person,
+    color: AppColors.black,
+  );
+  static const Icon clockIcon = Icon(
+    Icons.alarm,
+    color: AppColors.black,
+  );
   static const Icon logoutIcon = Icon(Icons.logout);
   static const Icon searchIcon = Icon(Icons.search);
   static const Icon fiterIcon = Icon(Icons.list);
   static const Icon fileIcon = Icon(
     Icons.description_outlined,
     color: AppColors.butterflyBush,
+  );
+  static const Icon fileIconBlack = Icon(
+    Icons.description_outlined,
   );
   /*
   static Icon visiblIcon(bool ff) =>
@@ -88,6 +97,13 @@ class IconUtility {
   static const IconData navProfile = Icons.account_circle;
   static const IconData lock = Icons.lock_outline;
   static const Icon emailIcon = Icon(Icons.mail);
+  static const IconData lockopen = Icons.lock_open;
+  static const Icon calendarIcon = Icon(
+    Icons.calendar_month_outlined,
+    color: AppColors.black,
+  );
+  static const IconData checkCircleIcon = Icons.check_circle_outline;
+  static const Icon save = Icon(Icons.save, color: AppColors.meteorite);
 }
 
 class AppTextStyles {
@@ -158,11 +174,12 @@ class AppContainers {
       borderRadius: 8,
       backgroundColor: AppColors
           .white); // bunun height'ı içindeki child'ın uzunluğuna göre değişiyor
-  static ContainerModel participantContainer = ContainerModel(
-      width: 342,
-      height: 52,
-      borderRadius: 8,
-      backgroundColor: AppColors.white);
+  static ContainerModel participantContainer(double height, double width) =>
+      ContainerModel(
+          height: height, //52,
+          width: width, //342,
+          borderRadius: 8,
+          backgroundColor: AppColors.white);
   static ContainerModel documentContainer = ContainerModel(
       height: 40,
       borderRadius: 360,
@@ -179,7 +196,6 @@ class AppContainers {
 class AppPaddings {
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
       0, 15, 20, 15); // sağ alt bütün mor butonlar için geçerli
-
 }
 
 class AppBorderRadius {

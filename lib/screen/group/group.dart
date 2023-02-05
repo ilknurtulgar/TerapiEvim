@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/screen/group/ui/category_determination/group_categories/group_categories.dart';
 import 'package:terapievim/service/mainController.dart';
 
 import 'ui/my_group.dart';
@@ -12,10 +13,11 @@ class GroupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _controller.isTestNotSolved.isTrue
-        ? LockScreen()
-        : _controller.isTestResultReady.isTrue
-            ? MyGroup()
-            : LockScreen();
+    return GroupCategories();
+    // return _controller.isTestNotSolved.isTrue
+    //     ? LockScreen()
+    //     : _controller.isTestResultReady.isTrue
+    //         ? MyGroup()
+    //         : LockScreen();
   }
 }

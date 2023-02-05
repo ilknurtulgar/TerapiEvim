@@ -4,6 +4,8 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/service/mainController.dart';
 
+import '../../../../components/buttons/custom_button.dart';
+import '../../component/purple_border_text_ccontainer.dart';
 import '../../util/lockScreenutility.dart';
 
 class LockScreen extends StatelessWidget {
@@ -26,8 +28,13 @@ class LockScreen extends StatelessWidget {
 
 Widget PopUp() {
   MainController _controller = Get.find();
-  Widget Shown =
-      _controller.isTestResultReady.isTrue ? NoTest() : UncheckedTest();
+  Widget Shown = _controller.isTestResultReady.isTrue
+      ? NoTest()
+      : _controller.isLockOpen.isTrue
+          ? CheckedTest()
+          : UncheckedTest();
+  IconData lockicon =
+      _controller.isLockOpen.isTrue ? IconUtility.lockopen : IconUtility.lock;
   return BackdropFilter(
     filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
     child: Column(
@@ -35,7 +42,7 @@ Widget PopUp() {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Icon(
-            IconUtility.lock,
+            lockicon,
             color: AppColors.white,
             size: LockScreenUtil.lockIconSize,
           ),
@@ -43,6 +50,37 @@ Widget PopUp() {
         ]),
   );
   ;
+}
+
+Column CheckedTest() {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      SizedBox(
+        height: LockScreenUtil.lockScreenHeight,
+      ),
+      Container(
+        width: LockScreenUtil.lockScreenContainerWidth,
+        height: LockScreenUtil.lockScreenContainerHeight,
+        child: Text(
+          LockScreenUtil.checkedTestString,
+          style: AppTextStyles.normalTextStyle("big", false)
+              .copyWith(color: AppColors.white),
+          textAlign: TextAlign.center,
+        ),
+      ),
+      SizedBox(
+        height: LockScreenUtil.lockScreenHeight,
+      ),
+      CustomButton(
+          container: AppContainers.purpleButtonContainer,
+          onTap: () {
+            //buradan kategori sayfasina yonlendirilecek
+          },
+          text: "Grup Kategori Sayfasi ")
+    ],
+  );
 }
 
 Column UncheckedTest() {
@@ -87,17 +125,7 @@ Column NoTest() {
       SizedBox(
         height: LockScreenUtil.lockScreenHeight,
       ),
-      Container(
-        padding: LockScreenUtil.lockScreenContainerPadding,
-        child: Text(
-          LockScreenUtil.text2,
-          textAlign: TextAlign.center,
-          style: AppTextStyles.aboutMeTextStyle(false),
-        ),
-        width: LockScreenUtil.lockScreenBigContainerWidth,
-        height: LockScreenUtil.lockScreenBigContainerHeight,
-        decoration: AppBoxDecoration.lockScreenBox,
-      ),
+      PurpleBorderWhiteInsideTextContainer(text: LockScreenUtil.text2),
       SizedBox(
         height: LockScreenUtil.lockScreenHeight,
       ),

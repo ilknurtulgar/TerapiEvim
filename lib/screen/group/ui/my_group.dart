@@ -9,6 +9,7 @@ import 'package:terapievim/components/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/models/row_model.dart';
 import 'package:terapievim/screen/group/ui/group_out.dart';
+import 'package:terapievim/service/mainController.dart';
 
 class MyGroup extends StatelessWidget {
   const MyGroup({super.key});
@@ -91,7 +92,7 @@ class MyGroup extends StatelessWidget {
         shrinkWrap: true,
         itemCount: 5,
         itemBuilder: ((context, index) => participantContainer(
-            CardModel(imagePath: imagePath, title: "Aleyna Tilki"))));
+            CardModel(imagePath: imagePath, title: "Aleyna Tilki"),52,342)));
   }
 
   Widget Appbar() {

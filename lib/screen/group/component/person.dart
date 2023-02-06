@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/models/row_model.dart';
+import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/group/util/lockScreenutility.dart';
 
 import '../../../../core/base/util/base_utility.dart';
-import '../../../../models/row_view.dart';
+import 'row_view.dart';
 
 class PersonMin extends StatelessWidget {
   PersonMin(

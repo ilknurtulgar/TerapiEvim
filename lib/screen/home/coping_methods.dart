@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/components/container/method_downloading_container.dart';
-import 'package:terapievim/components/text/drop_down.dart';
-import 'package:terapievim/components/text/drop_down_widget.dart';
+import 'package:terapievim/screen/login/component/drop_down_widget.dart';
+import 'package:terapievim/screen/home/component/method_downloading_container.dart';
+import 'package:terapievim/screen/activity/component/drop_down.dart';
+
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/models/card_model.dart';
+import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/screen/home/home.dart';
 
 class CopingMethods extends StatelessWidget {

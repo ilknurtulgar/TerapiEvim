@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import '../../../models/row_model.dart';
+import '../../../core/base/models/row_model.dart';
 
 class GroupScreenUtility {
   static RowModel therapistRowInChoosingTimeForSCC(String therapistName) =>

@@ -35,7 +35,9 @@ class AppColors {
 }
 
 class IconUtility {
-  static const Icon visibilityIcon = Icon(Icons.visibility);
+  static const Icon visibilityIcon = Icon(
+    Icons.visibility,
+  );
   static const Icon visibilityoffIcon = Icon(Icons.visibility_off);
   static const Icon homeIcon = Icon(Icons.home);
   static const Icon activityIcon =

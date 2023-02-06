@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class CardModel {
   String imagePath;
   String title;
@@ -8,3 +10,8 @@ class CardModel {
     this.subtitle,
   });
 }
+
+CardModel cardModelhome = CardModel(
+    subtitle: "Uzman Psikolog",
+    imagePath: "assets/images/doctorfotosu.jpeg",
+    title: "Günay Kara");

@@ -3,12 +3,16 @@ import 'package:terapievim/components/container/participant_container.dart';
 import 'package:terapievim/models/card_model.dart';
 import 'package:terapievim/screen/group/component/custom_heading.dart';
 import 'package:terapievim/screen/group/component/group_box.dart';
+import 'package:terapievim/screen/group/component/heading.dart';
 import 'package:terapievim/screen/group/component/person.dart';
 
 import 'package:terapievim/components/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/models/row_model.dart';
 import 'package:terapievim/screen/group/ui/group_out.dart';
+import 'package:terapievim/screen/group/util/group_screen_utility.dart';
+import 'package:terapievim/screen/group/util/lockScreenutility.dart';
+import 'package:terapievim/screen/group/util/text_util.dart';
 import 'package:terapievim/service/mainController.dart';
 
 class MyGroup extends StatelessWidget {
@@ -16,6 +20,7 @@ class MyGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    //buradaki tum modeller geecici
     String imagePath = "assets/images/doctorfotosu.jpeg";
     RowModel row = RowModel(
       isAlignmentBetween: true,
@@ -26,49 +31,39 @@ class MyGroup extends StatelessWidget {
       textStyle2: AppTextStyles.GroupTextStyle(true),
     );
     RowModel row2 = RowModel(
-        isAlignmentBetween: true,
-        leadingIcon: IconUtility.personIcon,
-        text: "Yardimci Psikolog: ",
-        textStyle: AppTextStyles.GroupTextStyle(false),
-        text2: "Ozlem Ulusan",
-        textStyle2: AppTextStyles.GroupTextStyle(true),
-        trailingIcon: IconUtility.sendIcon);
+      isAlignmentBetween: true,
+      leadingIcon: IconUtility.personIcon,
+      text: "Yardimci Psikolog: ",
+      textStyle: AppTextStyles.GroupTextStyle(false),
+      text2: "Ozlem Ulusan",
+      textStyle2: AppTextStyles.GroupTextStyle(true),
+    );
     RowModel person = RowModel(
         isAlignmentBetween: true,
         leadingIcon:
             CustomCircleAvatar(big: false, shadow: false, imagePath: imagePath),
         text: "Aleyna Tilki",
         textStyle: AppTextStyles.GroupTextStyle(true));
-    String yaklasanToplanti = "Yaklasan Toplanti";
-    String grupBilgiler = "Grup Bilgileri";
-    String katilimcilar = "Katilimcilar";
+
     return Scaffold(
       backgroundColor: AppColors.blueChalk,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              SizedBox(
-                height: 20,
-              ),
-              Appbar(),
-              SizedBox(
-                height: 40,
-              ),
-              CustomHeading(text: yaklasanToplanti),
+              appbar(),
+              CustomHeading(text: GroupTexts.yaklasanToplanti),
               ActivityBox(
                   customButton: customButton,
                   arowModel: row,
                   ayrowwModel: row,
                   clockModel: row),
-              SizedBox(
-                height: 20,
-              ),
-              CustomHeading(text: grupBilgiler),
-              Therapist(row),
-              Therapist(row),
-              CustomHeading(text: katilimcilar),
-              Participants(person),
+              CustomHeading(text: GroupTexts.grupBilgiler),
+              therapist(row),
+              therapist(row2),
+              CustomHeading(text: GroupTexts.katilimcilar),
+              participants(person),
             ],
           ),
         ),
@@ -76,7 +71,7 @@ class MyGroup extends StatelessWidget {
     );
   }
 
-  PersonMin Therapist(RowModel row) {
+  PersonMin therapist(RowModel row) {
     return PersonMin(
       onTap: () {},
       row: row,
@@ -84,31 +79,34 @@ class MyGroup extends StatelessWidget {
     );
   }
 
-  ListView Participants(RowModel person) {
+  ListView participants(RowModel person) {
     String imagePath = "assets/images/doctorfotosu.jpeg";
+    var tmpParticipant = participantContainer(
+        CardModel(imagePath: imagePath, title: "Aleyna Tilki"), 52, 342);
+    int tmpParticipantNumber = 5;
+    //gecici katilimci modeli
     return ListView.builder(
-        physics: NeverScrollableScrollPhysics(),
-        padding: EdgeInsets.only(left: 25, right: 25),
-        shrinkWrap: true,
-        itemCount: 5,
-        itemBuilder: ((context, index) => participantContainer(
-            CardModel(imagePath: imagePath, title: "Aleyna Tilki"),52,342)));
+      physics: const NeverScrollableScrollPhysics(),
+      padding: paddings.participantsPadding,
+      shrinkWrap: true,
+      itemCount: tmpParticipantNumber,
+      itemBuilder: ((context, index) => tmpParticipant),
+    );
   }
 
-  Widget Appbar() {
-    return Row(
-      children: [
-        SizedBox(width: 130),
-        Text(
-          "Grubum",
-          style: AppTextStyles.heading(true),
-          textAlign: TextAlign.center,
-        ),
-        SizedBox(
-          width: 90,
-        ),
-        GroupOut(),
-      ],
+  Widget appbar() {
+    return Padding(
+      padding: GroupPaddings.appbarPadding,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const SizedBox(
+            width: 20,
+          ),
+          Heading(headingText: GroupTexts.myGroupText),
+          const GroupOut(),
+        ],
+      ),
     );
   }
 }

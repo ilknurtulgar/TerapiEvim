@@ -11,6 +11,7 @@ import 'package:terapievim/screen/group/util/lockScreenutility.dart';
 class TherapistProfile extends StatelessWidget {
   TherapistProfile({super.key});
   String imagePath = "assets/images/doctorfotosu.jpeg";
+  //bu row modeller fix ama nereye koyulacagi tartisilmasi lazim
   RowModel Basetme_metodlari = RowModel(
     text: "Bas Etme Metotlari",
     textStyle: AppTextStyles.GroupTextStyle(false),
@@ -46,7 +47,7 @@ class TherapistProfile extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               height: 191,
               color: AppColors.white,
-              padding: EdgeInsets.only(bottom: 122),
+              // padding: EdgeInsets.only(bottom: 550),
             ),
             SizedBox(
               height: 122,

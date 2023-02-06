@@ -39,7 +39,9 @@ class _TerapiEvimState extends State<TerapiEvim> {
     List<Widget> Screen = <Widget>[];
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
-        theme: ThemeData(primarySwatch: Colors.purple),
+        theme: ThemeData(
+            primarySwatch: Colors.purple,
+            scaffoldBackgroundColor: AppColors.blueChalk),
         home: _controller.isLogged.isTrue ? TerapiEvimLogged() : Login());
   }
 }

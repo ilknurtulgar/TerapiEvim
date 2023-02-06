@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/group/group.dart';
+import 'package:terapievim/screen/home/coping_methods.dart';
 import 'package:terapievim/service/mainController.dart';
 import '../../firebase_options.dart';
 import '../activity/activities.dart';
@@ -37,7 +38,7 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
       ActivitiesScreen(),
       GroupScreen(),
       MessageScreen(),
-      ProfileScreen()
+      ProfileScreen(),
     ];
     return Scaffold(
       bottomNavigationBar: Obx(

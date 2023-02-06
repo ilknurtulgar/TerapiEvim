@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/components/buttons/filter_box.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/models/row_model.dart';
+import 'package:terapievim/screen/activity/a_filter.dart';
 import 'package:terapievim/service/activity_controller.dart';
 
 ActivityController activityController = Get.put(ActivityController());
@@ -50,12 +50,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   : activityController.yasemin.value,
               textAlign: TextAlign.start,
               decoration: InputDecoration(
-                labelText: widget.rowModel?.text ?? "",
+                labelText: widget.labelText,
                 suffix:
                     widget.isPassword ? widget.rowModel?.trailingIcon : null,
                 prefixIcon:
                     widget.isRowModel ? widget.rowModel?.leadingIcon : null,
-                hintText: widget.hintText,
+                hintText: widget.rowModel?.text ?? "",
                 prefixText: widget.isPhoneNumber ? '+90 ' : null,
                 enabledBorder: Bordercolor(widget.isColor),
                 focusedBorder: Bordercolor(widget.isColor),
@@ -114,6 +114,13 @@ RowModel searchModel = RowModel(
     isAlignmentBetween: true,
     text: "Ne aramistiniz?",
     leadingIcon: IconUtility.searchIcon,
+    trailingIcon: IconButton(
+      onPressed: () {
+        print("tik");
+        Get.to(const FilterScreen());
+      },
+      icon: IconUtility.fiterIcon,
+    ),
     textStyle: TextStyle());
 RowModel rowiModel = RowModel(
     text: "Baş etme metotlari",

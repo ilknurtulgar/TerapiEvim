@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../core/base/util/base_utility.dart';
 
 class Heading extends StatelessWidget {
-  Heading({super.key, required this.headingText, this.padding});
-  String headingText;
-  EdgeInsets? padding;
+  const Heading({super.key, required this.headingText, this.padding});
+  final String headingText;
+  final EdgeInsets? padding;
 
   @override
   Widget build(

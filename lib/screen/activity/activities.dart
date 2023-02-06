@@ -19,7 +19,7 @@ class ActivitiesScreen extends StatelessWidget {
                   isWidth: true,
                   isColor: true,
                   isHeight: true,
-                  isPassword: false,
+                  isPassword: true,
                   isRowModel: true,
                   rowModel: searchModel,
                 ),

@@ -55,6 +55,7 @@ class MyGroup extends StatelessWidget {
               appbar(),
               CustomHeading(text: GroupTexts.yaklasanToplanti),
               ActivityBox(
+                  isactivity: false,
                   customButton: customButton,
                   arowModel: row,
                   ayrowwModel: row,

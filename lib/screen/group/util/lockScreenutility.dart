@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class LockScreenUtil {
@@ -17,6 +19,8 @@ class LockScreenUtil {
   static const String buttonText = "Testi Cozmek Icin Tiklayiniz";
   static const String checkedTestString =
       "Grup kategorileriniz belirlenmistir. Lutfen ilerleyiniz";
+
+  static ImageFilter imageF = ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0);
 }
 
 class paddings {
@@ -24,4 +28,6 @@ class paddings {
       EdgeInsets.symmetric(vertical: 4, horizontal: 16);
   static const EdgeInsets rowViewProfilePadding =
       EdgeInsets.only(top: 15, left: 24, right: 24);
+  static const EdgeInsets participantsPadding =
+      EdgeInsets.only(left: 25, right: 25);
 }

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:terapievim/models/card_model.dart';
 import 'package:terapievim/screen/group/component/group_information_container.dart';
 import 'package:terapievim/screen/group/component/heading.dart';
+import 'package:terapievim/screen/group/util/group_screen_utility.dart';
+import 'package:terapievim/screen/group/util/text_util.dart';
 
 class GroupCategories extends StatefulWidget {
   const GroupCategories({super.key});
@@ -13,35 +13,42 @@ class GroupCategories extends StatefulWidget {
 }
 
 class _GroupCategoriesState extends State<GroupCategories> {
-  String heading = "Katilabileceginiz Gruplar";
-  String imagePath = "assets/images/doctorfotosu.jpeg";
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Heading(headingText: heading),
-            Container(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 5,
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 12.0, horizontal: 24),
-                  child: GroupInformationContainer(
-                      groupName: "Anksiyete",
-                      mainTherapist:
-                          CardModel(imagePath: imagePath, title: "Simay Selli"),
-                      secondTherapist: CardModel(
-                          imagePath: imagePath, title: "Ilknur Tulgar"),
-                      numberOfParticipant: 10,
-                      numberOfSession: 2),
-                ),
-              ),
-            )
+            Heading(headingText: GroupTexts.groupCategoriesHeading),
+            ListOfGroupCategories(),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget ListOfGroupCategories() {
+    int geciciKategoriSayisi = 5;
+    String tmpGroupName = "Anksiyete";
+    CardModel tmpMainTherapist =
+        CardModel(imagePath: GroupTexts.imagePath, title: "Simay Selli");
+    CardModel tmpSecondTherapist =
+        CardModel(imagePath: GroupTexts.imagePath, title: "Ilknur Tulgar");
+    int tmpParticipantNumber = 10;
+    int tmpSessionNumber = 2;
+//bu kisimlar gostermelik gecici
+
+    return ListView.builder(
+      shrinkWrap: true,
+      itemCount: geciciKategoriSayisi,
+      itemBuilder: (context, index) => Padding(
+        padding: GroupPaddings.groupCategoryPadding,
+        child: GroupInformationContainer(
+            groupName: tmpGroupName,
+            mainTherapist: tmpMainTherapist,
+            secondTherapist: tmpSecondTherapist,
+            numberOfParticipant: tmpParticipantNumber,
+            numberOfSession: tmpSessionNumber),
       ),
     );
   }

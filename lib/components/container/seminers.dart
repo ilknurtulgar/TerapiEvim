@@ -13,7 +13,7 @@ class SeminarMin extends StatelessWidget {
       required this.onTap,
       required this.row});
 
-  final Function onTap;
+  final Function()? onTap;
   Color? border_color;
   final RowModel row;
   double? width;
@@ -25,7 +25,7 @@ class SeminarMin extends StatelessWidget {
     width ??= 342;
     height ??= 52;
     return InkWell(
-      onTap: () => onTap,
+      onTap: onTap,
       child: Container(
         height: height,
         width: width,

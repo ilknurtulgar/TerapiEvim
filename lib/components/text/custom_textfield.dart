@@ -1,43 +1,78 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/components/buttons/filter_box.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/models/row_model.dart';
+import 'package:terapievim/service/activity_controller.dart';
 
-class CustomTextField extends StatelessWidget {
+ActivityController activityController = Get.put(ActivityController());
+
+class CustomTextField extends StatefulWidget {
   CustomTextField(
       {Key? key,
-      required this.labelText,
-      required this.hintText,
-      required this.rowModel})
+      required this.isPhoneNumber,
+      this.labelText,
+      this.hintText,
+      required this.isWidth,
+      required this.isColor,
+      required this.isHeight,
+      this.rowModel,
+      required this.isPassword,
+      required this.isRowModel})
       : super(key: key);
   String? labelText;
   String? hintText;
-  RowModel rowModel;
+  RowModel? rowModel;
+  bool isWidth;
+  bool isHeight;
+  bool isColor;
+  bool isRowModel;
+  bool isPassword;
+  bool isPhoneNumber;
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
 
+class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
+    // bool isObsecure = false;
     return Padding(
         padding: const EdgeInsets.only(left: 24, right: 24),
-        child: TextField(
-          textAlign: TextAlign.start,
-          decoration: InputDecoration(
-            labelText: rowModel.text,
-            icon: rowModel.trailingIcon,
-            prefix: rowModel.leadingIcon,
-            hintText: hintText,
-            enabledBorder: Bordercolor(),
-            focusedBorder: Bordercolor(),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
+        child: Container(
+          color: AppColors.white,
+          width: widget.isWidth ? 342 : 195,
+          height: widget.isHeight ? 56 : 24,
+          child: Obx(
+            () => TextField(
+              obscureText: widget.isPassword
+                  ? activityController.isObsecure.value
+                  : activityController.yasemin.value,
+              textAlign: TextAlign.start,
+              decoration: InputDecoration(
+                labelText: widget.rowModel?.text ?? "",
+                suffix:
+                    widget.isPassword ? widget.rowModel?.trailingIcon : null,
+                prefixIcon:
+                    widget.isRowModel ? widget.rowModel?.leadingIcon : null,
+                hintText: widget.hintText,
+                prefixText: widget.isPhoneNumber ? '+90 ' : null,
+                enabledBorder: Bordercolor(widget.isColor),
+                focusedBorder: Bordercolor(widget.isColor),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
             ),
           ),
         ));
   }
 
-  OutlineInputBorder Bordercolor() {
+  OutlineInputBorder Bordercolor(bool isColor) {
     return OutlineInputBorder(
         borderSide: BorderSide(
-      color: AppColors.dustyGray,
-      width: 2,
+      color: isColor ? AppColors.dustyGray : AppColors.cornFlowerBlue,
+      width: 1,
     ));
   }
 }
@@ -45,15 +80,43 @@ class CustomTextField extends StatelessWidget {
 RowModel trailingModel = RowModel(
     isAlignmentBetween: true,
     text: "cx",
-    trailingIcon: InkWell(
-      onTap: (() {
-        print("tiklandi");
-      }),
-      child: IconUtility.visibilityIcon,
+    trailingIcon: Obx(
+      () => IconButton(
+          onPressed: () {
+            print("fdclö");
+            activityController.obsecureChange();
+          },
+          icon: activityController.isObsecure.value
+              ? IconUtility.visibilityIcon
+              : IconUtility.visibilityoffIcon),
     ),
     textStyle: TextStyle());
+
 RowModel leadingModel = RowModel(
     isAlignmentBetween: true,
-    text: "cx",
+    text: "adsoyad",
+    //leadingIcon: IconUtility.emailIcon,
+    textStyle: TextStyle());
+
+RowModel emailModel = RowModel(
+    isAlignmentBetween: true,
+    text: "email",
     leadingIcon: IconUtility.emailIcon,
     textStyle: TextStyle());
+
+RowModel phoneModel = RowModel(
+    isAlignmentBetween: true,
+    text: "phone",
+    leadingIcon: IconUtility.calendarIcon,
+    textStyle: TextStyle());
+
+RowModel searchModel = RowModel(
+    isAlignmentBetween: true,
+    text: "Ne aramistiniz?",
+    leadingIcon: IconUtility.searchIcon,
+    textStyle: TextStyle());
+RowModel rowiModel = RowModel(
+    text: "Baş etme metotlari",
+    textStyle: TextStyle(),
+    isAlignmentBetween: true,
+    trailingIcon: Icon(Icons.keyboard_arrow_right_outlined));

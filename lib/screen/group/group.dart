@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/screen/group/ui/category_determination/group_categories/group_categories.dart';
 import 'package:terapievim/service/mainController.dart';
 
 import 'ui/my_group.dart';

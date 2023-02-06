@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/screen/group/component/purple_border_text_ccontainer.dart';
 
-import '../../../components/buttons/custom_button.dart';
+import '../../../core/base/component/buttons/custom_button.dart';
 import '../../../core/base/util/base_utility.dart';
-import '../../../service/mainController.dart';
-import '../ui/scl90/lock_screen.dart';
+import '../../../controller/mainController.dart';
+import '../participant_ui/scl90/lock_screen.dart';
 import '../util/lockScreenutility.dart';
 
 class PopUp extends StatelessWidget {

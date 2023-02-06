@@ -5,7 +5,7 @@ class MainController extends GetxController {
   var isViewPlaceChanged = false.obs;
   var isTestNotSolved = true.obs;
   var isTestResultReady = true.obs;
-  var isLockOpen = true.obs;
+  var isLockOpen = false.obs;
   var isLogged = true.obs;
 
   ChangeScreen(int index) {

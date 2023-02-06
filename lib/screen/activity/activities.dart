@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/components/text/custom_textfield.dart';
+import 'package:terapievim/screen/login/component/custom_textfield.dart';
 import 'package:terapievim/screen/group/component/group_box.dart';
 
 class ActivitiesScreen extends StatelessWidget {

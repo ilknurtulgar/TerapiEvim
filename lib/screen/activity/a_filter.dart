@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/components/buttons/filter_box.dart';
+import 'package:terapievim/screen/activity/component/filter_box.dart';
 import 'package:terapievim/screen/group/component/custom_heading.dart';
 
 class FilterScreen extends StatelessWidget {

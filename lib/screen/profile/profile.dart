@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/group/ui/therapist.dart';
+import 'package:terapievim/screen/group/participant_ui/therapist.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

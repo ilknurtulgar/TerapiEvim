@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/components/container/notification_from_ther_container.dart';
-import 'package:terapievim/components/container/seminers.dart';
-import 'package:terapievim/components/text/custom_textfield.dart';
+import 'package:terapievim/screen/home/component/notification_from_ther_container.dart';
+import 'package:terapievim/screen/activity/component/seminers.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/models/card_model.dart';
+import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/screen/home/coping_methods.dart';
 import 'package:terapievim/screen/home/main_home.dart';
+import 'package:terapievim/screen/login/component/custom_textfield.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});

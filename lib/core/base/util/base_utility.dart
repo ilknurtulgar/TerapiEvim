@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/models/container_model.dart';
+import 'package:terapievim/core/base/models/container_model.dart';
 
 class AppColors {
   static const Color blueChalk = Color.fromRGBO(238, 227, 255, 1);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/base/util/base_utility.dart';
-import '../../../../models/row_view.dart';
-import '../../../../models/row_model.dart';
+import 'row_view.dart';
+import '../../../core/base/models/row_model.dart';
 import '../util/lockScreenutility.dart';
 
 class GroupClass extends StatelessWidget {
@@ -15,11 +15,13 @@ class GroupClass extends StatelessWidget {
     required this.onTap,
     required this.row1,
     required this.row2,
+    required this.row3,
   });
   Color? borderColor;
   final Function onTap;
   final RowModel row1;
   final RowModel row2;
+  final RowModel row3;
   final String heading;
 
   double? width;
@@ -55,6 +57,7 @@ class GroupClass extends StatelessWidget {
             ),
             rowView(row1, paddings.rowViewPadding),
             rowView(row2, paddings.rowViewPadding),
+            rowView(row3, paddings.rowViewPadding)
           ],
         ),
       ),

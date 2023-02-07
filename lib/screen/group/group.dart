@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/service/mainController.dart';
+import 'package:terapievim/screen/group/participant_ui/category_determination/group_categories/group_categories.dart';
+import 'package:terapievim/controller/mainController.dart';
+import 'package:terapievim/screen/group/participant_ui/therapist.dart';
 
-import 'ui/my_group.dart';
-import 'ui/scl90/lock_screen.dart';
+import 'participant_ui/my_group.dart';
+import 'participant_ui/scl90/lock_screen.dart';
 
 class GroupScreen extends StatelessWidget {
   GroupScreen({super.key});
@@ -12,10 +14,11 @@ class GroupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _controller.isTestNotSolved.isTrue
-        ? LockScreen()
-        : _controller.isTestResultReady.isTrue
-            ? MyGroup()
-            : LockScreen();
+    return TherapistProfile();
+    // return _controller.isTestNotSolved.isTrue
+    //     ? LockScreen()
+    //     : _controller.isTestResultReady.isTrue
+    //         ? MyGroup()
+    //         : LockScreen();
   }
 }

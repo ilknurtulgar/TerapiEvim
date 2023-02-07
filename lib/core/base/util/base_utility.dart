@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/models/container_model.dart';
+import 'package:terapievim/core/base/models/container_model.dart';
 
 class AppColors {
   static const Color blueChalk = Color.fromRGBO(238, 227, 255, 1);
@@ -35,7 +35,9 @@ class AppColors {
 }
 
 class IconUtility {
-  static const Icon visibilityIcon = Icon(Icons.visibility);
+  static const Icon visibilityIcon = Icon(
+    Icons.visibility,
+  );
   static const Icon visibilityoffIcon = Icon(Icons.visibility_off);
   static const Icon homeIcon = Icon(Icons.home);
   static const Icon activityIcon =

@@ -1,33 +1,31 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/controller/group_controller.dart';
 
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 class ToggleQuestions extends StatelessWidget {
   ToggleQuestions({super.key});
-  final selected = true;
-  List<Widget> choice = <Widget>[
-    Icon(Icons.circle_outlined),
-    Icon(Icons.circle_outlined),
-    Icon(Icons.circle_outlined),
-    Icon(Icons.circle_outlined),
-    Icon(Icons.circle_outlined),
-  ];
-  final List<bool> _selectedchoice = <bool>[true, false, false, false, false];
+  GroupController groupController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return ToggleButtons(
-        direction: Axis.horizontal,
-        onPressed: ((index) {}),
-        renderBorder: true,
-        borderRadius: BorderRadius.circular(3),
-        borderColor: Colors.transparent,
-        selectedBorderColor: Colors.transparent,
-        fillColor: Colors.transparent,
-        selectedColor: AppColors.black,
-        constraints: BoxConstraints(minHeight: 3, minWidth: 3),
-        children: choice,
-        borderWidth: 10,
-        isSelected: _selectedchoice);
+    return Obx(
+      () => ToggleButtons(
+          direction: Axis.horizontal,
+          onPressed: ((int index) {
+            groupController.selecttooggle(index);
+          }),
+          borderRadius: BorderRadius.circular(3),
+          borderColor: Colors.transparent,
+          selectedBorderColor: Colors.transparent,
+          fillColor: Colors.transparent,
+          selectedColor: AppColors.cornFlowerBlue,
+          splashColor: AppColors.transparent,
+          constraints: BoxConstraints(minHeight: 3, minWidth: 3),
+          children: groupController.choice,
+          borderWidth: 20,
+          isSelected: groupController.selectedchoice),
+    );
   }
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/models/container_model.dart';
 
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/models/container_model.dart';
 
 class QuestionsBox extends StatelessWidget {
   const QuestionsBox({super.key, required this.containerModel});

@@ -17,31 +17,21 @@ class CustomText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          width: containerModel.width,
-          height: containerModel.height,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(containerModel.borderRadius),
-              color: containerModel.backgroundColor,
-              boxShadow: [
-                BoxShadow(
-                    color:
-                        isActivity ? AppColors.doveGray : AppColors.coldPurple,
-                    spreadRadius: 3)
-              ]),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(customText),
-              ),
-              // rowModel.trailingIcon!=null? rowModel.trailingIcon! : SizedBox(),
-            ],
-          ),
-        ),
-      ],
+    return Container(
+      width: containerModel.width,
+      height: containerModel.height,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(containerModel.borderRadius),
+          color: containerModel.backgroundColor,
+          boxShadow: [
+            BoxShadow(
+                color: isActivity ? AppColors.doveGray : AppColors.coldPurple,
+                spreadRadius: 3)
+          ]),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(customText),
+      ),
     );
   }
 }

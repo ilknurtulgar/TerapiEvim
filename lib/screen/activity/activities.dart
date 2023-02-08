@@ -17,7 +17,6 @@ class ActivitiesScreen extends StatelessWidget {
                 CustomTextField(
                   isPhoneNumber: false,
                   isBig: true,
-                  isColor: true,
                   isPassword: true,
                   isRowModel: true,
                   rowModel: searchModel,

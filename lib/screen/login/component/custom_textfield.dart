@@ -13,9 +13,8 @@ class CustomTextField extends StatefulWidget {
       required this.isPhoneNumber,
       this.labelText,
       this.hintText,
-      required this.isWidth,
       required this.isColor,
-      required this.isHeight,
+      required this.isBig,
       this.rowModel,
       required this.isPassword,
       required this.isRowModel})
@@ -23,8 +22,7 @@ class CustomTextField extends StatefulWidget {
   String? labelText;
   String? hintText;
   RowModel? rowModel;
-  bool isWidth;
-  bool isHeight;
+  bool isBig;
   bool isColor;
   bool isRowModel;
   bool isPassword;
@@ -36,13 +34,12 @@ class CustomTextField extends StatefulWidget {
 class _CustomTextFieldState extends State<CustomTextField> {
   @override
   Widget build(BuildContext context) {
-    // bool isObsecure = false;
     return Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24),
-        child: Container(
-          color: AppColors.white,
-          width: widget.isWidth ? 342 : 195,
-          height: widget.isHeight ? 56 : 24,
+        padding:
+            const EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 20),
+        child: SizedBox(
+          width: widget.isBig ? 342 : 195,
+          height: widget.isBig ? 56 : 24,
           child: Obx(
             () => TextField(
               obscureText: widget.isPassword
@@ -50,6 +47,8 @@ class _CustomTextFieldState extends State<CustomTextField> {
                   : activityController.yasemin.value,
               textAlign: TextAlign.start,
               decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
                 labelText: widget.labelText,
                 suffix:
                     widget.isPassword ? widget.rowModel?.trailingIcon : null,
@@ -60,6 +59,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                 enabledBorder: Bordercolor(widget.isColor),
                 focusedBorder: Bordercolor(widget.isColor),
                 border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),

@@ -39,9 +39,8 @@ class MessageScreen extends StatelessWidget {
               padding: const EdgeInsets.only(top: 290, left: 23),
               child: CustomTextField(
                 isPhoneNumber: false,
-                isWidth: true,
+                isBig: true,
                 isColor: true,
-                isHeight: false,
                 isPassword: false,
                 isRowModel: false,
               ),

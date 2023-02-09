@@ -26,8 +26,11 @@ class GroupPaddings {
       const EdgeInsets.symmetric(vertical: 12.0);
   static EdgeInsets timeChossingBetweenPadding =
       const EdgeInsets.only(top: 26, left: 26, right: 26);
-  static EdgeInsets customHeadingPadding =
-      const EdgeInsets.only(left: 24, bottom: 15, top: 20);
+  static EdgeInsets customHeadingPadding = const EdgeInsets.only(
+    left: 15,
+    bottom: 15,
+    top: 20,
+  );
   static EdgeInsets aboutmePadding = const EdgeInsets.symmetric(vertical: 10);
   static EdgeInsets whitebackgroundmargin = const EdgeInsets.only(bottom: 122);
 }

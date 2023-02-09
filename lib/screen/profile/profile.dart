@@ -1,48 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:terapievim/components/text/custom_text.dart';
-import 'package:terapievim/screen/group/component/purple_border_text_ccontainer.dart';
-import 'package:terapievim/screen/group/participant_ui/therapist.dart';
-import 'package:terapievim/screen/login/component/custom_textfield.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/controller/group_controller.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/screen/group/component/custom_heading.dart';
+
+import '../group/participant_ui/scl90/questions_button.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  ProfileScreen({super.key});
 
+  GroupController groupController = Get.put(GroupController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Center(
-          child: Column(
-            children: [
-              CustomTextField(
-                isPhoneNumber: true,
-                isBig: true,
-                isColor: true,
-                isPassword: false,
-                isRowModel: true,
-                rowModel: leadingModel,
-              ),
-              CustomTextField(
-                isPhoneNumber: true,
-                isBig: true,
-                isColor: true,
-                isPassword: false,
-                isRowModel: true,
-                rowModel: trailingModel,
-              ),
-              CustomTextField(
-                isBig: true,
-                isPhoneNumber: true,
-                isColor: true,
-                isPassword: false,
-                isRowModel: true,
-                rowModel: trailingModel,
-              )
-            ],
-          ),
+        body: Column(
+          children: [
+            togglebuttonsview(),
+          ],
         ),
       ),
     );
   }
+
+  Container togglebuttonsview() {
+    return Container(
+      decoration: AppBoxDecoration.lockScreenBox,
+      width: 341,
+      child: Column(children: [
+        CustomHeading(
+            isToggle: true,
+            text:
+                "1.Yasemini insanlar 100 üzerinden  ne kadar severlerse yasemin ne kadar mutlu olur?(Cevap yok hehe)"),
+        ToggleQuestions(),
+      ]),
+    );
+  }
 }
+
+List toggletext = ["hiç", "çok az", "orta", "fazla", "aşırı"];

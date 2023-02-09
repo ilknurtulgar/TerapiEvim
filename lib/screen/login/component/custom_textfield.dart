@@ -8,7 +8,7 @@ import 'package:terapievim/screen/activity/component/filter_box.dart';
 
 ActivityController activityController = Get.put(ActivityController());
 
-class CustomTextField extends StatefulWidget {
+class CustomTextField extends StatelessWidget {
   CustomTextField(
       {Key? key,
       required this.isPhoneNumber,
@@ -25,37 +25,30 @@ class CustomTextField extends StatefulWidget {
   bool isPhoneNumber;
   TextEditingController textController = TextEditingController();
   @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
-}
-
-class _CustomTextFieldState extends State<CustomTextField> {
-  @override
   Widget build(BuildContext context) {
     return Padding(
         padding:
             const EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 20),
         child: SizedBox(
-          width: widget.isBig ? 342 : 195,
-          height: widget.isBig ? 56 : 24,
+          width: isBig ? 342 : 195,
+          height: isBig ? 56 : 24,
           child: Obx(
             () => TextField(
-              controller: widget.textController,
-              obscureText: widget.isPassword
+              controller: textController,
+              obscureText: isPassword
                   ? activityController.isObsecure.value
                   : activityController.yasemin.value,
               textAlign: TextAlign.start,
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
-                labelText: rowModel.text,
-                suffix:
-                    widget.isPassword ? widget.rowModel?.trailingIcon : null,
-                prefixIcon:
-                    widget.isRowModel ? widget.rowModel?.leadingIcon : null,
-                hintText: rowModel.text2,
-                prefixText: widget.isPhoneNumber ? '+90 ' : null,
-                enabledBorder: Bordercolor(widget.isBig),
-                focusedBorder: Bordercolor(widget.isBig),
+                labelText: rowModel!.text,
+                suffix: isPassword ? rowModel?.trailingIcon : null,
+                prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
+                hintText: rowModel!.text2,
+                prefixText: isPhoneNumber ? '+90 ' : null,
+                enabledBorder: Bordercolor(isBig),
+                focusedBorder: Bordercolor(isBig),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(8),
@@ -69,7 +62,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
   OutlineInputBorder Bordercolor(bool isBig) {
     return OutlineInputBorder(
         borderSide: BorderSide(
-      color: isBig ? AppColors.cornFlowerBlue : AppColors.dustyGray,
+      color: isBig ? AppColors.dustyGray : AppColors.cornFlowerBlue,
       width: 1,
     ));
   }

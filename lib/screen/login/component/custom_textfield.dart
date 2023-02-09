@@ -42,10 +42,12 @@ class CustomTextField extends StatelessWidget {
               decoration: InputDecoration(
                 filled: true,
                 fillColor: Colors.white,
-                labelText: rowModel!.text,
+                labelText: rowModel?.text ?? "",
+                labelStyle: rowModel?.textStyle,
                 suffix: isPassword ? rowModel?.trailingIcon : null,
                 prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
-                hintText: rowModel!.text2,
+                hintText: rowModel?.text2,
+                hintStyle: rowModel?.textStyle2 ?? TextStyle(),
                 prefixText: isPhoneNumber ? '+90 ' : null,
                 enabledBorder: Bordercolor(isBig),
                 focusedBorder: Bordercolor(isBig),
@@ -112,7 +114,8 @@ RowModel searchModel = RowModel(
       },
       icon: IconUtility.fiterIcon,
     ),
-    textStyle: TextStyle());
+    textStyle2: AppTextStyles.heading(false),
+    textStyle: AppTextStyles.GroupTextStyle(true));
 
 RowModel rowiModel = RowModel(
     text: "Baş etme metotlari",

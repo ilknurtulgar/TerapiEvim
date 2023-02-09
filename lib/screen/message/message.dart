@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:terapievim/screen/activity/component/drop_down.dart';
+import 'package:terapievim/screen/activity/therapist_ui/therapist.dart';
 import 'package:terapievim/screen/login/component/drop_down_widget.dart';
 import 'package:terapievim/screen/profile/component/image/custom_circle_avatar.dart';
 import 'package:terapievim/components/text/custom_text.dart';
@@ -27,8 +30,20 @@ class MessageScreen extends StatelessWidget {
               color: AppColors.black,
               height: 5,
             ),
-            messagebox(),
             sizedbox(),
+            CustomTextField(
+              isPhoneNumber: false,
+              isBig: true,
+              isPassword: false,
+              isRowModel: true,
+              rowModel: searchModel,
+            ),
+            MyWidget(),
+            sizedbox(),
+            MyWidget(),
+            DropDown(),
+            sizedbox(),
+            messagebox(),
             messageboxright(),
             sizedbox(),
             Padding(
@@ -40,7 +55,6 @@ class MessageScreen extends StatelessWidget {
                 isRowModel: false,
               ),
             ),
-            DropDownWidget()
           ]),
         ),
       ),

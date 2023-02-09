@@ -16,10 +16,11 @@ class ActivityController extends GetxController {
     }
   }
 
-  var selectedBox = true.obs;
+  var selectedBox = false.obs;
   void changeBox() {
-    print("çalişiyor");
+    print("ilknur");
     selectedBox.value = !selectedBox.value;
+    print(selectedBox.value.toString());
   }
 
   late RxInt selectedValue;

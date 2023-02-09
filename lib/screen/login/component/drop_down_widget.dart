@@ -17,11 +17,11 @@ class DropDownWidget extends StatelessWidget {
             value: groupController.selectedValue.value,
             items: [
               DropdownMenuItem(
-                child: Text("Yeniden Eskiye"),
+                child: Text("kadın"),
                 value: 1,
               ),
               DropdownMenuItem(
-                child: Text("Eskiden Yeniye "),
+                child: Text("erkek "),
                 value: 2,
               ),
             ],

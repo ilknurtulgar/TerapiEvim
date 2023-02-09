@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/screen/login/component/custom_textfield.dart';
@@ -25,8 +24,8 @@ class DropDown extends StatelessWidget {
               child: activityController.selectedBox.value
                   ? Text(variables[0])
                   : Container(child: ChooseGender()),
-              /*  width: 342,
-              height: 56,*/
+              width: 342,
+              height: 56,
               decoration: boxDecoration(),
             ),
           ),

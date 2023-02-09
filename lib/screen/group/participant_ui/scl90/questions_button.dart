@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/group_controller.dart';
+import 'package:terapievim/screen/group/component/custom_heading.dart';
 
 import 'package:terapievim/core/base/util/base_utility.dart';
 
@@ -8,6 +9,7 @@ class ToggleQuestions extends StatelessWidget {
   ToggleQuestions({super.key});
   GroupController groupController = Get.find();
 
+  List toggletext = ["hiç", "çok az", "orta", "fazla", "aşırı"];
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -28,4 +30,18 @@ class ToggleQuestions extends StatelessWidget {
           isSelected: groupController.selectedchoice),
     );
   }
+}
+
+Container togglebuttonsview() {
+  return Container(
+    decoration: AppBoxDecoration.lockScreenBox,
+    width: 341,
+    child: Column(children: [
+      CustomHeading(
+          isToggle: true,
+          text:
+              "1.Yasemini insanlar 100 üzerinden  ne kadar severlerse yasemin ne kadar mutlu olur?(Cevap yok hehe)"),
+      ToggleQuestions(),
+    ]),
+  );
 }

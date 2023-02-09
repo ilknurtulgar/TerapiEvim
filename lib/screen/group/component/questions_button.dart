@@ -7,7 +7,7 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 
 class ToggleQuestions extends StatelessWidget {
   ToggleQuestions({super.key});
-  GroupController groupController = Get.find();
+  GroupController groupController = Get.put(GroupController());
 
   List toggletext = ["hiç", "çok az", "orta", "fazla", "aşırı"];
   @override

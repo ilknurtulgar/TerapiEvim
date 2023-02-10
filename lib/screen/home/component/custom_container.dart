@@ -4,8 +4,6 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
 
-import '../../../core/base/util/base_utility.dart';
-
 class CustomContainer extends StatelessWidget {
   const CustomContainer(
       {super.key,

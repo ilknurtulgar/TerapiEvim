@@ -28,7 +28,7 @@ class ShortCallPage extends StatelessWidget {
           VideoCallPersonView(
               videoCallViewModel:
                   VideoCallUtility.personShortCallView(participant)),
-          VideoCallButtonsRow(),
+          const VideoCallButtonsRow(),
         ],
       ),
     );

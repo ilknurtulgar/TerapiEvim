@@ -34,7 +34,7 @@ class NotificationFromTherContainer extends StatelessWidget {
             child: Padding(
                 padding: AppPaddings.purpleButtonAtRight,
                 child: CustomButton(
-                  container: AppContainers.purpleButtonContainer,
+                  container: AppContainers.purpleButtonContainer(null),
                   onTap: buttonOnTap,
                   text: buttonText,
                 )))

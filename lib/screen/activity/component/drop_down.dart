@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/screen/activity/therapist_ui/therapist.dart';
 import 'package:terapievim/screen/login/component/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/controller/activity_controller.dart';
 
 class CustomDropDown extends StatefulWidget {
   CustomDropDown({
@@ -28,7 +26,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
       Obx(
         () => activityController.selectedBox.value
             ? ChooseGender(widget: widget)
-            : SizedBox(),
+            : const SizedBox(),
       )
     ]);
   }
@@ -38,10 +36,9 @@ Obx choosebox(purpose) {
   return Obx(
     () => InkWell(
         onTap: () {
-          print("hadi be");
           activityController.changeBox();
         },
-        child: Container(
+        child: SizedBox(
           width: 340,
           height: 50,
           child: purpose == "gender"
@@ -69,11 +66,10 @@ class ChooseGender extends StatelessWidget {
           itemBuilder: (context, index) {
             return InkWell(
               onTap: () {
-                print("object");
                 activityController.func(index, widget.purpose);
                 activityController.changeBox();
               },
-              child: Container(
+              child: SizedBox(
                 width: 340,
                 height: 50,
                 child: Padding(

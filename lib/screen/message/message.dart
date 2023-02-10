@@ -1,14 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:terapievim/screen/activity/component/drop_down.dart';
-import 'package:terapievim/screen/activity/therapist_ui/therapist.dart';
-import 'package:terapievim/screen/login/component/drop_down_widget.dart';
-import 'package:terapievim/screen/profile/component/image/custom_circle_avatar.dart';
-import 'package:terapievim/components/text/custom_text.dart';
-import 'package:terapievim/screen/login/component/custom_textfield.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/group/component/custom_heading.dart';
+import 'package:terapievim/screen/group/component/purple_border_text_ccontainer.dart';
+import 'package:terapievim/screen/profile/component/image/custom_circle_avatar.dart';
+import 'package:terapievim/core/base/models/row_model.dart';
 
 class MessageScreen extends StatelessWidget {
   MessageScreen({super.key, this.rowmodel});
@@ -19,9 +14,7 @@ class MessageScreen extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          children: [
-            CustomDropDown(purpose: "gender"),
-          ],
+          children: [CustomDropDown(purpose: "gender"), messagebox()],
         ),
         /*SingleChildScrollView(
           child: Column(children: [
@@ -71,10 +64,11 @@ class MessageScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         circleavatar(),
-        CustomText(
+        const PurpleBorderWhiteInsideTextContainer(text: "fvlö")
+        /* CustomText(
             containerModel: customTextModel,
             isActivity: false,
-            customText: "fd"),
+            customText: "fd"),*/
       ],
     );
   }
@@ -82,10 +76,11 @@ class MessageScreen extends StatelessWidget {
   Row messageboxright() {
     return Row(
       children: [
-        CustomText(
+        CustomHeading(text: "text"),
+        /* CustomText(
             containerModel: customTextModel,
             isActivity: false,
-            customText: "fd"),
+            customText: "fd"),*/
         circleavatar(),
       ],
     );
@@ -100,13 +95,6 @@ class MessageScreen extends StatelessWidget {
           imagePath: "assets/images/doctorfotosu.jpeg",
           big: false,
           shadow: true),
-    );
-  }
-
-  SizedBox sizedbox() {
-    return SizedBox(
-      width: 10,
-      height: 30,
     );
   }
 }

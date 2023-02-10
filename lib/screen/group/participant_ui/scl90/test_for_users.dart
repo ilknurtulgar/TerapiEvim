@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/screen/group/component/questions_button.dart';
 
 class Test extends StatelessWidget {
   const Test({super.key});
@@ -6,7 +7,7 @@ class Test extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [],
+      children: [togglebuttonsview()],
     );
   }
 }

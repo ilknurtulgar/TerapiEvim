@@ -4,62 +4,55 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/activity/a_filter.dart';
 import 'package:terapievim/controller/activity_controller.dart';
+import 'package:terapievim/screen/activity/component/filter_box.dart';
 
 ActivityController activityController = Get.put(ActivityController());
 
-class CustomTextField extends StatefulWidget {
+class CustomTextField extends StatelessWidget {
   CustomTextField(
       {Key? key,
       required this.isPhoneNumber,
-      this.labelText,
-      this.hintText,
-      required this.isWidth,
-      required this.isColor,
-      required this.isHeight,
+      required this.isBig,
       this.rowModel,
       required this.isPassword,
       required this.isRowModel})
       : super(key: key);
-  String? labelText;
-  String? hintText;
+
   RowModel? rowModel;
-  bool isWidth;
-  bool isHeight;
-  bool isColor;
+  bool isBig;
   bool isRowModel;
   bool isPassword;
   bool isPhoneNumber;
-  @override
-  State<CustomTextField> createState() => _CustomTextFieldState();
-}
-
-class _CustomTextFieldState extends State<CustomTextField> {
+  TextEditingController textController = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    // bool isObsecure = false;
     return Padding(
-        padding: const EdgeInsets.only(left: 24, right: 24),
-        child: Container(
-          color: AppColors.white,
-          width: widget.isWidth ? 342 : 195,
-          height: widget.isHeight ? 56 : 24,
+        padding:
+            const EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 20),
+        child: SizedBox(
+          width: isBig ? 342 : 195,
+          height: isBig ? 56 : 24,
           child: Obx(
             () => TextField(
-              obscureText: widget.isPassword
+              controller: textController,
+              obscureText: isPassword
                   ? activityController.isObsecure.value
                   : activityController.yasemin.value,
               textAlign: TextAlign.start,
               decoration: InputDecoration(
-                labelText: widget.labelText,
-                suffix:
-                    widget.isPassword ? widget.rowModel?.trailingIcon : null,
-                prefixIcon:
-                    widget.isRowModel ? widget.rowModel?.leadingIcon : null,
-                hintText: widget.rowModel?.text ?? "",
-                prefixText: widget.isPhoneNumber ? '+90 ' : null,
-                enabledBorder: Bordercolor(widget.isColor),
-                focusedBorder: Bordercolor(widget.isColor),
+                filled: true,
+                fillColor: Colors.white,
+                labelText: rowModel?.text ?? "",
+                labelStyle: rowModel?.textStyle,
+                suffix: isPassword ? rowModel?.trailingIcon : null,
+                prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
+                hintText: rowModel?.text2,
+                hintStyle: rowModel?.textStyle2 ?? TextStyle(),
+                prefixText: isPhoneNumber ? '+90 ' : null,
+                enabledBorder: Bordercolor(isBig),
+                focusedBorder: Bordercolor(isBig),
                 border: OutlineInputBorder(
+                  borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
@@ -68,10 +61,10 @@ class _CustomTextFieldState extends State<CustomTextField> {
         ));
   }
 
-  OutlineInputBorder Bordercolor(bool isColor) {
+  OutlineInputBorder Bordercolor(bool isBig) {
     return OutlineInputBorder(
         borderSide: BorderSide(
-      color: isColor ? AppColors.dustyGray : AppColors.cornFlowerBlue,
+      color: isBig ? AppColors.dustyGray : AppColors.cornFlowerBlue,
       width: 1,
     ));
   }
@@ -121,7 +114,8 @@ RowModel searchModel = RowModel(
       },
       icon: IconUtility.fiterIcon,
     ),
-    textStyle: TextStyle());
+    textStyle2: AppTextStyles.heading(false),
+    textStyle: AppTextStyles.GroupTextStyle(true));
 
 RowModel rowiModel = RowModel(
     text: "Baş etme metotlari",

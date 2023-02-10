@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
+import 'package:terapievim/screen/activity/component/drop_down.dart';
+import 'package:terapievim/screen/activity/therapist_ui/therapist.dart';
+import 'package:terapievim/screen/login/component/drop_down_widget.dart';
 import 'package:terapievim/screen/profile/component/image/custom_circle_avatar.dart';
 import 'package:terapievim/components/text/custom_text.dart';
 import 'package:terapievim/screen/login/component/custom_textfield.dart';
-import 'package:terapievim/screen/activity/component/drop_down.dart';
-import 'package:terapievim/screen/login/component/drop_down_widget.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/models/container_model.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/group/component/custom_heading.dart';
-import 'package:terapievim/screen/video_call/components/video_call_container/circular_container.dart';
 
 class MessageScreen extends StatelessWidget {
   MessageScreen({super.key, this.rowmodel});
@@ -31,17 +30,27 @@ class MessageScreen extends StatelessWidget {
               color: AppColors.black,
               height: 5,
             ),
-            messagebox(),
             sizedbox(),
+            CustomTextField(
+              isPhoneNumber: false,
+              isBig: true,
+              isPassword: false,
+              isRowModel: true,
+              rowModel: searchModel,
+            ),
+            MyWidget(),
+            sizedbox(),
+            MyWidget(),
+            DropDown(),
+            sizedbox(),
+            messagebox(),
             messageboxright(),
             sizedbox(),
             Padding(
               padding: const EdgeInsets.only(top: 290, left: 23),
               child: CustomTextField(
                 isPhoneNumber: false,
-                isWidth: true,
-                isColor: true,
-                isHeight: false,
+                isBig: true,
                 isPassword: false,
                 isRowModel: false,
               ),

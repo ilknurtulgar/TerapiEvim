@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/screen/activity/component/filter_box.dart';
 import 'package:terapievim/screen/login/component/custom_textfield.dart';
 import 'package:terapievim/screen/group/component/group_box.dart';
 
@@ -16,9 +17,7 @@ class ActivitiesScreen extends StatelessWidget {
                 _sizedbox(),
                 CustomTextField(
                   isPhoneNumber: false,
-                  isWidth: true,
-                  isColor: true,
-                  isHeight: true,
+                  isBig: true,
                   isPassword: true,
                   isRowModel: true,
                   rowModel: searchModel,

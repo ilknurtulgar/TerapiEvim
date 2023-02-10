@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'package:terapievim/screen/group/participant_ui/scl90/questions_button.dart';
-import 'package:terapievim/screen/group/component/row_text.dart';
+import 'package:terapievim/screen/group/component/questions_button.dart';
 
 class Test extends StatelessWidget {
   const Test({super.key});
@@ -9,7 +7,7 @@ class Test extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [ToggleQuestions(), RowText()],
+      children: [togglebuttonsview()],
     );
   }
 }

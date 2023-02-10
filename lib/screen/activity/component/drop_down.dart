@@ -1,101 +1,91 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/screen/activity/therapist_ui/therapist.dart';
 import 'package:terapievim/screen/login/component/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/controller/activity_controller.dart';
 
-final List<String> variables = ["seçiniz", "male", "famele"];
+class CustomDropDown extends StatefulWidget {
+  CustomDropDown({
+    required this.purpose,
+    super.key,
+  });
+  String purpose;
+  @override
+  State<CustomDropDown> createState() => _CustomDropDownState();
+}
 
-class DropDown extends StatelessWidget {
-  DropDown({super.key});
-
-  ActivityController activityController = Get.put(ActivityController());
+class _CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        InkWell(
-          onTap: () {
-            activityController.changeBox();
-            print("tiklandş");
-          },
-          child: Obx(
-            () => Container(
-              child: activityController.selectedBox.value
-                  ? Text(variables[0])
-                  : Container(child: ChooseGender()),
-              width: 342,
-              height: 56,
-              decoration: boxDecoration(),
-            ),
-          ),
-        ),
-      ],
-    );
+    return Column(children: [
+      Container(
+        height: 51,
+        width: 340,
+        child: choosebox(widget.purpose),
+        decoration: AppBoxDecoration.lockScreenBox,
+      ),
+      Obx(
+        () => activityController.selectedBox.value
+            ? ChooseGender(widget: widget)
+            : SizedBox(),
+      )
+    ]);
   }
 }
 
-BoxDecoration boxDecoration() {
-  return BoxDecoration(
-      color: AppColors.white,
-      borderRadius: BorderRadius.circular(8),
-      boxShadow: [BoxShadow(color: AppColors.doveGray, spreadRadius: 1)]);
+Obx choosebox(purpose) {
+  return Obx(
+    () => InkWell(
+        onTap: () {
+          print("hadi be");
+          activityController.changeBox();
+        },
+        child: Container(
+          width: 340,
+          height: 50,
+          child: purpose == "gender"
+              ? Text(activityController.gender.value)
+              : Text(activityController.order.value),
+        )),
+  );
 }
 
 class ChooseGender extends StatelessWidget {
-  ChooseGender({
+  const ChooseGender({
     super.key,
+    required this.widget,
   });
+
+  final CustomDropDown widget;
 
   @override
   Widget build(BuildContext context) {
-    return SimpleDialog(
-      children: [
-        SimpleDialogOption(
-            onPressed: () {
-              activityController.changeBox();
-              print("tiklandii");
-            },
-            child: Text(variables[1])),
-        SimpleDialogOption(
-          onPressed: () {
-            activityController.changeBox();
-            print("okey,letsgo");
+    return Container(
+        decoration: AppBoxDecoration.lockScreenBox,
+        width: 340,
+        height: 102,
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return InkWell(
+              onTap: () {
+                print("object");
+                activityController.func(index, widget.purpose);
+                activityController.changeBox();
+              },
+              child: Container(
+                width: 340,
+                height: 50,
+                child: Padding(
+                  padding: const EdgeInsets.only(left: 10, top: 15),
+                  child: widget.purpose == "gender"
+                      ? Text(activityController.genderList[index])
+                      : Text(activityController.orderingList[index]),
+                ),
+              ),
+            );
           },
-          child: Text(variables[2]),
-        )
-      ],
-    );
+          itemCount: activityController.genderList.length,
+        ));
   }
 }
-
-/*ListView.builder(
-      physics: NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        return MaterialButton(
-            height: 45,
-            minWidth: 300,
-            onPressed: () {
-              activityController.changeBox();
-            },
-            color: AppColors.white,
-            child: Text(variables[index]));
-      },
-      itemCount: variables.length,
-    );
-    InkWell(
-          onTap: () {
-            activityController.changeBox();
-            print("tiklandş");
-          },
-          child: Obx(
-            () => Container(
-              child: activityController.selectedBox.value
-                  ? Text("")
-                  : ChooseGender(),
-              width: 342,
-              height: 56,
-              decoration: boxDecoration(),
-            ),
-          ),
-        ),*/

@@ -13,10 +13,12 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
       {super.key,
       required this.therapistName,
       required this.date,
-      required this.timeList});
+      required this.timeList,
+      required this.listviewIndex});
   final String therapistName;
   final String date;
   final List<String> timeList;
+  final int listviewIndex;
   GroupController groupController = Get.put(
       GroupController()); // başka yerde daha kullanılmağı için geçici olarak get put ile koydum controller'ı
   @override
@@ -66,21 +68,21 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
     );
   }
 
-  Padding timeChoosingButton(int index) {
+  Padding timeChoosingButton(int rowIndex) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
       child: PersonMin(
           height: 40,
           width: 304,
-          onTap: () => groupController.choosingTime(timeList.length, index),
+          onTap: () => groupController.choosingTime(timeList.length, rowIndex, listviewIndex),
           row: RowModel(
             isAlignmentBetween: true,
-            text: timeList[index],
+            text: timeList[rowIndex],
             textStyle: AppTextStyles.normalTextStyle('medium', false),
             leadingIcon: IconUtility.clockIcon,
             trailingIcon: Obx(
               () => Icon(IconUtility.checkCircleIcon,
-                  color: index == groupController.indexInController.value
+                  color: listviewIndex == groupController.listviewIndexInController.value && rowIndex == groupController.rowIndexInController.value
                       ? AppColors.black
                       : AppColors.transparent),
             ),

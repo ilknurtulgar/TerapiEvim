@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/activity/component/filter_box.dart';
+import 'package:terapievim/screen/group/component/custom_heading.dart';
 import 'package:terapievim/screen/login/component/custom_textfield.dart';
 import 'package:terapievim/screen/group/component/group_box.dart';
 
@@ -26,50 +26,51 @@ class ActivitiesScreen extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text("Yaklaşan Aktiviteler"),
+                    const Text("Yaklaşan Aktiviteler"),
                     IconButton(
-                      icon: Icon(Icons.arrow_forward_ios),
+                      icon: const Icon(Icons.arrow_forward_ios),
                       onPressed: () {},
                     ),
                   ],
                 ),
                 ActivityBox(
+                    containerModel: containerButton,
                     isactivity: true,
-                    customButton: customButton,
-                    arowModel: arow_model,
-                    ayrowwModel: ayrow_model,
-                    clockModel: clock_model),
+                    arowModel: arowmodel,
+                    ayrowwModel: ayrowmodel,
+                    clockModel: clockmodel),
                 _sizedbox(),
                 ActivityBox(
+                    containerModel: containerButton,
                     isactivity: true,
-                    customButton: customButton,
-                    arowModel: arow_model,
-                    ayrowwModel: ayrow_model,
-                    clockModel: clock_model),
+                    arowModel: arowmodel,
+                    ayrowwModel: ayrowmodel,
+                    clockModel: clockmodel),
                 _sizedbox(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    Text("Geçmiş Aktiviteler"),
+                    const Text("Geçmiş Aktiviteler"),
                     IconButton(
-                      icon: Icon(Icons.arrow_forward_ios),
+                      icon: const Icon(Icons.arrow_forward_ios),
                       onPressed: () {},
                     ),
                   ],
                 ),
                 ActivityBox(
+                    containerModel: containerButton,
                     isactivity: true,
-                    customButton: againButton,
-                    arowModel: arow_model,
-                    ayrowwModel: ayrow_model,
-                    clockModel: clock_model),
+                    arowModel: arowmodel,
+                    ayrowwModel: ayrowmodel,
+                    clockModel: clockmodel),
                 _sizedbox(),
                 ActivityBox(
+                    containerModel: containerButton,
                     isactivity: true,
-                    customButton: againButton,
-                    arowModel: arow_model,
-                    ayrowwModel: ayrow_model,
-                    clockModel: clock_model),
+                    arowModel: arowmodel,
+                    ayrowwModel: ayrowmodel,
+                    clockModel: clockmodel),
+                CustomHeading(text: "ss")
               ],
             ),
           ),
@@ -77,10 +78,10 @@ class ActivitiesScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  SizedBox _sizedbox() {
-    return SizedBox(
-      height: 15,
-    );
-  }
+SizedBox _sizedbox() {
+  return const SizedBox(
+    height: 15,
+  );
 }

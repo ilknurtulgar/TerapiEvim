@@ -20,11 +20,11 @@ void main() async {
         .setCrashlyticsCollectionEnabled(kDebugMode ? false : true);
   }
 
-  runApp(TerapiEvim());
+  runApp(const TerapiEvim());
 }
 
 class TerapiEvim extends StatefulWidget {
-  TerapiEvim({Key? key}) : super(key: key);
+  const TerapiEvim({Key? key}) : super(key: key);
 
   @override
   State<TerapiEvim> createState() => _TerapiEvimState();

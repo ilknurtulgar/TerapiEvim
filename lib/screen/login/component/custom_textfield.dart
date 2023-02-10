@@ -14,7 +14,8 @@ class CustomTextField extends StatelessWidget {
       required this.isBig,
       this.rowModel,
       required this.isPassword,
-      required this.isRowModel})
+      required this.isRowModel,
+      required this.textController})
       : super(key: key);
 
   RowModel? rowModel;

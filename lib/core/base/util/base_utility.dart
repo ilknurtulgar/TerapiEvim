@@ -45,7 +45,7 @@ class IconUtility {
   static const Icon groupsIcon = Icon(Icons.groups);
   static const Icon chatIcon = Icon(Icons.chat);
   static const Icon profileIcon = Icon(Icons.account_circle);
-  static const Icon windowsIcon = Icon(Icons.desktop_windows);
+  static const Icon windowsIcon = Icon(Icons.desktop_windows_outlined);
   static const Icon personIcon = Icon(
     Icons.person,
     color: AppColors.black,
@@ -95,7 +95,14 @@ class IconUtility {
   static const IconData navGroup = Icons.groups;
   static const IconData navProfile = Icons.account_circle;
   static const IconData lock = Icons.lock_outline;
-  static const Icon emailIcon = Icon(Icons.mail);
+  static const Icon lockIcon = Icon(
+    Icons.lock,
+    color: AppColors.black,
+  );
+  static const Icon emailIcon = Icon(
+    Icons.mail,
+    color: AppColors.black,
+  );
   static const IconData lockopen = Icons.lock_open;
   static const Icon calendarIcon = Icon(
     Icons.calendar_month_outlined,
@@ -103,6 +110,8 @@ class IconUtility {
   );
   static const IconData checkCircleIcon = Icons.check_circle_outline;
   static const Icon save = Icon(Icons.save, color: AppColors.meteorite);
+  static const Icon contactPhoneIcon = Icon(Icons.contact_phone_outlined, color: AppColors.black);
+  static const arrowForwardIcon = Icon(Icons.arrow_forward_ios,color: AppColors.black,);
 }
 
 class AppTextStyles {
@@ -162,6 +171,7 @@ class AppTextStyles {
       fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
       letterSpacing: 0.07);
   static TextStyle GroupTextStyle(bool isName) => TextStyle(
+      fontFamily: 'Roboto',
       fontSize: isName ? 16 : 18,
       fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
       color: AppColors.black);

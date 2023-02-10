@@ -1,16 +1,17 @@
-import 'package:vexana/vexana.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:vexana/vexana.dart';
+
 part 'login_model.g.dart';
 
 @JsonSerializable()
 class LoginModel extends INetworkModel<LoginModel> with EquatableMixin {
-  String? email;
-  String? password;
+  String email;
+  String password;
 
   LoginModel({
-    this.email,
-    this.password,
+    required this.email,
+    required this.password,
   });
 
   @override
@@ -24,14 +25,4 @@ class LoginModel extends INetworkModel<LoginModel> with EquatableMixin {
 
   @override
   List<Object?> get props => [email, password];
-
-  LoginModel copyWith({
-    String? email,
-    String? password,
-  }) {
-    return LoginModel(
-      email: email ?? this.email,
-      password: password ?? this.password,
-    );
-  }
 }

@@ -32,7 +32,7 @@ class GroupTherapyCallPage extends StatelessWidget {
                       height: 20,
                     ),
                     participantRow(),
-                    VideoCallButtonsRow(),
+                    const VideoCallButtonsRow(),
                   ],
                 )),
           )

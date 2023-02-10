@@ -51,7 +51,7 @@ class IconUtility {
     color: AppColors.black,
   );
   static const Icon clockIcon = Icon(
-    Icons.alarm,
+    Icons.alarm_outlined,
     color: AppColors.black,
   );
   static const Icon logoutIcon = Icon(Icons.logout);
@@ -113,8 +113,12 @@ class IconUtility {
   );
   static const IconData checkCircleIcon = Icons.check_circle_outline;
   static const Icon save = Icon(Icons.save, color: AppColors.meteorite);
-  static const Icon contactPhoneIcon = Icon(Icons.contact_phone_outlined, color: AppColors.black);
-  static const arrowForwardIcon = Icon(Icons.arrow_forward_ios,color: AppColors.black,);
+  static const Icon contactPhoneIcon =
+      Icon(Icons.contact_phone_outlined, color: AppColors.black);
+  static const arrowForwardIcon = Icon(
+    Icons.arrow_forward_ios,
+    color: AppColors.black,
+  );
 }
 
 class AppTextStyles {
@@ -173,6 +177,7 @@ class AppTextStyles {
       fontFamily: "Roboto",
       fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
       letterSpacing: 0.07);
+  static const TextStyle loginSignUpBigTitle = TextStyle(fontSize: 49, fontFamily: 'Roboto', fontWeight: FontWeight.w400,color: AppColors.black);
   static TextStyle GroupTextStyle(bool isName) => TextStyle(
       fontFamily: 'Roboto',
       fontSize: isName ? 16 : 18,
@@ -198,10 +203,11 @@ class AppContainers {
       backgroundColor: AppColors.white,
       shadowColor: AppColors
           .dustyGray); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
-  static ContainerModel purpleButtonContainer = ContainerModel(
-    height: 30,
-    borderRadius: 100,
-    backgroundColor: AppColors.butterflyBush,
+  static ContainerModel purpleButtonContainer(double? width) => ContainerModel(
+      height: 30,
+      width: width,
+      borderRadius: 100,
+      backgroundColor: AppColors.butterflyBush,
   ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
 }
 

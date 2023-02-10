@@ -49,7 +49,7 @@ Column checkedTest() {
       checkedTextContainer(),
       lockScreenPlace(),
       CustomButton(
-          container: AppContainers.purpleButtonContainer,
+          container: AppContainers.purpleButtonContainer(null),
           onTap: () {
             //buradan kategori sayfasina yonlendirilecek
           },

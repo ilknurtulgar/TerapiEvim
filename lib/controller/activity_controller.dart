@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:terapievim/screen/activity/component/drop_down.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 class ActivityController extends GetxController {

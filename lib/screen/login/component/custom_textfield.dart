@@ -4,7 +4,6 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/activity/a_filter.dart';
 import 'package:terapievim/controller/activity_controller.dart';
-import 'package:terapievim/screen/activity/component/filter_box.dart';
 
 ActivityController activityController = Get.put(ActivityController());
 

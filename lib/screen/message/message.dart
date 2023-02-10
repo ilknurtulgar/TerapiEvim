@@ -13,11 +13,17 @@ import 'package:terapievim/screen/group/component/custom_heading.dart';
 class MessageScreen extends StatelessWidget {
   MessageScreen({super.key, this.rowmodel});
   RowModel? rowmodel;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
+        child: Column(
+          children: [
+            CustomDropDown(purpose: "gender"),
+          ],
+        ),
+        /*SingleChildScrollView(
           child: Column(children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +44,6 @@ class MessageScreen extends StatelessWidget {
               isRowModel: true,
               rowModel: searchModel,
             ),
-            MyWidget(),
             sizedbox(),
             MyWidget(),
             DropDown(),
@@ -56,7 +61,7 @@ class MessageScreen extends StatelessWidget {
               ),
             ),
           ]),
-        ),
+        ),*/
       ),
     );
   }

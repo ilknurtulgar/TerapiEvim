@@ -24,7 +24,7 @@ class ToggleQuestions extends StatelessWidget {
           fillColor: Colors.transparent,
           selectedColor: AppColors.cornFlowerBlue,
           splashColor: AppColors.transparent,
-          constraints: BoxConstraints(minHeight: 3, minWidth: 3),
+          constraints: const BoxConstraints(minHeight: 3, minWidth: 3),
           children: groupController.choice,
           borderWidth: 20,
           isSelected: groupController.selectedchoice),

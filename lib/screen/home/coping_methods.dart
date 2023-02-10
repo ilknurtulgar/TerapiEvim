@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/login/component/drop_down_widget.dart';
 import 'package:terapievim/screen/home/component/method_downloading_container.dart';
 import 'package:terapievim/screen/activity/component/drop_down.dart';
 
@@ -21,7 +20,7 @@ class CopingMethods extends StatelessWidget {
                 "BAŞ ETME METOTLARI",
                 style: AppTextStyles.heading(true),
               ),
-              DropDownWidget(),
+              CustomDropDown(purpose: "order"),
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

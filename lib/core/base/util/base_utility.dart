@@ -64,9 +64,6 @@ class IconUtility {
   static const Icon fileIconBlack = Icon(
     Icons.description_outlined,
   );
-  /*
-  static Icon visiblIcon(bool ff) =>
-      ff ? IconUtility.visibilityIcon : IconUtility.visibilityoffIcon;*/
 
   static Icon micIcon(bool isInCircularContainer) => Icon(
         Icons.mic,

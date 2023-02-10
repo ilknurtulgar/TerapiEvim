@@ -1,19 +1,10 @@
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
-import 'package:terapievim/screen/activity/component/drop_down.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
 
 class ActivityController extends GetxController {
   var activityIcon = false.obs;
 
   void iconFilter() {
-    if (activityIcon == false) {
-      activityIcon.value = true;
-      IconUtility.activityIcon;
-    } else {
-      activityIcon.value = false;
-    }
+    activityIcon.value = !activityIcon.value;
   }
 
   List<String> orderingList = ["yeniden eskiye", "eskiden yeniye"];
@@ -30,9 +21,7 @@ class ActivityController extends GetxController {
 
   var selectedBox = false.obs;
   void changeBox() {
-    print("ilknur");
     selectedBox.value = !selectedBox.value;
-    print(selectedBox.value.toString());
   }
 
   late RxInt selectedValue;

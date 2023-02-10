@@ -23,6 +23,8 @@ class SignUpController extends GetxController {
   late final FocusNode genderFocusNode;
   late final FocusNode phoneFocusNode;
 
+  RxBool isLoading = false.obs;
+
   @override
   void onInit() {
     authService = AuthService();
@@ -56,6 +58,8 @@ class SignUpController extends GetxController {
       return;
     }
 
+    isLoading.value = true;
+
     final UserCredential? result = await authService.signUpWithEmail(
       SignUpModel(
         name: nameController.text.trim(),
@@ -66,6 +70,7 @@ class SignUpController extends GetxController {
         phone: phoneController.text.trim(),
       )
     );
+    isLoading.value = false;
 
     if (result == null) {
       //TODO: add error that something went wrong

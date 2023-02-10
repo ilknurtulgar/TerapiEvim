@@ -14,6 +14,8 @@ class LoginController extends GetxController {
   late final FocusNode emailFocusNode;
   late final FocusNode passwordFocusNode;
 
+  RxBool isLoading = false.obs;
+
   @override
   void onInit() {
     authService = AuthService();
@@ -36,12 +38,17 @@ class LoginController extends GetxController {
       return;
     }
 
+    isLoading.value = true;
+
     final UserCredential? result = await authService.signInWithEmail(
       LoginModel(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       ),
     );
+
+    isLoading.value = false;
+
     if (result == null) {
       //TODO: add error that something went wrong
       return;

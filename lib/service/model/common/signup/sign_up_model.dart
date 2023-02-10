@@ -5,20 +5,20 @@ part 'sign_up_model.g.dart';
 
 @JsonSerializable()
 class SignUpModel extends INetworkModel<SignUpModel> with EquatableMixin {
-  String? name;
-  String? birthDate;
-  String? gender;
-  String? email;
-  String? password;
-  String? phone;
+  String name;
+  String birthDate;
+  String gender;
+  String email;
+  String password;
+  String phone;
 
   SignUpModel({
-    this.name,
-    this.birthDate,
-    this.gender,
-    this.email,
-    this.password,
-    this.phone,
+    required this.name,
+    required this.birthDate,
+    required this.gender,
+    required this.email,
+    required this.password,
+    required this.phone,
   });
 
   @override
@@ -32,22 +32,4 @@ class SignUpModel extends INetworkModel<SignUpModel> with EquatableMixin {
 
   @override
   List<Object?> get props => [name, birthDate, gender, email, password, phone];
-
-  SignUpModel copyWith({
-    String? name,
-    String? birthDate,
-    String? gender,
-    String? email,
-    String? password,
-    String? phone,
-  }) {
-    return SignUpModel(
-      name: name ?? this.name,
-      birthDate: birthDate ?? this.birthDate,
-      gender: gender ?? this.gender,
-      email: email ?? this.email,
-      password: password ?? this.password,
-      phone: phone ?? this.phone,
-    );
-  }
 }

@@ -4,8 +4,8 @@ import 'package:terapievim/screen/login/component/custom_textfield.dart';
 import 'package:terapievim/screen/group/component/group_box.dart';
 
 class ActivitiesScreen extends StatelessWidget {
-  const ActivitiesScreen({super.key});
-
+  ActivitiesScreen({super.key});
+  TextEditingController activityTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -21,6 +21,7 @@ class ActivitiesScreen extends StatelessWidget {
                   isPassword: true,
                   isRowModel: true,
                   rowModel: searchModel,
+                  textController: activityTextController,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,

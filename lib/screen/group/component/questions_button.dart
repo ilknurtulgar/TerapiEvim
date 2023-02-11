@@ -42,6 +42,7 @@ class _ToggleQuestionsState extends State<ToggleQuestions> {
 
 Container togglebuttonsview() {
   return Container(
+    margin: EdgeInsets.only(bottom: 30),
     decoration: AppBoxDecoration.lockScreenBox,
     width: 341,
     child: Column(children: [

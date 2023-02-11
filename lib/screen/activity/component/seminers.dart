@@ -1,27 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/group/util/lockScreenutility.dart';
+import 'package:terapievim/screen/group/util/lock_screen_utility.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../group/component/row_view.dart';
 import '../../../core/base/models/row_model.dart';
 
+// ignore: must_be_immutable
 class SeminarMin extends StatelessWidget {
   SeminarMin(
       {super.key,
       this.width,
       this.height,
-      this.border_color,
+      this.borderColor,
       required this.onTap,
       required this.row});
 
   final Function()? onTap;
-  Color? border_color;
+  Color? borderColor;
   final RowModel row;
   double? width;
   double? height;
 
   @override
   Widget build(BuildContext context) {
-    border_color ??= AppColors.dustyGray;
+    borderColor ??= AppColors.dustyGray;
     width ??= 342;
     height ??= 52;
     return InkWell(
@@ -30,21 +31,22 @@ class SeminarMin extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-            border: Border.all(color: border_color!.withOpacity(1)),
+            border: Border.all(color: borderColor!.withOpacity(1)),
             borderRadius: BorderRadius.circular(8),
             color: AppColors.white),
-        child: rowView(row, paddings.rowViewPadding),
+        child: rowView(row, Paddings.rowViewPadding),
       ),
     );
   }
 }
 
+// ignore: must_be_immutable
 class SeminarMax extends StatelessWidget {
   SeminarMax({
     super.key,
     this.width,
     this.height,
-    this.border_color,
+    this.borderColor,
     required this.onTap,
     required this.row1,
     required this.row2,
@@ -55,14 +57,14 @@ class SeminarMax extends StatelessWidget {
   final RowModel row3;
 
   final Function onTap;
-  Color? border_color;
+  Color? borderColor;
 
   double? width;
   double? height;
 
   @override
   Widget build(BuildContext context) {
-    border_color ??= AppColors.dustyGray;
+    borderColor ??= AppColors.dustyGray;
     width ??= 342;
     height ??= 120;
     return InkWell(
@@ -71,16 +73,16 @@ class SeminarMax extends StatelessWidget {
         height: height,
         width: width,
         decoration: BoxDecoration(
-            border: Border.all(color: border_color!.withOpacity(1)),
+            border: Border.all(color: borderColor!.withOpacity(1)),
             borderRadius: BorderRadius.circular(8),
             color: AppColors.white),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            rowView(row1, paddings.rowViewPadding),
-            rowView(row2, paddings.rowViewPadding),
-            rowView(row3, paddings.rowViewPadding)
+            rowView(row1, Paddings.rowViewPadding),
+            rowView(row2, Paddings.rowViewPadding),
+            rowView(row3, Paddings.rowViewPadding)
           ],
         ),
       ),

@@ -174,8 +174,12 @@ class AppTextStyles {
       fontFamily: "Roboto",
       fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
       letterSpacing: 0.07);
-  static const TextStyle loginSignUpBigTitle = TextStyle(fontSize: 49, fontFamily: 'Roboto', fontWeight: FontWeight.w400,color: AppColors.black);
-  static TextStyle GroupTextStyle(bool isName) => TextStyle(
+  static const TextStyle loginSignUpBigTitle = TextStyle(
+      fontSize: 49,
+      fontFamily: 'Roboto',
+      fontWeight: FontWeight.w400,
+      color: AppColors.black);
+  static TextStyle groupTextStyle(bool isName) => TextStyle(
       fontFamily: 'Roboto',
       fontSize: isName ? 16 : 18,
       fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
@@ -201,11 +205,11 @@ class AppContainers {
       shadowColor: AppColors
           .dustyGray); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
   static ContainerModel purpleButtonContainer(double? width) => ContainerModel(
-      height: 30,
-      width: width,
-      borderRadius: 100,
-      backgroundColor: AppColors.butterflyBush,
-  ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
+        height: 30,
+        width: width,
+        borderRadius: 100,
+        backgroundColor: AppColors.butterflyBush,
+      ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
 }
 
 class AppPaddings {
@@ -224,7 +228,7 @@ class AppBoxDecoration {
       borderRadius: AppBorderRadius.generalBorderRadius,
       border: Border.all(color: AppColors.cornFlowerBlue));
 
-  static BoxDecoration lockScreenButton = BoxDecoration(
+  static BoxDecoration lockScreenButton = const BoxDecoration(
       color: AppColors.cornFlowerBlue,
       borderRadius: AppBorderRadius.generalBorderRadius);
 }

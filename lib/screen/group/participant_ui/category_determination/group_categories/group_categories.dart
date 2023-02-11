@@ -19,15 +19,15 @@ class _GroupCategoriesState extends State<GroupCategories> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Heading(headingText: GroupTexts.groupCategoriesHeading),
-            ListOfGroupCategories(),
+            const Heading(headingText: GroupTexts.groupCategoriesHeading),
+            listOfGroupCategories(),
           ],
         ),
       ),
     );
   }
 
-  Widget ListOfGroupCategories() {
+  Widget listOfGroupCategories() {
     int geciciKategoriSayisi = 5;
     String tmpGroupName = "Anksiyete";
     CardModel tmpMainTherapist =

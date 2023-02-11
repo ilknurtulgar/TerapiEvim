@@ -6,12 +6,12 @@ class GroupScreenUtility {
   static RowModel therapistRowInChoosingTimeForSCC(String therapistName) =>
       RowModel(
           isAlignmentBetween: false,
-          textStyle: AppTextStyles.GroupTextStyle(false),
+          textStyle: AppTextStyles.groupTextStyle(false),
           text: therapistName,
           leadingIcon: IconUtility.personIcon);
   static RowModel dateRowInChoosingTimeForSCC(String date) => RowModel(
       isAlignmentBetween: false,
-      textStyle: AppTextStyles.GroupTextStyle(false),
+      textStyle: AppTextStyles.groupTextStyle(false),
       text: 'Tarih: $date',
       leadingIcon: IconUtility.calendarIcon);
 }

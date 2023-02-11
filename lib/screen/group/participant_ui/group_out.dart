@@ -33,9 +33,9 @@ class GroupOut extends StatelessWidget {
       onPressed: () {
         if (text == "IPTAL") {
           //degistirilecek
-          print("Iptal");
+          //print("Iptal");
         } else {
-          print("evet");
+          //print("evet");
         }
         Navigator.pop(context);
       },

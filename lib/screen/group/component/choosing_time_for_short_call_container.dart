@@ -7,6 +7,7 @@ import 'package:terapievim/controller/group_controller.dart';
 import '../../../core/base/models/row_model.dart';
 import 'row_view.dart';
 
+// ignore: must_be_immutable
 class ChoosingTimeForSCContainer extends StatelessWidget {
   // choosing time for short call container
   ChoosingTimeForSCContainer(
@@ -19,7 +20,8 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
   final String date;
   final List<String> timeList;
   final int listviewIndex;
-  GroupController groupController = Get.put(GroupController()); // başka yerde daha kullanılmağı için geçici olarak get put ile koydum controller'ı
+  GroupController groupController = Get.put(
+      GroupController()); // başka yerde daha kullanılmağı için geçici olarak get put ile koydum controller'ı
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -73,7 +75,8 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
       child: PersonMin(
           height: 40,
           width: 304,
-          onTap: () => groupController.choosingTime(timeList.length, rowIndex, listviewIndex),
+          onTap: () => groupController.choosingTime(
+              timeList.length, rowIndex, listviewIndex),
           row: RowModel(
             isAlignmentBetween: true,
             text: timeList[rowIndex],
@@ -81,7 +84,9 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
             leadingIcon: IconUtility.clockIcon,
             trailingIcon: Obx(
               () => Icon(IconUtility.checkCircleIcon,
-                  color: listviewIndex == groupController.listviewIndexInController.value && rowIndex == groupController.rowIndexInController.value
+                  color: listviewIndex ==
+                              groupController.listviewIndexInController.value &&
+                          rowIndex == groupController.rowIndexInController.value
                       ? AppColors.black
                       : AppColors.transparent),
             ),

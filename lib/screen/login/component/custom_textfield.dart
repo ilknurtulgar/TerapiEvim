@@ -113,7 +113,7 @@ RowModel searchModel = RowModel(
       icon: IconUtility.fiterIcon,
     ),
     textStyle2: AppTextStyles.heading(false),
-    textStyle: AppTextStyles.GroupTextStyle(true));
+    textStyle: AppTextStyles.groupTextStyle(true));
 
 RowModel rowiModel = RowModel(
     text: "Baş etme metotlari",

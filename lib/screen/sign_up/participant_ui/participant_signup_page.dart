@@ -25,15 +25,26 @@ class ParticipantSignUpPage extends StatelessWidget {
         child: Column(
           children: [
             title(),
-            textfieldUtility.nameSurnameTextfield(nameSurnameController,true),
-            textfieldUtility.birthOfDateTextfield(profileController.birthOfDateController.value,true),
-            CustomDropDown(purpose: 'gender'),
-            textfieldUtility.mailTextfield(mailController,true),
-            textfieldUtility.passwordTextfield(passwordController,true),
-            textfieldUtility.phoneTextfield(phoneController,true),
-            CustomButton(container: ProfilePageUtility.loginSignUpButtonContainer(false, false),onTap: () {/* kaydolma fonksiyonu*/},text: 'Kaydol',),
+            textfieldUtility.nameSurnameTextfield(nameSurnameController, true),
+            textfieldUtility.birthOfDateTextfield(
+                profileController.birthOfDateController.value, true),
+            const CustomDropDown(purpose: 'gender'),
+            textfieldUtility.mailTextfield(mailController, true),
+            textfieldUtility.passwordTextfield(passwordController, true),
+            textfieldUtility.phoneTextfield(phoneController, true),
+            CustomButton(
+              container:
+                  ProfilePageUtility.loginSignUpButtonContainer(false, false),
+              onTap: () {/* kaydolma fonksiyonu*/},
+              text: 'Kaydol',
+            ),
             ProfilePageUtility.lineWithOrText(),
-            CustomButton(container: ProfilePageUtility.loginSignUpButtonContainer(false, true),onTap: () => Get.to(()=> ParticipantLoginPage()),text: 'Giriş Yap',),
+            CustomButton(
+              container:
+                  ProfilePageUtility.loginSignUpButtonContainer(false, true),
+              onTap: () => Get.to(() => ParticipantLoginPage()),
+              text: 'Giriş Yap',
+            ),
           ],
         ),
       ),
@@ -43,8 +54,7 @@ class ParticipantSignUpPage extends StatelessWidget {
   Padding title() {
     return const Padding(
       padding: EdgeInsets.only(top: 60, bottom: 25),
-      child: Text('Kaydol',style: AppTextStyles.loginSignUpBigTitle),
+      child: Text('Kaydol', style: AppTextStyles.loginSignUpBigTitle),
     );
   }
 }
-

@@ -8,6 +8,7 @@ import 'package:terapievim/screen/video_call/components/video_call_container/vid
 import 'package:terapievim/screen/video_call/model/person_in_call_model.dart';
 import '../../../controller/main_controller.dart';
 
+// ignore: must_be_immutable
 class IsolatedCallPage extends StatelessWidget {
   IsolatedCallPage(
       {super.key, required this.therapist, required this.participant});

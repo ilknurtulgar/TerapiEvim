@@ -7,6 +7,6 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const SafeArea(child: Test());
+    return SafeArea(child: Test());
   }
 }

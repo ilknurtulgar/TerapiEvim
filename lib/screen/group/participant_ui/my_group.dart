@@ -13,7 +13,6 @@ import 'package:terapievim/screen/group/participant_ui/group_out.dart';
 import 'package:terapievim/screen/group/util/group_screen_utility.dart';
 import 'package:terapievim/screen/group/util/lockScreenutility.dart';
 import 'package:terapievim/screen/group/util/text_util.dart';
-import 'package:terapievim/controller/mainController.dart';
 
 class MyGroup extends StatelessWidget {
   const MyGroup({super.key});

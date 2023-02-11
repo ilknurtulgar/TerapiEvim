@@ -54,7 +54,7 @@ class ProfilePageUtility {
       textStyle: const TextStyle(color: AppColors.black, fontWeight: FontWeight.bold, fontSize: 20), // bu apptextstyle'da yoktu, başka yerde kullanıldığını görmedim
       isAlignmentBetween: false,
       trailingIcon: Padding(
-        padding: EdgeInsets.only(left: icon==IconUtility.windowsIcon.icon ? 60 : 65),
+        padding: EdgeInsets.only(left: icon==Icons.desktop_windows_outlined ? 60 : 65),
         child: IconButton(
           onPressed: onTap,
           alignment: Alignment.centerLeft,

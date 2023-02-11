@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-
 class RowModel {
   Widget? leadingIcon;
   String text;

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter/material.dart';
-
 class RowModel {
   Widget? leadingIcon;
   String text;
@@ -23,10 +21,10 @@ class RowModel {
     leadingIcon ??= space();
     trailingIcon ??= space();
     text2 ??= "";
-    textStyle2 ??= TextStyle(fontSize: 15);
+    textStyle2 ??= const TextStyle(fontSize: 15);
   }
 
-  SizedBox space() => SizedBox(
+  SizedBox space() => const SizedBox(
         height: 20,
         width: 20,
       );

@@ -45,13 +45,13 @@ class IconUtility {
   static const Icon groupsIcon = Icon(Icons.groups);
   static const Icon chatIcon = Icon(Icons.chat);
   static const Icon profileIcon = Icon(Icons.account_circle);
-  static const Icon windowsIcon = Icon(Icons.desktop_windows);
+  static const Icon windowsIcon = Icon(Icons.desktop_windows_outlined);
   static const Icon personIcon = Icon(
     Icons.person,
     color: AppColors.black,
   );
   static const Icon clockIcon = Icon(
-    Icons.alarm,
+    Icons.alarm_outlined,
     color: AppColors.black,
   );
   static const Icon logoutIcon = Icon(Icons.logout);
@@ -64,9 +64,6 @@ class IconUtility {
   static const Icon fileIconBlack = Icon(
     Icons.description_outlined,
   );
-  /*
-  static Icon visiblIcon(bool ff) =>
-      ff ? IconUtility.visibilityIcon : IconUtility.visibilityoffIcon;*/
 
   static Icon micIcon(bool isInCircularContainer) => Icon(
         Icons.mic,
@@ -98,7 +95,14 @@ class IconUtility {
   static const IconData navGroup = Icons.groups;
   static const IconData navProfile = Icons.account_circle;
   static const IconData lock = Icons.lock_outline;
-  static const Icon emailIcon = Icon(Icons.mail);
+  static const Icon lockIcon = Icon(
+    Icons.lock,
+    color: AppColors.black,
+  );
+  static const Icon emailIcon = Icon(
+    Icons.mail,
+    color: AppColors.black,
+  );
   static const IconData lockopen = Icons.lock_open;
   static const Icon calendarIcon = Icon(
     Icons.calendar_month_outlined,
@@ -106,6 +110,12 @@ class IconUtility {
   );
   static const IconData checkCircleIcon = Icons.check_circle_outline;
   static const Icon save = Icon(Icons.save, color: AppColors.meteorite);
+  static const Icon contactPhoneIcon =
+      Icon(Icons.contact_phone_outlined, color: AppColors.black);
+  static const arrowForwardIcon = Icon(
+    Icons.arrow_forward_ios,
+    color: AppColors.black,
+  );
 }
 
 class AppTextStyles {
@@ -159,12 +169,18 @@ class AppTextStyles {
   static TextStyle heading(bool isMainHeading) => TextStyle(
       //basliklarin hepsi
 
-      color: isMainHeading ? AppColors.meteorite : AppColors.black,
+      color: AppColors.meteorite,
       fontSize: isMainHeading ? 32 : 24,
       fontFamily: "Roboto",
       fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
       letterSpacing: 0.07);
-  static TextStyle GroupTextStyle(bool isName) => TextStyle(
+  static const TextStyle loginSignUpBigTitle = TextStyle(
+      fontSize: 49,
+      fontFamily: 'Roboto',
+      fontWeight: FontWeight.w400,
+      color: AppColors.black);
+  static TextStyle groupTextStyle(bool isName) => TextStyle(
+      fontFamily: 'Roboto',
       fontSize: isName ? 16 : 18,
       fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
       color: AppColors.black);
@@ -188,11 +204,12 @@ class AppContainers {
       backgroundColor: AppColors.white,
       shadowColor: AppColors
           .dustyGray); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
-  static ContainerModel purpleButtonContainer = ContainerModel(
-    height: 30,
-    borderRadius: 100,
-    backgroundColor: AppColors.butterflyBush,
-  ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
+  static ContainerModel purpleButtonContainer(double? width) => ContainerModel(
+        height: 30,
+        width: width,
+        borderRadius: 100,
+        backgroundColor: AppColors.butterflyBush,
+      ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
 }
 
 class AppPaddings {
@@ -211,7 +228,7 @@ class AppBoxDecoration {
       borderRadius: AppBorderRadius.generalBorderRadius,
       border: Border.all(color: AppColors.cornFlowerBlue));
 
-  static BoxDecoration lockScreenButton = BoxDecoration(
+  static BoxDecoration lockScreenButton = const BoxDecoration(
       color: AppColors.cornFlowerBlue,
       borderRadius: AppBorderRadius.generalBorderRadius);
 }

@@ -4,9 +4,8 @@ import 'package:terapievim/screen/group/component/purple_border_text_ccontainer.
 
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../../../core/base/util/base_utility.dart';
-import '../../../controller/mainController.dart';
-import '../participant_ui/scl90/lock_screen.dart';
-import '../util/lockScreenutility.dart';
+import '../../../controller/main_controller.dart';
+import '../util/lock_screen_utility.dart';
 
 class PopUp extends StatelessWidget {
   const PopUp({
@@ -16,13 +15,14 @@ class PopUp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MainController controller = Get.find();
-    Widget shown = controller.isTestResultReady.isTrue
+    Widget shown = controller.isTestNotSolved.isTrue
         ? noTest()
-        : controller.isLockOpen.isTrue
+        : controller.isTestResultReady.isTrue
             ? checkedTest()
             : uncheckedTest();
-    IconData lockicon =
-        controller.isLockOpen.isTrue ? IconUtility.lockopen : IconUtility.lock;
+    IconData lockicon = controller.isTestResultReady.isTrue
+        ? IconUtility.lockopen
+        : IconUtility.lock;
     return BackdropFilter(
       filter: LockScreenUtil.imageF,
       child: Column(
@@ -45,11 +45,9 @@ Column checkedTest() {
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      lockScreenPlace(),
-      checkedTextContainer(),
-      lockScreenPlace(),
+      lockedTextContainer(LockScreenUtil.checkedTestString),
       CustomButton(
-          container: AppContainers.purpleButtonContainer,
+          container: AppContainers.purpleButtonContainer(null),
           onTap: () {
             //buradan kategori sayfasina yonlendirilecek
           },
@@ -58,35 +56,12 @@ Column checkedTest() {
   );
 }
 
-Container checkedTextContainer() {
-  return Container(
-    width: LockScreenUtil.lockScreenContainerWidth,
-    height: LockScreenUtil.lockScreenContainerHeight,
-    child: Text(
-      LockScreenUtil.checkedTestString,
-      style: AppTextStyles.normalTextStyle("big", false)
-          .copyWith(color: AppColors.white),
-      textAlign: TextAlign.center,
-    ),
-  );
-}
-
 Column uncheckedTest() {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      lockScreenPlace(),
-      Container(
-        width: LockScreenUtil.lockScreenContainerWidth,
-        height: LockScreenUtil.lockScreenContainerHeight,
-        child: Text(
-          LockScreenUtil.text,
-          style: AppTextStyles.normalTextStyle("big", false)
-              .copyWith(color: AppColors.white),
-          textAlign: TextAlign.center,
-        ),
-      ),
+      lockedTextContainer(LockScreenUtil.text),
     ],
   );
 }
@@ -94,42 +69,43 @@ Column uncheckedTest() {
 Column noTest() {
   return Column(
     children: [
-      lockScreenPlace(),
-      Container(
-          width: LockScreenUtil.lockScreenContainerWidth,
-          height: LockScreenUtil.lockScreenContainerHeight,
-          color: AppColors.transparent,
-          child: Text(
-            LockScreenUtil.text2,
-            style: AppTextStyles.heading(false).copyWith(
-              color: AppColors.white,
-            ),
-            textAlign: TextAlign.center,
-          )),
-      lockScreenPlace(),
-      PurpleBorderWhiteInsideTextContainer(text: LockScreenUtil.text2),
-      SizedBox(
-        height: LockScreenUtil.lockScreenHeight,
-      ),
-      GestureDetector(
-          onTap: () {
-            print("Hello bitch");
-          },
-          child: Container(
-            width: LockScreenUtil.lockScreenContainerWidth,
-            height: LockScreenUtil.lockScreenHeight,
-            decoration: AppBoxDecoration.lockScreenButton,
-            child: Center(
-              child: Text(LockScreenUtil.buttonText,
-                  style: AppTextStyles.buttonTextStyle(AppColors.white)),
-            ),
-          ))
+      lockedTextContainer(LockScreenUtil.text2),
+      const PurpleBorderWhiteInsideTextContainer(text: LockScreenUtil.text2),
+      testButton()
     ],
   );
 }
 
-SizedBox lockScreenPlace() {
-  return const SizedBox(
-    height: LockScreenUtil.lockScreenHeight,
-  );
+GestureDetector testButton() {
+  return GestureDetector(
+      onTap: () {
+        //print("Hello bitch");
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(
+            vertical: LockScreenUtil.lockScreenHeight),
+        width: LockScreenUtil.lockScreenContainerWidth,
+        height: LockScreenUtil.lockScreenHeight,
+        decoration: AppBoxDecoration.lockScreenButton,
+        child: Center(
+          child: Text(LockScreenUtil.buttonText,
+              style: AppTextStyles.buttonTextStyle(AppColors.butterflyBush)),
+        ),
+      ));
+}
+
+Widget lockedTextContainer(String text) {
+  return Container(
+      margin:
+          const EdgeInsets.symmetric(vertical: LockScreenUtil.lockScreenHeight),
+      width: LockScreenUtil.lockScreenContainerWidth,
+      height: LockScreenUtil.lockScreenContainerHeight,
+      color: AppColors.transparent,
+      child: Text(
+        text,
+        style: AppTextStyles.heading(false).copyWith(
+          color: AppColors.white,
+        ),
+        textAlign: TextAlign.center,
+      ));
 }

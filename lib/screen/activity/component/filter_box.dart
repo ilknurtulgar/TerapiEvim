@@ -6,9 +6,9 @@ import 'package:terapievim/controller/activity_controller.dart';
 
 ActivityController controller = Get.put(ActivityController());
 
-class Filterbox extends StatelessWidget {
-  Filterbox({super.key, required this.rowModel});
-  RowModel rowModel;
+class FilterBox extends StatelessWidget {
+  const FilterBox({super.key, required this.rowModel});
+  final RowModel rowModel;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -46,5 +46,5 @@ InkWell clickbox() {
 RowModel rowModel = RowModel(
     isAlignmentBetween: true,
     text: "cxçxççxç",
-    textStyle: TextStyle(),
+    textStyle: const TextStyle(),
     leadingIcon: clickbox());

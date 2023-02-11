@@ -4,26 +4,27 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/activity/a_filter.dart';
 import 'package:terapievim/controller/activity_controller.dart';
-import 'package:terapievim/screen/activity/component/filter_box.dart';
 
 ActivityController activityController = Get.put(ActivityController());
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField(
-      {Key? key,
-      required this.isPhoneNumber,
-      required this.isBig,
-      this.rowModel,
-      required this.isPassword,
-      required this.isRowModel})
-      : super(key: key);
+  const CustomTextField({
+    Key? key,
+    required this.isPhoneNumber,
+    required this.isBig,
+    this.rowModel,
+    required this.textController,
+    required this.isPassword,
+    required this.isRowModel,
+  }) : super(key: key);
 
-  RowModel? rowModel;
-  bool isBig;
-  bool isRowModel;
-  bool isPassword;
-  bool isPhoneNumber;
-  TextEditingController textController = TextEditingController();
+  final RowModel? rowModel;
+  final bool isBig;
+  final bool isRowModel;
+  final bool isPassword;
+  final bool isPhoneNumber;
+  final TextEditingController textController;
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -47,10 +48,10 @@ class CustomTextField extends StatelessWidget {
                 suffix: isPassword ? rowModel?.trailingIcon : null,
                 prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
                 hintText: rowModel?.text2,
-                hintStyle: rowModel?.textStyle2 ?? TextStyle(),
+                hintStyle: rowModel?.textStyle2 ?? const TextStyle(),
                 prefixText: isPhoneNumber ? '+90 ' : null,
-                enabledBorder: Bordercolor(isBig),
-                focusedBorder: Bordercolor(isBig),
+                enabledBorder: bordercolor(isBig),
+                focusedBorder: bordercolor(isBig),
                 border: OutlineInputBorder(
                   borderSide: BorderSide.none,
                   borderRadius: BorderRadius.circular(8),
@@ -61,7 +62,7 @@ class CustomTextField extends StatelessWidget {
         ));
   }
 
-  OutlineInputBorder Bordercolor(bool isBig) {
+  OutlineInputBorder bordercolor(bool isBig) {
     return OutlineInputBorder(
         borderSide: BorderSide(
       color: isBig ? AppColors.dustyGray : AppColors.cornFlowerBlue,
@@ -76,32 +77,31 @@ RowModel trailingModel = RowModel(
     trailingIcon: Obx(
       () => IconButton(
           onPressed: () {
-            print("fdclö");
             activityController.obsecureChange();
           },
           icon: activityController.isObsecure.value
               ? IconUtility.visibilityIcon
               : IconUtility.visibilityoffIcon),
     ),
-    textStyle: TextStyle());
+    textStyle: const TextStyle());
 
 RowModel leadingModel = RowModel(
     isAlignmentBetween: true,
     text: "adsoyad",
     //leadingIcon: IconUtility.emailIcon,
-    textStyle: TextStyle());
+    textStyle: const TextStyle());
 
 RowModel emailModel = RowModel(
     isAlignmentBetween: true,
     text: "email",
     leadingIcon: IconUtility.emailIcon,
-    textStyle: TextStyle());
+    textStyle: const TextStyle());
 
 RowModel phoneModel = RowModel(
     isAlignmentBetween: true,
     text: "phone",
     leadingIcon: IconUtility.calendarIcon,
-    textStyle: TextStyle());
+    textStyle: const TextStyle());
 
 RowModel searchModel = RowModel(
     isAlignmentBetween: true,
@@ -109,16 +109,15 @@ RowModel searchModel = RowModel(
     leadingIcon: IconUtility.searchIcon,
     trailingIcon: IconButton(
       onPressed: () {
-        print("tik");
         Get.to(const FilterScreen());
       },
       icon: IconUtility.fiterIcon,
     ),
     textStyle2: AppTextStyles.heading(false),
-    textStyle: AppTextStyles.GroupTextStyle(true));
+    textStyle: AppTextStyles.groupTextStyle(true));
 
 RowModel rowiModel = RowModel(
     text: "Baş etme metotlari",
-    textStyle: TextStyle(),
+    textStyle: const TextStyle(),
     isAlignmentBetween: true,
-    trailingIcon: Icon(Icons.keyboard_arrow_right_outlined));
+    trailingIcon: const Icon(Icons.keyboard_arrow_right_outlined));

@@ -5,7 +5,6 @@ import 'package:terapievim/screen/activity/component/seminers.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/screen/home/coping_methods.dart';
-import 'package:terapievim/screen/home/main_home.dart';
 import 'package:terapievim/screen/login/component/custom_textfield.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -31,17 +30,15 @@ class HomeScreen extends StatelessWidget {
             textAlign: TextAlign.center,
             style: AppTextStyles.heading(false),
           ),
-          SizedBox(
+          const SizedBox(
             height: 20,
           ),
           SeminarMin(
               onTap: () {
-                print("çalişsana abi");
-
                 Get.to(const CopingMethods());
               },
               row: rowiModel,
-              border_color: AppColors.cornFlowerBlue),
+              borderColor: AppColors.cornFlowerBlue),
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/group/component/choosing_time_for_short_call_container.dart';
 import 'package:terapievim/screen/group/component/purple_border_text_ccontainer.dart';
 import 'package:terapievim/screen/group/util/group_screen_utility.dart';
 
-import '../../../component/heading.dart';
-import '../../../util/lockScreenutility.dart';
+import '../../../component/custom_heading.dart';
 import '../../../util/text_util.dart';
 
+// ignore: must_be_immutable
 class ShortCallTime extends StatelessWidget {
   ShortCallTime({super.key});
   // gecici
@@ -31,10 +29,11 @@ class ShortCallTime extends StatelessWidget {
             const Divider(
               color: AppColors.black,
             ),
-            Heading(
-              headingText: hiUser,
+            CustomHeading(
+              text: hiUser,
+              isalignmentstart: false,
             ),
-            PurpleBorderWhiteInsideTextContainer(
+            const PurpleBorderWhiteInsideTextContainer(
                 text: GroupTexts.shortCallDateChooseText),
             timeChoose()
           ],
@@ -69,15 +68,16 @@ class ShortCallTime extends StatelessWidget {
           const SizedBox(
             width: 20,
           ),
-          Heading(
-            headingText: GroupTexts.terapiEvim,
+          CustomHeading(
+            text: GroupTexts.terapiEvim,
             padding: GroupPaddings.shortCallHeadingPadding,
+            isalignmentstart: false,
           ),
           IconButton(
             icon: IconUtility.save,
             onPressed: () {
               //kategori secimi kaydedilecek
-              print("Kategori secildi yegenim");
+              //print("Kategori secildi yegenim");
             },
           )
         ],

@@ -3,12 +3,12 @@ import 'package:get/get.dart';
 class MainController extends GetxController {
   var currentScreenIndex = 0.obs;
   var isViewPlaceChanged = false.obs;
-  var isTestNotSolved = false.obs;
-  var isTestResultReady = true.obs;
-  var isLockOpen = true.obs;
+  var isTestNotSolved = true.obs;
+  var isTestResultReady = false.obs;
+  var isGroupReady = false.obs;
   var isLogged = true.obs;
 
-  ChangeScreen(int index) {
+  changeScreen(int index) {
     switch (index) {
       case 0:
         currentScreenIndex.value = 0;

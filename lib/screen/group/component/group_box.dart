@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/buttons/button.dart';
+import 'package:terapievim/core/base/component/buttons/custom_button.dart';
+import 'package:terapievim/core/base/models/container_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/group/component/row_view.dart';
 
 class ActivityBox extends StatelessWidget {
-  ActivityBox(
+  const ActivityBox(
       {super.key,
-      required this.customButton,
+      required this.containerModel,
       required this.arowModel,
       required this.ayrowwModel,
       required this.isactivity,
       required this.clockModel});
-  Custombutton customButton;
-  RowModel arowModel;
-  RowModel ayrowwModel;
-  RowModel clockModel;
-  bool isactivity;
+  final ContainerModel containerModel;
+  final RowModel arowModel;
+  final RowModel ayrowwModel;
+  final RowModel clockModel;
+  final bool isactivity;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -32,21 +33,17 @@ class ActivityBox extends StatelessWidget {
         child: Column(
           children: [
             //
-            rowView(
-                arowModel, EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
-            rowView(
-                ayrowwModel, EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
-            rowView(
-                clockModel, EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
+            rowView(arowModel,
+                const EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
+            rowView(ayrowwModel,
+                const EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
+            rowView(clockModel,
+                const EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Custombutton(
-                    onTap: () {},
-                    buttonWidth: customButton.buttonWidth,
-                    buttonHeight: customButton.buttonHeight,
-                    buttonColor: customButton.buttonColor,
-                    buttonText: customButton.buttonText),
+                CustomButton(
+                    container: containerModel, onTap: () {}, text: "öcl")
               ],
             )
           ],
@@ -56,32 +53,26 @@ class ActivityBox extends StatelessWidget {
   }
 }
 
-Custombutton customButton = Custombutton(
-    onTap: () {},
-    buttonWidth: 97,
-    buttonHeight: 30,
-    buttonColor: Colors.deepPurple,
-    buttonText: "katil");
+ContainerModel containerButton = ContainerModel(
+    height: 50,
+    shadowColor: AppColors.black,
+    borderRadius: 70,
+    width: 50,
+    backgroundColor: AppColors.cornFlowerBlue);
 
-Custombutton againButton = Custombutton(
-    onTap: () {},
-    buttonWidth: 97,
-    buttonHeight: 30,
-    buttonColor: Colors.deepPurple,
-    buttonText: "izle");
-RowModel arow_model = RowModel(
+RowModel arowmodel = RowModel(
     isAlignmentBetween: true,
     text: "Grup Terapilerinin Etkisi",
-    textStyle: TextStyle(),
+    textStyle: const TextStyle(),
     leadingIcon: IconUtility.activityIcon);
 
-RowModel ayrow_model = RowModel(
+RowModel ayrowmodel = RowModel(
     isAlignmentBetween: true,
     text: "Özlem Ulusan",
-    textStyle: TextStyle(),
+    textStyle: const TextStyle(),
     leadingIcon: IconUtility.personIcon);
-RowModel clock_model = RowModel(
+RowModel clockmodel = RowModel(
     isAlignmentBetween: true,
     text: "Ocak 15,2023,20:00",
-    textStyle: TextStyle(),
+    textStyle: const TextStyle(),
     leadingIcon: IconUtility.clockIcon);

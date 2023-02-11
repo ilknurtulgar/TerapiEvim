@@ -1,14 +1,14 @@
 class Group {
   //Therapist yardimci terapist
   //Danisan
-  String GroupName;
+  String groupName;
   String meetingDay;
   String meetingTime;
   //metodlar
   int sessionNumber;
 
   Group(
-      {required this.GroupName,
+      {required this.groupName,
       required this.meetingDay,
       required this.meetingTime,
       required this.sessionNumber});
@@ -19,7 +19,7 @@ class Group {
     return sessionNumber;
   }
 
-  String ConstantMeetingDay() {
+  String constantMeetingDay() {
     return "Her $meetingDay gunu ,$meetingTime ";
   }
 }

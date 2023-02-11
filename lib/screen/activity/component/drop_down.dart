@@ -4,11 +4,11 @@ import 'package:terapievim/screen/login/component/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 class CustomDropDown extends StatefulWidget {
-  CustomDropDown({
+  const CustomDropDown({
     required this.purpose,
     super.key,
   });
-  String purpose;
+  final String purpose;
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
 }
@@ -19,9 +19,9 @@ class _CustomDropDownState extends State<CustomDropDown> {
     return Column(children: [
       Container(
         height: 51,
+        decoration: AppBoxDecoration.lockScreenBox,
         width: 340,
         child: choosebox(widget.purpose),
-        decoration: AppBoxDecoration.lockScreenBox,
       ),
       Obx(
         () => activityController.selectedBox.value

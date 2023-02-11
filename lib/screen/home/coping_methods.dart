@@ -20,7 +20,7 @@ class CopingMethods extends StatelessWidget {
                 "BAŞ ETME METOTLARI",
                 style: AppTextStyles.heading(true),
               ),
-              CustomDropDown(purpose: "order"),
+              const CustomDropDown(purpose: "order"),
               ListView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),

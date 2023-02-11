@@ -7,8 +7,8 @@ import 'package:terapievim/controller/activity_controller.dart';
 ActivityController controller = Get.put(ActivityController());
 
 class FilterBox extends StatelessWidget {
-  FilterBox({super.key, required this.rowModel});
-  RowModel rowModel;
+  const FilterBox({super.key, required this.rowModel});
+  final RowModel rowModel;
   @override
   Widget build(BuildContext context) {
     return Container(

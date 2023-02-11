@@ -6,15 +6,15 @@ import 'package:terapievim/screen/profile/component/image/custom_circle_avatar.d
 import 'package:terapievim/core/base/models/row_model.dart';
 
 class MessageScreen extends StatelessWidget {
-  MessageScreen({super.key, this.rowmodel});
-  RowModel? rowmodel;
+  const MessageScreen({super.key, this.rowmodel});
+  final RowModel? rowmodel;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          children: [CustomDropDown(purpose: "gender"), messagebox()],
+          children: [const CustomDropDown(purpose: "gender"), messagebox()],
         ),
         /*SingleChildScrollView(
           child: Column(children: [
@@ -87,8 +87,8 @@ class MessageScreen extends StatelessWidget {
   }
 
   Padding circleavatar() {
-    return Padding(
-      padding: const EdgeInsets.only(
+    return const Padding(
+      padding: EdgeInsets.only(
         left: 10,
       ),
       child: CustomCircleAvatar(

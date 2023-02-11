@@ -8,22 +8,23 @@ import 'package:terapievim/controller/activity_controller.dart';
 ActivityController activityController = Get.put(ActivityController());
 
 class CustomTextField extends StatelessWidget {
-  CustomTextField(
-      {Key? key,
-      required this.isPhoneNumber,
-      required this.isBig,
-      this.rowModel,
-      required this.isPassword,
-      required this.isRowModel,
-      required this.textController})
-      : super(key: key);
+  const CustomTextField({
+    Key? key,
+    required this.isPhoneNumber,
+    required this.isBig,
+    this.rowModel,
+    required this.textController,
+    required this.isPassword,
+    required this.isRowModel,
+  }) : super(key: key);
 
-  RowModel? rowModel;
-  bool isBig;
-  bool isRowModel;
-  bool isPassword;
-  bool isPhoneNumber;
-  TextEditingController textController = TextEditingController();
+  final RowModel? rowModel;
+  final bool isBig;
+  final bool isRowModel;
+  final bool isPassword;
+  final bool isPhoneNumber;
+  final TextEditingController textController;
+
   @override
   Widget build(BuildContext context) {
     return Padding(

@@ -8,19 +8,20 @@ class GroupController extends GetxController {
       .obs; // choosing time for short call container içindeki listViewBuilder indexini controller'a almak için variable
   // ilk başta listview builderın herhangi bir indexiyle değeri aynı olmasın ve ikonlar gözükmesin diye eksili değer verdim 0 verince 0.indexli saatin ikonu yanıyor
   var listviewIndexInController = (-1).obs;
-  
-  void choosingTime(int timeListLength, int rowIndex,int listviewIndex) {
+
+  void choosingTime(int timeListLength, int rowIndex, int listviewIndex) {
     // choosing time for short call container içindeki saatleri seçmek için fonksiyon
     rowIndexInController.value = rowIndex;
     listviewIndexInController.value = listviewIndex;
     isChosen = List<bool>.filled(timeListLength, false).obs;
-    isChosen[rowIndexInController.value] = !isChosen[rowIndexInController.value];
+    isChosen[rowIndexInController.value] =
+        !isChosen[rowIndexInController.value];
   }
 
   var isTrue = true.obs;
   late List<Widget> choice = <Widget>[
     Column(
-      children: [
+      children: const [
         Icon(
           Icons.check_circle_outline_sharp,
         ),
@@ -31,7 +32,7 @@ class GroupController extends GetxController {
       ],
     ),
     Column(
-      children: [
+      children: const [
         Icon(
           Icons.check_circle_outline_sharp,
         ),
@@ -42,7 +43,7 @@ class GroupController extends GetxController {
       ],
     ),
     Column(
-      children: [
+      children: const [
         Icon(
           Icons.check_circle_outline_sharp,
         ),
@@ -53,7 +54,7 @@ class GroupController extends GetxController {
       ],
     ),
     Column(
-      children: [
+      children: const [
         Icon(
           Icons.check_circle_outline_sharp,
         ),
@@ -64,7 +65,7 @@ class GroupController extends GetxController {
       ],
     ),
     Column(
-      children: [
+      children: const [
         Icon(
           Icons.check_circle_outline_sharp,
         ),

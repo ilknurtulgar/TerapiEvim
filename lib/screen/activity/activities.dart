@@ -5,7 +5,7 @@ import 'package:terapievim/screen/group/component/group_box.dart';
 
 class ActivitiesScreen extends StatelessWidget {
   ActivitiesScreen({super.key});
-  TextEditingController activityTextController = TextEditingController();
+  final TextEditingController activityTextController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return SafeArea(

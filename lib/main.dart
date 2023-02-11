@@ -5,8 +5,8 @@ import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/home/main_home.dart';
-import 'package:terapievim/screen/login/login.dart';
-import 'package:terapievim/controller/mainController.dart';
+import 'package:terapievim/screen/login/participant_ui/participant_login_page.dart';
+import 'controller/mainController.dart';
 import 'service/firebase_options.dart';
 
 void main() async {
@@ -42,6 +42,6 @@ class _TerapiEvimState extends State<TerapiEvim> {
             splashColor: Colors.transparent,
             primarySwatch: Colors.purple,
             scaffoldBackgroundColor: AppColors.blueChalk),
-        home: _controller.isLogged.isTrue ? TerapiEvimLogged() : Login());
+        home: _controller.isLogged.isTrue ? TerapiEvimLogged() : ParticipantLoginPage());
   }
 }

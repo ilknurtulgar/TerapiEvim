@@ -5,7 +5,7 @@ import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/models/card_model.dart';
 
 class GroupInformationContainer extends StatelessWidget {
-  GroupInformationContainer(
+  const GroupInformationContainer(
       {super.key,
       required this.groupName,
       required this.mainTherapist,
@@ -39,25 +39,15 @@ class GroupInformationContainer extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(
-            child: paddedText(const EdgeInsets.symmetric(vertical: 15),
-                groupName, AppTextStyles.GroupTextStyle(false))),
-        therapistRow(mainTherapist, 'Grup Terapisti: ', () {
-          print('ana psikolog');
-        }, 192),
-        therapistRow(secondTherapist, 'Yardımcı Psikolog: ', () {
-          print('yardımcı psikolog');
-        }, 170),
-        Text('Katılımcı Sayısı: $numberOfParticipant',
-            style: AppTextStyles.GroupTextStyle(true)),
-        paddedText(
-            const EdgeInsets.only(top: 20, bottom: 10),
-            'Seans Sayısı: $numberOfSession',
-            AppTextStyles.GroupTextStyle(true)),
+        Center(child: paddedText(const EdgeInsets.symmetric(vertical: 15),groupName, AppTextStyles.GroupTextStyle(false))),
+        therapistRow(mainTherapist, 'Grup Terapisti: ', () {/* ana psikolog sayfasına gitme fonksiyonu */}, 192),
+        therapistRow(secondTherapist, 'Yardımcı Psikolog: ', () {/* yardımcı psikolog sayfasına gitme fonksiyonu */}, 170),
+        Text('Katılımcı Sayısı: $numberOfParticipant',style: AppTextStyles.GroupTextStyle(true)),
+        paddedText(const EdgeInsets.only(top: 20, bottom: 10),'Seans Sayısı: $numberOfSession',AppTextStyles.GroupTextStyle(true)),
         Align(
             alignment: Alignment.centerRight,
             child: CustomButton(
-              container: AppContainers.purpleButtonContainer,
+              container: AppContainers.purpleButtonContainer(null),
               onTap: () {},
               text: 'Katıl',
             )),

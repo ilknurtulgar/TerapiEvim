@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/screen/group/participant_ui/category_determination/group_categories/group_categories.dart';
-import 'package:terapievim/controller/mainController.dart';
 import 'package:terapievim/screen/group/participant_ui/therapist.dart';
-
+import '../../controller/mainController.dart';
 import 'participant_ui/my_group.dart';
 import 'participant_ui/scl90/lock_screen.dart';
 

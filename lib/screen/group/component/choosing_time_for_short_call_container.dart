@@ -19,8 +19,7 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
   final String date;
   final List<String> timeList;
   final int listviewIndex;
-  GroupController groupController = Get.put(
-      GroupController()); // başka yerde daha kullanılmağı için geçici olarak get put ile koydum controller'ı
+  GroupController groupController = Get.put(GroupController()); // başka yerde daha kullanılmağı için geçici olarak get put ile koydum controller'ı
   @override
   Widget build(BuildContext context) {
     return Material(

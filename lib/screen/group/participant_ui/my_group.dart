@@ -3,7 +3,7 @@ import 'package:terapievim/screen/group/component/participant_container.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/screen/group/component/custom_heading.dart';
 import 'package:terapievim/screen/group/component/group_box.dart';
-import 'package:terapievim/screen/group/component/heading.dart';
+
 import 'package:terapievim/screen/group/component/person.dart';
 
 import 'package:terapievim/screen/profile/component/image/custom_circle_avatar.dart';
@@ -52,17 +52,24 @@ class MyGroup extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               appbar(),
-              CustomHeading(text: GroupTexts.yaklasanToplanti),
+              CustomHeading(
+                  isalignmentstart: true, text: GroupTexts.yaklasanToplanti),
               ActivityBox(
                   isactivity: true,
                   containerModel: containerButton,
                   arowModel: row,
                   ayrowwModel: row,
                   clockModel: row),
-              CustomHeading(text: GroupTexts.grupBilgiler),
+              CustomHeading(
+                text: GroupTexts.grupBilgiler,
+                isalignmentstart: true,
+              ),
               therapist(row),
               therapist(row2),
-              CustomHeading(text: GroupTexts.katilimcilar),
+              CustomHeading(
+                text: GroupTexts.katilimcilar,
+                isalignmentstart: true,
+              ),
               participants(person),
             ],
           ),
@@ -99,12 +106,15 @@ class MyGroup extends StatelessWidget {
       padding: GroupPaddings.appbarPadding,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: const [
-          SizedBox(
+        children: [
+          const SizedBox(
             width: 20,
           ),
-          Heading(headingText: GroupTexts.myGroupText),
-          GroupOut(),
+          CustomHeading(
+            text: GroupTexts.myGroupText,
+            isalignmentstart: false,
+          ),
+          const GroupOut(),
         ],
       ),
     );

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
-import 'package:terapievim/screen/group/util/lockScreenutility.dart';
+import 'package:terapievim/screen/group/util/lock_screen_utility.dart';
 
 import '../../../../core/base/util/base_utility.dart';
 import 'row_view.dart';
 
+// ignore: must_be_immutable
 class PersonMin extends StatelessWidget {
   PersonMin(
       {super.key,
@@ -30,7 +31,7 @@ class PersonMin extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
-          margin: padding == null ? EdgeInsets.only(bottom: 16) : padding,
+          margin: padding ?? const EdgeInsets.only(bottom: 16),
           height: height,
           width: width,
           decoration: BoxDecoration(
@@ -48,7 +49,7 @@ class PersonMin extends StatelessWidget {
               border: Border.all(color: borderColor!.withOpacity(0.8)),
               borderRadius: AppBorderRadius.generalBorderRadius,
               color: AppColors.white),
-          child: rowView(row, paddings.rowViewPadding)),
+          child: rowView(row, Paddings.rowViewPadding)),
     );
   }
 }

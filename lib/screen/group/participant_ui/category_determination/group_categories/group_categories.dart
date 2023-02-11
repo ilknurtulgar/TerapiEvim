@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/screen/group/component/group_information_container.dart';
-import 'package:terapievim/screen/group/component/heading.dart';
+
 import 'package:terapievim/screen/group/util/group_screen_utility.dart';
 import 'package:terapievim/screen/group/util/text_util.dart';
+
+import '../../../component/custom_heading.dart';
 
 class GroupCategories extends StatefulWidget {
   const GroupCategories({super.key});
@@ -19,15 +21,18 @@ class _GroupCategoriesState extends State<GroupCategories> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Heading(headingText: GroupTexts.groupCategoriesHeading),
-            ListOfGroupCategories(),
+            CustomHeading(
+              text: GroupTexts.groupCategoriesHeading,
+              isalignmentstart: false,
+            ),
+            listOfGroupCategories(),
           ],
         ),
       ),
     );
   }
 
-  Widget ListOfGroupCategories() {
+  Widget listOfGroupCategories() {
     int geciciKategoriSayisi = 5;
     String tmpGroupName = "Anksiyete";
     CardModel tmpMainTherapist =

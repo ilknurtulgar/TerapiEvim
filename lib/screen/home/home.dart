@@ -38,7 +38,7 @@ class HomeScreen extends StatelessWidget {
                 Get.to(const CopingMethods());
               },
               row: rowiModel,
-              border_color: AppColors.cornFlowerBlue),
+              borderColor: AppColors.cornFlowerBlue),
           ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),

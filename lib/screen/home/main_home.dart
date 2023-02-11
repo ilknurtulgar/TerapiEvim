@@ -1,12 +1,11 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/group/group.dart';
-import 'package:terapievim/screen/home/coping_methods.dart';
-import '../../controller/mainController.dart';
-import '../../service/firebase_options.dart';
+
+import '../../controller/main_controller.dart';
+
 import '../activity/activities.dart';
 import '../message/message.dart';
 
@@ -14,14 +13,14 @@ import '../profile/profile.dart';
 import 'home.dart';
 
 class TerapiEvimLogged extends StatefulWidget {
-  TerapiEvimLogged({Key? key}) : super(key: key);
+  const TerapiEvimLogged({Key? key}) : super(key: key);
 
   @override
   State<TerapiEvimLogged> createState() => _TerapiEvimLoggedState();
 }
 
 class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
-  MainController _controller = Get.find();
+  final MainController _controller = Get.find();
 
   List<IconData> icons = <IconData>[
     IconUtility.navHome,
@@ -33,12 +32,12 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> Screen = <Widget>[
-      HomeScreen(),
+    List<Widget> screen = <Widget>[
+      const HomeScreen(),
       ActivitiesScreen(),
       GroupScreen(),
       MessageScreen(),
-      ProfileScreen(),
+      const ProfileScreen(),
     ];
     return Scaffold(
       bottomNavigationBar: Obx(
@@ -53,8 +52,8 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
           backgroundColor: AppColors.white,
           inactiveColor: AppColors.dustyGray,
           activeColor: Colors.black,
-          onTap: (int) {
-            _controller.ChangeScreen(int);
+          onTap: (int index) {
+            _controller.changeScreen(index);
           },
         ),
       ),
@@ -62,7 +61,7 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
       body: Center(
         child: Obx(
           () => Container(
-            child: Screen[_controller.currentScreenIndex.toInt()],
+            child: screen[_controller.currentScreenIndex.toInt()],
           ),
         ),
       ),

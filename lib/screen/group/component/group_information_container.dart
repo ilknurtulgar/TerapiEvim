@@ -39,11 +39,21 @@ class GroupInformationContainer extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(child: paddedText(const EdgeInsets.symmetric(vertical: 15),groupName, AppTextStyles.GroupTextStyle(false))),
-        therapistRow(mainTherapist, 'Grup Terapisti: ', () {/* ana psikolog sayfasına gitme fonksiyonu */}, 192),
-        therapistRow(secondTherapist, 'Yardımcı Psikolog: ', () {/* yardımcı psikolog sayfasına gitme fonksiyonu */}, 170),
-        Text('Katılımcı Sayısı: $numberOfParticipant',style: AppTextStyles.GroupTextStyle(true)),
-        paddedText(const EdgeInsets.only(top: 20, bottom: 10),'Seans Sayısı: $numberOfSession',AppTextStyles.GroupTextStyle(true)),
+        Center(
+            child: paddedText(const EdgeInsets.symmetric(vertical: 15),
+                groupName, AppTextStyles.groupTextStyle(false))),
+        therapistRow(mainTherapist, 'Grup Terapisti: ', () {
+          /* ana psikolog sayfasına gitme fonksiyonu */
+        }, 192),
+        therapistRow(secondTherapist, 'Yardımcı Psikolog: ', () {
+          /* yardımcı psikolog sayfasına gitme fonksiyonu */
+        }, 170),
+        Text('Katılımcı Sayısı: $numberOfParticipant',
+            style: AppTextStyles.groupTextStyle(true)),
+        paddedText(
+            const EdgeInsets.only(top: 20, bottom: 10),
+            'Seans Sayısı: $numberOfSession',
+            AppTextStyles.groupTextStyle(true)),
         Align(
             alignment: Alignment.centerRight,
             child: CustomButton(
@@ -72,7 +82,7 @@ class GroupInformationContainer extends StatelessWidget {
       CardModel therapist, String text, Function() func, double width) {
     return Row(
       children: [
-        Text(text, style: AppTextStyles.GroupTextStyle(true)),
+        Text(text, style: AppTextStyles.groupTextStyle(true)),
         InkWell(
             onTap: func,
             child: participantContainer(

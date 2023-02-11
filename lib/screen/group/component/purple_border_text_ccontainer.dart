@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/group/util/lockScreenutility.dart';
+import 'package:terapievim/screen/group/util/lock_screen_utility.dart';
 
 import '../../../core/base/util/base_utility.dart';
 
@@ -11,13 +11,13 @@ class PurpleBorderWhiteInsideTextContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: LockScreenUtil.lockScreenContainerPadding,
+      width: LockScreenUtil.lockScreenBigContainerWidth,
+      decoration: AppBoxDecoration.lockScreenBox,
       child: Text(
         text,
         textAlign: TextAlign.center,
         style: AppTextStyles.aboutMeTextStyle(false),
       ),
-      width: LockScreenUtil.lockScreenBigContainerWidth,
-      decoration: AppBoxDecoration.lockScreenBox,
     );
   }
 }

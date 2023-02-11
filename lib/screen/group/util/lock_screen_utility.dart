@@ -23,7 +23,7 @@ class LockScreenUtil {
   static ImageFilter imageF = ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0);
 }
 
-class paddings {
+class Paddings {
   static const EdgeInsets rowViewPadding =
       EdgeInsets.symmetric(vertical: 4, horizontal: 16);
   static const EdgeInsets rowViewProfilePadding =

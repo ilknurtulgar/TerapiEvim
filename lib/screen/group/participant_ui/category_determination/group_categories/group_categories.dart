@@ -19,7 +19,7 @@ class _GroupCategoriesState extends State<GroupCategories> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const Heading(headingText: GroupTexts.groupCategoriesHeading),
+            Heading(headingText: GroupTexts.groupCategoriesHeading),
             ListOfGroupCategories(),
           ],
         ),

@@ -6,7 +6,7 @@ import 'package:terapievim/screen/video_call/base_utility/video_call_utility.dar
 import 'package:terapievim/screen/video_call/components/buttons/video_call_buttons.dart';
 import 'package:terapievim/screen/video_call/components/video_call_container/video_call_person_view_component.dart';
 import 'package:terapievim/screen/video_call/model/person_in_call_model.dart';
-import 'package:terapievim/controller/main_controller.dart';
+import 'package:terapievim/controller/mainController.dart';
 
 class IsolatedCallPage extends StatelessWidget {
   IsolatedCallPage(

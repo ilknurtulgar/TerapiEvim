@@ -15,7 +15,7 @@ Widget rowView(RowModel rowModel, EdgeInsets padding) {
         Padding(
           padding: EdgeInsets.only(
               left: rowModel.isAlignmentBetween == false ? 15 : 0),
-          child: texts(rowModel),
+          child: Texts(rowModel),
         ),
         rowModel.trailingIcon!
       ],
@@ -23,7 +23,7 @@ Widget rowView(RowModel rowModel, EdgeInsets padding) {
   );
 }
 
-Widget texts(RowModel rowModel) {
+Widget Texts(RowModel rowModel) {
   return Row(
     children: [
       Text(

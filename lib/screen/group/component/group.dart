@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../../../../core/base/util/base_utility.dart';
 import 'row_view.dart';
 import '../../../core/base/models/row_model.dart';
-import '../util/lock_screen_utility.dart';
+import '../util/lockScreenutility.dart';
 
-// ignore: must_be_immutable
 class GroupClass extends StatelessWidget {
   GroupClass({
     super.key,
@@ -55,9 +55,9 @@ class GroupClass extends StatelessWidget {
                 ),
               ),
             ),
-            rowView(row1, Paddings.rowViewPadding),
-            rowView(row2, Paddings.rowViewPadding),
-            rowView(row3, Paddings.rowViewPadding)
+            rowView(row1, paddings.rowViewPadding),
+            rowView(row2, paddings.rowViewPadding),
+            rowView(row3, paddings.rowViewPadding)
           ],
         ),
       ),

@@ -12,8 +12,7 @@ class Heading extends StatelessWidget {
     BuildContext context,
   ) {
     return Container(
-      padding:
-          padding == null ? const EdgeInsets.symmetric(vertical: 25) : padding!,
+      padding: padding == null ? EdgeInsets.symmetric(vertical: 25) : padding!,
       child: Text(
         headingText,
         style: AppTextStyles.heading(false),

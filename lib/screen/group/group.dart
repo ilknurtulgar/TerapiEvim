@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/main_controller.dart';
-import 'package:terapievim/screen/group/participant_ui/my_group.dart';
-import 'package:terapievim/screen/group/participant_ui/scl90/lock_screen.dart';
+import 'package:terapievim/screen/group/participant_ui/category_determination/group_categories/group_categories.dart';
+import 'package:terapievim/controller/mainController.dart';
+import 'package:terapievim/screen/group/participant_ui/therapist.dart';
 
-// ignore: must_be_immutable
+import 'participant_ui/my_group.dart';
+import 'participant_ui/scl90/lock_screen.dart';
+
 class GroupScreen extends StatelessWidget {
   GroupScreen({super.key});
 
-  final MainController _controller = Get.find();
+  MainController _controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return _controller.isTestNotSolved.isTrue
-        ? const LockScreen()
-        : _controller.isTestResultReady.isTrue
-            ? const MyGroup()
-            : const LockScreen();
+    return TherapistProfile();
+    // return _controller.isTestNotSolved.isTrue
+    //     ? LockScreen()
+    //     : _controller.isTestResultReady.isTrue
+    //         ? MyGroup()
+    //         : LockScreen();
   }
 }

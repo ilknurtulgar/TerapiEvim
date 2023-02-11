@@ -13,6 +13,7 @@ import 'package:terapievim/screen/group/participant_ui/group_out.dart';
 import 'package:terapievim/screen/group/util/group_screen_utility.dart';
 import 'package:terapievim/screen/group/util/lockScreenutility.dart';
 import 'package:terapievim/screen/group/util/text_util.dart';
+import 'package:terapievim/controller/mainController.dart';
 
 class MyGroup extends StatelessWidget {
   const MyGroup({super.key});
@@ -25,24 +26,24 @@ class MyGroup extends StatelessWidget {
       isAlignmentBetween: true,
       leadingIcon: IconUtility.personIcon,
       text: "Grup Terapisti : ",
-      textStyle: AppTextStyles.groupTextStyle(false),
+      textStyle: AppTextStyles.GroupTextStyle(false),
       text2: "Simay Odabasi",
-      textStyle2: AppTextStyles.groupTextStyle(true),
+      textStyle2: AppTextStyles.GroupTextStyle(true),
     );
     RowModel row2 = RowModel(
       isAlignmentBetween: true,
       leadingIcon: IconUtility.personIcon,
       text: "Yardimci Psikolog: ",
-      textStyle: AppTextStyles.groupTextStyle(false),
+      textStyle: AppTextStyles.GroupTextStyle(false),
       text2: "Ozlem Ulusan",
-      textStyle2: AppTextStyles.groupTextStyle(true),
+      textStyle2: AppTextStyles.GroupTextStyle(true),
     );
     RowModel person = RowModel(
         isAlignmentBetween: true,
         leadingIcon:
             CustomCircleAvatar(big: false, shadow: false, imagePath: imagePath),
         text: "Aleyna Tilki",
-        textStyle: AppTextStyles.groupTextStyle(true));
+        textStyle: AppTextStyles.GroupTextStyle(true));
 
     return Scaffold(
       backgroundColor: AppColors.blueChalk,
@@ -104,7 +105,7 @@ class MyGroup extends StatelessWidget {
             width: 20,
           ),
           Heading(headingText: GroupTexts.myGroupText),
-          GroupOut(),
+          const GroupOut(),
         ],
       ),
     );

@@ -4,7 +4,8 @@ import 'package:terapievim/screen/group/component/purple_border_text_ccontainer.
 
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../../../core/base/util/base_utility.dart';
-import '../../../controller/main_controller.dart';
+import '../../../controller/mainController.dart';
+import '../participant_ui/scl90/lock_screen.dart';
 import '../util/lockScreenutility.dart';
 
 class PopUp extends StatelessWidget {
@@ -57,8 +58,8 @@ Column checkedTest() {
   );
 }
 
-Widget checkedTextContainer() {
-  return SizedBox(
+Container checkedTextContainer() {
+  return Container(
     width: LockScreenUtil.lockScreenContainerWidth,
     height: LockScreenUtil.lockScreenContainerHeight,
     child: Text(
@@ -76,7 +77,7 @@ Column uncheckedTest() {
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       lockScreenPlace(),
-      SizedBox(
+      Container(
         width: LockScreenUtil.lockScreenContainerWidth,
         height: LockScreenUtil.lockScreenContainerHeight,
         child: Text(
@@ -106,13 +107,13 @@ Column noTest() {
             textAlign: TextAlign.center,
           )),
       lockScreenPlace(),
-      const PurpleBorderWhiteInsideTextContainer(text: LockScreenUtil.text2),
-      const SizedBox(
+      PurpleBorderWhiteInsideTextContainer(text: LockScreenUtil.text2),
+      SizedBox(
         height: LockScreenUtil.lockScreenHeight,
       ),
       GestureDetector(
           onTap: () {
-            // print("Hello bitch");
+            print("Hello bitch");
           },
           child: Container(
             width: LockScreenUtil.lockScreenContainerWidth,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/src/widgets/container.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 class Login extends StatelessWidget {
@@ -7,9 +8,11 @@ class Login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.blueChalk,
-      body: Center(child: Text("login")),
+      body: Container(
+        child: Center(child: Text("login")),
+      ),
     );
   }
 }

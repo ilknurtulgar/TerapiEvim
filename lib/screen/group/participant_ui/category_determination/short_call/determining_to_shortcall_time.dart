@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/group/component/choosing_time_for_short_call_container.dart';
 import 'package:terapievim/screen/group/component/purple_border_text_ccontainer.dart';
 import 'package:terapievim/screen/group/util/group_screen_utility.dart';
 
 import '../../../component/heading.dart';
-
+import '../../../util/lockScreenutility.dart';
 import '../../../util/text_util.dart';
 
-// ignore: must_be_immutable
 class ShortCallTime extends StatelessWidget {
   ShortCallTime({super.key});
   // gecici
@@ -34,7 +34,7 @@ class ShortCallTime extends StatelessWidget {
             Heading(
               headingText: hiUser,
             ),
-            const PurpleBorderWhiteInsideTextContainer(
+            PurpleBorderWhiteInsideTextContainer(
                 text: GroupTexts.shortCallDateChooseText),
             timeChoose()
           ],
@@ -77,7 +77,7 @@ class ShortCallTime extends StatelessWidget {
             icon: IconUtility.save,
             onPressed: () {
               //kategori secimi kaydedilecek
-              //print("Kategori secildi yegenim");
+              print("Kategori secildi yegenim");
             },
           )
         ],

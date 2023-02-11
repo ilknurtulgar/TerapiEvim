@@ -1,11 +1,12 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
-
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/group/group.dart';
-import 'package:terapievim/controller/main_controller.dart';
-
+import 'package:terapievim/screen/home/coping_methods.dart';
+import 'package:terapievim/controller/mainController.dart';
+import '../../service/firebase_options.dart';
 import '../activity/activities.dart';
 import '../message/message.dart';
 import '../profile/profile.dart';
@@ -13,14 +14,14 @@ import '../profile/profile.dart';
 import 'home.dart';
 
 class TerapiEvimLogged extends StatefulWidget {
-  const TerapiEvimLogged({Key? key}) : super(key: key);
+  TerapiEvimLogged({Key? key}) : super(key: key);
 
   @override
   State<TerapiEvimLogged> createState() => _TerapiEvimLoggedState();
 }
 
 class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
-  final MainController _controller = Get.find();
+  MainController _controller = Get.find();
 
   List<IconData> icons = <IconData>[
     IconUtility.navHome,
@@ -32,8 +33,8 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> screen = <Widget>[
-      const HomeScreen(),
+    List<Widget> Screen = <Widget>[
+      HomeScreen(),
       ActivitiesScreen(),
       GroupScreen(),
       MessageScreen(),
@@ -52,8 +53,8 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
           backgroundColor: AppColors.white,
           inactiveColor: AppColors.dustyGray,
           activeColor: Colors.black,
-          onTap: (int index) {
-            _controller.changeScreen(index);
+          onTap: (int) {
+            _controller.ChangeScreen(int);
           },
         ),
       ),
@@ -61,7 +62,7 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
       body: Center(
         child: Obx(
           () => Container(
-            child: screen[_controller.currentScreenIndex.toInt()],
+            child: Screen[_controller.currentScreenIndex.toInt()],
           ),
         ),
       ),

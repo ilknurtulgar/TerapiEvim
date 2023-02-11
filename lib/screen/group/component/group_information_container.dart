@@ -5,7 +5,7 @@ import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/models/card_model.dart';
 
 class GroupInformationContainer extends StatelessWidget {
-  GroupInformationContainer(
+  const GroupInformationContainer(
       {super.key,
       required this.groupName,
       required this.mainTherapist,
@@ -41,19 +41,19 @@ class GroupInformationContainer extends StatelessWidget {
       children: [
         Center(
             child: paddedText(const EdgeInsets.symmetric(vertical: 15),
-                groupName, AppTextStyles.GroupTextStyle(false))),
+                groupName, AppTextStyles.groupTextStyle(false))),
         therapistRow(mainTherapist, 'Grup Terapisti: ', () {
-          print('ana psikolog');
+          //print('ana psikolog');
         }, 192),
         therapistRow(secondTherapist, 'Yardımcı Psikolog: ', () {
-          print('yardımcı psikolog');
+          //print('yardımcı psikolog');
         }, 170),
         Text('Katılımcı Sayısı: $numberOfParticipant',
-            style: AppTextStyles.GroupTextStyle(true)),
+            style: AppTextStyles.groupTextStyle(true)),
         paddedText(
             const EdgeInsets.only(top: 20, bottom: 10),
             'Seans Sayısı: $numberOfSession',
-            AppTextStyles.GroupTextStyle(true)),
+            AppTextStyles.groupTextStyle(true)),
         Align(
             alignment: Alignment.centerRight,
             child: CustomButton(
@@ -82,7 +82,7 @@ class GroupInformationContainer extends StatelessWidget {
       CardModel therapist, String text, Function() func, double width) {
     return Row(
       children: [
-        Text(text, style: AppTextStyles.GroupTextStyle(true)),
+        Text(text, style: AppTextStyles.groupTextStyle(true)),
         InkWell(
             onTap: func,
             child: participantContainer(

@@ -110,8 +110,12 @@ class IconUtility {
   );
   static const IconData checkCircleIcon = Icons.check_circle_outline;
   static const Icon save = Icon(Icons.save, color: AppColors.meteorite);
-  static const Icon contactPhoneIcon = Icon(Icons.contact_phone_outlined, color: AppColors.black);
-  static const arrowForwardIcon = Icon(Icons.arrow_forward_ios,color: AppColors.black,);
+  static const Icon contactPhoneIcon =
+      Icon(Icons.contact_phone_outlined, color: AppColors.black);
+  static const arrowForwardIcon = Icon(
+    Icons.arrow_forward_ios,
+    color: AppColors.black,
+  );
 }
 
 class AppTextStyles {
@@ -170,7 +174,7 @@ class AppTextStyles {
       fontFamily: "Roboto",
       fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
       letterSpacing: 0.07);
-  static TextStyle GroupTextStyle(bool isName) => TextStyle(
+  static TextStyle groupTextStyle(bool isName) => TextStyle(
       fontFamily: 'Roboto',
       fontSize: isName ? 16 : 18,
       fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
@@ -218,7 +222,7 @@ class AppBoxDecoration {
       borderRadius: AppBorderRadius.generalBorderRadius,
       border: Border.all(color: AppColors.cornFlowerBlue));
 
-  static BoxDecoration lockScreenButton = BoxDecoration(
+  static BoxDecoration lockScreenButton = const BoxDecoration(
       color: AppColors.cornFlowerBlue,
       borderRadius: AppBorderRadius.generalBorderRadius);
 }

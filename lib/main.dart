@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/home/main_home.dart';
 import 'package:terapievim/screen/login/login.dart';
-import 'package:terapievim/controller/mainController.dart';
+import 'package:terapievim/controller/main_controller.dart';
 import 'service/firebase_options.dart';
 
 void main() async {
@@ -31,17 +31,16 @@ class TerapiEvim extends StatefulWidget {
 }
 
 class _TerapiEvimState extends State<TerapiEvim> {
-  MainController _controller = Get.put(MainController());
+  final MainController _controller = Get.put(MainController());
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> Screen = <Widget>[];
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             splashColor: Colors.transparent,
             primarySwatch: Colors.purple,
             scaffoldBackgroundColor: AppColors.blueChalk),
-        home: _controller.isLogged.isTrue ? TerapiEvimLogged() : Login());
+        home: _controller.isLogged.isTrue ? TerapiEvimLogged() : const Login());
   }
 }

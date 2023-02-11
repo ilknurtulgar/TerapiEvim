@@ -5,7 +5,7 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/group/util/group_screen_utility.dart';
 
-import 'package:terapievim/screen/group/util/lockScreenutility.dart';
+import 'package:terapievim/screen/group/util/lock_screen_utility.dart';
 
 class TherapistProfile extends StatelessWidget {
   TherapistProfile({super.key});
@@ -13,20 +13,20 @@ class TherapistProfile extends StatelessWidget {
   //bu row modeller fix ama nereye koyulacagi tartisilmasi lazim
   final RowModel basetmeMetodlari = RowModel(
     text: "Bas Etme Metotlari",
-    textStyle: AppTextStyles.GroupTextStyle(false),
+    textStyle: AppTextStyles.groupTextStyle(false),
     isAlignmentBetween: false,
     leadingIcon: IconUtility.fileIconBlack,
   );
 
   final RowModel seminerleri = RowModel(
     text: "Seminerleri",
-    textStyle: AppTextStyles.GroupTextStyle(false),
+    textStyle: AppTextStyles.groupTextStyle(false),
     isAlignmentBetween: false,
     leadingIcon: IconUtility.activityIcon,
   );
   final RowModel mesajGonder = RowModel(
     text: "Mesaj Gonder",
-    textStyle: AppTextStyles.GroupTextStyle(false),
+    textStyle: AppTextStyles.groupTextStyle(false),
     isAlignmentBetween: false,
     leadingIcon: IconUtility.chatIcon,
   );
@@ -51,13 +51,13 @@ class TherapistProfile extends StatelessWidget {
             aboutMe(aboutme),
             activity(basetmeMetodlari, () {
               //buraya fonksiyonlari ekelenecek
-              print("basettin mi");
+              //print("basettin mi");
             }),
             activity(seminerleri, () {
-              print("seminermismis");
+              //print("seminermismis");
             }),
             activity(mesajGonder, () {
-              print("selam");
+              //print("selam");
             }),
           ],
         ),
@@ -103,7 +103,7 @@ class TherapistProfile extends StatelessWidget {
 
   Padding activity(RowModel row, Function() func) {
     return Padding(
-      padding: paddings.rowViewProfilePadding,
+      padding: Paddings.rowViewProfilePadding,
       child: SeminarMin(
         onTap: func,
         row: row,

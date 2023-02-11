@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/group/util/lockScreenutility.dart';
+import 'package:terapievim/screen/group/util/lock_screen_utility.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../group/component/row_view.dart';
 import '../../../core/base/models/row_model.dart';
@@ -33,7 +33,7 @@ class SeminarMin extends StatelessWidget {
             border: Border.all(color: border_color!.withOpacity(1)),
             borderRadius: BorderRadius.circular(8),
             color: AppColors.white),
-        child: rowView(row, paddings.rowViewPadding),
+        child: rowView(row, Paddings.rowViewPadding),
       ),
     );
   }
@@ -78,9 +78,9 @@ class SeminarMax extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            rowView(row1, paddings.rowViewPadding),
-            rowView(row2, paddings.rowViewPadding),
-            rowView(row3, paddings.rowViewPadding)
+            rowView(row1, Paddings.rowViewPadding),
+            rowView(row2, Paddings.rowViewPadding),
+            rowView(row3, Paddings.rowViewPadding)
           ],
         ),
       ),

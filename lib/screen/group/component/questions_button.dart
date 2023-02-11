@@ -42,7 +42,7 @@ class _ToggleQuestionsState extends State<ToggleQuestions> {
 
 Container togglebuttonsview() {
   return Container(
-    margin: EdgeInsets.only(bottom: 30),
+    margin: const EdgeInsets.only(bottom: 30),
     decoration: AppBoxDecoration.lockScreenBox,
     width: 341,
     child: Column(children: [
@@ -50,7 +50,7 @@ Container togglebuttonsview() {
           isalignmentstart: true,
           isToggle: true,
           text:
-              "1.Yasemini insanlar 100 üzerinden  ne kadar severlerse yasemin ne kadar mutlu olur?(Cevap yok hehe)"),
+              "1.Yasemini insanlar 100 üzerinden  ne kadar severlerse yasemin ne kadar mutlu olur( slm Yasemin aşko <3 )?(Cevap yok hehe)"),
       const ToggleQuestions(),
     ]),
   );

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/base/util/base_utility.dart';
 
 class CustomCircleAvatar extends StatelessWidget {
-  CustomCircleAvatar(
+  const CustomCircleAvatar(
       {super.key,
       required this.imagePath,
       required this.big,

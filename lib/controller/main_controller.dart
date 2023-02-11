@@ -8,7 +8,7 @@ class MainController extends GetxController {
   var isLockOpen = true.obs;
   var isLogged = true.obs;
 
-  ChangeScreen(int index) {
+  changeScreen(int index) {
     switch (index) {
       case 0:
         currentScreenIndex.value = 0;

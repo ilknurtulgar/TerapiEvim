@@ -11,7 +11,7 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/group/participant_ui/group_out.dart';
 import 'package:terapievim/screen/group/util/group_screen_utility.dart';
-import 'package:terapievim/screen/group/util/lockScreenutility.dart';
+import 'package:terapievim/screen/group/util/lock_screen_utility.dart';
 import 'package:terapievim/screen/group/util/text_util.dart';
 
 class MyGroup extends StatelessWidget {
@@ -25,24 +25,24 @@ class MyGroup extends StatelessWidget {
       isAlignmentBetween: true,
       leadingIcon: IconUtility.personIcon,
       text: "Grup Terapisti : ",
-      textStyle: AppTextStyles.GroupTextStyle(false),
+      textStyle: AppTextStyles.groupTextStyle(false),
       text2: "Simay Odabasi",
-      textStyle2: AppTextStyles.GroupTextStyle(true),
+      textStyle2: AppTextStyles.groupTextStyle(true),
     );
     RowModel row2 = RowModel(
       isAlignmentBetween: true,
       leadingIcon: IconUtility.personIcon,
       text: "Yardimci Psikolog: ",
-      textStyle: AppTextStyles.GroupTextStyle(false),
+      textStyle: AppTextStyles.groupTextStyle(false),
       text2: "Ozlem Ulusan",
-      textStyle2: AppTextStyles.GroupTextStyle(true),
+      textStyle2: AppTextStyles.groupTextStyle(true),
     );
     RowModel person = RowModel(
         isAlignmentBetween: true,
         leadingIcon:
             CustomCircleAvatar(big: false, shadow: false, imagePath: imagePath),
         text: "Aleyna Tilki",
-        textStyle: AppTextStyles.GroupTextStyle(true));
+        textStyle: AppTextStyles.groupTextStyle(true));
 
     return Scaffold(
       backgroundColor: AppColors.blueChalk,
@@ -87,7 +87,7 @@ class MyGroup extends StatelessWidget {
     //gecici katilimci modeli
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
-      padding: paddings.participantsPadding,
+      padding: Paddings.participantsPadding,
       shrinkWrap: true,
       itemCount: tmpParticipantNumber,
       itemBuilder: ((context, index) => tmpParticipant),
@@ -99,12 +99,12 @@ class MyGroup extends StatelessWidget {
       padding: GroupPaddings.appbarPadding,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const SizedBox(
+        children: const [
+          SizedBox(
             width: 20,
           ),
           Heading(headingText: GroupTexts.myGroupText),
-          const GroupOut(),
+          GroupOut(),
         ],
       ),
     );

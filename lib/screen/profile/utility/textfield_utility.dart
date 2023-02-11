@@ -6,6 +6,8 @@ import '../../../core/base/models/row_model.dart';
 import '../../login/component/custom_textfield.dart';
 import 'package:flutter/material.dart';
 
+ActivityController activityController = Get.find();
+
 class TextfieldUtility {
   CustomTextField nameSurnameTextfield(
           TextEditingController textController, bool isBig) =>

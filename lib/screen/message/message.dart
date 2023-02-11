@@ -76,7 +76,7 @@ class MessageScreen extends StatelessWidget {
   Row messageboxright() {
     return Row(
       children: [
-        CustomHeading(text: "text"),
+        CustomHeading(isalignmentstart: true, text: "text"),
         /* CustomText(
             containerModel: customTextModel,
             isActivity: false,

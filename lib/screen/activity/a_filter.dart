@@ -11,7 +11,10 @@ class FilterScreen extends StatelessWidget {
       child: Scaffold(
         body: Column(
           children: [
-            CustomHeading(text: "Filtreleme"),
+            CustomHeading(
+              text: "Filtreleme",
+              isalignmentstart: true,
+            ),
             FilterBox(rowModel: rowModel),
             FilterBox(rowModel: rowModel),
             const SizedBox(),

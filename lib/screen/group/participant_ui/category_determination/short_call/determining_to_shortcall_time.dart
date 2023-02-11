@@ -4,8 +4,7 @@ import 'package:terapievim/screen/group/component/choosing_time_for_short_call_c
 import 'package:terapievim/screen/group/component/purple_border_text_ccontainer.dart';
 import 'package:terapievim/screen/group/util/group_screen_utility.dart';
 
-import '../../../component/heading.dart';
-
+import '../../../component/custom_heading.dart';
 import '../../../util/text_util.dart';
 
 // ignore: must_be_immutable
@@ -30,8 +29,9 @@ class ShortCallTime extends StatelessWidget {
             const Divider(
               color: AppColors.black,
             ),
-            Heading(
-              headingText: hiUser,
+            CustomHeading(
+              text: hiUser,
+              isalignmentstart: false,
             ),
             const PurpleBorderWhiteInsideTextContainer(
                 text: GroupTexts.shortCallDateChooseText),
@@ -68,9 +68,10 @@ class ShortCallTime extends StatelessWidget {
           const SizedBox(
             width: 20,
           ),
-          Heading(
-            headingText: GroupTexts.terapiEvim,
+          CustomHeading(
+            text: GroupTexts.terapiEvim,
             padding: GroupPaddings.shortCallHeadingPadding,
+            isalignmentstart: false,
           ),
           IconButton(
             icon: IconUtility.save,

@@ -70,7 +70,10 @@ class ActivitiesScreen extends StatelessWidget {
                     arowModel: arowmodel,
                     ayrowwModel: ayrowmodel,
                     clockModel: clockmodel),
-                CustomHeading(text: "ss")
+                CustomHeading(
+                  text: "ss",
+                  isalignmentstart: true,
+                )
               ],
             ),
           ),

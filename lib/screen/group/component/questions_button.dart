@@ -38,6 +38,7 @@ Container togglebuttonsview() {
     width: 341,
     child: Column(children: [
       CustomHeading(
+          isalignmentstart: true,
           isToggle: true,
           text:
               "1.Yasemini insanlar 100 üzerinden  ne kadar severlerse yasemin ne kadar mutlu olur?(Cevap yok hehe)"),

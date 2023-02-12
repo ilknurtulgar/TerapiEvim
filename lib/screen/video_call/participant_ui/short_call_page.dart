@@ -7,8 +7,8 @@ import '../components/video_call_container/video_call_person_view.dart';
 
 class ShortCallPage extends StatelessWidget {
   ShortCallPage({super.key,});
-  PersonInCallModel therapist= PersonInCallModel(name: 'Simay', surname: 'Selli', imagePath: 'assets/images/f1.jpg', isMicOn: true, isCamOn: true);
-  PersonInCallModel participant= PersonInCallModel(name: 'Kerem', surname: 'Görkem', imagePath: 'assets/images/f2.jpg', isMicOn: false, isCamOn: true);
+  final PersonInCallModel therapist= PersonInCallModel(name: 'Simay', surname: 'Selli', imagePath: 'assets/images/f1.jpg', isMicOn: true, isCamOn: true);
+  final PersonInCallModel participant= PersonInCallModel(name: 'Kerem', surname: 'Görkem', imagePath: 'assets/images/f2.jpg', isMicOn: false, isCamOn: true);
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -41,7 +41,7 @@ class ParticipantSignUpPage extends StatelessWidget {
             CustomButton(
               container:
                   ProfilePageUtility.loginSignUpButtonContainer(false, true),
-              onTap: () => Get.to(() => ParticipantLoginPage()),
+              onTap: () => Get.to(() => const ParticipantLoginPage()),
               text: 'Giriş Yap',
             ),
           ],

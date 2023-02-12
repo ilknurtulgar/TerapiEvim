@@ -47,6 +47,6 @@ class _TerapiEvimState extends State<TerapiEvim> {
             scaffoldBackgroundColor: AppColors.blueChalk),
         home: _controller.isLogged.isTrue
             ? const TerapiEvimLogged()
-            : ParticipantLoginPage());
+            : const ParticipantLoginPage());
   }
 }

@@ -35,23 +35,10 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: Column(
             children: [
-              SizedBox(
-                  height: 30,
-                  width: 300,
-                  child: rowView(
-                      GroupScreenUtility.therapistRowInChoosingTimeForSCC(
-                          therapistName),
-                      const EdgeInsets.symmetric(horizontal: 20))),
-              SizedBox(
-                  height: 30,
-                  width: 300,
-                  child: rowView(
-                      GroupScreenUtility.dateRowInChoosingTimeForSCC(date),
-                      const EdgeInsets.symmetric(horizontal: 20))),
+              rowView(GroupScreenUtility.therapistRowInChoosingTimeForSCC(therapistName),const EdgeInsets.fromLTRB(25, 15, 25, 4)),
+              rowView(GroupScreenUtility.dateRowInChoosingTimeForSCC(date),const  EdgeInsets.fromLTRB(25, 7, 25,  10)),
               timeChoosingButtonList(),
-              const SizedBox(
-                height: 10,
-              )
+              const SizedBox(height: 10,)
             ],
           ),
         ),

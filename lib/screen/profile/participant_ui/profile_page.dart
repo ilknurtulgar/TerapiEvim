@@ -11,16 +11,16 @@ import '../utility/profile_page_utility.dart';
 
 class ParticipantProfilePage extends StatelessWidget {
   ParticipantProfilePage({super.key,});
-  String imagePath = 'assets/images/f1.jpg';
-  String nameSurname = 'Emily Jordan';
-  String birthOfDate = '09/07/1995';
-  GroupModelInProfilePage groupInformation = GroupModelInProfilePage(
+  final String imagePath = 'assets/images/f1.jpg';
+  final String nameSurname = 'Emily Jordan';
+  final String birthOfDate = '09/07/1995';
+  final GroupModelInProfilePage groupInformation = GroupModelInProfilePage(
       groupName: 'Anoreksiya',
       mainTherapistName: 'Kerem Engin',
       methodTitles: ['Başlık 1', 'Başlık 2', 'Başlık 3', 'Başlık 4'],
       secondTherapistName: 'Simay Selli',
       therapyTime: 'Her salı, 20.00');
-  List<SeminarModelInProfilePage> lastWatchedSeminars = [
+  final List<SeminarModelInProfilePage> lastWatchedSeminars = [
     SeminarModelInProfilePage(therapistName: 'Kerem Engin', seminarTitle: 'Seminer 1'),
     SeminarModelInProfilePage(therapistName: 'Mustafa Engin', seminarTitle: 'Seminer 2'),
     SeminarModelInProfilePage(therapistName: 'Mert Engin', seminarTitle: 'Seminer 3')

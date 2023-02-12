@@ -36,8 +36,8 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
       const HomeScreen(),
       ActivitiesScreen(),
       GroupScreen(),
-      MessageScreen(),
-      const ProfileScreen(),
+      const MessageScreen(),
+      ProfileScreen(),
     ];
     return Scaffold(
       bottomNavigationBar: Obx(

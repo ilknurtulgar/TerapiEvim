@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/components/toast/toast.dart';
+import 'package:terapievim/controller/main_controller.dart';
 
+import '../../screen/home/main_home.dart';
 import '../../service/model/common/login/login_model.dart';
 import '../../service/service/auth/auth_service.dart';
 import '../../service/service/auth/i_auth_service.dart';
@@ -19,11 +22,18 @@ class LoginController extends GetxController {
   @override
   void onInit() {
     authService = AuthService();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    emailFocusNode = FocusNode();
+    passwordFocusNode = FocusNode();
+
     super.onInit();
   }
 
   @override
   void dispose() {
+    flutterErrorToast("ON DISPOSE");
+    print("ON DISPOSE");
     emailController.dispose();
     passwordController.dispose();
     emailFocusNode.dispose();
@@ -32,6 +42,7 @@ class LoginController extends GetxController {
   }
 
   Future<void> loginWithEmail() async {
+    print('loginWithEmail');
     final isValidated = _validateLogin();
 
     if (isValidated == false) {
@@ -46,6 +57,7 @@ class LoginController extends GetxController {
         password: passwordController.text.trim(),
       ),
     );
+    print('RESULT:$result');
 
     isLoading.value = false;
 
@@ -55,15 +67,19 @@ class LoginController extends GetxController {
     }
 
     ///TODO Handle result
+    MainController maiController = Get.find();
+    maiController.isLogged.value = true;
+    Get.to(() => const TerapiEvimLogged());
   }
 
   bool _validateLogin() {
     if (emailController.text.contains('@') == false) {
-      //TODO: add error that email is incorrect
+      flutterErrorToast("Email is incorrect");
       return false;
     }
     if (passwordController.text.trim().length < 6) {
-      //TODO: add error that length is too short
+      flutterErrorToast("Password's length is too short");
+
       return false;
     }
     return true;

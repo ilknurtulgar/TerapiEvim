@@ -6,18 +6,18 @@ import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/group/component/row_view.dart';
 
 class ActivityBox extends StatelessWidget {
-  ActivityBox(
+  const ActivityBox(
       {super.key,
       required this.containerModel,
       required this.arowModel,
       required this.ayrowwModel,
       required this.isactivity,
       required this.clockModel});
-  ContainerModel containerModel;
-  RowModel arowModel;
-  RowModel ayrowwModel;
-  RowModel clockModel;
-  bool isactivity;
+  final ContainerModel containerModel;
+  final RowModel arowModel;
+  final RowModel ayrowwModel;
+  final RowModel clockModel;
+  final bool isactivity;
   @override
   Widget build(BuildContext context) {
     return Padding(

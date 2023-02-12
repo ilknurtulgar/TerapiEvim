@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/screen/group/component/custom_heading.dart';
 import 'package:terapievim/screen/login/component/custom_textfield.dart';
 import 'package:terapievim/screen/group/component/group_box.dart';
 
 class ActivitiesScreen extends StatelessWidget {
   ActivitiesScreen({super.key});
-  TextEditingController activityTextController = TextEditingController();
+  final TextEditingController activityTextController = TextEditingController();
+  ActivityController activityController = Get.put(ActivityController());
   @override
   Widget build(BuildContext context) {
     return SafeArea(

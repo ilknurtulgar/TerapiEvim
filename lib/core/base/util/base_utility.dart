@@ -169,7 +169,7 @@ class AppTextStyles {
   static TextStyle heading(bool isMainHeading) => TextStyle(
       //basliklarin hepsi
 
-      color: isMainHeading ? AppColors.meteorite : AppColors.black,
+      color: AppColors.meteorite,
       fontSize: isMainHeading ? 32 : 24,
       fontFamily: "Roboto",
       fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,

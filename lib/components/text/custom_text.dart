@@ -1,19 +1,17 @@
 import 'package:flutter/cupertino.dart';
-import 'package:terapievim/screen/activity/component/filter_box.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
 
 class CustomText extends StatelessWidget {
-  CustomText(
+  const CustomText(
       {super.key,
       required this.containerModel,
       required this.isActivity,
       required this.customText});
   final ContainerModel containerModel;
-  bool isActivity;
+  final bool isActivity;
 
-  String customText;
+  final String customText;
 
   @override
   Widget build(BuildContext context) {

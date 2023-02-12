@@ -36,16 +36,20 @@ class MethodAndSeminarShortInfoContainer extends StatelessWidget {
                 children: [
                   rowView(ProfilePageUtility.normalTextRow(row1Text,Icons.person_outlined,const TextStyle(fontSize: 17, fontWeight: FontWeight.bold)), const EdgeInsets.only(top: 5)),
                   rowView(ProfilePageUtility.normalTextRow(row2Text,isSecondRowMethod ? Icons.description_outlined : Icons.desktop_windows_outlined,const TextStyle(fontSize: 17, fontWeight: FontWeight.bold)),const EdgeInsets.only(top: 10)),
-                  Padding(
-                      padding: const EdgeInsets.only(left: 100, bottom: 10),
-                      child: CustomButton(
-                          container: AppContainers.purpleButtonContainer(null),
-                          onTap: () {}, // izle ya da dosyayı oku fonksiyonu
-                          text: buttonText))
+                  button()
                 ]),
           ),
         ),
       ),
     );
+  }
+
+  Padding button() {
+    return Padding(
+                    padding: const EdgeInsets.only(left: 100, bottom: 10),
+                    child: CustomButton(
+                        container: AppContainers.purpleButtonContainer(null),
+                        onTap: () {}, // izle ya da dosyayı oku fonksiyonu
+                        text: buttonText));
   }
 }

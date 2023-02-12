@@ -4,13 +4,12 @@ import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/activity/component/drop_down.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
-import '../../login/participant_ui/participant_login_page.dart';
+import '../../login/participant_ui/login_page.dart';
 import '../../profile/utility/profile_page_utility.dart';
 import '../../profile/utility/textfield_utility.dart';
 
 class ParticipantSignUpPage extends StatelessWidget {
   const ParticipantSignUpPage({super.key});
-
   @override
   Widget build(BuildContext context) {
     TextEditingController nameSurnameController = TextEditingController();

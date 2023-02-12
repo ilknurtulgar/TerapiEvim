@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/video_call/base_utility/video_call_utility.dart';
+import 'package:terapievim/screen/video_call/base_utility/utility.dart';
 import 'package:terapievim/screen/video_call/components/video_call_container/circular_container.dart';
 
 class CustomVideoCallButton extends StatefulWidget {

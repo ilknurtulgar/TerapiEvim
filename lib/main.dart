@@ -7,7 +7,7 @@ import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/home/main_home.dart';
-import 'package:terapievim/screen/login/participant_ui/participant_login_page.dart';
+import 'package:terapievim/screen/login/participant_ui/login_page.dart';
 import 'controller/main_controller.dart';
 import 'service/firebase_options.dart';
 

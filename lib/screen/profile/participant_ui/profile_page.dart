@@ -2,26 +2,29 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/profile/participant_ui/participant_profile_setting_page.dart';
+import 'package:terapievim/screen/profile/participant_ui/profile_setting_page.dart';
 import '../../group/component/group.dart';
 import '../../group/component/row_view.dart';
-import '../component/container/method_and_seminar_short_info_cont.dart';
+import '../component/container/meth_sem_short_cont.dart';
 import '../models/group_model.dart';
 import '../utility/profile_page_utility.dart';
 
 class ParticipantProfilePage extends StatelessWidget {
-  const ParticipantProfilePage(
-      {super.key,
-      required this.imagePath,
-      required this.nameSurname,
-      required this.birthOfDate,
-      required this.groupInformation,
-      required this.lastWatchedSeminars});
-  final String imagePath;
-  final String nameSurname;
-  final String birthOfDate;
-  final GroupModelInProfilePage groupInformation;
-  final List<SeminarModelInProfilePage> lastWatchedSeminars;
+  ParticipantProfilePage({super.key,});
+  String imagePath = 'assets/images/f1.jpg';
+  String nameSurname = 'Emily Jordan';
+  String birthOfDate = '09/07/1995';
+  GroupModelInProfilePage groupInformation = GroupModelInProfilePage(
+      groupName: 'Anoreksiya',
+      mainTherapistName: 'Kerem Engin',
+      methodTitles: ['Başlık 1', 'Başlık 2', 'Başlık 3', 'Başlık 4'],
+      secondTherapistName: 'Simay Selli',
+      therapyTime: 'Her salı, 20.00');
+  List<SeminarModelInProfilePage> lastWatchedSeminars = [
+    SeminarModelInProfilePage(therapistName: 'Kerem Engin', seminarTitle: 'Seminer 1'),
+    SeminarModelInProfilePage(therapistName: 'Mustafa Engin', seminarTitle: 'Seminer 2'),
+    SeminarModelInProfilePage(therapistName: 'Mert Engin', seminarTitle: 'Seminer 3')
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +32,7 @@ class ParticipantProfilePage extends StatelessWidget {
         scrollDirection: Axis.vertical,
         child: Stack(children: [
           ProfilePageUtility.backgroundOfThePage(false),
-          ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() => Get.to(() => ParticipantProfileSettingPage(imagePath: imagePath)),40,20),
+          ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() => Get.to(() => ParticipantProfileSettingPage()),40,20),
           ProfilePageUtility.profilePagePersonImage(imagePath),
           nameAndBirthDateColumn(),
           participantGroupColumn(),
@@ -65,7 +68,15 @@ class ParticipantProfilePage extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          rowView(ProfilePageUtility.normalTextRow('Aktif Grubum',Icons.group_outlined,const TextStyle(color: AppColors.black,fontWeight: FontWeight.bold,fontSize: 20)),const EdgeInsets.only(right: 160, bottom: 10, left: 10)),
+          rowView(
+              ProfilePageUtility.normalTextRow(
+                  'Aktif Grubum',
+                  Icons.group_outlined,
+                  const TextStyle(
+                      color: AppColors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20)),
+              const EdgeInsets.only(right: 160, bottom: 10, left: 10)),
           participantGroupContainer(),
         ],
       ),
@@ -81,9 +92,14 @@ class ParticipantProfilePage extends StatelessWidget {
         borderColor: AppColors.cornFlowerBlue,
         heading: groupInformation.groupName,
         onTap: () {}, // navigate to group page
-        row1: ProfilePageUtility.therapistRow('Ana psikolog: ', groupInformation.mainTherapistName),
-        row2: ProfilePageUtility.therapistRow('Yardımcı Psikolog: ', groupInformation.secondTherapistName),
-        row3: ProfilePageUtility.normalTextRow(groupInformation.therapyTime,Icons.alarm_outlined,AppTextStyles.normalTextStyle('medium', false)),
+        row1: ProfilePageUtility.therapistRow(
+            'Ana psikolog: ', groupInformation.mainTherapistName),
+        row2: ProfilePageUtility.therapistRow(
+            'Yardımcı Psikolog: ', groupInformation.secondTherapistName),
+        row3: ProfilePageUtility.normalTextRow(
+            groupInformation.therapyTime,
+            Icons.alarm_outlined,
+            AppTextStyles.normalTextStyle('medium', false)),
       ),
     );
   }
@@ -92,11 +108,16 @@ class ParticipantProfilePage extends StatelessWidget {
     return Positioned(
       top: 270,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: (window.physicalSize.width - 140) / 2),
+        padding: EdgeInsets.symmetric(
+            horizontal: (window.physicalSize.width - 140) / 2),
         child: Column(
           children: [
-            Text(nameSurname,style: AppTextStyles.normalTextStyle('big', false),),
-            Text(birthOfDate, style:AppTextStyles.normalTextStyle('medium', false)),
+            Text(
+              nameSurname,
+              style: AppTextStyles.normalTextStyle('big', false),
+            ),
+            Text(birthOfDate,
+                style: AppTextStyles.normalTextStyle('medium', false)),
           ],
         ),
       ),

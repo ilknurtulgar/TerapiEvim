@@ -6,7 +6,7 @@ import 'package:terapievim/screen/profile/utility/textfield_utility.dart';
 
 import '../../../controller/auth/login_controller.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
-import '../../sign_up/participant_ui/participant_signup_page.dart';
+import '../../sign_up/participant_ui/signup_page.dart';
 
 class ParticipantLoginPage extends StatefulWidget {
   ParticipantLoginPage({super.key});

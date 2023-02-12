@@ -2,12 +2,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/video_call/components/video_call_container/circular_container.dart';
-
 import '../../model/video_call_view_model.dart';
 
 class VideoCallPersonView extends StatefulWidget {
-  const VideoCallPersonView(
-      {super.key, required this.videoCallViewModel, this.onDoubleTap});
+  const VideoCallPersonView({super.key, required this.videoCallViewModel, this.onDoubleTap});
   final VideoCallViewModel videoCallViewModel;
   final Function()? onDoubleTap;
   @override
@@ -17,19 +15,13 @@ class VideoCallPersonView extends StatefulWidget {
 class _VideoCallPersonViewState extends State<VideoCallPersonView> {
   void cameraOnOffFunc() {
     setState(() {
-      widget.videoCallViewModel.person.isCamOn = !widget
-          .videoCallViewModel
-          .person
-          .isCamOn; // bu fonksiyonu kamera açılıp kapandığında görüntünün nasıl değişeceğini gözlemlemek için geçici olarak koydum
+      widget.videoCallViewModel.person.isCamOn = !widget.videoCallViewModel.person.isCamOn; // bu fonksiyonu kamera açılıp kapandığında görüntünün nasıl değişeceğini gözlemlemek için geçici olarak koydum
     });
   }
 
   void micOnOffFunc() {
     setState(() {
-      widget.videoCallViewModel.person.isMicOn = !widget
-          .videoCallViewModel
-          .person
-          .isMicOn; // bu fonksiyonu mikrofon açılıp kapandığında görüntünün nasıl değişeceğini gözlemlemek için geçici olarak koydum
+      widget.videoCallViewModel.person.isMicOn = !widget.videoCallViewModel.person.isMicOn; // bu fonksiyonu mikrofon açılıp kapandığında görüntünün nasıl değişeceğini gözlemlemek için geçici olarak koydum
     });
   }
 

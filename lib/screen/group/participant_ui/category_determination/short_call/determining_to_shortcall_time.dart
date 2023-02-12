@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/group/component/choosing_time_for_short_call_container.dart';
+import 'package:terapievim/screen/group/component/choosing_time_sc_cont.dart';
 import 'package:terapievim/screen/group/component/purple_border_text_ccontainer.dart';
 import 'package:terapievim/screen/group/util/group_screen_utility.dart';
 

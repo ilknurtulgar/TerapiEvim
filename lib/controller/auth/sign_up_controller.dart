@@ -3,9 +3,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../toast/toast.dart';
+import '../../screen/participant/home/main_home.dart';
 import '../../service/model/common/signup/sign_up_model.dart';
 import '../../service/service/auth/auth_service.dart';
 import '../../service/service/auth/i_auth_service.dart';
+import '../main_controller.dart';
 
 class SignUpController extends GetxController {
   late final IAuthService authService;
@@ -28,6 +31,20 @@ class SignUpController extends GetxController {
   @override
   void onInit() {
     authService = AuthService();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+    nameController = TextEditingController();
+    birthDateController = TextEditingController();
+    genderController = TextEditingController();
+    phoneController = TextEditingController();
+
+    emailFocusNode = FocusNode();
+    passwordFocusNode = FocusNode();
+    nameFocusNode = FocusNode();
+    birthDateFocusNode = FocusNode();
+    genderFocusNode = FocusNode();
+    phoneFocusNode = FocusNode();
+
     super.onInit();
   }
 
@@ -60,16 +77,15 @@ class SignUpController extends GetxController {
 
     isLoading.value = true;
 
-    final UserCredential? result = await authService.signUpWithEmail(
-      SignUpModel(
-        name: nameController.text.trim(),
-        birthDate: birthDateController.text.trim(),
-        gender: genderController.text.trim(),
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-        phone: phoneController.text.trim(),
-      )
-    );
+    final UserCredential? result =
+        await authService.signUpWithEmail(SignUpModel(
+      name: nameController.text.trim(),
+      birthDate: birthDateController.text.trim(),
+      gender: genderController.text.trim(),
+      email: emailController.text.trim(),
+      password: passwordController.text.trim(),
+      phone: phoneController.text.trim(),
+    ));
     isLoading.value = false;
 
     if (result == null) {
@@ -77,32 +93,38 @@ class SignUpController extends GetxController {
       return;
     }
 
-    ///TODO Handle result
+    MainController maiController = Get.find();
+    maiController.isLogged.value = true;
+
+    ///TODO:  save user data to cache
+
+    Get.to(() => const TerapiEvimLogged());
   }
 
   bool _validateSignUp() {
     if (emailController.text.contains('@') == false) {
-      //TODO: add error toast
+      flutterErrorToast("Email is incorrect");
       return false;
     }
     if (passwordController.text.trim().length < 6) {
-      //TODO: add error toast
+      flutterErrorToast("Password's length is too short");
       return false;
     }
     if (nameController.text.trim().isEmpty) {
-      //TODO: add error toast
+      flutterErrorToast("Name is empty");
       return false;
     }
     if (birthDateController.text.trim().isEmpty) {
-      //TODO: add error toast
+      flutterErrorToast("Birthday is empty");
       return false;
     }
-    if (genderController.text.trim().isEmpty) {
-      //TODO: add error toast
-      return false;
-    }
+
+    // if (genderController.text.trim().isEmpty) {
+    //   flutterErrorToast("Gender is empty");
+    //   return false;
+    // }
     if (phoneController.text.trim().isEmpty) {
-      //TODO: add error toast
+      flutterErrorToast("Phone is empty");
       return false;
     }
 

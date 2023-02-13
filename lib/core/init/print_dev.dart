@@ -86,7 +86,9 @@ class PrintDev {
 
   void exception(Object string) {
     if (kDebugMode) {
+      print('______________________ERROR______________________');
       print(string);
+      print('END______________________ERROR______________________END');
     }
   }
 }

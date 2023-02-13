@@ -1,0 +1,123 @@
+import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/group/participant_container.dart';
+import 'package:terapievim/core/base/models/card_model.dart';
+import 'package:terapievim/core/base/component/group/custom_heading.dart';
+import 'package:terapievim/core/base/component/group/group_box.dart';
+
+import 'package:terapievim/core/base/component/group/person.dart';
+
+import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/screen/participant/group/group_out.dart';
+import 'package:terapievim/screen/participant/group/util/group_screen_utility.dart';
+
+import 'util/lock_screen_utility.dart';
+import 'util/text_util.dart';
+
+class MyGroup extends StatelessWidget {
+  const MyGroup({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    //buradaki tum modeller geecici
+    String imagePath = "assets/images/doctorfotosu.jpeg";
+    RowModel row = RowModel(
+      isAlignmentBetween: true,
+      leadingIcon: IconUtility.personIcon,
+      text: "Grup Terapisti : ",
+      textStyle: AppTextStyles.groupTextStyle(false),
+      text2: "Simay Odabasi",
+      textStyle2: AppTextStyles.groupTextStyle(true),
+    );
+    RowModel row2 = RowModel(
+      isAlignmentBetween: true,
+      leadingIcon: IconUtility.personIcon,
+      text: "Yardimci Psikolog: ",
+      textStyle: AppTextStyles.groupTextStyle(false),
+      text2: "Ozlem Ulusan",
+      textStyle2: AppTextStyles.groupTextStyle(true),
+    );
+    RowModel person = RowModel(
+        isAlignmentBetween: true,
+        leadingIcon:
+            CustomCircleAvatar(big: false, shadow: false, imagePath: imagePath),
+        text: "Aleyna Tilki",
+        textStyle: AppTextStyles.groupTextStyle(true));
+
+    return Scaffold(
+      backgroundColor: AppColors.blueChalk,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              appbar(),
+              CustomHeading(
+                  isalignmentstart: true, text: GroupTexts.yaklasanToplanti),
+              ActivityBox(
+                  isactivity: true,
+                  containerModel: containerButton,
+                  arowModel: row,
+                  ayrowwModel: row,
+                  clockModel: row),
+              CustomHeading(
+                text: GroupTexts.grupBilgiler,
+                isalignmentstart: true,
+              ),
+              therapist(row),
+              therapist(row2),
+              CustomHeading(
+                text: GroupTexts.katilimcilar,
+                isalignmentstart: true,
+              ),
+              participants(person),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  PersonMin therapist(RowModel row) {
+    return PersonMin(
+      onTap: () {},
+      row: row,
+      borderColor: AppColors.cornFlowerBlue,
+    );
+  }
+
+  ListView participants(RowModel person) {
+    String imagePath = "assets/images/doctorfotosu.jpeg";
+    var tmpParticipant = participantContainer(
+        CardModel(imagePath: imagePath, title: "Aleyna Tilki"), 52, 342);
+    int tmpParticipantNumber = 5;
+    //gecici katilimci modeli
+    return ListView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      padding: Paddings.participantsPadding,
+      shrinkWrap: true,
+      itemCount: tmpParticipantNumber,
+      itemBuilder: ((context, index) => tmpParticipant),
+    );
+  }
+
+  Widget appbar() {
+    return Padding(
+      padding: GroupPaddings.appbarPadding,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const SizedBox(
+            width: 20,
+          ),
+          CustomHeading(
+            text: GroupTexts.myGroupText,
+            isalignmentstart: false,
+          ),
+          const GroupOut(),
+        ],
+      ),
+    );
+  }
+}

@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../components/toast/toast.dart';
-import '../../screen/home/main_home.dart';
+import '../../toast/toast.dart';
+import '../../screen/participant/home/main_home.dart';
 import '../../service/model/common/signup/sign_up_model.dart';
 import '../../service/service/auth/auth_service.dart';
 import '../../service/service/auth/i_auth_service.dart';

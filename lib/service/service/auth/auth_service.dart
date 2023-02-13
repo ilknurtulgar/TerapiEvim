@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:terapievim/components/toast/toast.dart';
+import 'package:terapievim/toast/toast.dart';
 
 import '../../../core/init/print_dev.dart';
 import '../../../core/managers/firebase/crashlytics_manager.dart';
@@ -55,7 +55,8 @@ class AuthService extends IAuthService {
         PrintDev.instance.exception('The password provided is too weak.');
       } else if (e.code == 'email-already-in-use') {
         flutterErrorToast('The account already exists for that email.');
-        PrintDev.instance.exception('The account already exists for that email.');
+        PrintDev.instance
+            .exception('The account already exists for that email.');
       }
     } catch (e) {
       await _crashlyticsManager.sendACrash(

@@ -3,15 +3,13 @@ import 'package:terapievim/core/base/component/group/participant_container.dart'
 import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/group/group_box.dart';
-
 import 'package:terapievim/core/base/component/group/person.dart';
-
 import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/participant/group/group_out.dart';
 import 'package:terapievim/screen/participant/group/util/group_screen_utility.dart';
-
+import '../../../core/base/component/group/row_view.dart';
 import 'util/lock_screen_utility.dart';
 import 'util/text_util.dart';
 
@@ -20,6 +18,11 @@ class MyGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    RowModel appBar = RowModel(
+        text: GroupTexts.myGroupText,
+        textStyle: AppTextStyles.heading(false),
+        trailingIcon: const GroupOut(),
+        isAlignmentBetween: true);
     //buradaki tum modeller geecici
     String imagePath = "assets/images/doctorfotosu.jpeg";
     RowModel row = RowModel(
@@ -52,7 +55,7 @@ class MyGroup extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              appbar(),
+              rowView(appBar, GroupPaddings.appbarPadding),
               CustomHeading(
                   isalignmentstart: true, text: GroupTexts.yaklasanToplanti),
               ActivityBox(
@@ -99,25 +102,6 @@ class MyGroup extends StatelessWidget {
       shrinkWrap: true,
       itemCount: tmpParticipantNumber,
       itemBuilder: ((context, index) => tmpParticipant),
-    );
-  }
-
-  Widget appbar() {
-    return Padding(
-      padding: GroupPaddings.appbarPadding,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const SizedBox(
-            width: 20,
-          ),
-          CustomHeading(
-            text: GroupTexts.myGroupText,
-            isalignmentstart: false,
-          ),
-          const GroupOut(),
-        ],
-      ),
     );
   }
 }

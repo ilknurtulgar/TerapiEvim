@@ -117,6 +117,12 @@ class IconUtility {
     color: AppColors.black,
   );
 }
+// class GroupTextStyle {
+//   static const TextStyle groupOutButton = TextStyle(
+//       color: AppColors.meteorite,
+//       fontFamily: "Roboto",
+//       fontWeight: FontWeight.w500);
+// }
 
 class AppTextStyles {
   static TextStyle normalTextStyle(String size, bool isGreyText) => TextStyle(

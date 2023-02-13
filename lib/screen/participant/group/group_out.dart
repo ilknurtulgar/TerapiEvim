@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 import 'util/text_util.dart';
@@ -15,9 +16,9 @@ class GroupOut extends StatelessWidget {
         builder: (BuildContext context) => AlertDialog(
           shape: const RoundedRectangleBorder(
               borderRadius: AppBorderRadius.generalBorderRadius),
-          title: const Text(
+          title: Text(
             GroupTexts.groupOutHeading,
-            style: GroupTextStyle.groupOutButton,
+            style: AppTextStyles.heading(false),
           ),
           content: const Text(GroupTexts.groupOutText),
           actions: <Widget>[
@@ -32,17 +33,17 @@ class GroupOut extends StatelessWidget {
   TextButton popUpButton(BuildContext context, String text) {
     return TextButton(
       onPressed: () {
-        if (text == "IPTAL") {
+        if (text == GroupTexts.evet) {
           //degistirilecek
           //print("Iptal");
         } else {
           //print("evet");
         }
-        Navigator.pop(context);
+        Get.back();
       },
       child: Text(
         text,
-        style: GroupTextStyle.groupOutButton,
+        style: AppTextStyles.buttonTextStyle(AppColors.black),
       ),
     );
   }

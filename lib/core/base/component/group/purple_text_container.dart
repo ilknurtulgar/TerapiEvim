@@ -1,10 +1,11 @@
+
 import 'package:flutter/material.dart';
 import 'package:terapievim/screen/participant/group/util/lock_screen_utility.dart';
 
 import '../../util/base_utility.dart';
 
-class PurpleBorderWhiteInsideTextContainer extends StatelessWidget {
-  const PurpleBorderWhiteInsideTextContainer({super.key, required this.text});
+class PurpleTextContainer extends StatelessWidget {
+  const PurpleTextContainer({super.key, required this.text});
   final String text;
 
   @override

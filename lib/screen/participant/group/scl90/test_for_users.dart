@@ -57,7 +57,7 @@ class PagesForSCL extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 32),
             ),
             _controller.testPageIndex.value == 0
-                ? PurpleBorderWhiteInsideTextContainer(text: definition)
+                ? PurpleTextContainer(text: definition)
                 : const SizedBox.shrink(),
             questionsWidget(),
             pageChangeButtons()

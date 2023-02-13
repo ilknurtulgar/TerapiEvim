@@ -64,7 +64,7 @@ class MessageScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         circleavatar(),
-        const PurpleBorderWhiteInsideTextContainer(text: "fvlö")
+        const PurpleTextContainer(text: "fvlö")
         /* CustomText(
             containerModel: customTextModel,
             isActivity: false,

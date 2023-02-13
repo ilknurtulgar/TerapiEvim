@@ -70,7 +70,7 @@ Column noTest() {
   return Column(
     children: [
       lockedTextContainer(LockScreenUtil.text2),
-      const PurpleBorderWhiteInsideTextContainer(text: LockScreenUtil.text2),
+      const PurpleTextContainer(text: LockScreenUtil.text2),
       testButton()
     ],
   );

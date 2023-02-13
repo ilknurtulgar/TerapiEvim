@@ -39,8 +39,7 @@ class ShortCallTime extends StatelessWidget {
               text: hiUser,
               isalignmentstart: false,
             ),
-            const PurpleBorderWhiteInsideTextContainer(
-                text: GroupTexts.shortCallDateChooseText),
+            const PurpleTextContainer(text: GroupTexts.shortCallDateChooseText),
             timeChoose(),
           ],
         ),

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
-import 'package:terapievim/core/base/component/group/purple_border_text_ccontainer.dart';
+import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/core/base/component/group/questions_button.dart';
 import 'package:terapievim/controller/test_questions_controller.dart';
 

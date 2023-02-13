@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:terapievim/screen/participant/group/util/lock_screen_utility.dart';
 

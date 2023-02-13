@@ -66,7 +66,6 @@ class LoginController extends GetxController {
       return;
     }
 
-    ///TODO Handle result
     MainController maiController = Get.find();
     maiController.isLogged.value = true;
     Get.to(() => const TerapiEvimLogged());

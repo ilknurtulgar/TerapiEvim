@@ -39,14 +39,24 @@ class AuthService extends IAuthService {
   }
 
   @override
-  Future<UserCredential> signUpWithEmail(SignUpModel signUpModel) async {
+  Future<UserCredential?> signUpWithEmail(SignUpModel signUpModel) async {
     try {
       final UserCredential result =
           await _firebaseAuth.createUserWithEmailAndPassword(
         email: signUpModel.email,
         password: signUpModel.password,
       );
+      //TODO save data to firestore;
+
       return result;
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'weak-password') {
+        flutterErrorToast('The password provided is too weak.');
+        PrintDev.instance.exception('The password provided is too weak.');
+      } else if (e.code == 'email-already-in-use') {
+        flutterErrorToast('The account already exists for that email.');
+        PrintDev.instance.exception('The account already exists for that email.');
+      }
     } catch (e) {
       await _crashlyticsManager.sendACrash(
           error: e.toString(),
@@ -54,5 +64,6 @@ class AuthService extends IAuthService {
           reason: 'error at sign up with email service');
       rethrow;
     }
+    return null;
   }
 }

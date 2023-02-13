@@ -3,38 +3,62 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/activity/component/drop_down.dart';
+
+import '../../../controller/auth/sign_up_controller.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../../login/participant_ui/login_page.dart';
 import '../../profile/utility/profile_page_utility.dart';
 import '../../profile/utility/textfield_utility.dart';
 
-class ParticipantSignUpPage extends StatelessWidget {
+class ParticipantSignUpPage extends StatefulWidget {
   const ParticipantSignUpPage({super.key});
+
+  @override
+  State<ParticipantSignUpPage> createState() => _ParticipantSignUpPageState();
+}
+
+class _ParticipantSignUpPageState extends State<ParticipantSignUpPage> {
+  late final SignUpController _signUpController;
+
+  @override
+  void initState() {
+    _signUpController = Get.put(SignUpController());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _signUpController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
-    TextEditingController nameSurnameController = TextEditingController();
-    TextEditingController mailController = TextEditingController();
-    TextEditingController passwordController = TextEditingController();
-    TextEditingController phoneController = TextEditingController();
     TextfieldUtility textfieldUtility = TextfieldUtility();
-    ProfileController profileController = Get.put(ProfileController());
     return Scaffold(
       backgroundColor: AppColors.blueChalk,
       body: SingleChildScrollView(
         child: Column(
           children: [
             title(),
-            textfieldUtility.nameSurnameTextfield(nameSurnameController, true),
+            textfieldUtility.nameSurnameTextfield(
+                _signUpController.nameController, true),
             textfieldUtility.birthOfDateTextfield(
-                profileController.birthOfDateController.value, true),
+                _signUpController.birthDateController, true),
+            ///TODO: use gender controller
             const CustomDropDown(purpose: 'gender'),
-            textfieldUtility.mailTextfield(mailController, true),
-            textfieldUtility.passwordTextfield(passwordController, true),
-            textfieldUtility.phoneTextfield(phoneController, true),
+            textfieldUtility.mailTextfield(
+                _signUpController.emailController, true),
+            textfieldUtility.passwordTextfield(
+                _signUpController.passwordController, true),
+            textfieldUtility.phoneTextfield(
+                _signUpController.phoneController, true),
             CustomButton(
               container:
                   ProfilePageUtility.loginSignUpButtonContainer(false, false),
-              onTap: () {/* kaydolma fonksiyonu*/},
+              onTap: () {
+                _signUpController.signUpWithEmail();
+              },
               text: 'Kaydol',
             ),
             ProfilePageUtility.lineWithOrText(),

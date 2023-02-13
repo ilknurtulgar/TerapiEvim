@@ -8,8 +8,3 @@ class CardModel {
     this.subtitle,
   });
 }
-
-CardModel cardModelhome = CardModel(
-    subtitle: "Uzman Psikolog",
-    imagePath: "assets/images/doctorfotosu.jpeg",
-    title: "Günay Kara");

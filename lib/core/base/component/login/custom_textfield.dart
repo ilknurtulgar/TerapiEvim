@@ -45,7 +45,7 @@ class CustomTextField extends StatelessWidget {
                 fillColor: Colors.white,
                 labelText: rowModel?.text ?? "",
                 labelStyle: rowModel?.textStyle,
-                suffix: isPassword ? rowModel?.trailingIcon : null,
+                suffix: isBig ? rowModel?.trailingIcon : null,
                 prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
                 hintText: rowModel?.text2,
                 hintStyle: rowModel?.textStyle2 ?? const TextStyle(),
@@ -85,24 +85,6 @@ RowModel trailingModel = RowModel(
     ),
     textStyle: const TextStyle());
 
-RowModel leadingModel = RowModel(
-    isAlignmentBetween: true,
-    text: "adsoyad",
-    //leadingIcon: IconUtility.emailIcon,
-    textStyle: const TextStyle());
-
-RowModel emailModel = RowModel(
-    isAlignmentBetween: true,
-    text: "email",
-    leadingIcon: IconUtility.emailIcon,
-    textStyle: const TextStyle());
-
-RowModel phoneModel = RowModel(
-    isAlignmentBetween: true,
-    text: "phone",
-    leadingIcon: IconUtility.calendarIcon,
-    textStyle: const TextStyle());
-
 RowModel searchModel = RowModel(
     isAlignmentBetween: true,
     text: "Ne aramistiniz?",
@@ -115,9 +97,3 @@ RowModel searchModel = RowModel(
     ),
     textStyle2: AppTextStyles.heading(false),
     textStyle: AppTextStyles.groupTextStyle(true));
-
-RowModel rowiModel = RowModel(
-    text: "Baş etme metotlari",
-    textStyle: const TextStyle(),
-    isAlignmentBetween: true,
-    trailingIcon: const Icon(Icons.keyboard_arrow_right_outlined));

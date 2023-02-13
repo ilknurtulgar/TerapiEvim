@@ -18,9 +18,9 @@ class _CustomDropDownState extends State<CustomDropDown> {
   Widget build(BuildContext context) {
     return Column(children: [
       Container(
-        height: 51,
+        height: widget.purpose == "gender" ? 51 : 36,
         decoration: AppBoxDecoration.lockScreenBox,
-        width: 340,
+        width: widget.purpose == "gender" ? 340 : 135,
         child: choosebox(widget.purpose),
       ),
       Obx(
@@ -60,8 +60,8 @@ class ChooseGender extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         decoration: AppBoxDecoration.lockScreenBox,
-        width: 340,
-        height: 102,
+        width: widget.purpose == "gender" ? 51 : 36,
+        height: widget.purpose == "gender" ? 340 : 135,
         child: ListView.builder(
           itemBuilder: (context, index) {
             return InkWell(

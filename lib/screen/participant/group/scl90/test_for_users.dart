@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
-import 'package:terapievim/core/base/component/group/purple_border_text_ccontainer.dart';
+import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/core/base/component/group/questions_button.dart';
-import 'package:terapievim/screen/participant/group/scl90/test_questions_controller.dart';
+import 'package:terapievim/controller/test_questions_controller.dart';
 
 import '../../../../core/base/util/base_utility.dart';
 
@@ -57,19 +57,23 @@ class PagesForSCL extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 32),
             ),
             _controller.testPageIndex.value == 0
-                ? PurpleBorderWhiteInsideTextContainer(text: definition)
+                ? PurpleTextContainer(text: definition)
                 : const SizedBox.shrink(),
-            ListView.builder(
-              itemBuilder: (context, index) =>
-                  questions[index + _controller.testPageIndex.value * 3],
-              itemCount: 3, //sayfada kac soru olacak sor
-              shrinkWrap: true,
-              padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 23),
-            ),
+            questionsWidget(),
             pageChangeButtons()
           ],
         ),
       ),
+    );
+  }
+
+  ListView questionsWidget() {
+    return ListView.builder(
+      itemBuilder: (context, index) =>
+          questions[index + _controller.testPageIndex.value * 3],
+      itemCount: 3, //sayfada kac soru olacak sor
+      shrinkWrap: true,
+      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 23),
     );
   }
 

@@ -21,9 +21,9 @@ class GroupTexts {
   static const String imagePath = "assets/images/doctorfotosu.jpeg"; //gecici
 }
 
-class GroupTextStyle {
-  static const TextStyle groupOutButton = TextStyle(
-      color: AppColors.meteorite,
-      fontFamily: "Roboto",
-      fontWeight: FontWeight.w500);
-}
+// class GroupTextStyle {
+//   static const TextStyle groupOutButton = TextStyle(
+//       color: AppColors.meteorite,
+//       fontFamily: "Roboto",
+//       fontWeight: FontWeight.w500);
+// }

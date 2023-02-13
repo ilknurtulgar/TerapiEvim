@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/group/purple_border_text_ccontainer.dart';
+import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/screen/participant/group/util/lock_screen_utility.dart';
 
 import '../buttons/custom_button.dart';
@@ -70,7 +70,7 @@ Column noTest() {
   return Column(
     children: [
       lockedTextContainer(LockScreenUtil.text2),
-      const PurpleBorderWhiteInsideTextContainer(text: LockScreenUtil.text2),
+      const PurpleTextContainer(text: LockScreenUtil.text2),
       testButton()
     ],
   );

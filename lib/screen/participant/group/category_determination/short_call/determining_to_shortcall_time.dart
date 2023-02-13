@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/group/row_view.dart';
+import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/group/choosing_time_sc_cont.dart';
-import 'package:terapievim/core/base/component/group/purple_border_text_ccontainer.dart';
+import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/screen/participant/group/util/text_util.dart';
 
 import '../../../../../core/base/component/group/custom_heading.dart';
@@ -25,20 +27,39 @@ class ShortCallTime extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            customAppBar(),
-            const Divider(
-              color: AppColors.black,
-            ),
+            rowView(
+                RowModel(
+                    text: GroupTexts.terapiEvim,
+                    textStyle: AppTextStyles.heading(false),
+                    isAlignmentBetween: true,
+                    trailingIcon: saveButton()),
+                GroupPaddings.appbarPadding),
+            line(),
             CustomHeading(
               text: hiUser,
               isalignmentstart: false,
             ),
-            const PurpleBorderWhiteInsideTextContainer(
-                text: GroupTexts.shortCallDateChooseText),
-            timeChoose()
+            const PurpleTextContainer(text: GroupTexts.shortCallDateChooseText),
+            timeChoose(),
           ],
         ),
       ),
+    );
+  }
+
+  Divider line() {
+    return const Divider(
+      color: AppColors.black,
+      indent: 10,
+      endIndent: 10,
+      height: 0.1,
+    );
+  }
+
+  IconButton saveButton() {
+    return IconButton(
+      icon: IconUtility.save,
+      onPressed: () {},
     );
   }
 
@@ -55,32 +76,6 @@ class ShortCallTime extends StatelessWidget {
           timeList: timelist,
           listviewIndex: index,
         ),
-      ),
-    );
-  }
-
-  Padding customAppBar() {
-    return Padding(
-      padding: GroupPaddings.appbarPadding,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const SizedBox(
-            width: 20,
-          ),
-          CustomHeading(
-            text: GroupTexts.terapiEvim,
-            padding: GroupPaddings.shortCallHeadingPadding,
-            isalignmentstart: false,
-          ),
-          IconButton(
-            icon: IconUtility.save,
-            onPressed: () {
-              //kategori secimi kaydedilecek
-              //print("Kategori secildi yegenim");
-            },
-          )
-        ],
       ),
     );
   }

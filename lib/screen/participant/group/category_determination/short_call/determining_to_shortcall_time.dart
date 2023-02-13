@@ -3,7 +3,7 @@ import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/group/choosing_time_sc_cont.dart';
-import 'package:terapievim/core/base/component/group/purple_border_text_ccontainer.dart';
+import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/screen/participant/group/util/text_util.dart';
 
 import '../../../../../core/base/component/group/custom_heading.dart';
@@ -39,8 +39,7 @@ class ShortCallTime extends StatelessWidget {
               text: hiUser,
               isalignmentstart: false,
             ),
-            const PurpleBorderWhiteInsideTextContainer(
-                text: GroupTexts.shortCallDateChooseText),
+            const PurpleTextContainer(text: GroupTexts.shortCallDateChooseText),
             timeChoose(),
           ],
         ),

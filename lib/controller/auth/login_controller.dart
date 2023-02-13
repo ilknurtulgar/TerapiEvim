@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/components/toast/toast.dart';
+import 'package:terapievim/toast/toast.dart';
 import 'package:terapievim/controller/main_controller.dart';
 
-import '../../screen/home/main_home.dart';
+import '../../screen/participant/home/main_home.dart';
 import '../../service/model/common/login/login_model.dart';
 import '../../service/service/auth/auth_service.dart';
 import '../../service/service/auth/i_auth_service.dart';

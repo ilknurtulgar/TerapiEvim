@@ -9,6 +9,7 @@ import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/participant/group/group_out.dart';
 import 'package:terapievim/screen/participant/group/util/group_screen_utility.dart';
 

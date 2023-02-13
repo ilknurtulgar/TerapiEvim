@@ -20,45 +20,41 @@ class ActivityBox extends StatelessWidget {
   final bool isactivity;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(0),
-      child: Container(
-        width: 350,
-        height: isactivity ? 140 : 165,
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          border: Border.all(color: AppColors.cornFlowerBlue, width: 2),
-          borderRadius: BorderRadius.circular(8),
-        ),
-        child: Column(
-          children: [
-            //
-            rowView(arowModel,
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
-            rowView(ayrowwModel,
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
-            rowView(clockModel,
-                const EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                CustomButton(
-                    container: containerModel, onTap: () {}, text: "öcl")
-              ],
-            )
-          ],
-        ),
+    return Container(
+      width: 350,
+      height: isactivity ? 140 : 165,
+      decoration: BoxDecoration(
+        color: AppColors.white,
+        border: Border.all(color: AppColors.cornFlowerBlue, width: 2),
+        borderRadius: BorderRadius.circular(8),
+      ),
+      child: Column(
+        children: [
+          //
+          rowView(arowModel,
+              const EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
+          rowView(ayrowwModel,
+              const EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
+          rowView(clockModel,
+              const EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: CustomButton(
+                  container: containerModel,
+                  onTap: () {},
+                  text: "Katıl",
+                ),
+              )
+            ],
+          )
+        ],
       ),
     );
   }
 }
-
-ContainerModel containerButton = ContainerModel(
-    height: 50,
-    shadowColor: AppColors.black,
-    borderRadius: 70,
-    width: 50,
-    backgroundColor: AppColors.cornFlowerBlue);
 
 RowModel arowmodel = RowModel(
     isAlignmentBetween: true,

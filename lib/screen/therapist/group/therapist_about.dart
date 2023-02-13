@@ -3,8 +3,8 @@ import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/screen/participant/group/util/group_screen_utility.dart';
 
-import '../../participant/group/util/group/group_screen_utility.dart';
 import '../../participant/group/util/lock_screen_utility.dart';
 
 class TherapistProfile extends StatelessWidget {

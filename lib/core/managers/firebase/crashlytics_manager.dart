@@ -1,6 +1,6 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
-import '../../../components/toast/toast.dart';
+import '../../../toast/toast.dart';
 import '../../init/print_dev.dart';
 
 class CrashlyticsManager {
@@ -19,7 +19,6 @@ class CrashlyticsManager {
     required String reason,
     bool isFatal = false,
   }) async {
-
     if (kReleaseMode) {
       await FirebaseCrashlytics.instance
           .recordError(error, stackTrace, reason: reason, fatal: isFatal);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
-import 'package:terapievim/screen/group/component/group_information_container.dart';
+import 'package:terapievim/screen/group/component/group_info_container.dart';
 
 import 'package:terapievim/screen/group/util/group_screen_utility.dart';
 import 'package:terapievim/screen/group/util/text_util.dart';

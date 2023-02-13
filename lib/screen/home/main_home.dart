@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/group/group.dart';
-
+import 'package:terapievim/screen/profile/participant_ui/profile_page.dart';
 import '../../controller/main_controller.dart';
-
 import '../activity/activities.dart';
 import '../message/message.dart';
-
-import '../profile/profile.dart';
 import 'home.dart';
 
 class TerapiEvimLogged extends StatefulWidget {
@@ -37,7 +34,7 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
       ActivitiesScreen(),
       GroupScreen(),
       const MessageScreen(),
-      ProfileScreen(),
+      ParticipantProfilePage(),
     ];
     return Scaffold(
       bottomNavigationBar: Obx(

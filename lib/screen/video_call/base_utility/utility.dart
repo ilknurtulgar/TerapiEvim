@@ -1,7 +1,5 @@
 import 'dart:ui';
-
 import 'package:terapievim/screen/video_call/components/buttons/video_call_buttons.dart';
-
 import '../model/person_in_call_model.dart';
 import '../model/video_call_view_model.dart';
 import '../../../core/base/util/base_utility.dart';

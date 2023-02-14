@@ -98,7 +98,9 @@ class SignUpController extends GetxController {
 
     ///TODO:  save user data to cache
 
-    Get.to(() => const TerapiEvimLogged());
+    Get.offUntil(
+        MaterialPageRoute(builder: (context) => const TerapiEvimLogged()),
+            (route) => false);
   }
 
   bool _validateSignUp() {

@@ -1,8 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
-import 'package:terapievim/core/base/component/group/purple_border_text_ccontainer.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
+
+import '../../../core/base/component/profile/image/custom_circle_avatar.dart';
+import '../../../core/base/models/row_model.dart';
+import '../../../core/base/util/base_utility.dart';
 
 
 class MessageScreen extends StatelessWidget {
@@ -110,7 +113,6 @@ class MessageScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         circleavatar(),
-
       ],
     );
   }

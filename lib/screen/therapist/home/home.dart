@@ -14,7 +14,7 @@ class TherapistHome extends StatelessWidget {
       children: [
         Center(
             child: Reminder(
-          reminderType: ReminderType.therapy,
+          reminderType: ReminderType.activity,
           name: "Yasemin",
           time: "14.44",
         )),

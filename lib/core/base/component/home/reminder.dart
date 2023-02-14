@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/screen/therapist/home/home_utility.dart';
 
 //terapist sayfasi hatirlatmalar
 class Reminder extends StatelessWidget {
@@ -24,13 +25,9 @@ class Reminder extends StatelessWidget {
     return InkWell(
       onTap: () {},
       child: Container(
-        decoration: BoxDecoration(
-            color: AppColors.white,
-            borderRadius: BorderRadius.circular(16),
-            boxShadow: [shadow()]),
+        decoration: AppBoxDecoration.notificationDec,
         width: 342,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             reminderconst(),
@@ -41,31 +38,24 @@ class Reminder extends StatelessWidget {
     );
   }
 
-  BoxShadow shadow() {
-    return BoxShadow(
-      color: Colors.grey.withOpacity(0.5),
-      blurRadius: 7,
-      offset: const Offset(0, 3), // changes position of shadow
-    );
-  }
-
   Widget reminderconst() {
+    const trailing = Padding(
+      padding: EdgeInsets.only(left: 170.0),
+      child: IconUtility.arrowForwardIcon,
+    );
     return rowView(
         RowModel(
-            text: "Hatirlatma",
+            text: HomeTextUtil.reminder,
             textStyle: AppTextStyles.groupTextStyle(true),
-            leadingIcon: IconUtility.clockIcon,
-            trailingIcon: const Padding(
-              padding: EdgeInsets.only(left: 170.0),
-              child: IconUtility.arrowForwardIcon,
-            ),
+            leadingIcon: IconUtility.notification,
+            trailingIcon: trailing,
             isAlignmentBetween: false),
-        const EdgeInsets.symmetric(vertical: 13, horizontal: 16));
+        AppPaddings.reminderPadding);
   }
 
   Padding reminderContent(String reminderTypeText, String reminderName) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+      padding: AppPaddings.reminderPadding,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -74,9 +64,9 @@ class Reminder extends StatelessWidget {
             style: AppTextStyles.groupTextStyle(false),
           ),
           Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              padding: AppPaddings.reminderBetweenText,
               child: customText("$reminderName $name")),
-          customText("Saat: $time"),
+          customText("${HomeTextUtil.timeText} $time"),
         ],
       ),
     );
@@ -95,34 +85,27 @@ enum ReminderType { shortcall, therapy, activity }
 String textSet(
   ReminderType type,
 ) {
-  const String shortcallText = "15 Dakikalik Seans";
-  const String activityText = "Etkinlik";
-  const String therapyText = "Grup Terapisi";
-
   switch (type) {
     case ReminderType.activity:
-      return activityText;
+      return HomeTextUtil.activityText;
 
     case ReminderType.shortcall:
-      return shortcallText;
+      return HomeTextUtil.shortcallText;
 
     case ReminderType.therapy:
-      return therapyText;
+      return HomeTextUtil.therapyText;
   }
 }
 
 String nameSet(ReminderType type) {
-  const String shortcallName = "Danisan: ";
-  const String activityName = "Etkinlik Ismi:";
-  const String therapyName = "Grup:";
   switch (type) {
     case ReminderType.activity:
-      return activityName;
+      return HomeTextUtil.activityName;
 
     case ReminderType.shortcall:
-      return shortcallName;
+      return HomeTextUtil.shortcallName;
 
     case ReminderType.therapy:
-      return therapyName;
+      return HomeTextUtil.therapyName;
   }
 }

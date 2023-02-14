@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
+import 'package:terapievim/screen/therapist/home/home_utility.dart';
+import '../../models/row_model.dart';
+import '../../util/base_utility.dart';
+import '../group/row_view.dart';
 
 class NotificationContainer extends StatelessWidget {
   const NotificationContainer(
@@ -17,49 +19,51 @@ class NotificationContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final String NotificationText = textSet(type);
+    final String notificationText = textSet(type);
     return Container(
-      decoration: BoxDecoration(
-          color: AppColors.white,
-          borderRadius: BorderRadius.circular(16),
-          boxShadow: [shadow()]),
+      decoration: AppBoxDecoration.notificationDec,
       width: 342,
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           notificationConst(),
-          notificationContent(NotificationText, name, contentText),
-          Padding(
-            padding: const EdgeInsets.only(left: 150.0, bottom: 16),
-            child: CustomButton(
-                container: ContainerModel(
-                    backgroundColor: AppColors.butterflyBush,
-                    borderRadius: 100,
-                    height: 30,
-                    shadowColor: AppColors.butterflyBush,
-                    width: 175),
-                onTap: () {},
-                text: "Tekrar Psikolog Bul"),
-          )
+          notificationContent(notificationText, name, contentText),
+          notificationButton()
         ],
       ),
     );
   }
+
+  Padding notificationButton() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 150.0, bottom: 16),
+      child: CustomButton(
+          container: ContainerModel(
+              backgroundColor: AppColors.butterflyBush,
+              borderRadius: 100,
+              height: 30,
+              shadowColor: AppColors.butterflyBush,
+              width: 175),
+          onTap: () {},
+          text: "Tekrar Psikolog Bul"),
+    );
+  }
 }
 
-BoxShadow shadow() {
-  return BoxShadow(
-    color: Colors.grey.withOpacity(0.5),
-    blurRadius: 7,
-    offset: const Offset(0, 3), // changes position of shadow
-  );
+Widget notificationConst() {
+  return rowView(
+      RowModel(
+          text: HomeTextUtil.notification,
+          textStyle: AppTextStyles.groupTextStyle(true),
+          leadingIcon: IconUtility.notification,
+          isAlignmentBetween: false),
+      AppPaddings.reminderPadding);
 }
 
 Padding notificationContent(
     String reminderTypeText, String name, String contentText) {
   return Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 16),
+    padding: AppPaddings.reminderPadding,
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -68,8 +72,8 @@ Padding notificationContent(
           style: AppTextStyles.groupTextStyle(false),
         ),
         Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: customText("Grup: $name")),
+            padding: AppPaddings.reminderBetweenText,
+            child: customText("${HomeTextUtil.therapyName} $name")),
         customText(contentText),
       ],
     ),
@@ -85,16 +89,6 @@ Text customText(String reminderTypeText) {
 
 enum NotificationType { shortcallFail }
 
-Widget notificationConst() {
-  return rowView(
-      RowModel(
-          text: "Bildirim",
-          textStyle: AppTextStyles.groupTextStyle(true),
-          leadingIcon: IconUtility.clockIcon,
-          isAlignmentBetween: false),
-      const EdgeInsets.symmetric(vertical: 16, horizontal: 16));
-}
-
-String textSet(NotificationTypetype) {
+String textSet(NotificationType type) {
   return "Yardimci Psikolog Bulunmasi";
 }

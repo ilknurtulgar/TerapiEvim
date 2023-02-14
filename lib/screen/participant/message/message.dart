@@ -113,7 +113,6 @@ class MessageScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         circleavatar(),
-
       ],
     );
   }

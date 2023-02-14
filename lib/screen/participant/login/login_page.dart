@@ -29,6 +29,7 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
   @override
   void dispose() {
     _loginController.dispose();
+    Get.delete<LoginController>();
     super.dispose();
   }
 

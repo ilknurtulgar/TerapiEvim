@@ -1,74 +1,116 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
-import 'package:terapievim/core/base/component/group/purple_text_container.dart';
-import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/core/base/component/group/purple_border_text_ccontainer.dart';
+import 'package:terapievim/core/base/component/login/custom_textfield.dart';
+
 
 class MessageScreen extends StatelessWidget {
-  const MessageScreen({super.key, this.rowmodel});
+  MessageScreen({super.key, this.rowmodel});
   final RowModel? rowmodel;
-
+  final TextEditingController textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          children: [const CustomDropDown(purpose: "gender"), messagebox()],
-        ),
-        /*SingleChildScrollView(
-          child: Column(children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                circleavatar(),
-                CustomHeading(text: "Melisa Kara"),
-              ],
+          children: [
+            messageappbar(),
+            Expanded(
+              child: SingleChildScrollView(
+                  child: Column(children: [
+                messagebox(),
+                messageboxright(),
+                messagebox(),
+                messageboxright(),
+                messagebox(),
+                messageboxright(),
+                messagebox(),
+                messageboxright(),
+                messageboxright(),
+                messagebox(),
+                messageboxright(),
+                messageboxright(),
+                messagebox(),
+                messageboxright(),
+                messageboxright(),
+                messagebox(),
+                messageboxright(),
+                messageboxright(),
+                messagebox(),
+                messageboxright(),
+                messageboxright(),
+                messagebox(),
+                messageboxright(),
+                messageboxright(),
+                messagebox(),
+                messageboxright(),
+                messageboxright(),
+                messagebox(),
+                messageboxright(),
+                messageboxright(),
+                messagebox(),
+                messageboxright(),
+                messageboxright(),
+                messagebox(),
+                messageboxright(),
+              ])),
             ),
-            Divider(
-              color: AppColors.black,
-              height: 5,
-            ),
-            sizedbox(),
-            CustomTextField(
-              isPhoneNumber: false,
-              isBig: true,
-              isPassword: false,
-              isRowModel: true,
-              rowModel: searchModel,
-            ),
-            sizedbox(),
-            MyWidget(),
-            DropDown(),
-            sizedbox(),
-            messagebox(),
-            messageboxright(),
-            sizedbox(),
-            Padding(
-              padding: const EdgeInsets.only(top: 290, left: 23),
-              child: CustomTextField(
-                isPhoneNumber: false,
-                isBig: true,
-                isPassword: false,
-                isRowModel: false,
+            SizedBox(
+              height: 72,
+              //  color: Colors.white,
+              // decoration: AppBoxDecoration.sendDecoration,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  CustomTextField(
+                    textController: textEditingController,
+                    isPhoneNumber: false,
+                    isBig: true,
+                    isPassword: false,
+                    isRowModel: false,
+                  ),
+                  IconButton(onPressed: () {}, icon: IconUtility.sendIcon),
+                ],
               ),
             ),
-          ]),
-        ),*/
+            //demo(),
+          ],
+        ),
       ),
     );
   }
 
-  Row messagebox() {
+  Positioned demo() {
+    return Positioned(
+        child: Container(
+      decoration: BoxDecoration(
+          color: Colors.white, border: Border.all(color: Colors.white)),
+      width: window.physicalSize.width,
+      height: 162,
+    ));
+  }
+
+  Widget messageappbar() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        circleavatar(),
+        CustomHeading(text: "Melisa Kara", isalignmentstart: false),
+        const Divider(
+          color: AppColors.black,
+          height: 7,
+        ),
+      ],
+    );
+  }
+
+  Widget messagebox() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         circleavatar(),
-        const PurpleTextContainer(text: "fvlö")
-        /* CustomText(
-            containerModel: customTextModel,
-            isActivity: false,
-            customText: "fd"),*/
+
       ],
     );
   }
@@ -77,10 +119,6 @@ class MessageScreen extends StatelessWidget {
     return Row(
       children: [
         CustomHeading(isalignmentstart: true, text: "text"),
-        /* CustomText(
-            containerModel: customTextModel,
-            isActivity: false,
-            customText: "fd"),*/
         circleavatar(),
       ],
     );

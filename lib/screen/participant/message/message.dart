@@ -1,7 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
-import 'package:terapievim/core/base/component/group/purple_text_container.dart';
+import 'package:terapievim/core/base/component/group/purple_border_text_ccontainer.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 
 import '../../../core/base/component/profile/image/custom_circle_avatar.dart';

@@ -89,7 +89,6 @@ class IconUtility {
   );
   static const Icon sendIcon = Icon(
     Icons.send,
-    size: 30,
     color: Colors.black,
   );
   static const Icon settingIcon = Icon(Icons.settings);

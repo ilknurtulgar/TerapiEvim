@@ -2,11 +2,11 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
+import 'package:terapievim/screen/therapist/message/companent/chat_information.dart';
 
 import '../../../core/base/component/profile/image/custom_circle_avatar.dart';
 import '../../../core/base/models/row_model.dart';
 import '../../../core/base/util/base_utility.dart';
-
 
 class MessageScreen extends StatelessWidget {
   MessageScreen({super.key, this.rowmodel});
@@ -21,8 +21,9 @@ class MessageScreen extends StatelessWidget {
             messageappbar(),
             Expanded(
               child: SingleChildScrollView(
-                  child: Column(children: [
-                messagebox(),
+                  child: Column(children: const [
+                ChatInformation(),
+                /*  messagebox(),
                 messageboxright(),
                 messagebox(),
                 messageboxright(),
@@ -56,20 +57,20 @@ class MessageScreen extends StatelessWidget {
                 messageboxright(),
                 messageboxright(),
                 messagebox(),
-                messageboxright(),
+                messageboxright(),*/
               ])),
             ),
-            SizedBox(
-              height: 72,
-              //  color: Colors.white,
-              // decoration: AppBoxDecoration.sendDecoration,
+            Container(
+              decoration: AppBoxDecoration.sendDecoration,
+              height: 65,
+              width: window.physicalSize.width,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   CustomTextField(
                     textController: textEditingController,
                     isPhoneNumber: false,
-                    isBig: true,
+                    isBig: false,
                     isPassword: false,
                     isRowModel: false,
                   ),

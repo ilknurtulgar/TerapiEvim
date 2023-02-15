@@ -1,0 +1,29 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../core/base/component/group/scrollable_time.dart';
+
+class TherapistGroupController extends GetxController {
+  List<bool> isButtonOn = List<bool>.filled(10, false).obs;
+  void switchButtonFunction(int index, bool value) {
+    isButtonOn[index] = value;
+  }
+
+  RxString chosenHour = '12'.obs;
+  RxString chosenMinutes = '00'.obs;
+  void choosingTimeOfGroupTherapy(bool isHour, String value) {
+    if (value.length < 2) value = '0$value';
+    if (isHour) {
+      chosenHour.value = value;
+    } else {
+      chosenMinutes.value = value;
+    }
+  }
+
+  void showChoosingTimeDialog() {
+    Get.dialog(AlertDialog(
+      title: ScrollableTime(),
+      titlePadding: const EdgeInsets.symmetric(vertical: 15),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    ));
+  }
+}

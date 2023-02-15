@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
@@ -91,17 +90,17 @@ class ParticipantProfilePage extends StatelessWidget {
 
   Padding participantGroupContainer() {
     return Padding(
-      padding: const EdgeInsets.only(left: 5, bottom: 10),
+      padding: const EdgeInsets.only(left: 35, bottom: 10),
       child: GroupClass(
-        height: 127,
-        width: 300,
+        height: 138,
+        width: 350,
         borderColor: AppColors.cornFlowerBlue,
         heading: groupInformation.groupName,
         onTap: () {}, // navigate to group page
         row1: ProfilePageUtility.doubleTextRow(
-            'Ana psikolog: ', groupInformation.mainTherapistName,true),
+            'Ana psikolog: ', groupInformation.mainTherapistName, true),
         row2: ProfilePageUtility.doubleTextRow(
-            'Yardımcı Psikolog: ', groupInformation.secondTherapistName,true),
+            'Yardımcı Psikolog: ', groupInformation.secondTherapistName, true),
         row3: ProfilePageUtility.normalTextRow(
             groupInformation.therapyTime,
             Icons.alarm_outlined,
@@ -113,19 +112,16 @@ class ParticipantProfilePage extends StatelessWidget {
   Positioned nameAndBirthDateColumn() {
     return Positioned(
       top: 270,
-      child: Padding(
-        padding: EdgeInsets.symmetric(
-            horizontal: (window.physicalSize.width - 140) / 2),
-        child: Column(
-          children: [
-            Text(
-              nameSurname,
-              style: AppTextStyles.normalTextStyle('big', false),
-            ),
-            Text(birthOfDate,
-                style: AppTextStyles.normalTextStyle('medium', false)),
-          ],
-        ),
+      left: 137,
+      child: Column(
+        children: [
+          Text(
+            nameSurname,
+            style: AppTextStyles.normalTextStyle('big', false),
+          ),
+          Text(birthOfDate,
+              style: AppTextStyles.normalTextStyle('medium', false)),
+        ],
       ),
     );
   }

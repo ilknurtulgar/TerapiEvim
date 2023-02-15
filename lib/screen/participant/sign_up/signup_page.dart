@@ -28,6 +28,7 @@ class _ParticipantSignUpPageState extends State<ParticipantSignUpPage> {
   @override
   void dispose() {
     _signUpController.dispose();
+    Get.delete<SignUpController>();
     super.dispose();
   }
 

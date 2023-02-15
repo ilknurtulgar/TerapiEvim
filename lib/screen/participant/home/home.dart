@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/home/notification_from_ther_container.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
+import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/screen/participant/home/coping_methods.dart';
-import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -15,46 +15,56 @@ class HomeScreen extends StatelessWidget {
     return SingleChildScrollView(
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(
-              top: 90,
-            ),
-            child: Text(
-              "Terapi Evim",
-              textAlign: TextAlign.center,
-              style: AppTextStyles.heading(true),
-            ),
+          headingtext(
+            true,
+            true,
+            "TerapiEvim",
           ),
-          Text(
-            "Hogeldiniz ",
-            textAlign: TextAlign.center,
-            style: AppTextStyles.heading(false),
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          SeminarMin(
-              onTap: () {
-                Get.to(const CopingMethods());
-              },
-              row: rowiModel,
-              borderColor: AppColors.cornFlowerBlue),
-          ListView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index) {
-              return NotificationFromTherContainer(
-                  cardModel: cardModelhome,
-                  explanation: home[index],
-                  buttonOnTap: () {},
-                  buttonText: "Detaylar");
-            },
-            itemCount: home.length,
-          )
+          headingtext(false, false, "Hoşgeldiniz"),
+          copingmin(),
+          notification()
         ],
       ),
     );
   }
+
+  ListView notification() {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemBuilder: (context, index) {
+        return NotificationFromTherContainer(
+            cardModel: cardModelhome,
+            explanation: home[index],
+            buttonOnTap: () {},
+            buttonText: "Detaylar");
+      },
+      itemCount: home.length,
+    );
+  }
+
+  Padding copingmin() {
+    return Padding(
+      padding: const EdgeInsets.all(10),
+      child: SeminarMin(
+          onTap: () {
+            Get.to(const CopingMethods());
+          },
+          row: rowiModel,
+          borderColor: AppColors.cornFlowerBlue),
+    );
+  }
+}
+
+Padding headingtext(bool isHeading, bool isPadding, String heading) {
+  return Padding(
+    padding: isPadding ? const EdgeInsets.only(top: 80) : EdgeInsets.zero,
+    child: Text(
+      heading,
+      textAlign: TextAlign.center,
+      style: AppTextStyles.heading(isHeading),
+    ),
+  );
 }
 
 List<String> home = [
@@ -66,3 +76,16 @@ List<String> home = [
   "ilknur",
   "behzat"
 ];
+CardModel cardModelhome = CardModel(
+    subtitle: "Uzman Psikolog",
+    imagePath: "assets/images/doctorfotosu.jpeg",
+    title: "Günay Kara");
+
+//////
+
+//kalıcı
+RowModel rowiModel = RowModel(
+    text: "BAŞ ETME METOTLARI",
+    textStyle: AppTextStyles.groupTextStyle(false),
+    isAlignmentBetween: true,
+    trailingIcon: IconUtility.arrowIcon);

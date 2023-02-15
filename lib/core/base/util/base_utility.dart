@@ -35,6 +35,7 @@ class AppColors {
 }
 
 class IconUtility {
+  static const Icon arrowIcon = Icon(Icons.keyboard_arrow_right_outlined);
   static const Icon visibilityIcon = Icon(
     Icons.visibility,
   );
@@ -54,12 +55,13 @@ class IconUtility {
     Icons.alarm_outlined,
     color: AppColors.black,
   );
+  static const Icon notification = Icon(Icons.notifications);
   static const Icon logoutIcon = Icon(Icons.logout);
   static const Icon searchIcon = Icon(Icons.search);
   static const Icon fiterIcon = Icon(Icons.list);
   static const Icon fileIcon = Icon(
     Icons.description_outlined,
-    color: AppColors.butterflyBush,
+    color: AppColors.white,
   );
   static const Icon fileIconBlack = Icon(
     Icons.description_outlined,
@@ -85,7 +87,11 @@ class IconUtility {
     Icons.call_end,
     color: AppColors.white,
   );
-  static const Icon sendIcon = Icon(Icons.send);
+  static const Icon sendIcon = Icon(
+    Icons.send,
+    size: 30,
+    color: Colors.black,
+  );
   static const Icon settingIcon = Icon(Icons.settings);
   static const Icon editIcon = Icon(Icons.edit);
   static const Icon deleteIcon = Icon(Icons.delete);
@@ -189,7 +195,8 @@ class AppTextStyles {
       fontFamily: 'Roboto',
       fontSize: isName ? 16 : 18,
       fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
-      color: AppColors.black);
+      //sor!
+      color: isName ? AppColors.black : AppColors.deepCove);
 }
 
 class AppContainers {
@@ -204,21 +211,26 @@ class AppContainers {
           width: width, //342,
           borderRadius: 8,
           backgroundColor: AppColors.white);
-  static ContainerModel documentContainer = ContainerModel(
+  //belirt
+  /* static ContainerModel documentContainer = ContainerModel(
       height: 40,
       borderRadius: 360,
       backgroundColor: AppColors.white,
       shadowColor: AppColors
-          .dustyGray); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
+          .dustyGray); */ // bunun width'i içindeki text'in uzunluğuna göre değişiyor
   static ContainerModel purpleButtonContainer(double? width) => ContainerModel(
         height: 30,
         width: width,
-        borderRadius: 100,
+        borderRadius: 65,
         backgroundColor: AppColors.butterflyBush,
       ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
 }
 
 class AppPaddings {
+  static const EdgeInsets reminderPadding =
+      EdgeInsets.symmetric(vertical: 16, horizontal: 16);
+  static const EdgeInsets reminderBetweenText =
+      EdgeInsets.symmetric(vertical: 16.0);
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
       0, 15, 20, 15); // sağ alt bütün mor butonlar için geçerli
 }
@@ -226,6 +238,8 @@ class AppPaddings {
 class AppBorderRadius {
   static const BorderRadius generalBorderRadius =
       BorderRadius.all(Radius.circular(8));
+  static const BorderRadius notificationradius =
+      BorderRadius.all(Radius.circular(16));
 }
 
 class AppBoxDecoration {
@@ -237,4 +251,18 @@ class AppBoxDecoration {
   static BoxDecoration lockScreenButton = const BoxDecoration(
       color: AppColors.cornFlowerBlue,
       borderRadius: AppBorderRadius.generalBorderRadius);
+
+  static BoxDecoration sendDecoration = BoxDecoration(
+      color: AppColors.white,
+      borderRadius: AppBorderRadius.generalBorderRadius,
+      border: Border.all(color: AppColors.dustyGray));
+  static BoxDecoration notificationDec = BoxDecoration(
+      color: AppColors.white,
+      borderRadius: AppBorderRadius.notificationradius,
+      boxShadow: [
+        BoxShadow(
+            color: AppColors.dustyGray.withOpacity(0.5),
+            blurRadius: 7,
+            offset: const Offset(0, 3))
+      ]);
 }

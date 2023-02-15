@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/toast/toast.dart';
 import 'package:terapievim/controller/main_controller.dart';
+import 'package:terapievim/toast/toast.dart';
 
 import '../../screen/participant/home/main_home.dart';
 import '../../service/model/common/login/login_model.dart';
@@ -42,7 +42,6 @@ class LoginController extends GetxController {
   }
 
   Future<void> loginWithEmail() async {
-    print('loginWithEmail');
     final isValidated = _validateLogin();
 
     if (isValidated == false) {
@@ -62,13 +61,15 @@ class LoginController extends GetxController {
     isLoading.value = false;
 
     if (result == null) {
-      //TODO: add error that something went wrong
+      flutterErrorToast("Email is incorrect");
       return;
     }
 
     MainController maiController = Get.find();
     maiController.isLogged.value = true;
-    Get.to(() => const TerapiEvimLogged());
+    Get.offUntil(
+        MaterialPageRoute(builder: (context) => const TerapiEvimLogged()),
+        (route) => false);
   }
 
   bool _validateLogin() {

@@ -21,8 +21,20 @@ class MessageScreen extends StatelessWidget {
             messageappbar(),
             Expanded(
               child: SingleChildScrollView(
-                  child: Column(children: const [
-                ChatInformation(),
+                  child: Column(children: [
+                const ChatInformation(),
+                CustomTextField(
+                  isPhoneNumber: false,
+                  isBig: false,
+                  textController: textEditingController,
+                  isPassword: false,
+                  isRowModel: true,
+                  rowModel: RowModel(
+                    text: "",
+                    textStyle: const TextStyle(color: AppColors.black),
+                    isAlignmentBetween: false,
+                  ),
+                ),
                 /*  messagebox(),
                 messageboxright(),
                 messagebox(),
@@ -139,3 +151,6 @@ class MessageScreen extends StatelessWidget {
     );
   }
 }
+
+RowModel rowModel = RowModel(
+    text: "jvv", textStyle: const TextStyle(), isAlignmentBetween: false);

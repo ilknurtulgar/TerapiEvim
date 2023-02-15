@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
+
+import '../../models/row_model.dart';
+import '../../util/base_utility.dart';
+import '../group/row_view.dart';
 
 class NotificationContainer extends StatelessWidget {
   const NotificationContainer(

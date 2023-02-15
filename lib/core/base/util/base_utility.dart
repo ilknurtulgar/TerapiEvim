@@ -55,6 +55,7 @@ class IconUtility {
     Icons.alarm_outlined,
     color: AppColors.black,
   );
+  static const Icon notification = Icon(Icons.notifications);
   static const Icon logoutIcon = Icon(Icons.logout);
   static const Icon searchIcon = Icon(Icons.search);
   static const Icon fiterIcon = Icon(Icons.list);
@@ -225,6 +226,10 @@ class AppContainers {
 }
 
 class AppPaddings {
+  static const EdgeInsets reminderPadding =
+      EdgeInsets.symmetric(vertical: 16, horizontal: 16);
+  static const EdgeInsets reminderBetweenText =
+      EdgeInsets.symmetric(vertical: 16.0);
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
       0, 15, 20, 15); // sağ alt bütün mor butonlar için geçerli
 }
@@ -232,6 +237,8 @@ class AppPaddings {
 class AppBorderRadius {
   static const BorderRadius generalBorderRadius =
       BorderRadius.all(Radius.circular(8));
+  static const BorderRadius notificationradius =
+      BorderRadius.all(Radius.circular(16));
 }
 
 class AppBoxDecoration {
@@ -248,4 +255,20 @@ class AppBoxDecoration {
       color: AppColors.white,
       borderRadius: AppBorderRadius.generalBorderRadius,
       border: Border.all(color: AppColors.dustyGray));
+  static BoxDecoration notificationDec = BoxDecoration(
+      color: AppColors.white,
+      borderRadius: AppBorderRadius.notificationradius,
+      boxShadow: [
+        BoxShadow(
+            color: AppColors.dustyGray.withOpacity(0.5),
+            blurRadius: 7,
+            offset: const Offset(0, 3))
+      ]);
 }
+
+Padding colon(bool isInAlertDialog) {
+    return  Padding(
+              padding: isInAlertDialog ? const EdgeInsets.only(left: 20, right: 20, bottom: 15) : const EdgeInsets.symmetric(horizontal: 20),
+              child: const Text(':',style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500,color: AppColors.black),),
+            );
+  }

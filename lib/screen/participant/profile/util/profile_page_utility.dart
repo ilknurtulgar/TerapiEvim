@@ -45,16 +45,13 @@ class ProfilePageUtility {
         ),
       );
 
-  static RowModel therapistRow(
-          String whichTherapistInformationText, String therapistName) =>
-      RowModel(
-          // ana ve yardımcı terapist için
-          text: whichTherapistInformationText,
-          textStyle: AppTextStyles.groupTextStyle(false),
-          text2: therapistName,
-          textStyle2: AppTextStyles.normalTextStyle('medium', false),
-          leadingIcon: IconUtility.personIcon,
-          isAlignmentBetween: false);
+  static RowModel doubleTextRow(String firstText,String secondText,bool isInParticipantPage)=> RowModel( // ana ve yardımcı terapist için
+    text: firstText,
+    textStyle: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 18),
+    text2: secondText,
+    textStyle2: const TextStyle(color: Colors.black,fontSize: 16),
+    leadingIcon: Icon(isInParticipantPage ? Icons.person_outline : Icons.account_circle_outlined,color: Colors.black,),
+    isAlignmentBetween: false);
 
   static RowModel boldMainTitleRow(
           String text, IconData icon, Function() onTap) =>

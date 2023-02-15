@@ -266,3 +266,10 @@ class AppBoxDecoration {
             offset: const Offset(0, 3))
       ]);
 }
+
+Padding colon(bool isInAlertDialog) {
+    return  Padding(
+              padding: isInAlertDialog ? const EdgeInsets.only(left: 20, right: 20, bottom: 15) : const EdgeInsets.symmetric(horizontal: 20),
+              child: const Text(':',style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500,color: AppColors.black),),
+            );
+  }

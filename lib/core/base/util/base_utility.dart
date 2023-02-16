@@ -147,13 +147,11 @@ class AppTextStyles {
   //                 profil sayfaları(o sayfadaki yazılar figmada çok küçük durduğu için medium'a aldık),
   // grey text --> arama kısımlarındaki textler 'Ne aramıştınız?' texti gibi
 
-  static TextStyle buttonTextStyle(Color buttonColor) => TextStyle(
+  static TextStyle buttonTextStyle(Color textColor) => TextStyle(
       fontFamily: 'Roboto',
       fontWeight: FontWeight.w500,
       fontSize: 16,
-      color: buttonColor == AppColors.butterflyBush
-          ? AppColors.white
-          : AppColors.butterflyBush);
+      color: textColor);
   static TextStyle methodsPageTextStyle(bool isDateText, bool isOrderButton,
           bool isExplanationText, bool isDocument) =>
       TextStyle(
@@ -210,13 +208,7 @@ class AppContainers {
           width: width, //342,
           borderRadius: 8,
           backgroundColor: AppColors.white);
-  //belirt
-  /* static ContainerModel documentContainer = ContainerModel(
-      height: 40,
-      borderRadius: 360,
-      backgroundColor: AppColors.white,
-      shadowColor: AppColors
-          .dustyGray); */ // bunun width'i içindeki text'in uzunluğuna göre değişiyor
+
   static ContainerModel purpleButtonContainer(double? width) => ContainerModel(
         height: 30,
         width: width,
@@ -267,8 +259,14 @@ class AppBoxDecoration {
 }
 
 Padding colon(bool isInAlertDialog) {
-    return  Padding(
-              padding: isInAlertDialog ? const EdgeInsets.only(left: 20, right: 20, bottom: 15) : const EdgeInsets.symmetric(horizontal: 20),
-              child: const Text(':',style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500,color: AppColors.black),),
-            );
-  }
+  return Padding(
+    padding: isInAlertDialog
+        ? const EdgeInsets.only(left: 20, right: 20, bottom: 15)
+        : const EdgeInsets.symmetric(horizontal: 20),
+    child: const Text(
+      ':',
+      style: TextStyle(
+          fontSize: 20, fontWeight: FontWeight.w500, color: AppColors.black),
+    ),
+  );
+}

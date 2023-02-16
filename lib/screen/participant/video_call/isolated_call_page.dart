@@ -29,12 +29,14 @@ class IsolatedCallPage extends StatelessWidget {
       VideoCallController()); // daha önce başka bir sayfa için kullanılmadığı için uygulama şu anlık hata vermesin diye get.put kullandım ileriki süreçte get.find'a çeviririz
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(children: [
-        personBigViewInCall(),
-        buttonsRowContainer(),
-        personSmallViewInCall()
-      ]),
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(children: [
+          personBigViewInCall(),
+          buttonsRowContainer(),
+          personSmallViewInCall()
+        ]),
+      ),
     );
   }
 

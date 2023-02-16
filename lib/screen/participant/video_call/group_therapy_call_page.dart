@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
@@ -29,14 +28,16 @@ class GroupTherapyCallPage extends StatelessWidget {
   late final List<PersonInCallModel> participants = [p1, p2, p1, p2, p1];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        children: [
-          VideoCallPersonView(
-              videoCallViewModel:
-                  VideoCallUtility.personBigView(therapist, true)),
-          participantsRowWithButtonsContainer()
-        ],
+    return SafeArea(
+      child: Scaffold(
+        body: Stack(
+          children: [
+            VideoCallPersonView(
+                videoCallViewModel:
+                    VideoCallUtility.personBigView(therapist, true)),
+            participantsRowWithButtonsContainer()
+          ],
+        ),
       ),
     );
   }
@@ -45,9 +46,9 @@ class GroupTherapyCallPage extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-          color: AppColors.mineShaft,
+          color: AppColors.lightBlack,
           height: 281,
-          width: window.physicalSize.width,
+          width: PixelScreen().logicalWidth,
           child: Column(
             children: [
               const SizedBox(height: 20),

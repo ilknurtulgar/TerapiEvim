@@ -37,35 +37,39 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.blueChalk,
-      body: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            loginPageTitle(),
-            textfieldUtility.mailTextfield(
-                _loginController.emailController, true),
-            textfieldUtility.passwordTextfield(
-                _loginController.passwordController, true),
-            forgotYourPasswordTextButton(),
-            CustomButton(
-              container:
-                  ProfilePageUtility.loginSignUpButtonContainer(true, true),
-              onTap: () {
-                _loginController.loginWithEmail();
-              },
-              text: 'Giriş Yap',
-            ),
-            ProfilePageUtility.lineWithOrText(),
-            CustomButton(
-              container:
-                  ProfilePageUtility.loginSignUpButtonContainer(true, false),
-              onTap: () => Get.to(() => const ParticipantSignUpPage()),
-              text: 'Kaydol',
-            ),
-            const SizedBox(
-              height: 58,
-            ),
-          ]),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                loginPageTitle(),
+                textfieldUtility.mailTextfield(
+                    _loginController.emailController, true),
+                textfieldUtility.passwordTextfield(
+                    _loginController.passwordController, true),
+                forgotYourPasswordTextButton(),
+                CustomButton(
+                  textColor: Colors.white,
+                  container:
+                      ProfilePageUtility.loginSignUpButtonContainer(true, true),
+                  onTap: () {
+                    _loginController.loginWithEmail();
+                  },
+                  text: 'Giriş Yap',
+                ),
+                ProfilePageUtility.lineWithOrText(),
+                CustomButton(
+                  textColor: AppColors.butterflyBush,
+                  container: ProfilePageUtility.loginSignUpButtonContainer(
+                      true, false),
+                  onTap: () => Get.to(() => const ParticipantSignUpPage()),
+                  text: 'Kaydol',
+                ),
+              ]),
+        ),
+      ),
     );
   }
 
@@ -84,7 +88,7 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
 
   Padding loginPageTitle() {
     return const Padding(
-      padding: EdgeInsets.fromLTRB(0, 140, 0, 85),
+      padding: EdgeInsets.fromLTRB(0, 70, 0, 35),
       child: Text(
         'Giriş Yap',
         style: AppTextStyles.loginSignUpBigTitle,

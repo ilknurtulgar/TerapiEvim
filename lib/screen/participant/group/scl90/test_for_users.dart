@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
@@ -83,10 +82,12 @@ class PagesForSCL extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         CustomButton(
+            textColor: Colors.white,
             container: AppContainers.purpleButtonContainer(null),
             onTap: _controller.previousPage,
             text: "Onceki Sayfa"),
         CustomButton(
+            textColor: Colors.white,
             container: AppContainers.purpleButtonContainer(null),
             onTap: _controller.nextPage,
             text: "Sonraki Sayfa"),

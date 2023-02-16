@@ -6,6 +6,7 @@ class CustomButton extends StatefulWidget {
   const CustomButton(
       {super.key,
       required this.container,
+      required this.textColor,
       required this.onTap,
       required this.text,
       this.icon});
@@ -13,6 +14,7 @@ class CustomButton extends StatefulWidget {
   final Function() onTap;
   final String text;
   final Icon? icon;
+  final Color textColor;
   @override
   State<CustomButton> createState() => _CustomButtonState();
 }
@@ -49,8 +51,7 @@ class _CustomButtonState extends State<CustomButton> {
               : const SizedBox(),
           Text(
             widget.text,
-            style:
-                AppTextStyles.buttonTextStyle(widget.container.backgroundColor),
+            style: AppTextStyles.buttonTextStyle(widget.textColor),
           ),
         ],
       ),

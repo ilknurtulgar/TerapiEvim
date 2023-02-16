@@ -100,7 +100,7 @@ class ProfilePageUtility {
 
   static Padding lineWithOrText() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 50),
+      padding: const EdgeInsets.symmetric(vertical: 30),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

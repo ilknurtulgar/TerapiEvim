@@ -46,7 +46,11 @@ class ParticipantProfileSettingPage extends StatelessWidget {
                   profileController.birthOfDateController.value, false)),
           positionedTextfield(
             2,
-            const CustomDropDown(purpose: 'gender'),
+            const Padding(
+              padding:
+                  EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 20),
+              child: CustomDropDown(purpose: "gender"),
+            ),
           ),
           positionedTextfield(3,
               textfieldUtility.mailTextfield(mailControllerInSetting, false)),
@@ -67,6 +71,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         top: 620,
         left: 150,
         child: CustomButton(
+            textColor: Colors.white,
             container: AppContainers.purpleButtonContainer(150),
             onTap: () {/* kaydet fonksiyonu*/},
             text: 'Kaydet'));

@@ -37,6 +37,7 @@ class MethodDownloadingContainer extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 17),
               child: CustomButton(
+                  textColor: Colors.purple,
                   container: AppContainers.purpleButtonContainer(128),
                   onTap: buttonOnTap,
                   text: buttonText,

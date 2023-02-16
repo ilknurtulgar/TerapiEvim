@@ -23,18 +23,20 @@ class ShortCallPage extends StatelessWidget {
       isCamOn: true);
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.mineShaft,
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          therapistCallView(),
-          VideoCallPersonView(
-              videoCallViewModel: VideoCallUtility.personShortCallView(
-                  participant)), // participantCallView
-          const VideoCallButtonsRow(),
-        ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.mineShaft,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            therapistCallView(),
+            VideoCallPersonView(
+                videoCallViewModel: VideoCallUtility.personShortCallView(
+                    participant)), // participantCallView
+            const VideoCallButtonsRow(),
+          ],
+        ),
       ),
     );
   }

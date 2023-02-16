@@ -6,10 +6,6 @@ import '../../models/row_model.dart';
 import '../../util/base_utility.dart';
 import '../group/row_view.dart';
 
-import '../../models/row_model.dart';
-import '../../util/base_utility.dart';
-import '../group/row_view.dart';
-
 class NotificationContainer extends StatelessWidget {
   const NotificationContainer(
       {super.key,
@@ -42,6 +38,7 @@ class NotificationContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 150.0, bottom: 16),
       child: CustomButton(
+          textColor: Colors.white,
           container: ContainerModel(
               backgroundColor: AppColors.butterflyBush,
               borderRadius: 100,

@@ -52,10 +52,6 @@ class CustomTextField extends StatelessWidget {
                 prefixText: isPhoneNumber ? '+90 ' : null,
                 enabledBorder: bordercolor(isBig),
                 focusedBorder: bordercolor(isBig),
-                border: OutlineInputBorder(
-                  borderSide: BorderSide.none,
-                  borderRadius: BorderRadius.circular(8),
-                ),
               ),
             ),
           ),
@@ -64,10 +60,11 @@ class CustomTextField extends StatelessWidget {
 
   OutlineInputBorder bordercolor(bool isBig) {
     return OutlineInputBorder(
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
         borderSide: BorderSide(
-      color: isBig ? AppColors.dustyGray : AppColors.cornFlowerBlue,
-      width: 1,
-    ));
+          color: isBig ? AppColors.dustyGray : AppColors.cornFlowerBlue,
+          width: 1,
+        ));
   }
 }
 

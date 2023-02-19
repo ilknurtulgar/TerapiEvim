@@ -17,6 +17,7 @@ class CustomContainer extends StatelessWidget {
   final Widget? widget;
   @override
   Widget build(BuildContext context) {
+    //center niye?
     return Center(
       child: Card(
         elevation: 5,

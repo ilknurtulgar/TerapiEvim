@@ -44,11 +44,11 @@ class GroupClass extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
             color: AppColors.white),
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Padding(
-              padding: const EdgeInsets.only(bottom: 8),
+              padding: const EdgeInsets.only(bottom: 3, top: 3),
               child: Center(
                 child: Text(
                   heading,

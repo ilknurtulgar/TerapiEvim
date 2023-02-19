@@ -38,6 +38,7 @@ class NotificationContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 150.0, bottom: 16),
       child: CustomButton(
+          textColor: Colors.white,
           container: ContainerModel(
               backgroundColor: AppColors.butterflyBush,
               borderRadius: 100,

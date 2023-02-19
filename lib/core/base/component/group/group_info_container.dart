@@ -57,6 +57,7 @@ class GroupInformationContainer extends StatelessWidget {
         Align(
             alignment: Alignment.centerRight,
             child: CustomButton(
+              textColor: Colors.white,
               container: AppContainers.purpleButtonContainer(null),
               onTap: () {},
               text: 'Katıl',

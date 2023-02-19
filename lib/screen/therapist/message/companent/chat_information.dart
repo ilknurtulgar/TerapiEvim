@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
+import 'package:terapievim/core/base/component/home/custom_container.dart';
+import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
@@ -19,20 +19,20 @@ ContainerModel? containerModel;
 class _ChatInformationState extends State<ChatInformation> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 340,
-      height: 60,
-      decoration: AppBoxDecoration.sendDecoration,
-      child: Row(
-        children: [
-          const CustomCircleAvatar(
-              imagePath: "assets/images/doctorfotosu.jpeg",
-              big: false,
-              shadow: false),
-          rowView(rowModel, const EdgeInsets.all(8)),
-        ],
-      ),
-    );
+    //veriyi nasıl çekecek diğer tarafta???
+    return CustomContainer(
+        time: "19:20",
+        containerModel: ContainerModel(
+          borderRadius: 15,
+          backgroundColor: Colors.white,
+          width: 350,
+          //height işlemiyor
+          //  height: 72
+        ),
+        cardModel: CardModel(
+            subtitle: "Uzman Psikolog",
+            imagePath: "assets/images/doctorfotosu.jpeg",
+            title: "Canan Karatay"));
   }
 }
 

@@ -54,7 +54,6 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
           },
         ),
       ),
-      backgroundColor: AppColors.blueChalk,
       body: Center(
         child: Obx(
           () => Container(

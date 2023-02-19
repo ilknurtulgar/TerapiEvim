@@ -1,14 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/therapist/activity/companent/coping_box.dart';
 
 import '../../../core/base/component/group/custom_heading.dart';
 import '../../../core/base/component/login/custom_textfield.dart';
 import '../../../core/base/component/profile/image/custom_circle_avatar.dart';
 import '../../../core/base/models/row_model.dart';
 import '../../../core/base/util/base_utility.dart';
-import '../../therapist/message/companent/chat_information.dart';
 
 class MessageScreen extends StatelessWidget {
   MessageScreen({super.key, this.rowmodel});
@@ -21,86 +19,105 @@ class MessageScreen extends StatelessWidget {
         child: Column(
           children: [
             messageappbar(),
-            Expanded(
-              child: SingleChildScrollView(
-                  child: Column(children: const [
-                ChatInformation(),
-                CopingBox()
-                /* CustomTextField(
-                  isPhoneNumber: false,
-                  isBig: false,
-                  textController: textEditingController,
-                  isPassword: false,
-                  isRowModel: true,
-                  rowModel: RowModel(
-                    text: "",
-                    textStyle: const TextStyle(color: AppColors.black),
-                    isAlignmentBetween: false,
-                  ),
-                ),*/
-                /*  messagebox(),
-                messageboxright(),
-                messagebox(),
-                messageboxright(),
-                messagebox(),
-                messageboxright(),
-                messagebox(),
-                messageboxright(),
-                messageboxright(),
-                messagebox(),
-                messageboxright(),
-                messageboxright(),
-                messagebox(),
-                messageboxright(),
-                messageboxright(),
-                messagebox(),
-                messageboxright(),
-                messageboxright(),
-                messagebox(),
-                messageboxright(),
-                messageboxright(),
-                messagebox(),
-                messageboxright(),
-                messageboxright(),
-                messagebox(),
-                messageboxright(),
-                messageboxright(),
-                messagebox(),
-                messageboxright(),
-                messageboxright(),
-                messagebox(),
-                messageboxright(),
-                messageboxright(),
-                messagebox(),
-                messageboxright(),*/
-              ])),
-            ),
-            Container(
-              decoration: AppBoxDecoration.sendDecoration,
-              height: 65,
-              width: window.physicalSize.width,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  CustomTextField(
-                    textController: textEditingController,
-                    isPhoneNumber: false,
-                    isBig: false,
-                    isPassword: false,
-                    isRowModel: false,
-                  ),
-                  IconButton(onPressed: () {}, icon: IconUtility.sendIcon),
-                ],
+            Padding(
+              padding: const EdgeInsets.only(
+                bottom: 10,
               ),
+              child: divider(),
             ),
-            //demo(),
+            Expanded(
+              child: SingleChildScrollView(child: messageexpanded(context)),
+            ),
+            sendbox(),
           ],
         ),
       ),
     );
   }
 
-  Positioned demo() {
+  Widget sendbox() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 10),
+      child: Container(
+        decoration: AppBoxDecoration.sendDecoration,
+        height: 65,
+        width: window.physicalSize.width,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            CustomTextField(
+              textController: textEditingController,
+              isPhoneNumber: false,
+              isBig: false,
+              isPassword: false,
+              isRowModel: false,
+            ),
+            IconButton(onPressed: () {}, icon: IconUtility.sendIcon),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Column messageexpanded(BuildContext context) {
+    return Column(children: [
+      messagecontainer(context, true, "hadi levent gidelim"),
+      messagecontainer(context, false, "ela konuşmamız gerek"),
+      messagecontainer(context, true, "dinliyorum"),
+      messagecontainer(context, false, "ben.."),
+      messagecontainer(
+          context, false, "ben bu aşka olan inancımı kaybettim ela"),
+      messagecontainer(context, true, "hığ"),
+      messagecontainer(context, false, "üzgünüm ela,hoşçakal"),
+      messagecontainer(context, true, "fon müzik: ağla kalbim ağla sen ağlaa"),
+    ]);
+  }
+
+  Divider divider() {
+    return const Divider(
+      color: AppColors.black,
+      height: 5,
+    );
+  }
+
+  Row messagecontainer(BuildContext context, bool isStart, String message) {
+    return Row(
+      mainAxisAlignment:
+          isStart ? MainAxisAlignment.start : MainAxisAlignment.end,
+      children: [
+        isStart
+            ? circleavatar()
+            : Padding(
+                padding: const EdgeInsets.only(
+                  top: 10,
+                  right: 5,
+                ),
+                child: constrainedbox(context, message),
+              ),
+        isStart ? constrainedbox(context, message) : circleavatar()
+      ],
+    );
+  }
+
+  ConstrainedBox constrainedbox(BuildContext context, String message) {
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+          minHeight: 10, maxWidth: MediaQuery.of(context).size.width - 180),
+      child: Card(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        color: AppColors.cornFlowerBlue,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Text(
+            message,
+            style: const TextStyle(fontSize: 16),
+          ),
+        ),
+      ),
+    );
+  }
+
+  /* Positioned demo() {
     return Positioned(
         child: Container(
       decoration: BoxDecoration(
@@ -108,52 +125,28 @@ class MessageScreen extends StatelessWidget {
       width: window.physicalSize.width,
       height: 162,
     ));
-  }
+  }*/
 
   Widget messageappbar() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        circleavatar(),
-        CustomHeading(text: "Melisa Kara", isalignmentstart: false),
-        const Divider(
-          color: AppColors.black,
-          height: 7,
-        ),
-      ],
-    );
-  }
-
-  Widget messagebox() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        circleavatar(),
-      ],
-    );
-  }
-
-  Row messageboxright() {
-    return Row(
-      children: [
-        CustomHeading(isalignmentstart: true, text: "text"),
-        circleavatar(),
-      ],
-    );
-  }
-
-  Padding circleavatar() {
-    return const Padding(
-      padding: EdgeInsets.only(
-        left: 10,
+    return Padding(
+      padding: const EdgeInsets.only(left: 10),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          circleavatar(),
+          CustomHeading(text: "Melisa Kara", isalignmentstart: false),
+        ],
       ),
+    );
+  }
+
+  Widget circleavatar() {
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
       child: CustomCircleAvatar(
           imagePath: "assets/images/doctorfotosu.jpeg",
           big: false,
-          shadow: true),
+          shadow: false),
     );
   }
 }
-
-RowModel rowModel = RowModel(
-    text: "jvv", textStyle: const TextStyle(), isAlignmentBetween: false);

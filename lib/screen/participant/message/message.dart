@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:terapievim/screen/therapist/activity/companent/coping_box.dart';
 
 import '../../../core/base/component/group/custom_heading.dart';
 import '../../../core/base/component/login/custom_textfield.dart';
@@ -22,9 +23,10 @@ class MessageScreen extends StatelessWidget {
             messageappbar(),
             Expanded(
               child: SingleChildScrollView(
-                  child: Column(children: [
-                const ChatInformation(),
-                CustomTextField(
+                  child: Column(children: const [
+                ChatInformation(),
+                CopingBox()
+                /* CustomTextField(
                   isPhoneNumber: false,
                   isBig: false,
                   textController: textEditingController,
@@ -35,7 +37,7 @@ class MessageScreen extends StatelessWidget {
                     textStyle: const TextStyle(color: AppColors.black),
                     isAlignmentBetween: false,
                   ),
-                ),
+                ),*/
                 /*  messagebox(),
                 messageboxright(),
                 messagebox(),

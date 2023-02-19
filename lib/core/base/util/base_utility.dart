@@ -61,7 +61,6 @@ class IconUtility {
   static const Icon fiterIcon = Icon(Icons.list);
   static const Icon fileIcon = Icon(
     Icons.description_outlined,
-    color: AppColors.white,
   );
   static const Icon fileIconBlack = Icon(
     Icons.description_outlined,

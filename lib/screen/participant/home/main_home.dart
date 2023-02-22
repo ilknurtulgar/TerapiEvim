@@ -5,6 +5,8 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/group/group.dart';
 import 'package:terapievim/screen/participant/profile/profile_page.dart';
 import '../../../controller/main_controller.dart';
+import '../../therapist/home/home.dart';
+import '../../therapist/message/companent/message.dart';
 import '../activity/activities.dart';
 import '../message/message.dart';
 import 'home.dart';
@@ -26,7 +28,7 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
     IconUtility.navMessage,
     IconUtility.navProfile
   ];
-
+  late final bool isparticipant = true;
   @override
   Widget build(BuildContext context) {
     List<Widget> screen = <Widget>[
@@ -34,6 +36,14 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
       ActivitiesScreen(),
       GroupScreen(),
       MessageScreen(),
+      ParticipantProfilePage(),
+    ];
+    //
+    List<Widget> therapisty = <Widget>[
+      const TherapistHome(),
+      ActivitiesScreen(),
+      GroupScreen(),
+      const TherapistMessageScreen(),
       ParticipantProfilePage(),
     ];
     return Scaffold(
@@ -57,7 +67,9 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
       body: Center(
         child: Obx(
           () => Container(
-            child: screen[_controller.currentScreenIndex.toInt()],
+            child: isparticipant
+                ? screen[_controller.currentScreenIndex.toInt()]
+                : therapisty[_controller.currentScreenIndex.toInt()],
           ),
         ),
       ),

@@ -21,50 +21,55 @@ class HomeScreen extends StatelessWidget {
             "TerapiEvim",
           ),
           headingtext(false, false, "Hoşgeldiniz"),
-          copingmin(),
-          notification()
+          mindetailesbox(
+              "BAŞ ETME METOTLARI", () => Get.to(const CopingMethods())),
+          notification(cardModelhome, home, home.length)
         ],
       ),
     );
   }
-
-  ListView notification() {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        return NotificationFromTherContainer(
-            cardModel: cardModelhome,
-            explanation: home[index],
-            buttonOnTap: () {},
-            buttonText: "Detaylar");
-      },
-      itemCount: home.length,
-    );
-  }
-
-  Padding copingmin() {
-    return Padding(
-      padding: const EdgeInsets.all(10),
-      child: SeminarMin(
-          onTap: () {
-            Get.to(const CopingMethods());
-          },
-          row: rowiModel,
-          borderColor: AppColors.cornFlowerBlue),
-    );
-  }
 }
 
-Padding headingtext(bool isHeading, bool isPadding, String heading) {
-  return Padding(
-    padding: isPadding ? const EdgeInsets.only(top: 80) : EdgeInsets.zero,
-    child: Text(
-      heading,
-      textAlign: TextAlign.center,
-      style: AppTextStyles.heading(isHeading),
-    ),
+ListView notification(
+    CardModel cardmodel, List<String> explanation, int itemlenght) {
+  return ListView.builder(
+    shrinkWrap: true,
+    physics: const NeverScrollableScrollPhysics(),
+    itemBuilder: (context, index) {
+      return NotificationFromTherContainer(
+          cardModel: cardmodel,
+          explanation: explanation[index],
+          buttonOnTap: () {},
+          buttonText: "Detaylar");
+    },
+    itemCount: itemlenght,
   );
+}
+
+Padding mindetailesbox(String rowmodeltext, Function()? onTap) {
+  return Padding(
+    padding: const EdgeInsets.all(10),
+    child: SeminarMin(
+        onTap: onTap,
+        row: rowModel(rowmodeltext),
+        borderColor: AppColors.cornFlowerBlue),
+  );
+}
+
+Widget headingtext(bool isHeading, bool isPadding, String heading) {
+  return Padding(
+      padding: isPadding
+          ? const EdgeInsets.only(
+              top: 80,
+            )
+          : EdgeInsets.zero,
+      child: Align(
+        alignment: Alignment.center,
+        child: Text(
+          heading,
+          style: AppTextStyles.heading(isHeading),
+        ),
+      ));
 }
 
 List<String> home = [
@@ -84,8 +89,11 @@ CardModel cardModelhome = CardModel(
 //////
 
 //kalıcı
-RowModel rowiModel = RowModel(
-    text: "BAŞ ETME METOTLARI",
-    textStyle: AppTextStyles.groupTextStyle(false),
-    isAlignmentBetween: true,
-    trailingIcon: IconUtility.arrowIcon);
+
+RowModel rowModel(String rowmodeltext) {
+  return RowModel(
+      text: rowmodeltext,
+      textStyle: AppTextStyles.groupTextStyle(false),
+      isAlignmentBetween: true,
+      trailingIcon: IconUtility.arrowIcon);
+}

@@ -21,6 +21,7 @@ class TwoRowShortContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
+      //left right 24 verince oluyor
       padding: const EdgeInsets.only(left: 5, bottom: 15),
       child: Container(
         height: isThereButton ? 114 : 80,

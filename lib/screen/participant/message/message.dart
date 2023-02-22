@@ -15,6 +15,46 @@ class MessageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      bottomNavigationBar: Padding(
+          padding: const EdgeInsets.only(
+            bottom: 0,
+          ),
+          child: sendbox()
+          /*Container(
+          height: 45,
+          width: MediaQuery.of(context).size.width,
+          color: Colors.white,
+          child: Row(
+            children: [
+              const Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                    hintText: "Message...",
+                    hintStyle: TextStyle(color: Colors.blue),
+                    border: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.blue)),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                width: 15,
+              ),
+              // Send Button
+              MaterialButton(
+                color: Colors.red,
+                onPressed: () {},
+                // backgroundColor: ColorConstant.lightBlueA100,
+                elevation: 0,
+                child: const Icon(
+                  Icons.send,
+                  color: Colors.white,
+                  size: 18,
+                ),
+              ),
+            ],
+          ),
+        ),*/
+          ),
       body: SafeArea(
         child: Column(
           children: [
@@ -28,7 +68,7 @@ class MessageScreen extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(child: messageexpanded(context)),
             ),
-            sendbox(),
+            // sendbox(),
           ],
         ),
       ),
@@ -36,40 +76,36 @@ class MessageScreen extends StatelessWidget {
   }
 
   Widget sendbox() {
-    return Padding(
-      padding: const EdgeInsets.only(top: 10),
-      child: Container(
-        decoration: AppBoxDecoration.sendDecoration,
-        height: 65,
-        width: window.physicalSize.width,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            CustomTextField(
-              textController: textEditingController,
-              isPhoneNumber: false,
-              isBig: false,
-              isPassword: false,
-              isRowModel: false,
-            ),
-            IconButton(onPressed: () {}, icon: IconUtility.sendIcon),
-          ],
-        ),
+    return Container(
+      color: Colors.white,
+      //   decoration: AppBoxDecoration.sendDecoration,
+      height: 65,
+      width: window.physicalSize.width,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          CustomTextField(
+            textController: textEditingController,
+            isPhoneNumber: false,
+            isBig: false,
+            isPassword: false,
+            isRowModel: false,
+          ),
+          IconButton(onPressed: () {}, icon: IconUtility.sendIcon),
+        ],
       ),
     );
   }
 
   Column messageexpanded(BuildContext context) {
     return Column(children: [
-      messagecontainer(context, true, "hadi levent gidelim"),
-      messagecontainer(context, false, "ela konuşmamız gerek"),
-      messagecontainer(context, true, "dinliyorum"),
-      messagecontainer(context, false, "ben.."),
-      messagecontainer(
-          context, false, "ben bu aşka olan inancımı kaybettim ela"),
-      messagecontainer(context, true, "hığ"),
-      messagecontainer(context, false, "üzgünüm ela,hoşçakal"),
-      messagecontainer(context, true, "fon müzik: ağla kalbim ağla sen ağlaa"),
+      messagecontainer(context, true,
+          "Flutter, Google tarafından oluşturulan açık kaynaklı bir UI yazılım geliştirme kitidir. Android, iOS, Windows, Mac, Linux ve web için uygulamalar geliştirmek için kullanılıyor. Flutter'ın ilk sürümü  olarak biliniyordu ve Android işletim sisteminde çalışıyordu."),
+      messagecontainer(context, false,
+          "Firebase, Google tarafından mobil ve web uygulamaları oluşturmak için geliştirilmiş bir platformdur. Bağımsız bir şirket olarak 2011 senesinde kuruldu. Google 2014'te platformu satın aldı. Şirket, uygulama geliştirme konusunda Google'ın öncü hizmetidir."),
+      messagecontainer(context, true,
+          "Firebase Authentication provides backend services, easy-to-use SDKs, and ready-made UI libraries to authenticate users to your app. It supports authentication using passwords, phone numbers, popular federated identity providers like Google, Facebook and Twitter, and "),
+      messagecontainer(context, false, "oke")
     ]);
   }
 

@@ -19,7 +19,6 @@ ContainerModel? containerModel;
 class _ChatInformationState extends State<ChatInformation> {
   @override
   Widget build(BuildContext context) {
-    //veriyi nasıl çekecek diğer tarafta???
     return CustomContainer(
         time: "19:20",
         containerModel: ContainerModel(

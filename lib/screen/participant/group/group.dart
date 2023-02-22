@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/screen/participant/group/category_determination/short_call/determining_to_shortcall_time.dart';
-import 'package:terapievim/screen/therapist/home/home.dart';
+import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart';
+import 'package:terapievim/screen/therapist/group/my_groups_view.dart';
 import '../../../controller/main_controller.dart';
 import 'my_group.dart';
 import 'scl90/lock_screen.dart';
@@ -13,7 +13,7 @@ class GroupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TherapistHome();
+    return GroupAddView();
     // return _controller.isGroupReady.isTrue
     //     ? const MyGroup()
     //     : const LockScreen();

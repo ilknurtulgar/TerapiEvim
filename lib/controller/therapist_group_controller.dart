@@ -26,4 +26,10 @@ class TherapistGroupController extends GetxController {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ));
   }
+
+  //grup eklmee kismi icin controller
+  var isSecTherapistElectionOpen = false.obs;
+  void ChangeSecTherapistElection() {
+    isSecTherapistElectionOpen.value = !isSecTherapistElectionOpen.isTrue;
+  }
 }

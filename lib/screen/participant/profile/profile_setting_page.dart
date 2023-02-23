@@ -46,10 +46,14 @@ class ParticipantProfileSettingPage extends StatelessWidget {
                   profileController.birthOfDateController.value, false)),
           positionedTextfield(
             2,
-            const Padding(
-              padding:
-                  EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 20),
-              child: CustomDropDown(purpose: "gender"),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 24, right: 24, top: 20, bottom: 20),
+              child: CustomDropDown(
+                purpose: genderList,
+                width: 195,
+                height: 23,
+              ),
             ),
           ),
           positionedTextfield(3,

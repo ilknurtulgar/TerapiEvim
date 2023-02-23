@@ -4,9 +4,10 @@ import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
+import '../../../core/base/models/row_model.dart';
+
 class ActivitiesScreen extends StatelessWidget {
-  ActivitiesScreen({super.key});
-  final TextEditingController activityTextController = TextEditingController();
+  const ActivitiesScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -15,7 +16,7 @@ class ActivitiesScreen extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                search(),
+                search(searchModel),
                 activityminto("Yaklaşan Aktiviteler", () {}),
                 activityseminar(),
                 activityminto("Geçmiş Aktiviteler", () {}),
@@ -69,20 +70,19 @@ class ActivitiesScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  Padding search() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: CustomTextField(
-        isPhoneNumber: false,
-        isBig: true,
-        isPassword: true,
-        isRowModel: true,
-        rowModel: searchModel,
-        textController: activityTextController,
-      ),
-    );
-  }
+final TextEditingController activityTextController = TextEditingController();
+
+Widget search(RowModel rowmodel) {
+  return CustomTextField(
+    isPhoneNumber: false,
+    isBig: true,
+    isPassword: false,
+    isRowModel: true,
+    rowModel: rowmodel,
+    textController: activityTextController,
+  );
 }
 
 SizedBox _sizedbox() {

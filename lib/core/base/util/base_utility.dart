@@ -246,6 +246,7 @@ class AppBoxDecoration {
       color: AppColors.white,
       borderRadius: AppBorderRadius.generalBorderRadius,
       border: Border.all(color: AppColors.dustyGray));
+
   static BoxDecoration notificationDec = BoxDecoration(
       color: AppColors.white,
       borderRadius: AppBorderRadius.notificationradius,

@@ -4,7 +4,9 @@ import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/therapist/message/companent/chat_information.dart';
-import 'package:terapievim/screen/therapist/message/companent/search_message.dart';
+import 'package:terapievim/screen/therapist/message/search_message.dart';
+
+import '../../../controller/t_message_controller.dart';
 
 class TherapistMessageScreen extends StatefulWidget {
   const TherapistMessageScreen({super.key});
@@ -18,21 +20,26 @@ class _TherapistMessageScreenState extends State<TherapistMessageScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              messageappbar(),
-              const ChatInformation(),
-              const ChatInformation(),
-              const ChatInformation(),
-              const ChatInformation(),
-            ],
-          ),
+        body: Column(
+          children: [
+            messageappbar(),
+            Expanded(
+              child: ListView.builder(
+                shrinkWrap: true,
+                itemBuilder: (context, index) {
+                  return const ChatInformation();
+                },
+                itemCount: 15,
+              ),
+            )
+          ],
         ),
       ),
     );
   }
 
+  TherapistyMessageController therapistyMessageController =
+      Get.put(TherapistyMessageController());
   Widget messageappbar() {
     return rowView(
         RowModel(

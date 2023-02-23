@@ -19,19 +19,22 @@ ContainerModel? containerModel;
 class _ChatInformationState extends State<ChatInformation> {
   @override
   Widget build(BuildContext context) {
-    return CustomContainer(
-        time: "19:20",
-        containerModel: ContainerModel(
-          borderRadius: 15,
-          backgroundColor: Colors.white,
-          width: 350,
-          //height işlemiyor
-          //  height: 72
-        ),
-        cardModel: CardModel(
-            subtitle: "Uzman Psikolog",
-            imagePath: "assets/images/doctorfotosu.jpeg",
-            title: "Canan Karatay"));
+    return Padding(
+      padding: const EdgeInsets.all(2),
+      child: CustomContainer(
+          time: "19:20",
+          containerModel: ContainerModel(
+            borderRadius: 10,
+            backgroundColor: Colors.white,
+            width: 350,
+            //height işlemiyor
+            //  height: 72
+          ),
+          cardModel: CardModel(
+              subtitle: "Uzman Psikolog",
+              imagePath: "assets/images/doctorfotosu.jpeg",
+              title: "Canan Karatay")),
+    );
   }
 }
 

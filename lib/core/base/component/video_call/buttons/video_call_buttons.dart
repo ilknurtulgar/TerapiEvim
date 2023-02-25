@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 import 'package:terapievim/core/base/component/video_call/video_call_container/circular_container.dart';
 
@@ -25,9 +24,7 @@ class _CustomVideoCallButtonState extends State<CustomVideoCallButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: widget.icon == IconUtility.micIcon(true)
-          ? const EdgeInsets.symmetric(horizontal: 20)
-          : const EdgeInsets.symmetric(vertical: 15),
+      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 15),
       child: CircularContainer(
         height: 64,
         color: widget.backgroundColor,

@@ -44,6 +44,10 @@ class IconUtility {
   static const Icon activityIcon =
       Icon(Icons.laptop_windows_sharp); //browse_activity yok
   static const Icon groupsIcon = Icon(Icons.groups);
+  static const Icon greyGroupsIcon = Icon(
+    Icons.group,
+    color: AppColors.doveGray,
+  );
   static const Icon chatIcon = Icon(Icons.chat);
   static const Icon profileIcon = Icon(Icons.account_circle);
   static const Icon windowsIcon = Icon(Icons.desktop_windows_outlined);
@@ -55,12 +59,12 @@ class IconUtility {
     Icons.alarm_outlined,
     color: AppColors.black,
   );
+  static const Icon notification = Icon(Icons.notifications);
   static const Icon logoutIcon = Icon(Icons.logout);
   static const Icon searchIcon = Icon(Icons.search);
   static const Icon fiterIcon = Icon(Icons.list);
   static const Icon fileIcon = Icon(
     Icons.description_outlined,
-    color: AppColors.white,
   );
   static const Icon fileIconBlack = Icon(
     Icons.description_outlined,
@@ -88,7 +92,6 @@ class IconUtility {
   );
   static const Icon sendIcon = Icon(
     Icons.send,
-    size: 30,
     color: Colors.black,
   );
   static const Icon settingIcon = Icon(Icons.settings);
@@ -147,13 +150,11 @@ class AppTextStyles {
   //                 profil sayfaları(o sayfadaki yazılar figmada çok küçük durduğu için medium'a aldık),
   // grey text --> arama kısımlarındaki textler 'Ne aramıştınız?' texti gibi
 
-  static TextStyle buttonTextStyle(Color buttonColor) => TextStyle(
+  static TextStyle buttonTextStyle(Color textColor) => TextStyle(
       fontFamily: 'Roboto',
       fontWeight: FontWeight.w500,
       fontSize: 16,
-      color: buttonColor == AppColors.butterflyBush
-          ? AppColors.white
-          : AppColors.butterflyBush);
+      color: textColor);
   static TextStyle methodsPageTextStyle(bool isDateText, bool isOrderButton,
           bool isExplanationText, bool isDocument) =>
       TextStyle(
@@ -204,28 +205,34 @@ class AppContainers {
       borderRadius: 8,
       backgroundColor: AppColors
           .white); // bunun height'ı içindeki child'ın uzunluğuna göre değişiyor
+
   static ContainerModel participantContainer(double height, double width) =>
       ContainerModel(
           height: height, //52,
           width: width, //342,
           borderRadius: 8,
           backgroundColor: AppColors.white);
-  //belirt
-  /* static ContainerModel documentContainer = ContainerModel(
-      height: 40,
-      borderRadius: 360,
-      backgroundColor: AppColors.white,
-      shadowColor: AppColors
-          .dustyGray); */ // bunun width'i içindeki text'in uzunluğuna göre değişiyor
+
   static ContainerModel purpleButtonContainer(double? width) => ContainerModel(
         height: 30,
         width: width,
         borderRadius: 65,
         backgroundColor: AppColors.butterflyBush,
       ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
+  static ContainerModel lightPurpleButtonContainer(double? width) =>
+      ContainerModel(
+        height: 40,
+        width: width,
+        borderRadius: 65,
+        backgroundColor: AppColors.melrose,
+      );
 }
 
 class AppPaddings {
+  static const EdgeInsets reminderPadding =
+      EdgeInsets.symmetric(vertical: 16, horizontal: 16);
+  static const EdgeInsets reminderBetweenText =
+      EdgeInsets.symmetric(vertical: 16.0);
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
       0, 15, 20, 15); // sağ alt bütün mor butonlar için geçerli
 }
@@ -233,6 +240,8 @@ class AppPaddings {
 class AppBorderRadius {
   static const BorderRadius generalBorderRadius =
       BorderRadius.all(Radius.circular(8));
+  static const BorderRadius notificationradius =
+      BorderRadius.all(Radius.circular(16));
 }
 
 class AppBoxDecoration {
@@ -249,4 +258,26 @@ class AppBoxDecoration {
       color: AppColors.white,
       borderRadius: AppBorderRadius.generalBorderRadius,
       border: Border.all(color: AppColors.dustyGray));
+  static BoxDecoration notificationDec = BoxDecoration(
+      color: AppColors.white,
+      borderRadius: AppBorderRadius.notificationradius,
+      boxShadow: [
+        BoxShadow(
+            color: AppColors.dustyGray.withOpacity(0.5),
+            blurRadius: 7,
+            offset: const Offset(0, 3))
+      ]);
+}
+
+Padding colon(bool isInAlertDialog) {
+  return Padding(
+    padding: isInAlertDialog
+        ? const EdgeInsets.only(left: 20, right: 20, bottom: 15)
+        : const EdgeInsets.symmetric(horizontal: 20),
+    child: const Text(
+      ':',
+      style: TextStyle(
+          fontSize: 20, fontWeight: FontWeight.w500, color: AppColors.black),
+    ),
+  );
 }

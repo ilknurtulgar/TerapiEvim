@@ -36,7 +36,6 @@ class _TerapiEvimState extends State<TerapiEvim> {
   final MainController _controller = Get.put(MainController());
   final ActivityController activityController = Get.put(ActivityController());
   final ProfileController profileController = Get.put(ProfileController());
-
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

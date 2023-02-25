@@ -63,8 +63,9 @@ class MethodAndSeminarShortInfoContainer extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.only(left: 100, bottom: 10),
         child: CustomButton(
-            container: AppContainers.purpleButtonContainer(null),
-            onTap: () {}, // izle ya da dosyayı oku fonksiyonu
-            text: buttonText));
+          container: AppContainers.purpleButtonContainer(null),
+          onTap: () {}, // izle ya da dosyayı oku fonksiyonu
+          text: buttonText, textColor: AppColors.butterflyBush,
+        ));
   }
 }

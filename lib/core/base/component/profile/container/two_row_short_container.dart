@@ -21,6 +21,7 @@ class TwoRowShortContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
+      //left right 24 verince oluyor
       padding: const EdgeInsets.only(left: 5, bottom: 15),
       child: Container(
         height: isThereButton ? 114 : 80,
@@ -28,7 +29,8 @@ class TwoRowShortContainer extends StatelessWidget {
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
             color: AppColors.white,
-            border: Border.all(color: Colors.grey.withOpacity(0.50), width: 1)), //
+            border:
+                Border.all(color: Colors.grey.withOpacity(0.50), width: 1)), //
         child: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: Center(
@@ -48,33 +50,34 @@ class TwoRowShortContainer extends StatelessWidget {
 
   Widget secondRow() {
     return rowView(
-                    ProfilePageUtility.normalTextRow(
-                        row2Text,
-                        purpose == 'method'
-                            ? Icons.description_outlined
-                            : purpose == 'seminar'
-                                ? Icons.desktop_windows_outlined
-                                : Icons.alarm_outlined,
-                        TextStyle(
-                            fontSize: 17,
-                            fontWeight: purpose != 'date'
-                                ? FontWeight.bold
-                                : FontWeight.w400)),
-                    const EdgeInsets.only(top: 10));
+        ProfilePageUtility.normalTextRow(
+            row2Text,
+            purpose == 'method'
+                ? Icons.description_outlined
+                : purpose == 'seminar'
+                    ? Icons.desktop_windows_outlined
+                    : Icons.alarm_outlined,
+            TextStyle(
+                fontSize: 17,
+                fontWeight:
+                    purpose != 'date' ? FontWeight.bold : FontWeight.w400)),
+        const EdgeInsets.only(top: 10));
   }
 
   Widget firstRow() {
     return rowView(
-                    purpose != 'date'
-                        ? ProfilePageUtility.normalTextRow(row1Text,Icons.person_outline,const TextStyle(fontSize: 17, fontWeight: FontWeight.bold))
-                        : ProfilePageUtility.doubleTextRow('Danışan: ',row1Text,false),
-                    const EdgeInsets.only(top: 5));
+        purpose != 'date'
+            ? ProfilePageUtility.normalTextRow(row1Text, Icons.person_outline,
+                const TextStyle(fontSize: 17, fontWeight: FontWeight.bold))
+            : ProfilePageUtility.doubleTextRow('Danışan: ', row1Text, false),
+        const EdgeInsets.only(top: 5));
   }
 
   Padding button() {
     return Padding(
         padding: const EdgeInsets.only(left: 100, bottom: 10),
         child: CustomButton(
+            textColor: Colors.white,
             container: AppContainers.purpleButtonContainer(null),
             onTap: () {}, // izle ya da dosyayı oku fonksiyonu
             text: buttonText ?? ""));

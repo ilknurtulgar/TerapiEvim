@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/video_call/video_call_container/circular_container.dart';
@@ -59,9 +58,9 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
     );
   }
 
-  Align micIconButton() {
+  Widget micIconButton() {
     return Align(
-      alignment: Alignment.topRight,
+      alignment: Alignment.bottomRight,
       child: IconButton(
           onPressed: () => micOnOffFunc(),
           icon: widget.videoCallViewModel.person.isMicOn == false
@@ -90,16 +89,16 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
   Padding initialLetterContainer() {
     return Padding(
       padding: widget.videoCallViewModel.isTherapistInGroupTherapy
-          ? EdgeInsets.only(bottom: window.physicalSize.height / 3)
+          ? const EdgeInsets.only(bottom: 125)
           : const EdgeInsets.all(0),
       child: Center(
           child: CircularContainer(
-              height: widget.videoCallViewModel.width / 2.5,
+              height: widget.videoCallViewModel.width / 3,
               color: AppColors.orange,
               widget: Text(
                 widget.videoCallViewModel.person.name.substring(0, 1),
                 style: TextStyle(
-                    fontSize: widget.videoCallViewModel.width / 4,
+                    fontSize: widget.videoCallViewModel.width / 5,
                     color: AppColors.white),
               ))),
     );

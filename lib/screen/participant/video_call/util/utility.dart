@@ -8,8 +8,8 @@ class VideoCallUtility {
   static VideoCallViewModel personBigView(
           PersonInCallModel person, bool isTherapistInGroupTherapy) =>
       VideoCallViewModel(
-          height: window.physicalSize.height,
-          width: window.physicalSize.width,
+          height: 658,
+          width: PixelScreen().logicalWidth,
           borderRadius: 0,
           person: person,
           isNameShown: false,
@@ -25,7 +25,7 @@ class VideoCallUtility {
           isTherapistInGroupTherapy: false);
   static VideoCallViewModel personShortCallView(PersonInCallModel person) =>
       VideoCallViewModel(
-        height: 320,
+        height: 260,
         width: 340,
         borderRadius: 12,
         isNameShown: false,
@@ -56,4 +56,18 @@ class VideoCallUtility {
         onTap: onTap,
         isThisOn: true,
       );
+}
+
+class PixelScreen {
+  var pixelRatio = window.devicePixelRatio;
+
+  //Size in physical pixels
+  var physicalScreenSize = window.physicalSize;
+  late var physicalWidth = physicalScreenSize.width;
+  late var physicalHeight = physicalScreenSize.height;
+
+//Size in logical pixels
+  late var logicalScreenSize = window.physicalSize / pixelRatio;
+  late var logicalWidth = logicalScreenSize.width;
+  late var logicalHeight = logicalScreenSize.height;
 }

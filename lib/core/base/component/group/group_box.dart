@@ -43,6 +43,7 @@ class ActivityBox extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: CustomButton(
+                  textColor: Colors.white,
                   container: containerModel,
                   onTap: () {},
                   text: "Katıl",

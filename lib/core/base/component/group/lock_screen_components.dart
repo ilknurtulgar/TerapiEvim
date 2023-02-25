@@ -47,6 +47,7 @@ Column checkedTest() {
     children: [
       lockedTextContainer(LockScreenUtil.checkedTestString),
       CustomButton(
+          textColor: Colors.white,
           container: AppContainers.purpleButtonContainer(null),
           onTap: () {
             //buradan kategori sayfasina yonlendirilecek

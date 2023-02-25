@@ -38,38 +38,50 @@ class _ParticipantSignUpPageState extends State<ParticipantSignUpPage> {
     return Scaffold(
       backgroundColor: AppColors.blueChalk,
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            title(),
-            textfieldUtility.nameSurnameTextfield(
-                _signUpController.nameController, true),
-            textfieldUtility.birthOfDateTextfield(
-                _signUpController.birthDateController, true),
+        child: Padding(
+          padding: const EdgeInsets.all(10),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              title(),
+              textfieldUtility.nameSurnameTextfield(
+                  _signUpController.nameController, true),
+              textfieldUtility.birthOfDateTextfield(
+                  _signUpController.birthDateController, true),
 
-            ///TODO: use gender controller
-            const CustomDropDown(purpose: 'gender'),
-            textfieldUtility.mailTextfield(
-                _signUpController.emailController, true),
-            textfieldUtility.passwordTextfield(
-                _signUpController.passwordController, true),
-            textfieldUtility.phoneTextfield(
-                _signUpController.phoneController, true),
-            CustomButton(
-              container:
-                  ProfilePageUtility.loginSignUpButtonContainer(false, false),
-              onTap: () {
-                _signUpController.signUpWithEmail();
-              },
-              text: 'Kaydol',
-            ),
-            ProfilePageUtility.lineWithOrText(),
-            CustomButton(
-              container:
-                  ProfilePageUtility.loginSignUpButtonContainer(false, true),
-              onTap: () => Get.to(() => const ParticipantLoginPage()),
-              text: 'Giriş Yap',
-            ),
-          ],
+              ///TODO: use gender controller
+              const CustomDropDown(purpose: 'gender'),
+              textfieldUtility.mailTextfield(
+                  _signUpController.emailController, true),
+              textfieldUtility.passwordTextfield(
+                  _signUpController.passwordController, true),
+              textfieldUtility.phoneTextfield(
+                  _signUpController.phoneController, true),
+              const SizedBox(
+                height: 10,
+              ),
+              CustomButton(
+                textColor: Colors.white,
+                container:
+                    ProfilePageUtility.loginSignUpButtonContainer(false, false),
+                onTap: () {
+                  _signUpController.signUpWithEmail();
+                },
+                text: 'Kaydol',
+              ),
+              ProfilePageUtility.lineWithOrText(),
+              CustomButton(
+                textColor: AppColors.butterflyBush,
+                container:
+                    ProfilePageUtility.loginSignUpButtonContainer(false, true),
+                onTap: () => Get.to(() => const ParticipantLoginPage()),
+                text: 'Giriş Yap',
+              ),
+              const SizedBox(
+                height: 25,
+              )
+            ],
+          ),
         ),
       ),
     );

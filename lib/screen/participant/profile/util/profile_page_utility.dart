@@ -45,13 +45,22 @@ class ProfilePageUtility {
         ),
       );
 
-  static RowModel doubleTextRow(String firstText,String secondText,bool isInParticipantPage)=> RowModel( // ana ve yardımcı terapist için
-    text: firstText,
-    textStyle: const TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 18),
-    text2: secondText,
-    textStyle2: const TextStyle(color: Colors.black,fontSize: 16),
-    leadingIcon: Icon(isInParticipantPage ? Icons.person_outline : Icons.account_circle_outlined,color: Colors.black,),
-    isAlignmentBetween: false);
+  static RowModel doubleTextRow(
+          String firstText, String secondText, bool isInParticipantPage) =>
+      RowModel(
+          // ana ve yardımcı terapist için
+          text: firstText,
+          textStyle: const TextStyle(
+              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
+          text2: secondText,
+          textStyle2: const TextStyle(color: Colors.black, fontSize: 16),
+          leadingIcon: Icon(
+            isInParticipantPage
+                ? Icons.person_outline
+                : Icons.account_circle_outlined,
+            color: Colors.black,
+          ),
+          isAlignmentBetween: false);
 
   static RowModel boldMainTitleRow(
           String text, IconData icon, Function() onTap) =>
@@ -91,7 +100,7 @@ class ProfilePageUtility {
 
   static Padding lineWithOrText() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 50),
+      padding: const EdgeInsets.symmetric(vertical: 30),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [

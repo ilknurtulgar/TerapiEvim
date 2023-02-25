@@ -17,12 +17,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {
     return Column(children: [
-      Container(
-        height: widget.purpose == "gender" ? 51 : 36,
-        decoration: AppBoxDecoration.lockScreenBox,
-        width: widget.purpose == "gender" ? 340 : 135,
-        child: choosebox(widget.purpose),
-      ),
+      choosebox(),
       Obx(
         () => activityController.selectedBox.value
             ? ChooseGender(widget: widget)
@@ -30,22 +25,31 @@ class _CustomDropDownState extends State<CustomDropDown> {
       )
     ]);
   }
-}
 
-Obx choosebox(purpose) {
-  return Obx(
-    () => InkWell(
+  Obx choosebox() {
+    return Obx(
+      () => InkWell(
         onTap: () {
           activityController.changeBox();
         },
-        child: SizedBox(
-          width: 340,
-          height: 50,
-          child: purpose == "gender"
-              ? Text(activityController.gender.value)
-              : Text(activityController.order.value),
-        )),
-  );
+        child: Container(
+          height: widget.purpose == "gender" ? 24 : 36,
+          decoration: AppBoxDecoration.lockScreenBox,
+          width: widget.purpose == "gender" ? 195 : 135,
+          child: widget.purpose == "gender"
+              ? Align(
+                  alignment: Alignment.center,
+                  child: Text(
+                    activityController.gender.value,
+                  ),
+                )
+              : Align(
+                  alignment: Alignment.center,
+                  child: Text(activityController.order.value)),
+        ),
+      ),
+    );
+  }
 }
 
 class ChooseGender extends StatelessWidget {
@@ -60,8 +64,8 @@ class ChooseGender extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
         decoration: AppBoxDecoration.lockScreenBox,
-        width: widget.purpose == "gender" ? 51 : 36,
-        height: widget.purpose == "gender" ? 340 : 135,
+        width: 340,
+        height: 50,
         child: ListView.builder(
           itemBuilder: (context, index) {
             return InkWell(

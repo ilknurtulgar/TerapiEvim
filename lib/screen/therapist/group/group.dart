@@ -3,6 +3,7 @@ import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:terapievim/screen/participant/group/my_group.dart';
 import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart';
 import 'package:terapievim/screen/therapist/group/my_groups_view.dart';
+import 'package:terapievim/screen/therapist/group/therapist_about.dart';
 
 class TherapistGroupPage extends StatelessWidget {
   const TherapistGroupPage({super.key});

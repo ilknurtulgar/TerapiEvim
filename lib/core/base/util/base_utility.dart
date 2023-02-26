@@ -116,6 +116,7 @@ class IconUtility {
     Icons.calendar_month_outlined,
     color: AppColors.black,
   );
+
   static const IconData checkCircleIcon = Icons.check_circle_outline;
   static const Icon save = Icon(Icons.save, color: AppColors.meteorite);
   static const Icon contactPhoneIcon =

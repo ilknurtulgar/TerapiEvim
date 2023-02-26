@@ -108,11 +108,20 @@ class GroupAddView extends StatelessWidget {
   PersonMin person(String therapistName, BuildContext context) {
     String imagePath = "assets/images/doctorfotosu.jpeg";
     TherapistGroupController controller = Get.find();
+    bool isChoosen = false;
+    Icon trailingIcon;
+    if (isChoosen) {
+      trailingIcon = Icon(IconUtility.checkCircleIcon);
+    } else {
+      trailingIcon = IconUtility.chatIcon;
+    }
+    ;
     return PersonMin(
         padding: EdgeInsets.only(top: 10),
         borderColor: AppColors.cornFlowerBlue,
         onTap: () {
           secTherapistChooseDialog(context, therapistName, controller);
+          isChoosen = !isChoosen;
         },
         row: RowModel(
             text: therapistName,
@@ -120,7 +129,7 @@ class GroupAddView extends StatelessWidget {
                 big: false, imagePath: imagePath, shadow: false),
             textStyle: AppTextStyles.groupTextStyle(true),
             isAlignmentBetween: true,
-            trailingIcon: IconUtility.chatIcon));
+            trailingIcon: trailingIcon));
   }
 
   Future<String?> secTherapistChooseDialog(BuildContext context,
@@ -170,12 +179,16 @@ class GroupAddView extends StatelessWidget {
     bool election = isDay
         ? controller.isDayElectionOpen.value
         : controller.isSecTherapistElectionOpen.value;
+    bool isChoosed = controller.ChoosenSecTherapist.value != 'Yok' && !isDay;
     double padding;
-    if (isDay) {
+    if (isDay || !isChoosed) {
       padding = 150 - 2.2 * controller.ChoosenDay.value.length;
     } else {
-      padding = 150 - 2.2 * controller.ChoosenSecTherapist.value.length;
+      padding = 100 - 3.0 * controller.ChoosenSecTherapist.value.length;
     }
+
+    String imagePath =
+        "assets/images/doctorfotosu.jpeg"; //bu daha sonra farkli sekilde yapilacak
 
     return Obx(() => Column(
           children: [
@@ -191,15 +204,27 @@ class GroupAddView extends StatelessWidget {
                         : controller.ChoosenSecTherapist.value,
                     textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
                     isAlignmentBetween: true,
+                    leadingIcon: isChoosed
+                        ? CustomCircleAvatar(
+                            imagePath: imagePath, big: false, shadow: false)
+                        : const SizedBox.shrink(),
                     trailingIcon: Padding(
-                      padding: EdgeInsets.only(
-                        left: padding.toDouble(),
-                      ),
-                      child: Icon(
-                        election
-                            ? Icons.keyboard_arrow_up
-                            : Icons.keyboard_arrow_down_sharp,
-                        size: 30,
+                      padding: EdgeInsets.only(left: padding.toDouble()),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          isChoosed
+                              ? Icon(Icons.check_circle_outline)
+                              : const SizedBox(
+                                  width: 2,
+                                ),
+                          Icon(
+                            election
+                                ? Icons.keyboard_arrow_up
+                                : Icons.keyboard_arrow_down_sharp,
+                            size: 30,
+                          ),
+                        ],
                       ),
                     ))),
             election

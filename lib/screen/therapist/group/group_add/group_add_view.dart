@@ -30,12 +30,12 @@ class GroupAddView extends StatelessWidget {
       day("Cumartesi"),
       day("Pazar"),
     ];
-    String imagePAth = "assets/images/doctorfotosu.jpeg";
+
     List<PersonMin> persons = [
-      person("Nihat Turgutlu", imagePAth, context),
-      person("Mikasa Ackerman", imagePAth, context),
-      person("Eren Jeager", imagePAth, context),
-      person("Levi Ackerman", imagePAth, context)
+      person("Nihat Turgutlu", context),
+      person("Mikasa Ackerman", context),
+      person("Eren Jeager", context),
+      person("Levi Ackerman", context)
     ];
 
     return SafeArea(
@@ -53,7 +53,9 @@ class GroupAddView extends StatelessWidget {
                           size: 30,
                           color: AppColors.meteorite,
                         ),
-                        onPressed: () {},
+                        onPressed: () {
+                          //geri donus yapmasi lazim
+                        },
                       )),
                   EdgeInsets.symmetric(vertical: 32, horizontal: 30)),
               miniHeadings("Grup Ismi", false),
@@ -65,19 +67,7 @@ class GroupAddView extends StatelessWidget {
                   isRowModel: false),
               miniHeadings("Yardimci Psikolog", false),
               election(controller, persons, false),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 150,
-                  top: 30,
-                ),
-                child: CustomButton(
-                    container: AppContainers.lightPurpleButtonContainer(173),
-                    textColor: AppColors.meteorite,
-                    onTap: () {
-                      controller.ChoosenSecTherapist("Eren Jager");
-                    },
-                    text: "Bana Psikolog Bul"),
-              ),
+              button(controller, false),
               miniHeadings("Gorusme Tarihi", false),
               miniHeadings("Gun", true),
               election(controller, days, true),
@@ -86,56 +76,78 @@ class GroupAddView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 100.0),
                 child: ChoosingTimeGroupTherapy(),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24.0),
-                child: CustomButton(
-                    container: AppContainers.purpleButtonContainer(140),
-                    textColor: AppColors.white,
-                    onTap: () {},
-                    text: "Grup Olustur"),
-              )
+              button(controller, true)
             ],
           )),
     ));
   }
 
-  PersonMin person(
-      String TherapistName, String ImagePath, BuildContext context) {
+  Padding button(TherapistGroupController controller, bool isLastButton) {
+    return Padding(
+      padding: isLastButton
+          ? const EdgeInsets.symmetric(vertical: 24.0)
+          : const EdgeInsets.only(
+              left: 150,
+              top: 30,
+            ),
+      child: CustomButton(
+          container: isLastButton
+              ? AppContainers.purpleButtonContainer(140)
+              : AppContainers.lightPurpleButtonContainer(173),
+          textColor: isLastButton ? AppColors.white : AppColors.meteorite,
+          onTap: () {
+            if (isLastButton) {
+            } else {
+              controller.ChoosenSecTherapist("Eren Jager");
+            }
+          },
+          text: isLastButton ? "Grup Olustur" : "Bana Psikolog Bul"),
+    );
+  }
+
+  PersonMin person(String therapistName, BuildContext context) {
+    String imagePath = "assets/images/doctorfotosu.jpeg";
     TherapistGroupController controller = Get.find();
     return PersonMin(
         padding: EdgeInsets.only(top: 10),
         borderColor: AppColors.cornFlowerBlue,
         onTap: () {
-          showDialog<String>(
-            context: context,
-            builder: (BuildContext context) => AlertDialog(
-              title: Text(
-                  "$TherapistName kişisine yardımcı psikolog teklifi göndermek istediğinize emin misiniz?"),
-              content: const Text(
-                  'İstek gönderildikten itibaren geri dönüt alınmadan başka bir yardımcı terapiste istekte bulunulamaz.'),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () => Get.back(),
-                  child: const Text('İptal'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    controller.ChoosenSecTherapist(TherapistName);
-                    controller.ChangeSecTherapistElection();
-                    Get.back();
-                  },
-                  child: const Text('İstek Gonder'),
-                ),
-              ],
-            ),
-          );
+          secTherapistChooseDialog(context, therapistName, controller);
         },
         row: RowModel(
-            text: TherapistName,
+            text: therapistName,
             leadingIcon: CustomCircleAvatar(
-                big: false, imagePath: ImagePath, shadow: false),
+                big: false, imagePath: imagePath, shadow: false),
             textStyle: AppTextStyles.groupTextStyle(true),
-            isAlignmentBetween: false));
+            isAlignmentBetween: true,
+            trailingIcon: IconUtility.chatIcon));
+  }
+
+  Future<String?> secTherapistChooseDialog(BuildContext context,
+      String therapistName, TherapistGroupController controller) {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(
+            "$therapistName kişisine yardımcı psikolog teklifi göndermek istediğinize emin misiniz?"),
+        content: const Text(
+            'İstek gönderildikten itibaren geri dönüt alınmadan başka bir yardımcı terapiste istekte bulunulamaz.'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Get.back(),
+            child: const Text('İptal'),
+          ),
+          TextButton(
+            onPressed: () {
+              controller.ChoosenSecTherapist(therapistName);
+              controller.ChangeSecTherapistElection();
+              Get.back();
+            },
+            child: const Text('İstek Gonder'),
+          ),
+        ],
+      ),
+    );
   }
 
   PersonMin day(String dayName) {

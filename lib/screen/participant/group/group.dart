@@ -13,9 +13,8 @@ class GroupScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GroupAddView();
-    // return _controller.isGroupReady.isTrue
-    //     ? const MyGroup()
-    //     : const LockScreen();
+    return _controller.isGroupReady.isTrue
+        ? const MyGroup()
+        : const LockScreen();
   }
 }

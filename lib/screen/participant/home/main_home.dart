@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/group/group.dart';
+import 'package:terapievim/screen/participant/group/my_group.dart';
 import 'package:terapievim/screen/participant/profile/profile_page.dart';
 import '../../../controller/main_controller.dart';
+import '../../therapist/group/group.dart';
 import '../../therapist/home/home.dart';
 import '../../therapist/message/companent/message.dart';
 import '../activity/activities.dart';
@@ -28,7 +30,7 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
     IconUtility.navMessage,
     IconUtility.navProfile
   ];
-  late final bool isparticipant = true;
+  late final bool isparticipant = false;
   @override
   Widget build(BuildContext context) {
     List<Widget> screen = <Widget>[
@@ -42,7 +44,7 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
     List<Widget> therapisty = <Widget>[
       const TherapistHome(),
       ActivitiesScreen(),
-      GroupScreen(),
+      TherapistGroupPage(),
       const TherapistMessageScreen(),
       ParticipantProfilePage(),
     ];

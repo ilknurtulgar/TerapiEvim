@@ -20,28 +20,39 @@ class TherapistActivityScreen extends StatelessWidget {
               activityappbar(),
               activityminto("Yaklaşan Aktivitelerim", () => () {}),
               ActivityBox(
+                  istwobutton: true,
                   buttonText: "Başla",
-                  containerModel: DemoInformation.containerButton(true),
+                  containerModel: AppContainers.containerButton(true),
                   isactivity: true,
                   arowModel: DemoInformation.arowmodel,
                   clockModel: DemoInformation.clockmodel),
               activityminto("Yaklaşan Diğer Aktiviteler", () => () {}),
               ActivityBox(
+                  istwobutton: false,
                   buttonText: "Katıl",
-                  containerModel: DemoInformation.containerButton(false),
+                  containerModel: AppContainers.containerButton(false),
                   isactivity: false,
                   arowModel: DemoInformation.arowmodel,
                   ayrowwModel: DemoInformation.ayrowmodel,
                   clockModel: DemoInformation.clockmodel),
               activityminto("Geçmiş Aktivitelerim", () => () {}),
               ActivityBox(
+                  istwobutton: false,
                   buttonText: "Kaydı İzle",
-                  containerModel: DemoInformation.containerButton(true),
+                  containerModel: AppContainers.containerButton(true),
                   isactivity: true,
                   arowModel: DemoInformation.arowmodel,
                   clockModel: DemoInformation.clockmodel),
               activityminto("Geçmiş Diğer Aktiviteler", () => () {}),
-              activityseminar(),
+              ActivityBox(
+                  istwobutton: false,
+                  buttonText: "Katıl",
+                  containerModel: AppContainers.containerButton(false),
+                  isactivity: false,
+                  arowModel: DemoInformation.arowmodel,
+                  ayrowwModel: DemoInformation.ayrowmodel,
+                  clockModel: DemoInformation.clockmodel),
+              sizedbox()
             ],
           ),
         ),
@@ -57,6 +68,7 @@ class TherapistActivityScreen extends StatelessWidget {
           alignment: Alignment.center,
           child: IconButton(
               onPressed: () {
+                therapistActivtyController.updatechnage(1);
                 Get.to(const NewActivityScreen());
               },
               icon: IconUtility.addIcon),

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/controller/tactivity_controller.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
@@ -12,7 +14,7 @@ class NewActivityScreen extends StatefulWidget {
   State<NewActivityScreen> createState() => _NewActivityScreenState();
 }
 
-const bool isUpdate = true;
+TherapistActivtyController therapistActivtyController = Get.find();
 
 class _NewActivityScreenState extends State<NewActivityScreen> {
   TextEditingController activitynamController = TextEditingController();
@@ -23,9 +25,11 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            isUpdate
-                ? headingtext(false, true, "Aktivite Güncelleme")
-                : headingtext(false, true, "Yeni Aktivite"),
+            Obx(
+              () => therapistActivtyController.isUpdate.value
+                  ? headingtext(false, true, "Aktivite Güncelleme")
+                  : headingtext(false, true, "Yeni Aktivite"),
+            ),
             activityname("Etkinlik İsmi", padding.startpadding),
             CustomTextField(
                 isPhoneNumber: false,
@@ -62,10 +66,12 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 10, bottom: 10, right: 30),
-              child: isUpdate
-                  ? button("Güncelle", () {})
-                  : button("Oluştur", () {}),
+              padding: const EdgeInsets.only(top: 20, bottom: 20, right: 30),
+              child: Obx(
+                () => therapistActivtyController.isUpdate.value
+                    ? button("Güncelle", () {})
+                    : button("Oluştur", () {}),
+              ),
             )
           ],
         ),
@@ -80,7 +86,7 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
           container: ContainerModel(
               width: 150,
               height: 50,
-              borderRadius: 15,
+              borderRadius: 100,
               backgroundColor: AppColors.butterflyBush),
           textColor: Colors.white,
           onTap: onTap,

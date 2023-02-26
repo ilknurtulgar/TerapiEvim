@@ -41,8 +41,9 @@ ListView activityseminar() {
           right: 70,
         ),
         child: ActivityBox(
+            istwobutton: false,
             buttonText: "Katıl",
-            containerModel: DemoInformation.containerButton(false),
+            containerModel: AppContainers.containerButton(false),
             isactivity: false,
             arowModel: DemoInformation.arowmodel,
             ayrowwModel: DemoInformation.ayrowmodel,
@@ -53,22 +54,19 @@ ListView activityseminar() {
   );
 }
 
-Padding activityminto(String text, Function()? onPressed) {
-  return Padding(
-    padding: const EdgeInsets.all(6),
-    child: Row(
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      children: [
-        Text(
-          text,
-          style: AppTextStyles.groupTextStyle(false),
-        ),
-        IconButton(
-          icon: IconUtility.arrowIcon,
-          onPressed: onPressed,
-        ),
-      ],
-    ),
+Widget activityminto(String text, Function()? onPressed) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    children: [
+      Text(
+        text,
+        style: AppTextStyles.groupTextStyle(false),
+      ),
+      IconButton(
+        icon: IconUtility.arrowIcon,
+        onPressed: onPressed,
+      ),
+    ],
   );
 }
 

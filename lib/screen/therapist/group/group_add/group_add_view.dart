@@ -48,7 +48,7 @@ class GroupAddView extends StatelessWidget {
                       textStyle: AppTextStyles.heading(false),
                       isAlignmentBetween: true,
                       trailingIcon: IconButton(
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.close,
                           size: 30,
                           color: AppColors.meteorite,
@@ -57,7 +57,7 @@ class GroupAddView extends StatelessWidget {
                           //geri donus yapmasi lazim
                         },
                       )),
-                  EdgeInsets.symmetric(vertical: 32, horizontal: 30)),
+                  const EdgeInsets.symmetric(vertical: 32, horizontal: 30)),
               miniHeadings("Grup Ismi", false),
               CustomTextField(
                   isPhoneNumber: false,
@@ -109,19 +109,15 @@ class GroupAddView extends StatelessWidget {
     String imagePath = "assets/images/doctorfotosu.jpeg";
     TherapistGroupController controller = Get.find();
     bool isChoosen = false;
-    Icon trailingIcon;
-    if (isChoosen) {
-      trailingIcon = Icon(IconUtility.checkCircleIcon);
-    } else {
-      trailingIcon = IconUtility.chatIcon;
-    }
-    ;
+    Icon trailingIcon = IconUtility.emailIcon;
+
     return PersonMin(
         padding: EdgeInsets.only(top: 10),
         borderColor: AppColors.cornFlowerBlue,
         onTap: () {
           secTherapistChooseDialog(context, therapistName, controller);
           isChoosen = !isChoosen;
+          trailingIcon = const Icon(Icons.check_circle_outline);
         },
         row: RowModel(
             text: therapistName,

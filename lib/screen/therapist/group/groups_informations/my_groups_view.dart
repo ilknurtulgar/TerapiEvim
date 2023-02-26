@@ -7,21 +7,6 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 // ignore: must_be_immutable
 class MyGroups extends StatelessWidget {
   MyGroups({super.key}); //gecici modeller
-  RowModel row_1 = RowModel(
-      leadingIcon: IconUtility.activityIcon,
-      text: "Yeme Bozukluğu Grubu 1",
-      textStyle: AppTextStyles.groupTextStyle(false),
-      isAlignmentBetween: false);
-  RowModel row_2 = RowModel(
-      leadingIcon: IconUtility.personIcon,
-      text: "Yardımcı Psikolog  : Bekleniyor.. ",
-      textStyle: AppTextStyles.groupTextStyle(true),
-      isAlignmentBetween: false);
-  RowModel row_3 = RowModel(
-      leadingIcon: IconUtility.greyGroupsIcon,
-      text: "Katılımcı Sayısı : 0/20",
-      textStyle: AppTextStyles.normalTextStyle('small', false),
-      isAlignmentBetween: false);
 
   @override
   Widget build(BuildContext context) {
@@ -52,9 +37,9 @@ class MyGroups extends StatelessWidget {
                   padding: EdgeInsets.symmetric(vertical: 9, horizontal: 24),
                   child: SeminarMax(
                       onTap: () {},
-                      row1: row_1,
-                      row2: row_2,
-                      row3: row_3,
+                      row1: DemoInformation.row_1,
+                      row2: DemoInformation.row_2,
+                      row3: DemoInformation.row_3,
                       borderColor: AppColors.cornFlowerBlue),
                 );
               },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
+import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
@@ -8,21 +9,6 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 // ignore: must_be_immutable
 class GroupInformation extends StatelessWidget {
   GroupInformation({super.key});
-  RowModel secTherapist = RowModel(
-    isAlignmentBetween: true,
-    leadingIcon: IconUtility.personIcon,
-    text: "Yardimci Psikolog: ",
-    textStyle: AppTextStyles.aboutMeTextStyle(false),
-    text2: "Simay Odabasi",
-    textStyle2: AppTextStyles.groupTextStyle(true),
-    trailingIcon: IconUtility.arrowForwardIcon,
-  );
-  RowModel methods = RowModel(
-    isAlignmentBetween: true,
-    text: "Basetme Metotlari ",
-    textStyle: AppTextStyles.aboutMeTextStyle(false),
-    trailingIcon: IconUtility.arrowForwardIcon,
-  );
 
   @override
   Widget build(BuildContext context) {
@@ -31,24 +17,36 @@ class GroupInformation extends StatelessWidget {
         children: [
           heading(context),
           miniHeadings("Yaklasan Toplanti", false),
+          meeting(),
           miniHeadings("Grubun Bilgileri", false),
-          navMethod(secTherapist, () {}),
-          // SeminarMin(
-          //     borderColor: AppColors.meteorite,
-          //     onTap: () {},
-          //     row: RowModel(
-          //       isAlignmentBetween: true,
-          //       leadingIcon: IconUtility.personIcon,
-          //       text: "Yardimci Psikolog: ",
-          //       textStyle: AppTextStyles.aboutMeTextStyle(false),
-          //       text2: "Simay Odabasi",
-          //       textStyle2: AppTextStyles.groupTextStyle(true),
-          //       trailingIcon: IconUtility.arrowForwardIcon,
-          //     )),
-          navMethod(methods, () {}),
+          navMethod(DemoInformation.secTherapist, () {}),
+          //dropdownlu component gelecek katilimcilar
+          navMethod(DemoInformation.methods, () {}),
         ],
       ),
     );
+  }
+
+  ActivityBox meeting() {
+    return ActivityBox(
+        istwobutton: false,
+        containerModel: AppContainers.containerButton(false),
+        buttonText: "Baslat",
+        arowModel: RowModel(
+          leadingIcon: IconUtility.personIcon,
+          isAlignmentBetween: false,
+          text: "Yardimci Psikolog: ",
+          textStyle: AppTextStyles.aboutMeTextStyle(false),
+          text2: "Ozlem Ulusan", //sadece isim alinacak
+          textStyle2: AppTextStyles.groupTextStyle(true),
+        ),
+        isactivity: true,
+        clockModel: RowModel(
+          leadingIcon: IconUtility.clockIcon,
+          text: "Ocak 15, 2023,  20:00",
+          textStyle: AppTextStyles.groupTextStyle(true),
+          isAlignmentBetween: false,
+        ));
   }
 
   Padding navMethod(RowModel row, Function func) {

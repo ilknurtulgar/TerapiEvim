@@ -15,46 +15,7 @@ class MessageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(
-            bottom: 0,
-          ),
-          child: sendbox()
-          /*Container(
-          height: 45,
-          width: MediaQuery.of(context).size.width,
-          color: Colors.white,
-          child: Row(
-            children: [
-              const Expanded(
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: "Message...",
-                    hintStyle: TextStyle(color: Colors.blue),
-                    border: OutlineInputBorder(
-                        borderSide: BorderSide(color: Colors.blue)),
-                  ),
-                ),
-              ),
-              const SizedBox(
-                width: 15,
-              ),
-              // Send Button
-              MaterialButton(
-                color: Colors.red,
-                onPressed: () {},
-                // backgroundColor: ColorConstant.lightBlueA100,
-                elevation: 0,
-                child: const Icon(
-                  Icons.send,
-                  color: Colors.white,
-                  size: 18,
-                ),
-              ),
-            ],
-          ),
-        ),*/
-          ),
+      bottomNavigationBar: sendbox(),
       body: SafeArea(
         child: Column(
           children: [
@@ -68,7 +29,6 @@ class MessageScreen extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(child: messageexpanded(context)),
             ),
-            // sendbox(),
           ],
         ),
       ),
@@ -78,7 +38,6 @@ class MessageScreen extends StatelessWidget {
   Widget sendbox() {
     return Container(
       color: Colors.white,
-      //   decoration: AppBoxDecoration.sendDecoration,
       height: 65,
       width: window.physicalSize.width,
       child: Row(
@@ -152,16 +111,6 @@ class MessageScreen extends StatelessWidget {
       ),
     );
   }
-
-  /* Positioned demo() {
-    return Positioned(
-        child: Container(
-      decoration: BoxDecoration(
-          color: Colors.white, border: Border.all(color: Colors.white)),
-      width: window.physicalSize.width,
-      height: 162,
-    ));
-  }*/
 
   Widget messageappbar() {
     return Padding(

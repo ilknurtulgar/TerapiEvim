@@ -11,7 +11,6 @@ class TherapistHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //deneme icin
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
@@ -21,20 +20,11 @@ class TherapistHome extends StatelessWidget {
               headingtext(false, false, "Hoşgeldiniz"),
               mindetailesbox("15 DAKİKALIK SEANSLARIM",
                   () => Get.to(const SessionScreen())),
-              const Center(
-                  child: Reminder(
-                reminderType: ReminderType.activity,
-                name: "Yasemin",
-                time: "14.44",
-              )),
-              const SizedBox(
-                height: 40,
-              ),
-              const NotificationContainer(
-                type: NotificationType.shortcallFail,
-                contentText: "Simay Selli gönderdiğiniz isteği kabul etmedi.",
-                name: "OKB grubu 2",
-              )
+              //paddig yok
+              reminderactivity(),
+
+              //notficationcontainer padding yok
+              notificationcontainer()
             ],
           ),
         ),
@@ -42,25 +32,25 @@ class TherapistHome extends StatelessWidget {
     );
   }
 
-  Column denemey() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        Center(
-            child: Reminder(
-          reminderType: ReminderType.activity,
-          name: "Yasemin",
-          time: "14.44",
-        )),
-        SizedBox(
-          height: 40,
-        ),
-        NotificationContainer(
-          type: NotificationType.shortcallFail,
-          contentText: "Simay Selli gönderdiğiniz isteği kabul etmedi.",
-          name: "OKB grubu 2",
-        )
-      ],
+  Padding notificationcontainer() {
+    return const Padding(
+      padding: EdgeInsets.only(bottom: 11, top: 8),
+      child: NotificationContainer(
+        type: NotificationType.shortcallFail,
+        contentText: "Simay Selli gönderdiğiniz isteği kabul etmedi.",
+        name: "OKB grubu 2",
+      ),
+    );
+  }
+
+  Padding reminderactivity() {
+    return const Padding(
+      padding: EdgeInsets.all(8.0),
+      child: Reminder(
+        reminderType: ReminderType.activity,
+        name: "Yasemin",
+        time: "14.44",
+      ),
     );
   }
 }

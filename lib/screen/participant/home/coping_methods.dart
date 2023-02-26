@@ -40,12 +40,12 @@ class CopingMethods extends StatelessWidget {
     );
   }
 
-  Padding filter() {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
+  Widget filter() {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
       child: Align(
         alignment: Alignment.bottomRight,
-        child: CustomDropDown(purpose: "order"),
+        child: CustomDropDown(purpose: orderingList, height: 40, width: 135),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
+import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
@@ -8,7 +9,8 @@ import 'package:terapievim/screen/participant/group/util/group_screen_utility.da
 import '../../participant/group/util/lock_screen_utility.dart';
 
 class TherapistProfile extends StatelessWidget {
-  TherapistProfile({super.key});
+  TherapistProfile({super.key, required this.isSecTherapist});
+  final bool isSecTherapist;
   final String imagePath = "assets/images/doctorfotosu.jpeg";
   //bu row modeller fix ama nereye koyulacagi tartisilmasi lazim
   final RowModel basetmeMetodlari = RowModel(
@@ -36,6 +38,7 @@ class TherapistProfile extends StatelessWidget {
   final String name = "Kerem Engin";
   @override
   Widget build(BuildContext context) {
+    List<RowModel> groups = [DemoInformation.grup1];
     return Stack(
       alignment: Alignment.center,
       textDirection: TextDirection.rtl,
@@ -49,24 +52,41 @@ class TherapistProfile extends StatelessWidget {
             whiteBackground(context),
             heading(name),
             aboutMe(aboutme),
-            activity(basetmeMetodlari, () {
-              //buraya fonksiyonlari ekelenecek
-              // print("basettin mi");
-            }),
+            isSecTherapist
+                ? const SizedBox.shrink()
+                : activity(basetmeMetodlari, () {
+                    //buraya fonksiyonlari ekelenecek
+                    // print("basettin mi");
+                  }),
             activity(seminerleri, () {
               //print("seminermismis");
             }),
             activity(mesajGonder, () {
               // print("selam");
             }),
+            isSecTherapist ? otherGroups(groups) : const SizedBox.shrink()
           ],
         ),
         Positioned(
           top: 87,
-          left: 50,
-          right: 50,
+          // left: 50,
+          // right: 50,
           child:
               CustomCircleAvatar(imagePath: imagePath, big: true, shadow: true),
+        )
+      ],
+    );
+  }
+
+  Column otherGroups(List<RowModel> groups) {
+    return Column(
+      children: [
+        CustomHeading(
+            text: "Yardimci Psikologluk Yaptigi Diger Gruplar",
+            isalignmentstart: true),
+        ListView.builder(
+          itemCount: groups.length,
+          itemBuilder: (context, index) => activity(groups[index], () => null),
         )
       ],
     );

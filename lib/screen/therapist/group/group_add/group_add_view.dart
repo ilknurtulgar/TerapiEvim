@@ -32,6 +32,7 @@ class GroupAddView extends StatelessWidget {
     ];
 
     List<PersonMin> persons = [
+      //cikartamiyorum person widgeti kullanildi cunku
       person("Nihat Turgutlu", context),
       person("Mikasa Ackerman", context),
       person("Eren Jeager", context),

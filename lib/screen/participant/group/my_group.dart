@@ -24,29 +24,6 @@ class MyGroup extends StatelessWidget {
         trailingIcon: const GroupOut(),
         isAlignmentBetween: true);
     //buradaki tum modeller geecici
-    String imagePath = "assets/images/doctorfotosu.jpeg";
-    RowModel row = RowModel(
-      isAlignmentBetween: true,
-      leadingIcon: IconUtility.personIcon,
-      text: "Grup Terapisti : ",
-      textStyle: AppTextStyles.groupTextStyle(false),
-      text2: "Simay Odabasi",
-      textStyle2: AppTextStyles.groupTextStyle(true),
-    );
-    RowModel row2 = RowModel(
-      isAlignmentBetween: true,
-      leadingIcon: IconUtility.personIcon,
-      text: "Yardimci Psikolog: ",
-      textStyle: AppTextStyles.groupTextStyle(false),
-      text2: "Ozlem Ulusan",
-      textStyle2: AppTextStyles.groupTextStyle(true),
-    );
-    RowModel person = RowModel(
-        isAlignmentBetween: true,
-        leadingIcon:
-            CustomCircleAvatar(big: false, shadow: false, imagePath: imagePath),
-        text: "Aleyna Tilki",
-        textStyle: AppTextStyles.groupTextStyle(true));
 
     return Scaffold(
       backgroundColor: AppColors.blueChalk,
@@ -63,20 +40,20 @@ class MyGroup extends StatelessWidget {
                   buttonText: "Katıl",
                   isactivity: true,
                   containerModel: AppContainers.containerButton(false),
-                  arowModel: row,
-                  ayrowwModel: row,
-                  clockModel: row),
+                  arowModel: DemoInformation.row,
+                  ayrowwModel: DemoInformation.row,
+                  clockModel: DemoInformation.row),
               CustomHeading(
                 text: GroupTexts.grupBilgiler,
                 isalignmentstart: true,
               ),
-              therapist(row),
-              therapist(row2),
+              therapist(DemoInformation.row),
+              therapist(DemoInformation.row2),
               CustomHeading(
                 text: GroupTexts.katilimcilar,
                 isalignmentstart: true,
               ),
-              participants(person),
+              participants(DemoInformation.person),
             ],
           ),
         ),
@@ -93,9 +70,10 @@ class MyGroup extends StatelessWidget {
   }
 
   ListView participants(RowModel person) {
-    String imagePath = "assets/images/doctorfotosu.jpeg";
     var tmpParticipant = participantContainer(
-        CardModel(imagePath: imagePath, title: "Aleyna Tilki"), 52, 342);
+        CardModel(imagePath: DemoInformation.imagePath, title: "Aleyna Tilki"),
+        52,
+        342);
     int tmpParticipantNumber = 5;
     //gecici katilimci modeli
     return ListView.builder(

@@ -11,21 +11,9 @@ import '../../../../core/base/util/base_utility.dart';
 class Test extends StatelessWidget {
   Test({super.key});
 
-  List<Widget> questions = [
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview()
-  ];
   @override
   Widget build(BuildContext context) {
-    return PagesForSCL(questions: questions);
+    return PagesForSCL(questions: DemoInformation.questions);
   }
 }
 

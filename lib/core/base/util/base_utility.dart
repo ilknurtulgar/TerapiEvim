@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
+import 'package:terapievim/screen/therapist/group/group.dart';
 
 import '../../../screen/participant/activity/activities.dart';
 import '../../../screen/participant/group/group.dart';
@@ -9,6 +10,9 @@ import '../../../screen/participant/profile/profile_page.dart';
 import '../../../screen/therapist/activity/activity_screen.dart';
 import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
+import '../component/group/person.dart';
+import '../component/group/questions_button.dart';
+import '../component/profile/image/custom_circle_avatar.dart';
 import '../models/row_model.dart';
 
 class AppColors {
@@ -316,7 +320,7 @@ class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
     const TherapistHome(),
     const TherapistActivityScreen(),
-    GroupScreen(),
+    const TherapistGroupPage(),
     const TherapistMessageScreen(),
     ParticipantProfilePage(),
   ];
@@ -360,4 +364,97 @@ class DemoInformation {
       text: "Ocak 15,2023,20:00",
       textStyle: const TextStyle(),
       leadingIcon: IconUtility.clockIcon);
+
+  //group
+  static RowModel secTherapist = RowModel(
+    isAlignmentBetween: true,
+    leadingIcon: IconUtility.personIcon,
+    text: "Yardimci Psikolog: ",
+    textStyle: AppTextStyles.aboutMeTextStyle(false),
+    text2: "Simay Odabasi",
+    textStyle2: AppTextStyles.groupTextStyle(true),
+    trailingIcon: IconUtility.arrowForwardIcon,
+  );
+  static RowModel methods = RowModel(
+    isAlignmentBetween: true,
+    text: "Basetme Metotlari ",
+    textStyle: AppTextStyles.aboutMeTextStyle(false),
+    trailingIcon: IconUtility.arrowForwardIcon,
+  );
+  static RowModel row_1 = RowModel(
+      leadingIcon: IconUtility.activityIcon,
+      text: "Yeme Bozukluğu Grubu 1",
+      textStyle: AppTextStyles.groupTextStyle(false),
+      isAlignmentBetween: false);
+  static RowModel row_2 = RowModel(
+      leadingIcon: IconUtility.personIcon,
+      text: "Yardımcı Psikolog  : Bekleniyor.. ",
+      textStyle: AppTextStyles.groupTextStyle(true),
+      isAlignmentBetween: false);
+  static RowModel row_3 = RowModel(
+      leadingIcon: IconUtility.greyGroupsIcon,
+      text: "Katılımcı Sayısı : 0/20",
+      textStyle: AppTextStyles.normalTextStyle('small', false),
+      isAlignmentBetween: false);
+  static String tmpNewMetotText = "Yeni Yazimda size bla bla anlattim";
+  static String tmppdfName = "YeniliklerleBasaCikma.pdf";
+  static List<String> groupNames = [
+    "Depresyon 1",
+    "Depresyon 2",
+    "Anksiyete 1",
+    "Bulmia 1",
+    "Yas 1"
+  ];
+  static final RowModel grup1 = RowModel(
+    text: "Depresyon 1",
+    textStyle: AppTextStyles.groupTextStyle(false),
+    isAlignmentBetween: false,
+    leadingIcon: IconUtility.groupsIcon,
+  );
+  static final RowModel grup2 = RowModel(
+    text: "Anksiyete 1",
+    textStyle: AppTextStyles.groupTextStyle(false),
+    isAlignmentBetween: false,
+    leadingIcon: IconUtility.groupsIcon,
+  );
+  static String therapistName = "Yasemin Bebek";
+  static String datetime = "27.01.2023";
+  static List<String> timelist = ["12.00", "15.00", "20.00"];
+  static String userName = "Yasemin";
+  static int tmpCount = 5;
+  static List<Widget> questions = [
+    togglebuttonsview(),
+    togglebuttonsview(),
+    togglebuttonsview(),
+    togglebuttonsview(),
+    togglebuttonsview(),
+    togglebuttonsview(),
+    togglebuttonsview(),
+    togglebuttonsview(),
+    togglebuttonsview(),
+    togglebuttonsview()
+  ];
+  static String imagePath = "assets/images/doctorfotosu.jpeg";
+  static RowModel row = RowModel(
+    isAlignmentBetween: true,
+    leadingIcon: IconUtility.personIcon,
+    text: "Grup Terapisti : ",
+    textStyle: AppTextStyles.groupTextStyle(false),
+    text2: "Simay Odabasi",
+    textStyle2: AppTextStyles.groupTextStyle(true),
+  );
+  static RowModel row2 = RowModel(
+    isAlignmentBetween: true,
+    leadingIcon: IconUtility.personIcon,
+    text: "Yardimci Psikolog: ",
+    textStyle: AppTextStyles.groupTextStyle(false),
+    text2: "Ozlem Ulusan",
+    textStyle2: AppTextStyles.groupTextStyle(true),
+  );
+  static RowModel person = RowModel(
+      isAlignmentBetween: true,
+      leadingIcon: CustomCircleAvatar(
+          big: false, shadow: false, imagePath: DemoInformation.imagePath),
+      text: "Aleyna Tilki",
+      textStyle: AppTextStyles.groupTextStyle(true));
 }

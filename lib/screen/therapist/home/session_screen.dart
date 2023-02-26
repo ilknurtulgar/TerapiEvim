@@ -17,26 +17,37 @@ class SessionScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 45),
                 child: headingtext(false, false, "15 Dakikalık Seanslarım"),
               ),
-              const Align(
-                  alignment: Alignment.bottomRight,
-                  child: Padding(
-                    padding: EdgeInsets.all(9),
-                    child: CustomDropDown(purpose: "order"),
-                  )),
-              ListView.builder(
-                itemBuilder: (context, index) {
-                  return participantWihtShortCallTime(
-                      copingList[index], "19.02.2023");
-                },
-                itemCount: copingList.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-              ),
+              orderdrpdown(),
+              aboutparticipant(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  ListView aboutparticipant() {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return participantWihtShortCallTime(copingList[index], "19.02.2023");
+      },
+      itemCount: copingList.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+    );
+  }
+
+  Align orderdrpdown() {
+    return Align(
+        alignment: Alignment.bottomRight,
+        child: Padding(
+          padding: const EdgeInsets.all(9),
+          child: CustomDropDown(
+            purpose: orderingList,
+            height: 36,
+            width: 135,
+          ),
+        ));
   }
 }
 

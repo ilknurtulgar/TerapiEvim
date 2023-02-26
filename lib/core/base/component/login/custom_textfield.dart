@@ -28,8 +28,7 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding:
-            const EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 20),
+        padding: const EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 20),
         child: SizedBox(
           width: isBig ? 342 : 195,
           height: isBig ? 56 : 24,

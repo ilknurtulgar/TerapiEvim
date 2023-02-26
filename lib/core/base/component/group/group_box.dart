@@ -18,11 +18,12 @@ class ActivityBox extends StatelessWidget {
   final RowModel ayrowwModel;
   final RowModel clockModel;
   final bool isactivity;
+
   @override
   Widget build(BuildContext context) {
     return Container(
       width: 350,
-      height: isactivity ? 140 : 165,
+      height: 140,
       decoration: BoxDecoration(
         color: AppColors.white,
         border: Border.all(color: AppColors.cornFlowerBlue, width: 2),
@@ -30,7 +31,6 @@ class ActivityBox extends StatelessWidget {
       ),
       child: Column(
         children: [
-          //
           rowView(arowModel,
               const EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
           rowView(ayrowwModel,
@@ -38,38 +38,27 @@ class ActivityBox extends StatelessWidget {
           rowView(clockModel,
               const EdgeInsets.symmetric(horizontal: 15, vertical: 3)),
           Row(
-            mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: CustomButton(
-                  textColor: Colors.white,
-                  container: containerModel,
-                  onTap: () {},
-                  text: "Katıl",
-                ),
-              )
+              rowbutton(() {}, "Bilgilerimi Güncelle"),
+              isactivity
+                  ? Padding(
+                      padding: const EdgeInsets.only(left: 70),
+                      child: rowbutton(() {}, "Başla"),
+                    )
+                  : const SizedBox.shrink()
             ],
           )
         ],
       ),
     );
   }
+
+  Widget rowbutton(Function() onTap, String buttonText) {
+    return CustomButton(
+      textColor: Colors.white,
+      container: containerModel,
+      onTap: onTap,
+      text: buttonText,
+    );
+  }
 }
-
-RowModel arowmodel = RowModel(
-    isAlignmentBetween: true,
-    text: "Grup Terapilerinin Etkisi",
-    textStyle: const TextStyle(),
-    leadingIcon: IconUtility.activityIcon);
-
-RowModel ayrowmodel = RowModel(
-    isAlignmentBetween: true,
-    text: "Özlem Ulusan",
-    textStyle: const TextStyle(),
-    leadingIcon: IconUtility.personIcon);
-RowModel clockmodel = RowModel(
-    isAlignmentBetween: true,
-    text: "Ocak 15,2023,20:00",
-    textStyle: const TextStyle(),
-    leadingIcon: IconUtility.clockIcon);

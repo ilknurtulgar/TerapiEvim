@@ -31,7 +31,7 @@ class _TherapistMessageScreenState extends State<TherapistMessageScreen> {
                 },
                 itemCount: 15,
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -47,17 +47,27 @@ class _TherapistMessageScreenState extends State<TherapistMessageScreen> {
                 onPressed: () {
                   Get.to(const SearchMessage());
                 },
-                icon: const Icon(
-                  Icons.mark_email_read_outlined,
-                  size: 30,
-                )),
-            text: "Mesajlar",
+                icon: MessageUtil.addmesaage),
+            text: MessageUtil.messageapptext,
             textStyle: AppTextStyles.heading(false),
-            leadingIcon: const Icon(
-              Icons.forum_outlined,
-              size: 35,
-            ),
+            leadingIcon: MessageUtil.messageIcon,
             isAlignmentBetween: true),
-        const EdgeInsets.all(15));
+        MessageUtil.appmpadding);
   }
+}
+
+class MessageUtil {
+  static const Icon messageIcon = Icon(
+    Icons.forum_outlined,
+    size: 35,
+  );
+  static const Icon addmesaage = Icon(
+    Icons.mark_email_read_outlined,
+    size: 30,
+  );
+
+  static const EdgeInsets appmpadding = EdgeInsets.all(15);
+
+  static const String messageapptext = "Mesajlar";
+  static const String searchtext = "Ara";
 }

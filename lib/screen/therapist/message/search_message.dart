@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/therapist/message/companent/person_view.dart';
+import 'package:terapievim/screen/therapist/message/message.dart';
 
 class SearchMessage extends StatefulWidget {
   const SearchMessage({super.key});
@@ -10,13 +12,6 @@ class SearchMessage extends StatefulWidget {
   @override
   State<SearchMessage> createState() => _SearchMessageState();
 }
-
-List<String> personList = [
-  "İrem Derici",
-  "Canan Karatay",
-  "Ecem Kara",
-  "Nur Kara"
-];
 
 class _SearchMessageState extends State<SearchMessage> {
   @override
@@ -27,14 +22,15 @@ class _SearchMessageState extends State<SearchMessage> {
           child: Column(
             children: [
               searchappbar(),
-              PersonView(gruopName: "anksiyete", list: personList),
-              PersonView(gruopName: "panik atak", list: personList),
-              PersonView(gruopName: "anksiyete", list: personList),
-              PersonView(gruopName: "panik atak", list: personList),
-              PersonView(gruopName: "anksiyete", list: personList),
-              PersonView(gruopName: "panik atak", list: personList),
-              PersonView(gruopName: "anksiyete", list: personList),
-              PersonView(gruopName: "panik atak", list: personList),
+              ListView.builder(
+                itemBuilder: (context, index) {
+                  return PersonView(
+                      gruopName: DemoInformation.groupList[index],
+                      list: DemoInformation.personList);
+                },
+                itemCount: DemoInformation.groupList.length,
+                shrinkWrap: true,
+              ),
             ],
           ),
         ),
@@ -46,14 +42,18 @@ class _SearchMessageState extends State<SearchMessage> {
     return Column(
       children: [
         search(RowModel(
-            text: "Ara",
+            text: MessageUtil.searchtext,
             textStyle: AppTextStyles.normalTextStyle("medium", true),
             isAlignmentBetween: true,
-            leadingIcon: const Icon(Icons.search),
-            trailingIcon: const Icon(Icons.close))),
+            leadingIcon: IconUtility.searchIcon,
+            trailingIcon: IconButton(
+                onPressed: () {
+                  Get.to(const TherapistMessageScreen());
+                },
+                icon: IconUtility.closeIcon))),
         const Divider(
           height: 3,
-          color: Colors.grey,
+          color: AppColors.doveGray,
         )
       ],
     );

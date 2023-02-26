@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
+
 import '../../../controller/main_controller.dart';
+
 
 class TerapiEvimLogged extends StatefulWidget {
   const TerapiEvimLogged({Key? key}) : super(key: key);
@@ -16,8 +18,10 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
   final MainController _controller = Get.find();
   late final bool isparticipant = false;
 
+
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       bottomNavigationBar: Obx(
         () => AnimatedBottomNavigationBar(

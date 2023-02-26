@@ -4,6 +4,7 @@ import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
+// ignore: must_be_immutable
 class MyGroups extends StatelessWidget {
   MyGroups({super.key}); //gecici modeller
   RowModel row_1 = RowModel(
@@ -41,7 +42,8 @@ class MyGroups extends StatelessWidget {
                         color: AppColors.meteorite,
                       ),
                     )),
-                EdgeInsets.only(top: 18, left: 30, right: 30, bottom: 40)),
+                const EdgeInsets.only(
+                    top: 18, left: 30, right: 30, bottom: 40)),
             ListView.builder(
               shrinkWrap: true,
               itemCount: 10,

@@ -77,6 +77,9 @@ class IconUtility {
     Icons.alarm_outlined,
     color: AppColors.black,
   );
+  static const Icon addIcon = Icon(
+    Icons.add_circle_outline,
+  );
   static const Icon notification = Icon(Icons.notifications);
   static const Icon logoutIcon = Icon(Icons.logout);
   static const Icon searchIcon = Icon(Icons.search);
@@ -333,8 +336,13 @@ class DemoInformation {
   ];
 //activity
 
-  static ContainerModel containerButton = ContainerModel(
-      height: 30, borderRadius: 100, backgroundColor: AppColors.meteorite);
+  static ContainerModel containerButton(bool bigwidth) {
+    return ContainerModel(
+        width: bigwidth ? 150 : 97,
+        height: 30,
+        borderRadius: 100,
+        backgroundColor: AppColors.butterflyBush);
+  }
 
   static RowModel arowmodel = RowModel(
       isAlignmentBetween: true,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
+import 'package:terapievim/screen/therapist/group/group.dart';
 
 import '../../../screen/participant/activity/activities.dart';
 import '../../../screen/participant/group/group.dart';
@@ -309,7 +310,7 @@ class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
     const TherapistHome(),
     const TherapistActivityScreen(),
-    GroupScreen(),
+    const TherapistGroupPage(),
     const TherapistMessageScreen(),
     ParticipantProfilePage(),
   ];

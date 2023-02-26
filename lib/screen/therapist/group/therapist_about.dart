@@ -63,8 +63,8 @@ class TherapistProfile extends StatelessWidget {
         ),
         Positioned(
           top: 87,
-          left: 50,
-          right: 50,
+          // left: 50,
+          // right: 50,
           child:
               CustomCircleAvatar(imagePath: imagePath, big: true, shadow: true),
         )

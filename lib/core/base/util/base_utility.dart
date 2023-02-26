@@ -1,6 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
 
+import '../../../screen/participant/activity/activities.dart';
+import '../../../screen/participant/group/group.dart';
+import '../../../screen/participant/home/home.dart';
+import '../../../screen/participant/message/message.dart';
+import '../../../screen/participant/profile/profile_page.dart';
+import '../../../screen/therapist/activity/activity_screen.dart';
+import '../../../screen/therapist/home/home.dart';
+import '../../../screen/therapist/message/message.dart';
+import '../models/row_model.dart';
+
 class AppColors {
   static const Color blueChalk = Color.fromRGBO(238, 227, 255, 1);
   //uygulamanin genelindeki lila renk
@@ -39,8 +49,16 @@ class IconUtility {
   static const Icon visibilityIcon = Icon(
     Icons.visibility,
   );
+  static const List<IconData> bottomnavigateIcons = <IconData>[
+    IconUtility.navHome,
+    IconUtility.navActivities,
+    IconUtility.navGroup,
+    IconUtility.navMessage,
+    IconUtility.navProfile
+  ];
   static const Icon visibilityoffIcon = Icon(Icons.visibility_off);
   static const Icon homeIcon = Icon(Icons.home);
+  static const Icon closeIcon = Icon(Icons.close);
   static const Icon activityIcon =
       Icon(Icons.laptop_windows_sharp); //browse_activity yok
   static const Icon groupsIcon = Icon(Icons.groups);
@@ -116,6 +134,7 @@ class IconUtility {
     Icons.calendar_month_outlined,
     color: AppColors.black,
   );
+
   static const IconData checkCircleIcon = Icons.check_circle_outline;
   static const Icon save = Icon(Icons.save, color: AppColors.meteorite);
   static const Icon contactPhoneIcon =
@@ -125,12 +144,6 @@ class IconUtility {
     color: AppColors.black,
   );
 }
-// class GroupTextStyle {
-//   static const TextStyle groupOutButton = TextStyle(
-//       color: AppColors.meteorite,
-//       fontFamily: "Roboto",
-//       fontWeight: FontWeight.w500);
-// }
 
 class AppTextStyles {
   static TextStyle normalTextStyle(String size, bool isGreyText) => TextStyle(
@@ -197,6 +210,12 @@ class AppTextStyles {
       fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
       //sor!
       color: isName ? AppColors.black : AppColors.deepCove);
+  // class GroupTextStyle {
+//   static const TextStyle groupOutButton = TextStyle(
+//       color: AppColors.meteorite,
+//       fontFamily: "Roboto",
+//       fontWeight: FontWeight.w500);
+// }
 }
 
 class AppContainers {
@@ -258,6 +277,7 @@ class AppBoxDecoration {
       color: AppColors.white,
       borderRadius: AppBorderRadius.generalBorderRadius,
       border: Border.all(color: AppColors.dustyGray));
+
   static BoxDecoration notificationDec = BoxDecoration(
       color: AppColors.white,
       borderRadius: AppBorderRadius.notificationradius,
@@ -280,4 +300,57 @@ Padding colon(bool isInAlertDialog) {
           fontSize: 20, fontWeight: FontWeight.w500, color: AppColors.black),
     ),
   );
+}
+
+class NavigateUtil {
+  static List<Widget> therapisty = <Widget>[
+    const TherapistHome(),
+    const TherapistActivityScreen(),
+    GroupScreen(),
+    const TherapistMessageScreen(),
+    ParticipantProfilePage(),
+  ];
+  static List<Widget> screen = <Widget>[
+    const HomeScreen(),
+    const ActivitiesScreen(),
+    GroupScreen(),
+    MessageScreen(),
+    ParticipantProfilePage(),
+  ];
+}
+
+class DemoInformation {
+  //message
+  static const List<String> personList = [
+    "İrem Derici",
+    "Canan Karatay",
+    "Ecem Kara",
+    "Nur Kara"
+  ];
+
+  static const List<String> groupList = [
+    "anksiyete",
+    "panik atak",
+  ];
+//activity
+
+  static ContainerModel containerButton = ContainerModel(
+      height: 30, borderRadius: 100, backgroundColor: AppColors.meteorite);
+
+  static RowModel arowmodel = RowModel(
+      isAlignmentBetween: true,
+      text: "Grup Terapilerinin Etkisi",
+      textStyle: const TextStyle(),
+      leadingIcon: IconUtility.activityIcon);
+
+  static RowModel ayrowmodel = RowModel(
+      isAlignmentBetween: true,
+      text: "Özlem Ulusan",
+      textStyle: const TextStyle(),
+      leadingIcon: IconUtility.personIcon);
+  static RowModel clockmodel = RowModel(
+      isAlignmentBetween: true,
+      text: "Ocak 15,2023,20:00",
+      textStyle: const TextStyle(),
+      leadingIcon: IconUtility.clockIcon);
 }

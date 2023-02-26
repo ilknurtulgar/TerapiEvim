@@ -50,7 +50,11 @@ class _ParticipantSignUpPageState extends State<ParticipantSignUpPage> {
                   _signUpController.birthDateController, true),
 
               ///TODO: use gender controller
-              const CustomDropDown(purpose: 'gender'),
+              CustomDropDown(
+                purpose: genderList,
+                height: 56,
+                width: 342,
+              ),
               textfieldUtility.mailTextfield(
                   _signUpController.emailController, true),
               textfieldUtility.passwordTextfield(

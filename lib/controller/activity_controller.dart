@@ -7,17 +7,15 @@ class ActivityController extends GetxController {
     activityIcon.value = !activityIcon.value;
   }
 
-  List<String> orderingList = ["yeniden eskiye", "eskiden yeniye"];
-  List<String> genderList = ["kadın", "erkek"];
-  var gender = "seçiniz".obs;
-  late var order = orderingList[0].obs;
-  void func(int rowIndex, String purpose) {
-    if (purpose == "gender") {
+  // var gender = "seçiniz".obs;
+  // late var order = orderingList[0].obs;
+  /*void func(int rowIndex, String purpose) {
+  /  if (purpose == "gender") {
       gender.value = genderList[rowIndex];
     } else {
-      order.value = orderingList[rowIndex];
+    //  order.value = orderingList[rowIndex];
     }
-  }
+  }*/
 
   var selectedBox = false.obs;
   void changeBox() {

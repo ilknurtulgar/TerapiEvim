@@ -249,6 +249,13 @@ class AppContainers {
         borderRadius: 65,
         backgroundColor: AppColors.melrose,
       );
+  static ContainerModel containerButton(bool bigwidth) {
+    return ContainerModel(
+        width: bigwidth ? 150 : 97,
+        height: 30,
+        borderRadius: 100,
+        backgroundColor: AppColors.butterflyBush);
+  }
 }
 
 class AppPaddings {
@@ -337,14 +344,6 @@ class DemoInformation {
     "panik atak",
   ];
 //activity
-
-  static ContainerModel containerButton(bool bigwidth) {
-    return ContainerModel(
-        width: bigwidth ? 150 : 97,
-        height: 30,
-        borderRadius: 100,
-        backgroundColor: AppColors.butterflyBush);
-  }
 
   static RowModel arowmodel = RowModel(
       isAlignmentBetween: true,

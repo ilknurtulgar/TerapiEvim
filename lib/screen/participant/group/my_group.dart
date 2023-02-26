@@ -59,9 +59,9 @@ class MyGroup extends StatelessWidget {
               CustomHeading(
                   isalignmentstart: true, text: GroupTexts.yaklasanToplanti),
               ActivityBox(
-                  //
+                  buttonText: "Katıl",
                   isactivity: true,
-                  containerModel: DemoInformation.containerButton,
+                  containerModel: DemoInformation.containerButton(false),
                   arowModel: row,
                   ayrowwModel: row,
                   clockModel: row),

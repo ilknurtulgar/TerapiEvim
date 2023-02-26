@@ -62,6 +62,10 @@ class IconUtility {
   static const Icon activityIcon =
       Icon(Icons.laptop_windows_sharp); //browse_activity yok
   static const Icon groupsIcon = Icon(Icons.groups);
+  static const Icon greyGroupsIcon = Icon(
+    Icons.group,
+    color: AppColors.doveGray,
+  );
   static const Icon chatIcon = Icon(Icons.chat);
   static const Icon profileIcon = Icon(Icons.account_circle);
   static const Icon windowsIcon = Icon(Icons.desktop_windows_outlined);
@@ -219,6 +223,7 @@ class AppContainers {
       borderRadius: 8,
       backgroundColor: AppColors
           .white); // bunun height'ı içindeki child'ın uzunluğuna göre değişiyor
+
   static ContainerModel participantContainer(double height, double width) =>
       ContainerModel(
           height: height, //52,
@@ -232,6 +237,13 @@ class AppContainers {
         borderRadius: 65,
         backgroundColor: AppColors.butterflyBush,
       ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
+  static ContainerModel lightPurpleButtonContainer(double? width) =>
+      ContainerModel(
+        height: 40,
+        width: width,
+        borderRadius: 65,
+        backgroundColor: AppColors.melrose,
+      );
 }
 
 class AppPaddings {

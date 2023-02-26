@@ -41,8 +41,9 @@ ListView activityseminar() {
           right: 70,
         ),
         child: ActivityBox(
-            containerModel: DemoInformation.containerButton,
-            isactivity: true,
+            buttonText: "Katıl",
+            containerModel: DemoInformation.containerButton(false),
+            isactivity: false,
             arowModel: DemoInformation.arowmodel,
             ayrowwModel: DemoInformation.ayrowmodel,
             clockModel: DemoInformation.clockmodel),

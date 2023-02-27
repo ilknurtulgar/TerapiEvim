@@ -1,40 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
-import 'package:terapievim/screen/participant/video_call/model/person_in_call_model.dart';
 import 'util/utility.dart';
 import '../../../core/base/component/video_call/video_call_container/video_call_person_view.dart';
 
 class GroupTherapyCallPage extends StatelessWidget {
-  GroupTherapyCallPage({super.key});
-  final PersonInCallModel therapist = PersonInCallModel(
-      name: 'Simay',
-      surname: 'Selli',
-      imagePath: 'assets/images/f1.jpg',
-      isMicOn: true,
-      isCamOn: true);
-  final PersonInCallModel p1 = PersonInCallModel(
-      name: 'Kerem',
-      surname: 'Görkem',
-      imagePath: 'assets/images/f2.jpg',
-      isMicOn: false,
-      isCamOn: true);
-  final PersonInCallModel p2 = PersonInCallModel(
-      name: 'Ali',
-      surname: 'Aydın',
-      imagePath: 'assets/images/f3.jpg',
-      isMicOn: false,
-      isCamOn: true);
-  late final List<PersonInCallModel> participants = [p1, p2, p1, p2, p1];
+  const GroupTherapyCallPage({super.key});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Stack(
           children: [
-            VideoCallPersonView(
-                videoCallViewModel:
-                    VideoCallUtility.personBigView(therapist, true)),
+            VideoCallPersonView(videoCallViewModel: VideoCallUtility.personBigView(DemoInformation.therapist, true)),
             participantsRowWithButtonsContainer()
           ],
         ),
@@ -63,13 +41,12 @@ class GroupTherapyCallPage extends StatelessWidget {
     return Expanded(
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          itemCount: participants.length,
+          itemCount: DemoInformation.participants.length,
           itemBuilder: ((context, index) {
             return Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 10),
                 child: VideoCallPersonView(
-                    videoCallViewModel: VideoCallUtility.personSmallView(
-                        participants[index], true)));
+                    videoCallViewModel: VideoCallUtility.personSmallView(DemoInformation.participants[index], true)));
           })),
     );
   }

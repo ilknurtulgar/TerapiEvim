@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/home/method_downloading_container.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
 
 import 'package:terapievim/screen/participant/home/home.dart';
 
@@ -30,13 +31,13 @@ class CopingMethods extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return MethodDownloadingContainer(
-            cardModel: cardModelhome,
-            time: "25 Ocak 2023,20:00",
-            explanation: home[index],
+            cardModel: DemoInformation.cardModelhome,
+            time: DemoInformation.clockabomeactivty,
+            explanation: DemoInformation.home[index],
             buttonOnTap: () {},
             buttonText: "Metotu Oku");
       },
-      itemCount: home.length,
+      itemCount: DemoInformation.home.length,
     );
   }
 

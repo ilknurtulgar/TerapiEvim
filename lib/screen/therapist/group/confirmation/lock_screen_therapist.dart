@@ -15,7 +15,7 @@ class LockScreenTherapist extends StatelessWidget {
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
-        MyGroups(),
+        const MyGroups(),
         Container(
           color: Colors.black.withOpacity(0.8),
         ),
@@ -46,7 +46,6 @@ Widget popUp() {
           shown
         ]),
   );
-  ;
 }
 
 Column conformed() {

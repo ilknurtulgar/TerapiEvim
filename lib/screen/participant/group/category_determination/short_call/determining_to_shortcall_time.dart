@@ -9,9 +9,8 @@ import 'package:terapievim/screen/participant/group/util/text_util.dart';
 import '../../../../../core/base/component/group/custom_heading.dart';
 import '../../util/group_screen_utility.dart';
 
-// ignore: must_be_immutable
 class ShortCallTime extends StatelessWidget {
-  ShortCallTime({super.key});
+  const ShortCallTime({super.key});
   // gecici
 
   @override

@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/therapist/group/metots/new_metot.dart';
-import 'package:terapievim/screen/therapist/group/therapist_about.dart';
+import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart';
 
 class TherapistGroupPage extends StatelessWidget {
   const TherapistGroupPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return TherapistProfile(
-      isSecTherapist: true,
-    );
+    return const GroupAddView();
   }
 }

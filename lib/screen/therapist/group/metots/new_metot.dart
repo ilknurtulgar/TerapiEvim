@@ -7,9 +7,8 @@ import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/therapist/activity/companent/coping_box.dart';
 
-// ignore: must_be_immutable
 class NewMetot extends StatelessWidget {
-  NewMetot({super.key});
+  const NewMetot({super.key});
 
   @override
   Widget build(BuildContext context) {

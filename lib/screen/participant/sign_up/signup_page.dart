@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
+import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
 import '../../../controller/auth/sign_up_controller.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../login/login_page.dart';
@@ -62,17 +63,16 @@ class _SignUpPageState extends State<SignUpPage> {
                   : const SizedBox(),
               CustomButton(
                 textColor: Colors.white,
-                container:ProfilePageUtility.loginSignUpButtonContainer(false, false),
+                container: LoginPageUtility.loginSignUpButtonContainer(false, false),
                 onTap: () {
                   _signUpController.signUpWithEmail();
                 },
                 text: 'Kaydol',
               ),
-              ProfilePageUtility.lineWithOrText(),
+              LoginPageUtility.lineWithOrText(),
               CustomButton(
                 textColor: AppColors.butterflyBush,
-                container:
-                    ProfilePageUtility.loginSignUpButtonContainer(false, true),
+                container: LoginPageUtility.loginSignUpButtonContainer(false, true),
                 onTap: () => Get.to(() => const ParticipantLoginPage()),
                 text: 'Giriş Yap',
               ),

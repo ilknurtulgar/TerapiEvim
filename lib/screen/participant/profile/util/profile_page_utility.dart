@@ -89,42 +89,6 @@ class ProfilePageUtility {
           isAlignmentBetween:
               false); //TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
 
-  static Padding lineWithOrText() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 30),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          horizontalLine(),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: Text('Ya da'),
-          ),
-          horizontalLine()
-        ],
-      ),
-    );
-  }
-
-  static Container horizontalLine() {
-    return Container(
-      color: AppColors.black,
-      height: 1,
-      width: 150,
-    );
-  }
-
-  static ContainerModel loginSignUpButtonContainer(
-          bool isInLoginPage, bool isLoginButton) =>
-      ContainerModel(
-          width: 342,
-          borderRadius: 8,
-          backgroundColor: (isInLoginPage && isLoginButton) ||
-                  (isInLoginPage == false && isLoginButton == false)
-              ? AppColors.royalBlue
-              : AppColors.white,
-          height: 43);
-
   static List<String> informationTitle = [
     'Ad Soyad: ',
     'Doğum Tarihi: ',

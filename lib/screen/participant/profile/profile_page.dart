@@ -35,9 +35,8 @@ class ParticipantProfilePage extends StatelessWidget {
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Stack(children: [
-          ProfilePageUtility.backgroundOfThePage(false),
-          ProfilePageUtility.positionedIconButton(Icons.settings_outlined,
-              () => Get.to(() => ParticipantProfileSettingPage()), 40, 20),
+          ProfilePageUtility.backgroundOfThePage(),
+          ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() => Get.to(() => ParticipantProfileSettingPage()), 40, 20),
           ProfilePageUtility.profilePagePersonImage(imagePath),
           nameAndBirthDateColumn(),
           participantGroupColumn(),
@@ -146,6 +145,8 @@ class ParticipantProfilePage extends StatelessWidget {
               row2Text: isMethod
                   ? groupInformation.methodTitles[index]
                   : lastWatchedSeminars[index].seminarTitle,
+              firstIconData: Icons.person_outline,
+              secondIconData: isMethod ? Icons.description_outlined : Icons.desktop_windows_outlined,
               buttonText: isMethod ? 'Tekrar oku' : 'Tekrar izle',
               purpose: isMethod ? 'method' : 'seminar',
               isThereButton: true,

@@ -1,23 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/therapist_profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
-
 import '../../../controller/auth/sign_up_controller.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../login/login_page.dart';
 import '../profile/util/profile_page_utility.dart';
 import '../profile/util/textfield_utility.dart';
 
-class ParticipantSignUpPage extends StatefulWidget {
-  const ParticipantSignUpPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key,});
+  final bool isForParticipant=false;
 
   @override
-  State<ParticipantSignUpPage> createState() => _ParticipantSignUpPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _ParticipantSignUpPageState extends State<ParticipantSignUpPage> {
+class _SignUpPageState extends State<SignUpPage> {
   late final SignUpController _signUpController;
+  TherapistProfileController controller = Get.put(TherapistProfileController());
 
   @override
   void initState() {
@@ -44,30 +46,23 @@ class _ParticipantSignUpPageState extends State<ParticipantSignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               title(),
-              textfieldUtility.nameSurnameTextfield(
-                  _signUpController.nameController, true),
-              textfieldUtility.birthOfDateTextfield(
-                  _signUpController.birthDateController, true),
-
+              textfieldUtility.nameSurnameTextfield(_signUpController.nameController, true),
+              textfieldUtility.birthOfDateTextfield( _signUpController.birthDateController, true),
               ///TODO: use gender controller
               CustomDropDown(
                 purpose: genderList,
                 height: 56,
                 width: 342,
               ),
-              textfieldUtility.mailTextfield(
-                  _signUpController.emailController, true),
-              textfieldUtility.passwordTextfield(
-                  _signUpController.passwordController, true),
-              textfieldUtility.phoneTextfield(
-                  _signUpController.phoneController, true),
-              const SizedBox(
-                height: 10,
-              ),
+              textfieldUtility.mailTextfield(_signUpController.emailController, true),
+              textfieldUtility.passwordTextfield(_signUpController.passwordController, true),
+              textfieldUtility.phoneTextfield(_signUpController.phoneController, true),
+              widget.isForParticipant == false
+                  ? acceptMakingShortCallContainer(controller)
+                  : const SizedBox(),
               CustomButton(
                 textColor: Colors.white,
-                container:
-                    ProfilePageUtility.loginSignUpButtonContainer(false, false),
+                container:ProfilePageUtility.loginSignUpButtonContainer(false, false),
                 onTap: () {
                   _signUpController.signUpWithEmail();
                 },
@@ -87,6 +82,22 @@ class _ParticipantSignUpPageState extends State<ParticipantSignUpPage> {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Padding acceptMakingShortCallContainer(TherapistProfileController controller) {
+    ProfilePageUtility profilePageUtility = ProfilePageUtility();
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Container(
+        height: 56,
+        width: 342,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: profilePageUtility.acceptionRow(true),
       ),
     );
   }

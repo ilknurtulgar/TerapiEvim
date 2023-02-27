@@ -9,6 +9,8 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/home/main_home.dart';
 import 'package:terapievim/screen/participant/login/login_page.dart';
 import 'controller/main_controller.dart';
+import 'controller/therapist_group_controller.dart';
+import 'controller/therapist_profile_controller.dart';
 import 'service/firebase_options.dart';
 
 void main() async {
@@ -36,6 +38,8 @@ class _TerapiEvimState extends State<TerapiEvim> {
   final MainController _controller = Get.put(MainController());
   final ActivityController activityController = Get.put(ActivityController());
   final ProfileController profileController = Get.put(ProfileController());
+  final TherapistProfileController therapistProfileController = Get.put(TherapistProfileController());
+  final TherapistGroupController therapistGroupController=Get.put(TherapistGroupController());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

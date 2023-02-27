@@ -64,7 +64,7 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
                   textColor: AppColors.butterflyBush,
                   container: ProfilePageUtility.loginSignUpButtonContainer(
                       true, false),
-                  onTap: () => Get.to(() => const ParticipantSignUpPage()),
+                  onTap: () => Get.to(() => const SignUpPage()),
                   text: 'Kaydol',
                 ),
               ]),

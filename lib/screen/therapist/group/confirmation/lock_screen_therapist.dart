@@ -5,7 +5,7 @@ import '../../../../controller/therapist_group_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../participant/group/util/lock_screen_utility.dart';
-import '../my_groups_view.dart';
+import '../groups_informations/my_groups_view.dart';
 
 class LockScreenTherapist extends StatelessWidget {
   const LockScreenTherapist({super.key});

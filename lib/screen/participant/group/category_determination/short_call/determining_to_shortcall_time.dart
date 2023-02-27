@@ -13,15 +13,10 @@ import '../../util/group_screen_utility.dart';
 class ShortCallTime extends StatelessWidget {
   ShortCallTime({super.key});
   // gecici
-  String therapistName = "Yasemin Bebek";
-  String datetime = "27.01.2023";
-  List<String> timelist = ["12.00", "15.00", "20.00"];
-  String userName = "Yasemin";
-  int tmpCount = 5;
 
   @override
   Widget build(BuildContext context) {
-    String hiUser = "Merhaba $userName";
+    String hiUser = "Merhaba ${DemoInformation.userName}";
     return SafeArea(
       child: SingleChildScrollView(
         child: Column(
@@ -67,13 +62,13 @@ class ShortCallTime extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: tmpCount,
+      itemCount: DemoInformation.tmpCount,
       itemBuilder: (context, index) => Padding(
         padding: GroupPaddings.timeChossingBetweenPadding,
         child: ChoosingTimeForSCContainer(
-          therapistName: therapistName,
-          date: datetime,
-          timeList: timelist,
+          therapistName: DemoInformation.therapistName,
+          date: DemoInformation.datetime,
+          timeList: DemoInformation.timelist,
           listviewIndex: index,
         ),
       ),

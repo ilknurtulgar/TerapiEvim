@@ -32,10 +32,8 @@ class _ChatInformationState extends State<ChatInformation> {
               //height işlemiyor
               //  height: 72
             ),
-
             isThereCardModel: true,
-            cardModel: cardmodel()),
-
+            cardModel: DemoInformation.cardModelhome),
       ),
     );
   }

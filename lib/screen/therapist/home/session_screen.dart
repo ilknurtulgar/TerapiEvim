@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 import 'package:terapievim/core/base/component/home/participant_with_sc_time.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/home/home.dart';
 
 class SessionScreen extends StatelessWidget {
@@ -29,9 +30,10 @@ class SessionScreen extends StatelessWidget {
   ListView aboutparticipant() {
     return ListView.builder(
       itemBuilder: (context, index) {
-        return participantWihtShortCallTime(copingList[index], "19.02.2023");
+        return participantWihtShortCallTime(
+            DemoInformation.copingList[index], DemoInformation.date);
       },
-      itemCount: copingList.length,
+      itemCount: DemoInformation.copingList.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
     );
@@ -50,5 +52,3 @@ class SessionScreen extends StatelessWidget {
         ));
   }
 }
-
-List<String> copingList = ["Simay Kara", "İlknur Kara", "Gizem Kara"];

@@ -65,7 +65,7 @@ class PersonView extends StatelessWidget {
                         backgroundColor: Colors.white),
                     isThereCardModel: true,
                     cardModel: CardModel(
-                        imagePath: "assets/images/doctorfotosu.jpeg",
+                        imagePath: DemoInformation.japonkadin,
                         title: list[index]))));
       },
       itemCount: list.length,

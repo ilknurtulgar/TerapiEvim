@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
+import 'package:terapievim/core/base/component/buttons/election.dart';
 import 'package:terapievim/core/base/component/group/choosing_time_group_therapy.dart';
 import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
@@ -39,48 +40,90 @@ class GroupAddView extends StatelessWidget {
       person("Levi Ackerman", context)
     ];
 
+    bool choosed = controller.choosenSecTherapist.value != 'Yok';
+
+    RowModel row = RowModel(
+        text: controller.choosenSecTherapist.value,
+        textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
+        isAlignmentBetween: true,
+        leadingIcon: choosed
+            ? CustomCircleAvatar(
+                imagePath: DemoInformation.imagePath, big: false, shadow: false)
+            : const SizedBox.shrink(),
+        trailingIcon: Padding(
+          padding: EdgeInsets.only(left: 0),
+          child: Obx(
+            () => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                choosed
+                    ? const Icon(Icons.check_circle_outline)
+                    : const SizedBox(
+                        width: 2,
+                      ),
+                Icon(
+                  controller.isSecTherapistElectionOpen.value
+                      ? Icons.keyboard_arrow_up
+                      : Icons.keyboard_arrow_down_sharp,
+                  size: 30,
+                ),
+              ],
+            ),
+          ),
+        ));
+
     return SafeArea(
-        child: SingleChildScrollView(
-      child: Obx(() => Column(
-            children: [
-              rowView(
-                  RowModel(
-                      text: "Grup Ekle",
-                      textStyle: AppTextStyles.heading(false),
-                      isAlignmentBetween: true,
-                      trailingIcon: IconButton(
-                        icon: const Icon(
-                          Icons.close,
-                          size: 30,
-                          color: AppColors.meteorite,
-                        ),
-                        onPressed: () {
-                          //geri donus yapmasi lazim
-                        },
-                      )),
-                  const EdgeInsets.symmetric(vertical: 32, horizontal: 30)),
-              miniHeadings("Grup Ismi", false),
-              CustomTextField(
-                  isPhoneNumber: false,
-                  isBig: true,
-                  textController: groupNameController,
-                  isPassword: false,
-                  isRowModel: false),
-              miniHeadings("Yardimci Psikolog", false),
-              election(controller, persons, false),
-              button(controller, false),
-              miniHeadings("Gorusme Tarihi", false),
-              miniHeadings("Gun", true),
-              election(controller, days, true),
-              miniHeadings("Saat", true),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100.0),
-                child: ChoosingTimeGroupTherapy(),
-              ),
-              button(controller, true)
-            ],
-          )),
-    ));
+      child: SingleChildScrollView(
+          child: Column(
+        children: [
+          rowView(
+              RowModel(
+                  text: "Grup Ekle",
+                  textStyle: AppTextStyles.heading(false),
+                  isAlignmentBetween: true,
+                  trailingIcon: IconButton(
+                    icon: const Icon(
+                      Icons.close,
+                      size: 30,
+                      color: AppColors.meteorite,
+                    ),
+                    onPressed: () {
+                      //geri donus yapmasi lazim
+                    },
+                  )),
+              const EdgeInsets.symmetric(vertical: 32, horizontal: 30)),
+          miniHeadings("Grup Ismi", false),
+          CustomTextField(
+              isPhoneNumber: false,
+              isBig: true,
+              textController: groupNameController,
+              isPassword: false,
+              isRowModel: false),
+          miniHeadings("Yardimci Psikolog", false),
+          // election(controller, persons, false),
+          Election(
+              election: ControllerElection.therapistGroupControllerSecTherapist,
+              changeElection: () {
+                controller.changeSecTherapistElection();
+                print(choosed);
+                print("calis1");
+                print(controller.isSecTherapistElectionOpen.value);
+              },
+              firstRow: row,
+              rows: persons),
+          button(controller, false),
+          miniHeadings("Gorusme Tarihi", false),
+          miniHeadings("Gun", true),
+          election(controller, days, true),
+          miniHeadings("Saat", true),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 100.0),
+            child: ChoosingTimeGroupTherapy(),
+          ),
+          button(controller, true)
+        ],
+      )),
+    );
   }
 
   Padding button(TherapistGroupController controller, bool isLastButton) {
@@ -145,8 +188,9 @@ class GroupAddView extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              controller.choosenSecTherapist(therapistName);
+              controller.changeChoosenSecTherapist(therapistName);
               controller.changeSecTherapistElection();
+              print(controller.choosenSecTherapist);
               Get.back();
             },
             child: const Text('İstek Gonder'),

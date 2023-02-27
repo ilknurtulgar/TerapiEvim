@@ -12,15 +12,6 @@ import '../../participant/profile/util/profile_page_utility.dart';
 class TherapistProfilePage extends StatelessWidget {
   TherapistProfilePage({super.key});
 
-  List<String> therapyDates = [
-    'Her cuma,21.00',
-    'Her salı,20.00',
-    'Her pazartesi,17.00',
-    'Her perşembe,18.00'
-  ];
-
-  double aboutMeContainerHeight = 0;
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -75,7 +66,7 @@ class TherapistProfilePage extends StatelessWidget {
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
-          itemCount: therapyDates.length,
+          itemCount: DemoInformation.therapyDates.length,
           itemBuilder: ((context, index) {
             return Padding(
               padding: const EdgeInsets.only(right: 12),
@@ -84,7 +75,7 @@ class TherapistProfilePage extends StatelessWidget {
                     ? 'Depresyon Grubu $index'
                     : 'Seminer $index', // grup: depresyon grubu yazınca overflow
                 row2Text:
-                    isMethod ? 'Kendini Bil $index' : therapyDates[index],
+                    isMethod ? 'Kendini Bil $index' : DemoInformation.therapyDates[index],
                 firstIconData: isMethod
                     ? Icons.group_outlined
                     : Icons.desktop_windows_outlined,
@@ -106,7 +97,7 @@ class TherapistProfilePage extends StatelessWidget {
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
-          itemCount: therapyDates.length,
+          itemCount: DemoInformation.therapyDates.length,
           itemBuilder: ((context, index) {
             return Padding(
               padding: const EdgeInsets.only(right: 12),
@@ -119,7 +110,7 @@ class TherapistProfilePage extends StatelessWidget {
                 row1: ProfilePageUtility.doubleTextRow(
                     'Yardımcı Psikolog: ', 'Yeşim Ç.', true),
                 row2: ProfilePageUtility.normalTextRow(
-                    therapyDates[index],
+                    DemoInformation.therapyDates[index],
                     Icons.alarm_outlined,
                     const TextStyle(
                         fontWeight: FontWeight.w400, fontSize: 11)),

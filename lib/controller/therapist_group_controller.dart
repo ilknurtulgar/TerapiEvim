@@ -50,6 +50,9 @@ class TherapistGroupController extends GetxController {
 
   var choosenDay = "Gun Seciniz".obs;
   var choosenSecTherapist = "Yok".obs;
+  void changeChoosenSecTherapist(String name) {
+    choosenSecTherapist.value = name;
+  }
 
   var isTherapistUploaded = true.obs;
   var isLockedOpen = true.obs;

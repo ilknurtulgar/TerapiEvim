@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
 import 'package:terapievim/screen/participant/profile/util/profile_page_utility.dart';
 import 'package:terapievim/screen/participant/profile/util/textfield_utility.dart';
 
@@ -53,16 +54,16 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
                 CustomButton(
                   textColor: Colors.white,
                   container:
-                      ProfilePageUtility.loginSignUpButtonContainer(true, true),
+                      LoginPageUtility.loginSignUpButtonContainer(true, true),
                   onTap: () {
                     _loginController.loginWithEmail();
                   },
                   text: 'Giriş Yap',
                 ),
-                ProfilePageUtility.lineWithOrText(),
+                LoginPageUtility.lineWithOrText(),
                 CustomButton(
                   textColor: AppColors.butterflyBush,
-                  container: ProfilePageUtility.loginSignUpButtonContainer(
+                  container: LoginPageUtility.loginSignUpButtonContainer(
                       true, false),
                   onTap: () => Get.to(() => const SignUpPage()),
                   text: 'Kaydol',

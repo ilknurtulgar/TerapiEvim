@@ -180,7 +180,7 @@ class AppTextStyles {
   static TextStyle buttonTextStyle(Color textColor) => TextStyle(
       fontFamily: 'Roboto',
       fontWeight: FontWeight.w500,
-      fontSize: 16,
+      fontSize: 18,// önceki değer 16,
       color: textColor);
   static TextStyle methodsPageTextStyle(bool isDateText, bool isOrderButton,
           bool isExplanationText, bool isDocument) =>

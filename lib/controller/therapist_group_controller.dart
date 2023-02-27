@@ -11,12 +11,18 @@ class TherapistGroupController extends GetxController {
 
   RxString chosenHour = '12'.obs;
   RxString chosenMinutes = '00'.obs;
-  void choosingTimeOfGroupTherapy(bool isHour, String value) {
-    if (value.length < 2) value = '0$value';
-    if (isHour) {
-      chosenHour.value = value;
+  RxInt numberOfGroupsTherapistIsAdvisor = 0.obs;
+  void scrollableWidgetFunction(String whichOne, int value) {
+    String valueAsString = value.toString();
+    if (whichOne != 'number of groups' && valueAsString.length < 2) {
+      valueAsString = '0${value.toString()}';
+    }
+    if (whichOne == 'hour') {
+      chosenHour.value = valueAsString;
+    } else if (whichOne == 'minutes') {
+      chosenMinutes.value = valueAsString;
     } else {
-      chosenMinutes.value = value;
+      numberOfGroupsTherapistIsAdvisor.value = value;
     }
   }
 

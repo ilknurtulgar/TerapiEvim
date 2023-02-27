@@ -253,7 +253,7 @@ class AppPaddings {
   static const EdgeInsets reminderBetweenText =
       EdgeInsets.symmetric(vertical: 16.0);
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
-      0, 15, 20, 15); // sağ alt bütün mor butonlar için geçerli
+      0, 10, 20, 10); // sağ alt bütün mor butonlar için geçerli
 }
 
 class AppBorderRadius {

@@ -23,7 +23,8 @@ class HomeScreen extends StatelessWidget {
           headingtext(false, false, "Hoşgeldiniz"),
           mindetailesbox(
               "BAŞ ETME METOTLARI", () => Get.to(const CopingMethods())),
-          notification(cardModelhome, home, home.length)
+          notification(DemoInformation.cardModelhome, DemoInformation.home,
+              DemoInformation.home.length)
         ],
       ),
     );
@@ -71,22 +72,6 @@ Widget headingtext(bool isHeading, bool isPadding, String heading) {
         ),
       ));
 }
-
-List<String> home = [
-  "fdvd",
-  "fşdv",
-  "fgbng",
-  "yasemin",
-  "gizem",
-  "ilknur",
-  "behzat"
-];
-CardModel cardModelhome = CardModel(
-    subtitle: "Uzman Psikolog",
-    imagePath: "assets/images/doctorfotosu.jpeg",
-    title: "Günay Kara");
-
-//////
 
 //kalıcı
 

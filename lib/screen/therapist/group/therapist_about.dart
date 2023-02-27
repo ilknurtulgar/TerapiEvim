@@ -71,44 +71,44 @@ class TherapistProfile extends StatelessWidget {
       ],
     );
   }
+}
 
-  Container aboutMe(String aboutme) {
-    return Container(
-      padding: GroupPaddings.aboutmePadding,
-      width: 265,
-      child: Text(
-        aboutme,
-        textAlign: TextAlign.justify,
-        style: AppTextStyles.aboutMeTextStyle(false),
-      ),
-    );
-  }
+Padding activity(RowModel row, Function() func) {
+  return Padding(
+    padding: Paddings.rowViewProfilePadding,
+    child: SeminarMin(
+      onTap: func,
+      row: row,
+      borderColor: AppColors.cornFlowerBlue,
+    ),
+  );
+}
 
-  Text heading(name) {
-    return Text(
-      name,
-      textAlign: TextAlign.center,
-      style: AppTextStyles.aboutMeTextStyle(true),
-    );
-  }
+Text heading(name) {
+  return Text(
+    name,
+    textAlign: TextAlign.center,
+    style: AppTextStyles.aboutMeTextStyle(true),
+  );
+}
 
-  Container whiteBackground(BuildContext context) {
-    return Container(
-      width: MediaQuery.of(context).size.width,
-      height: 191,
-      color: AppColors.white,
-      margin: GroupPaddings.whitebackgroundmargin,
-    );
-  }
+Container aboutMe(String aboutme) {
+  return Container(
+    padding: GroupPaddings.aboutmePadding,
+    width: 265,
+    child: Text(
+      aboutme,
+      textAlign: TextAlign.justify,
+      style: AppTextStyles.aboutMeTextStyle(false),
+    ),
+  );
+}
 
-  Padding activity(RowModel row, Function() func) {
-    return Padding(
-      padding: Paddings.rowViewProfilePadding,
-      child: SeminarMin(
-        onTap: func,
-        row: row,
-        borderColor: AppColors.cornFlowerBlue,
-      ),
-    );
-  }
+Container whiteBackground(BuildContext context) {
+  return Container(
+    width: MediaQuery.of(context).size.width,
+    height: 191,
+    color: AppColors.white,
+    margin: GroupPaddings.whitebackgroundmargin,
+  );
 }

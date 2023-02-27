@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/screen/participant/activity/about_activity.dart';
 
 import '../../../core/base/models/row_model.dart';
 
@@ -41,6 +43,10 @@ ListView activityseminar() {
           right: 70,
         ),
         child: ActivityBox(
+            onTap: () {
+              print("tıklıyorum ya");
+              Get.to(const AboutActivityScreen());
+            },
             istwobutton: false,
             buttonText: "Katıl",
             containerModel: AppContainers.containerButton(false),

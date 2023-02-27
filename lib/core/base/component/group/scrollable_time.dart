@@ -38,7 +38,7 @@ class ScrollableTime extends StatelessWidget {
       width: 70,
       height: 150,
       child: ListWheelScrollView.useDelegate(
-        onSelectedItemChanged: (value) => controller.choosingTimeOfGroupTherapy(isHour,value.toString()),
+        onSelectedItemChanged: (value) => controller.scrollableWidgetFunction(isHour ? 'hour' : 'minutes',value),
         overAndUnderCenterOpacity: 0.75,
         itemExtent: 40,
         perspective: 0.002,

@@ -6,4 +6,5 @@ CustomContainer participantContainer(
         CardModel cardModel, double height, double width) =>
     CustomContainer(
         containerModel: AppContainers.participantContainer(height, width),
+        isThereCardModel: true,
         cardModel: cardModel);

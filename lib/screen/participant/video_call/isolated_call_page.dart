@@ -45,7 +45,7 @@ class IsolatedCallPage extends StatelessWidget {
         right: 20,
         bottom: 137,
         child: VideoCallPersonView(
-            onDoubleTap: () => videoCallController.isViewPlaceChanged,
+            onDoubleTap: () => videoCallController.changeViewPlaces(),
             videoCallViewModel: VideoCallUtility.personSmallView(
                 videoCallController.isViewPlaceChanged.value
                     ? therapist

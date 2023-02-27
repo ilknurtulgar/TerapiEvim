@@ -22,6 +22,7 @@ class MethodDownloadingContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       containerModel: AppContainers.classicWhiteContainer,
+      isThereCardModel: true,
       cardModel: cardModel,
       time: time,
       widget: Padding(

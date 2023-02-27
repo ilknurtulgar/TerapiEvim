@@ -4,9 +4,8 @@ import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
-// ignore: must_be_immutable
 class MyGroups extends StatelessWidget {
-  MyGroups({super.key}); //gecici modeller
+  const MyGroups({super.key}); //gecici modeller
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +33,8 @@ class MyGroups extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(vertical: 9, horizontal: 24),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 9, horizontal: 24),
                   child: SeminarMax(
                       onTap: () {},
                       row1: DemoInformation.row_1,

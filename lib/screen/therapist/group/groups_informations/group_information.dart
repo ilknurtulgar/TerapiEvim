@@ -8,7 +8,7 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 
 // ignore: must_be_immutable
 class GroupInformation extends StatelessWidget {
-  GroupInformation({super.key});
+  const GroupInformation({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -60,14 +60,14 @@ class GroupInformation extends StatelessWidget {
   Widget heading(BuildContext context) {
     return rowView(
         RowModel(
-            leadingIcon: Icon(Icons.arrow_back_ios_new),
+            leadingIcon: const Icon(Icons.arrow_back_ios_new),
             text: "Anksiyete 1",
             textStyle: AppTextStyles.heading(false),
             isAlignmentBetween: true,
             trailingIcon: Row(
               children: [
                 IconButton(
-                  icon: Icon(Icons.edit_document),
+                  icon: const Icon(Icons.edit_document),
                   onPressed: () {
                     //new Metot sayfasina godocek
                   },
@@ -80,7 +80,7 @@ class GroupInformation extends StatelessWidget {
                 )
               ],
             )),
-        EdgeInsets.symmetric(vertical: 25, horizontal: 10));
+        const EdgeInsets.symmetric(vertical: 25, horizontal: 10));
   }
 
   Future<void> deleteGroupDialog(BuildContext context) {

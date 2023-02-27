@@ -26,7 +26,6 @@ class PersonView extends StatelessWidget {
             decoration: AppBoxDecoration.sendDecoration,
             child: InkWell(
                 onTap: () {
-                  print("object");
                   therapistyMessageController.personListchange();
                 },
                 child: rowView(

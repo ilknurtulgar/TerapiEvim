@@ -99,7 +99,7 @@ class GroupAddView extends StatelessWidget {
           onTap: () {
             if (isLastButton) {
             } else {
-              controller.ChoosenSecTherapist("Eren Jager");
+              controller.choosenSecTherapist("Eren Jager");
             }
           },
           text: isLastButton ? "Grup Olustur" : "Bana Psikolog Bul"),
@@ -113,7 +113,7 @@ class GroupAddView extends StatelessWidget {
     Icon trailingIcon = IconUtility.emailIcon;
 
     return PersonMin(
-        padding: EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(top: 10),
         borderColor: AppColors.cornFlowerBlue,
         onTap: () {
           secTherapistChooseDialog(context, therapistName, controller);
@@ -145,8 +145,8 @@ class GroupAddView extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              controller.ChoosenSecTherapist(therapistName);
-              controller.ChangeSecTherapistElection();
+              controller.choosenSecTherapist(therapistName);
+              controller.changeSecTherapistElection();
               Get.back();
             },
             child: const Text('İstek Gonder'),
@@ -160,10 +160,10 @@ class GroupAddView extends StatelessWidget {
     TherapistGroupController controller = Get.find();
     return PersonMin(
         height: 48,
-        padding: EdgeInsets.only(top: 10),
+        padding: const EdgeInsets.only(top: 10),
         onTap: () {
-          controller.ChangeChoosenDay(dayName);
-          controller.ChangeDayElection();
+          controller.changeChoosenDay(dayName);
+          controller.changeDayElection();
         },
         row: RowModel(
             isAlignmentBetween: false,
@@ -176,12 +176,12 @@ class GroupAddView extends StatelessWidget {
     bool election = isDay
         ? controller.isDayElectionOpen.value
         : controller.isSecTherapistElectionOpen.value;
-    bool isChoosed = controller.ChoosenSecTherapist.value != 'Yok' && !isDay;
+    bool isChoosed = controller.choosenSecTherapist.value != 'Yok' && !isDay;
     double padding;
     if (isDay || !isChoosed) {
-      padding = 150 - 2.2 * controller.ChoosenDay.value.length;
+      padding = 150 - 2.2 * controller.choosenDay.value.length;
     } else {
-      padding = 100 - 3.0 * controller.ChoosenSecTherapist.value.length;
+      padding = 100 - 3.0 * controller.choosenSecTherapist.value.length;
     }
 
     String imagePath =
@@ -192,13 +192,13 @@ class GroupAddView extends StatelessWidget {
             SeminarMin(
                 onTap: () {
                   isDay
-                      ? controller.ChangeDayElection()
-                      : controller.ChangeSecTherapistElection();
+                      ? controller.changeDayElection()
+                      : controller.changeSecTherapistElection();
                 },
                 row: RowModel(
                     text: isDay
-                        ? controller.ChoosenDay.value
-                        : controller.ChoosenSecTherapist.value,
+                        ? controller.choosenDay.value
+                        : controller.choosenSecTherapist.value,
                     textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
                     isAlignmentBetween: true,
                     leadingIcon: isChoosed
@@ -211,7 +211,7 @@ class GroupAddView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           isChoosed
-                              ? Icon(Icons.check_circle_outline)
+                              ? const Icon(Icons.check_circle_outline)
                               : const SizedBox(
                                   width: 2,
                                 ),

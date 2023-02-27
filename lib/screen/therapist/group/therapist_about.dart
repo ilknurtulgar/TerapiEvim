@@ -11,7 +11,7 @@ import '../../participant/group/util/lock_screen_utility.dart';
 class TherapistProfile extends StatelessWidget {
   TherapistProfile({super.key, required this.isSecTherapist});
   final bool isSecTherapist;
-  final String imagePath = "assets/images/doctorfotosu.jpeg";
+
   //bu row modeller fix ama nereye koyulacagi tartisilmasi lazim
   final RowModel basetmeMetodlari = RowModel(
     text: "Bas Etme Metotlari",
@@ -38,43 +38,50 @@ class TherapistProfile extends StatelessWidget {
   final String name = "Kerem Engin";
   @override
   Widget build(BuildContext context) {
-    List<RowModel> groups = [DemoInformation.grup1];
-    return Stack(
-      alignment: Alignment.center,
-      textDirection: TextDirection.rtl,
-      fit: StackFit.loose,
-      clipBehavior: Clip.hardEdge,
-      children: <Widget>[
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            whiteBackground(context),
-            heading(name),
-            aboutMe(aboutme),
-            isSecTherapist
-                ? const SizedBox.shrink()
-                : activity(basetmeMetodlari, () {
-                    //buraya fonksiyonlari ekelenecek
-                    // print("basettin mi");
-                  }),
-            activity(seminerleri, () {
-              //print("seminermismis");
-            }),
-            activity(mesajGonder, () {
-              // print("selam");
-            }),
-            isSecTherapist ? otherGroups(groups) : const SizedBox.shrink()
-          ],
-        ),
-        Positioned(
-          top: 87,
-          // left: 50,
-          // right: 50,
-          child:
-              CustomCircleAvatar(imagePath: imagePath, big: true, shadow: true),
-        )
-      ],
+    List<RowModel> groups = [
+      DemoInformation.grup1,
+      DemoInformation.grup2,
+      DemoInformation.grup1,
+      DemoInformation.grup2
+    ];
+    return SingleChildScrollView(
+      child: Stack(
+        alignment: Alignment.center,
+        textDirection: TextDirection.rtl,
+        fit: StackFit.loose,
+        clipBehavior: Clip.hardEdge,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: <Widget>[
+              whiteBackground(context),
+              heading(name),
+              aboutMe(aboutme),
+              isSecTherapist
+                  ? const SizedBox.shrink()
+                  : activity(basetmeMetodlari, () {
+                      //buraya fonksiyonlari ekelenecek
+                      // print("basettin mi");
+                    }),
+              activity(seminerleri, () {
+                //print("seminermismis");
+              }),
+              activity(mesajGonder, () {
+                // print("selam");
+              }),
+              isSecTherapist ? otherGroups(groups) : const SizedBox.shrink()
+            ],
+          ),
+          Positioned(
+            top: 87,
+            // left: 50,
+            // right: 50,
+            child: CustomCircleAvatar(
+                imagePath: DemoInformation.imagePath, big: true, shadow: true),
+          )
+        ],
+      ),
     );
   }
 }
@@ -91,17 +98,23 @@ Padding activity(RowModel row, Function() func) {
   );
 }
 
-  Column otherGroups(List<RowModel> groups) {
-    return Column(
-      children: [
-        CustomHeading(
-            text: "Yardimci Psikologluk Yaptigi Diger Gruplar",
-            isalignmentstart: true),
-        ListView.builder(
-          itemCount: groups.length,
-          itemBuilder: (context, index) => activity(groups[index], () => null),
-        )
-      ],
+  Widget otherGroups(List<RowModel> groups) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10.0),
+      child: Column(
+        children: [
+          CustomHeading(
+              padding: const EdgeInsets.only(left: 40, right: 40, top: 30),
+              text: "Yardimci Psikologluk Yaptigi Diger Gruplar",
+              isalignmentstart: true),
+          ListView.builder(
+            shrinkWrap: true,
+            itemCount: groups.length,
+            itemBuilder: (context, index) =>
+                activity(groups[index], () => null),
+          )
+        ],
+      ),
     );
   }
 

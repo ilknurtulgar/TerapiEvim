@@ -24,10 +24,8 @@ class GroupClass extends StatelessWidget {
   final RowModel row2;
   final RowModel? row3;
   final String heading;
-
   double? width;
   double? height;
-
   @override
   Widget build(BuildContext context) {
     width ??= 237;
@@ -41,12 +39,15 @@ class GroupClass extends StatelessWidget {
         child: Material(
           elevation: 5,
           shadowColor: borderColor,
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8),),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
           child: Container(
             height: height,
             width: width,
             decoration: BoxDecoration(
-                border: Border.all(color: borderColor!.withOpacity(1),width: 2),
+                border:
+                    Border.all(color: borderColor!.withOpacity(1), width: 2),
                 borderRadius: BorderRadius.circular(8),
                 color: AppColors.white),
             child: Column(
@@ -64,8 +65,15 @@ class GroupClass extends StatelessWidget {
                 ),
                 rowView(row1, Paddings.rowViewPadding),
                 rowView(row2, Paddings.rowViewPadding),
-                row3!=null ?  rowView(row3 ?? RowModel(text: '', textStyle: TextStyle(), isAlignmentBetween: false), EdgeInsets.symmetric(vertical: 4, horizontal: 16)) : const SizedBox()
-                
+                row3 != null
+                    ? rowView(
+                        row3 ??
+                            RowModel(
+                                text: '',
+                                textStyle: TextStyle(),
+                                isAlignmentBetween: false),
+                        EdgeInsets.symmetric(vertical: 4, horizontal: 16))
+                    : const SizedBox()
               ],
             ),
           ),

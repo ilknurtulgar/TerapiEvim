@@ -24,7 +24,6 @@ class _ChatInformationState extends State<ChatInformation> {
       child: InkWell(
         onTap: () => Get.to(MessageScreen()),
         child: CustomContainer(
-            isThereCardModel: false,
             time: DemoInformation.clock,
             containerModel: ContainerModel(
               borderRadius: 10,
@@ -33,6 +32,7 @@ class _ChatInformationState extends State<ChatInformation> {
               //height işlemiyor
               //  height: 72
             ),
+            isThereCardModel: true,
             cardModel: DemoInformation.cardModelhome),
       ),
     );

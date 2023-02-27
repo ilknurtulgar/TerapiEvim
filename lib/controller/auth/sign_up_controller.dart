@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -100,7 +99,7 @@ class SignUpController extends GetxController {
 
     Get.offUntil(
         MaterialPageRoute(builder: (context) => const TerapiEvimLogged()),
-            (route) => false);
+        (route) => false);
   }
 
   bool _validateSignUp() {

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
 import '../core/base/component/group/scrollable_time.dart';
 
 class TherapistGroupController extends GetxController {
@@ -36,21 +35,21 @@ class TherapistGroupController extends GetxController {
 
   //grup eklmee kismi icin controller
   var isSecTherapistElectionOpen = false.obs;
-  void ChangeSecTherapistElection() {
+  void changeSecTherapistElection() {
     isSecTherapistElectionOpen.value = !isSecTherapistElectionOpen.isTrue;
   }
 
   var isDayElectionOpen = false.obs;
-  void ChangeDayElection() {
+  void changeDayElection() {
     isDayElectionOpen.value = !isDayElectionOpen.isTrue;
   }
 
-  void ChangeChoosenDay(String day) {
-    ChoosenDay = RxString(day);
+  void changeChoosenDay(String day) {
+    choosenDay = RxString(day);
   }
 
-  var ChoosenDay = "Gun Seciniz".obs;
-  var ChoosenSecTherapist = "Yok".obs;
+  var choosenDay = "Gun Seciniz".obs;
+  var choosenSecTherapist = "Yok".obs;
 
   var isTherapistUploaded = true.obs;
   var isLockedOpen = true.obs;

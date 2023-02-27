@@ -30,14 +30,14 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
                   ? headingtext(false, true, "Aktivite Güncelleme")
                   : headingtext(false, true, "Yeni Aktivite"),
             ),
-            activityname("Etkinlik İsmi", padding.startpadding),
+            activityname("Etkinlik İsmi", Ppadding.startpadding),
             CustomTextField(
                 isPhoneNumber: false,
                 isBig: true,
                 textController: activitynamController,
                 isPassword: false,
                 isRowModel: false),
-            activityname("Etkinlik Hakkında", padding.startpadding),
+            activityname("Etkinlik Hakkında", Ppadding.startpadding),
             Padding(
               padding:
                   const EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 20),
@@ -49,8 +49,8 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
             ),
             Row(
               children: [
-                activityname("Tarih", padding.startpadding),
-                activityname("Saat", padding.centerpadding),
+                activityname("Tarih", Ppadding.startpadding),
+                activityname("Saat", Ppadding.centerpadding),
               ],
             ),
             Row(
@@ -129,7 +129,7 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
   }
 }
 
-class padding {
+class Ppadding {
   static const EdgeInsets startpadding = EdgeInsets.only(left: 35, top: 35);
   static const EdgeInsets centerpadding = EdgeInsets.only(left: 150, top: 35);
 }

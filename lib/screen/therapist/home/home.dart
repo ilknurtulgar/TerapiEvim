@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/home/notification_container.dart';
 
 import 'package:terapievim/core/base/component/home/reminder.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/home/home.dart';
 import 'package:terapievim/screen/therapist/home/session_screen.dart';
 
@@ -37,8 +38,8 @@ class TherapistHome extends StatelessWidget {
       padding: EdgeInsets.only(bottom: 11, top: 8),
       child: NotificationContainer(
         type: NotificationType.shortcallFail,
-        contentText: "Simay Selli gönderdiğiniz isteği kabul etmedi.",
-        name: "OKB grubu 2",
+        contentText: DemoInformation.notificationcontenttext,
+        name: DemoInformation.groupname,
       ),
     );
   }
@@ -48,8 +49,8 @@ class TherapistHome extends StatelessWidget {
       padding: EdgeInsets.all(8.0),
       child: Reminder(
         reminderType: ReminderType.activity,
-        name: "Yasemin",
-        time: "14.44",
+        name: DemoInformation.name,
+        time: DemoInformation.clockabomeactivty,
       ),
     );
   }

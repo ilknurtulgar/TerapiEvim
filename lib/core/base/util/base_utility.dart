@@ -10,9 +10,16 @@ import '../../../screen/participant/profile/profile_page.dart';
 import '../../../screen/therapist/activity/activity_screen.dart';
 import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
+
+
+import '../models/card_model.dart';
+
+
 import '../component/group/person.dart';
 import '../component/group/questions_button.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
+
+
 import '../models/row_model.dart';
 
 class AppColors {
@@ -267,7 +274,7 @@ class AppPaddings {
   static const EdgeInsets reminderBetweenText =
       EdgeInsets.symmetric(vertical: 16.0);
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
-      0, 15, 20, 15); // sağ alt bütün mor butonlar için geçerli
+      0, 10, 20, 10); // sağ alt bütün mor butonlar için geçerli
 }
 
 class AppBorderRadius {
@@ -349,21 +356,65 @@ class DemoInformation {
 //activity
 
   static RowModel arowmodel = RowModel(
-      isAlignmentBetween: true,
+      isAlignmentBetween: false,
       text: "Grup Terapilerinin Etkisi",
       textStyle: const TextStyle(),
       leadingIcon: IconUtility.activityIcon);
 
   static RowModel ayrowmodel = RowModel(
-      isAlignmentBetween: true,
+      isAlignmentBetween: false,
       text: "Özlem Ulusan",
       textStyle: const TextStyle(),
       leadingIcon: IconUtility.personIcon);
   static RowModel clockmodel = RowModel(
-      isAlignmentBetween: true,
+      isAlignmentBetween: false,
       text: "Ocak 15,2023,20:00",
       textStyle: const TextStyle(),
       leadingIcon: IconUtility.clockIcon);
+
+  //message
+  static const String headingabactivity = "Canan Karatay";
+  static const String aboutmeaperson =
+      "   hepinize merhaba arkadaşlar.kanalıma hoşgeldiniz,Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım  ";
+
+  static const String aboutmeabactivity =
+      "Neden Katılmalısın?Potansiyellerini keşfetmek, ihtiyaçlarını doğru şekilde tanımlayabilmek ve hayatta arzu ettiği başarılara ulaşabilmesi için ihtiyaçları ve eksik hissedilen yönleri geliştirmek için katılmalısınKimler Katılmalı?Kişisel gelişimine önem veren ve kendini geliştirmeyi hedefleyen, bölüm farketmeksizin üniversite öğrencileri, çalışma hayatında olan ve çalışma hayatına hazırlanan herkes.";
+
+  static const String japonkadin = 'assets/images/f1.jpg';
+  static const String clockabomeactivty = "15.11.2023 20:00";
+  static const String date = "15.11.2023";
+  static const String groupname = "OKB grubu 2";
+  static const String notificationcontenttext =
+      "Simay Selli gönderdiğiniz isteği kabul etmedi.";
+  static const List<String> copingList = [
+    "Simay Kara",
+    "İlknur Kara",
+    "Gizem Kara"
+  ];
+  static const String message =
+      "Flutter, Google tarafından oluşturulan açık kaynaklı bir UI yazılım geliştirme kitidir. Android, iOS, Windows, Mac, Linux ve web için uygulamalar geliştirmek için kullanılıyor. Flutter'ın ilk sürümü  olarak biliniyordu ve Android işletim sisteminde çalışıyordu.";
+  static const List<String> home = [
+    "fdvd",
+    "fşdv",
+    "fgbng",
+    "yasemin",
+    "gizem",
+    "ilknur",
+    "behzat"
+  ];
+  static CardModel cardModelhome = CardModel(
+      subtitle: "Uzman Psikolog",
+      imagePath: "assets/images/doctorfotosu.jpeg",
+      title: "Günay Kara");
+  static const String name = "Yasemin";
+
+  RowModel rowModel = RowModel(
+      text: "Okb danışan",
+      textStyle: AppTextStyles.aboutMeTextStyle(false),
+      trailingIcon: const Text("11:20"),
+      isAlignmentBetween: false);
+  static const String clock = "19:20";
+
 
   //group
   static RowModel secTherapist = RowModel(
@@ -457,4 +508,6 @@ class DemoInformation {
           big: false, shadow: false, imagePath: DemoInformation.imagePath),
       text: "Aleyna Tilki",
       textStyle: AppTextStyles.groupTextStyle(true));
+
+  
 }

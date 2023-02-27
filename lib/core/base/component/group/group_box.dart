@@ -31,7 +31,7 @@ class ActivityBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: isactivity ? onTap : null,
+      onTap: isactivity ? null : onTap,
       child: Container(
         width: 350,
         // height: 140,

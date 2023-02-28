@@ -59,4 +59,9 @@ class TherapistGroupController extends GetxController {
 
   var isTherapistUploaded = true.obs;
   var isLockedOpen = true.obs;
+
+  var isParticipantElectionOpen = false.obs;
+  void changeParticipantElection() {
+    isParticipantElectionOpen.value = !isParticipantElectionOpen.value;
+  }
 }

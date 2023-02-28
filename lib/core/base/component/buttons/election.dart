@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/t_message_controller.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
-import '../../models/row_model.dart';
-import '../activtiy/seminers.dart';
+
 import '../group/person.dart';
 
 class Election extends StatelessWidget {
@@ -23,7 +22,6 @@ class Election extends StatelessWidget {
     return Obx(() => Column(
           children: [
             firstRow,
-            // SeminarMin(onTap: changeElection, row: firstRow),
             election.value
                 ? SizedBox(
                     width: 294,
@@ -32,7 +30,7 @@ class Election extends StatelessWidget {
                       children: rows,
                     ),
                   )
-                : SizedBox.shrink(),
+                : const SizedBox.shrink(),
           ],
         ));
   }
@@ -41,7 +39,8 @@ class Election extends StatelessWidget {
 enum ControllerElection {
   therapistyMessageController,
   therapistGroupControllerDay,
-  therapistGroupControllerSecTherapist
+  therapistGroupControllerSecTherapist,
+  therapistGroupControllerParticipant
 }
 
 extension ControllerTypeExtension on ControllerElection {
@@ -55,8 +54,8 @@ extension ControllerTypeExtension on ControllerElection {
         return mController.personvalue.value;
       case ControllerElection.therapistGroupControllerSecTherapist:
         return gController.isSecTherapistElectionOpen.value;
+      case ControllerElection.therapistGroupControllerParticipant:
+        return gController.isParticipantElectionOpen.value;
     }
   }
 }
-
-enum ValueType { day, person, secTherapist }

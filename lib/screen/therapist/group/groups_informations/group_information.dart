@@ -1,28 +1,70 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/therapist_group_controller.dart';
+import 'package:terapievim/core/base/component/activtiy/filter_box.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/service/model/participant/group/participants.dart';
+import 'package:terapievim/service/model/therapist_model.dart';
+
+import '../../../../core/base/component/buttons/election.dart';
+import '../../../../core/base/component/group/person.dart';
+import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 
 // ignore: must_be_immutable
 class GroupInformation extends StatelessWidget {
-  const GroupInformation({super.key});
-
+  GroupInformation({super.key});
+  TherapistGroupController controller = Get.find();
   @override
   Widget build(BuildContext context) {
+    List<PersonMin> participantRow = [
+      person("Ali Kiran", context),
+      person("Yasemin Atmaca", context),
+      person("Kerem Bursin", context),
+      person("Osman Yigit", context),
+      person("Ali Kiran", context)
+    ];
     return SafeArea(
-      child: Column(
-        children: [
-          heading(context),
-          miniHeadings("Yaklasan Toplanti", false),
-          meeting(),
-          miniHeadings("Grubun Bilgileri", false),
-          navMethod(DemoInformation.secTherapist, () {}),
-          //dropdownlu component gelecek katilimcilar
-          navMethod(DemoInformation.methods, () {}),
-        ],
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            heading(context),
+            miniHeadings("Yaklasan Toplanti", false),
+            meeting(),
+            miniHeadings("Grubun Bilgileri", false),
+            navMethod(DemoInformation.secTherapist, () {}),
+            Election(
+                election:
+                    ControllerElection.therapistGroupControllerParticipant,
+                firstRow: Obx(() => SizedBox(
+                      child: SeminarMin(
+                        borderColor: AppColors.meteorite,
+                        onTap: () {
+                          controller.changeParticipantElection();
+                        },
+                        row: RowModel(
+                          text: "Katilimcilar",
+                          textStyle: AppTextStyles.aboutMeTextStyle(false),
+                          leadingIcon: IconUtility.groupsIcon,
+                          isAlignmentBetween: true,
+                          trailingIcon: Icon(
+                            controller.isParticipantElectionOpen.isTrue
+                                ? Icons.keyboard_arrow_up
+                                : Icons.keyboard_arrow_down_sharp,
+                            size: 38,
+                          ),
+                        ),
+                      ),
+                    )),
+                rows: participantRow),
+            //dropdownlu component gelecek katilimcilar
+            navMethod(DemoInformation.methods, () {}),
+          ],
+        ),
       ),
     );
   }
@@ -123,5 +165,51 @@ class GroupInformation extends StatelessWidget {
             textStyle: AppTextStyles.heading(false),
             isAlignmentBetween: false),
         EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0));
+  }
+
+  PersonMin person(String name, BuildContext context) {
+    TherapistGroupController controller = Get.find();
+    return PersonMin(
+        padding: const EdgeInsets.only(top: 10),
+        borderColor: AppColors.cornFlowerBlue,
+        onTap: () {
+          deleteParticipantDialog(context, name, controller);
+        },
+        row: RowModel(
+            text: name,
+            leadingIcon: CustomCircleAvatar(
+                big: false,
+                imagePath: DemoInformation.imagePath,
+                shadow: false),
+            textStyle: AppTextStyles.groupTextStyle(true),
+            isAlignmentBetween: true,
+            trailingIcon: IconUtility.deleteIcon));
+  }
+
+  Future<String?> deleteParticipantDialog(
+      BuildContext context, String name, TherapistGroupController controller) {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title:
+            Text("$name kişisini gruptan cikarmak istediginize emin misiniz?"),
+        // content: const Text(
+        //     'Gruptan cikaril'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Get.back(),
+            child: const Text('İptal'),
+          ),
+          TextButton(
+            onPressed: () {
+              //participant silinecek
+
+              Get.back();
+            },
+            child: const Text('Sil'),
+          ),
+        ],
+      ),
+    );
   }
 }

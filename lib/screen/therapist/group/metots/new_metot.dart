@@ -12,17 +12,19 @@ class NewMetot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            heading(context),
-            CopingBox(
-                copingtext: DemoInformation.tmpNewMetotText,
-                pdfname: DemoInformation.tmppdfName),
-            text(),
-            otherGroups(),
-          ],
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              heading(context),
+              CopingBox(
+                  copingtext: DemoInformation.tmpNewMetotText,
+                  pdfname: DemoInformation.tmppdfName),
+              text(),
+              otherGroups(),
+            ],
+          ),
         ),
       ),
     );

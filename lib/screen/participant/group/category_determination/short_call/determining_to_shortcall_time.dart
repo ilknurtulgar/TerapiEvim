@@ -16,26 +16,29 @@ class ShortCallTime extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     String hiUser = "Merhaba ${DemoInformation.userName}";
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            rowView(
-                RowModel(
-                    text: GroupTexts.terapiEvim,
-                    textStyle: AppTextStyles.heading(false),
-                    isAlignmentBetween: true,
-                    trailingIcon: saveButton()),
-                GroupPaddings.appbarPadding),
-            line(),
-            CustomHeading(
-              text: hiUser,
-              isalignmentstart: false,
-            ),
-            const PurpleTextContainer(text: GroupTexts.shortCallDateChooseText),
-            timeChoose(),
-          ],
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              rowView(
+                  RowModel(
+                      text: GroupTexts.terapiEvim,
+                      textStyle: AppTextStyles.heading(false),
+                      isAlignmentBetween: true,
+                      trailingIcon: saveButton()),
+                  GroupPaddings.appbarPadding),
+              line(),
+              CustomHeading(
+                text: hiUser,
+                isalignmentstart: false,
+              ),
+              const PurpleTextContainer(
+                  text: GroupTexts.shortCallDateChooseText),
+              timeChoose(),
+            ],
+          ),
         ),
       ),
     );

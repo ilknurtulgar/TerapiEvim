@@ -13,14 +13,11 @@ import '../../../screen/therapist/activity/activity_screen.dart';
 import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
 
-
 import '../models/card_model.dart';
-
 
 import '../component/group/person.dart';
 import '../component/group/questions_button.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
-
 
 import '../models/row_model.dart';
 
@@ -417,7 +414,6 @@ class DemoInformation {
       isAlignmentBetween: false);
   static const String clock = "19:20";
 
-
   //group
   static RowModel secTherapist = RowModel(
     isAlignmentBetween: true,
@@ -429,11 +425,11 @@ class DemoInformation {
     trailingIcon: IconUtility.arrowForwardIcon,
   );
   static RowModel methods = RowModel(
-    isAlignmentBetween: true,
-    text: "Basetme Metotlari ",
-    textStyle: AppTextStyles.aboutMeTextStyle(false),
-    trailingIcon: IconUtility.arrowForwardIcon,
-  );
+      isAlignmentBetween: true,
+      text: "Basetme Metotlari ",
+      textStyle: AppTextStyles.aboutMeTextStyle(false),
+      trailingIcon: IconUtility.arrowForwardIcon,
+      leadingIcon: IconUtility.fileIcon);
   static RowModel row_1 = RowModel(
       leadingIcon: IconUtility.activityIcon,
       text: "Yeme Bozukluğu Grubu 1",
@@ -510,6 +506,7 @@ class DemoInformation {
           big: false, shadow: false, imagePath: DemoInformation.imagePath),
       text: "Aleyna Tilki",
       textStyle: AppTextStyles.groupTextStyle(true));
+
   
   // video call 
     // group therapy call page,isolated call page,short call page
@@ -567,4 +564,5 @@ class DemoInformation {
     'Her perşembe,18.00'
   ];
   
+
 }

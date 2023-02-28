@@ -25,7 +25,6 @@ class MyGroup extends StatelessWidget {
     //buradaki tum modeller geecici
 
     return Scaffold(
-      backgroundColor: AppColors.blueChalk,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(

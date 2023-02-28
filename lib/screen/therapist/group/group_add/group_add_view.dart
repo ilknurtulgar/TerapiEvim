@@ -40,89 +40,117 @@ class GroupAddView extends StatelessWidget {
       person("Levi Ackerman", context)
     ];
 
-    bool choosed = controller.choosenSecTherapist.value != 'Yok';
-
-    RowModel row = RowModel(
-        text: controller.choosenSecTherapist.value,
-        textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
-        isAlignmentBetween: true,
-        leadingIcon: choosed
-            ? CustomCircleAvatar(
-                imagePath: DemoInformation.imagePath, big: false, shadow: false)
-            : const SizedBox.shrink(),
-        trailingIcon: Padding(
-          padding: EdgeInsets.only(left: 0),
-          child: Obx(
-            () => Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                choosed
-                    ? const Icon(Icons.check_circle_outline)
-                    : const SizedBox(
-                        width: 2,
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            rowView(
+                RowModel(
+                    text: "Grup Ekle",
+                    textStyle: AppTextStyles.heading(false),
+                    isAlignmentBetween: true,
+                    trailingIcon: IconButton(
+                      icon: const Icon(
+                        Icons.close,
+                        size: 30,
+                        color: AppColors.meteorite,
                       ),
-                Icon(
-                  controller.isSecTherapistElectionOpen.value
+                      onPressed: () {
+                        //geri donus yapmasi lazim
+                      },
+                    )),
+                const EdgeInsets.symmetric(vertical: 32, horizontal: 30)),
+            miniHeadings("Grup Ismi", false),
+            CustomTextField(
+                isPhoneNumber: false,
+                isBig: true,
+                textController: groupNameController,
+                isPassword: false,
+                isRowModel: false),
+            miniHeadings("Yardimci Psikolog", false),
+            Election(
+                election:
+                    ControllerElection.therapistGroupControllerSecTherapist,
+                firstRow: secTherapist(),
+                rows: persons),
+            button(controller, false),
+            miniHeadings("Gorusme Tarihi", false),
+            miniHeadings("Gun", true),
+            Election(
+                election: ControllerElection.therapistGroupControllerDay,
+                firstRow: dayRow(),
+                rows: days),
+            miniHeadings("Saat", true),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 100.0),
+              child: ChoosingTimeGroupTherapy(),
+            ),
+            button(controller, true)
+          ],
+        )),
+      ),
+    );
+  }
+
+  Obx dayRow() {
+    TherapistGroupController controller = Get.find();
+    return Obx(
+      () => SizedBox(
+          child: SeminarMin(
+              onTap: () {
+                controller.changeDayElection();
+              },
+              row: RowModel(
+                text: controller.choosenDay.value,
+                textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
+                isAlignmentBetween: true,
+                trailingIcon: Icon(
+                  controller.isDayElectionOpen.isTrue
                       ? Icons.keyboard_arrow_up
                       : Icons.keyboard_arrow_down_sharp,
                   size: 30,
                 ),
-              ],
-            ),
-          ),
-        ));
+              ))),
+    );
+  }
 
-    return SafeArea(
-      child: SingleChildScrollView(
-          child: Column(
-        children: [
-          rowView(
-              RowModel(
-                  text: "Grup Ekle",
-                  textStyle: AppTextStyles.heading(false),
-                  isAlignmentBetween: true,
-                  trailingIcon: IconButton(
-                    icon: const Icon(
-                      Icons.close,
-                      size: 30,
-                      color: AppColors.meteorite,
-                    ),
-                    onPressed: () {
-                      //geri donus yapmasi lazim
-                    },
-                  )),
-              const EdgeInsets.symmetric(vertical: 32, horizontal: 30)),
-          miniHeadings("Grup Ismi", false),
-          CustomTextField(
-              isPhoneNumber: false,
-              isBig: true,
-              textController: groupNameController,
-              isPassword: false,
-              isRowModel: false),
-          miniHeadings("Yardimci Psikolog", false),
-          // election(controller, persons, false),
-          Election(
-              election: ControllerElection.therapistGroupControllerSecTherapist,
-              changeElection: () {
-                controller.changeSecTherapistElection();
-                print(choosed);
-                print("calis1");
-                print(controller.isSecTherapistElectionOpen.value);
-              },
-              firstRow: row,
-              rows: persons),
-          button(controller, false),
-          miniHeadings("Gorusme Tarihi", false),
-          miniHeadings("Gun", true),
-          election(controller, days, true),
-          miniHeadings("Saat", true),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 100.0),
-            child: ChoosingTimeGroupTherapy(),
-          ),
-          button(controller, true)
-        ],
-      )),
+  Obx secTherapist() {
+    TherapistGroupController controller = Get.find();
+    return Obx(
+      () => SizedBox(
+        child: SeminarMin(
+            onTap: () {
+              controller.changeSecTherapistElection();
+            },
+            row: RowModel(
+              text: controller.choosenSecTherapist.value,
+              textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
+              isAlignmentBetween: true,
+              leadingIcon: controller.isSecTherapistChoosed.isTrue
+                  ? CustomCircleAvatar(
+                      imagePath: DemoInformation.imagePath,
+                      big: false,
+                      shadow: false)
+                  : const SizedBox.shrink(),
+              trailingIcon: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  controller.isSecTherapistChoosed.isTrue
+                      ? const Icon(Icons.check_circle_outline)
+                      : const SizedBox(
+                          width: 2,
+                        ),
+                  Icon(
+                    controller.isSecTherapistElectionOpen.value
+                        ? Icons.keyboard_arrow_up
+                        : Icons.keyboard_arrow_down_sharp,
+                    size: 30,
+                  ),
+                ],
+              ),
+            )),
+      ),
     );
   }
 
@@ -142,7 +170,7 @@ class GroupAddView extends StatelessWidget {
           onTap: () {
             if (isLastButton) {
             } else {
-              controller.choosenSecTherapist("Eren Jager");
+              controller.changeChoosenSecTherapist("Eren Jaeger");
             }
           },
           text: isLastButton ? "Grup Olustur" : "Bana Psikolog Bul"),
@@ -152,7 +180,6 @@ class GroupAddView extends StatelessWidget {
   PersonMin person(String therapistName, BuildContext context) {
     String imagePath = "assets/images/doctorfotosu.jpeg";
     TherapistGroupController controller = Get.find();
-    bool isChoosen = false;
     Icon trailingIcon = IconUtility.emailIcon;
 
     return PersonMin(
@@ -160,7 +187,6 @@ class GroupAddView extends StatelessWidget {
         borderColor: AppColors.cornFlowerBlue,
         onTap: () {
           secTherapistChooseDialog(context, therapistName, controller);
-          isChoosen = !isChoosen;
           trailingIcon = const Icon(Icons.check_circle_outline);
         },
         row: RowModel(
@@ -190,7 +216,6 @@ class GroupAddView extends StatelessWidget {
             onPressed: () {
               controller.changeChoosenSecTherapist(therapistName);
               controller.changeSecTherapistElection();
-              print(controller.choosenSecTherapist);
               Get.back();
             },
             child: const Text('İstek Gonder'),
@@ -213,72 +238,6 @@ class GroupAddView extends StatelessWidget {
             isAlignmentBetween: false,
             text: dayName,
             textStyle: AppTextStyles.buttonTextStyle(AppColors.black)));
-  }
-
-  Widget election(
-      TherapistGroupController controller, List<PersonMin> rows, bool isDay) {
-    bool election = isDay
-        ? controller.isDayElectionOpen.value
-        : controller.isSecTherapistElectionOpen.value;
-    bool isChoosed = controller.choosenSecTherapist.value != 'Yok' && !isDay;
-    double padding;
-    if (isDay || !isChoosed) {
-      padding = 150 - 2.2 * controller.choosenDay.value.length;
-    } else {
-      padding = 100 - 3.0 * controller.choosenSecTherapist.value.length;
-    }
-
-    String imagePath =
-        "assets/images/doctorfotosu.jpeg"; //bu daha sonra farkli sekilde yapilacak
-
-    return Obx(() => Column(
-          children: [
-            SeminarMin(
-                onTap: () {
-                  isDay
-                      ? controller.changeDayElection()
-                      : controller.changeSecTherapistElection();
-                },
-                row: RowModel(
-                    text: isDay
-                        ? controller.choosenDay.value
-                        : controller.choosenSecTherapist.value,
-                    textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
-                    isAlignmentBetween: true,
-                    leadingIcon: isChoosed
-                        ? CustomCircleAvatar(
-                            imagePath: imagePath, big: false, shadow: false)
-                        : const SizedBox.shrink(),
-                    trailingIcon: Padding(
-                      padding: EdgeInsets.only(left: padding.toDouble()),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          isChoosed
-                              ? const Icon(Icons.check_circle_outline)
-                              : const SizedBox(
-                                  width: 2,
-                                ),
-                          Icon(
-                            election
-                                ? Icons.keyboard_arrow_up
-                                : Icons.keyboard_arrow_down_sharp,
-                            size: 30,
-                          ),
-                        ],
-                      ),
-                    ))),
-            election
-                ? SizedBox(
-                    width: 294,
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: rows,
-                    ),
-                  )
-                : const SizedBox.shrink(),
-          ],
-        ));
   }
 
   Widget miniHeadings(String name, bool isInMiddle) {

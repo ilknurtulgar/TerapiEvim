@@ -32,22 +32,24 @@ class PagesForSCL extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Obx(
-        () => Column(
-          children: [
-            CustomHeading(
-              text: heading,
-              isalignmentstart: false,
-              padding: const EdgeInsets.symmetric(vertical: 32),
-            ),
-            _controller.testPageIndex.value == 0
-                ? PurpleTextContainer(text: definition)
-                : const SizedBox.shrink(),
-            questionsWidget(),
-            pageChangeButtons()
-          ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.only(bottom: 20),
+        child: Obx(
+          () => Column(
+            children: [
+              CustomHeading(
+                text: heading,
+                isalignmentstart: false,
+                padding: const EdgeInsets.symmetric(vertical: 32),
+              ),
+              _controller.testPageIndex.value == 0
+                  ? PurpleTextContainer(text: definition)
+                  : const SizedBox.shrink(),
+              questionsWidget(),
+              pageChangeButtons()
+            ],
+          ),
         ),
       ),
     );

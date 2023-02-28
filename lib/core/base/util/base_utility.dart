@@ -13,14 +13,10 @@ import '../../../screen/therapist/activity/activity_screen.dart';
 import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
 
-
 import '../models/card_model.dart';
 
-
-import '../component/group/person.dart';
 import '../component/group/questions_button.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
-
 
 import '../models/row_model.dart';
 
@@ -58,6 +54,8 @@ class AppColors {
 }
 
 class IconUtility {
+  static const Icon chevronIcon = Icon(Icons.chevron_left);
+  static const Icon circleIcon = Icon(Icons.circle);
   static const Icon arrowIcon = Icon(Icons.keyboard_arrow_right_outlined);
   static const Icon visibilityIcon = Icon(
     Icons.visibility,
@@ -182,7 +180,7 @@ class AppTextStyles {
   static TextStyle buttonTextStyle(Color textColor) => TextStyle(
       fontFamily: 'Roboto',
       fontWeight: FontWeight.w500,
-      fontSize: 18,// önceki değer 16,
+      fontSize: 18, // önceki değer 16,
       color: textColor);
   static TextStyle methodsPageTextStyle(bool isDateText, bool isOrderButton,
           bool isExplanationText, bool isDocument) =>
@@ -200,9 +198,10 @@ class AppTextStyles {
                 ? AppColors.black
                 : AppColors.deepCove,
       );
+
   static TextStyle aboutMeTextStyle(bool isName) => TextStyle(
         //seminer detay sayfasındaki hakkında kısmı
-        fontFamily: isName ? 'Inter' : 'Roboto',
+        fontFamily: 'Roboto',
         fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
         color: isName ? AppColors.black : AppColors.deepCove,
         fontSize: isName ? 31 : 14,
@@ -226,12 +225,6 @@ class AppTextStyles {
       fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
       //sor!
       color: isName ? AppColors.black : AppColors.deepCove);
-  // class GroupTextStyle {
-//   static const TextStyle groupOutButton = TextStyle(
-//       color: AppColors.meteorite,
-//       fontFamily: "Roboto",
-//       fontWeight: FontWeight.w500);
-// }
 }
 
 class AppContainers {
@@ -348,7 +341,12 @@ class DemoInformation {
     "İrem Derici",
     "Canan Karatay",
     "Ecem Kara",
-    "Nur Kara"
+    "Nur Kara",
+    "Asya Günay",
+    "Rachel Green",
+    "Ross Geller",
+    "Monica Bing",
+    "Chandler Bing"
   ];
 
   static const List<String> groupList = [
@@ -416,7 +414,6 @@ class DemoInformation {
       trailingIcon: const Text("11:20"),
       isAlignmentBetween: false);
   static const String clock = "19:20";
-
 
   //group
   static RowModel secTherapist = RowModel(
@@ -510,9 +507,9 @@ class DemoInformation {
           big: false, shadow: false, imagePath: DemoInformation.imagePath),
       text: "Aleyna Tilki",
       textStyle: AppTextStyles.groupTextStyle(true));
-  
-  // video call 
-    // group therapy call page,isolated call page,short call page
+
+  // video call
+  // group therapy call page,isolated call page,short call page
   static PersonInCallModel therapist = PersonInCallModel(
       name: 'Simay',
       surname: 'Selli',
@@ -531,7 +528,13 @@ class DemoInformation {
       imagePath: 'assets/images/f3.jpg',
       isMicOn: false,
       isCamOn: true);
-  static List<PersonInCallModel> participants = [personNo1, personNo2, personNo1, personNo2, personNo1];
+  static List<PersonInCallModel> participants = [
+    personNo1,
+    personNo2,
+    personNo1,
+    personNo2,
+    personNo1
+  ];
 
   // participant profile
   static String profileImagePath = 'assets/images/f1.jpg';
@@ -552,11 +555,17 @@ class DemoInformation {
         therapistName: 'Mert Engin', seminarTitle: 'Seminer 3')
   ];
   // profile setting page
-  static TextEditingController nameSurnameControllerInSetting = TextEditingController(text: "Kerem Engin");
-  static TextEditingController mailControllerInSetting = TextEditingController(text: "test@gmail.com");
-  static TextEditingController passwordControllerInSetting = TextEditingController(text: "asdf");
-  static TextEditingController phoneControllerInSetting = TextEditingController(text: "5055139645");
-  static TextEditingController aboutMeController = TextEditingController(text:'''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''');
+  static TextEditingController nameSurnameControllerInSetting =
+      TextEditingController(text: "Kerem Engin");
+  static TextEditingController mailControllerInSetting =
+      TextEditingController(text: "test@gmail.com");
+  static TextEditingController passwordControllerInSetting =
+      TextEditingController(text: "asdf");
+  static TextEditingController phoneControllerInSetting =
+      TextEditingController(text: "5055139645");
+  static TextEditingController aboutMeController = TextEditingController(
+      text:
+          '''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''');
   static bool isForParticipant = true;
 
   // therapist profile page
@@ -566,5 +575,11 @@ class DemoInformation {
     'Her pazartesi,17.00',
     'Her perşembe,18.00'
   ];
-  
+}
+
+Divider divider() {
+  return const Divider(
+    color: AppColors.black,
+    height: 5,
+  );
 }

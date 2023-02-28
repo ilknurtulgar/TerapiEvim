@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/home/notification_from_ther_container.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
-import 'package:terapievim/screen/participant/home/coping_methods.dart';
+import 'package:terapievim/screen/participant/activity/filter_details.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
+    return FilterDetails(); /*SingleChildScrollView(
+        child:
+            Column(
         children: [
           headingtext(
             true,
@@ -27,7 +27,7 @@ class HomeScreen extends StatelessWidget {
               DemoInformation.home.length)
         ],
       ),
-    );
+        );*/
   }
 }
 

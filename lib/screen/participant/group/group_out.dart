@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
-import 'util/text_util.dart';
+import '../../../core/base/util/text_utility.dart';
 
 class GroupOut extends StatelessWidget {
   const GroupOut({super.key});
@@ -17,13 +17,13 @@ class GroupOut extends StatelessWidget {
           shape: const RoundedRectangleBorder(
               borderRadius: AppBorderRadius.generalBorderRadius),
           title: Text(
-            GroupTexts.groupOutHeading,
+            GroupTextUtil.groupOutHeading,
             style: AppTextStyles.heading(false),
           ),
-          content: const Text(GroupTexts.groupOutText),
+          content: const Text(GroupTextUtil.groupOutText),
           actions: <Widget>[
-            popUpButton(context, GroupTexts.iptal),
-            popUpButton(context, GroupTexts.evet),
+            popUpButton(context, GroupTextUtil.cancelText),
+            popUpButton(context, GroupTextUtil.yes),
           ],
         ),
       ),
@@ -33,7 +33,7 @@ class GroupOut extends StatelessWidget {
   TextButton popUpButton(BuildContext context, String text) {
     return TextButton(
       onPressed: () {
-        if (text == GroupTexts.evet) {
+        if (text == GroupTextUtil.yes) {
           //degistirilecek
           //print("Iptal");
         } else {

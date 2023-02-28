@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart';
+import 'package:terapievim/screen/therapist/group/groups_informations/group_information.dart';
 
 class MyGroups extends StatelessWidget {
   const MyGroups({super.key}); //gecici modeller
@@ -16,11 +20,13 @@ class MyGroups extends StatelessWidget {
             children: [
               rowView(
                   RowModel(
-                      text: "Gruplarim",
+                      text: GroupTextUtil.myGroupsText,
                       textStyle: AppTextStyles.heading(true),
                       isAlignmentBetween: true,
                       trailingIcon: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Get.to(const GroupAddView());
+                        },
                         icon: const Icon(
                           Icons.add,
                           size: 40,
@@ -37,7 +43,9 @@ class MyGroups extends StatelessWidget {
                     padding:
                         const EdgeInsets.symmetric(vertical: 9, horizontal: 24),
                     child: SeminarMax(
-                        onTap: () {},
+                        onTap: () {
+                          Get.to(GroupInformation());
+                        },
                         row1: DemoInformation.row_1,
                         row2: DemoInformation.row_2,
                         row3: DemoInformation.row_3,

@@ -11,6 +11,7 @@ import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 
 class GroupAddView extends StatelessWidget {
   const GroupAddView({super.key});
@@ -23,13 +24,13 @@ class GroupAddView extends StatelessWidget {
     //gecici
 
     List<PersonMin> days = [
-      day("Pazartesi"),
-      day("Sali"),
-      day("Carsamba"),
-      day("Persembe"),
-      day("Cuma"),
-      day("Cumartesi"),
-      day("Pazar"),
+      day(GroupTextUtil.monday),
+      day(GroupTextUtil.tuesday),
+      day(GroupTextUtil.wednesday),
+      day(GroupTextUtil.thursday),
+      day(GroupTextUtil.friday),
+      day(GroupTextUtil.saturday),
+      day(GroupTextUtil.sunday),
     ];
 
     List<PersonMin> persons = [
@@ -47,7 +48,7 @@ class GroupAddView extends StatelessWidget {
           children: [
             rowView(
                 RowModel(
-                    text: "Grup Ekle",
+                    text: GroupTextUtil.addGroupText,
                     textStyle: AppTextStyles.heading(false),
                     isAlignmentBetween: true,
                     trailingIcon: IconButton(
@@ -57,31 +58,32 @@ class GroupAddView extends StatelessWidget {
                         color: AppColors.meteorite,
                       ),
                       onPressed: () {
+                        Get.back();
                         //geri donus yapmasi lazim
                       },
                     )),
                 const EdgeInsets.symmetric(vertical: 32, horizontal: 30)),
-            miniHeadings("Grup Ismi", false),
+            miniHeadings(GroupTextUtil.groupNameText, false),
             CustomTextField(
                 isPhoneNumber: false,
                 isBig: true,
                 textController: groupNameController,
                 isPassword: false,
                 isRowModel: false),
-            miniHeadings("Yardimci Psikolog", false),
+            miniHeadings(GroupTextUtil.secondTherapistText, false),
             Election(
                 election:
                     ControllerElection.therapistGroupControllerSecTherapist,
                 firstRow: secTherapist(),
                 rows: persons),
             button(controller, false),
-            miniHeadings("Gorusme Tarihi", false),
-            miniHeadings("Gun", true),
+            miniHeadings(GroupTextUtil.meetDayText, false),
+            miniHeadings(GroupTextUtil.dayText, true),
             Election(
                 election: ControllerElection.therapistGroupControllerDay,
                 firstRow: dayRow(),
                 rows: days),
-            miniHeadings("Saat", true),
+            miniHeadings(GroupTextUtil.timeText, true),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 100.0),
               child: ChoosingTimeGroupTherapy(),
@@ -173,12 +175,13 @@ class GroupAddView extends StatelessWidget {
               controller.changeChoosenSecTherapist("Eren Jaeger");
             }
           },
-          text: isLastButton ? "Grup Olustur" : "Bana Psikolog Bul"),
+          text: isLastButton
+              ? GroupTextUtil.createGroupText
+              : GroupTextUtil.newSecTherapistText),
     );
   }
 
   PersonMin person(String therapistName, BuildContext context) {
-    String imagePath = "assets/images/doctorfotosu.jpeg";
     TherapistGroupController controller = Get.find();
     Icon trailingIcon = IconUtility.emailIcon;
 
@@ -192,7 +195,9 @@ class GroupAddView extends StatelessWidget {
         row: RowModel(
             text: therapistName,
             leadingIcon: CustomCircleAvatar(
-                big: false, imagePath: imagePath, shadow: false),
+                big: false,
+                imagePath: DemoInformation.imagePath,
+                shadow: false),
             textStyle: AppTextStyles.groupTextStyle(true),
             isAlignmentBetween: true,
             trailingIcon: trailingIcon));
@@ -203,14 +208,12 @@ class GroupAddView extends StatelessWidget {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text(
-            "$therapistName kişisine yardımcı psikolog teklifi göndermek istediğinize emin misiniz?"),
-        content: const Text(
-            'İstek gönderildikten itibaren geri dönüt alınmadan başka bir yardımcı terapiste istekte bulunulamaz.'),
+        title: Text(therapistName + GroupTextUtil.secTherDialogText1),
+        content: Text(GroupTextUtil.secTherDialogText2),
         actions: <Widget>[
           TextButton(
             onPressed: () => Get.back(),
-            child: const Text('İptal'),
+            child: Text(GroupTextUtil.cancelText),
           ),
           TextButton(
             onPressed: () {
@@ -218,7 +221,7 @@ class GroupAddView extends StatelessWidget {
               controller.changeSecTherapistElection();
               Get.back();
             },
-            child: const Text('İstek Gonder'),
+            child: Text(GroupTextUtil.sendRequestText),
           ),
         ],
       ),

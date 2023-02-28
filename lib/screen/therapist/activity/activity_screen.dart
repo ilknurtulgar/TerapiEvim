@@ -18,7 +18,8 @@ class TherapistActivityScreen extends StatelessWidget {
           child: Column(
             children: [
               activityappbar(),
-              activityminto("Yaklaşan Aktivitelerim", () => () {}),
+              activityminto("Yaklaşan Aktivitelerim", () => () {},
+                  MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
               ActivityBox(
                   istwobutton: true,
                   buttonText: "Başla",
@@ -26,7 +27,8 @@ class TherapistActivityScreen extends StatelessWidget {
                   isactivity: true,
                   arowModel: DemoInformation.arowmodel,
                   clockModel: DemoInformation.clockmodel),
-              activityminto("Yaklaşan Diğer Aktiviteler", () => () {}),
+              activityminto("Yaklaşan Diğer Aktiviteler", () => () {},
+                  MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
               ActivityBox(
                   istwobutton: false,
                   buttonText: "Katıl",
@@ -35,7 +37,8 @@ class TherapistActivityScreen extends StatelessWidget {
                   arowModel: DemoInformation.arowmodel,
                   ayrowwModel: DemoInformation.ayrowmodel,
                   clockModel: DemoInformation.clockmodel),
-              activityminto("Geçmiş Aktivitelerim", () => () {}),
+              activityminto("Geçmiş Aktivitelerim", () => () {},
+                  MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
               ActivityBox(
                   istwobutton: false,
                   buttonText: "Kaydı İzle",
@@ -43,7 +46,8 @@ class TherapistActivityScreen extends StatelessWidget {
                   isactivity: true,
                   arowModel: DemoInformation.arowmodel,
                   clockModel: DemoInformation.clockmodel),
-              activityminto("Geçmiş Diğer Aktiviteler", () => () {}),
+              activityminto("Geçmiş Diğer Aktiviteler", () => () {},
+                  MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
               ActivityBox(
                   istwobutton: false,
                   buttonText: "Katıl",

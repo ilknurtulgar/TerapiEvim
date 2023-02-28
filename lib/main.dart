@@ -38,15 +38,16 @@ class _TerapiEvimState extends State<TerapiEvim> {
   final MainController _controller = Get.put(MainController());
   final ActivityController activityController = Get.put(ActivityController());
   final ProfileController profileController = Get.put(ProfileController());
-  final TherapistProfileController therapistProfileController = Get.put(TherapistProfileController());
-  final TherapistGroupController therapistGroupController=Get.put(TherapistGroupController());
+  final TherapistProfileController therapistProfileController =
+      Get.put(TherapistProfileController());
+  final TherapistGroupController therapistGroupController =
+      Get.put(TherapistGroupController());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
             splashColor: Colors.transparent,
-            primarySwatch: Colors.purple,
             scaffoldBackgroundColor: AppColors.blueChalk),
         home: _controller.isLogged.isTrue
             ? const TerapiEvimLogged()

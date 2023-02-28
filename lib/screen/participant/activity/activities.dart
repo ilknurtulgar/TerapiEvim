@@ -18,9 +18,11 @@ class ActivitiesScreen extends StatelessWidget {
             child: Column(
               children: [
                 search(searchModel),
-                activityminto("Yaklaşan Aktiviteler", () {}),
+                activityminto("Yaklaşan Aktiviteler", () {},
+                    MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
                 activityseminar(),
-                activityminto("Geçmiş Aktiviteler", () {}),
+                activityminto("Geçmiş Aktiviteler", () {},
+                    MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
                 activityseminar()
               ],
             ),
@@ -60,16 +62,19 @@ ListView activityseminar() {
   );
 }
 
-Widget activityminto(String text, Function()? onPressed) {
+Widget activityminto(String text, Function()? onPressed,
+    MainAxisAlignment mainAxisAlignment, bool isButterfly, Icon icon) {
   return Row(
-    mainAxisAlignment: MainAxisAlignment.spaceAround,
+    mainAxisAlignment: mainAxisAlignment,
     children: [
       Text(
         text,
-        style: AppTextStyles.groupTextStyle(false),
+        style: isButterfly
+            ? AppTextStyles.groupTextStyle(false)
+            : AppTextStyles.normalTextStyle("medium", false),
       ),
       IconButton(
-        icon: IconUtility.arrowIcon,
+        icon: icon,
         onPressed: onPressed,
       ),
     ],

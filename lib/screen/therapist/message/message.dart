@@ -22,7 +22,14 @@ class _TherapistMessageScreenState extends State<TherapistMessageScreen> {
       child: Scaffold(
         body: Column(
           children: [
-            messageappbar(),
+            messageappbar(
+                MessageUtil.messageapptext,
+                MessageUtil.messageIcon,
+                IconButton(
+                    onPressed: () {
+                      Get.to(const SearchMessage());
+                    },
+                    icon: MessageUtil.addmesaage)),
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
@@ -37,23 +44,21 @@ class _TherapistMessageScreenState extends State<TherapistMessageScreen> {
       ),
     );
   }
+}
 
-  TherapistyMessageController therapistyMessageController =
-      Get.put(TherapistyMessageController());
-  Widget messageappbar() {
-    return rowView(
-        RowModel(
-            trailingIcon: IconButton(
-                onPressed: () {
-                  Get.to(const SearchMessage());
-                },
-                icon: MessageUtil.addmesaage),
-            text: MessageUtil.messageapptext,
-            textStyle: AppTextStyles.heading(false),
-            leadingIcon: MessageUtil.messageIcon,
-            isAlignmentBetween: true),
-        MessageUtil.appmpadding);
-  }
+TherapistyMessageController therapistyMessageController =
+    Get.put(TherapistyMessageController());
+
+Widget messageappbar(
+    String apptext, Widget? leadingIcon, Widget? trailingIcon) {
+  return rowView(
+      RowModel(
+          trailingIcon: trailingIcon ?? const SizedBox.shrink(),
+          text: apptext,
+          textStyle: AppTextStyles.heading(false),
+          leadingIcon: leadingIcon,
+          isAlignmentBetween: true),
+      MessageUtil.appmpadding);
 }
 
 class MessageUtil {

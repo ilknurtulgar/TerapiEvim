@@ -6,6 +6,8 @@ import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/screen/therapist/group/metots/new_metot.dart';
+import 'package:terapievim/screen/therapist/group/therapist_about.dart';
 import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/component/group/person.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
@@ -33,7 +35,11 @@ class GroupInformation extends StatelessWidget {
               miniHeadings("Yaklasan Toplanti", false),
               meeting(),
               miniHeadings("Grubun Bilgileri", false),
-              navMethod(DemoInformation.secTherapist, () {}),
+              navMethod(
+                  DemoInformation.secTherapist,
+                  () => Get.to(TherapistProfile(
+                        isSecTherapist: true,
+                      ))),
               Election(
                   election:
                       ControllerElection.therapistGroupControllerParticipant,
@@ -59,7 +65,9 @@ class GroupInformation extends StatelessWidget {
                       )),
                   rows: participantRow),
               //dropdownlu component gelecek katilimcilar
-              navMethod(DemoInformation.methods, () {}),
+              navMethod(DemoInformation.methods, () {
+                //method sayfasina gidecek
+              }),
             ],
           ),
         ),
@@ -109,6 +117,7 @@ class GroupInformation extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.edit_document),
                   onPressed: () {
+                    Get.to(const NewMetot());
                     //new Metot sayfasina godocek
                   },
                 ),

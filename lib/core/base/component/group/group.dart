@@ -71,7 +71,7 @@ class GroupClass extends StatelessWidget {
                         row3 ??
                             RowModel(
                                 text: '',
-                                textStyle: TextStyle(),
+                                textStyle: const TextStyle(),
                                 isAlignmentBetween: false),
                         const EdgeInsets.symmetric(vertical: 4, horizontal: 16))
                     : const SizedBox()

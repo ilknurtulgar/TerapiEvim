@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/screen/therapist/group/confirmation/uploading.dart';
 import '../../../../controller/therapist_group_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
@@ -28,7 +29,7 @@ class LockScreenTherapist extends StatelessWidget {
 }
 
 Widget popUp() {
-  TherapistGroupController controller = Get.put(TherapistGroupController());
+  TherapistGroupController controller = Get.find();
   Widget shown =
       controller.isTherapistUploaded.isFalse ? noUpload() : conformed();
 
@@ -103,6 +104,7 @@ Column noUpload() {
       GestureDetector(
           onTap: () {
             //onaylama sayfasina gitmeli
+            Get.to(TherapistUploadConfirm);
           },
           child: Container(
             width: LockScreenUtil.lockScreenContainerWidth,

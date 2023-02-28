@@ -57,6 +57,7 @@ class GroupAddView extends StatelessWidget {
                         color: AppColors.meteorite,
                       ),
                       onPressed: () {
+                        Get.back();
                         //geri donus yapmasi lazim
                       },
                     )),

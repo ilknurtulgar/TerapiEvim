@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/activtiy/filter_box.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
@@ -55,7 +57,9 @@ class TherapistUploadConfirm extends StatelessWidget {
                         height: 30,
                         borderRadius: 100,
                         backgroundColor: AppColors.butterflyBush),
-                    onTap: () {},
+                    onTap: () {
+                      //yukleyeccek
+                    },
                     text: "Yukle"),
                 const SizedBox(
                   height: 10,

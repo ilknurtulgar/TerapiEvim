@@ -22,7 +22,6 @@ class MyGroup extends StatelessWidget {
         textStyle: AppTextStyles.heading(false),
         trailingIcon: const GroupOut(),
         isAlignmentBetween: true);
-    //buradaki tum modeller geecici
 
     return Scaffold(
       body: SafeArea(

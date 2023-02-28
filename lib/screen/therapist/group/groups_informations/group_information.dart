@@ -1,16 +1,11 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
-import 'package:terapievim/core/base/component/activtiy/filter_box.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/service/model/participant/group/participants.dart';
-import 'package:terapievim/service/model/therapist_model.dart';
-
 import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/component/group/person.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
@@ -28,42 +23,45 @@ class GroupInformation extends StatelessWidget {
       person("Osman Yigit", context),
       person("Ali Kiran", context)
     ];
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            heading(context),
-            miniHeadings("Yaklasan Toplanti", false),
-            meeting(),
-            miniHeadings("Grubun Bilgileri", false),
-            navMethod(DemoInformation.secTherapist, () {}),
-            Election(
-                election:
-                    ControllerElection.therapistGroupControllerParticipant,
-                firstRow: Obx(() => SizedBox(
-                      child: SeminarMin(
-                        borderColor: AppColors.meteorite,
-                        onTap: () {
-                          controller.changeParticipantElection();
-                        },
-                        row: RowModel(
-                          text: "Katilimcilar",
-                          textStyle: AppTextStyles.aboutMeTextStyle(false),
-                          leadingIcon: IconUtility.groupsIcon,
-                          isAlignmentBetween: true,
-                          trailingIcon: Icon(
-                            controller.isParticipantElectionOpen.isTrue
-                                ? Icons.keyboard_arrow_up
-                                : Icons.keyboard_arrow_down_sharp,
-                            size: 38,
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              heading(context),
+              miniHeadings("Yaklasan Toplanti", false),
+              meeting(),
+              miniHeadings("Grubun Bilgileri", false),
+              navMethod(DemoInformation.secTherapist, () {}),
+              Election(
+                  election:
+                      ControllerElection.therapistGroupControllerParticipant,
+                  firstRow: Obx(() => SizedBox(
+                        child: SeminarMin(
+                          borderColor: AppColors.meteorite,
+                          onTap: () {
+                            controller.changeParticipantElection();
+                          },
+                          row: RowModel(
+                            text: "Katilimcilar",
+                            textStyle: AppTextStyles.aboutMeTextStyle(false),
+                            leadingIcon: IconUtility.groupsIcon,
+                            isAlignmentBetween: true,
+                            trailingIcon: Icon(
+                              controller.isParticipantElectionOpen.isTrue
+                                  ? Icons.keyboard_arrow_up
+                                  : Icons.keyboard_arrow_down_sharp,
+                              size: 38,
+                            ),
                           ),
                         ),
-                      ),
-                    )),
-                rows: participantRow),
-            //dropdownlu component gelecek katilimcilar
-            navMethod(DemoInformation.methods, () {}),
-          ],
+                      )),
+                  rows: participantRow),
+              //dropdownlu component gelecek katilimcilar
+              navMethod(DemoInformation.methods, () {}),
+            ],
+          ),
         ),
       ),
     );

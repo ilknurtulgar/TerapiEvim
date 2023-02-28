@@ -73,7 +73,7 @@ class GroupClass extends StatelessWidget {
                                 text: '',
                                 textStyle: TextStyle(),
                                 isAlignmentBetween: false),
-                        EdgeInsets.symmetric(vertical: 4, horizontal: 16))
+                        const EdgeInsets.symmetric(vertical: 4, horizontal: 16))
                     : const SizedBox()
               ],
             ),

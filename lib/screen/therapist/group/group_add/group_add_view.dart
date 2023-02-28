@@ -213,7 +213,6 @@ class GroupAddView extends StatelessWidget {
             onPressed: () {
               controller.changeChoosenSecTherapist(therapistName);
               controller.changeSecTherapistElection();
-              print(controller.choosenSecTherapist);
               Get.back();
             },
             child: const Text('İstek Gonder'),

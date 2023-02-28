@@ -6,7 +6,9 @@ import '../../../screen/participant/activity/activities.dart';
 import '../../../screen/participant/group/group.dart';
 import '../../../screen/participant/home/home.dart';
 import '../../../screen/participant/message/message.dart';
+import '../../../screen/participant/profile/models/group_model.dart';
 import '../../../screen/participant/profile/profile_page.dart';
+import '../../../screen/participant/video_call/model/person_in_call_model.dart';
 import '../../../screen/therapist/activity/activity_screen.dart';
 import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
@@ -177,7 +179,7 @@ class AppTextStyles {
   static TextStyle buttonTextStyle(Color textColor) => TextStyle(
       fontFamily: 'Roboto',
       fontWeight: FontWeight.w500,
-      fontSize: 16,
+      fontSize: 18,// önceki değer 16,
       color: textColor);
   static TextStyle methodsPageTextStyle(bool isDateText, bool isOrderButton,
           bool isExplanationText, bool isDocument) =>
@@ -504,4 +506,63 @@ class DemoInformation {
           big: false, shadow: false, imagePath: DemoInformation.imagePath),
       text: "Aleyna Tilki",
       textStyle: AppTextStyles.groupTextStyle(true));
+
+  
+  // video call 
+    // group therapy call page,isolated call page,short call page
+  static PersonInCallModel therapist = PersonInCallModel(
+      name: 'Simay',
+      surname: 'Selli',
+      imagePath: 'assets/images/f1.jpg',
+      isMicOn: true,
+      isCamOn: true);
+  static PersonInCallModel personNo1 = PersonInCallModel(
+      name: 'Kerem',
+      surname: 'Görkem',
+      imagePath: 'assets/images/f2.jpg',
+      isMicOn: false,
+      isCamOn: true);
+  static PersonInCallModel personNo2 = PersonInCallModel(
+      name: 'Ali',
+      surname: 'Aydın',
+      imagePath: 'assets/images/f3.jpg',
+      isMicOn: false,
+      isCamOn: true);
+  static List<PersonInCallModel> participants = [personNo1, personNo2, personNo1, personNo2, personNo1];
+
+  // participant profile
+  static String profileImagePath = 'assets/images/f1.jpg';
+  static String nameSurname = 'Emily Jordan';
+  static String birthOfDate = '09/07/1995';
+  static GroupModelInProfilePage groupInformation = GroupModelInProfilePage(
+      groupName: 'Anoreksiya',
+      mainTherapistName: 'Kerem Engin',
+      methodTitles: ['Başlık 1', 'Başlık 2', 'Başlık 3', 'Başlık 4'],
+      secondTherapistName: 'Simay Selli',
+      therapyTime: 'Her salı, 20.00');
+  static List<SeminarModelInProfilePage> lastWatchedSeminars = [
+    SeminarModelInProfilePage(
+        therapistName: 'Kerem Engin', seminarTitle: 'Seminer 1'),
+    SeminarModelInProfilePage(
+        therapistName: 'Mustafa Engin', seminarTitle: 'Seminer 2'),
+    SeminarModelInProfilePage(
+        therapistName: 'Mert Engin', seminarTitle: 'Seminer 3')
+  ];
+  // profile setting page
+  static TextEditingController nameSurnameControllerInSetting = TextEditingController(text: "Kerem Engin");
+  static TextEditingController mailControllerInSetting = TextEditingController(text: "test@gmail.com");
+  static TextEditingController passwordControllerInSetting = TextEditingController(text: "asdf");
+  static TextEditingController phoneControllerInSetting = TextEditingController(text: "5055139645");
+  static TextEditingController aboutMeController = TextEditingController(text:'''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''');
+  static bool isForParticipant = false;
+
+  // therapist profile page
+  static List<String> therapyDates = [
+    'Her cuma,21.00',
+    'Her salı,20.00',
+    'Her pazartesi,17.00',
+    'Her perşembe,18.00'
+  ];
+  
+
 }

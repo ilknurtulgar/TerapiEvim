@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/therapist/group/therapist_about.dart';
-import '../../../../core/base/models/container_model.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import '../../../../core/base/models/row_model.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 
@@ -89,51 +88,6 @@ class ProfilePageUtility {
           isAlignmentBetween:
               false); //TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
 
-  static Padding lineWithOrText() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 30),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          horizontalLine(),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: Text('Ya da'),
-          ),
-          horizontalLine()
-        ],
-      ),
-    );
-  }
-
-  static Container horizontalLine() {
-    return Container(
-      color: AppColors.black,
-      height: 1,
-      width: 150,
-    );
-  }
-
-  static ContainerModel loginSignUpButtonContainer(
-          bool isInLoginPage, bool isLoginButton) =>
-      ContainerModel(
-          width: 342,
-          borderRadius: 8,
-          backgroundColor: (isInLoginPage && isLoginButton) ||
-                  (isInLoginPage == false && isLoginButton == false)
-              ? AppColors.royalBlue
-              : AppColors.white,
-          height: 43);
-
-  static List<String> informationTitle = [
-    'Ad Soyad: ',
-    'Doğum Tarihi: ',
-    'Cinsiyet: ',
-    'Mail: ',
-    'Şifre: ',
-    'Telefon: '
-  ];
-
   TherapistProfileController controller = Get.find();
   Row acceptionRow(bool isForMakingShortCall) => Row(
           mainAxisAlignment: isForMakingShortCall
@@ -152,9 +106,7 @@ class ProfilePageUtility {
                         ? Icons.check_circle_outline
                         : Icons.circle_outlined))),
             Text(isForMakingShortCall
-                ? '''15 dakikalık terapiyi sırayla yapmayı kabul
-ediyorum.KVKK kabul ediyorum.'''
-                : '''Random yardımcı psikolog listesinde
-bulunmak istiyorum''')
+                ? LoginSignUpTextUtil.therapistAcceptedMakingShortCall
+                : ProfileSettingsTextUtil.therapistAcceptedRandomTherapistList)
           ]);
 }

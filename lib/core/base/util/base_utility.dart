@@ -557,7 +557,7 @@ class DemoInformation {
   static TextEditingController passwordControllerInSetting = TextEditingController(text: "asdf");
   static TextEditingController phoneControllerInSetting = TextEditingController(text: "5055139645");
   static TextEditingController aboutMeController = TextEditingController(text:'''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''');
-  static bool isForParticipant = true;
+  static bool isForParticipant = false;
 
   // therapist profile page
   static List<String> therapyDates = [

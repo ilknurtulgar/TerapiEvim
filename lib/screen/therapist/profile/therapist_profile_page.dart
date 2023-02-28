@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/profile/container/two_row_short_container.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 
 import '../../../core/base/component/group/group.dart';
 import '../../../core/base/component/group/row_view.dart';
@@ -10,7 +11,7 @@ import '../../../core/base/util/base_utility.dart';
 import '../../participant/profile/profile_setting_page.dart';
 import '../../participant/profile/util/profile_page_utility.dart';
 class TherapistProfilePage extends StatelessWidget {
-  TherapistProfilePage({super.key});
+  const TherapistProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -22,17 +23,17 @@ class TherapistProfilePage extends StatelessWidget {
              Stack(
               children: [
                 ProfilePageUtility.backgroundOfThePage(),
-                ProfilePageUtility.profilePagePersonImage('assets/images/f3.jpg'),
+                ProfilePageUtility.profilePagePersonImage(DemoInformation.imagePath),
                 ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() => Get.to(ParticipantProfileSettingPage()),50,10),
                 Padding(
-                  padding: EdgeInsets.only(left: 24,top: 275),
+                  padding: const EdgeInsets.only(left: 24,top: 275),
                   child: Column(
                     children: [
                         const  Padding(
                               padding: EdgeInsets.only(right: 24),
                               child: Center(
                                 child: Text(
-                                  'Kerem Engin',
+                                 DemoInformation.name,
                                   style:
                                       TextStyle(fontWeight: FontWeight.w400, fontSize: 31),
                                 ),
@@ -41,13 +42,13 @@ class TherapistProfilePage extends StatelessWidget {
                   const SizedBox(height: 20,),
                   positionedAboutMeColumn(),
                   positionedBoldMainTitleRow(
-                      'Gruplarım', Icons.group_outlined, 360),
+                      TherapistProfileTextUtil.myGroups, Icons.group_outlined, 360),
                   groupListView(),
                   positionedBoldMainTitleRow(
-                      'Methodlar', Icons.description_outlined, 520),
+                      TherapistProfileTextUtil.methods, Icons.description_outlined, 520),
                   methodAndSeminarListView(true),
                   positionedBoldMainTitleRow(
-                      'Seminerler', Icons.desktop_windows_outlined, 680),
+                      TherapistProfileTextUtil.seminars, Icons.desktop_windows_outlined, 680),
                   methodAndSeminarListView(false),
                   const SizedBox(height: 20,)
                     ],
@@ -84,7 +85,7 @@ class TherapistProfilePage extends StatelessWidget {
                     : Icons.alarm_outlined,
                 purpose: isMethod ? 'method' : 'seminar',
                 isThereButton: true,
-                buttonText: isMethod ? 'İncele' : "İzle",
+                buttonText: isMethod ? TherapistProfileTextUtil.view : TherapistProfileTextUtil.watch,
               ),
             );
           })),
@@ -108,7 +109,7 @@ class TherapistProfilePage extends StatelessWidget {
                 heading: 'Depresyon ${index + 1}', // geçiçi olarak verdim
                 onTap: () {},
                 row1: ProfilePageUtility.doubleTextRow(
-                    'Yardımcı Psikolog: ', 'Yeşim Ç.', true),
+                    TherapistProfileTextUtil.advisor, 'Yeşim Ç.', true),
                 row2: ProfilePageUtility.normalTextRow(
                     DemoInformation.therapyDates[index],
                     Icons.alarm_outlined,
@@ -134,9 +135,7 @@ class TherapistProfilePage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Hakkımda',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+        Text(TherapistProfileTextUtil.aboutMe,style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
         ),
         const SizedBox(
           height: 10,
@@ -156,9 +155,9 @@ class TherapistProfilePage extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
         isThereCardModel: false,
-        widget: const Padding(
-          padding: EdgeInsets.all(15),
-          child: Text('''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''',style: TextStyle(fontSize: 16),),
+        widget: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Text(DemoInformation.aboutMeController.text,style: AppTextStyles.normalTextStyle('medium', false),),
         ),
       ),
     );

@@ -12,15 +12,17 @@ class LockScreenTherapist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.center,
-      children: [
-        const MyGroups(),
-        Container(
-          color: Colors.black.withOpacity(0.8),
-        ),
-        popUp()
-      ],
+    return Scaffold(
+      body: Stack(
+        alignment: AlignmentDirectional.center,
+        children: [
+          const MyGroups(),
+          Container(
+            color: Colors.black.withOpacity(0.8),
+          ),
+          popUp()
+        ],
+      ),
     );
   }
 }

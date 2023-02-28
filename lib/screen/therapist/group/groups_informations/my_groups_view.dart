@@ -9,42 +9,44 @@ class MyGroups extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            rowView(
-                RowModel(
-                    text: "Gruplarim",
-                    textStyle: AppTextStyles.heading(true),
-                    isAlignmentBetween: true,
-                    trailingIcon: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.add,
-                        size: 40,
-                        color: AppColors.meteorite,
-                      ),
-                    )),
-                const EdgeInsets.only(
-                    top: 18, left: 30, right: 30, bottom: 40)),
-            ListView.builder(
-              shrinkWrap: true,
-              itemCount: 10,
-              itemBuilder: (context, index) {
-                return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 9, horizontal: 24),
-                  child: SeminarMax(
-                      onTap: () {},
-                      row1: DemoInformation.row_1,
-                      row2: DemoInformation.row_2,
-                      row3: DemoInformation.row_3,
-                      borderColor: AppColors.cornFlowerBlue),
-                );
-              },
-            )
-          ],
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              rowView(
+                  RowModel(
+                      text: "Gruplarim",
+                      textStyle: AppTextStyles.heading(true),
+                      isAlignmentBetween: true,
+                      trailingIcon: IconButton(
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.add,
+                          size: 40,
+                          color: AppColors.meteorite,
+                        ),
+                      )),
+                  const EdgeInsets.only(
+                      top: 18, left: 30, right: 30, bottom: 40)),
+              ListView.builder(
+                shrinkWrap: true,
+                itemCount: 10,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding:
+                        const EdgeInsets.symmetric(vertical: 9, horizontal: 24),
+                    child: SeminarMax(
+                        onTap: () {},
+                        row1: DemoInformation.row_1,
+                        row2: DemoInformation.row_2,
+                        row3: DemoInformation.row_3,
+                        borderColor: AppColors.cornFlowerBlue),
+                  );
+                },
+              )
+            ],
+          ),
         ),
       ),
     );

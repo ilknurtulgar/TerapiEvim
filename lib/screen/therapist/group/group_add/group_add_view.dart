@@ -40,53 +40,56 @@ class GroupAddView extends StatelessWidget {
       person("Levi Ackerman", context)
     ];
 
-    return SafeArea(
-      child: SingleChildScrollView(
-          child: Column(
-        children: [
-          rowView(
-              RowModel(
-                  text: "Grup Ekle",
-                  textStyle: AppTextStyles.heading(false),
-                  isAlignmentBetween: true,
-                  trailingIcon: IconButton(
-                    icon: const Icon(
-                      Icons.close,
-                      size: 30,
-                      color: AppColors.meteorite,
-                    ),
-                    onPressed: () {
-                      //geri donus yapmasi lazim
-                    },
-                  )),
-              const EdgeInsets.symmetric(vertical: 32, horizontal: 30)),
-          miniHeadings("Grup Ismi", false),
-          CustomTextField(
-              isPhoneNumber: false,
-              isBig: true,
-              textController: groupNameController,
-              isPassword: false,
-              isRowModel: false),
-          miniHeadings("Yardimci Psikolog", false),
-          Election(
-              election: ControllerElection.therapistGroupControllerSecTherapist,
-              firstRow: secTherapist(),
-              rows: persons),
-          button(controller, false),
-          miniHeadings("Gorusme Tarihi", false),
-          miniHeadings("Gun", true),
-          Election(
-              election: ControllerElection.therapistGroupControllerDay,
-              firstRow: dayRow(),
-              rows: days),
-          miniHeadings("Saat", true),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 100.0),
-            child: ChoosingTimeGroupTherapy(),
-          ),
-          button(controller, true)
-        ],
-      )),
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+            child: Column(
+          children: [
+            rowView(
+                RowModel(
+                    text: "Grup Ekle",
+                    textStyle: AppTextStyles.heading(false),
+                    isAlignmentBetween: true,
+                    trailingIcon: IconButton(
+                      icon: const Icon(
+                        Icons.close,
+                        size: 30,
+                        color: AppColors.meteorite,
+                      ),
+                      onPressed: () {
+                        //geri donus yapmasi lazim
+                      },
+                    )),
+                const EdgeInsets.symmetric(vertical: 32, horizontal: 30)),
+            miniHeadings("Grup Ismi", false),
+            CustomTextField(
+                isPhoneNumber: false,
+                isBig: true,
+                textController: groupNameController,
+                isPassword: false,
+                isRowModel: false),
+            miniHeadings("Yardimci Psikolog", false),
+            Election(
+                election:
+                    ControllerElection.therapistGroupControllerSecTherapist,
+                firstRow: secTherapist(),
+                rows: persons),
+            button(controller, false),
+            miniHeadings("Gorusme Tarihi", false),
+            miniHeadings("Gun", true),
+            Election(
+                election: ControllerElection.therapistGroupControllerDay,
+                firstRow: dayRow(),
+                rows: days),
+            miniHeadings("Saat", true),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 100.0),
+              child: ChoosingTimeGroupTherapy(),
+            ),
+            button(controller, true)
+          ],
+        )),
+      ),
     );
   }
 

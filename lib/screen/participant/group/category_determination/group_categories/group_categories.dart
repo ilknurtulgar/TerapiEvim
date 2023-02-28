@@ -16,16 +16,18 @@ class GroupCategories extends StatefulWidget {
 class _GroupCategoriesState extends State<GroupCategories> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            CustomHeading(
-              text: GroupTexts.groupCategoriesHeading,
-              isalignmentstart: false,
-            ),
-            listOfGroupCategories(),
-          ],
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              CustomHeading(
+                text: GroupTexts.groupCategoriesHeading,
+                isalignmentstart: false,
+              ),
+              listOfGroupCategories(),
+            ],
+          ),
         ),
       ),
     );

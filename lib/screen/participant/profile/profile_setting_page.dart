@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import '../../../controller/therapist_profile_controller.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../../../core/base/util/base_utility.dart';
@@ -39,7 +40,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
           ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
           ProfilePageUtility.positionedIconButton(Icons.arrow_back_ios_outlined,
               () {
-            Get.to(ParticipantProfilePage());
+            Get.to(const ParticipantProfilePage());
           }, 35, 340),
           ProfilePageUtility.positionedIconButton(Icons.edit_outlined, () {
             /* foto düzenleme */
@@ -65,7 +66,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: ProfilePageUtility.informationTitle.length,
+              itemCount: ProfileSettingsTextUtil.informationTitle.length,
               itemBuilder: (context, index) {
                 return textfieldRow(index, textfieldList[index]);
               },
@@ -143,8 +144,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('''Yardımcı psikologluk yapabileceğim
-grup sayısı'''),
+                    Text(ProfileSettingsTextUtil.numberOfGroups),
                     Container(
                       height: 27,
                       width: 40,
@@ -157,9 +157,9 @@ grup sayısı'''),
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.only(top: 10),
-          child: Text('Hakkımda'),
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Text(TherapistProfileTextUtil.aboutMe),
         ),
         const SizedBox(height: 10),
         SizedBox(
@@ -198,7 +198,7 @@ grup sayısı'''),
             onTap: () {
               print(therapistProfileController.isBeingAdvisorAccepted.value);
             },
-            text: 'Kaydet'),
+            text: ProfileSettingsTextUtil.save),
       ),
     );
   }
@@ -210,7 +210,7 @@ grup sayısı'''),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(ProfilePageUtility.informationTitle[rowIndex]),
+            Text(ProfileSettingsTextUtil.informationTitle[rowIndex]),
             Align(
               alignment: Alignment.bottomRight,
               child: textField,

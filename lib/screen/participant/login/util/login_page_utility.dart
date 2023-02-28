@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/participant/login/before_login.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import '../../../../core/base/models/container_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 class LoginPageUtility{
@@ -28,9 +28,9 @@ class LoginPageUtility{
         mainAxisSize: MainAxisSize.min,
         children: [
           horizontalLine(),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: Text('Ya da'),
+           Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5),
+            child: Text(LoginSignUpTextUtil.orText),
           ),
           horizontalLine()
         ],

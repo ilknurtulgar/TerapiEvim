@@ -26,6 +26,7 @@ class GroupClass extends StatelessWidget {
   final String heading;
   double? width;
   double? height;
+
   @override
   Widget build(BuildContext context) {
     width ??= 237;

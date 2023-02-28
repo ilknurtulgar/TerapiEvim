@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/participant/profile/util/profile_page_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
 import 'package:terapievim/screen/participant/profile/util/textfield_utility.dart';
-
 import '../../../controller/auth/login_controller.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../sign_up/signup_page.dart';
@@ -53,19 +53,19 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
                 CustomButton(
                   textColor: Colors.white,
                   container:
-                      ProfilePageUtility.loginSignUpButtonContainer(true, true),
+                      LoginPageUtility.loginSignUpButtonContainer(true, true),
                   onTap: () {
                     _loginController.loginWithEmail();
                   },
-                  text: 'Giriş Yap',
+                  text: LoginSignUpTextUtil.login,
                 ),
-                ProfilePageUtility.lineWithOrText(),
+                LoginPageUtility.lineWithOrText(),
                 CustomButton(
                   textColor: AppColors.butterflyBush,
-                  container: ProfilePageUtility.loginSignUpButtonContainer(
+                  container: LoginPageUtility.loginSignUpButtonContainer(
                       true, false),
                   onTap: () => Get.to(() => const SignUpPage()),
-                  text: 'Kaydol',
+                  text: LoginSignUpTextUtil.signUp,
                 ),
               ]),
         ),
@@ -80,17 +80,17 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
             onPressed: () {
               /* Şifreyi unutma durumundaki fonksiyon gelecek*/
             },
-            child: const Text(
-              'Şifreni mi unuttun?',
-              style: TextStyle(color: AppColors.meteorite),
+            child: Text(
+             LoginSignUpTextUtil.forgotYourPassword,
+              style: const TextStyle(color: AppColors.meteorite),
             )));
   }
 
   Padding loginPageTitle() {
-    return const Padding(
-      padding: EdgeInsets.fromLTRB(0, 70, 0, 35),
+    return  Padding(
+      padding: const EdgeInsets.fromLTRB(0, 70, 0, 35),
       child: Text(
-        'Giriş Yap',
+        LoginSignUpTextUtil.login,
         style: AppTextStyles.loginSignUpBigTitle,
       ),
     );

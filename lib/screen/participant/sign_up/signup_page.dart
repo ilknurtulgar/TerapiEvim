@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
 import '../../../controller/auth/sign_up_controller.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../login/login_page.dart';
@@ -62,19 +64,18 @@ class _SignUpPageState extends State<SignUpPage> {
                   : const SizedBox(),
               CustomButton(
                 textColor: Colors.white,
-                container:ProfilePageUtility.loginSignUpButtonContainer(false, false),
+                container: LoginPageUtility.loginSignUpButtonContainer(false, false),
                 onTap: () {
                   _signUpController.signUpWithEmail();
                 },
-                text: 'Kaydol',
+                text: LoginSignUpTextUtil.signUp,
               ),
-              ProfilePageUtility.lineWithOrText(),
+              LoginPageUtility.lineWithOrText(),
               CustomButton(
                 textColor: AppColors.butterflyBush,
-                container:
-                    ProfilePageUtility.loginSignUpButtonContainer(false, true),
+                container: LoginPageUtility.loginSignUpButtonContainer(false, true),
                 onTap: () => Get.to(() => const ParticipantLoginPage()),
-                text: 'Giriş Yap',
+                text: LoginSignUpTextUtil.login,
               ),
               const SizedBox(
                 height: 25,
@@ -103,9 +104,9 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
   Padding title() {
-    return const Padding(
-      padding: EdgeInsets.only(top: 60, bottom: 25),
-      child: Text('Kaydol', style: AppTextStyles.loginSignUpBigTitle),
+    return Padding(
+      padding: const EdgeInsets.only(top: 60, bottom: 25),
+      child: Text(LoginSignUpTextUtil.signUp, style: AppTextStyles.loginSignUpBigTitle),
     );
   }
 }

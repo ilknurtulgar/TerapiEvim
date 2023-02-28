@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/profile/container/two_row_short_container.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 
 import '../../../core/base/component/group/group.dart';
 import '../../../core/base/component/group/row_view.dart';
@@ -10,16 +11,7 @@ import '../../../core/base/util/base_utility.dart';
 import '../../participant/profile/profile_setting_page.dart';
 import '../../participant/profile/util/profile_page_utility.dart';
 class TherapistProfilePage extends StatelessWidget {
-  TherapistProfilePage({super.key});
-
-  List<String> therapyDates = [
-    'Her cuma,21.00',
-    'Her salı,20.00',
-    'Her pazartesi,17.00',
-    'Her perşembe,18.00'
-  ];
-
-  double aboutMeContainerHeight = 0;
+  const TherapistProfilePage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,17 +23,17 @@ class TherapistProfilePage extends StatelessWidget {
              Stack(
               children: [
                 ProfilePageUtility.backgroundOfThePage(),
-                ProfilePageUtility.profilePagePersonImage('assets/images/f3.jpg'),
+                ProfilePageUtility.profilePagePersonImage(DemoInformation.imagePath),
                 ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() => Get.to(ParticipantProfileSettingPage()),50,10),
                 Padding(
-                  padding: EdgeInsets.only(left: 24,top: 275),
+                  padding: const EdgeInsets.only(left: 24,top: 275),
                   child: Column(
                     children: [
                         const  Padding(
                               padding: EdgeInsets.only(right: 24),
                               child: Center(
                                 child: Text(
-                                  'Kerem Engin',
+                                 DemoInformation.name,
                                   style:
                                       TextStyle(fontWeight: FontWeight.w400, fontSize: 31),
                                 ),
@@ -50,13 +42,13 @@ class TherapistProfilePage extends StatelessWidget {
                   const SizedBox(height: 20,),
                   positionedAboutMeColumn(),
                   positionedBoldMainTitleRow(
-                      'Gruplarım', Icons.group_outlined, 360),
+                      TherapistProfileTextUtil.myGroups, Icons.group_outlined, 360),
                   groupListView(),
                   positionedBoldMainTitleRow(
-                      'Methodlar', Icons.description_outlined, 520),
+                      TherapistProfileTextUtil.methods, Icons.description_outlined, 520),
                   methodAndSeminarListView(true),
                   positionedBoldMainTitleRow(
-                      'Seminerler', Icons.desktop_windows_outlined, 680),
+                      TherapistProfileTextUtil.seminars, Icons.desktop_windows_outlined, 680),
                   methodAndSeminarListView(false),
                   const SizedBox(height: 20,)
                     ],
@@ -75,7 +67,7 @@ class TherapistProfilePage extends StatelessWidget {
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
-          itemCount: therapyDates.length,
+          itemCount: DemoInformation.therapyDates.length,
           itemBuilder: ((context, index) {
             return Padding(
               padding: const EdgeInsets.only(right: 12),
@@ -84,7 +76,7 @@ class TherapistProfilePage extends StatelessWidget {
                     ? 'Depresyon Grubu $index'
                     : 'Seminer $index', // grup: depresyon grubu yazınca overflow
                 row2Text:
-                    isMethod ? 'Kendini Bil $index' : therapyDates[index],
+                    isMethod ? 'Kendini Bil $index' : DemoInformation.therapyDates[index],
                 firstIconData: isMethod
                     ? Icons.group_outlined
                     : Icons.desktop_windows_outlined,
@@ -93,7 +85,7 @@ class TherapistProfilePage extends StatelessWidget {
                     : Icons.alarm_outlined,
                 purpose: isMethod ? 'method' : 'seminar',
                 isThereButton: true,
-                buttonText: isMethod ? 'İncele' : "İzle",
+                buttonText: isMethod ? TherapistProfileTextUtil.view : TherapistProfileTextUtil.watch,
               ),
             );
           })),
@@ -106,7 +98,7 @@ class TherapistProfilePage extends StatelessWidget {
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
-          itemCount: therapyDates.length,
+          itemCount: DemoInformation.therapyDates.length,
           itemBuilder: ((context, index) {
             return Padding(
               padding: const EdgeInsets.only(right: 12),
@@ -117,9 +109,9 @@ class TherapistProfilePage extends StatelessWidget {
                 heading: 'Depresyon ${index + 1}', // geçiçi olarak verdim
                 onTap: () {},
                 row1: ProfilePageUtility.doubleTextRow(
-                    'Yardımcı Psikolog: ', 'Yeşim Ç.', true),
+                    TherapistProfileTextUtil.advisor, 'Yeşim Ç.', true),
                 row2: ProfilePageUtility.normalTextRow(
-                    therapyDates[index],
+                    DemoInformation.therapyDates[index],
                     Icons.alarm_outlined,
                     const TextStyle(
                         fontWeight: FontWeight.w400, fontSize: 11)),
@@ -143,9 +135,7 @@ class TherapistProfilePage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
-          'Hakkımda',
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+        Text(TherapistProfileTextUtil.aboutMe,style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
         ),
         const SizedBox(
           height: 10,
@@ -165,9 +155,9 @@ class TherapistProfilePage extends StatelessWidget {
           backgroundColor: Colors.white,
         ),
         isThereCardModel: false,
-        widget: const Padding(
-          padding: EdgeInsets.all(15),
-          child: Text('''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''',style: TextStyle(fontSize: 16),),
+        widget: Padding(
+          padding: const EdgeInsets.all(15),
+          child: Text(DemoInformation.aboutMeController.text,style: AppTextStyles.normalTextStyle('medium', false),),
         ),
       ),
     );

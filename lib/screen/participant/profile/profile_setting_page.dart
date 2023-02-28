@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import '../../../controller/therapist_profile_controller.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../../../core/base/util/base_utility.dart';
@@ -13,32 +14,20 @@ import 'util/textfield_utility.dart';
 
 // ignore: must_be_immutable
 class ParticipantProfileSettingPage extends StatelessWidget {
-  ParticipantProfileSettingPage({
-    super.key,
-  });
-
-  bool isForParticipant = false;
-  String imagePath = 'assets/images/f1.jpg';
-
-  TextEditingController nameSurnameControllerInSetting = TextEditingController(text: "Kerem Engin");
-  TextEditingController mailControllerInSetting = TextEditingController(text: "test@gmail.com");
-  TextEditingController passwordControllerInSetting = TextEditingController(text: "asdf");
-  TextEditingController phoneControllerInSetting = TextEditingController(text: "5055139645");
-  TextEditingController aboutMeController = TextEditingController(text:'''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''');
+  ParticipantProfileSettingPage({super.key,});
 
   TextfieldUtility textfieldUtility = TextfieldUtility();
-
   ProfileController profileController = Get.find();
   TherapistProfileController therapistProfileController = Get.find();
   TherapistGroupController therapistGroupController = Get.find();
 
   late List<Widget> textfieldList = [
-    textfieldUtility.nameSurnameTextfield(nameSurnameControllerInSetting, false),
+    textfieldUtility.nameSurnameTextfield(DemoInformation.nameSurnameControllerInSetting, false),
     textfieldUtility.birthOfDateTextfield(profileController.birthOfDateController.value, false),
     genderDrowDown(),
-    textfieldUtility.mailTextfield(mailControllerInSetting, false),
-    textfieldUtility.passwordTextfield(passwordControllerInSetting, false),
-    textfieldUtility.phoneTextfield(phoneControllerInSetting, false),
+    textfieldUtility.mailTextfield(DemoInformation.mailControllerInSetting, false),
+    textfieldUtility.passwordTextfield(DemoInformation.passwordControllerInSetting, false),
+    textfieldUtility.phoneTextfield(DemoInformation.phoneControllerInSetting, false),
   ];
 
   @override
@@ -48,11 +37,16 @@ class ParticipantProfileSettingPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Stack(children: [
           ProfilePageUtility.backgroundOfThePage(),
-          ProfilePageUtility.profilePagePersonImage(imagePath),
-          ProfilePageUtility.positionedIconButton(Icons.arrow_back_ios_outlined,() {Get.to(ParticipantProfilePage());}, 35, 360),
-          ProfilePageUtility.positionedIconButton(Icons.edit_outlined, () {/* foto düzenleme */}, 235, 105),
+          ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
+          ProfilePageUtility.positionedIconButton(Icons.arrow_back_ios_outlined,
+              () {
+            Get.to(const ParticipantProfilePage());
+          }, 35, 340),
+          ProfilePageUtility.positionedIconButton(Icons.edit_outlined, () {
+            /* foto düzenleme */
+          }, 235, 105),
           bigColumn(),
-          isForParticipant == false
+          DemoInformation.isForParticipant == false
               ? scrollableNumberOfGroups()
               : const SizedBox(),
         ]),
@@ -72,13 +66,13 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: ProfilePageUtility.informationTitle.length,
+              itemCount: ProfileSettingsTextUtil.informationTitle.length,
               itemBuilder: (context, index) {
                 return textfieldRow(index, textfieldList[index]);
               },
             ),
-            isForParticipant ? saveButton() : const SizedBox(),
-            isForParticipant == false
+            DemoInformation.isForParticipant ? saveButton() : const SizedBox(),
+            DemoInformation.isForParticipant == false
                 ? therapistSpecialColumn()
                 : const SizedBox(),
           ],
@@ -97,7 +91,8 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         child: Transform.rotate(
           angle: -pi / 2,
           child: ListWheelScrollView.useDelegate(
-            onSelectedItemChanged: (value) => therapistGroupController.scrollableWidgetFunction('number of groups', value),
+            onSelectedItemChanged: (value) => therapistGroupController
+                .scrollableWidgetFunction('number of groups', value),
             overAndUnderCenterOpacity: 0.75,
             itemExtent: 40,
             perspective: 0.002,
@@ -149,8 +144,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
               child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Text('''Yardımcı psikologluk yapabileceğim
-grup sayısı'''),
+                    Text(ProfileSettingsTextUtil.numberOfGroups),
                     Container(
                       height: 27,
                       width: 40,
@@ -163,16 +157,17 @@ grup sayısı'''),
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.only(top: 10),
-          child: Text('Hakkımda'),
+        Padding(
+          padding: const EdgeInsets.only(top: 10),
+          child: Text(TherapistProfileTextUtil.aboutMe),
         ),
         const SizedBox(height: 10),
         SizedBox(
           width: 325,
           child: TextField(
-            controller: aboutMeController,
-            decoration: const InputDecoration(fillColor: AppColors.white, filled: true),
+            controller: DemoInformation.aboutMeController,
+            decoration:
+                const InputDecoration(fillColor: AppColors.white, filled: true),
             minLines: 5,
             maxLines: 50,
           ),
@@ -203,7 +198,7 @@ grup sayısı'''),
             onTap: () {
               print(therapistProfileController.isBeingAdvisorAccepted.value);
             },
-            text: 'Kaydet'),
+            text: ProfileSettingsTextUtil.save),
       ),
     );
   }
@@ -215,7 +210,7 @@ grup sayısı'''),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(ProfilePageUtility.informationTitle[rowIndex]),
+            Text(ProfileSettingsTextUtil.informationTitle[rowIndex]),
             Align(
               alignment: Alignment.bottomRight,
               child: textField,

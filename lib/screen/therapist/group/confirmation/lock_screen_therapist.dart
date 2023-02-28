@@ -1,6 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/therapist/group/confirmation/uploading.dart';
 import '../../../../controller/therapist_group_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
@@ -60,7 +61,7 @@ Column conformed() {
           onTap: () {
             //buradan kategori sayfasina yonlendirilecek
           },
-          text: "Grup Sayfasi ")
+          text: GroupTextUtil.groupPageText)
       : const SizedBox();
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
@@ -72,7 +73,7 @@ Column conformed() {
         margin: const EdgeInsets.symmetric(
             vertical: LockScreenUtil.lockScreenHeight),
         child: Text(
-          "Belgeniz onaylandi devam edebilirsiniz.",
+          GroupTextUtil.confirmationText,
           style: AppTextStyles.normalTextStyle("big", false)
               .copyWith(color: AppColors.white),
           textAlign: TextAlign.center,
@@ -95,7 +96,7 @@ Column noUpload() {
         width: LockScreenUtil.lockScreenContainerWidth,
         height: LockScreenUtil.lockScreenContainerHeight,
         child: Text(
-          "Terapist Onaylanmasi Gercekletirilmeden Devam Edilemez",
+          GroupTextUtil.lockScreenWarningText,
           style: AppTextStyles.normalTextStyle("big", false)
               .copyWith(color: AppColors.white),
           textAlign: TextAlign.center,
@@ -111,7 +112,7 @@ Column noUpload() {
             height: LockScreenUtil.lockScreenHeight,
             decoration: AppBoxDecoration.lockScreenButton,
             child: Center(
-              child: Text("Onayla",
+              child: Text(GroupTextUtil.confirmText,
                   style: AppTextStyles.buttonTextStyle(AppColors.white)),
             ),
           ))

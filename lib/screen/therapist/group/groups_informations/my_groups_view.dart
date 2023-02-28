@@ -4,6 +4,7 @@ import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart';
 import 'package:terapievim/screen/therapist/group/groups_informations/group_information.dart';
 
@@ -19,7 +20,7 @@ class MyGroups extends StatelessWidget {
             children: [
               rowView(
                   RowModel(
-                      text: "Gruplarim",
+                      text: GroupTextUtil.myGroupsText,
                       textStyle: AppTextStyles.heading(true),
                       isAlignmentBetween: true,
                       trailingIcon: IconButton(

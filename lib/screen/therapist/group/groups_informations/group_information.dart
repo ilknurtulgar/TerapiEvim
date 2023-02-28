@@ -6,6 +6,7 @@ import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/therapist/group/metots/new_metot.dart';
 import 'package:terapievim/screen/therapist/group/therapist_about.dart';
 import '../../../../core/base/component/buttons/election.dart';
@@ -32,9 +33,9 @@ class GroupInformation extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               heading(context),
-              miniHeadings("Yaklasan Toplanti", false),
+              miniHeadings(GroupTextUtil.upcomingMeetingText, false),
               meeting(),
-              miniHeadings("Grubun Bilgileri", false),
+              miniHeadings(GroupTextUtil.groupsInformationText, false),
               navMethod(
                   DemoInformation.secTherapist,
                   () => Get.to(TherapistProfile(
@@ -50,7 +51,7 @@ class GroupInformation extends StatelessWidget {
                             controller.changeParticipantElection();
                           },
                           row: RowModel(
-                            text: "Katilimcilar",
+                            text: GroupTextUtil.participantsText,
                             textStyle: AppTextStyles.aboutMeTextStyle(false),
                             leadingIcon: IconUtility.groupsIcon,
                             isAlignmentBetween: true,
@@ -64,7 +65,6 @@ class GroupInformation extends StatelessWidget {
                         ),
                       )),
                   rows: participantRow),
-              //dropdownlu component gelecek katilimcilar
               navMethod(DemoInformation.methods, () {
                 //method sayfasina gidecek
               }),
@@ -79,11 +79,11 @@ class GroupInformation extends StatelessWidget {
     return ActivityBox(
         istwobutton: false,
         containerModel: AppContainers.containerButton(false),
-        buttonText: "Baslat",
+        buttonText: GroupTextUtil.startText,
         arowModel: RowModel(
           leadingIcon: IconUtility.personIcon,
           isAlignmentBetween: false,
-          text: "Yardimci Psikolog: ",
+          text: GroupTextUtil.secondTherapistText,
           textStyle: AppTextStyles.aboutMeTextStyle(false),
           text2: "Ozlem Ulusan", //sadece isim alinacak
           textStyle2: AppTextStyles.groupTextStyle(true),
@@ -138,23 +138,23 @@ class GroupInformation extends StatelessWidget {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Grubu Silmek Istediginize Emin Misiniz? "),
+          title: Text(GroupTextUtil.deleteGroupConfirmText),
           content: SingleChildScrollView(
             child: ListBody(
-              children: const <Widget>[
-                Text('Silinen gruplar geri getirilemez.'),
+              children: <Widget>[
+                Text(GroupTextUtil.deleteGroupWarningText),
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text("Vazgec"),
+              child: Text(GroupTextUtil.cancelText),
               onPressed: () {
                 Get.back();
               },
             ),
             TextButton(
-              child: const Text('Sil'),
+              child: Text(GroupTextUtil.deleteText),
               onPressed: () {
                 Get.back();
               },
@@ -198,14 +198,13 @@ class GroupInformation extends StatelessWidget {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title:
-            Text("$name kişisini gruptan cikarmak istediginize emin misiniz?"),
+        title: Text(name + GroupTextUtil.deleteParticipantText),
         // content: const Text(
         //     'Gruptan cikaril'),
         actions: <Widget>[
           TextButton(
             onPressed: () => Get.back(),
-            child: const Text('İptal'),
+            child: Text(GroupTextUtil.cancelText),
           ),
           TextButton(
             onPressed: () {
@@ -213,7 +212,7 @@ class GroupInformation extends StatelessWidget {
 
               Get.back();
             },
-            child: const Text('Sil'),
+            child: Text(GroupTextUtil.deleteText),
           ),
         ],
       ),

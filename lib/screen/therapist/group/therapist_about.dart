@@ -4,6 +4,7 @@ import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/group/util/group_screen_utility.dart';
 
 import '../../participant/group/util/lock_screen_utility.dart';
@@ -14,20 +15,20 @@ class TherapistProfile extends StatelessWidget {
 
   //bu row modeller fix ama nereye koyulacagi tartisilmasi lazim
   final RowModel basetmeMetodlari = RowModel(
-    text: "Bas Etme Metotlari",
+    text: TherapistProfileTextUtil.methods,
     textStyle: AppTextStyles.groupTextStyle(false),
     isAlignmentBetween: false,
     leadingIcon: IconUtility.fileIconBlack,
   );
 
   final RowModel seminerleri = RowModel(
-    text: "Seminerleri",
+    text: TherapistProfileTextUtil.seminars,
     textStyle: AppTextStyles.groupTextStyle(false),
     isAlignmentBetween: false,
     leadingIcon: IconUtility.activityIcon,
   );
   final RowModel mesajGonder = RowModel(
-    text: "Mesaj Gonder",
+    text: GroupTextUtil.sendMessageText,
     textStyle: AppTextStyles.groupTextStyle(false),
     isAlignmentBetween: false,
     leadingIcon: IconUtility.chatIcon,
@@ -110,7 +111,7 @@ Widget otherGroups(List<RowModel> groups) {
       children: [
         CustomHeading(
             padding: const EdgeInsets.only(left: 40, right: 40, top: 30),
-            text: "Yardimci Psikologluk Yaptigi Diger Gruplar",
+            text: GroupTextUtil.secTherapistGroupsText,
             isalignmentstart: true),
         ListView.builder(
           shrinkWrap: true,

@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/activtiy/filter_box.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-
+import 'package:terapievim/core/base/util/text_utility.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/models/container_model.dart';
 import '../../../participant/group/util/lock_screen_utility.dart';
@@ -14,7 +12,7 @@ class TherapistUploadConfirm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String heading = "Onaylama";
+    String heading = GroupTextUtil.confirmingText;
     return Scaffold(
       body: SafeArea(
           child: Column(
@@ -36,7 +34,7 @@ class TherapistUploadConfirm extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(
                         vertical: 60, horizontal: 55),
                     child: Text(
-                      "Neden onaylama yapmasini bildiren yazi",
+                      GroupTextUtil.whyConfirmingText,
                       style: AppTextStyles.aboutMeTextStyle(false),
                     )),
                 const SizedBox(
@@ -46,7 +44,7 @@ class TherapistUploadConfirm extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 30, horizontal: 55),
                   child: Text(
-                    "E-Devlet Onayli Mezuniyet Belgenizi Yukleyiniz (.pdf desteklenmekterdir)",
+                    GroupTextUtil.pdfUploadingText,
                     style: AppTextStyles.aboutMeTextStyle(false),
                   ),
                 ),
@@ -60,7 +58,7 @@ class TherapistUploadConfirm extends StatelessWidget {
                     onTap: () {
                       //yukleyeccek
                     },
-                    text: "Yukle"),
+                    text: GroupTextUtil.uploadText),
                 const SizedBox(
                   height: 10,
                 )
@@ -79,7 +77,7 @@ class TherapistUploadConfirm extends StatelessWidget {
                 height: 40,
               ),
               onTap: () {},
-              text: "ONAYLA")
+              text: GroupTextUtil.confirmText)
         ],
       )),
     );

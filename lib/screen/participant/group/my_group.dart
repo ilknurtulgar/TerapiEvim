@@ -9,8 +9,8 @@ import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/participant/group/group_out.dart';
 import 'package:terapievim/screen/participant/group/util/group_screen_utility.dart';
 import '../../../core/base/component/group/row_view.dart';
+import '../../../core/base/util/text_utility.dart';
 import 'util/lock_screen_utility.dart';
-import 'util/text_util.dart';
 
 class MyGroup extends StatelessWidget {
   const MyGroup({super.key});
@@ -18,14 +18,12 @@ class MyGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     RowModel appBar = RowModel(
-        text: GroupTexts.myGroupText,
+        text: GroupTextUtil.myGroupText,
         textStyle: AppTextStyles.heading(false),
         trailingIcon: const GroupOut(),
         isAlignmentBetween: true);
-    //buradaki tum modeller geecici
 
     return Scaffold(
-      backgroundColor: AppColors.blueChalk,
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
@@ -33,7 +31,8 @@ class MyGroup extends StatelessWidget {
             children: [
               rowView(appBar, GroupPaddings.appbarPadding),
               CustomHeading(
-                  isalignmentstart: true, text: GroupTexts.yaklasanToplanti),
+                  isalignmentstart: true,
+                  text: GroupTextUtil.upcomingMeetingText),
               ActivityBox(
                   istwobutton: false,
                   buttonText: "Katıl",
@@ -43,13 +42,13 @@ class MyGroup extends StatelessWidget {
                   ayrowwModel: DemoInformation.row,
                   clockModel: DemoInformation.row),
               CustomHeading(
-                text: GroupTexts.grupBilgiler,
+                text: GroupTextUtil.groupsInformationText,
                 isalignmentstart: true,
               ),
               therapist(DemoInformation.row),
               therapist(DemoInformation.row2),
               CustomHeading(
-                text: GroupTexts.katilimcilar,
+                text: GroupTextUtil.participantsText,
                 isalignmentstart: true,
               ),
               participants(DemoInformation.person),

@@ -56,7 +56,7 @@ class SeminarMax extends StatelessWidget {
   final RowModel row2;
   final RowModel row3;
 
-  final Function onTap;
+  final Function() onTap;
   Color? borderColor;
 
   double? width;
@@ -68,7 +68,9 @@ class SeminarMax extends StatelessWidget {
     width ??= 342;
     height ??= 120;
     return InkWell(
-      onTap: () => onTap,
+      onTap: () {
+        onTap();
+      },
       child: Container(
         height: height,
         width: width,

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/profile/profile_setting_page.dart';
 import '../../../core/base/component/group/group.dart';
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/component/profile/container/two_row_short_container.dart';
-import 'models/group_model.dart';
 import 'util/profile_page_utility.dart';
 
 class ParticipantProfilePage extends StatelessWidget {
-  ParticipantProfilePage({super.key});
+  const ParticipantProfilePage({super.key});
   
   @override
   Widget build(BuildContext context) {
@@ -37,8 +37,8 @@ class ParticipantProfilePage extends StatelessWidget {
         child: rowView(
             ProfilePageUtility.boldMainTitleRow(
                 isMethodMainTitle
-                    ? 'En Son Incelediklerim'
-                    : 'Katıldığım Seminerler',
+                    ? ParticipantProfileTextUtil.lastRead
+                    : ParticipantProfileTextUtil.joinedSeminars,
                 isMethodMainTitle
                     ? Icons.alarm_outlined
                     : Icons.desktop_windows_outlined, () {
@@ -56,7 +56,7 @@ class ParticipantProfilePage extends StatelessWidget {
         children: [
           rowView(
               ProfilePageUtility.normalTextRow(
-                  'Aktif Grubum',
+                  ParticipantProfileTextUtil.myActiveGroup,
                   Icons.group_outlined,
                   const TextStyle(
                       color: AppColors.black,
@@ -79,9 +79,9 @@ class ParticipantProfilePage extends StatelessWidget {
         heading: DemoInformation.groupInformation.groupName,
         onTap: () {}, // navigate to group page
         row1: ProfilePageUtility.doubleTextRow(
-            'Ana psikolog: ', DemoInformation.groupInformation.mainTherapistName, true),
+            ParticipantProfileTextUtil.mainTherpist, DemoInformation.groupInformation.mainTherapistName, true),
         row2: ProfilePageUtility.doubleTextRow(
-            'Yardımcı Psikolog: ', DemoInformation.groupInformation.secondTherapistName, true),
+            ParticipantProfileTextUtil.advisor, DemoInformation.groupInformation.secondTherapistName, true),
         row3: ProfilePageUtility.normalTextRow(
             DemoInformation.groupInformation.therapyTime,
             Icons.alarm_outlined,
@@ -129,7 +129,7 @@ class ParticipantProfilePage extends StatelessWidget {
                   : DemoInformation.lastWatchedSeminars[index].seminarTitle,
               firstIconData: Icons.person_outline,
               secondIconData: isMethod ? Icons.description_outlined : Icons.desktop_windows_outlined,
-              buttonText: isMethod ? 'Tekrar oku' : 'Tekrar izle',
+              buttonText: isMethod ? ParticipantProfileTextUtil.readAgain : ParticipantProfileTextUtil.watchAgain,
               purpose: isMethod ? 'method' : 'seminar',
               isThereButton: true,
             );

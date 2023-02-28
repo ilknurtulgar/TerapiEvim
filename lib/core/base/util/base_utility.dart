@@ -15,6 +15,9 @@ import '../../../screen/therapist/message/message.dart';
 
 import '../models/card_model.dart';
 
+
+import '../component/group/person.dart';
+
 import '../component/group/questions_button.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
 
@@ -322,7 +325,7 @@ class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
     const TherapistHome(),
     const TherapistActivityScreen(),
-    const TherapistGroupPage(),
+    TherapistGroupPage(),
     const TherapistMessageScreen(),
     ParticipantProfilePage(),
   ];
@@ -426,11 +429,11 @@ class DemoInformation {
     trailingIcon: IconUtility.arrowForwardIcon,
   );
   static RowModel methods = RowModel(
-    isAlignmentBetween: true,
-    text: "Basetme Metotlari ",
-    textStyle: AppTextStyles.aboutMeTextStyle(false),
-    trailingIcon: IconUtility.arrowForwardIcon,
-  );
+      isAlignmentBetween: true,
+      text: "Basetme Metotlari ",
+      textStyle: AppTextStyles.aboutMeTextStyle(false),
+      trailingIcon: IconUtility.arrowForwardIcon,
+      leadingIcon: IconUtility.fileIcon);
   static RowModel row_1 = RowModel(
       leadingIcon: IconUtility.activityIcon,
       text: "Yeme Bozukluğu Grubu 1",
@@ -508,8 +511,9 @@ class DemoInformation {
       text: "Aleyna Tilki",
       textStyle: AppTextStyles.groupTextStyle(true));
 
-  // video call
-  // group therapy call page,isolated call page,short call page
+  // video call 
+    // group therapy call page,isolated call page,short call page
+
   static PersonInCallModel therapist = PersonInCallModel(
       name: 'Simay',
       surname: 'Selli',
@@ -555,18 +559,13 @@ class DemoInformation {
         therapistName: 'Mert Engin', seminarTitle: 'Seminer 3')
   ];
   // profile setting page
-  static TextEditingController nameSurnameControllerInSetting =
-      TextEditingController(text: "Kerem Engin");
-  static TextEditingController mailControllerInSetting =
-      TextEditingController(text: "test@gmail.com");
-  static TextEditingController passwordControllerInSetting =
-      TextEditingController(text: "asdf");
-  static TextEditingController phoneControllerInSetting =
-      TextEditingController(text: "5055139645");
-  static TextEditingController aboutMeController = TextEditingController(
-      text:
-          '''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''');
-  static bool isForParticipant = true;
+  static TextEditingController nameSurnameControllerInSetting = TextEditingController(text: "Kerem Engin");
+  static TextEditingController mailControllerInSetting = TextEditingController(text: "test@gmail.com");
+  static TextEditingController passwordControllerInSetting = TextEditingController(text: "asdf");
+  static TextEditingController phoneControllerInSetting = TextEditingController(text: "5055139645");
+  static TextEditingController aboutMeController = TextEditingController(text:'''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''');
+  static bool isForParticipant = false;
+
 
   // therapist profile page
   static List<String> therapyDates = [
@@ -575,6 +574,7 @@ class DemoInformation {
     'Her pazartesi,17.00',
     'Her perşembe,18.00'
   ];
+
 }
 
 Divider divider() {
@@ -582,4 +582,5 @@ Divider divider() {
     color: AppColors.black,
     height: 5,
   );
+
 }

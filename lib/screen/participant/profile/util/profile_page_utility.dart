@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/therapist/group/therapist_about.dart';
-import '../../../../core/base/models/container_model.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import '../../../../core/base/models/row_model.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 
@@ -89,15 +88,6 @@ class ProfilePageUtility {
           isAlignmentBetween:
               false); //TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
 
-  static List<String> informationTitle = [
-    'Ad Soyad: ',
-    'Doğum Tarihi: ',
-    'Cinsiyet: ',
-    'Mail: ',
-    'Şifre: ',
-    'Telefon: '
-  ];
-
   TherapistProfileController controller = Get.find();
   Row acceptionRow(bool isForMakingShortCall) => Row(
           mainAxisAlignment: isForMakingShortCall
@@ -116,9 +106,7 @@ class ProfilePageUtility {
                         ? Icons.check_circle_outline
                         : Icons.circle_outlined))),
             Text(isForMakingShortCall
-                ? '''15 dakikalık terapiyi sırayla yapmayı kabul
-ediyorum.KVKK kabul ediyorum.'''
-                : '''Random yardımcı psikolog listesinde
-bulunmak istiyorum''')
+                ? LoginSignUpTextUtil.therapistAcceptedMakingShortCall
+                : ProfileSettingsTextUtil.therapistAcceptedRandomTherapistList)
           ]);
 }

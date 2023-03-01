@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/activity/about_activity.dart';
 
 import '../../../core/base/models/row_model.dart';
@@ -18,10 +19,10 @@ class ActivitiesScreen extends StatelessWidget {
             child: Column(
               children: [
                 search(searchModel),
-                activityminto("Yaklaşan Aktiviteler", () {},
+                activityminto(ActivityTextUtil.upcomingActivities, () {},
                     MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
                 activityseminar(),
-                activityminto("Geçmiş Aktiviteler", () {},
+                activityminto(ActivityTextUtil.pastActivities, () {},
                     MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
                 activityseminar()
               ],
@@ -46,11 +47,11 @@ ListView activityseminar() {
         ),
         child: ActivityBox(
             onTap: () {
-              print("tıklıyorum ya");
+              //  print("tıklıyorum ya");
               Get.to(const AboutActivityScreen());
             },
             istwobutton: false,
-            buttonText: "Katıl",
+            buttonText: ActivityTextUtil.join,
             containerModel: AppContainers.containerButton(false),
             isactivity: false,
             arowModel: DemoInformation.arowmodel,
@@ -91,11 +92,5 @@ Widget search(RowModel rowmodel) {
     isRowModel: true,
     rowModel: rowmodel,
     textController: activityTextController,
-  );
-}
-
-SizedBox sizedbox() {
-  return const SizedBox(
-    height: 15,
   );
 }

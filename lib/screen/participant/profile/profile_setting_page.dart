@@ -14,7 +14,9 @@ import 'util/textfield_utility.dart';
 
 // ignore: must_be_immutable
 class ParticipantProfileSettingPage extends StatelessWidget {
-  ParticipantProfileSettingPage({super.key,});
+  ParticipantProfileSettingPage({
+    super.key,
+  });
 
   TextfieldUtility textfieldUtility = TextfieldUtility();
   ProfileController profileController = Get.find();
@@ -172,7 +174,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 20),
       child: CustomDropDown(
-        purpose: genderList,
+        purpose: DemoInformation.genderList,
         width: 195,
         height: 23,
       ),

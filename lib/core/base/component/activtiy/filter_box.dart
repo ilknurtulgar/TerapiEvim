@@ -13,15 +13,15 @@ class FilterBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 342,
-      height: 56,
+      // height: 56,
       decoration: BoxDecoration(
         border: Border.all(color: AppColors.cornFlowerBlue, width: 2),
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: AppBorderRadius.generalBorderRadius,
       ),
       child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Text(rowModel.text),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: AppPaddings.generalPadding,
           child: clickbox(),
         )
       ]),
@@ -42,9 +42,3 @@ InkWell clickbox() {
     ),
   );
 }
-
-RowModel rowModel = RowModel(
-    isAlignmentBetween: true,
-    text: "cxçxççxç",
-    textStyle: const TextStyle(),
-    leadingIcon: clickbox());

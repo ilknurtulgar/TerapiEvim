@@ -7,6 +7,7 @@ import 'package:terapievim/screen/therapist/message/companent/chat_information.d
 import 'package:terapievim/screen/therapist/message/search_message.dart';
 
 import '../../../controller/t_message_controller.dart';
+import '../../../core/base/util/text_utility.dart';
 
 class TherapistMessageScreen extends StatefulWidget {
   const TherapistMessageScreen({super.key});
@@ -23,18 +24,20 @@ class _TherapistMessageScreenState extends State<TherapistMessageScreen> {
         body: Column(
           children: [
             messageappbar(
-                MessageUtil.messageapptext,
-                MessageUtil.messageIcon,
+                MessageTextUtil.messageapptext,
+                IconUtility.messageIcon,
                 IconButton(
                     onPressed: () {
                       Get.to(const SearchMessage());
                     },
-                    icon: MessageUtil.addmesaage)),
+                    icon: IconUtility.addmesaage)),
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
                 itemBuilder: (context, index) {
-                  return const ChatInformation();
+                  return ChatInformation(
+                    cardModel: DemoInformation.cardModelhome,
+                  );
                 },
                 itemCount: 15,
               ),
@@ -58,21 +61,5 @@ Widget messageappbar(
           textStyle: AppTextStyles.heading(false),
           leadingIcon: leadingIcon,
           isAlignmentBetween: true),
-      MessageUtil.appmpadding);
-}
-
-class MessageUtil {
-  static const Icon messageIcon = Icon(
-    Icons.forum_outlined,
-    size: 35,
-  );
-  static const Icon addmesaage = Icon(
-    Icons.mark_email_read_outlined,
-    size: 30,
-  );
-
-  static const EdgeInsets appmpadding = EdgeInsets.all(15);
-
-  static const String messageapptext = "Mesajlar";
-  static const String searchtext = "Ara";
+      AppPaddings.appmpadding);
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
-import 'package:terapievim/core/base/models/container_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 
 class CopingBox extends StatelessWidget {
   const CopingBox({super.key, required this.copingtext, required this.pdfname});
@@ -23,38 +23,21 @@ class CopingBox extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 10, top: 25, bottom: 20),
-          child: CustomButton(
-              icon: IconUtility.fileIcon,
-              container: ContainerModel(
-                  width: 116,
-                  height: 42,
-                  shadowColor: AppColors.cornFlowerBlue,
-                  borderRadius: 5,
-                  backgroundColor: Colors.white),
-              textColor: Colors.black,
-              onTap: () {
-                print("tıklandı");
-              },
-              text: "Ekle"),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(right: 10, top: 25, bottom: 20),
-          child: CustomButton(
-              container: ContainerModel(
-                  width: 116,
-                  height: 42,
-                  shadowColor: AppColors.cornFlowerBlue,
-                  borderRadius: 5,
-                  backgroundColor: Colors.white),
-              textColor: Colors.black,
-              onTap: () {
-                print("tıklandı");
-              },
-              text: "Paylaş"),
-        )
+        copingbutton(() => null, ActivityTextUtil.add, true),
+        copingbutton(() => null, ActivityTextUtil.share, false)
       ],
+    );
+  }
+
+  Padding copingbutton(Function() onTap, String copingtext, bool isAdd) {
+    return Padding(
+      padding: AppPaddings.copingButtonPadding,
+      child: CustomButton(
+          icon: isAdd ? IconUtility.fileIcon : null,
+          container: AppContainers.copingbutton,
+          textColor: AppColors.black,
+          onTap: onTap,
+          text: copingtext),
     );
   }
 
@@ -78,13 +61,19 @@ class CopingBox extends StatelessWidget {
       width: 248,
       height: 47,
       child: Padding(
-        padding: const EdgeInsets.only(
-          top: 10,
-        ),
+        padding: PaddingAdd.toppadding,
         child: Text(pdfname,
             textAlign: TextAlign.center,
             style: AppTextStyles.normalTextStyle("medium", false)),
       ),
     );
   }
+}
+
+class PaddingAdd {
+  static const EdgeInsets toppadding = EdgeInsets.only(
+    top: 10,
+  );
+  static const EdgeInsets startpadding = EdgeInsets.only(left: 35, top: 35);
+  static const EdgeInsets centerpadding = EdgeInsets.only(left: 150, top: 35);
 }

@@ -5,7 +5,7 @@ import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/screen/participant/activity/a_filter.dart';
 
-ActivityController activityController = Get.put(ActivityController());
+ActivityController activityController = Get.find();
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -27,34 +27,32 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 20),
-        child: SizedBox(
-          width: isBig ? 342 : 195,
-          height: isBig ? 56 : 24,
-          child: Obx(
-            () => TextField(
-              controller: textController,
-              obscureText: isPassword
-                  ? activityController.isObsecure.value
-                  : activityController.yasemin.value,
-              textAlign: TextAlign.start,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                labelText: rowModel?.text ?? "",
-                labelStyle: rowModel?.textStyle,
-                suffix: isBig ? rowModel?.trailingIcon : null,
-                prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
-                hintText: rowModel?.text2,
-                hintStyle: rowModel?.textStyle2 ?? const TextStyle(),
-                prefixText: isPhoneNumber ? '+90 ' : null,
-                enabledBorder: bordercolor(isBig),
-                focusedBorder: bordercolor(isBig),
-              ),
-            ),
+    return SizedBox(
+      width: isBig ? 342 : 195,
+      height: isBig ? 56 : 24,
+      child: Obx(
+        () => TextField(
+          controller: textController,
+          obscureText: isPassword
+              ? activityController.isObsecure.value
+              : activityController.yasemin.value,
+          textAlign: TextAlign.start,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            labelText: rowModel?.text ?? "",
+            labelStyle: rowModel?.textStyle,
+            suffix: isBig ? rowModel?.trailingIcon : null,
+            prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
+            hintText: rowModel?.text2,
+            hintStyle: rowModel?.textStyle2 ?? const TextStyle(),
+            prefixText: isPhoneNumber ? '+90 ' : null,
+            enabledBorder: bordercolor(isBig),
+            focusedBorder: bordercolor(isBig),
           ),
-        ));
+        ),
+      ),
+    );
   }
 
   OutlineInputBorder bordercolor(bool isBig) {

@@ -89,10 +89,11 @@ class MessageScreen extends StatelessWidget {
       constraints: BoxConstraints(
           minHeight: 10, maxWidth: MediaQuery.of(context).size.width - 180),
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        shape: const RoundedRectangleBorder(
+            borderRadius: AppBorderRadius.generalBorderRadius),
         color: AppColors.cornFlowerBlue,
         child: Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: AppPaddings.generalPadding,
           child: Text(
             message,
             style: const TextStyle(fontSize: 16),
@@ -118,7 +119,7 @@ class MessageScreen extends StatelessWidget {
 
   Widget circleavatar() {
     return const Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: AppPaddings.generalPadding,
       child: CustomCircleAvatar(
           imagePath: DemoInformation.japonkadin, big: false, shadow: false),
     );

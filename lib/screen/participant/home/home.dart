@@ -1,33 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/home/notification_from_ther_container.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
-import 'package:terapievim/screen/participant/activity/filter_details.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/screen/participant/home/coping_methods.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return FilterDetails(); /*SingleChildScrollView(
-        child:
-            Column(
+    return SingleChildScrollView(
+      child: Column(
         children: [
           headingtext(
             true,
             true,
-            "TerapiEvim",
+            GroupTextUtil.terapiEvim,
           ),
-          headingtext(false, false, "Hoşgeldiniz"),
+          headingtext(false, false, HomeTextUtil.welcome),
           mindetailesbox(
-              "BAŞ ETME METOTLARI", () => Get.to(const CopingMethods())),
+              HomeTextUtil.copingMethods, () => Get.to(const CopingMethods())),
           notification(DemoInformation.cardModelhome, DemoInformation.home,
               DemoInformation.home.length)
         ],
       ),
-        );*/
+    );
   }
 }
 
@@ -41,7 +42,7 @@ ListView notification(
           cardModel: cardmodel,
           explanation: explanation[index],
           buttonOnTap: () {},
-          buttonText: "Detaylar");
+          buttonText: HomeTextUtil.detail);
     },
     itemCount: itemlenght,
   );
@@ -49,7 +50,7 @@ ListView notification(
 
 Padding mindetailesbox(String rowmodeltext, Function()? onTap) {
   return Padding(
-    padding: const EdgeInsets.all(10),
+    padding: AppPaddings.generalPadding,
     child: SeminarMin(
         onTap: onTap,
         row: rowModel(rowmodeltext),

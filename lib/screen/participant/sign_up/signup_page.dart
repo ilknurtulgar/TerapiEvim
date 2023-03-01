@@ -11,7 +11,7 @@ import '../profile/util/textfield_utility.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key,});
-  
+
   final bool isForParticipant = false;
 
   @override
@@ -97,7 +97,7 @@ class _SignUpPageState extends State<SignUpPage> {
       ),
     );
   }
-}
+
 
 /*  textfieldUtility.nameSurnameTextfield(_signUpController.nameController, true),
     textfieldUtility.birthOfDateTextfield( _signUpController.birthDateController, true),

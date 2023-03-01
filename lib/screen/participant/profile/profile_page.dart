@@ -14,87 +14,90 @@ class ParticipantProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.blueChalk,
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Stack(children: [
           ProfilePageUtility.backgroundOfThePage(),
           ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() => Get.to(() => ParticipantProfileSettingPage()), 40, 20),
           ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
-          nameAndBirthDateColumn(),
-          participantGroupColumn(),
-          positionedBoldMainTitleRow(true),
-          listviewForMethodsAndSeminars(true),
-          positionedBoldMainTitleRow(false),
-          listviewForMethodsAndSeminars(false),
+          Padding(
+            padding: const EdgeInsets.only(top: 270,left: 24),
+            child: Column(
+              children: [
+                nameAndBirthDateColumn(),
+                const SizedBox(height: 10,),
+                participantGroupColumn(),
+                boldMainTitleRowView(true),
+                listviewForMethodsAndSeminars(true),
+                boldMainTitleRowView(false),
+                listviewForMethodsAndSeminars(false),
+                const SizedBox(height: 15,),
+              ],
+            ),
+          ),
         ]),
       ),
     );
   }
 
-  Positioned positionedBoldMainTitleRow(bool isMethodMainTitle) {
-    return Positioned(
-        top: isMethodMainTitle ? 505 : 665,
-        child: rowView(
-            ProfilePageUtility.boldMainTitleRow(
-                isMethodMainTitle
-                    ? ParticipantProfileTextUtil.lastRead
-                    : ParticipantProfileTextUtil.joinedSeminars,
-                isMethodMainTitle
-                    ? Icons.alarm_outlined
-                    : Icons.desktop_windows_outlined, () {
-              /* nav func */
-            }),
-            const EdgeInsets.only(left: 10, bottom: 5)));
+  Widget boldMainTitleRowView(bool isMethodMainTitle) {// top: isMethodMainTitle ? 505 : 665,
+    return rowView(
+        ProfilePageUtility.boldMainTitleRow(
+            isMethodMainTitle
+                ? ParticipantProfileTextUtil.lastRead
+                : ParticipantProfileTextUtil.joinedSeminars,
+            isMethodMainTitle
+                ? Icons.alarm_outlined
+                : Icons.desktop_windows_outlined, () {
+          /* nav func */
+        }),
+         EdgeInsets.zero);
   }
 
-  Positioned participantGroupColumn() {
-    return Positioned(
-      top: 330,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          rowView(
-              ProfilePageUtility.normalTextRow(
-                  ParticipantProfileTextUtil.myActiveGroup,
-                  Icons.group_outlined,
-                  const TextStyle(
-                      color: AppColors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20)),
-              const EdgeInsets.only(right: 160, bottom: 10, left: 10)),
-          participantGroupContainer(),
-        ],
-      ),
+  Column participantGroupColumn() {// top 330
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        rowView(
+            ProfilePageUtility.normalTextRow(
+                ParticipantProfileTextUtil.myActiveGroup,
+                Icons.group_outlined,
+                const TextStyle(
+                    color: AppColors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20)),
+             EdgeInsets.zero),
+        const SizedBox(height: 10,),
+        participantGroupContainer(),
+      ],
     );
   }
 
-  Padding participantGroupContainer() {
+  Widget participantGroupContainer() {
+    return GroupClass(
+      height: 138,
+      width: 350,
+      borderColor: AppColors.cornFlowerBlue,
+      heading: DemoInformation.groupInformation.groupName,
+      onTap: () {}, // navigate to group page
+      row1: ProfilePageUtility.doubleTextRow(
+          ParticipantProfileTextUtil.mainTherpist, DemoInformation.groupInformation.mainTherapistName, true),
+      row2: ProfilePageUtility.doubleTextRow(
+          ParticipantProfileTextUtil.advisor, DemoInformation.groupInformation.secondTherapistName, true),
+      row3: ProfilePageUtility.normalTextRow(
+          DemoInformation.groupInformation.therapyTime,
+          Icons.alarm_outlined,
+          AppTextStyles.normalTextStyle('medium', false)),
+    );
+  }
+
+  Padding nameAndBirthDateColumn() { // top 270 left 137
     return Padding(
-      padding: const EdgeInsets.only(left: 35, bottom: 10),
-      child: GroupClass(
-        height: 138,
-        width: 350,
-        borderColor: AppColors.cornFlowerBlue,
-        heading: DemoInformation.groupInformation.groupName,
-        onTap: () {}, // navigate to group page
-        row1: ProfilePageUtility.doubleTextRow(
-            ParticipantProfileTextUtil.mainTherpist, DemoInformation.groupInformation.mainTherapistName, true),
-        row2: ProfilePageUtility.doubleTextRow(
-            ParticipantProfileTextUtil.advisor, DemoInformation.groupInformation.secondTherapistName, true),
-        row3: ProfilePageUtility.normalTextRow(
-            DemoInformation.groupInformation.therapyTime,
-            Icons.alarm_outlined,
-            AppTextStyles.normalTextStyle('medium', false)),
-      ),
-    );
-  }
-
-  Positioned nameAndBirthDateColumn() {
-    return Positioned(
-      top: 270,
-      left: 137,
+      padding: const EdgeInsets.only(right: 24),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Text(
             DemoInformation.nameSurname,
@@ -107,12 +110,13 @@ class ParticipantProfilePage extends StatelessWidget {
     );
   }
 
-  Positioned listviewForMethodsAndSeminars(bool isMethod) {
-    return Positioned(
-      top: isMethod ? 550 : 710,
-      left: 30,
-      right: 10,
-      height: 130,
+  Widget listviewForMethodsAndSeminars(bool isMethod) { // Positioned(
+      //top: isMethod ? 550 : 710,
+      //left: 30,
+      //right: 10,
+      //height: 130,
+    return SizedBox(
+      height: 130 ,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,

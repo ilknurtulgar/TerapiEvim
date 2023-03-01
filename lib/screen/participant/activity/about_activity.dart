@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/participant/activity/activities.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/group/util/lock_screen_utility.dart';
 import 'package:terapievim/screen/therapist/group/therapist_about.dart';
 
@@ -24,24 +24,22 @@ class AboutActivityScreen extends StatelessWidget {
                   heading(DemoInformation.aboutmeaperson),
                   aboutMe(DemoInformation.aboutmeaperson),
                   activity(
-                      aboutrowmodel("Grup Terapilerinin Etkisi",
+                      aboutrowmodel(DemoInformation.aboutmeabactivity,
                           IconUtility.activityIcon),
-                      () => null),
-                  const Padding(
-                    padding: Paddings.rowViewProfilePadding,
-                    child: PurpleTextContainer(
-                        text: DemoInformation.aboutmeabactivity),
-                  ),
+                      () {}),
+                  aboutactivtynamebox(),
                   activity(
-                      aboutrowmodel("Seminerleri", IconUtility.activityIcon),
-                      () => null),
+                      aboutrowmodel(
+                          ActivityTextUtil.seminars, IconUtility.activityIcon),
+                      () {}),
                   activity(
                       aboutrowmodel(DemoInformation.clockabomeactivty,
                           IconUtility.clockIcon),
-                      () => null),
+                      () {}),
                   sizedbox()
                 ],
               ),
+              //herkeste var? aynısını koy
               const Positioned(
                 top: 87,
                 left: 50,
@@ -55,6 +53,13 @@ class AboutActivityScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  Padding aboutactivtynamebox() {
+    return const Padding(
+      padding: Paddings.rowViewProfilePadding,
+      child: PurpleTextContainer(text: DemoInformation.aboutmeabactivity),
     );
   }
 

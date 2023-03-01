@@ -36,11 +36,11 @@ class GroupInformation extends StatelessWidget {
               miniHeadings(GroupTextUtil.upcomingMeetingText, false),
               meeting(),
               miniHeadings(GroupTextUtil.groupsInformationText, false),
-              navMethod(
-                  DemoInformation.secTherapist,
-                  () => Get.to(TherapistProfile(
-                        isSecTherapist: true,
-                      ))),
+              navMethod(DemoInformation.secTherapist, () {
+                Get.to(TherapistProfile(
+                  isSecTherapist: true,
+                ));
+              }),
               Election(
                   election:
                       ControllerElection.therapistGroupControllerParticipant,
@@ -97,11 +97,11 @@ class GroupInformation extends StatelessWidget {
         ));
   }
 
-  Padding navMethod(RowModel row, Function func) {
+  Padding navMethod(RowModel row, Function() func) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7),
       child:
-          SeminarMin(borderColor: AppColors.meteorite, onTap: func(), row: row),
+          SeminarMin(borderColor: AppColors.meteorite, onTap: func, row: row),
     );
   }
 

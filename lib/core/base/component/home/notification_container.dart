@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
-import 'package:terapievim/screen/therapist/home/home_utility.dart';
 import '../../models/row_model.dart';
 import '../../util/base_utility.dart';
+import '../../util/text_utility.dart';
 import '../group/row_view.dart';
 
 class NotificationContainer extends StatelessWidget {
@@ -74,7 +74,7 @@ Padding notificationContent(
         ),
         Padding(
             padding: AppPaddings.reminderBetweenText,
-            child: customText("${HomeTextUtil.therapyName} $name")),
+            child: customText("${HomeTextUtil.therapyNameTwoDots} $name")),
         customText(contentText),
       ],
     ),

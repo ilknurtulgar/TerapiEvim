@@ -78,11 +78,14 @@ class GroupTextUtil {
   static const String myGroupText = "Grubum";
 }
 
-class MessageTextUtil {}
+class MessageTextUtil {
+  static const String messageapptext = "Mesajlar";
+  static const String searchtext = "Ara";
+}
 
 class LoginSignUpTextUtil {
   static String login = 'Giriş Yap';
-  static String signUp = 'Keydol';
+  static String signUp = 'Kaydol';
   static String forgotYourPassword = 'Şifreni mi unuttun?';
   static String orText = 'Ya da';
   static String therapistAcceptedMakingShortCall =
@@ -125,4 +128,53 @@ class TherapistProfileTextUtil {
   static String view = 'incele';
   static String watch = 'izle';
   static String advisor = 'Yardımcı Psikolog: ';
+}
+
+class ActivityTextUtil {
+  static String add = "Ekle";
+  static String share = "Paylaş";
+  static String join = "Katıl";
+  static String watchTheRecording = "Kaydı İzle";
+  static String myupcomingActivities = "Yaklaşan Aktivitelerim";
+  static String upcomingActivities = "Yaklaşan Aktiviteler";
+  static String pastActivities = "Geçmiş Aktiviteler";
+  static String otherUpComingActivities = "Yaklaşan Diğer Aktiviteler";
+  static String start = "Başla";
+  static String myPastActivities = "Geçmiş Aktivitelerim";
+  static String otherPastActivities = "Geçmiş Diğer Aktiviteler";
+  static String activityUpdate = "Aktivite Güncelleme";
+  static String newActivity = "Yeni Aktivite";
+  static String eventName = "Etkinlik İsmi";
+  static String eventAbout = "Etkinlik Hakkında";
+  static String date = "Tarih";
+  static String clock = "Saat";
+  static String update = "Güncelle";
+  static String create = "Oluştur";
+  static const String addNewClock = "Yeni Saat Ekleme ";
+  static const String addClock = "Saat Ekle";
+  static const String clocks = "Saatler";
+  static const String save = "Kaydet";
+  static const String filtering = "Filtreleme";
+  static const String clean = "Temizle";
+  static const String psychologist = "Psikolog";
+  static const String issue = "Konu";
+  static const String seminars = "Seminerleri";
+}
+
+class HomeTextUtil {
+  static const myAvailableHours = "Müsaait Olduğum Saatler";
+  static const String notification = "Bildirim";
+  static const String reminder = "Hatirlatma";
+  static const String shortCall = "15 Dakikalik Seans";
+  static const String event = "Etkinlik";
+  static const String therapy = "Grup Terapisi";
+  static const String clientTwoDots = "Danisan: ";
+  static const String activityName = "Etkinlik Ismi:";
+  static const String therapyNameTwoDots = "Grup:";
+  static const String timeTwoDots = "Saat:";
+  static const String welcome = "Hoşgeldiniz";
+  static const String myMinuteSessions = "15 DAKİKALIK SEANSLARIM";
+  static const String copingMethods = "BAŞ ETME METOTLARI";
+  static const String readMethod = "Metotu Oku";
+  static const String detail = "Detaylar";
 }

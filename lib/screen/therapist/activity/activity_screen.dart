@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
 
@@ -12,50 +13,24 @@ class TherapistActivityScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Column(
             children: [
               activityappbar(),
-              activityminto("Yaklaşan Aktivitelerim", () => () {},
+              activityminto(ActivityTextUtil.myupcomingActivities, () {},
                   MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
-              ActivityBox(
-                  istwobutton: true,
-                  buttonText: "Başla",
-                  containerModel: AppContainers.containerButton(true),
-                  isactivity: true,
-                  arowModel: DemoInformation.arowmodel,
-                  clockModel: DemoInformation.clockmodel),
-              activityminto("Yaklaşan Diğer Aktiviteler", () => () {},
+              myupcomingactivities(),
+              activityminto(ActivityTextUtil.otherUpComingActivities, () {},
                   MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
-              ActivityBox(
-                  istwobutton: false,
-                  buttonText: "Katıl",
-                  containerModel: AppContainers.containerButton(false),
-                  isactivity: false,
-                  arowModel: DemoInformation.arowmodel,
-                  ayrowwModel: DemoInformation.ayrowmodel,
-                  clockModel: DemoInformation.clockmodel),
-              activityminto("Geçmiş Aktivitelerim", () => () {},
+              otherupcomingactivites(),
+              activityminto(ActivityTextUtil.myPastActivities, () {},
                   MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
-              ActivityBox(
-                  istwobutton: false,
-                  buttonText: "Kaydı İzle",
-                  containerModel: AppContainers.containerButton(true),
-                  isactivity: true,
-                  arowModel: DemoInformation.arowmodel,
-                  clockModel: DemoInformation.clockmodel),
-              activityminto("Geçmiş Diğer Aktiviteler", () => () {},
+              mypastactivites(),
+              activityminto(ActivityTextUtil.otherPastActivities, () {},
                   MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
-              ActivityBox(
-                  istwobutton: false,
-                  buttonText: "Katıl",
-                  containerModel: AppContainers.containerButton(false),
-                  isactivity: false,
-                  arowModel: DemoInformation.arowmodel,
-                  ayrowwModel: DemoInformation.ayrowmodel,
-                  clockModel: DemoInformation.clockmodel),
+              otherpastactivites(),
               sizedbox()
             ],
           ),
@@ -64,19 +39,62 @@ class TherapistActivityScreen extends StatelessWidget {
     );
   }
 
+  ActivityBox otherpastactivites() {
+    return ActivityBox(
+        istwobutton: false,
+        buttonText: ActivityTextUtil.join,
+        containerModel: AppContainers.containerButton(false),
+        isactivity: false,
+        arowModel: DemoInformation.arowmodel,
+        ayrowwModel: DemoInformation.ayrowmodel,
+        clockModel: DemoInformation.clockmodel);
+  }
+
+  ActivityBox mypastactivites() {
+    return ActivityBox(
+        istwobutton: false,
+        buttonText: ActivityTextUtil.watchTheRecording,
+        containerModel: AppContainers.containerButton(true),
+        isactivity: true,
+        arowModel: DemoInformation.arowmodel,
+        clockModel: DemoInformation.clockmodel);
+  }
+
+  ActivityBox otherupcomingactivites() {
+    return ActivityBox(
+        istwobutton: false,
+        buttonText: ActivityTextUtil.join,
+        containerModel: AppContainers.containerButton(false),
+        isactivity: false,
+        arowModel: DemoInformation.arowmodel,
+        ayrowwModel: DemoInformation.ayrowmodel,
+        clockModel: DemoInformation.clockmodel);
+  }
+
+  ActivityBox myupcomingactivities() {
+    return ActivityBox(
+        istwobutton: true,
+        buttonText: ActivityTextUtil.start,
+        containerModel: AppContainers.containerButton(true),
+        isactivity: true,
+        arowModel: DemoInformation.arowmodel,
+        clockModel: DemoInformation.clockmodel);
+  }
+
   Row activityappbar() {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        search(searchModel),
-        Align(
-          alignment: Alignment.center,
-          child: IconButton(
-              onPressed: () {
-                therapistActivtyController.updatechnage(1);
-                Get.to(const NewActivityScreen());
-              },
-              icon: IconUtility.addIcon),
-        )
+        Padding(
+          padding: const EdgeInsets.only(left: 2, top: 10),
+          child: search(searchModel),
+        ),
+        IconButton(
+            onPressed: () {
+              therapistActivtyController.updatechnage(1);
+              Get.to(const NewActivityScreen());
+            },
+            icon: IconUtility.addIcon)
       ],
     );
   }

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 import 'package:terapievim/core/base/component/home/participant_with_sc_time.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 
 import '../message/message.dart';
 import 'available_hours.dart';
@@ -20,7 +21,7 @@ class SessionScreen extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(top: 45),
                 child: messageappbar(
-                  " 15 Dakikalık Seanslarım ",
+                  HomeTextUtil.myMinuteSessions,
                   const SizedBox.shrink(),
                   IconButton(
                       onPressed: () {
@@ -28,10 +29,8 @@ class SessionScreen extends StatelessWidget {
                       },
                       icon: IconUtility.clockIcon),
                 ),
-
-                //headingtext(false, false, "15 Dakikalık Seanslarım"),
               ),
-              orderdrpdown(),
+              orderdropdown(),
               aboutparticipant(),
             ],
           ),
@@ -52,13 +51,13 @@ class SessionScreen extends StatelessWidget {
     );
   }
 
-  Align orderdrpdown() {
-    return Align(
+  Align orderdropdown() {
+    return const Align(
         alignment: Alignment.bottomRight,
         child: Padding(
-          padding: const EdgeInsets.all(9),
+          padding: AppPaddings.generalPadding,
           child: CustomDropDown(
-            purpose: orderingList,
+            purpose: DemoInformation.orderingList,
             height: 36,
             width: 135,
           ),

@@ -15,9 +15,6 @@ import '../../../screen/therapist/message/message.dart';
 
 import '../models/card_model.dart';
 
-
-import '../component/group/person.dart';
-
 import '../component/group/questions_button.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
 
@@ -63,6 +60,15 @@ class IconUtility {
   static const Icon visibilityIcon = Icon(
     Icons.visibility,
   );
+  static const Icon messageIcon = Icon(
+    Icons.forum_outlined,
+    size: 35,
+  );
+  static const Icon addmesaage = Icon(
+    Icons.mark_email_read_outlined,
+    size: 30,
+  );
+
   static const List<IconData> bottomnavigateIcons = <IconData>[
     IconUtility.navHome,
     IconUtility.navActivities,
@@ -104,6 +110,7 @@ class IconUtility {
   static const Icon fileIconBlack = Icon(
     Icons.description_outlined,
   );
+  static const Icon arrowDownIcon = Icon(Icons.keyboard_arrow_down_outlined);
 
   static Icon micIcon(bool isInCircularContainer) => Icon(
         Icons.mic,
@@ -264,15 +271,27 @@ class AppContainers {
         borderRadius: 100,
         backgroundColor: AppColors.butterflyBush);
   }
+
+  static ContainerModel copingbutton = ContainerModel(
+      width: 116,
+      height: 42,
+      shadowColor: AppColors.cornFlowerBlue,
+      borderRadius: 5,
+      backgroundColor: AppColors.white);
 }
 
 class AppPaddings {
+  static const EdgeInsets generalPadding = EdgeInsets.all(8);
   static const EdgeInsets reminderPadding =
       EdgeInsets.symmetric(vertical: 16, horizontal: 16);
   static const EdgeInsets reminderBetweenText =
       EdgeInsets.symmetric(vertical: 16.0);
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
       0, 10, 20, 10); // sağ alt bütün mor butonlar için geçerli
+  static const EdgeInsets copingButtonPadding =
+      EdgeInsets.only(left: 10, right: 10, top: 25, bottom: 25);
+
+  static const EdgeInsets appmpadding = EdgeInsets.all(15);
 }
 
 class AppBorderRadius {
@@ -327,14 +346,14 @@ class NavigateUtil {
     const TherapistActivityScreen(),
     TherapistGroupPage(),
     const TherapistMessageScreen(),
-    ParticipantProfilePage(),
+    const ParticipantProfilePage(),
   ];
   static List<Widget> screen = <Widget>[
     const HomeScreen(),
     const ActivitiesScreen(),
     GroupScreen(),
     MessageScreen(),
-    ParticipantProfilePage(),
+    const ParticipantProfilePage(),
   ];
 }
 
@@ -357,7 +376,7 @@ class DemoInformation {
     "panik atak",
   ];
 //activity
-
+  static const String aboutActivtyName = "Grup Terapilerinin Etkisi";
   static RowModel arowmodel = RowModel(
       isAlignmentBetween: false,
       text: "Grup Terapilerinin Etkisi",
@@ -374,6 +393,8 @@ class DemoInformation {
       text: "Ocak 15,2023,20:00",
       textStyle: const TextStyle(),
       leadingIcon: IconUtility.clockIcon);
+  static const List<String> orderingList = ["yeniden eskiye", "eskiden yeniye"];
+  static const List<String> genderList = ["kadın", "erkek"];
 
   //message
   static const String headingabactivity = "Canan Karatay";
@@ -511,8 +532,8 @@ class DemoInformation {
       text: "Aleyna Tilki",
       textStyle: AppTextStyles.groupTextStyle(true));
 
-  // video call 
-    // group therapy call page,isolated call page,short call page
+  // video call
+  // group therapy call page,isolated call page,short call page
 
   static PersonInCallModel therapist = PersonInCallModel(
       name: 'Simay',
@@ -559,13 +580,18 @@ class DemoInformation {
         therapistName: 'Mert Engin', seminarTitle: 'Seminer 3')
   ];
   // profile setting page
-  static TextEditingController nameSurnameControllerInSetting = TextEditingController(text: "Kerem Engin");
-  static TextEditingController mailControllerInSetting = TextEditingController(text: "test@gmail.com");
-  static TextEditingController passwordControllerInSetting = TextEditingController(text: "asdf");
-  static TextEditingController phoneControllerInSetting = TextEditingController(text: "5055139645");
-  static TextEditingController aboutMeController = TextEditingController(text:'''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''');
+  static TextEditingController nameSurnameControllerInSetting =
+      TextEditingController(text: "Kerem Engin");
+  static TextEditingController mailControllerInSetting =
+      TextEditingController(text: "test@gmail.com");
+  static TextEditingController passwordControllerInSetting =
+      TextEditingController(text: "asdf");
+  static TextEditingController phoneControllerInSetting =
+      TextEditingController(text: "5055139645");
+  static TextEditingController aboutMeController = TextEditingController(
+      text:
+          '''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''');
   static bool isForParticipant = false;
-
 
   // therapist profile page
   static List<String> therapyDates = [
@@ -574,7 +600,6 @@ class DemoInformation {
     'Her pazartesi,17.00',
     'Her perşembe,18.00'
   ];
-
 }
 
 Divider divider() {
@@ -582,5 +607,10 @@ Divider divider() {
     color: AppColors.black,
     height: 5,
   );
+}
 
+SizedBox sizedbox() {
+  return const SizedBox(
+    height: 15,
+  );
 }

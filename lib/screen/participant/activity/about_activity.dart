@@ -39,20 +39,21 @@ class AboutActivityScreen extends StatelessWidget {
                   sizedbox()
                 ],
               ),
-              //herkeste var? aynısını koy
-              const Positioned(
-                top: 87,
-                left: 50,
-                right: 50,
-                child: CustomCircleAvatar(
-                    imagePath: DemoInformation.japonkadin,
-                    big: true,
-                    shadow: true),
-              )
+              positionedcircle()
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Positioned positionedcircle() {
+    return const Positioned(
+      top: 87,
+      left: 50,
+      right: 50,
+      child: CustomCircleAvatar(
+          imagePath: DemoInformation.japonkadin, big: true, shadow: true),
     );
   }
 

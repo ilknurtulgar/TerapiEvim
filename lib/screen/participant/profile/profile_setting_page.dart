@@ -14,7 +14,9 @@ import 'util/textfield_utility.dart';
 
 // ignore: must_be_immutable
 class ParticipantProfileSettingPage extends StatelessWidget {
-  ParticipantProfileSettingPage({super.key,});
+  ParticipantProfileSettingPage({
+    super.key,
+  });
 
   TextfieldUtility textfieldUtility = TextfieldUtility();
   ProfileController profileController = Get.find();
@@ -22,12 +24,17 @@ class ParticipantProfileSettingPage extends StatelessWidget {
   TherapistGroupController therapistGroupController = Get.find();
 
   late List<Widget> textfieldList = [
-    textfieldUtility.nameSurnameTextfield(DemoInformation.nameSurnameControllerInSetting, false),
-    textfieldUtility.birthOfDateTextfield(profileController.birthOfDateController.value, false),
+    textfieldUtility.nameSurnameTextfield(
+        DemoInformation.nameSurnameControllerInSetting, false),
+    textfieldUtility.birthOfDateTextfield(
+        profileController.birthOfDateController.value, false),
     genderDrowDown(),
-    textfieldUtility.mailTextfield(DemoInformation.mailControllerInSetting, false),
-    textfieldUtility.passwordTextfield(DemoInformation.passwordControllerInSetting, false),
-    textfieldUtility.phoneTextfield(DemoInformation.phoneControllerInSetting, false),
+    textfieldUtility.mailTextfield(
+        DemoInformation.mailControllerInSetting, false),
+    textfieldUtility.passwordTextfield(
+        DemoInformation.passwordControllerInSetting, false),
+    textfieldUtility.phoneTextfield(
+        DemoInformation.phoneControllerInSetting, false),
   ];
 
   @override
@@ -37,7 +44,8 @@ class ParticipantProfileSettingPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Stack(children: [
           ProfilePageUtility.backgroundOfThePage(),
-          ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
+          ProfilePageUtility.profilePagePersonImage(
+              DemoInformation.profileImagePath),
           ProfilePageUtility.positionedIconButton(Icons.arrow_back_ios_outlined,
               () {
             Get.to(const ParticipantProfilePage());
@@ -178,10 +186,10 @@ class ParticipantProfileSettingPage extends StatelessWidget {
   }
 
   Padding genderDrowDown() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 20),
+    return const Padding(
+      padding: EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 20),
       child: CustomDropDown(
-        purpose: genderList,
+        purpose: DemoInformation.genderList,
         width: 195,
         height: 23,
       ),

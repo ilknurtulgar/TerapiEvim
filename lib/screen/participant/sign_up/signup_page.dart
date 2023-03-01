@@ -12,8 +12,10 @@ import '../profile/util/profile_page_utility.dart';
 import '../profile/util/textfield_utility.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key,});
-  final bool isForParticipant=false;
+  const SignUpPage({
+    super.key,
+  });
+  final bool isForParticipant = false;
 
   @override
   State<SignUpPage> createState() => _SignUpPageState();
@@ -48,23 +50,30 @@ class _SignUpPageState extends State<SignUpPage> {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               title(),
-              textfieldUtility.nameSurnameTextfield(_signUpController.nameController, true),
-              textfieldUtility.birthOfDateTextfield( _signUpController.birthDateController, true),
+              textfieldUtility.nameSurnameTextfield(
+                  _signUpController.nameController, true),
+              textfieldUtility.birthOfDateTextfield(
+                  _signUpController.birthDateController, true),
+
               ///TODO: use gender controller
-              CustomDropDown(
-                purpose: genderList,
+              const CustomDropDown(
+                purpose: DemoInformation.genderList,
                 height: 56,
                 width: 342,
               ),
-              textfieldUtility.mailTextfield(_signUpController.emailController, true),
-              textfieldUtility.passwordTextfield(_signUpController.passwordController, true),
-              textfieldUtility.phoneTextfield(_signUpController.phoneController, true),
+              textfieldUtility.mailTextfield(
+                  _signUpController.emailController, true),
+              textfieldUtility.passwordTextfield(
+                  _signUpController.passwordController, true),
+              textfieldUtility.phoneTextfield(
+                  _signUpController.phoneController, true),
               widget.isForParticipant == false
                   ? acceptMakingShortCallContainer(controller)
                   : const SizedBox(),
               CustomButton(
                 textColor: Colors.white,
-                container: LoginPageUtility.loginSignUpButtonContainer(false, false),
+                container:
+                    LoginPageUtility.loginSignUpButtonContainer(false, false),
                 onTap: () {
                   _signUpController.signUpWithEmail();
                 },
@@ -73,7 +82,8 @@ class _SignUpPageState extends State<SignUpPage> {
               LoginPageUtility.lineWithOrText(),
               CustomButton(
                 textColor: AppColors.butterflyBush,
-                container: LoginPageUtility.loginSignUpButtonContainer(false, true),
+                container:
+                    LoginPageUtility.loginSignUpButtonContainer(false, true),
                 onTap: () => Get.to(() => const ParticipantLoginPage()),
                 text: LoginSignUpTextUtil.login,
               ),
@@ -87,7 +97,8 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Padding acceptMakingShortCallContainer(TherapistProfileController controller) {
+  Padding acceptMakingShortCallContainer(
+      TherapistProfileController controller) {
     ProfilePageUtility profilePageUtility = ProfilePageUtility();
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
@@ -106,7 +117,8 @@ class _SignUpPageState extends State<SignUpPage> {
   Padding title() {
     return Padding(
       padding: const EdgeInsets.only(top: 60, bottom: 25),
-      child: Text(LoginSignUpTextUtil.signUp, style: AppTextStyles.loginSignUpBigTitle),
+      child: Text(LoginSignUpTextUtil.signUp,
+          style: AppTextStyles.loginSignUpBigTitle),
     );
   }
 }

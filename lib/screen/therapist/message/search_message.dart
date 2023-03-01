@@ -6,6 +6,8 @@ import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/therapist/message/companent/person_view.dart';
 import 'package:terapievim/screen/therapist/message/message.dart';
 
+import '../../../core/base/util/text_utility.dart';
+
 class SearchMessage extends StatefulWidget {
   const SearchMessage({super.key});
 
@@ -42,7 +44,7 @@ class _SearchMessageState extends State<SearchMessage> {
     return Column(
       children: [
         search(RowModel(
-            text: MessageUtil.searchtext,
+            text: MessageTextUtil.searchtext,
             textStyle: AppTextStyles.normalTextStyle("medium", true),
             isAlignmentBetween: true,
             leadingIcon: IconUtility.searchIcon,

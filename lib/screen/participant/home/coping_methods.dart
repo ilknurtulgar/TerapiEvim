@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/home/method_downloading_container.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 
 import 'package:terapievim/screen/participant/home/home.dart';
 
@@ -15,7 +16,7 @@ class CopingMethods extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              headingtext(false, true, "BAŞ ETME METOTLARI"),
+              headingtext(false, true, HomeTextUtil.copingMethods),
               filter(),
               methodbuilder()
             ],
@@ -35,18 +36,19 @@ class CopingMethods extends StatelessWidget {
             time: DemoInformation.clockabomeactivty,
             explanation: DemoInformation.home[index],
             buttonOnTap: () {},
-            buttonText: "Metotu Oku");
+            buttonText: HomeTextUtil.readMethod);
       },
       itemCount: DemoInformation.home.length,
     );
   }
 
   Widget filter() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
+    return const Padding(
+      padding: AppPaddings.generalPadding,
       child: Align(
         alignment: Alignment.bottomRight,
-        child: CustomDropDown(purpose: orderingList, height: 40, width: 135),
+        child: CustomDropDown(
+            purpose: DemoInformation.orderingList, height: 40, width: 135),
       ),
     );
   }

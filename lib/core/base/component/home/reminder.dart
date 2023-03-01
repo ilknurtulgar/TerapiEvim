@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/therapist/home/home_utility.dart';
+
+import '../../util/text_utility.dart';
 
 //terapist sayfasi hatirlatmalar
 class Reminder extends StatelessWidget {
@@ -64,7 +65,7 @@ class Reminder extends StatelessWidget {
           Padding(
               padding: AppPaddings.reminderBetweenText,
               child: customText("$reminderName $name")),
-          customText("${HomeTextUtil.timeText} $time"),
+          customText("${HomeTextUtil.timeTwoDots} $time"),
         ],
       ),
     );
@@ -85,13 +86,13 @@ String textSet(
 ) {
   switch (type) {
     case ReminderType.activity:
-      return HomeTextUtil.activityText;
+      return HomeTextUtil.event;
 
     case ReminderType.shortcall:
-      return HomeTextUtil.shortcallText;
+      return HomeTextUtil.shortCall;
 
     case ReminderType.therapy:
-      return HomeTextUtil.therapyText;
+      return HomeTextUtil.therapyNameTwoDots;
   }
 }
 
@@ -101,9 +102,9 @@ String nameSet(ReminderType type) {
       return HomeTextUtil.activityName;
 
     case ReminderType.shortcall:
-      return HomeTextUtil.shortcallName;
+      return HomeTextUtil.clientTwoDots;
 
     case ReminderType.therapy:
-      return HomeTextUtil.therapyName;
+      return HomeTextUtil.therapyNameTwoDots;
   }
 }

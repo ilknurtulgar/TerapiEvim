@@ -4,6 +4,7 @@ import 'package:terapievim/core/base/component/home/notification_container.dart'
 
 import 'package:terapievim/core/base/component/home/reminder.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/home/home.dart';
 import 'package:terapievim/screen/therapist/home/session_screen.dart';
 
@@ -17,14 +18,11 @@ class TherapistHome extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              headingtext(true, true, "TerapiEvim"),
-              headingtext(false, false, "Hoşgeldiniz"),
-              mindetailesbox("15 DAKİKALIK SEANSLARIM",
+              headingtext(true, true, GroupTextUtil.terapiEvim),
+              headingtext(false, false, HomeTextUtil.welcome),
+              mindetailesbox(HomeTextUtil.myMinuteSessions,
                   () => Get.to(const SessionScreen())),
-              //paddig yok
               reminderactivity(),
-
-              //notficationcontainer padding yok
               notificationcontainer()
             ],
           ),
@@ -46,7 +44,7 @@ class TherapistHome extends StatelessWidget {
 
   Padding reminderactivity() {
     return const Padding(
-      padding: EdgeInsets.all(8.0),
+      padding: AppPaddings.generalPadding,
       child: Reminder(
         reminderType: ReminderType.activity,
         name: DemoInformation.name,

@@ -17,9 +17,6 @@ class CustomDropDown extends StatefulWidget {
   State<CustomDropDown> createState() => _CustomDropDownState();
 }
 
-List<String> orderingList = ["yeniden eskiye", "eskiden yeniye"];
-List<String> genderList = ["kadın", "erkek"];
-
 class _CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {

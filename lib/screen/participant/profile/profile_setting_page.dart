@@ -24,7 +24,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
   late List<Widget> textfieldList = [
     textfieldUtility.nameSurnameTextfield(DemoInformation.nameSurnameControllerInSetting, false),
     textfieldUtility.birthOfDateTextfield(profileController.birthOfDateController.value, false),
-    genderDrowDown(),
+    genderDropDown(),
     textfieldUtility.mailTextfield(DemoInformation.mailControllerInSetting, false),
     textfieldUtility.passwordTextfield(DemoInformation.passwordControllerInSetting, false),
     textfieldUtility.phoneTextfield(DemoInformation.phoneControllerInSetting, false),
@@ -38,13 +38,8 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         child: Stack(children: [
           ProfilePageUtility.backgroundOfThePage(),
           ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
-          ProfilePageUtility.positionedIconButton(Icons.arrow_back_ios_outlined,
-              () {
-            Get.to(const ParticipantProfilePage());
-          }, 35, 340),
-          ProfilePageUtility.positionedIconButton(Icons.edit_outlined, () {
-            /* foto düzenleme */
-          }, 235, 105),
+          ProfilePageUtility.positionedIconButton(Icons.arrow_back_ios_outlined,() { Get.to(const ParticipantProfilePage());}, 35, 340),
+          ProfilePageUtility.positionedIconButton(Icons.edit_outlined, () {/* foto düzenleme */}, 235, 105),
           bigColumn(),
           DemoInformation.isForParticipant == false
               ? scrollableNumberOfGroups()
@@ -91,8 +86,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         child: Transform.rotate(
           angle: -pi / 2,
           child: ListWheelScrollView.useDelegate(
-            onSelectedItemChanged: (value) => therapistGroupController
-                .scrollableWidgetFunction('number of groups', value),
+            onSelectedItemChanged: (value) => therapistGroupController.scrollableWidgetFunction('number of groups', value),
             overAndUnderCenterOpacity: 0.75,
             itemExtent: 40,
             perspective: 0.002,
@@ -106,15 +100,10 @@ class ParticipantProfileSettingPage extends StatelessWidget {
                       () => AnimatedContainer(
                         duration: const Duration(milliseconds: 200),
                         color: Colors.transparent,
-                        height: therapistProfileController.isNumberVisible.value
-                            ? 20
-                            : 0,
+                        height: therapistProfileController.isNumberVisible.value ? 20 : 0,
                         child: Transform.rotate(
                           angle: pi / 2,
-                          child: Text(
-                            (index).toString(),
-                            style: const TextStyle(
-                                color: AppColors.black, fontSize: 20),
+                          child: Text((index).toString(),style: AppTextStyles.profileTextStyles(true, false),
                           ),
                         ),
                       ),
@@ -127,57 +116,59 @@ class ParticipantProfileSettingPage extends StatelessWidget {
     );
   }
 
-  Column therapistSpecialColumn() {
+  Center therapistSpecialColumn() {
     ProfilePageUtility profilePageUtility = ProfilePageUtility();
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        SizedBox(width: 335, child: profilePageUtility.acceptionRow(false)),
-        const SizedBox(height: 10),
-        Obx(
-          () => AnimatedContainer(
-            duration: const Duration(milliseconds: 400),
-            color: AppColors.transparent,
-            height: therapistProfileController.isNumberVisible.value ? 32 : 0,
-            child: SizedBox(
-              width: 325,
-              child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(ProfileSettingsTextUtil.numberOfGroups),
-                    Container(
-                      height: 27,
-                      width: 40,
-                      decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.purple, width: 1)),
-                    )
-                  ]),
+    return Center(
+      child: Wrap(
+        direction: Axis.vertical,
+        crossAxisAlignment: WrapCrossAlignment.center,
+        spacing: 10,
+        children: [
+          SizedBox(width: 335, child: profilePageUtility.acceptionRow(false)),
+          animatedNumberOfGroupsRow(),
+          Text(TherapistProfileTextUtil.aboutMe,style: AppTextStyles.normalTextStyle('medium',false),),
+          SizedBox(
+            width: 325,
+            child: TextField(
+              controller: DemoInformation.aboutMeController,
+              decoration: const InputDecoration(fillColor: AppColors.white, filled: true),
+              minLines: 5,
+              maxLines: 50,
             ),
-          ),
-        ),
-        Padding(
-          padding: const EdgeInsets.only(top: 10),
-          child: Text(TherapistProfileTextUtil.aboutMe),
-        ),
-        const SizedBox(height: 10),
-        SizedBox(
-          width: 325,
-          child: TextField(
-            controller: DemoInformation.aboutMeController,
-            decoration:
-                const InputDecoration(fillColor: AppColors.white, filled: true),
-            minLines: 5,
-            maxLines: 50,
-          ),
-        ),
-        saveButton(),
-      ],
+          ), // custom textfield about me için update edilince bunun yerine custom geleceği için extract etmedim
+          saveButton(),
+        ],
+      ),
     );
   }
 
-  Padding genderDrowDown() {
+  Obx animatedNumberOfGroupsRow() {
+    return Obx(
+        () => AnimatedContainer(
+          duration: const Duration(milliseconds: 400),
+          color: AppColors.transparent,
+          height: therapistProfileController.isNumberVisible.value ? 32 : 0,
+          child: SizedBox(
+            width: 325,
+            child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(ProfileSettingsTextUtil.numberOfGroups),
+                  Container(
+                    height: 27,
+                    width: 40,
+                    decoration: BoxDecoration(
+                        color: AppColors.white,
+                        borderRadius: AppBorderRadius.generalBorderRadius,
+                        border: Border.all(color: AppColors.cornFlowerBlue, width: 1)),
+                  )
+                ]),
+          ),
+        ),
+      );
+  }
+
+  Padding genderDropDown() {
     return Padding(
       padding: const EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 20),
       child: CustomDropDown(
@@ -195,9 +186,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         child: CustomButton(
             textColor: AppColors.white,
             container: AppContainers.purpleButtonContainer(150),
-            onTap: () {
-              print(therapistProfileController.isBeingAdvisorAccepted.value);
-            },
+            onTap: () {},
             text: ProfileSettingsTextUtil.save),
       ),
     );

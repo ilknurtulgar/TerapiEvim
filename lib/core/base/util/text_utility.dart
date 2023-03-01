@@ -82,12 +82,20 @@ class MessageTextUtil {}
 
 class LoginSignUpTextUtil {
   static String login = 'Giriş Yap';
-  static String signUp = 'Keydol';
+  static String signUp = 'Kaydol';
   static String forgotYourPassword = 'Şifreni mi unuttun?';
   static String orText = 'Ya da';
   static String therapistAcceptedMakingShortCall =
       '''15 dakikalık terapiyi sırayla yapmayı kabul
 ediyorum.KVKK kabul ediyorum.''';
+  // before login page
+  static String whoAreYou = '''Kim olarak uygulamaya devam
+etmek istersiniz?''';
+  static String homeImagePath = 'assets/images/home.jpg';
+  static String participant = 'Danışan';
+  static String therapist = 'Psikolog';
+  static String appName = 'Terapi Evim';
+  static String welcome = 'Hoşgeldiniz';
 }
 
 class ParticipantProfileTextUtil {

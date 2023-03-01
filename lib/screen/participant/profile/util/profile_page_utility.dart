@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_profile_controller.dart';
+import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import '../../../../core/base/models/row_model.dart';
@@ -41,10 +42,9 @@ class ProfilePageUtility {
       RowModel(
           // ana ve yardımcı terapist için
           text: firstText,
-          textStyle: const TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
+          textStyle: AppTextStyles.profileTextStyles(false,true),
           text2: secondText,
-          textStyle2: const TextStyle(color: Colors.black, fontSize: 16),
+          textStyle2: AppTextStyles.normalTextStyle('medium',false),
           leadingIcon: Icon(
             isInParticipantPage
                 ? Icons.person_outline
@@ -53,28 +53,29 @@ class ProfilePageUtility {
           ),
           isAlignmentBetween: false);
 
-  static RowModel boldMainTitleRow(
-          String text, IconData icon, Function() onTap) =>
-      RowModel(
-          text: text,
-          leadingIcon: Icon(
-            icon,
-            color: AppColors.black,
-            size: 25,
-          ),
-          textStyle: const TextStyle(
-              color: AppColors.black,
-              fontWeight: FontWeight.bold,
-              fontSize:
-                  20), // bu apptextstyle'da yoktu, başka yerde kullanıldığını görmedim
-          isAlignmentBetween: false,
-          trailingIcon: Padding(
-            padding: EdgeInsets.only(left: text.length < 15 ? 160 : 80),
-            child: IconButton(
-                onPressed: onTap,
-                alignment: Alignment.centerLeft,
-                icon: IconUtility.arrowForwardIcon),
-          ));
+  static boldMainTitleRowView(String text,String purpose,Function() onTap) =>
+      rowView(
+          RowModel(
+              text: text,
+              leadingIcon: Icon(
+                purpose=='group' 
+                 ? Icons.group_outlined
+                 : purpose=='method'
+                   ? Icons.description_outlined
+                   : Icons.desktop_windows_outlined,
+                color: AppColors.black,
+                size: 25,
+              ),
+              textStyle: AppTextStyles.profileTextStyles(true,true),
+              isAlignmentBetween: false,
+              trailingIcon: Padding(
+                padding: EdgeInsets.only(left: text.length < 15 ? 160 : 80),
+                child: IconButton(
+                    onPressed: onTap,
+                    alignment: Alignment.centerLeft,
+                    icon: IconUtility.arrowForwardIcon),
+              )),
+          EdgeInsets.zero);
 
   static RowModel normalTextRow(
           String text, IconData icon, TextStyle textStyle) =>
@@ -97,7 +98,8 @@ class ProfilePageUtility {
               isForMakingShortCall ? TextDirection.ltr : TextDirection.rtl,
           children: [
             Obx(() => IconButton(
-                onPressed: () => controller.acceptionFunction(isForMakingShortCall),
+                onPressed: () =>
+                    controller.acceptionFunction(isForMakingShortCall),
                 icon: Icon(isForMakingShortCall
                     ? controller.isMakingShortCallAccepted.value
                         ? Icons.check_circle_outline

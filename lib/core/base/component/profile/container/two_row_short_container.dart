@@ -29,23 +29,12 @@ class TwoRowShortContainer extends StatelessWidget {
       padding: isThereButton ? const EdgeInsets.only(bottom: 5,right: 12) : const EdgeInsets.symmetric(horizontal: 24),
       child: Material(
         elevation: 5,
-        shadowColor: isThereButton == true && purpose == 'seminar'
-            ? AppColors.cornFlowerBlue
-            : AppColors.transparent,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+        shadowColor: isThereButton == true && purpose == 'seminar' ? AppColors.cornFlowerBlue : AppColors.transparent,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8),),
         child: Container(
           height: isThereButton ? 114 : 80,
           width: isThereButton ? 250 : 342,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: AppColors.white,
-              border: Border.all(
-                  color: isThereButton == true && purpose == 'seminar'
-                      ? AppColors.cornFlowerBlue
-                      : Colors.grey.withOpacity(0.50),
-                  width: 2)), //
+          decoration: containerDecoration(), //
           child: Padding(
             padding: const EdgeInsets.only(left: 10),
             child: Center(
@@ -64,23 +53,30 @@ class TwoRowShortContainer extends StatelessWidget {
     );
   }
 
+  BoxDecoration containerDecoration() {
+    return BoxDecoration(
+            borderRadius: AppBorderRadius.generalBorderRadius,
+            color: AppColors.white,
+            border: Border.all(
+                color: isThereButton == true && purpose == 'seminar'
+                    ? AppColors.cornFlowerBlue
+                    : Colors.grey.withOpacity(0.50),
+                width: 2));
+  }
+
   Widget secondRow() {
     return rowView(
         ProfilePageUtility.normalTextRow(
             row2Text,
             secondIconData,
-            TextStyle(
-                fontSize: 17,
-                fontWeight:
-                    purpose != 'date' ? FontWeight.bold : FontWeight.w400)),
+            AppTextStyles.profileTextStyles(false,purpose != 'date' ? true : false)),
         const EdgeInsets.only(top: 10));
   }
 
   Widget firstRow() {
     return rowView(
         purpose != 'date'
-            ? ProfilePageUtility.normalTextRow(row1Text,firstIconData,
-                const TextStyle(fontSize: 17, fontWeight: FontWeight.bold))
+            ? ProfilePageUtility.normalTextRow(row1Text,firstIconData,AppTextStyles.profileTextStyles(false,true))
             : ProfilePageUtility.doubleTextRow('Danışan: ', row1Text, false),
         const EdgeInsets.only(top: 5));
   }
@@ -91,7 +87,7 @@ class TwoRowShortContainer extends StatelessWidget {
         child: Align(
           alignment: Alignment.centerRight,
           child: CustomButton(
-              textColor: Colors.white,
+              textColor: AppColors.white,
               container: AppContainers.purpleButtonContainer(null),
               onTap: () {}, // izle ya da dosyayı oku fonksiyonu
               text: buttonText ?? ""),

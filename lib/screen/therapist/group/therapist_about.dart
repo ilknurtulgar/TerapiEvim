@@ -4,6 +4,7 @@ import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/group/util/group_screen_utility.dart';
 
 import '../../participant/group/util/lock_screen_utility.dart';
@@ -14,20 +15,20 @@ class TherapistProfile extends StatelessWidget {
 
   //bu row modeller fix ama nereye koyulacagi tartisilmasi lazim
   final RowModel basetmeMetodlari = RowModel(
-    text: "Bas Etme Metotlari",
+    text: TherapistProfileTextUtil.methods,
     textStyle: AppTextStyles.groupTextStyle(false),
     isAlignmentBetween: false,
     leadingIcon: IconUtility.fileIconBlack,
   );
 
   final RowModel seminerleri = RowModel(
-    text: "Seminerleri",
+    text: TherapistProfileTextUtil.seminars,
     textStyle: AppTextStyles.groupTextStyle(false),
     isAlignmentBetween: false,
     leadingIcon: IconUtility.activityIcon,
   );
   final RowModel mesajGonder = RowModel(
-    text: "Mesaj Gonder",
+    text: GroupTextUtil.sendMessageText,
     textStyle: AppTextStyles.groupTextStyle(false),
     isAlignmentBetween: false,
     leadingIcon: IconUtility.chatIcon,
@@ -44,48 +45,53 @@ class TherapistProfile extends StatelessWidget {
       DemoInformation.grup1,
       DemoInformation.grup2
     ];
-    return SingleChildScrollView(
-      child: Stack(
-        alignment: Alignment.center,
-        textDirection: TextDirection.rtl,
-        fit: StackFit.loose,
-        clipBehavior: Clip.hardEdge,
-        children: <Widget>[
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Stack(
+            alignment: Alignment.center,
+            textDirection: TextDirection.rtl,
+            fit: StackFit.loose,
+            clipBehavior: Clip.hardEdge,
             children: <Widget>[
-              whiteBackground(context),
-              heading(name),
-              aboutMe(aboutme),
-              isSecTherapist
-                  ? const SizedBox.shrink()
-                  : activity(basetmeMetodlari, () {
-                      //buraya fonksiyonlari ekelenecek
-                      // print("basettin mi");
-                    }),
-              activity(seminerleri, () {
-                //print("seminermismis");
-              }),
-              activity(mesajGonder, () {
-                // print("selam");
-              }),
-              isSecTherapist ? otherGroups(groups) : const SizedBox.shrink()
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  whiteBackground(context),
+                  heading(name),
+                  aboutMe(aboutme),
+                  isSecTherapist
+                      ? const SizedBox.shrink()
+                      : activity(basetmeMetodlari, () {
+                          //buraya fonksiyonlari ekelenecek
+                          // print("basettin mi");
+                        }),
+                  activity(seminerleri, () {
+                    //print("seminermismis");
+                  }),
+                  activity(mesajGonder, () {
+                    // print("selam");
+                  }),
+                  isSecTherapist ? otherGroups(groups) : const SizedBox.shrink()
+                ],
+              ),
+              Positioned(
+                top: 87,
+                // left: 50,
+                // right: 50,
+                child: CustomCircleAvatar(
+                    imagePath: DemoInformation.imagePath,
+                    big: true,
+                    shadow: true),
+              )
             ],
           ),
-          Positioned(
-            top: 87,
-            // left: 50,
-            // right: 50,
-            child: CustomCircleAvatar(
-                imagePath: DemoInformation.imagePath, big: true, shadow: true),
-          )
-        ],
+        ),
       ),
     );
   }
 }
-
 
 Padding activity(RowModel row, Function() func) {
   return Padding(
@@ -98,27 +104,24 @@ Padding activity(RowModel row, Function() func) {
   );
 }
 
-  Widget otherGroups(List<RowModel> groups) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 10.0),
-      child: Column(
-        children: [
-          CustomHeading(
-              padding: const EdgeInsets.only(left: 40, right: 40, top: 30),
-              text: "Yardimci Psikologluk Yaptigi Diger Gruplar",
-              isalignmentstart: true),
-          ListView.builder(
-            shrinkWrap: true,
-            itemCount: groups.length,
-            itemBuilder: (context, index) =>
-                activity(groups[index], () => null),
-          )
-        ],
-      ),
-    );
-  }
-
-
+Widget otherGroups(List<RowModel> groups) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 10.0),
+    child: Column(
+      children: [
+        CustomHeading(
+            padding: const EdgeInsets.only(left: 40, right: 40, top: 30),
+            text: GroupTextUtil.secTherapistGroupsText,
+            isalignmentstart: true),
+        ListView.builder(
+          shrinkWrap: true,
+          itemCount: groups.length,
+          itemBuilder: (context, index) => activity(groups[index], () => null),
+        )
+      ],
+    ),
+  );
+}
 
 Text heading(name) {
   return Text(

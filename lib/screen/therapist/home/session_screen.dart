@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 import 'package:terapievim/core/base/component/home/participant_with_sc_time.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/participant/home/home.dart';
+
+import '../message/message.dart';
+import 'available_hours.dart';
 
 class SessionScreen extends StatelessWidget {
   const SessionScreen({super.key});
@@ -16,7 +19,17 @@ class SessionScreen extends StatelessWidget {
             children: [
               Padding(
                 padding: const EdgeInsets.only(top: 45),
-                child: headingtext(false, false, "15 Dakikalık Seanslarım"),
+                child: messageappbar(
+                  " 15 Dakikalık Seanslarım ",
+                  const SizedBox.shrink(),
+                  IconButton(
+                      onPressed: () {
+                        Get.to(const AvailableHours());
+                      },
+                      icon: IconUtility.clockIcon),
+                ),
+
+                //headingtext(false, false, "15 Dakikalık Seanslarım"),
               ),
               orderdrpdown(),
               aboutparticipant(),

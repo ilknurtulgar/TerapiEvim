@@ -1,28 +1,76 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/screen/therapist/group/metots/new_metot.dart';
+import 'package:terapievim/screen/therapist/group/therapist_about.dart';
+import '../../../../core/base/component/buttons/election.dart';
+import '../../../../core/base/component/group/person.dart';
+import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 
 // ignore: must_be_immutable
 class GroupInformation extends StatelessWidget {
-  const GroupInformation({super.key});
-
+  GroupInformation({super.key});
+  TherapistGroupController controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Column(
-        children: [
-          heading(context),
-          miniHeadings("Yaklasan Toplanti", false),
-          meeting(),
-          miniHeadings("Grubun Bilgileri", false),
-          navMethod(DemoInformation.secTherapist, () {}),
-          //dropdownlu component gelecek katilimcilar
-          navMethod(DemoInformation.methods, () {}),
-        ],
+    List<PersonMin> participantRow = [
+      person("Ali Kiran", context),
+      person("Yasemin Atmaca", context),
+      person("Kerem Bursin", context),
+      person("Osman Yigit", context),
+      person("Ali Kiran", context)
+    ];
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              heading(context),
+              miniHeadings(GroupTextUtil.upcomingMeetingText, false),
+              meeting(),
+              miniHeadings(GroupTextUtil.groupsInformationText, false),
+              navMethod(
+                  DemoInformation.secTherapist,
+                  () => Get.to(TherapistProfile(
+                        isSecTherapist: true,
+                      ))),
+              Election(
+                  election:
+                      ControllerElection.therapistGroupControllerParticipant,
+                  firstRow: Obx(() => SizedBox(
+                        child: SeminarMin(
+                          borderColor: AppColors.meteorite,
+                          onTap: () {
+                            controller.changeParticipantElection();
+                          },
+                          row: RowModel(
+                            text: GroupTextUtil.participantsText,
+                            textStyle: AppTextStyles.aboutMeTextStyle(false),
+                            leadingIcon: IconUtility.groupsIcon,
+                            isAlignmentBetween: true,
+                            trailingIcon: Icon(
+                              controller.isParticipantElectionOpen.isTrue
+                                  ? Icons.keyboard_arrow_up
+                                  : Icons.keyboard_arrow_down_sharp,
+                              size: 38,
+                            ),
+                          ),
+                        ),
+                      )),
+                  rows: participantRow),
+              navMethod(DemoInformation.methods, () {
+                //method sayfasina gidecek
+              }),
+            ],
+          ),
+        ),
       ),
     );
   }
@@ -31,11 +79,11 @@ class GroupInformation extends StatelessWidget {
     return ActivityBox(
         istwobutton: false,
         containerModel: AppContainers.containerButton(false),
-        buttonText: "Baslat",
+        buttonText: GroupTextUtil.startText,
         arowModel: RowModel(
           leadingIcon: IconUtility.personIcon,
           isAlignmentBetween: false,
-          text: "Yardimci Psikolog: ",
+          text: GroupTextUtil.secondTherapistText,
           textStyle: AppTextStyles.aboutMeTextStyle(false),
           text2: "Ozlem Ulusan", //sadece isim alinacak
           textStyle2: AppTextStyles.groupTextStyle(true),
@@ -69,6 +117,7 @@ class GroupInformation extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.edit_document),
                   onPressed: () {
+                    Get.to(const NewMetot());
                     //new Metot sayfasina godocek
                   },
                 ),
@@ -89,23 +138,23 @@ class GroupInformation extends StatelessWidget {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: const Text("Grubu Silmek Istediginize Emin Misiniz? "),
+          title: Text(GroupTextUtil.deleteGroupConfirmText),
           content: SingleChildScrollView(
             child: ListBody(
-              children: const <Widget>[
-                Text('Silinen gruplar geri getirilemez.'),
+              children: <Widget>[
+                Text(GroupTextUtil.deleteGroupWarningText),
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text("Vazgec"),
+              child: Text(GroupTextUtil.cancelText),
               onPressed: () {
                 Get.back();
               },
             ),
             TextButton(
-              child: const Text('Sil'),
+              child: Text(GroupTextUtil.deleteText),
               onPressed: () {
                 Get.back();
               },
@@ -123,5 +172,50 @@ class GroupInformation extends StatelessWidget {
             textStyle: AppTextStyles.heading(false),
             isAlignmentBetween: false),
         EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0));
+  }
+
+  PersonMin person(String name, BuildContext context) {
+    TherapistGroupController controller = Get.find();
+    return PersonMin(
+        padding: const EdgeInsets.only(top: 10),
+        borderColor: AppColors.cornFlowerBlue,
+        onTap: () {
+          deleteParticipantDialog(context, name, controller);
+        },
+        row: RowModel(
+            text: name,
+            leadingIcon: CustomCircleAvatar(
+                big: false,
+                imagePath: DemoInformation.imagePath,
+                shadow: false),
+            textStyle: AppTextStyles.groupTextStyle(true),
+            isAlignmentBetween: true,
+            trailingIcon: IconUtility.deleteIcon));
+  }
+
+  Future<String?> deleteParticipantDialog(
+      BuildContext context, String name, TherapistGroupController controller) {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(name + GroupTextUtil.deleteParticipantText),
+        // content: const Text(
+        //     'Gruptan cikaril'),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text(GroupTextUtil.cancelText),
+          ),
+          TextButton(
+            onPressed: () {
+              //participant silinecek
+
+              Get.back();
+            },
+            child: Text(GroupTextUtil.deleteText),
+          ),
+        ],
+      ),
+    );
   }
 }

@@ -15,7 +15,7 @@ class TerapiEvimLogged extends StatefulWidget {
 
 class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
   final MainController _controller = Get.find();
-  late final bool isparticipant = false;
+  late final bool isparticipant = true;
   TherapistActivtyController therapistActivtyController =
       Get.put(TherapistActivtyController());
 

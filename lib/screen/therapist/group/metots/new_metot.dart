@@ -5,6 +5,7 @@ import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/therapist/activity/companent/coping_box.dart';
 
 class NewMetot extends StatelessWidget {
@@ -12,17 +13,19 @@ class NewMetot extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            heading(context),
-            CopingBox(
-                copingtext: DemoInformation.tmpNewMetotText,
-                pdfname: DemoInformation.tmppdfName),
-            text(),
-            otherGroups(),
-          ],
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Column(
+            children: [
+              heading(context),
+              CopingBox(
+                  copingtext: DemoInformation.tmpNewMetotText,
+                  pdfname: DemoInformation.tmppdfName),
+              text(),
+              otherGroups(),
+            ],
+          ),
         ),
       ),
     );
@@ -32,7 +35,7 @@ class NewMetot extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 40),
       child: CustomHeading(
-          text: "Ayrica Su Gruplarda da paylas", isalignmentstart: false),
+          text: GroupTextUtil.shareOtherGroupsText, isalignmentstart: false),
     );
   }
 
@@ -48,7 +51,7 @@ class NewMetot extends StatelessWidget {
   Widget heading(BuildContext context) {
     return rowView(
         RowModel(
-            text: "Basetme Metodu",
+            text: GroupTextUtil.metotText,
             textStyle: AppTextStyles.heading(false),
             trailingIcon: IconButton(
               icon: IconUtility.deleteIcon,
@@ -66,24 +69,23 @@ class NewMetot extends StatelessWidget {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title:
-              const Text("Basetme Metodunu Silmek Istediginize Emin Misiniz? "),
+          title: Text(GroupTextUtil.deleteMetotText),
           content: SingleChildScrollView(
             child: ListBody(
-              children: const <Widget>[
-                Text('Verileriniz Kaydedilmeyecektir.'),
+              children: <Widget>[
+                Text(GroupTextUtil.deleteMetotWarningText),
               ],
             ),
           ),
           actions: <Widget>[
             TextButton(
-              child: const Text("Vazgec"),
+              child: Text(GroupTextUtil.cancelText),
               onPressed: () {
                 Get.back();
               },
             ),
             TextButton(
-              child: const Text('Sil'),
+              child: Text(GroupTextUtil.deleteText),
               onPressed: () {
                 Get.back();
               },

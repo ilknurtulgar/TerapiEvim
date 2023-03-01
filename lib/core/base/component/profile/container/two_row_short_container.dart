@@ -26,7 +26,7 @@ class TwoRowShortContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       //left right 24 verince oluyor
-      padding: isThereButton ? const EdgeInsets.only(bottom: 5) : const EdgeInsets.symmetric(horizontal: 24),
+      padding: isThereButton ? const EdgeInsets.only(bottom: 5,right: 12) : const EdgeInsets.symmetric(horizontal: 24),
       child: Material(
         elevation: 5,
         shadowColor: isThereButton == true && purpose == 'seminar'

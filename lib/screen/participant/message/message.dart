@@ -65,13 +65,6 @@ class MessageScreen extends StatelessWidget {
     ]);
   }
 
-  Divider divider() {
-    return const Divider(
-      color: AppColors.black,
-      height: 5,
-    );
-  }
-
   Row messagecontainer(BuildContext context, bool isStart, String message) {
     return Row(
       mainAxisAlignment:

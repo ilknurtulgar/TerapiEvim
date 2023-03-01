@@ -5,7 +5,6 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
 import 'package:terapievim/screen/participant/profile/util/textfield_utility.dart';
 import '../../../controller/auth/login_controller.dart';
-import '../../../core/base/component/buttons/custom_button.dart';
 import '../sign_up/signup_page.dart';
 
 class ParticipantLoginPage extends StatefulWidget {
@@ -38,35 +37,16 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
     return Scaffold(
       backgroundColor: AppColors.blueChalk,
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
+        child: Center(
           child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
               children: [
-                loginPageTitle(),
-                textfieldUtility.mailTextfield(
-                    _loginController.emailController, true),
-                textfieldUtility.passwordTextfield(
-                    _loginController.passwordController, true),
+                LoginPageUtility.title(true),
+                textfieldUtility.mailTextfield(_loginController.emailController, true),
+                textfieldUtility.passwordTextfield( _loginController.passwordController, true),
                 forgotYourPasswordTextButton(),
-                CustomButton(
-                  textColor: Colors.white,
-                  container:
-                      LoginPageUtility.loginSignUpButtonContainer(true, true),
-                  onTap: () {
-                    _loginController.loginWithEmail();
-                  },
-                  text: LoginSignUpTextUtil.login,
-                ),
+                LoginPageUtility.button(true,true, () {_loginController.loginWithEmail();}),
                 LoginPageUtility.lineWithOrText(),
-                CustomButton(
-                  textColor: AppColors.butterflyBush,
-                  container: LoginPageUtility.loginSignUpButtonContainer(
-                      true, false),
-                  onTap: () => Get.to(() => const SignUpPage()),
-                  text: LoginSignUpTextUtil.signUp,
-                ),
+                LoginPageUtility.button(false,true,() => Get.to(() => const SignUpPage())),
               ]),
         ),
       ),
@@ -75,23 +55,13 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
 
   Padding forgotYourPasswordTextButton() {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(227, 0, 24, 40),
+      padding: const EdgeInsets.only(right: 18,bottom: 20),
+      child: Align(
+        alignment: Alignment.centerRight,
         child: TextButton(
-            onPressed: () {
-              /* Şifreyi unutma durumundaki fonksiyon gelecek*/
-            },
-            child: Text(
-             LoginSignUpTextUtil.forgotYourPassword,
-              style: const TextStyle(color: AppColors.meteorite),
-            )));
-  }
-
-  Padding loginPageTitle() {
-    return  Padding(
-      padding: const EdgeInsets.fromLTRB(0, 70, 0, 35),
-      child: Text(
-        LoginSignUpTextUtil.login,
-        style: AppTextStyles.loginSignUpBigTitle,
+            onPressed: () {/* Şifreyi unutma durumundaki fonksiyon gelecek*/},
+            child: Text(LoginSignUpTextUtil.forgotYourPassword,style: const TextStyle(color: AppColors.meteorite),
+          )),
       ),
     );
   }

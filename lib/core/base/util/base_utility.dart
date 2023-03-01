@@ -235,6 +235,13 @@ class AppTextStyles {
       fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
       //sor!
       color: isName ? AppColors.black : AppColors.deepCove);
+
+  static TextStyle profileTextStyles(bool isBig,bool isBold) =>TextStyle(
+    fontFamily: 'Roboto',
+    fontSize: isBig ? 20 : 17,
+    fontWeight: isBold ? FontWeight.bold : FontWeight.w400,
+    color: AppColors.black,
+  );
 }
 
 class AppContainers {
@@ -533,7 +540,8 @@ class DemoInformation {
       textStyle: AppTextStyles.groupTextStyle(true));
 
   // video call
-  // group therapy call page,isolated call page,short call page
+    // group therapy call page,isolated call page,short call page
+
 
   static PersonInCallModel therapist = PersonInCallModel(
       name: 'Simay',
@@ -594,12 +602,22 @@ class DemoInformation {
   static bool isForParticipant = false;
 
   // therapist profile page
-  static List<String> therapyDates = [
+  static List<String> dates = [
     'Her cuma,21.00',
     'Her salı,20.00',
     'Her pazartesi,17.00',
     'Her perşembe,18.00'
   ];
+
+  static List<String> groupNameList =
+      List.generate(5, (index) => 'Depresyon ${index + 1}');
+  static List<String> methodNames =
+      List.generate(5, (index) => 'Kendini Bil ${index + 1}');
+  static List<String> seminarNames =
+      List.generate(5, (index) => 'Seminar ${index + 1}');
+  static List<String> advisorNames =
+      List.generate(5, (index) => 'Yeşim ${index + 1}');
+
 }
 
 Divider divider() {
@@ -607,6 +625,7 @@ Divider divider() {
     color: AppColors.black,
     height: 5,
   );
+
 }
 
 SizedBox sizedbox() {

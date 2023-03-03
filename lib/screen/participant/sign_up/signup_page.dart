@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
 import '../../../controller/auth/sign_up_controller.dart';
+import '../../../core/base/component/profile/acception_row.dart';
 import '../login/login_page.dart';
 import '../profile/util/profile_page_utility.dart';
 import '../profile/util/textfield_utility.dart';
@@ -40,7 +40,7 @@ class _SignUpPageState extends State<SignUpPage> {
   late List<Widget> textfieldList = [
     textfieldUtility.nameSurnameTextfield(_signUpController.nameController, true),
     textfieldUtility.birthOfDateTextfield(_signUpController.birthDateController, true),
-    genderDropDown(),
+    ProfilePageUtility.genderDropDown(false),
     textfieldUtility.mailTextfield(_signUpController.emailController, true),
     textfieldUtility.passwordTextfield(_signUpController.passwordController, true),
     textfieldUtility.phoneTextfield(_signUpController.phoneController, true),
@@ -74,16 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  CustomDropDown genderDropDown() {
-    return CustomDropDown(
-      purpose: genderList,
-      height: 56,
-      width: 342,
-    );
-  }
-
   Padding acceptMakingShortCallContainer(TherapistProfileController controller) {
-    ProfilePageUtility profilePageUtility = ProfilePageUtility();
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
       child: Container(
@@ -93,7 +84,7 @@ class _SignUpPageState extends State<SignUpPage> {
           color: AppColors.white,
           borderRadius: AppBorderRadius.generalBorderRadius,
         ),
-        child: profilePageUtility.acceptionRow(true),
+        child: AcceptionRow(isForMakingShortCall: true),
       ),
     );
   }
@@ -107,3 +98,4 @@ class _SignUpPageState extends State<SignUpPage> {
     textfieldUtility.passwordTextfield(_signUpController.passwordController, true),
     textfieldUtility.phoneTextfield(_signUpController.phoneController, true),
 */
+}

@@ -136,6 +136,7 @@ class TherapistProfileTextUtil {
   static String view = 'incele';
   static String watch = 'izle';
   static String advisor = 'Yardımcı Psikolog: ';
+  static List<String> genderList = ['Kadın', 'Erkek'];
 }
 
 class ActivityTextUtil {

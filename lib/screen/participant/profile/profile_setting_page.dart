@@ -1,12 +1,12 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
-import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
+import 'package:terapievim/core/base/component/group/custom_list_wheel_scroll_view.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import '../../../controller/therapist_profile_controller.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
+import '../../../core/base/component/profile/acception_row.dart';
 import '../../../core/base/util/base_utility.dart';
 import 'profile_page.dart';
 import 'util/profile_page_utility.dart';
@@ -26,7 +26,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
   late List<Widget> textfieldList = [
     textfieldUtility.nameSurnameTextfield(DemoInformation.nameSurnameControllerInSetting, false),
     textfieldUtility.birthOfDateTextfield(profileController.birthOfDateController.value, false),
-    genderDropDown(),
+    ProfilePageUtility.genderDropDown(true),
     textfieldUtility.mailTextfield(DemoInformation.mailControllerInSetting, false),
     textfieldUtility.passwordTextfield(DemoInformation.passwordControllerInSetting, false),
     textfieldUtility.phoneTextfield(DemoInformation.phoneControllerInSetting, false),
@@ -44,7 +44,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
           ProfilePageUtility.positionedIconButton(Icons.edit_outlined, () {/* foto düzenleme */}, 235, 105),
           bigColumn(),
           DemoInformation.isForParticipant == false
-              ? scrollableNumberOfGroups()
+              ? Positioned(top: 715,right: 10,child: CustomListWheelScrollView(whatIsFor: 'number of groups'))
               : const SizedBox(),
         ]),
       ),
@@ -78,59 +78,18 @@ class ParticipantProfileSettingPage extends StatelessWidget {
     );
   }
 
-  Positioned scrollableNumberOfGroups() {
-    return Positioned(
-      top: 665,
-      right: 18,
-      child: SizedBox(
-        width: 70,
-        height: 100,
-        child: Transform.rotate(
-          angle: -pi / 2,
-          child: ListWheelScrollView.useDelegate(
-            onSelectedItemChanged: (value) => therapistGroupController.scrollableWidgetFunction('number of groups', value),
-            overAndUnderCenterOpacity: 0.75,
-            itemExtent: 40,
-            perspective: 0.002,
-            diameterRatio: 0.9,
-            physics: const FixedExtentScrollPhysics(),
-            childDelegate: ListWheelChildBuilderDelegate(
-                childCount: 21,
-                builder: (context, index) {
-                  return Center(
-                    child: Obx(
-                      () => AnimatedContainer(
-                        duration: const Duration(milliseconds: 200),
-                        color: Colors.transparent,
-                        height: therapistProfileController.isNumberVisible.value ? 20 : 0,
-                        child: Transform.rotate(
-                          angle: pi / 2,
-                          child: Text((index).toString(),style: AppTextStyles.profileTextStyles(true, false),
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-          ),
-        ),
-      ),
-    );
-  }
-
   Center therapistSpecialColumn() {
-    ProfilePageUtility profilePageUtility = ProfilePageUtility();
     return Center(
       child: Wrap(
         direction: Axis.vertical,
         crossAxisAlignment: WrapCrossAlignment.center,
         spacing: 10,
         children: [
-          SizedBox(width: 335, child: profilePageUtility.acceptionRow(false)),
+          SizedBox(width: 341, child: AcceptionRow(isForMakingShortCall: false)),
           animatedNumberOfGroupsRow(),
           Text(TherapistProfileTextUtil.aboutMe,style: AppTextStyles.normalTextStyle('medium',false),),
           SizedBox(
-            width: 325,
+            width: 341,
             child: TextField(
               controller: DemoInformation.aboutMeController,
               decoration: const InputDecoration(fillColor: AppColors.white, filled: true),
@@ -151,7 +110,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
           color: AppColors.transparent,
           height: therapistProfileController.isNumberVisible.value ? 32 : 0,
           child: SizedBox(
-            width: 325,
+            width: 341,
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -168,17 +127,6 @@ class ParticipantProfileSettingPage extends StatelessWidget {
           ),
         ),
       );
-  }
-
-  Padding genderDropDown() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 20),
-      child: CustomDropDown(
-        purpose: DemoInformation.genderList,
-        width: 195,
-        height: 23,
-      ),
-    );
   }
 
   Padding saveButton() {
@@ -204,7 +152,9 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             Text(ProfileSettingsTextUtil.informationTitle[rowIndex]),
             Align(
               alignment: Alignment.bottomRight,
-              child: textField,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 20),
+                child: textField),
             )
           ],
         ),

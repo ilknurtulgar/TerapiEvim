@@ -1,12 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist_profile_controller.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
+import '../../../../core/base/component/activtiy/drop_down.dart';
 import '../../../../core/base/models/row_model.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
+import '../../../../core/base/util/text_utility.dart';
 
 class ProfilePageUtility {
   static Container backgroundOfThePage() => Container(
@@ -88,27 +87,11 @@ class ProfilePageUtility {
           textStyle: textStyle,
           isAlignmentBetween:
               false); //TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-
-  TherapistProfileController controller = Get.find();
-  Row acceptionRow(bool isForMakingShortCall) => Row(
-          mainAxisAlignment: isForMakingShortCall
-              ? MainAxisAlignment.start
-              : MainAxisAlignment.spaceBetween,
-          textDirection:
-              isForMakingShortCall ? TextDirection.ltr : TextDirection.rtl,
-          children: [
-            Obx(() => IconButton(
-                onPressed: () =>
-                    controller.acceptionFunction(isForMakingShortCall),
-                icon: Icon(isForMakingShortCall
-                    ? controller.isMakingShortCallAccepted.value
-                        ? Icons.check_circle_outline
-                        : Icons.circle_outlined
-                    : controller.isBeingAdvisorAccepted.value
-                        ? Icons.check_circle_outline
-                        : Icons.circle_outlined))),
-            Text(isForMakingShortCall
-                ? LoginSignUpTextUtil.therapistAcceptedMakingShortCall
-                : ProfileSettingsTextUtil.therapistAcceptedRandomTherapistList)
-          ]);
+  
+  static CustomDropDown genderDropDown(bool isInProfilePage) => CustomDropDown(
+    purpose: TherapistProfileTextUtil.genderList,
+    width: isInProfilePage ? 195 : 342,
+    height: isInProfilePage ? 23 : 56,
+  );
 }
+

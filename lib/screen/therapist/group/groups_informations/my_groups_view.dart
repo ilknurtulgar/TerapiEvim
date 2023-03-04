@@ -33,15 +33,13 @@ class MyGroups extends StatelessWidget {
                           color: AppColors.meteorite,
                         ),
                       )),
-                  const EdgeInsets.only(
-                      top: 18, left: 30, right: 30, bottom: 40)),
+                  AppPaddings.tMyGroupAppBarPadding),
               ListView.builder(
                 shrinkWrap: true,
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding:
-                        const EdgeInsets.symmetric(vertical: 9, horizontal: 24),
+                    padding: AppPaddings.tMyGroupPadding,
                     child: SeminarMax(
                         onTap: () {
                           Get.to(GroupInformation());

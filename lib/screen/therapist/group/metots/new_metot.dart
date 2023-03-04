@@ -33,7 +33,7 @@ class NewMetot extends StatelessWidget {
 
   Padding text() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 40),
+      padding: AppPaddings.newMetotPadding,
       child: CustomHeading(
           text: GroupTextUtil.shareOtherGroupsText, isalignmentstart: false),
     );
@@ -60,7 +60,7 @@ class NewMetot extends StatelessWidget {
               },
             ),
             isAlignmentBetween: true),
-        const EdgeInsets.symmetric(vertical: 33, horizontal: 23));
+        AppPaddings.newMetotAppBarPadding);
   }
 
   Future<void> deleteMetotDialog(BuildContext context) {

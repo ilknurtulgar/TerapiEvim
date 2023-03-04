@@ -3,7 +3,6 @@ import 'package:terapievim/core/base/component/group/purple_text_container.dart'
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/screen/participant/group/util/lock_screen_utility.dart';
 import 'package:terapievim/screen/therapist/group/therapist_about.dart';
 
 import '../../../core/base/component/profile/image/custom_circle_avatar.dart';
@@ -59,7 +58,7 @@ class AboutActivityScreen extends StatelessWidget {
 
   Padding aboutactivtynamebox() {
     return const Padding(
-      padding: Paddings.rowViewProfilePadding,
+      padding: AppPaddings.rowViewProfilePadding,
       child: PurpleTextContainer(text: DemoInformation.aboutmeabactivity),
     );
   }

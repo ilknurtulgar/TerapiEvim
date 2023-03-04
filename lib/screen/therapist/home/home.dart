@@ -59,11 +59,11 @@ class TherapistHome extends StatelessWidget {
 
 class Responsive {
   static width(double p, BuildContext context) {
-    return MediaQuery.of(context).size.width * (p / 100);
+    return MediaQuery.of(context).size.width * (p / 390);
   }
 
   static height(double p, BuildContext context) {
-    return MediaQuery.of(context).size.height * (p / 100);
+    return MediaQuery.of(context).size.height * (p / 844);
   }
 
   static padding(double p, BuildContext context) {

@@ -33,7 +33,7 @@ class MyGroups extends StatelessWidget {
                           color: AppColors.meteorite,
                         ),
                       )),
-                  AppPaddings.tMyGroupAppBarPadding),
+                  AppPaddings.appBarPadding),
               ListView.builder(
                 shrinkWrap: true,
                 itemCount: 10,

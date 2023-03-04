@@ -129,7 +129,7 @@ class GroupInformation extends StatelessWidget {
                 )
               ],
             )),
-        AppPaddings.tGroupAppBarPaddong);
+        AppPaddings.appBarPadding);
   }
 
   Future<void> deleteGroupDialog(BuildContext context) {

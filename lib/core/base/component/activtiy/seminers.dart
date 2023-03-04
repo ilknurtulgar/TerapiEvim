@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/screen/therapist/home/home.dart';
 import '../../util/base_utility.dart';
 import '../group/row_view.dart';
 import '../../models/row_model.dart';
@@ -64,8 +65,8 @@ class SeminarMax extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     borderColor ??= AppColors.dustyGray;
-    width ??= 342;
-    height ??= 120;
+    width ??= Responsive.width(342, context);
+    height ??= Responsive.height(120, context);
     return InkWell(
       onTap: () {
         onTap();

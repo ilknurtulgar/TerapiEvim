@@ -69,24 +69,21 @@ class TherapistProfilePage extends StatelessWidget {
           shrinkWrap: true,
           itemCount: DemoInformation.therapyDates.length,
           itemBuilder: ((context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(right: 12),
-              child: TwoRowShortContainer(
-                row1Text: isMethod
-                    ? 'Depresyon Grubu $index'
-                    : 'Seminer $index', // grup: depresyon grubu yazınca overflow
-                row2Text:
-                    isMethod ? 'Kendini Bil $index' : DemoInformation.therapyDates[index],
-                firstIconData: isMethod
-                    ? Icons.group_outlined
-                    : Icons.desktop_windows_outlined,
-                secondIconData: isMethod
-                    ? Icons.description_outlined
-                    : Icons.alarm_outlined,
-                purpose: isMethod ? 'method' : 'seminar',
-                isThereButton: true,
-                buttonText: isMethod ? TherapistProfileTextUtil.view : TherapistProfileTextUtil.watch,
-              ),
+            return TwoRowShortContainer(
+              row1Text: isMethod
+                  ? 'Depresyon Grubu $index'
+                  : 'Seminer $index', // grup: depresyon grubu yazınca overflow
+              row2Text:
+                  isMethod ? 'Kendini Bil $index' : DemoInformation.therapyDates[index],
+              firstIconData: isMethod
+                  ? Icons.group_outlined
+                  : Icons.desktop_windows_outlined,
+              secondIconData: isMethod
+                  ? Icons.description_outlined
+                  : Icons.alarm_outlined,
+              purpose: isMethod ? 'method' : 'seminar',
+              isThereButton: true,
+              buttonText: isMethod ? TherapistProfileTextUtil.view : TherapistProfileTextUtil.watch,
             );
           })),
     );

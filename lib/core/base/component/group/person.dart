@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 
 import '../../../../../core/base/util/base_utility.dart';
+import '../../../../screen/therapist/home/home.dart';
 import 'row_view.dart';
 
 // ignore: must_be_immutable
@@ -25,8 +26,8 @@ class PersonMin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     borderColor ??= AppColors.dustyGray;
-    width ??= 342;
-    height ??= 52;
+    width ??= Responsive.width(342, context);
+    height ??= Responsive.height(52, context);
     return InkWell(
       onTap: onTap,
       child: Container(

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/participant/group/util/group_screen_utility.dart';
 
 import '../../../../../core/base/util/base_utility.dart';
 
@@ -22,7 +21,7 @@ class CustomHeading extends StatelessWidget {
           ? AlignmentDirectional.centerStart
           : Alignment.center,
       padding: padding ??
-          GroupPaddings
+          AppPaddings
               .customHeadingPadding, //const EdgeInsets.symmetric(vertical: 25) sikinti cikarsa bu
       child: Text(
         text,

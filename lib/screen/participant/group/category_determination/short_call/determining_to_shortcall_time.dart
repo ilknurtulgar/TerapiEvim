@@ -6,7 +6,6 @@ import 'package:terapievim/core/base/component/group/choosing_time_sc_cont.dart'
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import '../../../../../core/base/component/group/custom_heading.dart';
 import '../../../../../core/base/util/text_utility.dart';
-import '../../util/group_screen_utility.dart';
 
 class ShortCallTime extends StatelessWidget {
   const ShortCallTime({super.key});
@@ -27,7 +26,7 @@ class ShortCallTime extends StatelessWidget {
                       textStyle: AppTextStyles.heading(false),
                       isAlignmentBetween: true,
                       trailingIcon: saveButton()),
-                  GroupPaddings.appbarPadding),
+                  AppPaddings.appbarPadding),
               line(),
               CustomHeading(
                 text: hiUser,
@@ -65,7 +64,7 @@ class ShortCallTime extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemCount: DemoInformation.tmpCount,
       itemBuilder: (context, index) => Padding(
-        padding: GroupPaddings.timeChossingBetweenPadding,
+        padding: AppPaddings.timeChossingBetweenPadding,
         child: ChoosingTimeForSCContainer(
           therapistName: DemoInformation.therapistName,
           date: DemoInformation.datetime,

@@ -4,7 +4,6 @@ import 'package:terapievim/core/base/component/group/group_info_container.dart';
 import '../../../../../core/base/component/group/custom_heading.dart';
 import '../../../../../core/base/util/base_utility.dart';
 import '../../../../../core/base/util/text_utility.dart';
-import '../../util/group_screen_utility.dart';
 
 class GroupCategories extends StatefulWidget {
   const GroupCategories({super.key});
@@ -48,7 +47,7 @@ class _GroupCategoriesState extends State<GroupCategories> {
       shrinkWrap: true,
       itemCount: geciciKategoriSayisi,
       itemBuilder: (context, index) => Padding(
-        padding: GroupPaddings.groupCategoryPadding,
+        padding: AppPaddings.groupCategoryPadding,
         child: GroupInformationContainer(
             groupName: tmpGroupName,
             mainTherapist: tmpMainTherapist,

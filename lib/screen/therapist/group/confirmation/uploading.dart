@@ -22,17 +22,16 @@ class TherapistUploadConfirm extends StatelessWidget {
                   text: heading,
                   textStyle: AppTextStyles.heading(false),
                   isAlignmentBetween: false),
-              const EdgeInsets.only(bottom: 83, top: 30)),
+              AppPaddings.tLockScreenAppBarPadding),
           Container(
-            padding: LockScreenUtil.lockScreenContainerPadding,
+            padding: AppPaddings.lockScreenContainerPadding,
             width: LockScreenUtil.lockScreenBigContainerWidth,
             decoration: AppBoxDecoration.lockScreenBox,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 60, horizontal: 55),
+                    padding: AppPaddings.tLockScreenUploadTextPadding,
                     child: Text(
                       GroupTextUtil.whyConfirmingText,
                       style: AppTextStyles.aboutMeTextStyle(false),
@@ -41,8 +40,7 @@ class TherapistUploadConfirm extends StatelessWidget {
                   height: 70,
                 ),
                 Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 30, horizontal: 55),
+                  padding: AppPaddings.tLockScreenPdfPadding,
                   child: Text(
                     GroupTextUtil.pdfUploadingText,
                     style: AppTextStyles.aboutMeTextStyle(false),

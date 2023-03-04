@@ -6,8 +6,6 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/therapist/home/add_hours_screen.dart';
 import 'package:terapievim/screen/therapist/message/message.dart';
 
-import '../../participant/group/util/group_screen_utility.dart';
-
 class AvailableHours extends StatelessWidget {
   const AvailableHours({super.key});
 
@@ -40,7 +38,7 @@ class AvailableHours extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return Padding(
-          padding: GroupPaddings.timeChossingBetweenPadding,
+          padding: AppPaddings.timeChossingBetweenPadding,
           child: ChoosingTimeForSCContainer(
               therapistName: DemoInformation.nameSurname,
               date: DemoInformation.date,

@@ -40,11 +40,7 @@ ListView activityseminar() {
     physics: const NeverScrollableScrollPhysics(),
     itemBuilder: (context, index) {
       return Padding(
-        padding: const EdgeInsets.only(
-          left: 70,
-          top: 20,
-          right: 70,
-        ),
+        padding: AppPaddings.activitySeminarPadding,
         child: ActivityBox(
             onTap: () {
               //  print("tıklıyorum ya");

@@ -292,6 +292,47 @@ class AppPaddings {
       EdgeInsets.only(left: 10, right: 10, top: 25, bottom: 25);
 
   static const EdgeInsets appmpadding = EdgeInsets.all(15);
+  static const EdgeInsets activitySeminarPadding = EdgeInsets.only(
+    left: 70,
+    top: 20,
+    right: 70,
+  );
+  static const EdgeInsets headingTopPadding = EdgeInsets.only(
+    top: 80,
+  );
+  static const EdgeInsets dividerPadding = EdgeInsets.only(
+    bottom: 10,
+  );
+  static const EdgeInsets circleAvatarPadding = EdgeInsets.only(
+    top: 10,
+    right: 5,
+  );
+  static const EdgeInsets activityBoxPadding =
+      EdgeInsets.symmetric(horizontal: 15, vertical: 3);
+
+  static const EdgeInsets toggleButtonsPadding = EdgeInsets.only(bottom: 30);
+
+  static const EdgeInsets appbarLeftPadding = EdgeInsets.only(left: 10);
+  static const EdgeInsets customHeadingPadding = EdgeInsets.only(
+    top: 20,
+    left: 15,
+    right: 15,
+    bottom: 25,
+  );
+  static const EdgeInsets toppadding = EdgeInsets.only(
+    top: 10,
+  );
+  static const EdgeInsets chatInformationPadding = EdgeInsets.all(2);
+  static const EdgeInsets topAppbar = EdgeInsets.only(top: 45);
+  static const EdgeInsets startpadding = EdgeInsets.only(left: 35, top: 35);
+  static const EdgeInsets centerpadding = EdgeInsets.only(left: 150, top: 35);
+  static const EdgeInsets eventAboutPadding =
+      EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 20);
+  static const EdgeInsets datePadding = EdgeInsets.only(left: 19);
+  static const EdgeInsets clockPadding = EdgeInsets.only(left: 30);
+  static const EdgeInsets notificationContainerPadding =
+      EdgeInsets.only(bottom: 11, top: 8);
+  static const EdgeInsets contentPadding = EdgeInsets.all(3);
 }
 
 class AppBorderRadius {
@@ -375,6 +416,10 @@ class DemoInformation {
     "anksiyete",
     "panik atak",
   ];
+  //toggle
+  static const String question =
+      "1.Yasemini insanlar 100 üzerinden  ne kadar severlerse yasemin ne kadar mutlu olur( slm Yasemin aşko <3 )?(Cevap yok hehe)";
+
 //activity
   static const String aboutActivtyName = "Grup Terapilerinin Etkisi";
   static RowModel arowmodel = RowModel(
@@ -602,10 +647,12 @@ class DemoInformation {
   ];
 }
 
-Divider divider() {
-  return const Divider(
-    color: AppColors.black,
+Divider divider(bool issearch) {
+  return Divider(
+    color: issearch ? AppColors.doveGray : AppColors.black,
     height: 5,
+    //
+    indent: 10,
   );
 }
 

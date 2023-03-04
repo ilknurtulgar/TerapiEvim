@@ -53,10 +53,7 @@ class _SearchMessageState extends State<SearchMessage> {
                   Get.to(const TherapistMessageScreen());
                 },
                 icon: IconUtility.closeIcon))),
-        const Divider(
-          height: 3,
-          color: AppColors.doveGray,
-        )
+        divider(true),
       ],
     );
   }

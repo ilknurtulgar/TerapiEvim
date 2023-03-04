@@ -15,8 +15,6 @@ class ToggleQuestions extends StatefulWidget {
 class _ToggleQuestionsState extends State<ToggleQuestions> {
   GroupController groupController = Get.put(GroupController());
 
-  List toggletext = ["hiç", "çok az", "orta", "fazla", "aşırı"];
-
   @override
   Widget build(BuildContext context) {
     return Obx(
@@ -42,15 +40,15 @@ class _ToggleQuestionsState extends State<ToggleQuestions> {
 
 Container togglebuttonsview() {
   return Container(
-    margin: const EdgeInsets.only(bottom: 30),
+    margin: AppPaddings.toggleButtonsPadding,
     decoration: AppBoxDecoration.lockScreenBox,
     width: 341,
     child: Column(children: [
       CustomHeading(
-          isalignmentstart: true,
-          isToggle: true,
-          text:
-              "1.Yasemini insanlar 100 üzerinden  ne kadar severlerse yasemin ne kadar mutlu olur( slm Yasemin aşko <3 )?(Cevap yok hehe)"),
+        isalignmentstart: true,
+        isToggle: true,
+        text: DemoInformation.question,
+      ),
       const ToggleQuestions(),
     ]),
   );

@@ -60,11 +60,7 @@ Padding mindetailesbox(String rowmodeltext, Function()? onTap) {
 
 Widget headingtext(bool isHeading, bool isPadding, String heading) {
   return Padding(
-      padding: isPadding
-          ? const EdgeInsets.only(
-              top: 80,
-            )
-          : EdgeInsets.zero,
+      padding: isPadding ? AppPaddings.headingTopPadding : EdgeInsets.zero,
       child: Align(
         alignment: Alignment.center,
         child: Text(

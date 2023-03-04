@@ -16,15 +16,18 @@ class TherapistHome extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              headingtext(true, true, GroupTextUtil.terapiEvim),
-              headingtext(false, false, HomeTextUtil.welcome),
-              mindetailesbox(HomeTextUtil.myMinuteSessions,
-                  () => Get.to(const SessionScreen())),
-              reminderactivity(),
-              notificationcontainer()
-            ],
+          child: Center(
+            child: Column(
+              children: [
+                sizedbox(),
+                headingtext(true, true, GroupTextUtil.terapiEvim),
+                headingtext(false, false, HomeTextUtil.welcome),
+                mindetailesbox(HomeTextUtil.myMinuteSessions,
+                    () => Get.to(const SessionScreen())),
+                reminderactivity(),
+                notificationcontainer()
+              ],
+            ),
           ),
         ),
       ),
@@ -33,7 +36,7 @@ class TherapistHome extends StatelessWidget {
 
   Padding notificationcontainer() {
     return const Padding(
-      padding: EdgeInsets.only(bottom: 11, top: 8),
+      padding: AppPaddings.notificationContainerPadding,
       child: NotificationContainer(
         type: NotificationType.shortcallFail,
         contentText: DemoInformation.notificationcontenttext,
@@ -51,5 +54,29 @@ class TherapistHome extends StatelessWidget {
         time: DemoInformation.clockabomeactivty,
       ),
     );
+  }
+}
+
+class Responsive {
+  static width(double p, BuildContext context) {
+    return MediaQuery.of(context).size.width * (p / 100);
+  }
+
+  static height(double p, BuildContext context) {
+    return MediaQuery.of(context).size.height * (p / 100);
+  }
+
+  static padding(double p, BuildContext context) {
+    return MediaQuery.of(context).padding;
+  }
+
+  static safepadding(double p, BuildContext context) {
+    return MediaQuery.of(context).size.height * (p / 100) -
+        MediaQuery.of(context).padding.top -
+        MediaQuery.of(context).padding.bottom;
+  }
+
+  static paddingtop(double p, BuildContext context) {
+    return MediaQuery.of(context).padding.top * (p / 100);
   }
 }

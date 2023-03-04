@@ -14,7 +14,6 @@ class GroupTextUtil {
   static String pdfUploadingText =
       "E-Devlet Onaylı Mezuniyet Belgenizi Yükleyiniz (.pdf desteklenmektedir)";
   static String uploadText = "Yükle";
-
   //group add
 
   static String monday = "Pazartesi";
@@ -159,6 +158,8 @@ class ActivityTextUtil {
   static const String psychologist = "Psikolog";
   static const String issue = "Konu";
   static const String seminars = "Seminerleri";
+  static const String searchText = "Ne aramıştınız";
+  static const String updateMyInformation = "Bilgilerimi Güncelle";
 }
 
 class HomeTextUtil {

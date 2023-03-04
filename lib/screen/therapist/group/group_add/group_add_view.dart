@@ -62,7 +62,7 @@ class GroupAddView extends StatelessWidget {
                         //geri donus yapmasi lazim
                       },
                     )),
-                AppPaddings.tGroupaddAppBarPadding),
+                AppPaddings.appBarPadding),
             miniHeadings(GroupTextUtil.groupNameText, false),
             CustomTextField(
                 isPhoneNumber: false,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
+import 'package:terapievim/screen/therapist/home/home.dart';
 import '../../models/row_model.dart';
 import '../../util/base_utility.dart';
 import '../../util/text_utility.dart';
@@ -22,7 +23,7 @@ class NotificationContainer extends StatelessWidget {
     final String notificationText = textSet(type);
     return Container(
       decoration: AppBoxDecoration.notificationDec,
-      width: 342,
+      width: Responsive.width(342, context),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -36,7 +37,7 @@ class NotificationContainer extends StatelessWidget {
 
   Padding notificationButton() {
     return Padding(
-      padding: const EdgeInsets.only(left: 150.0, bottom: 16),
+      padding: const EdgeInsets.only(),
       child: CustomButton(
           textColor: Colors.white,
           container: ContainerModel(

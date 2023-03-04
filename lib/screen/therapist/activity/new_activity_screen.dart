@@ -6,7 +6,6 @@ import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/home/home.dart';
-import 'package:terapievim/screen/therapist/activity/companent/coping_box.dart';
 
 class NewActivityScreen extends StatefulWidget {
   const NewActivityScreen({super.key});
@@ -32,10 +31,11 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
                     ? headingtext(false, true, ActivityTextUtil.activityUpdate)
                     : headingtext(false, true, ActivityTextUtil.newActivity),
               ),
-              activityname(ActivityTextUtil.eventName, PaddingAdd.startpadding),
+              activityname(
+                  ActivityTextUtil.eventName, AppPaddings.startpadding),
               eventname(),
               activityname(
-                  ActivityTextUtil.eventAbout, PaddingAdd.startpadding),
+                  ActivityTextUtil.eventAbout, AppPaddings.startpadding),
               eventabout(),
               dateclockrow(),
               dateclocktextfield(),
@@ -65,7 +65,7 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
 
   Padding eventabout() {
     return Padding(
-      padding: const EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 20),
+      padding: AppPaddings.eventAboutPadding,
       child: SizedBox(
         width: 350,
         height: 300,
@@ -78,11 +78,11 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
     return Row(
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 19),
+          padding: AppPaddings.datePadding,
           child: SizedBox(width: 150, height: 52, child: textfield()),
         ),
         Padding(
-          padding: const EdgeInsets.only(left: 30),
+          padding: AppPaddings.clockPadding,
           child: SizedBox(width: 150, height: 52, child: textfield()),
         ),
       ],
@@ -92,8 +92,8 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
   Row dateclockrow() {
     return Row(
       children: [
-        activityname(ActivityTextUtil.date, PaddingAdd.startpadding),
-        activityname(ActivityTextUtil.clock, PaddingAdd.centerpadding),
+        activityname(ActivityTextUtil.date, AppPaddings.startpadding),
+        activityname(ActivityTextUtil.clock, AppPaddings.centerpadding),
       ],
     );
   }
@@ -104,18 +104,9 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
       decoration: InputDecoration(
           filled: true,
           fillColor: AppColors.white,
-          focusedBorder: border(),
-          enabledBorder: border()),
+          focusedBorder: bordercolor(true),
+          enabledBorder: bordercolor(true)),
     );
-  }
-
-  OutlineInputBorder border() {
-    return const OutlineInputBorder(
-        borderRadius: AppBorderRadius.generalBorderRadius,
-        borderSide: BorderSide(
-          color: AppColors.dustyGray,
-          width: 1,
-        ));
   }
 
   Padding activityname(String activityheading, EdgeInsets padding) {

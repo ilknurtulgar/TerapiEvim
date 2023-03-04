@@ -26,7 +26,7 @@ class ShortCallTime extends StatelessWidget {
                       textStyle: AppTextStyles.heading(false),
                       isAlignmentBetween: true,
                       trailingIcon: saveButton()),
-                  AppPaddings.appbarPadding),
+                  AppPaddings.appBarPadding),
               line(),
               CustomHeading(
                 text: hiUser,

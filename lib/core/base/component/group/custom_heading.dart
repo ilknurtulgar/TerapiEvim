@@ -20,9 +20,7 @@ class CustomHeading extends StatelessWidget {
       alignment: isalignmentstart
           ? AlignmentDirectional.centerStart
           : Alignment.center,
-      padding: padding ??
-          AppPaddings
-              .customHeadingPadding, //const EdgeInsets.symmetric(vertical: 25) sikinti cikarsa bu
+      padding: padding ?? AppPaddings.appBarPadding,
       child: Text(
         text,
         style: isToggle != null

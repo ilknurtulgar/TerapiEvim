@@ -38,16 +38,21 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
       backgroundColor: AppColors.blueChalk,
       body: SingleChildScrollView(
         child: Center(
-          child: Column(
-              children: [
-                LoginPageUtility.title(true),
-                textfieldUtility.mailTextfield(_loginController.emailController, true),
-                textfieldUtility.passwordTextfield( _loginController.passwordController, true),
-                forgotYourPasswordTextButton(),
-                LoginPageUtility.button(true,true, () {_loginController.loginWithEmail();}),
-                LoginPageUtility.lineWithOrText(),
-                LoginPageUtility.button(false,true,() => Get.to(() => const SignUpPage())),
-              ]),
+          child: Column(children: [
+            sizedbox(),
+            LoginPageUtility.title(true),
+            textfieldUtility.mailTextfield(
+                _loginController.emailController, true),
+            textfieldUtility.passwordTextfield(
+                _loginController.passwordController, true),
+            forgotYourPasswordTextButton(),
+            LoginPageUtility.button(true, true, () {
+              _loginController.loginWithEmail();
+            }),
+            LoginPageUtility.lineWithOrText(),
+            LoginPageUtility.button(
+                false, true, () => Get.to(() => const SignUpPage())),
+          ]),
         ),
       ),
     );
@@ -55,13 +60,15 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
 
   Padding forgotYourPasswordTextButton() {
     return Padding(
-      padding: const EdgeInsets.only(right: 18,bottom: 20),
+      padding: const EdgeInsets.only(right: 18, bottom: 20),
       child: Align(
         alignment: Alignment.centerRight,
         child: TextButton(
             onPressed: () {/* Şifreyi unutma durumundaki fonksiyon gelecek*/},
-            child: Text(LoginSignUpTextUtil.forgotYourPassword,style: const TextStyle(color: AppColors.meteorite),
-          )),
+            child: Text(
+              LoginSignUpTextUtil.forgotYourPassword,
+              style: const TextStyle(color: AppColors.meteorite),
+            )),
       ),
     );
   }

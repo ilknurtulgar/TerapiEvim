@@ -60,7 +60,7 @@ class NewMetot extends StatelessWidget {
               },
             ),
             isAlignmentBetween: true),
-        AppPaddings.newMetotAppBarPadding);
+        AppPaddings.appBarPadding);
   }
 
   Future<void> deleteMetotDialog(BuildContext context) {

@@ -364,11 +364,11 @@ class AppPaddings {
       const EdgeInsets.symmetric(vertical: 12.0);
   static EdgeInsets timeChossingBetweenPadding =
       const EdgeInsets.only(top: 26, left: 26, right: 26);
-  static EdgeInsets customHeading2Padding = const EdgeInsets.only(
+  static EdgeInsets customheadingPadding = const EdgeInsets.only(
     left: 15,
     bottom: 15,
     top: 20,
-  ); //daha sonra bak
+  );
   static EdgeInsets aboutmePadding = const EdgeInsets.symmetric(vertical: 10);
   static EdgeInsets whitebackgroundmargin = const EdgeInsets.only(bottom: 122);
   static const EdgeInsets rowViewPadding =
@@ -403,7 +403,10 @@ class AppPaddings {
   static const EdgeInsets tGroupPersonPadding = EdgeInsets.only(top: 10);
   static const EdgeInsets tGroupMetotPadding =
       EdgeInsets.symmetric(vertical: 7);
-  //
+  static const EdgeInsets tGroupAppBarPaddong =
+      EdgeInsets.symmetric(vertical: 25, horizontal: 10);
+  static const EdgeInsets tMyGroupAppBarPadding =
+      EdgeInsets.only(top: 18, left: 30, right: 30, bottom: 40);
   static const EdgeInsets tMyGroupPadding =
       EdgeInsets.symmetric(vertical: 9, horizontal: 24);
   static const EdgeInsets newMetotAppBarPadding =
@@ -745,6 +748,6 @@ Divider divider(bool issearch) {
 
 SizedBox sizedbox() {
   return const SizedBox(
-    height: 15,
+    height: 80,
   );
 }

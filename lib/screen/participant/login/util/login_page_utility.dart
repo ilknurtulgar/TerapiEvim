@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/models/container_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 class LoginPageUtility{
@@ -46,4 +47,26 @@ class LoginPageUtility{
     );
   }
 
+  static CustomButton button(bool isForLogin,bool isInLoginPage,Function() onTap) {
+    return CustomButton(
+                textColor: isInLoginPage
+                          ? isForLogin 
+                            ? AppColors.white
+                            : AppColors.butterflyBush 
+                          : isForLogin 
+                            ? AppColors.butterflyBush
+                            : AppColors.white,
+                container: LoginPageUtility.loginSignUpButtonContainer(isInLoginPage,isForLogin),
+                onTap: onTap,
+                text: isForLogin ? LoginSignUpTextUtil.login : LoginSignUpTextUtil.signUp,
+              );
+  }
+
+  static Padding title(bool isForLoginPage) =>
+    Padding(
+      padding: isForLoginPage ? const EdgeInsets.only(top: 168,bottom: 50) : const EdgeInsets.only(top: 60, bottom: 25),
+      child: Text(isForLoginPage ? LoginSignUpTextUtil.login : LoginSignUpTextUtil.signUp,
+      style: AppTextStyles.loginSignUpBigTitle),
+    );
+    
 }

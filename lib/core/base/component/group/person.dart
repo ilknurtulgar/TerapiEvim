@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
-import 'package:terapievim/screen/participant/group/util/lock_screen_utility.dart';
 
 import '../../../../../core/base/util/base_utility.dart';
 import 'row_view.dart';
@@ -49,7 +48,7 @@ class PersonMin extends StatelessWidget {
               border: Border.all(color: borderColor!.withOpacity(0.8)),
               borderRadius: AppBorderRadius.generalBorderRadius,
               color: AppColors.white),
-          child: rowView(row, Paddings.rowViewPadding)),
+          child: rowView(row, AppPaddings.rowViewPadding)),
     );
   }
 }

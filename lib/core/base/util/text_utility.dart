@@ -90,6 +90,14 @@ class LoginSignUpTextUtil {
   static String therapistAcceptedMakingShortCall =
       '''15 dakikalık terapiyi sırayla yapmayı kabul
 ediyorum.KVKK kabul ediyorum.''';
+  // before login page
+  static String whoAreYou = '''Kim olarak uygulamaya devam
+etmek istersiniz?''';
+  static String homeImagePath = 'assets/images/home.jpg';
+  static String participant = 'Danışan';
+  static String therapist = 'Psikolog';
+  static String appName = 'Terapi Evim';
+  static String welcome = 'Hoşgeldiniz';
 }
 
 class ParticipantProfileTextUtil {
@@ -127,6 +135,7 @@ class TherapistProfileTextUtil {
   static String view = 'incele';
   static String watch = 'izle';
   static String advisor = 'Yardımcı Psikolog: ';
+  static List<String> genderList = ['Kadın', 'Erkek'];
 }
 
 class ActivityTextUtil {

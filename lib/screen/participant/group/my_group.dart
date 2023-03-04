@@ -27,7 +27,7 @@ class MyGroup extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              rowView(appBar, AppPaddings.appbarPadding),
+              rowView(appBar, AppPaddings.appBarPadding),
               CustomHeading(
                   isalignmentstart: true,
                   text: GroupTextUtil.upcomingMeetingText),

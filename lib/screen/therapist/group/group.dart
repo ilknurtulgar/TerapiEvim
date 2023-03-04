@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/screen/therapist/group/confirmation/lock_screen_therapist.dart';
-import 'package:terapievim/screen/therapist/group/groups_informations/my_groups_view.dart';
-import 'package:terapievim/screen/therapist/group/metots/new_metot.dart';
+
+
+import '../../participant/group/my_group.dart';
 
 // ignore: must_be_immutable
 class TherapistGroupPage extends StatelessWidget {
@@ -13,7 +14,9 @@ class TherapistGroupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return controller.isLockedOpen.isTrue
+
         ? const NewMetot()
+
         : const LockScreenTherapist();
   }
 }

@@ -25,9 +25,9 @@ class FilterDetails extends StatelessWidget {
                         onPressed: () {}, icon: IconUtility.chevronIcon),
                     isAlignmentBetween: false),
                 AppPaddings.generalPadding),
-            divider(),
+            divider(false),
             filterchoice(),
-            divider(),
+            divider(false),
             butterFlyButton(ActivityTextUtil.join, () {})
           ],
         ),

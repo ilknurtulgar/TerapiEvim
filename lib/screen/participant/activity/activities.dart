@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/component/group/group_box.dart';
-import 'package:terapievim/core/base/models/container_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/screen/participant/activity/about_activity.dart';
+
+import '../../../core/base/models/row_model.dart';
 
 class ActivitiesScreen extends StatelessWidget {
-  ActivitiesScreen({super.key});
-  final TextEditingController activityTextController = TextEditingController();
+  const ActivitiesScreen({super.key});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -15,10 +18,12 @@ class ActivitiesScreen extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                search(),
-                activityminto("Yaklaşan Aktiviteler", () {}),
+                search(searchModel),
+                activityminto(ActivityTextUtil.upcomingActivities, () {},
+                    MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
                 activityseminar(),
-                activityminto("Geçmiş Aktiviteler", () {}),
+                activityminto(ActivityTextUtil.pastActivities, () {},
+                    MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
                 activityseminar()
               ],
             ),
@@ -27,73 +32,61 @@ class ActivitiesScreen extends StatelessWidget {
       ),
     );
   }
-
-  ListView activityseminar() {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(
-            left: 70,
-            top: 20,
-            right: 70,
-          ),
-          child: ActivityBox(
-              containerModel: containerButton,
-              isactivity: true,
-              arowModel: arowmodel,
-              ayrowwModel: ayrowmodel,
-              clockModel: clockmodel),
-        );
-      },
-      itemCount: 2,
-    );
-  }
-
-  Padding activityminto(String text, Function()? onPressed) {
-    return Padding(
-      padding: const EdgeInsets.all(6),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Text(
-            text,
-            style: AppTextStyles.groupTextStyle(false),
-          ),
-          IconButton(
-            icon: IconUtility.arrowIcon,
-            onPressed: onPressed,
-          ),
-        ],
-      ),
-    );
-  }
-
-  Padding search() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: CustomTextField(
-        isPhoneNumber: false,
-        isBig: true,
-        isPassword: true,
-        isRowModel: true,
-        rowModel: searchModel,
-        textController: activityTextController,
-      ),
-    );
-  }
 }
 
-SizedBox _sizedbox() {
-  return const SizedBox(
-    height: 15,
+ListView activityseminar() {
+  return ListView.builder(
+    shrinkWrap: true,
+    physics: const NeverScrollableScrollPhysics(),
+    itemBuilder: (context, index) {
+      return Padding(
+        padding: AppPaddings.activitySeminarPadding,
+        child: ActivityBox(
+            onTap: () {
+              //  print("tıklıyorum ya");
+              Get.to(const AboutActivityScreen());
+            },
+            istwobutton: false,
+            buttonText: ActivityTextUtil.join,
+            containerModel: AppContainers.containerButton(false),
+            isactivity: false,
+            arowModel: DemoInformation.arowmodel,
+            ayrowwModel: DemoInformation.ayrowmodel,
+            clockModel: DemoInformation.clockmodel),
+      );
+    },
+    itemCount: 2,
   );
 }
 
-//deneme
-ContainerModel containerButton = ContainerModel(
-    height: 30,
-    borderRadius: 100,
-    width: 97,
-    backgroundColor: AppColors.meteorite);
+Widget activityminto(String text, Function()? onPressed,
+    MainAxisAlignment mainAxisAlignment, bool isButterfly, Icon icon) {
+  return Row(
+    mainAxisAlignment: mainAxisAlignment,
+    children: [
+      Text(
+        text,
+        style: isButterfly
+            ? AppTextStyles.groupTextStyle(false)
+            : AppTextStyles.normalTextStyle("medium", false),
+      ),
+      IconButton(
+        icon: icon,
+        onPressed: onPressed,
+      ),
+    ],
+  );
+}
+
+final TextEditingController activityTextController = TextEditingController();
+
+Widget search(RowModel rowmodel) {
+  return CustomTextField(
+    isPhoneNumber: false,
+    isBig: true,
+    isPassword: false,
+    isRowModel: true,
+    rowModel: rowmodel,
+    textController: activityTextController,
+  );
+}

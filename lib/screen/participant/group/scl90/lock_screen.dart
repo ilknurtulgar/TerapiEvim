@@ -8,15 +8,17 @@ class LockScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.center,
-      children: [
-        const MyGroup(),
-        Container(
-          color: Colors.black.withOpacity(0.8),
-        ),
-        const PopUp()
-      ],
+    return Scaffold(
+      body: Stack(
+        alignment: AlignmentDirectional.center,
+        children: [
+          const MyGroup(),
+          Container(
+            color: Colors.black.withOpacity(0.8),
+          ),
+          const PopUp()
+        ],
+      ),
     );
   }
 }

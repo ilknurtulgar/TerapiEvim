@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 import 'package:terapievim/core/base/component/home/participant_with_sc_time.dart';
-import 'package:terapievim/screen/participant/home/home.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
+
+import '../message/message.dart';
+import 'available_hours.dart';
 
 class SessionScreen extends StatelessWidget {
   const SessionScreen({super.key});
@@ -14,30 +19,48 @@ class SessionScreen extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 45),
-                child: headingtext(false, false, "15 Dakikalık Seanslarım"),
+                padding: AppPaddings.topAppbar,
+                child: messageappbar(
+                  HomeTextUtil.myMinuteSessions,
+                  const SizedBox.shrink(),
+                  IconButton(
+                      onPressed: () {
+                        Get.to(const AvailableHours());
+                      },
+                      icon: IconUtility.clockIcon),
+                ),
               ),
-              const Align(
-                  alignment: Alignment.bottomRight,
-                  child: Padding(
-                    padding: EdgeInsets.all(9),
-                    child: CustomDropDown(purpose: "order"),
-                  )),
-              ListView.builder(
-                itemBuilder: (context, index) {
-                  return participantWihtShortCallTime(
-                      copingList[index], "19.02.2023");
-                },
-                itemCount: copingList.length,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-              ),
+              orderdropdown(),
+              aboutparticipant(),
             ],
           ),
         ),
       ),
     );
   }
-}
 
-List<String> copingList = ["Simay Kara", "İlknur Kara", "Gizem Kara"];
+  ListView aboutparticipant() {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        return participantWihtShortCallTime(
+            DemoInformation.copingList[index], DemoInformation.date);
+      },
+      itemCount: DemoInformation.copingList.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+    );
+  }
+
+  Align orderdropdown() {
+    return const Align(
+        alignment: Alignment.bottomRight,
+        child: Padding(
+          padding: AppPaddings.generalPadding,
+          child: CustomDropDown(
+            purpose: DemoInformation.orderingList,
+            height: 36,
+            width: 135,
+          ),
+        ));
+  }
+}

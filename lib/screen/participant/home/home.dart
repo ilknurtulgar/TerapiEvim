@@ -5,6 +5,7 @@ import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/home/coping_methods.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -18,12 +19,13 @@ class HomeScreen extends StatelessWidget {
           headingtext(
             true,
             true,
-            "TerapiEvim",
+            GroupTextUtil.terapiEvim,
           ),
-          headingtext(false, false, "Hoşgeldiniz"),
+          headingtext(false, false, HomeTextUtil.welcome),
           mindetailesbox(
-              "BAŞ ETME METOTLARI", () => Get.to(const CopingMethods())),
-          notification(cardModelhome, home, home.length)
+              HomeTextUtil.copingMethods, () => Get.to(const CopingMethods())),
+          notification(DemoInformation.cardModelhome, DemoInformation.home,
+              DemoInformation.home.length)
         ],
       ),
     );
@@ -40,7 +42,7 @@ ListView notification(
           cardModel: cardmodel,
           explanation: explanation[index],
           buttonOnTap: () {},
-          buttonText: "Detaylar");
+          buttonText: HomeTextUtil.detail);
     },
     itemCount: itemlenght,
   );
@@ -48,7 +50,7 @@ ListView notification(
 
 Padding mindetailesbox(String rowmodeltext, Function()? onTap) {
   return Padding(
-    padding: const EdgeInsets.all(10),
+    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
     child: SeminarMin(
         onTap: onTap,
         row: rowModel(rowmodeltext),
@@ -58,11 +60,7 @@ Padding mindetailesbox(String rowmodeltext, Function()? onTap) {
 
 Widget headingtext(bool isHeading, bool isPadding, String heading) {
   return Padding(
-      padding: isPadding
-          ? const EdgeInsets.only(
-              top: 80,
-            )
-          : EdgeInsets.zero,
+      padding: isPadding ? AppPaddings.headingTopPadding : EdgeInsets.zero,
       child: Align(
         alignment: Alignment.center,
         child: Text(
@@ -71,22 +69,6 @@ Widget headingtext(bool isHeading, bool isPadding, String heading) {
         ),
       ));
 }
-
-List<String> home = [
-  "fdvd",
-  "fşdv",
-  "fgbng",
-  "yasemin",
-  "gizem",
-  "ilknur",
-  "behzat"
-];
-CardModel cardModelhome = CardModel(
-    subtitle: "Uzman Psikolog",
-    imagePath: "assets/images/doctorfotosu.jpeg",
-    title: "Günay Kara");
-
-//////
 
 //kalıcı
 

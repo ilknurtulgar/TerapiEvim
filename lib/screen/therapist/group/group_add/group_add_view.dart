@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
+import 'package:terapievim/core/base/component/buttons/election.dart';
 import 'package:terapievim/core/base/component/group/choosing_time_group_therapy.dart';
 import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
@@ -10,6 +11,7 @@ import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 
 class GroupAddView extends StatelessWidget {
   const GroupAddView({super.key});
@@ -22,193 +24,216 @@ class GroupAddView extends StatelessWidget {
     //gecici
 
     List<PersonMin> days = [
-      day("Pazartesi"),
-      day("Sali"),
-      day("Carsamba"),
-      day("Persembe"),
-      day("Cuma"),
-      day("Cumartesi"),
-      day("Pazar"),
-    ];
-    String imagePAth = "assets/images/doctorfotosu.jpeg";
-    List<PersonMin> persons = [
-      person("Nihat Turgutlu", imagePAth, context),
-      person("Mikasa Ackerman", imagePAth, context),
-      person("Eren Jeager", imagePAth, context),
-      person("Levi Ackerman", imagePAth, context)
+      day(GroupTextUtil.monday),
+      day(GroupTextUtil.tuesday),
+      day(GroupTextUtil.wednesday),
+      day(GroupTextUtil.thursday),
+      day(GroupTextUtil.friday),
+      day(GroupTextUtil.saturday),
+      day(GroupTextUtil.sunday),
     ];
 
-    return SafeArea(
+    List<PersonMin> persons = [
+      //cikartamiyorum person widgeti kullanildi cunku
+      person("Nihat Turgutlu", context),
+      person("Mikasa Ackerman", context),
+      person("Eren Jeager", context),
+      person("Levi Ackerman", context)
+    ];
+
+    return Scaffold(
+      body: SafeArea(
         child: SingleChildScrollView(
-      child: Obx(() => Column(
-            children: [
-              rowView(
-                  RowModel(
-                      text: "Grup Ekle",
-                      textStyle: AppTextStyles.heading(false),
-                      isAlignmentBetween: true,
-                      trailingIcon: IconButton(
-                        icon: Icon(
-                          Icons.close,
-                          size: 30,
-                          color: AppColors.meteorite,
-                        ),
-                        onPressed: () {},
-                      )),
-                  EdgeInsets.symmetric(vertical: 32, horizontal: 30)),
-              miniHeadings("Grup Ismi", false),
-              CustomTextField(
-                  isPhoneNumber: false,
-                  isBig: true,
-                  textController: groupNameController,
-                  isPassword: false,
-                  isRowModel: false),
-              miniHeadings("Yardimci Psikolog", false),
-              election(controller, persons, false),
-              Padding(
-                padding: const EdgeInsets.only(
-                  left: 150,
-                  top: 30,
-                ),
-                child: CustomButton(
-                    container: AppContainers.lightPurpleButtonContainer(173),
-                    textColor: AppColors.meteorite,
-                    onTap: () {
-                      controller.ChoosenSecTherapist("Eren Jager");
-                    },
-                    text: "Bana Psikolog Bul"),
-              ),
-              miniHeadings("Gorusme Tarihi", false),
-              miniHeadings("Gun", true),
-              election(controller, days, true),
-              miniHeadings("Saat", true),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 100.0),
-                child: ChoosingTimeGroupTherapy(),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 24.0),
-                child: CustomButton(
-                    container: AppContainers.purpleButtonContainer(140),
-                    textColor: AppColors.white,
-                    onTap: () {},
-                    text: "Grup Olustur"),
-              )
-            ],
-          )),
-    ));
+            child: Column(
+          children: [
+            rowView(
+                RowModel(
+                    text: GroupTextUtil.addGroupText,
+                    textStyle: AppTextStyles.heading(false),
+                    isAlignmentBetween: true,
+                    trailingIcon: IconButton(
+                      icon: IconUtility.close,
+                      onPressed: () {
+                        Get.back();
+                        //geri donus yapmasi lazim
+                      },
+                    )),
+                AppPaddings.appBarPadding),
+            miniHeadings(GroupTextUtil.groupNameText, false),
+            CustomTextField(
+                isPhoneNumber: false,
+                isBig: true,
+                textController: groupNameController,
+                isPassword: false,
+                isRowModel: false),
+            miniHeadings(GroupTextUtil.secondTherapistText, false),
+            Election(
+                election:
+                    ControllerElection.therapistGroupControllerSecTherapist,
+                firstRow: secTherapist(),
+                rows: persons),
+            button(controller, false),
+            miniHeadings(GroupTextUtil.meetDayText, false),
+            miniHeadings(GroupTextUtil.dayText, true),
+            Election(
+                election: ControllerElection.therapistGroupControllerDay,
+                firstRow: dayRow(),
+                rows: days),
+            miniHeadings(GroupTextUtil.timeText, true),
+            Padding(
+              padding: AppPaddings.tGroupAddTimeChoosePadding,
+              child: ChoosingTimeGroupTherapy(),
+            ),
+            button(controller, true)
+          ],
+        )),
+      ),
+    );
   }
 
-  PersonMin person(
-      String TherapistName, String ImagePath, BuildContext context) {
+  Obx dayRow() {
     TherapistGroupController controller = Get.find();
+    return Obx(
+      () => SizedBox(
+          child: SeminarMin(
+              onTap: () {
+                controller.changeDayElection();
+              },
+              row: RowModel(
+                  text: controller.choosenDay.value,
+                  textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
+                  isAlignmentBetween: true,
+                  trailingIcon: controller.isDayElectionOpen.isTrue
+                      ? IconUtility.arrowUp
+                      : IconUtility.arrowDown))),
+    );
+  }
+
+  Obx secTherapist() {
+    TherapistGroupController controller = Get.find();
+    return Obx(
+      () => SizedBox(
+        child: SeminarMin(
+            onTap: () {
+              controller.changeSecTherapistElection();
+            },
+            row: RowModel(
+              text: controller.choosenSecTherapist.value,
+              textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
+              isAlignmentBetween: true,
+              leadingIcon: controller.isSecTherapistChoosed.isTrue
+                  ? CustomCircleAvatar(
+                      imagePath: DemoInformation.imagePath,
+                      big: false,
+                      shadow: false)
+                  : const SizedBox.shrink(),
+              trailingIcon: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  controller.isSecTherapistChoosed.isTrue
+                      ? IconUtility.checkCircleIcon
+                      : const SizedBox(
+                          width: 2,
+                        ),
+                  controller.isSecTherapistElectionOpen.value
+                      ? IconUtility.arrowUp
+                      : IconUtility.arrowDown,
+                ],
+              ),
+            )),
+      ),
+    );
+  }
+
+  Padding button(TherapistGroupController controller, bool isLastButton) {
+    return Padding(
+      padding: isLastButton
+          ? AppPaddings.tGroupFirstButtonPadding
+          : AppPaddings.tGroupLastButtonPadding,
+      child: CustomButton(
+          container: isLastButton
+              ? AppContainers.purpleButtonContainer(140)
+              : AppContainers.lightPurpleButtonContainer(173),
+          textColor: isLastButton ? AppColors.white : AppColors.meteorite,
+          onTap: () {
+            if (isLastButton) {
+            } else {
+              controller.changeChoosenSecTherapist("Eren Jaeger");
+            }
+          },
+          text: isLastButton
+              ? GroupTextUtil.createGroupText
+              : GroupTextUtil.newSecTherapistText),
+    );
+  }
+
+  PersonMin person(String therapistName, BuildContext context) {
+    TherapistGroupController controller = Get.find();
+    Icon trailingIcon = IconUtility.emailIcon;
+
     return PersonMin(
-        padding: EdgeInsets.only(top: 10),
+        padding: AppPaddings.tGroupPersonPadding,
         borderColor: AppColors.cornFlowerBlue,
         onTap: () {
-          showDialog<String>(
-            context: context,
-            builder: (BuildContext context) => AlertDialog(
-              title: Text(
-                  "$TherapistName kişisine yardımcı psikolog teklifi göndermek istediğinize emin misiniz?"),
-              content: const Text(
-                  'İstek gönderildikten itibaren geri dönüt alınmadan başka bir yardımcı terapiste istekte bulunulamaz.'),
-              actions: <Widget>[
-                TextButton(
-                  onPressed: () => Get.back(),
-                  child: const Text('İptal'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    controller.ChoosenSecTherapist(TherapistName);
-                    controller.ChangeSecTherapistElection();
-                    Get.back();
-                  },
-                  child: const Text('İstek Gonder'),
-                ),
-              ],
-            ),
-          );
+          secTherapistChooseDialog(context, therapistName, controller);
+          trailingIcon = IconUtility.checkCircleIcon;
         },
         row: RowModel(
-            text: TherapistName,
+            text: therapistName,
             leadingIcon: CustomCircleAvatar(
-                big: false, imagePath: ImagePath, shadow: false),
+                big: false,
+                imagePath: DemoInformation.imagePath,
+                shadow: false),
             textStyle: AppTextStyles.groupTextStyle(true),
-            isAlignmentBetween: false));
+            isAlignmentBetween: true,
+            trailingIcon: trailingIcon));
+  }
+
+  Future<String?> secTherapistChooseDialog(BuildContext context,
+      String therapistName, TherapistGroupController controller) {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(therapistName + GroupTextUtil.secTherDialogText1),
+        content: Text(GroupTextUtil.secTherDialogText2),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text(GroupTextUtil.cancelText),
+          ),
+          TextButton(
+            onPressed: () {
+              controller.changeChoosenSecTherapist(therapistName);
+              controller.changeSecTherapistElection();
+              Get.back();
+            },
+            child: Text(GroupTextUtil.sendRequestText),
+          ),
+        ],
+      ),
+    );
   }
 
   PersonMin day(String dayName) {
     TherapistGroupController controller = Get.find();
     return PersonMin(
         height: 48,
-        padding: EdgeInsets.only(top: 10),
+        padding: AppPaddings.tGroupPersonPadding,
         onTap: () {
-          controller.ChangeChoosenDay(dayName);
-          controller.ChangeDayElection();
+          controller.changeChoosenDay(dayName);
+          controller.changeDayElection();
         },
         row: RowModel(
             isAlignmentBetween: false,
             text: dayName,
             textStyle: AppTextStyles.buttonTextStyle(AppColors.black)));
   }
-
-  Widget election(
-      TherapistGroupController controller, List<PersonMin> rows, bool isDay) {
-    bool election = isDay
-        ? controller.isDayElectionOpen.value
-        : controller.isSecTherapistElectionOpen.value;
-    double padding;
-    if (isDay) {
-      padding = 150 - 2.2 * controller.ChoosenDay.value.length;
-    } else {
-      padding = 150 - 2.2 * controller.ChoosenSecTherapist.value.length;
-    }
-
-    return Obx(() => Column(
-          children: [
-            SeminarMin(
-                onTap: () {
-                  isDay
-                      ? controller.ChangeDayElection()
-                      : controller.ChangeSecTherapistElection();
-                },
-                row: RowModel(
-                    text: isDay
-                        ? controller.ChoosenDay.value
-                        : controller.ChoosenSecTherapist.value,
-                    textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
-                    isAlignmentBetween: true,
-                    trailingIcon: Padding(
-                      padding: EdgeInsets.only(
-                        left: padding.toDouble(),
-                      ),
-                      child: Icon(
-                        election
-                            ? Icons.keyboard_arrow_up
-                            : Icons.keyboard_arrow_down_sharp,
-                        size: 30,
-                      ),
-                    ))),
-            election
-                ? SizedBox(
-                    width: 294,
-                    child: ListView(
-                      shrinkWrap: true,
-                      children: rows,
-                    ),
-                  )
-                : const SizedBox.shrink(),
-          ],
-        ));
-  }
-
-  Widget miniHeadings(String name, bool isInMiddle) {
+}
+Widget miniHeadings(String name, bool isInMiddle) {
     return rowView(
         RowModel(
             text: name,
             textStyle: AppTextStyles.heading(false),
             isAlignmentBetween: false),
-        EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0));
+        AppPaddings.miniHeadingPadding(isInMiddle));
   }
-}

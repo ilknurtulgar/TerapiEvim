@@ -3,9 +3,10 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/controller/activity_controller.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/activity/a_filter.dart';
 
-ActivityController activityController = Get.put(ActivityController());
+ActivityController activityController = Get.find();
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
@@ -27,64 +28,47 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding:
-            const EdgeInsets.only(left: 24, right: 24, top: 20, bottom: 20),
-        child: SizedBox(
-          width: isBig ? 342 : 195,
-          height: isBig ? 56 : 24,
-          child: Obx(
-            () => TextField(
-              controller: textController,
-              obscureText: isPassword
-                  ? activityController.isObsecure.value
-                  : activityController.yasemin.value,
-              textAlign: TextAlign.start,
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                labelText: rowModel?.text ?? "",
-                labelStyle: rowModel?.textStyle,
-                suffix: isBig ? rowModel?.trailingIcon : null,
-                prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
-                hintText: rowModel?.text2,
-                hintStyle: rowModel?.textStyle2 ?? const TextStyle(),
-                prefixText: isPhoneNumber ? '+90 ' : null,
-                enabledBorder: bordercolor(isBig),
-                focusedBorder: bordercolor(isBig),
-              ),
-            ),
-          ),
-        ));
-  }
-
-  OutlineInputBorder bordercolor(bool isBig) {
-    return OutlineInputBorder(
-        borderRadius: const BorderRadius.all(Radius.circular(8)),
-        borderSide: BorderSide(
-          color: isBig ? AppColors.dustyGray : AppColors.cornFlowerBlue,
-          width: 1,
-        ));
+    return SizedBox(
+      width: isBig ? 340 : 195,
+      height: isBig ? 60 : 30,
+      child: TextField(
+        controller: textController,
+        obscureText: isPassword
+            ? activityController.isObsecure.value
+            : activityController.yasemin.value,
+        textAlign: TextAlign.start,
+        decoration: InputDecoration(
+          contentPadding: AppPaddings.contentPadding,
+          filled: true,
+          fillColor: AppColors.white,
+          labelText: rowModel?.text ?? "",
+          labelStyle: rowModel?.textStyle,
+          suffix: isBig ? rowModel?.trailingIcon : null,
+          prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
+          hintText: rowModel?.text2,
+          hintStyle: rowModel?.textStyle2 ??
+              AppTextStyles.normalTextStyle("small", false),
+          prefixText: isPhoneNumber ? '+90 ' : null,
+          enabledBorder: bordercolor(isBig),
+          focusedBorder: bordercolor(isBig),
+        ),
+      ),
+    );
   }
 }
 
-RowModel trailingModel = RowModel(
-    isAlignmentBetween: true,
-    text: "cx",
-    trailingIcon: Obx(
-      () => IconButton(
-          onPressed: () {
-            activityController.obsecureChange();
-          },
-          icon: activityController.isObsecure.value
-              ? IconUtility.visibilityIcon
-              : IconUtility.visibilityoffIcon),
-    ),
-    textStyle: const TextStyle());
+OutlineInputBorder bordercolor(bool isBig) {
+  return OutlineInputBorder(
+      borderRadius: AppBorderRadius.generalBorderRadius,
+      borderSide: BorderSide(
+        color: isBig ? AppColors.dustyGray : AppColors.cornFlowerBlue,
+        width: 1,
+      ));
+}
 
 RowModel searchModel = RowModel(
     isAlignmentBetween: true,
-    text: "Ne aramistiniz?",
+    text: ActivityTextUtil.searchText,
     leadingIcon: IconUtility.searchIcon,
     trailingIcon: IconButton(
       onPressed: () {

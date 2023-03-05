@@ -6,27 +6,12 @@ import 'package:terapievim/core/base/component/video_call/video_call_container/v
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
-import 'package:terapievim/screen/participant/video_call/model/person_in_call_model.dart';
 
 // ignore: must_be_immutable
 class IsolatedCallPage extends StatelessWidget {
-  IsolatedCallPage({
-    super.key,
-  });
-  PersonInCallModel therapist = PersonInCallModel(
-      name: 'Simay',
-      surname: 'Selli',
-      imagePath: 'assets/images/f1.jpg',
-      isMicOn: true,
-      isCamOn: true);
-  PersonInCallModel participant = PersonInCallModel(
-      name: 'Kerem',
-      surname: 'Görkem',
-      imagePath: 'assets/images/f2.jpg',
-      isMicOn: false,
-      isCamOn: true);
-  VideoCallController videoCallController = Get.put(
-      VideoCallController()); // daha önce başka bir sayfa için kullanılmadığı için uygulama şu anlık hata vermesin diye get.put kullandım ileriki süreçte get.find'a çeviririz
+  IsolatedCallPage({super.key});
+  
+  VideoCallController videoCallController = Get.put(VideoCallController()); // daha önce başka bir sayfa için kullanılmadığı için uygulama şu anlık hata vermesin diye get.put kullandım ileriki süreçte get.find'a çeviririz
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -44,13 +29,15 @@ class IsolatedCallPage extends StatelessWidget {
     return Positioned(
         right: 20,
         bottom: 137,
-        child: VideoCallPersonView(
-            onDoubleTap: () => videoCallController.isViewPlaceChanged,
-            videoCallViewModel: VideoCallUtility.personSmallView(
-                videoCallController.isViewPlaceChanged.value
-                    ? therapist
-                    : participant,
-                false)));
+        child: Obx(
+          () => VideoCallPersonView(
+              onDoubleTap: () => videoCallController.changeViewPlaces(),
+              videoCallViewModel: VideoCallUtility.personSmallView(
+                  videoCallController.isViewPlaceChanged.value
+                      ? DemoInformation.therapist
+                      : DemoInformation.personNo1,
+                  false)),
+        ));
   }
 
   Align buttonsRowContainer() {
@@ -64,13 +51,15 @@ class IsolatedCallPage extends StatelessWidget {
     );
   }
 
-  VideoCallPersonView personBigViewInCall() {
-    return VideoCallPersonView(
-        onDoubleTap: () => videoCallController.isViewPlaceChanged,
-        videoCallViewModel: VideoCallUtility.personBigView(
-            videoCallController.isViewPlaceChanged.value
-                ? participant
-                : therapist,
-            false));
+  Obx personBigViewInCall() {
+    return Obx(
+      () => VideoCallPersonView(
+          onDoubleTap: () => videoCallController.changeViewPlaces(),
+          videoCallViewModel: VideoCallUtility.personBigView(
+              videoCallController.isViewPlaceChanged.value
+                  ? DemoInformation.personNo1
+                  : DemoInformation.therapist,
+              false)),
+    );
   }
 }

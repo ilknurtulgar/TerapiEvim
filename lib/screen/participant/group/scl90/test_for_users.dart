@@ -3,29 +3,16 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
-import 'package:terapievim/core/base/component/group/questions_button.dart';
 import 'package:terapievim/controller/test_questions_controller.dart';
 
 import '../../../../core/base/util/base_utility.dart';
 
 class Test extends StatelessWidget {
-  Test({super.key});
+  const Test({super.key});
 
-  List<Widget> questions = [
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview()
-  ];
   @override
   Widget build(BuildContext context) {
-    return PagesForSCL(questions: questions);
+    return PagesForSCL(questions: DemoInformation.questions);
   }
 }
 
@@ -45,22 +32,24 @@ class PagesForSCL extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Obx(
-        () => Column(
-          children: [
-            CustomHeading(
-              text: heading,
-              isalignmentstart: false,
-              padding: const EdgeInsets.symmetric(vertical: 32),
-            ),
-            _controller.testPageIndex.value == 0
-                ? PurpleTextContainer(text: definition)
-                : const SizedBox.shrink(),
-            questionsWidget(),
-            pageChangeButtons()
-          ],
+    return Scaffold(
+      body: SingleChildScrollView(
+        padding: AppPaddings.appBarPadding,
+        child: Obx(
+          () => Column(
+            children: [
+              CustomHeading(
+                text: heading,
+                isalignmentstart: false,
+                padding: AppPaddings.userTestHeadingPadding,
+              ),
+              _controller.testPageIndex.value == 0
+                  ? PurpleTextContainer(text: definition)
+                  : const SizedBox.shrink(),
+              questionsWidget(),
+              pageChangeButtons()
+            ],
+          ),
         ),
       ),
     );
@@ -72,7 +61,7 @@ class PagesForSCL extends StatelessWidget {
           questions[index + _controller.testPageIndex.value * 3],
       itemCount: 3, //sayfada kac soru olacak sor
       shrinkWrap: true,
-      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 23),
+      padding: AppPaddings.userTestQuestionPadding,
     );
   }
 

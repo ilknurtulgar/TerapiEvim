@@ -8,16 +8,17 @@ class CustomContainer extends StatelessWidget {
   const CustomContainer(
       {super.key,
       required this.containerModel,
-      required this.cardModel,
+      required this.isThereCardModel,
+      this.cardModel,
       this.time,
       this.widget});
   final ContainerModel containerModel;
-  final CardModel cardModel;
+  final bool isThereCardModel;
+  final CardModel? cardModel;
   final String? time;
   final Widget? widget;
   @override
   Widget build(BuildContext context) {
-    //center niye?
     return Center(
       child: Card(
         elevation: 5,
@@ -29,7 +30,7 @@ class CustomContainer extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              listTile(),
+              isThereCardModel ? listTile() : const SizedBox(),
               widget ?? const SizedBox(),
             ],
           ),
@@ -41,13 +42,13 @@ class CustomContainer extends StatelessWidget {
   ListTile listTile() {
     return ListTile(
       leading: CustomCircleAvatar(
-          imagePath: cardModel.imagePath, big: false, shadow: false),
+          imagePath: cardModel!.imagePath, big: false, shadow: false),
       title: Text(
-        cardModel.title,
+        cardModel!.title,
         style: AppTextStyles.normalTextStyle('medium', false),
       ),
       subtitle:
-          cardModel.subtitle != null ? Text(cardModel.subtitle ?? "") : null,
+          cardModel!.subtitle != null ? Text(cardModel!.subtitle ?? "") : null,
       trailing: Text(time ?? ""),
     );
   }

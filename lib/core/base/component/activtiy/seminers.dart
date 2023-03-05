@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/participant/group/util/lock_screen_utility.dart';
+import 'package:terapievim/screen/therapist/home/home.dart';
 import '../../util/base_utility.dart';
 import '../group/row_view.dart';
 import '../../models/row_model.dart';
@@ -34,7 +34,7 @@ class SeminarMin extends StatelessWidget {
             border: Border.all(color: borderColor!.withOpacity(1)),
             borderRadius: BorderRadius.circular(8),
             color: AppColors.white),
-        child: rowView(row, Paddings.rowViewPadding),
+        child: rowView(row, AppPaddings.rowViewPadding),
       ),
     );
   }
@@ -56,7 +56,7 @@ class SeminarMax extends StatelessWidget {
   final RowModel row2;
   final RowModel row3;
 
-  final Function onTap;
+  final Function() onTap;
   Color? borderColor;
 
   double? width;
@@ -65,10 +65,12 @@ class SeminarMax extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     borderColor ??= AppColors.dustyGray;
-    width ??= 342;
-    height ??= 120;
+    width ??= Responsive.width(342, context);
+    height ??= Responsive.height(120, context);
     return InkWell(
-      onTap: () => onTap,
+      onTap: () {
+        onTap();
+      },
       child: Container(
         height: height,
         width: width,
@@ -80,9 +82,9 @@ class SeminarMax extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            rowView(row1, Paddings.rowViewPadding),
-            rowView(row2, Paddings.rowViewPadding),
-            rowView(row3, Paddings.rowViewPadding)
+            rowView(row1, AppPaddings.rowViewPadding),
+            rowView(row2, AppPaddings.rowViewPadding),
+            rowView(row3, AppPaddings.rowViewPadding)
           ],
         ),
       ),

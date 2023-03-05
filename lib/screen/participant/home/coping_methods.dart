@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/home/method_downloading_container.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 
 import 'package:terapievim/screen/participant/home/home.dart';
+import 'package:terapievim/screen/therapist/home/home.dart';
 
 class CopingMethods extends StatelessWidget {
   const CopingMethods({super.key});
@@ -14,8 +17,8 @@ class CopingMethods extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
-              headingtext(false, true, "BAŞ ETME METOTLARI"),
-              filter(),
+              headingtext(false, true, HomeTextUtil.copingMethods),
+              filter(context),
               methodbuilder()
             ],
           ),
@@ -30,22 +33,25 @@ class CopingMethods extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return MethodDownloadingContainer(
-            cardModel: cardModelhome,
-            time: "25 Ocak 2023,20:00",
-            explanation: home[index],
+            cardModel: DemoInformation.cardModelhome,
+            time: DemoInformation.clockabomeactivty,
+            explanation: DemoInformation.home[index],
             buttonOnTap: () {},
-            buttonText: "Metotu Oku");
+            buttonText: HomeTextUtil.readMethod);
       },
-      itemCount: home.length,
+      itemCount: DemoInformation.home.length,
     );
   }
 
-  Padding filter() {
-    return const Padding(
-      padding: EdgeInsets.all(8.0),
+  Widget filter(BuildContext context) {
+    return Padding(
+      padding: AppPaddings.generalPadding,
       child: Align(
         alignment: Alignment.bottomRight,
-        child: CustomDropDown(purpose: "order"),
+        child: CustomDropDown(
+            purpose: DemoInformation.orderingList,
+            height: Responsive.height(40, context),
+            width: 135),
       ),
     );
   }

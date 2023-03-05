@@ -1,26 +1,17 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import '../../../../core/base/models/container_model.dart';
+import '../../../../core/base/component/activtiy/drop_down.dart';
 import '../../../../core/base/models/row_model.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
+import '../../../../core/base/util/text_utility.dart';
 
 class ProfilePageUtility {
-  static Column backgroundOfThePage(bool isInProfileSettingsPage) => Column(
-        children: [
-          Container(
-            height: 162,
-            width: window.physicalSize.width,
-            color: AppColors.white,
-          ),
-          Container(
-            height: isInProfileSettingsPage
-                ? window.physicalSize.height - 162
-                : 678,
-            width: window.physicalSize.width,
-            color: AppColors.blueChalk,
-          ),
-        ],
+  static Container backgroundOfThePage() => Container(
+        height: 162,
+        width: window.physicalSize.width,
+        color: AppColors.white,
       );
 
   static Positioned positionedIconButton(
@@ -50,10 +41,9 @@ class ProfilePageUtility {
       RowModel(
           // ana ve yardımcı terapist için
           text: firstText,
-          textStyle: const TextStyle(
-              color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18),
+          textStyle: AppTextStyles.profileTextStyles(false,true),
           text2: secondText,
-          textStyle2: const TextStyle(color: Colors.black, fontSize: 16),
+          textStyle2: AppTextStyles.normalTextStyle('medium',false),
           leadingIcon: Icon(
             isInParticipantPage
                 ? Icons.person_outline
@@ -62,29 +52,29 @@ class ProfilePageUtility {
           ),
           isAlignmentBetween: false);
 
-  static RowModel boldMainTitleRow(
-          String text, IconData icon, Function() onTap) =>
-      RowModel(
-          text: text,
-          leadingIcon: Icon(
-            icon,
-            color: AppColors.black,
-            size: 25,
-          ),
-          textStyle: const TextStyle(
-              color: AppColors.black,
-              fontWeight: FontWeight.bold,
-              fontSize:
-                  20), // bu apptextstyle'da yoktu, başka yerde kullanıldığını görmedim
-          isAlignmentBetween: false,
-          trailingIcon: Padding(
-            padding: EdgeInsets.only(
-                left: icon == Icons.desktop_windows_outlined ? 60 : 65),
-            child: IconButton(
-                onPressed: onTap,
-                alignment: Alignment.centerLeft,
-                icon: IconUtility.arrowForwardIcon),
-          ));
+  static boldMainTitleRowView(String text,String purpose,Function() onTap) =>
+      rowView(
+          RowModel(
+              text: text,
+              leadingIcon: Icon(
+                purpose=='group' 
+                 ? Icons.group_outlined
+                 : purpose=='method'
+                   ? Icons.description_outlined
+                   : Icons.desktop_windows_outlined,
+                color: AppColors.black,
+                size: 25,
+              ),
+              textStyle: AppTextStyles.profileTextStyles(true,true),
+              isAlignmentBetween: false,
+              trailingIcon: Padding(
+                padding: EdgeInsets.only(left: text.length < 15 ? 160 : 80),
+                child: IconButton(
+                    onPressed: onTap,
+                    alignment: Alignment.centerLeft,
+                    icon: IconUtility.arrowForwardIcon),
+              )),
+          EdgeInsets.zero);
 
   static RowModel normalTextRow(
           String text, IconData icon, TextStyle textStyle) =>
@@ -97,49 +87,11 @@ class ProfilePageUtility {
           textStyle: textStyle,
           isAlignmentBetween:
               false); //TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-
-  static Padding lineWithOrText() {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 30),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          horizontalLine(),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 5),
-            child: Text('Ya da'),
-          ),
-          horizontalLine()
-        ],
-      ),
-    );
-  }
-
-  static Container horizontalLine() {
-    return Container(
-      color: AppColors.black,
-      height: 1,
-      width: 150,
-    );
-  }
-
-  static ContainerModel loginSignUpButtonContainer(
-          bool isInLoginPage, bool isLoginButton) =>
-      ContainerModel(
-          width: 342,
-          borderRadius: 8,
-          backgroundColor: (isInLoginPage && isLoginButton) ||
-                  (isInLoginPage == false && isLoginButton == false)
-              ? AppColors.royalBlue
-              : AppColors.white,
-          height: 43);
-
-  static List<String> informationTitle = [
-    'Ad Soyad: ',
-    'Doğum Tarihi: ',
-    'Cinsiyet: ',
-    'Mail: ',
-    'Şifre: ',
-    'Telefon: '
-  ];
+  
+  static CustomDropDown genderDropDown(bool isInProfilePage) => CustomDropDown(
+    purpose: TherapistProfileTextUtil.genderList,
+    width: isInProfilePage ? 195 : 342,
+    height: isInProfilePage ? 23 : 56,
+  );
 }
+

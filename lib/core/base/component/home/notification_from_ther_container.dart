@@ -20,6 +20,7 @@ class NotificationFromTherContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomContainer(
       containerModel: AppContainers.classicWhiteContainer,
+      isThereCardModel: true,
       cardModel: cardModel,
       widget: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Padding(

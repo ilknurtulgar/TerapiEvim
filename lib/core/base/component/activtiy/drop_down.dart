@@ -7,8 +7,12 @@ class CustomDropDown extends StatefulWidget {
   const CustomDropDown({
     required this.purpose,
     super.key,
+    required this.width,
+    required this.height,
   });
-  final String purpose;
+  final double width;
+  final double height;
+  final List<String> purpose;
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
 }
@@ -16,37 +20,34 @@ class CustomDropDown extends StatefulWidget {
 class _CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      choosebox(),
-      Obx(
-        () => activityController.selectedBox.value
-            ? ChooseGender(widget: widget)
-            : const SizedBox(),
-      )
-    ]);
+    return Container(
+      decoration: AppBoxDecoration.lockScreenBox,
+      height: widget.height,
+      width: widget.width,
+      child: Column(children: [
+        choosebox(),
+        Obx(
+          () => activityController.selectedBox.value
+              ? ChooseGender(widget: widget)
+              : const SizedBox.shrink(),
+        )
+      ]),
+    );
   }
 
-  Obx choosebox() {
-    return Obx(
-      () => InkWell(
+  Widget choosebox() {
+    return InkWell(
         onTap: () {
           activityController.changeBox();
         },
-        child: Container(
-          height: widget.purpose == "gender" ? 24 : 36,
-          decoration: AppBoxDecoration.lockScreenBox,
-          width: widget.purpose == "gender" ? 195 : 135,
-          child: widget.purpose == "gender"
-              ? Align(
-                  alignment: Alignment.center,
-                  child: Text(
-                    activityController.gender.value,
-                  ),
-                )
-              : Align(
-                  alignment: Alignment.center,
-                  child: Text(activityController.order.value)),
-        ),
+        child: textpurpose(widget.purpose[0]));
+  }
+
+  Align textpurpose(property) {
+    return Align(
+      alignment: Alignment.center,
+      child: Text(
+        property,
       ),
     );
   }
@@ -63,29 +64,27 @@ class ChooseGender extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: AppBoxDecoration.lockScreenBox,
-        width: 340,
-        height: 50,
-        child: ListView.builder(
-          itemBuilder: (context, index) {
-            return InkWell(
-              onTap: () {
-                activityController.func(index, widget.purpose);
-                activityController.changeBox();
-              },
-              child: SizedBox(
-                width: 340,
-                height: 50,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 10, top: 15),
-                  child: widget.purpose == "gender"
-                      ? Text(activityController.genderList[index])
-                      : Text(activityController.orderingList[index]),
-                ),
-              ),
-            );
-          },
-          itemCount: activityController.genderList.length,
-        ));
+      decoration: AppBoxDecoration.lockScreenBox,
+      child: ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemBuilder: (context, index) {
+          return InkWell(
+            onTap: () {
+              // activityController.func(index, widget.purpose);
+              activityController.changeBox();
+            },
+            child: SizedBox(
+                width: widget.width,
+                height: widget.height,
+                child: Text(
+                  widget.purpose[index],
+                  textAlign: TextAlign.center,
+                )),
+          );
+        },
+        itemCount: widget.purpose.length,
+      ),
+    );
   }
 }

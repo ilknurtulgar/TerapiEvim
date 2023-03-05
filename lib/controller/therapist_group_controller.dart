@@ -65,4 +65,18 @@ class TherapistGroupController extends GetxController {
   //lock screen controller
   var isTherapistUploaded = true.obs;
   var isLockedOpen = true.obs;
+
+  RxList<RxList<String>> timeListInControllerList = [['öylesine string'].obs].obs;
+
+  void getTimeListToController(List<String> timeList, int listviewIndex) {
+    if (listviewIndex == 0) {
+      timeListInControllerList.clear();
+    }
+    timeListInControllerList.add(timeList.obs);
+  }
+
+  void deleteTime(List<String> timeList, int rowIndex, int listViewIndex) {
+    timeListInControllerList[listViewIndex].remove(timeListInControllerList[listViewIndex][rowIndex]);
+   // print(timeListInControllerList);
+  }
 }

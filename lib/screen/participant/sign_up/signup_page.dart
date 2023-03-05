@@ -55,19 +55,23 @@ class _SignUpPageState extends State<SignUpPage> {
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(10),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              LoginPageUtility.title(false),
-              ...textfieldList,
-              widget.isForParticipant == false
-                  ? acceptMakingShortCallContainer(controller)
-                  : const SizedBox(),
-              LoginPageUtility.button(false,false,() {_signUpController.signUpWithEmail();},),
-              LoginPageUtility.lineWithOrText(),
-              LoginPageUtility.button(true,false, () => Get.to(() => const ParticipantLoginPage())),
-              const SizedBox(height: 25,)
-            ],
+          child: Center(
+            child: Wrap(
+              direction: Axis.vertical,
+              spacing: 20,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                LoginPageUtility.title(false),
+                ...textfieldList,
+                widget.isForParticipant == false
+                    ? acceptMakingShortCallContainer(controller)
+                    : const SizedBox(),
+                LoginPageUtility.button(false,false,() {_signUpController.signUpWithEmail();},),
+                LoginPageUtility.lineWithOrText(),
+                LoginPageUtility.button(true,false, () => Get.to(() => const ParticipantLoginPage())),
+                const SizedBox(height: 25,)
+              ],
+            ),
           ),
         ),
       ),

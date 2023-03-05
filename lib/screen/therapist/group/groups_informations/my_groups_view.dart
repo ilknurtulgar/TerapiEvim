@@ -39,7 +39,8 @@ class MyGroups extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return Padding(
-                    padding: AppPaddings.tMyGroupPadding,
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
                     child: SeminarMax(
                         onTap: () {
                           Get.to(GroupInformation());

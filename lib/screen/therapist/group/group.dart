@@ -4,8 +4,9 @@ import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/screen/therapist/group/confirmation/lock_screen_therapist.dart';
 
 
-import '../../participant/group/my_group.dart';
-import 'metots/new_metot.dart';
+
+
+
 
 // ignore: must_be_immutable
 class TherapistGroupPage extends StatelessWidget {
@@ -15,9 +16,7 @@ class TherapistGroupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return controller.isLockedOpen.isTrue
-
-        ? const NewMetot()
-
+        ? const MyGroups()
         : const LockScreenTherapist();
   }
 }

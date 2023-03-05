@@ -66,7 +66,7 @@ class LoginPageUtility {
   }
 
   static Padding title(bool isForLoginPage) => Padding(
-        padding: const EdgeInsets.only(top: 60, bottom: 40),
+        padding: AppPaddings.loginTitlePadding,
         child: Text(
             isForLoginPage
                 ? LoginSignUpTextUtil.login

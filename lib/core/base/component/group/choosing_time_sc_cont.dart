@@ -74,7 +74,7 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
             leadingIcon: IconUtility.clockIcon,
             trailingIcon: isForParticipant 
               ? Obx(
-                 () => Icon(IconUtility.checkCircleIcon,
+                 () => Icon(Icons.check_circle_outline,
                   color: listviewIndex == groupController.listviewIndexInController.value && rowIndex == groupController.rowIndexInController.value
                       ? AppColors.black
                       : AppColors.transparent))

@@ -316,6 +316,8 @@ class AppPaddings {
   static const EdgeInsets headingTopPadding = EdgeInsets.only(
     top: 80,
   );
+  static const EdgeInsets componentPadding = EdgeInsets.symmetric(horizontal: 24, vertical: 8);
+  static EdgeInsets miniHeadingPadding(bool isInMiddle) => EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
 
 //yukardakiler kesinlestirildi
   static const EdgeInsets generalPadding = EdgeInsets.all(8);
@@ -360,8 +362,8 @@ class AppPaddings {
   );
   static const EdgeInsets chatInformationPadding = EdgeInsets.all(2);
   static const EdgeInsets topAppbar = EdgeInsets.only(top: 45);
-  static const EdgeInsets startpadding = EdgeInsets.only(left: 35, top: 35);
-  static const EdgeInsets centerpadding = EdgeInsets.only(left: 150, top: 35);
+ // static const EdgeInsets startpadding = EdgeInsets.only(left: 35, top: 35);
+ // static const EdgeInsets centerpadding = EdgeInsets.only(left: 150, top: 35);
   static const EdgeInsets eventAboutPadding =
       EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 20);
   static const EdgeInsets datePadding = EdgeInsets.only(left: 19);

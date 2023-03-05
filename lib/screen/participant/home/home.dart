@@ -50,7 +50,7 @@ ListView notification(
 
 Padding mindetailesbox(String rowmodeltext, Function()? onTap) {
   return Padding(
-    padding: AppPaddings.generalPadding,
+    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
     child: SeminarMin(
         onTap: onTap,
         row: rowModel(rowmodeltext),

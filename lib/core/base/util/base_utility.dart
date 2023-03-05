@@ -141,12 +141,7 @@ class IconUtility {
   static const Icon settingIcon = Icon(Icons.settings);
   static const Icon editIcon = Icon(Icons.edit);
   static const Icon deleteIcon = Icon(Icons.delete);
-  static const IconData navHome = Icons.home;
-  static const IconData navActivities = Icons.desktop_windows;
-  static const IconData navMessage = Icons.chat;
-  static const IconData navGroup = Icons.groups;
-  static const IconData navProfile = Icons.account_circle;
-  static const IconData lock = Icons.lock_outline;
+
   static const Icon lockIcon = Icon(
     Icons.lock,
     color: AppColors.black,
@@ -155,13 +150,13 @@ class IconUtility {
     Icons.mail,
     color: AppColors.black,
   );
-  static const IconData lockopen = Icons.lock_open;
+
   static const Icon calendarIcon = Icon(
     Icons.calendar_month_outlined,
     color: AppColors.black,
   );
 
-  static const IconData checkCircleIcon = Icons.check_circle_outline;
+  static const Icon checkCircleIcon = Icon(Icons.check_circle_outline);
   static const Icon save = Icon(Icons.save, color: AppColors.meteorite);
   static const Icon contactPhoneIcon =
       Icon(Icons.contact_phone_outlined, color: AppColors.black);
@@ -169,6 +164,30 @@ class IconUtility {
     Icons.arrow_forward_ios,
     color: AppColors.black,
   );
+
+  static const IconData navHome = Icons.home;
+  static const IconData navActivities = Icons.desktop_windows;
+  static const IconData navMessage = Icons.chat;
+  static const IconData navGroup = Icons.groups;
+  static const IconData navProfile = Icons.account_circle;
+  static const IconData lock = Icons.lock_outline;
+  static const IconData lockopen = Icons.lock_open;
+  //degistirilen iconlar
+  static const Icon close = Icon(
+    Icons.close,
+    size: 30,
+    color: AppColors.meteorite,
+  );
+  static const Icon arrowUp = Icon(
+    Icons.keyboard_arrow_up,
+    size: 30,
+  );
+  static const Icon arrowDown = Icon(
+    Icons.keyboard_arrow_down,
+    size: 30,
+  );
+  static const Icon back = Icon(Icons.arrow_back_ios_new);
+  static const Icon edit = Icon(Icons.edit_document);
 }
 
 class AppTextStyles {
@@ -297,6 +316,8 @@ class AppPaddings {
   static const EdgeInsets headingTopPadding = EdgeInsets.only(
     top: 80,
   );
+  static const EdgeInsets componentPadding = EdgeInsets.symmetric(horizontal: 24, vertical: 8);
+  static EdgeInsets miniHeadingPadding(bool isInMiddle) => EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
 
 //yukardakiler kesinlestirildi
   static const EdgeInsets generalPadding = EdgeInsets.all(8);
@@ -341,8 +362,8 @@ class AppPaddings {
   );
   static const EdgeInsets chatInformationPadding = EdgeInsets.all(2);
   static const EdgeInsets topAppbar = EdgeInsets.only(top: 45);
-  static const EdgeInsets startpadding = EdgeInsets.only(left: 35, top: 35);
-  static const EdgeInsets centerpadding = EdgeInsets.only(left: 150, top: 35);
+ // static const EdgeInsets startpadding = EdgeInsets.only(left: 35, top: 35);
+ // static const EdgeInsets centerpadding = EdgeInsets.only(left: 150, top: 35);
   static const EdgeInsets eventAboutPadding =
       EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 20);
   static const EdgeInsets datePadding = EdgeInsets.only(left: 19);

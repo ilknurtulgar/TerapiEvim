@@ -52,11 +52,7 @@ class GroupAddView extends StatelessWidget {
                     textStyle: AppTextStyles.heading(false),
                     isAlignmentBetween: true,
                     trailingIcon: IconButton(
-                      icon: const Icon(
-                        Icons.close,
-                        size: 30,
-                        color: AppColors.meteorite,
-                      ),
+                      icon: IconUtility.close,
                       onPressed: () {
                         Get.back();
                         //geri donus yapmasi lazim
@@ -104,16 +100,12 @@ class GroupAddView extends StatelessWidget {
                 controller.changeDayElection();
               },
               row: RowModel(
-                text: controller.choosenDay.value,
-                textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
-                isAlignmentBetween: true,
-                trailingIcon: Icon(
-                  controller.isDayElectionOpen.isTrue
-                      ? Icons.keyboard_arrow_up
-                      : Icons.keyboard_arrow_down_sharp,
-                  size: 30,
-                ),
-              ))),
+                  text: controller.choosenDay.value,
+                  textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
+                  isAlignmentBetween: true,
+                  trailingIcon: controller.isDayElectionOpen.isTrue
+                      ? IconUtility.arrowUp
+                      : IconUtility.arrowDown))),
     );
   }
 
@@ -139,16 +131,13 @@ class GroupAddView extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   controller.isSecTherapistChoosed.isTrue
-                      ? const Icon(Icons.check_circle_outline)
+                      ? IconUtility.checkCircleIcon
                       : const SizedBox(
                           width: 2,
                         ),
-                  Icon(
-                    controller.isSecTherapistElectionOpen.value
-                        ? Icons.keyboard_arrow_up
-                        : Icons.keyboard_arrow_down_sharp,
-                    size: 30,
-                  ),
+                  controller.isSecTherapistElectionOpen.value
+                      ? IconUtility.arrowUp
+                      : IconUtility.arrowDown,
                 ],
               ),
             )),
@@ -187,7 +176,7 @@ class GroupAddView extends StatelessWidget {
         borderColor: AppColors.cornFlowerBlue,
         onTap: () {
           secTherapistChooseDialog(context, therapistName, controller);
-          trailingIcon = const Icon(Icons.check_circle_outline);
+          trailingIcon = IconUtility.checkCircleIcon;
         },
         row: RowModel(
             text: therapistName,
@@ -239,13 +228,12 @@ class GroupAddView extends StatelessWidget {
             text: dayName,
             textStyle: AppTextStyles.buttonTextStyle(AppColors.black)));
   }
-
-  Widget miniHeadings(String name, bool isInMiddle) {
+}
+Widget miniHeadings(String name, bool isInMiddle) {
     return rowView(
         RowModel(
             text: name,
             textStyle: AppTextStyles.heading(false),
             isAlignmentBetween: false),
-        EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0));
+        AppPaddings.miniHeadingPadding(isInMiddle));
   }
-}

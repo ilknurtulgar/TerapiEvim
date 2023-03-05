@@ -6,6 +6,7 @@ import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/home/home.dart';
+import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart';
 
 class NewActivityScreen extends StatefulWidget {
   const NewActivityScreen({super.key});
@@ -31,11 +32,9 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
                     ? headingtext(false, true, ActivityTextUtil.activityUpdate)
                     : headingtext(false, true, ActivityTextUtil.newActivity),
               ),
-              activityname(
-                  ActivityTextUtil.eventName, AppPaddings.startpadding),
+              miniHeadings( ActivityTextUtil.eventName,false),
               eventname(),
-              activityname(
-                  ActivityTextUtil.eventAbout, AppPaddings.startpadding),
+              miniHeadings( ActivityTextUtil.eventAbout,false),
               eventabout(),
               dateclockrow(),
               dateclocktextfield(),
@@ -89,11 +88,14 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
     );
   }
 
-  Row dateclockrow() {
+  Row dateclockrow() { // miniHeading ve container ikisi beraber bir column olarak extract edilecek 2 tanesi yan yana kullanılacak
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        activityname(ActivityTextUtil.date, AppPaddings.startpadding),
-        activityname(ActivityTextUtil.clock, AppPaddings.centerpadding),
+        miniHeadings(ActivityTextUtil.date,false),
+       // activityname(ActivityTextUtil.date, AppPaddings.startpadding),
+        miniHeadings(ActivityTextUtil.clock,true)
+       // activityname(ActivityTextUtil.clock, AppPaddings.centerpadding),
       ],
     );
   }
@@ -113,7 +115,7 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
     return Padding(
       padding: padding,
       child: Align(
-        alignment: Alignment.topLeft,
+        alignment: Alignment.centerLeft,
         child: Text(
           activityheading,
           style: AppTextStyles.groupTextStyle(false),

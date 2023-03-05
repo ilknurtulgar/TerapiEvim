@@ -16,24 +16,27 @@ class SessionScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: AppPaddings.topAppbar,
-                child: messageappbar(
-                  HomeTextUtil.myMinuteSessions,
-                  const SizedBox.shrink(),
-                  IconButton(
-                      onPressed: () {
-                        Get.to(const AvailableHours());
-                      },
-                      icon: IconUtility.clockIcon),
+          child: Stack(children: [
+            Column(
+              children: [
+                Padding(
+                  padding: AppPaddings.topAppbar,
+                  child: messageappbar(
+                    HomeTextUtil.myMinuteSessions,
+                    const SizedBox.shrink(),
+                    IconButton(
+                        onPressed: () {
+                          Get.to(const AvailableHours());
+                        },
+                        icon: IconUtility.clockIcon),
+                  ),
                 ),
-              ),
-              orderdropdown(),
-              aboutparticipant(),
-            ],
-          ),
+                sizedbox(),
+                aboutparticipant(),
+              ],
+            ),
+            Positioned(top: 104, right: 24, child: orderdropdown()),
+          ]),
         ),
       ),
     );
@@ -43,7 +46,9 @@ class SessionScreen extends StatelessWidget {
     return ListView.builder(
       itemBuilder: (context, index) {
         return participantWihtShortCallTime(
-            DemoInformation.copingList[index], DemoInformation.date);
+            //sorun devam ediyor
+            DemoInformation.copingList[index],
+            DemoInformation.date);
       },
       itemCount: DemoInformation.copingList.length,
       shrinkWrap: true,
@@ -55,9 +60,9 @@ class SessionScreen extends StatelessWidget {
     return const Align(
         alignment: Alignment.bottomRight,
         child: Padding(
-          padding: AppPaddings.generalPadding,
+          padding: AppPaddings.componentPadding,
           child: CustomDropDown(
-            purpose: DemoInformation.orderingList,
+            isGenderPurpose: false,
             height: 36,
             width: 135,
           ),

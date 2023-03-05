@@ -25,43 +25,48 @@ class TwoRowShortContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      //left right 24 verince oluyor
-      padding: isThereButton ? const EdgeInsets.only(bottom: 5,right: 12) : const EdgeInsets.symmetric(horizontal: 24),
-      child: Material(
-        elevation: 5,
-        shadowColor: isThereButton == true && purpose == 'seminar' ? AppColors.cornFlowerBlue : AppColors.transparent,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8),),
-        child: Container(
-          height: isThereButton ? 114 : 80,
-          width: isThereButton ? 250 : 342,
-          decoration: containerDecoration(), //
-          child: Padding(
-            padding: const EdgeInsets.only(left: 10),
-            child: Center(
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    firstRow(),
-                    secondRow(),
-                    isThereButton ? button() : const SizedBox()
-                  ]),
+        //left right 24 verince oluyor
+        padding: isThereButton
+            ? const EdgeInsets.only(bottom: 5, right: 12)
+            : AppPaddings.componentPadding,
+        child: Material(
+          elevation: 5,
+          shadowColor: isThereButton == true && purpose == 'seminar'
+              ? AppColors.cornFlowerBlue
+              : AppColors.transparent,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Container(
+            height: isThereButton ? 114 : 80,
+            width: isThereButton ? 250 : 342,
+            decoration: containerDecoration(), //
+            child: Padding(
+              padding: const EdgeInsets.only(left: 10),
+              child: Center(
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      firstRow(),
+                      secondRow(),
+                      isThereButton ? button() : const SizedBox()
+                    ]),
+              ),
             ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   BoxDecoration containerDecoration() {
     return BoxDecoration(
-            borderRadius: AppBorderRadius.generalBorderRadius,
-            color: AppColors.white,
-            border: Border.all(
-                color: isThereButton == true && purpose == 'seminar'
-                    ? AppColors.cornFlowerBlue
-                    : Colors.grey.withOpacity(0.50),
-                width: 2));
+        borderRadius: AppBorderRadius.generalBorderRadius,
+        color: AppColors.white,
+        border: Border.all(
+            color: isThereButton == true && purpose == 'seminar'
+                ? AppColors.cornFlowerBlue
+                : Colors.grey.withOpacity(0.50),
+            width: 2));
   }
 
   Widget secondRow() {
@@ -69,14 +74,16 @@ class TwoRowShortContainer extends StatelessWidget {
         ProfilePageUtility.normalTextRow(
             row2Text,
             secondIconData,
-            AppTextStyles.profileTextStyles(false,purpose != 'date' ? true : false)),
+            AppTextStyles.profileTextStyles(
+                false, purpose != 'date' ? true : false)),
         const EdgeInsets.only(top: 10));
   }
 
   Widget firstRow() {
     return rowView(
         purpose != 'date'
-            ? ProfilePageUtility.normalTextRow(row1Text,firstIconData,AppTextStyles.profileTextStyles(false,true))
+            ? ProfilePageUtility.normalTextRow(row1Text, firstIconData,
+                AppTextStyles.profileTextStyles(false, true))
             : ProfilePageUtility.doubleTextRow('Danışan: ', row1Text, false),
         const EdgeInsets.only(top: 5));
   }

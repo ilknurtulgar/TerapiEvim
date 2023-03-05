@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/group/choosing_time_sc_cont.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/therapist/home/add_hours_screen.dart';
@@ -38,13 +37,15 @@ class AvailableHours extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return Padding(
-          padding: AppPaddings.timeChossingBetweenPadding,
-          child: ChoosingTimeForSCContainer(
+            padding: AppPaddings.timeChossingBetweenPadding,
+            child:
+                sizedbox() /*ChoosingTimeForSCContainer(
               therapistName: DemoInformation.nameSurname,
               date: DemoInformation.date,
               timeList: DemoInformation.timelist,
               listviewIndex: 3),
-        );
+        */
+            );
       },
       itemCount: 5,
     );

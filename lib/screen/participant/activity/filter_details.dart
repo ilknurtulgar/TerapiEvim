@@ -11,6 +11,7 @@ import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
 class FilterDetails extends StatelessWidget {
   FilterDetails({super.key});
   final ActivityController activityController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +29,7 @@ class FilterDetails extends StatelessWidget {
             divider(false),
             filterchoice(),
             divider(false),
-            butterFlyButton(ActivityTextUtil.join, () {})
+            butterFlyButton(ActivityTextUtil.okey, () {})
           ],
         ),
       ),
@@ -39,12 +40,15 @@ class FilterDetails extends StatelessWidget {
     return Expanded(
       child: ListView.builder(
         itemBuilder: (context, index) {
-          return filtermin(DemoInformation.personList[index], () {
-            activityController.iconFilter();
-          }, IconUtility.activityIcon);
-          /*  activityController.activityIcon.value
-                          ? IconUtility.circleIcon
-                          : IconUtility.checkCircleIcon),*/
+          return Obx(
+            () => filtermin(DemoInformation.personList[index], () {
+              print(index);
+              activityController.iconFilter(index);
+            },
+                activityController.activityIcon[index]
+                    ? IconUtility.circleIcon
+                    : IconUtility.checkCircleIcon),
+          );
         },
         shrinkWrap: true,
         itemCount: DemoInformation.personList.length,

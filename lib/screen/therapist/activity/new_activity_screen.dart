@@ -5,6 +5,7 @@ import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/participant/home/home.dart';
 import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart';
 
@@ -32,9 +33,9 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
                     ? headingtext(false, true, ActivityTextUtil.activityUpdate)
                     : headingtext(false, true, ActivityTextUtil.newActivity),
               ),
-              miniHeadings( ActivityTextUtil.eventName,false),
+              miniHeadings(ActivityTextUtil.eventName, false),
               eventname(),
-              miniHeadings( ActivityTextUtil.eventAbout,false),
+              miniHeadings(ActivityTextUtil.eventAbout, false),
               eventabout(),
               dateclockrow(),
               dateclocktextfield(),
@@ -62,15 +63,8 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
         isRowModel: false);
   }
 
-  Padding eventabout() {
-    return Padding(
-      padding: AppPaddings.eventAboutPadding,
-      child: SizedBox(
-        width: 350,
-        height: 300,
-        child: textfield(),
-      ),
-    );
+  Widget eventabout() {
+    return textfield(342, 204);
   }
 
   Row dateclocktextfield() {
@@ -78,37 +72,38 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
       children: [
         Padding(
           padding: AppPaddings.datePadding,
-          child: SizedBox(width: 150, height: 52, child: textfield()),
+          child: textfield(160, 60),
         ),
         Padding(
           padding: AppPaddings.clockPadding,
-          child: SizedBox(width: 150, height: 52, child: textfield()),
+          child: textfield(160, 60),
         ),
       ],
     );
   }
 
-  Row dateclockrow() { // miniHeading ve container ikisi beraber bir column olarak extract edilecek 2 tanesi yan yana kullanılacak
+  Row dateclockrow() {
+    // miniHeading ve container ikisi beraber bir column olarak extract edilecek 2 tanesi yan yana kullanılacak
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        miniHeadings(ActivityTextUtil.date,false),
-       // activityname(ActivityTextUtil.date, AppPaddings.startpadding),
-        miniHeadings(ActivityTextUtil.clock,true)
-       // activityname(ActivityTextUtil.clock, AppPaddings.centerpadding),
+        miniHeadings(ActivityTextUtil.date, false),
+        // activityname(ActivityTextUtil.date, AppPaddings.startpadding),
+        miniHeadings(ActivityTextUtil.clock, true)
+        // activityname(ActivityTextUtil.clock, AppPaddings.centerpadding),
       ],
     );
   }
 
-  TextField textfield() {
-    return TextField(
-      maxLines: 100,
-      decoration: InputDecoration(
-          filled: true,
-          fillColor: AppColors.white,
-          focusedBorder: bordercolor(true),
-          enabledBorder: bordercolor(true)),
-    );
+  Widget textfield(double width, double height) {
+    return CustomTextField(
+        height: height,
+        width: width,
+        isPhoneNumber: false,
+        isBig: true,
+        textController: activityTextController,
+        isPassword: false,
+        isRowModel: false);
   }
 
   Padding activityname(String activityheading, EdgeInsets padding) {

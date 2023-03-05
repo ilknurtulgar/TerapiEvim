@@ -32,7 +32,7 @@ class FilterBox extends StatelessWidget {
 InkWell clickbox() {
   return InkWell(
     onTap: (() {
-      controller.iconFilter();
+      controller.iconFilter(0);
     }),
     child: Container(
       height: 35,

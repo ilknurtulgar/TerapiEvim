@@ -5,7 +5,6 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import '../../../../core/base/component/activtiy/drop_down.dart';
 import '../../../../core/base/models/row_model.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
-import '../../../../core/base/util/text_utility.dart';
 
 class ProfilePageUtility {
   static Container backgroundOfThePage() => Container(
@@ -41,9 +40,9 @@ class ProfilePageUtility {
       RowModel(
           // ana ve yardımcı terapist için
           text: firstText,
-          textStyle: AppTextStyles.profileTextStyles(false,true),
+          textStyle: AppTextStyles.profileTextStyles(false, true),
           text2: secondText,
-          textStyle2: AppTextStyles.normalTextStyle('medium',false),
+          textStyle2: AppTextStyles.normalTextStyle('medium', false),
           leadingIcon: Icon(
             isInParticipantPage
                 ? Icons.person_outline
@@ -52,20 +51,20 @@ class ProfilePageUtility {
           ),
           isAlignmentBetween: false);
 
-  static boldMainTitleRowView(String text,String purpose,Function() onTap) =>
+  static boldMainTitleRowView(String text, String purpose, Function() onTap) =>
       rowView(
           RowModel(
               text: text,
               leadingIcon: Icon(
-                purpose=='group' 
-                 ? Icons.group_outlined
-                 : purpose=='method'
-                   ? Icons.description_outlined
-                   : Icons.desktop_windows_outlined,
+                purpose == 'group'
+                    ? Icons.group_outlined
+                    : purpose == 'method'
+                        ? Icons.description_outlined
+                        : Icons.desktop_windows_outlined,
                 color: AppColors.black,
                 size: 25,
               ),
-              textStyle: AppTextStyles.profileTextStyles(true,true),
+              textStyle: AppTextStyles.profileTextStyles(true, true),
               isAlignmentBetween: false,
               trailingIcon: Padding(
                 padding: EdgeInsets.only(left: text.length < 15 ? 160 : 80),
@@ -87,11 +86,10 @@ class ProfilePageUtility {
           textStyle: textStyle,
           isAlignmentBetween:
               false); //TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-  
-  static CustomDropDown genderDropDown(bool isInProfilePage) => CustomDropDown(
-    purpose: TherapistProfileTextUtil.genderList,
-    width: isInProfilePage ? 195 : 342,
-    height: isInProfilePage ? 23 : 56,
-  );
-}
 
+  static CustomDropDown genderDropDown(bool isInProfilePage) => CustomDropDown(
+        isGenderPurpose: true,
+        width: isInProfilePage ? 195 : 342,
+        height: isInProfilePage ? 23 : 56,
+      );
+}

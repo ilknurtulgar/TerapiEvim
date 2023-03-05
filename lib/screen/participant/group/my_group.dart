@@ -7,10 +7,8 @@ import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/screen/participant/group/group_out.dart';
-import 'package:terapievim/screen/participant/group/util/group_screen_utility.dart';
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/util/text_utility.dart';
-import 'util/lock_screen_utility.dart';
 
 class MyGroup extends StatelessWidget {
   const MyGroup({super.key});
@@ -29,7 +27,7 @@ class MyGroup extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              rowView(appBar, GroupPaddings.appbarPadding),
+              rowView(appBar, AppPaddings.appBarPadding),
               CustomHeading(
                   isalignmentstart: true,
                   text: GroupTextUtil.upcomingMeetingText),
@@ -76,7 +74,7 @@ class MyGroup extends StatelessWidget {
     //gecici katilimci modeli
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
-      padding: Paddings.participantsPadding,
+      padding: AppPaddings.participantsPadding,
       shrinkWrap: true,
       itemCount: tmpParticipantNumber,
       itemBuilder: ((context, index) => tmpParticipant),

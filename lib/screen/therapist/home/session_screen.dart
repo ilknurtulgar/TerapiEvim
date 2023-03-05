@@ -19,7 +19,7 @@ class SessionScreen extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 45),
+                padding: AppPaddings.topAppbar,
                 child: messageappbar(
                   HomeTextUtil.myMinuteSessions,
                   const SizedBox.shrink(),

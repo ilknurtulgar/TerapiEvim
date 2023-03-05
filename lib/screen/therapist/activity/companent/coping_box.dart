@@ -43,12 +43,7 @@ class CopingBox extends StatelessWidget {
 
   CustomHeading heading() {
     return CustomHeading(
-      padding: const EdgeInsets.only(
-        top: 20,
-        left: 15,
-        right: 15,
-        bottom: 25,
-      ),
+      padding: AppPaddings.customHeadingPadding,
       text: copingtext,
       isalignmentstart: true,
       isToggle: true,
@@ -61,19 +56,11 @@ class CopingBox extends StatelessWidget {
       width: 248,
       height: 47,
       child: Padding(
-        padding: PaddingAdd.toppadding,
+        padding: AppPaddings.toppadding,
         child: Text(pdfname,
             textAlign: TextAlign.center,
             style: AppTextStyles.normalTextStyle("medium", false)),
       ),
     );
   }
-}
-
-class PaddingAdd {
-  static const EdgeInsets toppadding = EdgeInsets.only(
-    top: 10,
-  );
-  static const EdgeInsets startpadding = EdgeInsets.only(left: 35, top: 35);
-  static const EdgeInsets centerpadding = EdgeInsets.only(left: 150, top: 35);
 }

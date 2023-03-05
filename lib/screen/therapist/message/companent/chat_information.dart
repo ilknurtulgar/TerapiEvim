@@ -22,7 +22,7 @@ class _ChatInformationState extends State<ChatInformation> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(2),
+      padding: AppPaddings.chatInformationPadding,
       child: InkWell(
         onTap: () => Get.to(MessageScreen()),
         child: CustomContainer(

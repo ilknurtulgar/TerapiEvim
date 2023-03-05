@@ -12,7 +12,9 @@ class PersonView extends StatelessWidget {
   PersonView({super.key, required this.gruopName, required this.list});
   final String gruopName;
   final List<String> list;
-  final TherapistyMessageController therapistyMessageController = Get.find();
+  final TherapistyMessageController therapistyMessageController =
+      Get.put(TherapistyMessageController());
+    
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -65,3 +67,5 @@ class PersonView extends StatelessWidget {
     );
   }
 }
+
+

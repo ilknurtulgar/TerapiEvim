@@ -70,8 +70,7 @@ Column conformed() {
       Container(
         width: LockScreenUtil.lockScreenContainerWidth,
         height: LockScreenUtil.lockScreenContainerHeight,
-        margin: const EdgeInsets.symmetric(
-            vertical: LockScreenUtil.lockScreenHeight),
+        margin: AppPaddings.tLockScreenTextPadding,
         child: Text(
           GroupTextUtil.confirmationText,
           style: AppTextStyles.normalTextStyle("big", false)
@@ -90,9 +89,7 @@ Column noUpload() {
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Container(
-        margin: const EdgeInsets.only(
-            top: LockScreenUtil.lockScreenHeight,
-            bottom: LockScreenUtil.lockScreenHeight * 2),
+        margin: AppPaddings.tLockScreenNoUploadPadding,
         width: LockScreenUtil.lockScreenContainerWidth,
         height: LockScreenUtil.lockScreenContainerHeight,
         child: Text(

@@ -99,7 +99,7 @@ class GroupInformation extends StatelessWidget {
 
   Padding navMethod(RowModel row, Function() func) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 7),
+      padding: AppPaddings.tGroupMetotPadding,
       child:
           SeminarMin(borderColor: AppColors.meteorite, onTap: func, row: row),
     );
@@ -129,7 +129,7 @@ class GroupInformation extends StatelessWidget {
                 )
               ],
             )),
-        const EdgeInsets.symmetric(vertical: 25, horizontal: 10));
+        AppPaddings.appBarPadding);
   }
 
   Future<void> deleteGroupDialog(BuildContext context) {
@@ -177,7 +177,7 @@ class GroupInformation extends StatelessWidget {
   PersonMin person(String name, BuildContext context) {
     TherapistGroupController controller = Get.find();
     return PersonMin(
-        padding: const EdgeInsets.only(top: 10),
+        padding: AppPaddings.tGroupPersonPadding,
         borderColor: AppColors.cornFlowerBlue,
         onTap: () {
           deleteParticipantDialog(context, name, controller);

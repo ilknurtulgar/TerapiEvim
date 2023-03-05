@@ -5,6 +5,7 @@ import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart'
 
 import '../../../screen/participant/activity/activities.dart';
 import '../../../screen/participant/group/group.dart';
+import '../../../screen/participant/group/util/lock_screen_utility.dart';
 import '../../../screen/participant/home/home.dart';
 import '../../../screen/participant/message/message.dart';
 import '../../../screen/participant/profile/models/group_model.dart';
@@ -237,12 +238,12 @@ class AppTextStyles {
       //sor!
       color: isName ? AppColors.black : AppColors.deepCove);
 
-  static TextStyle profileTextStyles(bool isBig,bool isBold) =>TextStyle(
-    fontFamily: 'Roboto',
-    fontSize: isBig ? 20 : 17,
-    fontWeight: isBold ? FontWeight.bold : FontWeight.w400,
-    color: AppColors.black,
-  );
+  static TextStyle profileTextStyles(bool isBig, bool isBold) => TextStyle(
+        fontFamily: 'Roboto',
+        fontSize: isBig ? 20 : 17,
+        fontWeight: isBold ? FontWeight.bold : FontWeight.w400,
+        color: AppColors.black,
+      );
 }
 
 class AppContainers {
@@ -289,6 +290,10 @@ class AppContainers {
 }
 
 class AppPaddings {
+  static const EdgeInsets appBarPadding =
+      EdgeInsets.symmetric(vertical: 25, horizontal: 20);
+
+//yukardakiler kesinlestirildi
   static const EdgeInsets generalPadding = EdgeInsets.all(8);
   static const EdgeInsets reminderPadding =
       EdgeInsets.symmetric(vertical: 16, horizontal: 16);
@@ -300,6 +305,115 @@ class AppPaddings {
       EdgeInsets.only(left: 10, right: 10, top: 25, bottom: 25);
 
   static const EdgeInsets appmpadding = EdgeInsets.all(15);
+
+  static const EdgeInsets activitySeminarPadding = EdgeInsets.only(
+    left: 70,
+    top: 20,
+    right: 70,
+  );
+  static const EdgeInsets headingTopPadding = EdgeInsets.only(
+    top: 80,
+  );
+  static const EdgeInsets dividerPadding = EdgeInsets.only(
+    bottom: 10,
+  );
+  static const EdgeInsets circleAvatarPadding = EdgeInsets.only(
+    top: 10,
+    right: 5,
+  );
+  static const EdgeInsets activityBoxPadding =
+      EdgeInsets.symmetric(horizontal: 15, vertical: 3);
+
+  static const EdgeInsets toggleButtonsPadding = EdgeInsets.only(bottom: 30);
+
+  static const EdgeInsets appbarLeftPadding = EdgeInsets.only(left: 10);
+  static const EdgeInsets customHeadingPadding = EdgeInsets.only(
+    top: 20,
+    left: 15,
+    right: 15,
+    bottom: 25,
+  );
+  static const EdgeInsets toppadding = EdgeInsets.only(
+    top: 10,
+  );
+  static const EdgeInsets chatInformationPadding = EdgeInsets.all(2);
+  static const EdgeInsets topAppbar = EdgeInsets.only(top: 45);
+  static const EdgeInsets startpadding = EdgeInsets.only(left: 35, top: 35);
+  static const EdgeInsets centerpadding = EdgeInsets.only(left: 150, top: 35);
+  static const EdgeInsets eventAboutPadding =
+      EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 20);
+  static const EdgeInsets datePadding = EdgeInsets.only(left: 19);
+  static const EdgeInsets clockPadding = EdgeInsets.only(left: 30);
+  static const EdgeInsets notificationContainerPadding =
+      EdgeInsets.only(bottom: 11, top: 8);
+  static const EdgeInsets contentPadding = EdgeInsets.all(3);
+
+  //grup
+  static const EdgeInsets userTestPadding = EdgeInsets.only(bottom: 20);
+  static const EdgeInsets userTestHeadingPadding =
+      EdgeInsets.symmetric(vertical: 32);
+  static const EdgeInsets userTestQuestionPadding =
+      EdgeInsets.symmetric(vertical: 30, horizontal: 23);
+
+  static EdgeInsets groupCategoryPadding =
+      const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24);
+  static EdgeInsets appbarPadding =
+      const EdgeInsets.only(right: 10.0, left: 10, top: 10);
+  static EdgeInsets shortCallHeadingPadding = const EdgeInsets.all(10);
+  static EdgeInsets timeChoosePadding =
+      const EdgeInsets.symmetric(vertical: 12.0);
+  static EdgeInsets timeChossingBetweenPadding =
+      const EdgeInsets.only(top: 26, left: 26, right: 26);
+  static EdgeInsets customheadingPadding = const EdgeInsets.only(
+    left: 15,
+    bottom: 15,
+    top: 20,
+  );
+  static EdgeInsets aboutmePadding = const EdgeInsets.symmetric(vertical: 10);
+  static EdgeInsets whitebackgroundmargin = const EdgeInsets.only(bottom: 122);
+  static const EdgeInsets rowViewPadding =
+      EdgeInsets.symmetric(vertical: 4, horizontal: 16);
+  static const EdgeInsets rowViewProfilePadding =
+      EdgeInsets.only(top: 15, left: 24, right: 24);
+  static const EdgeInsets participantsPadding =
+      EdgeInsets.only(left: 25, right: 25);
+
+  static const EdgeInsets tLockScreenTextPadding =
+      EdgeInsets.symmetric(vertical: LockScreenUtil.lockScreenHeight);
+  static const EdgeInsets tLockScreenNoUploadPadding = EdgeInsets.only(
+      top: LockScreenUtil.lockScreenHeight,
+      bottom: LockScreenUtil.lockScreenHeight * 2);
+  static const EdgeInsets tLockScreenAppBarPadding =
+      EdgeInsets.only(bottom: 83, top: 30);
+  static const EdgeInsets lockScreenContainerPadding = EdgeInsets.all(20);
+  static const EdgeInsets tLockScreenUploadTextPadding =
+      EdgeInsets.symmetric(vertical: 60, horizontal: 55);
+  static const EdgeInsets tLockScreenPdfPadding =
+      EdgeInsets.symmetric(vertical: 30, horizontal: 55);
+  static const EdgeInsets tGroupaddAppBarPadding =
+      EdgeInsets.symmetric(vertical: 32, horizontal: 30);
+  static const EdgeInsets tGroupAddTimeChoosePadding =
+      EdgeInsets.symmetric(horizontal: 100);
+  static const EdgeInsets tGroupFirstButtonPadding =
+      EdgeInsets.symmetric(vertical: 24.0);
+  static const EdgeInsets tGroupLastButtonPadding = EdgeInsets.only(
+    left: 150,
+    top: 30,
+  );
+  static const EdgeInsets tGroupPersonPadding = EdgeInsets.only(top: 10);
+  static const EdgeInsets tGroupMetotPadding =
+      EdgeInsets.symmetric(vertical: 7);
+  static const EdgeInsets tGroupAppBarPaddong =
+      EdgeInsets.symmetric(vertical: 25, horizontal: 10);
+  static const EdgeInsets tMyGroupAppBarPadding =
+      EdgeInsets.only(top: 18, left: 30, right: 30, bottom: 40);
+  static const EdgeInsets tMyGroupPadding =
+      EdgeInsets.symmetric(vertical: 9, horizontal: 24);
+  static const EdgeInsets newMetotAppBarPadding =
+      EdgeInsets.symmetric(vertical: 33, horizontal: 23);
+  static const EdgeInsets newMetotPadding = EdgeInsets.symmetric(vertical: 40);
+  static const EdgeInsets aboutOtherGroupsPadding =
+      EdgeInsets.only(left: 40, right: 40, top: 30);
 }
 
 class AppBorderRadius {
@@ -383,6 +497,10 @@ class DemoInformation {
     "anksiyete",
     "panik atak",
   ];
+  //toggle
+  static const String question =
+      "1.Yasemini insanlar 100 üzerinden  ne kadar severlerse yasemin ne kadar mutlu olur( slm Yasemin aşko <3 )?(Cevap yok hehe)";
+
 //activity
   static const String aboutActivtyName = "Grup Terapilerinin Etkisi";
   static RowModel arowmodel = RowModel(
@@ -541,8 +659,7 @@ class DemoInformation {
       textStyle: AppTextStyles.groupTextStyle(true));
 
   // video call
-    // group therapy call page,isolated call page,short call page
-
+  // group therapy call page,isolated call page,short call page
 
   static PersonInCallModel therapist = PersonInCallModel(
       name: 'Simay',
@@ -618,19 +735,19 @@ class DemoInformation {
       List.generate(5, (index) => 'Seminar ${index + 1}');
   static List<String> advisorNames =
       List.generate(5, (index) => 'Yeşim ${index + 1}');
-
 }
 
-Divider divider() {
-  return const Divider(
-    color: AppColors.black,
+Divider divider(bool issearch) {
+  return Divider(
+    color: issearch ? AppColors.doveGray : AppColors.black,
     height: 5,
+    //
+    indent: 10,
   );
-
 }
 
 SizedBox sizedbox() {
   return const SizedBox(
-    height: 15,
+    height: 80,
   );
 }

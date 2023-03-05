@@ -62,7 +62,7 @@ class GroupAddView extends StatelessWidget {
                         //geri donus yapmasi lazim
                       },
                     )),
-                const EdgeInsets.symmetric(vertical: 32, horizontal: 30)),
+                AppPaddings.appBarPadding),
             miniHeadings(GroupTextUtil.groupNameText, false),
             CustomTextField(
                 isPhoneNumber: false,
@@ -85,7 +85,7 @@ class GroupAddView extends StatelessWidget {
                 rows: days),
             miniHeadings(GroupTextUtil.timeText, true),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 100.0),
+              padding: AppPaddings.tGroupAddTimeChoosePadding,
               child: ChoosingTimeGroupTherapy(),
             ),
             button(controller, true)
@@ -159,11 +159,8 @@ class GroupAddView extends StatelessWidget {
   Padding button(TherapistGroupController controller, bool isLastButton) {
     return Padding(
       padding: isLastButton
-          ? const EdgeInsets.symmetric(vertical: 24.0)
-          : const EdgeInsets.only(
-              left: 150,
-              top: 30,
-            ),
+          ? AppPaddings.tGroupFirstButtonPadding
+          : AppPaddings.tGroupLastButtonPadding,
       child: CustomButton(
           container: isLastButton
               ? AppContainers.purpleButtonContainer(140)
@@ -186,7 +183,7 @@ class GroupAddView extends StatelessWidget {
     Icon trailingIcon = IconUtility.emailIcon;
 
     return PersonMin(
-        padding: const EdgeInsets.only(top: 10),
+        padding: AppPaddings.tGroupPersonPadding,
         borderColor: AppColors.cornFlowerBlue,
         onTap: () {
           secTherapistChooseDialog(context, therapistName, controller);
@@ -232,7 +229,7 @@ class GroupAddView extends StatelessWidget {
     TherapistGroupController controller = Get.find();
     return PersonMin(
         height: 48,
-        padding: const EdgeInsets.only(top: 10),
+        padding: AppPaddings.tGroupPersonPadding,
         onTap: () {
           controller.changeChoosenDay(dayName);
           controller.changeDayElection();

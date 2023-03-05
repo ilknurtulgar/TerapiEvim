@@ -5,9 +5,6 @@ import 'package:terapievim/core/base/component/profile/image/custom_circle_avata
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/screen/participant/group/util/group_screen_utility.dart';
-
-import '../../participant/group/util/lock_screen_utility.dart';
 
 class TherapistProfile extends StatelessWidget {
   TherapistProfile({super.key, required this.isSecTherapist});
@@ -95,7 +92,7 @@ class TherapistProfile extends StatelessWidget {
 
 Padding activity(RowModel row, Function() func) {
   return Padding(
-    padding: Paddings.rowViewProfilePadding,
+    padding: AppPaddings.rowViewProfilePadding,
     child: SeminarMin(
       onTap: func,
       row: row,
@@ -110,7 +107,7 @@ Widget otherGroups(List<RowModel> groups) {
     child: Column(
       children: [
         CustomHeading(
-            padding: const EdgeInsets.only(left: 40, right: 40, top: 30),
+            padding: AppPaddings.aboutOtherGroupsPadding,
             text: GroupTextUtil.secTherapistGroupsText,
             isalignmentstart: true),
         ListView.builder(
@@ -133,7 +130,7 @@ Text heading(name) {
 
 Container aboutMe(String aboutme) {
   return Container(
-    padding: GroupPaddings.aboutmePadding,
+    padding: AppPaddings.aboutmePadding,
     width: 265,
     child: Text(
       aboutme,
@@ -148,6 +145,6 @@ Container whiteBackground(BuildContext context) {
     width: MediaQuery.of(context).size.width,
     height: 191,
     color: AppColors.white,
-    margin: GroupPaddings.whitebackgroundmargin,
+    margin: AppPaddings.whitebackgroundmargin,
   );
 }

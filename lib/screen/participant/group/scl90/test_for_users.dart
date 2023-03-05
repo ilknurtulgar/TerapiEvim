@@ -34,14 +34,14 @@ class PagesForSCL extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 20),
+        padding: AppPaddings.appBarPadding,
         child: Obx(
           () => Column(
             children: [
               CustomHeading(
                 text: heading,
                 isalignmentstart: false,
-                padding: const EdgeInsets.symmetric(vertical: 32),
+                padding: AppPaddings.userTestHeadingPadding,
               ),
               _controller.testPageIndex.value == 0
                   ? PurpleTextContainer(text: definition)
@@ -61,7 +61,7 @@ class PagesForSCL extends StatelessWidget {
           questions[index + _controller.testPageIndex.value * 3],
       itemCount: 3, //sayfada kac soru olacak sor
       shrinkWrap: true,
-      padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 23),
+      padding: AppPaddings.userTestQuestionPadding,
     );
   }
 

@@ -5,7 +5,7 @@ class MainController extends GetxController {
   var isTestNotSolved = false.obs;
   var isTestResultReady = true.obs;
   var isGroupReady = true.obs;
-  var isLogged = false.obs;
+  var isLogged = true.obs;
 
   changeScreen(int index) {
     switch (index) {

@@ -228,13 +228,12 @@ class GroupAddView extends StatelessWidget {
             text: dayName,
             textStyle: AppTextStyles.buttonTextStyle(AppColors.black)));
   }
-
-  Widget miniHeadings(String name, bool isInMiddle) {
+}
+Widget miniHeadings(String name, bool isInMiddle) {
     return rowView(
         RowModel(
             text: name,
             textStyle: AppTextStyles.heading(false),
             isAlignmentBetween: false),
-        EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0));
+        AppPaddings.miniHeadingPadding(isInMiddle));
   }
-}

@@ -55,12 +55,10 @@ class GroupInformation extends StatelessWidget {
                             textStyle: AppTextStyles.aboutMeTextStyle(false),
                             leadingIcon: IconUtility.groupsIcon,
                             isAlignmentBetween: true,
-                            trailingIcon: Icon(
-                              controller.isParticipantElectionOpen.isTrue
-                                  ? Icons.keyboard_arrow_up
-                                  : Icons.keyboard_arrow_down_sharp,
-                              size: 38,
-                            ),
+                            trailingIcon:
+                                controller.isParticipantElectionOpen.isTrue
+                                    ? IconUtility.arrowUp
+                                    : IconUtility.arrowDown,
                           ),
                         ),
                       )),
@@ -108,7 +106,7 @@ class GroupInformation extends StatelessWidget {
   Widget heading(BuildContext context) {
     return rowView(
         RowModel(
-            leadingIcon: const Icon(Icons.arrow_back_ios_new),
+            leadingIcon: IconUtility.back,
             text: "Anksiyete 1",
             textStyle: AppTextStyles.heading(false),
             isAlignmentBetween: true,

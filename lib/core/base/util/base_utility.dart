@@ -414,6 +414,10 @@ class AppPaddings {
   static const EdgeInsets newMetotPadding = EdgeInsets.symmetric(vertical: 40);
   static const EdgeInsets aboutOtherGroupsPadding =
       EdgeInsets.only(left: 40, right: 40, top: 30);
+
+  // before login page
+  static const EdgeInsets beforeLoginPagePadding = EdgeInsets.only(bottom: 30);
+  static const EdgeInsets beforeLoginButtonPadding = EdgeInsets.only(top: 15);
 }
 
 class AppBorderRadius {

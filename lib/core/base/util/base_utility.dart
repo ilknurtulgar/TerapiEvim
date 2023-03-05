@@ -292,6 +292,11 @@ class AppContainers {
 class AppPaddings {
   static const EdgeInsets appBarPadding =
       EdgeInsets.symmetric(vertical: 25, horizontal: 20);
+  static const EdgeInsets loginTitlePadding =
+      EdgeInsets.only(top: 60, bottom: 40);
+  static const EdgeInsets headingTopPadding = EdgeInsets.only(
+    top: 80,
+  );
 
 //yukardakiler kesinlestirildi
   static const EdgeInsets generalPadding = EdgeInsets.all(8);
@@ -311,9 +316,7 @@ class AppPaddings {
     top: 20,
     right: 70,
   );
-  static const EdgeInsets headingTopPadding = EdgeInsets.only(
-    top: 80,
-  );
+
   static const EdgeInsets dividerPadding = EdgeInsets.only(
     bottom: 10,
   );
@@ -748,6 +751,6 @@ Divider divider(bool issearch) {
 
 SizedBox sizedbox() {
   return const SizedBox(
-    height: 80,
+    height: 50,
   );
 }

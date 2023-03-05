@@ -19,7 +19,6 @@ class TherapistHome extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                sizedbox(),
                 headingtext(true, true, GroupTextUtil.terapiEvim),
                 headingtext(false, false, HomeTextUtil.welcome),
                 mindetailesbox(HomeTextUtil.myMinuteSessions,
@@ -36,7 +35,7 @@ class TherapistHome extends StatelessWidget {
 
   Padding notificationcontainer() {
     return const Padding(
-      padding: AppPaddings.notificationContainerPadding,
+      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       child: NotificationContainer(
         type: NotificationType.shortcallFail,
         contentText: DemoInformation.notificationcontenttext,
@@ -47,7 +46,7 @@ class TherapistHome extends StatelessWidget {
 
   Padding reminderactivity() {
     return const Padding(
-      padding: AppPaddings.generalPadding,
+      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
       child: Reminder(
         reminderType: ReminderType.activity,
         name: DemoInformation.name,

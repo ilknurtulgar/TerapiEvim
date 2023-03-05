@@ -34,7 +34,7 @@ class PagesForSCL extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SingleChildScrollView(
-        padding: AppPaddings.userTestPadding,
+        padding: AppPaddings.appBarPadding,
         child: Obx(
           () => Column(
             children: [

@@ -5,6 +5,7 @@ import 'package:terapievim/screen/therapist/group/confirmation/lock_screen_thera
 
 
 import '../../participant/group/my_group.dart';
+import 'metots/new_metot.dart';
 
 // ignore: must_be_immutable
 class TherapistGroupPage extends StatelessWidget {

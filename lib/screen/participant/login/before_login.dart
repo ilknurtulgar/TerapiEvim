@@ -11,7 +11,7 @@ class BeforeLogin extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.blueChalk,
       body: Padding(
-        padding: const EdgeInsets.only(bottom: 30),
+        padding: AppPaddings.beforeLoginPagePadding,
         child: Center(
           child: Wrap(
             crossAxisAlignment: WrapCrossAlignment.center,
@@ -48,7 +48,7 @@ class BeforeLogin extends StatelessWidget {
 
   Padding button(bool isForParticipant) {
     return Padding(
-      padding: const EdgeInsets.only(top: 15),
+      padding: AppPaddings.beforeLoginButtonPadding,
       child: CustomButton(
                         container: LoginPageUtility.beforeLoginButtonContainer(),
                         onTap: () {/* login sayfasına git*/},

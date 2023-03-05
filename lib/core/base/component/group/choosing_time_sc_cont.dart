@@ -26,31 +26,26 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
   TherapistGroupController therapistGroupController = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Obx(
-      () => Visibility(
-        visible: isForParticipant ? true : therapistGroupController.timeListInControllerList[listviewIndex].isEmpty ? false: true,
-        child: Material(
-          elevation: 5,
-          borderRadius: BorderRadius.circular(16),
-          child: Container(
-            width: 342,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
-                color: AppColors.white),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 15),
-              child: Column(
-                children: [
-                  rowView(GroupScreenUtility.therapistRowInChoosingTimeForSCC(therapistName),const EdgeInsets.fromLTRB(25, 15, 25, 4)),
-                  rowView(GroupScreenUtility.dateRowInChoosingTimeForSCC(date),const EdgeInsets.fromLTRB(25, 7, 25, 10)),
-                  timeButtonList(),
-                  const SizedBox(height: 10,)
-                ],
-              ),
+    return Material(
+        elevation: 5,
+        borderRadius: BorderRadius.circular(16),
+        child: Container(
+          width: 342,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: AppColors.white),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15),
+            child: Column(
+              children: [
+                rowView(GroupScreenUtility.therapistRowInChoosingTimeForSCC(therapistName),const EdgeInsets.fromLTRB(25, 15, 25, 4)),
+                rowView(GroupScreenUtility.dateRowInChoosingTimeForSCC(date),const EdgeInsets.fromLTRB(25, 7, 25, 10)),
+                timeButtonList(),
+                const SizedBox(height: 10,)
+              ],
             ),
           ),
         ),
-      ),
     );
   }
 

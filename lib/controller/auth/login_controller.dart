@@ -33,7 +33,6 @@ class LoginController extends GetxController {
   @override
   void dispose() {
     flutterErrorToast("ON DISPOSE");
-    print("ON DISPOSE");
     emailController.dispose();
     passwordController.dispose();
     emailFocusNode.dispose();
@@ -56,7 +55,6 @@ class LoginController extends GetxController {
         password: passwordController.text.trim(),
       ),
     );
-    print('RESULT:$result');
 
     isLoading.value = false;
 

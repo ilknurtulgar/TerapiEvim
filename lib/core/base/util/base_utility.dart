@@ -57,7 +57,7 @@ class AppColors {
 
 class IconUtility {
   static const Icon chevronIcon = Icon(Icons.chevron_left);
-  static const Icon circleIcon = Icon(Icons.circle);
+  static const Icon circleIcon = Icon(Icons.circle_outlined);
   static const Icon arrowIcon = Icon(Icons.keyboard_arrow_right_outlined);
   static const Icon visibilityIcon = Icon(
     Icons.visibility,
@@ -294,7 +294,7 @@ class AppContainers {
       );
   static ContainerModel containerButton(bool bigwidth) {
     return ContainerModel(
-        width: bigwidth ? 150 : 97,
+        width: bigwidth ? 165 : 97,
         height: 30,
         borderRadius: 100,
         backgroundColor: AppColors.butterflyBush);
@@ -316,8 +316,10 @@ class AppPaddings {
   static const EdgeInsets headingTopPadding = EdgeInsets.only(
     top: 80,
   );
-  static const EdgeInsets componentPadding = EdgeInsets.symmetric(horizontal: 24, vertical: 8);
-  static EdgeInsets miniHeadingPadding(bool isInMiddle) => EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
+  static const EdgeInsets componentPadding =
+      EdgeInsets.symmetric(horizontal: 24, vertical: 8);
+  static EdgeInsets miniHeadingPadding(bool isInMiddle) =>
+      EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
 
 //yukardakiler kesinlestirildi
   static const EdgeInsets generalPadding = EdgeInsets.all(8);
@@ -329,18 +331,13 @@ class AppPaddings {
       0, 10, 20, 10); // sağ alt bütün mor butonlar için geçerli
   static const EdgeInsets copingButtonPadding =
       EdgeInsets.only(left: 10, right: 10, top: 25, bottom: 25);
-
   static const EdgeInsets appmpadding = EdgeInsets.all(15);
-
   static const EdgeInsets activitySeminarPadding = EdgeInsets.only(
     left: 70,
     top: 20,
     right: 70,
   );
-
-  static const EdgeInsets dividerPadding = EdgeInsets.only(
-    bottom: 10,
-  );
+  static const EdgeInsets dividerPadding = EdgeInsets.only(bottom: 10);
   static const EdgeInsets circleAvatarPadding = EdgeInsets.only(
     top: 10,
     right: 5,
@@ -362,8 +359,8 @@ class AppPaddings {
   );
   static const EdgeInsets chatInformationPadding = EdgeInsets.all(2);
   static const EdgeInsets topAppbar = EdgeInsets.only(top: 45);
- // static const EdgeInsets startpadding = EdgeInsets.only(left: 35, top: 35);
- // static const EdgeInsets centerpadding = EdgeInsets.only(left: 150, top: 35);
+  // static const EdgeInsets startpadding = EdgeInsets.only(left: 35, top: 35);
+  // static const EdgeInsets centerpadding = EdgeInsets.only(left: 150, top: 35);
   static const EdgeInsets eventAboutPadding =
       EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 20);
   static const EdgeInsets datePadding = EdgeInsets.only(left: 19);
@@ -510,7 +507,6 @@ class NavigateUtil {
 class DemoInformation {
   //message
   static const List<String> personList = [
-    "İrem Derici",
     "Canan Karatay",
     "Ecem Kara",
     "Nur Kara",
@@ -518,7 +514,6 @@ class DemoInformation {
     "Rachel Green",
     "Ross Geller",
     "Monica Bing",
-    "Chandler Bing"
   ];
 
   static const List<String> groupList = [
@@ -778,4 +773,13 @@ SizedBox sizedbox() {
   return const SizedBox(
     height: 50,
   );
+}
+
+class TextFieldSize {
+  //52 dateclock
+  static const double generalheight = 60;
+  static const double minheight = 30;
+  static const double generalwidth = 60;
+  static const double minwidth = 30;
+  static const double dateclockwidth = 150;
 }

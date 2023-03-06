@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/component/group/choosing_time_sc_cont.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import '../../../../../core/base/component/group/custom_heading.dart';
 import '../../../../../core/base/util/text_utility.dart';
@@ -65,12 +64,14 @@ class ShortCallTime extends StatelessWidget {
       itemCount: DemoInformation.tmpCount,
       itemBuilder: (context, index) => Padding(
         padding: AppPaddings.timeChossingBetweenPadding,
-        child: ChoosingTimeForSCContainer(
+        child:
+            sizedbox(), /* ChoosingTimeForSCContainer(
           therapistName: DemoInformation.therapistName,
           date: DemoInformation.datetime,
           timeList: DemoInformation.timelist,
           listviewIndex: index,
         ),
+    */
       ),
     );
   }

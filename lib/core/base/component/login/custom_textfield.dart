@@ -17,6 +17,8 @@ class CustomTextField extends StatelessWidget {
     required this.textController,
     required this.isPassword,
     required this.isRowModel,
+    this.width,
+    this.height,
   }) : super(key: key);
 
   final RowModel? rowModel;
@@ -24,21 +26,26 @@ class CustomTextField extends StatelessWidget {
   final bool isRowModel;
   final bool isPassword;
   final bool isPhoneNumber;
+  final double? width;
+  final double? height;
   final TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {
+    //sizedboxdan da
     return SizedBox(
-      width: isBig ? 340 : 195,
-      height: isBig ? 60 : 30,
+      width: width ?? 342,
+      height: height ?? 60,
       child: TextField(
         controller: textController,
         obscureText: isPassword
             ? activityController.isObsecure.value
             : activityController.yasemin.value,
         textAlign: TextAlign.start,
+        // maxLines: isBig ? 100 : ,
         decoration: InputDecoration(
-          contentPadding: AppPaddings.contentPadding,
+          contentPadding:
+              isBig ? const EdgeInsets.all(20) : AppPaddings.contentPadding,
           filled: true,
           fillColor: AppColors.white,
           labelText: rowModel?.text ?? "",

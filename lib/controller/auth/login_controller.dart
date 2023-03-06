@@ -2,8 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/main_controller.dart';
-import 'package:terapievim/toast/toast.dart';
 
+import '../../core/base/component/toast/toast.dart';
 import '../../screen/participant/home/main_home.dart';
 import '../../service/model/common/login/login_model.dart';
 import '../../service/service/auth/auth_service.dart';

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/home/notification_from_ther_container.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/home/coping_methods.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
           ),
           headingtext(false, false, HomeTextUtil.welcome),
           mindetailesbox(
-              HomeTextUtil.copingMethods, () => Get.to(const CopingMethods())),
+              HomeTextUtil.copingMethods, () => context.push(const CopingMethods())),
           notification(DemoInformation.cardModelhome, DemoInformation.home,
               DemoInformation.home.length)
         ],

@@ -311,6 +311,11 @@ class AppContainers {
 class AppPaddings {
   static const EdgeInsets appBarPadding =
       EdgeInsets.symmetric(vertical: 25, horizontal: 20);
+
+    static const EdgeInsets bottomNavBarIcon =
+      EdgeInsets.only(bottom: 5);
+
+
   static const EdgeInsets loginTitlePadding =
       EdgeInsets.only(top: 60, bottom: 40);
   static const EdgeInsets headingTopPadding = EdgeInsets.only(

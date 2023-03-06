@@ -1,6 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:terapievim/toast/toast.dart';
-
+import '../../../core/base/component/toast/toast.dart';
 import '../../../core/init/print_dev.dart';
 import '../../../core/managers/firebase/crashlytics_manager.dart';
 import '../../model/common/login/login_model.dart';

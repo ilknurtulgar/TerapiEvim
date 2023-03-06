@@ -140,6 +140,7 @@ class TherapistProfileTextUtil {
 
 class ActivityTextUtil {
   static String add = "Ekle";
+  static String okey = "Tamam";
   static String share = "Paylaş";
   static String join = "Katıl";
   static String watchTheRecording = "Kaydı İzle";

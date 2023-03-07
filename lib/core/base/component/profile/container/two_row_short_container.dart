@@ -27,7 +27,7 @@ class TwoRowShortContainer extends StatelessWidget {
     return Padding(
         //left right 24 verince oluyor
         padding: isThereButton
-            ? const EdgeInsets.only(bottom: 5, right: 12)
+            ? AppPaddings.smallPadding(3)
             : AppPaddings.componentPadding,
         child: Material(
           elevation: 5,

@@ -5,14 +5,14 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 
 class CustomDropDown extends StatefulWidget {
   const CustomDropDown({
-    required this.purpose,
+    required this.isGenderPurpose,
     super.key,
     required this.width,
     required this.height,
   });
   final double width;
   final double height;
-  final List<String> purpose;
+  final bool isGenderPurpose;
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
 }
@@ -20,35 +20,38 @@ class CustomDropDown extends StatefulWidget {
 class _CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: AppBoxDecoration.lockScreenBox,
-      height: widget.height,
+    return SizedBox(
       width: widget.width,
-      child: Column(children: [
-        choosebox(),
-        Obx(
-          () => activityController.selectedBox.value
-              ? ChooseGender(widget: widget)
-              : const SizedBox.shrink(),
-        )
-      ]),
+      child: Column(
+        children: [
+          InkWell(
+            onTap: () {
+              print("ben çalışmıyorum kanka");
+              activityController.changeBox();
+            },
+            child: Container(
+              alignment: Alignment.center,
+              decoration: AppBoxDecoration.lockScreenBox,
+              height: widget.height,
+              width: widget.width,
+              child: Obx(() => textpurpose(widget.isGenderPurpose
+                  ? activityController.gender.value
+                  : activityController.order.value)),
+            ),
+          ),
+          Obx(
+            () => activityController.selectedBox.value
+                ? ChooseGender(widget: widget)
+                : const SizedBox.shrink(),
+          )
+        ],
+      ),
     );
   }
 
-  Widget choosebox() {
-    return InkWell(
-        onTap: () {
-          activityController.changeBox();
-        },
-        child: textpurpose(widget.purpose[0]));
-  }
-
-  Align textpurpose(property) {
-    return Align(
-      alignment: Alignment.center,
-      child: Text(
-        property,
-      ),
+  Widget textpurpose(property) {
+    return Text(
+      property,
     );
   }
 }
@@ -71,19 +74,24 @@ class ChooseGender extends StatelessWidget {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              // activityController.func(index, widget.purpose);
+              activityController.func(
+                  widget.isGenderPurpose
+                      ? DemoInformation.genderList[index]
+                      : DemoInformation.orderingList[index],
+                  widget.isGenderPurpose);
+              print(index);
               activityController.changeBox();
+              print("tıklandı");
             },
-            child: SizedBox(
-                width: widget.width,
-                height: widget.height,
-                child: Text(
-                  widget.purpose[index],
-                  textAlign: TextAlign.center,
-                )),
+            child: Text(
+              widget.isGenderPurpose
+                  ? DemoInformation.genderList[index]
+                  : DemoInformation.orderingList[index],
+              textAlign: TextAlign.center,
+            ),
           );
         },
-        itemCount: widget.purpose.length,
+        itemCount: 2,
       ),
     );
   }

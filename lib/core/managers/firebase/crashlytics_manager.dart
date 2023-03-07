@@ -1,6 +1,6 @@
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
-import '../../../toast/toast.dart';
+import '../../base/component/toast/toast.dart';
 import '../../init/print_dev.dart';
 
 class CrashlyticsManager {

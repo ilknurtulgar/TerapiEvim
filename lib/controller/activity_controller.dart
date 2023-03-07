@@ -1,21 +1,25 @@
 import 'package:get/get.dart';
 
 class ActivityController extends GetxController {
-  var activityIcon = false.obs;
+  RxList<bool> activityIcon = [true, true, true, true, true, true, true].obs;
 
-  void iconFilter() {
-    activityIcon.value = !activityIcon.value;
+  void iconFilter(int index) {
+    activityIcon[index] = !activityIcon[index];
   }
 
-  // var gender = "seçiniz".obs;
-  // late var order = orderingList[0].obs;
-  /*void func(int rowIndex, String purpose) {
-  /  if (purpose == "gender") {
-      gender.value = genderList[rowIndex];
+  var gender = "Seçiniz".obs;
+
+  var order = "Yeniden eskiye ".obs;
+  void func(
+    String value,
+    bool isGenderPurpose,
+  ) {
+    if (isGenderPurpose) {
+      gender.value = value;
     } else {
-    //  order.value = orderingList[rowIndex];
+      order.value = value;
     }
-  }*/
+  }
 
   var selectedBox = false.obs;
   void changeBox() {

@@ -24,12 +24,17 @@ class ParticipantProfileSettingPage extends StatelessWidget {
   TherapistGroupController therapistGroupController = Get.find();
 
   late List<Widget> textfieldList = [
-    textfieldUtility.nameSurnameTextfield(DemoInformation.nameSurnameControllerInSetting, false),
-    textfieldUtility.birthOfDateTextfield(profileController.birthOfDateController.value, false),
+    textfieldUtility.nameSurnameTextfield(
+        DemoInformation.nameSurnameControllerInSetting, false),
+    textfieldUtility.birthOfDateTextfield(
+        profileController.birthOfDateController.value, false),
     ProfilePageUtility.genderDropDown(true),
-    textfieldUtility.mailTextfield(DemoInformation.mailControllerInSetting, false),
-    textfieldUtility.passwordTextfield(DemoInformation.passwordControllerInSetting, false),
-    textfieldUtility.phoneTextfield(DemoInformation.phoneControllerInSetting, false),
+    textfieldUtility.mailTextfield(
+        DemoInformation.mailControllerInSetting, false),
+    textfieldUtility.passwordTextfield(
+        DemoInformation.passwordControllerInSetting, false),
+    textfieldUtility.phoneTextfield(
+        DemoInformation.phoneControllerInSetting, false),
   ];
 
   @override
@@ -40,11 +45,11 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         child: Stack(children: [
           ProfilePageUtility.backgroundOfThePage(),
           ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
-          ProfilePageUtility.positionedIconButton(Icons.arrow_back_ios_outlined,() { Get.to(const ParticipantProfilePage());}, 35, 340),
+          ProfilePageUtility.positionedIconButton(Icons.arrow_back_ios_outlined,() {Get.to(const ParticipantProfilePage());}, 35, 340),
           ProfilePageUtility.positionedIconButton(Icons.edit_outlined, () {/* foto düzenleme */}, 235, 105),
           bigColumn(),
           DemoInformation.isForParticipant == false
-              ? Positioned(top: 715,right: 10,child: CustomListWheelScrollView(whatIsFor: 'number of groups'))
+              ? Positioned(top: 715,right: 10,child:CustomListWheelScrollView(whatIsFor: 'number of groups'))
               : const SizedBox(),
         ]),
       ),
@@ -53,12 +58,9 @@ class ParticipantProfileSettingPage extends StatelessWidget {
 
   Padding bigColumn() {
     return Padding(
-      padding: const EdgeInsets.only(top: 280),
+      padding: AppPaddings.profilePageBigPadding(false),
       child: Center(
-        child: Wrap(
-          alignment: WrapAlignment.center,
-          crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: 30,
+        child: Column(
           children: [
             ListView.builder(
               shrinkWrap: true,
@@ -72,6 +74,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             DemoInformation.isForParticipant == false
                 ? therapistSpecialColumn()
                 : const SizedBox(),
+            smallSizedBox(),
           ],
         ),
       ),
@@ -83,13 +86,13 @@ class ParticipantProfileSettingPage extends StatelessWidget {
       child: Wrap(
         direction: Axis.vertical,
         crossAxisAlignment: WrapCrossAlignment.center,
-        spacing: 10,
+        spacing: 12,
         children: [
-          SizedBox(width: 341, child: AcceptionRow(isForMakingShortCall: false)),
+          SizedBox(width: 342, child: AcceptionRow(isForMakingShortCall: false)),
           animatedNumberOfGroupsRow(),
-          Text(TherapistProfileTextUtil.aboutMe,style: AppTextStyles.normalTextStyle('medium',false),),
+          Text(TherapistProfileTextUtil.aboutMe,style: AppTextStyles.normalTextStyle('medium', false),),
           SizedBox(
-            width: 341,
+            width: 342,
             child: TextField(
               controller: DemoInformation.aboutMeController,
               decoration: const InputDecoration(fillColor: AppColors.white, filled: true),
@@ -105,33 +108,33 @@ class ParticipantProfileSettingPage extends StatelessWidget {
 
   Obx animatedNumberOfGroupsRow() {
     return Obx(
-        () => AnimatedContainer(
-          duration: const Duration(milliseconds: 400),
-          color: AppColors.transparent,
-          height: therapistProfileController.isNumberVisible.value ? 32 : 0,
-          child: SizedBox(
-            width: 341,
-            child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(ProfileSettingsTextUtil.numberOfGroups),
-                  Container(
-                    height: 27,
-                    width: 40,
-                    decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: AppBorderRadius.generalBorderRadius,
-                        border: Border.all(color: AppColors.cornFlowerBlue, width: 1)),
-                  )
-                ]),
-          ),
+      () => AnimatedContainer(
+        duration: const Duration(milliseconds: 400),
+        color: AppColors.transparent,
+        height: therapistProfileController.isNumberVisible.value ? 32 : 0,
+        child: SizedBox(
+          width: 342,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+            Text(ProfileSettingsTextUtil.numberOfGroups),
+            Container(
+              height: 27,
+              width: 40,
+              decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: AppBorderRadius.generalBorderRadius,
+                  border: Border.all(color: AppColors.cornFlowerBlue, width: 1)),
+            )
+          ]),
         ),
-      );
+      ),
+    );
   }
 
   Padding saveButton() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 85, vertical: 15),
+      padding: AppPaddings.smallPadding(2),
       child: Center(
         child: CustomButton(
             textColor: AppColors.white,
@@ -145,7 +148,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
   Center textfieldRow(int rowIndex, Widget textField) {
     return Center(
       child: SizedBox(
-        width: 341,
+        width: 342,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -153,8 +156,8 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20),
-                child: textField),
+                  padding: AppPaddings.smallVerticalPadding,
+                  child: textField),
             )
           ],
         ),

@@ -49,7 +49,7 @@ class CopingMethods extends StatelessWidget {
       child: Align(
         alignment: Alignment.bottomRight,
         child: CustomDropDown(
-            purpose: DemoInformation.orderingList,
+            isGenderPurpose: false,
             height: Responsive.height(40, context),
             width: 135),
       ),

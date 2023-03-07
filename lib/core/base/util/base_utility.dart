@@ -441,9 +441,16 @@ class AppPaddings {
   static const EdgeInsets aboutOtherGroupsPadding =
       EdgeInsets.only(left: 40, right: 40, top: 30);
 
-  // before login page
-  static const EdgeInsets beforeLoginPagePadding = EdgeInsets.only(bottom: 30);
-  static const EdgeInsets beforeLoginButtonPadding = EdgeInsets.only(top: 15);
+  // gizem paddings(daha devamı gelecek)
+  static EdgeInsets mediumPadding(int paddingNo) =>  EdgeInsets.only(bottom: paddingNo!=1 ? 24 : 0,right: paddingNo!=2 ? 24 : 0 );
+  static EdgeInsets smallPadding(int paddingNo) =>  EdgeInsets.only(bottom: paddingNo!=1 ? 12 : 0,right: paddingNo!=2 ? 12 : 0) ;
+    // 1 numara right
+    // 2 numara bottom
+    // 3 numara bottom ve right
+  static EdgeInsets smallVerticalPadding = const EdgeInsets.symmetric(vertical: 12);
+  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) => EdgeInsets.only(top: 280,left: isThereLeftPadding ? 24 : 0);
+   
+
 }
 
 class AppBorderRadius {
@@ -788,3 +795,7 @@ class TextFieldSize {
   static const double minwidth = 30;
   static const double dateclockwidth = 150;
 }
+
+SizedBox smallSizedBox() => const SizedBox(height: 12,);
+SizedBox mediumSizedBox() => const SizedBox(height: 24,);
+SizedBox largeSizedBox() => const SizedBox(height: 36,);

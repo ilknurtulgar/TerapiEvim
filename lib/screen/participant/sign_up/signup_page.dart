@@ -53,43 +53,37 @@ class _SignUpPageState extends State<SignUpPage> {
     return Scaffold(
       backgroundColor: AppColors.blueChalk,
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
-          child: Center(
-            child: Wrap(
-              direction: Axis.vertical,
-              spacing: 20,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                LoginPageUtility.title(false),
-                ...textfieldList,
-                widget.isForParticipant == false
-                    ? acceptMakingShortCallContainer(controller)
-                    : const SizedBox(),
-                LoginPageUtility.button(false,false,() {_signUpController.signUpWithEmail();},),
-                LoginPageUtility.lineWithOrText(),
-                LoginPageUtility.button(true,false, () => Get.to(() => const ParticipantLoginPage())),
-                const SizedBox(height: 25,)
-              ],
-            ),
+        child: Center(
+          child: Wrap(
+            direction: Axis.vertical,
+            spacing: 24,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            children: [
+              LoginPageUtility.title(false),
+              ...textfieldList,
+              widget.isForParticipant == false
+                  ? acceptMakingShortCallContainer(controller)
+                  : const SizedBox(),
+              LoginPageUtility.button(false,false,() {_signUpController.signUpWithEmail();},),
+              LoginPageUtility.lineWithOrText(),
+              LoginPageUtility.button(true,false, () => Get.to(() => const ParticipantLoginPage())),
+              mediumSizedBox()
+            ],
           ),
         ),
       ),
     );
   }
 
-  Padding acceptMakingShortCallContainer(TherapistProfileController controller) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 20),
-      child: Container(
-        height: 56,
-        width: 342,
-        decoration: const BoxDecoration(
-          color: AppColors.white,
-          borderRadius: AppBorderRadius.generalBorderRadius,
-        ),
-        child: AcceptionRow(isForMakingShortCall: true),
+  Container acceptMakingShortCallContainer(TherapistProfileController controller) {
+    return Container(
+      height: 56,
+      width: 342,
+      decoration: const BoxDecoration(
+        color: AppColors.white,
+        borderRadius: AppBorderRadius.generalBorderRadius,
       ),
+      child: AcceptionRow(isForMakingShortCall: true),
     );
   }
 

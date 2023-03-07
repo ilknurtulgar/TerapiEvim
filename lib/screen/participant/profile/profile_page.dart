@@ -24,17 +24,18 @@ class ParticipantProfilePage extends StatelessWidget {
             ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() => Get.to(() => ParticipantProfileSettingPage()), 40, 20),
             ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
             Padding(
-              padding: const EdgeInsets.only(top: 270,left: 24),
+              padding: AppPaddings.profilePageBigPadding(true),
               child: Column(
                 children: [
                   nameAndBirthDateColumn(),
-                  const SizedBox(height: 10,),
+                  smallSizedBox(),
                   participantGroupColumn(),
+                  smallSizedBox(),
                   ProfilePageUtility.boldMainTitleRowView(ParticipantProfileTextUtil.lastRead,'method', (){}),
                   ProfilePageListView(isForParticipant: true, isForMethod: true,mainTherapistName: DemoInformation.groupInformation.mainTherapistName,secondRowTextList: DemoInformation.groupInformation.methodTitles,),
                   ProfilePageUtility.boldMainTitleRowView(ParticipantProfileTextUtil.joinedSeminars,'seminar', (){}),
                   ProfilePageListView(isForParticipant: true, isForMethod: false,firstRowTextList:DemoInformation.lastWatchedSeminars.getSeminarsTherapistName(),secondRowTextList: DemoInformation.lastWatchedSeminars.getSeminarTitles()),
-                  const SizedBox(height: 15,),
+                  smallSizedBox(),
                 ],
               ),
             ),
@@ -50,7 +51,7 @@ class ParticipantProfilePage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         rowView(ProfilePageUtility.normalTextRow(ParticipantProfileTextUtil.myActiveGroup,Icons.group_outlined,AppTextStyles.profileTextStyles(true,true)),EdgeInsets.zero),
-        const SizedBox(height: 10,),
+        smallSizedBox(),
         participantGroupContainer(),
       ],
     );
@@ -71,7 +72,7 @@ class ParticipantProfilePage extends StatelessWidget {
 
   Padding nameAndBirthDateColumn() {
     return Padding(
-      padding: const EdgeInsets.only(right: 24),
+      padding: AppPaddings.mediumPadding(1),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

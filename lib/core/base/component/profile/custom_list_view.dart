@@ -36,19 +36,16 @@ class ProfilePageListView extends StatelessWidget {
     );
   }
 
-  Padding groupContainer(int index) {
-    return Padding(
-            padding: const EdgeInsets.only(right: 12),
-            child: GroupClass(
-              height: 120,
-              width: 320,
-              borderColor: AppColors.cornFlowerBlue,
-              heading: groupNameList![index],
-              onTap: () {},
-              row1: ProfilePageUtility.doubleTextRow(TherapistProfileTextUtil.advisor, firstRowTextList![index], true),
-              row2: ProfilePageUtility.normalTextRow(secondRowTextList[index],Icons.alarm_outlined,AppTextStyles.normalTextStyle('medium',false)),
-            ),
-          );
+  GroupClass groupContainer(int index) {
+    return GroupClass(
+      height: 120,
+      width: 320,
+      borderColor: AppColors.cornFlowerBlue,
+      heading: groupNameList![index],
+      onTap: () {},
+      row1: ProfilePageUtility.doubleTextRow(TherapistProfileTextUtil.advisor, firstRowTextList![index], true),
+      row2: ProfilePageUtility.normalTextRow(secondRowTextList[index],Icons.alarm_outlined,AppTextStyles.normalTextStyle('medium',false)),
+    );
   }
 
   TwoRowShortContainer methodSeminarContainer(int index) {

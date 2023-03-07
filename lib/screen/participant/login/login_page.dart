@@ -38,38 +38,43 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
       backgroundColor: AppColors.blueChalk,
       body: SingleChildScrollView(
         child: Center(
-          child: Column(children: [
-            sizedbox(),
-            LoginPageUtility.title(true),
-            textfieldUtility.mailTextfield(
-                _loginController.emailController, true),
-            textfieldUtility.passwordTextfield(
-                _loginController.passwordController, true),
-            forgotYourPasswordTextButton(),
-            LoginPageUtility.button(true, true, () {
-              _loginController.loginWithEmail();
-            }),
-            LoginPageUtility.lineWithOrText(),
-            LoginPageUtility.button(
-                false, true, () => Get.to(() => const SignUpPage())),
-          ]),
+          child: SizedBox(
+            width: 342,
+            child: Wrap(
+              direction: Axis.vertical,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              spacing: 24,
+              children: [
+              largeSizedBox(),
+              LoginPageUtility.title(true),
+              textfieldUtility.mailTextfield(_loginController.emailController, true),
+              passwordColumn(),
+              LoginPageUtility.button(true, true, () {_loginController.loginWithEmail();}),
+              LoginPageUtility.lineWithOrText(),
+              LoginPageUtility.button(false, true, () => Get.to(() => const SignUpPage())),
+            ]),
+          ),
         ),
       ),
     );
   }
 
-  Padding forgotYourPasswordTextButton() {
-    return Padding(
-      padding: const EdgeInsets.only(right: 18, bottom: 20),
-      child: Align(
-        alignment: Alignment.centerRight,
-        child: TextButton(
-            onPressed: () {/* Şifreyi unutma durumundaki fonksiyon gelecek*/},
-            child: Text(
-              LoginSignUpTextUtil.forgotYourPassword,
-              style: const TextStyle(color: AppColors.meteorite),
-            )),
-      ),
-    );
+  Column passwordColumn() {
+    return Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                 textfieldUtility.passwordTextfield(_loginController.passwordController, true),
+                 forgotYourPasswordTextButton(),
+              ],
+            );
+  }
+
+  Widget forgotYourPasswordTextButton() {
+    return TextButton(
+        onPressed: () {/* Şifreyi unutma durumundaki fonksiyon gelecek*/},
+        child: Text(
+          LoginSignUpTextUtil.forgotYourPassword,
+          style: const TextStyle(color: AppColors.meteorite),
+        ));
   }
 }

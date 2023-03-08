@@ -1,6 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-
 class GroupTexts {
   static const String groupOutHeading =
       "Gruptan cikmak istedigine emin misin ? ";
@@ -9,7 +6,6 @@ class GroupTexts {
   static const String groupCategoriesHeading = "Katilabileceginiz Gruplar";
   static const String shortCallDateChooseText =
       "Size Uygun Tarih ve Saat Seciniz.";
-
   static const String terapiEvim = "TerapiEvim";
   static const String iptal = "IPTAL";
   static const String evet = "EVET";
@@ -17,13 +13,5 @@ class GroupTexts {
   static const String yaklasanToplanti = "Yaklasan Toplanti";
   static const String grupBilgiler = "Grup Bilgileri";
   static const String katilimcilar = "Katilimcilar";
-
   static const String imagePath = "assets/images/doctorfotosu.jpeg"; //gecici
 }
-
-// class GroupTextStyle {
-//   static const TextStyle groupOutButton = TextStyle(
-//       color: AppColors.meteorite,
-//       fontFamily: "Roboto",
-//       fontWeight: FontWeight.w500);
-// }

@@ -40,10 +40,6 @@ class PersonMin extends StatelessWidget {
                   color: AppColors.dustyGray.withOpacity(0.7),
                   blurRadius: 0.6, // soften the shadow
                   spreadRadius: 1.0, //extend the shadow
-                  // offset: Offset(
-                  //   5.0, // Move to right 5  horizontally
-                  //   5.0, // Move to bottom 5 Vertically
-                  // ),
                 )
               ],
               border: Border.all(color: borderColor!.withOpacity(0.8)),

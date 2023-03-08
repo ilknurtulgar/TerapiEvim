@@ -34,20 +34,16 @@ class MyGroups extends StatelessWidget {
                     textStyle: AppTextStyles.heading(true),
                     isAlignmentBetween: true,
                     trailingIcon: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.add,
-                        size: 40,
-                        color: AppColors.meteorite,
-                      ),
-                    )),
-                EdgeInsets.only(top: 18, left: 30, right: 30, bottom: 40)),
+                        onPressed: () {}, icon: IconUtility.headingAdd)),
+                const EdgeInsets.only(
+                    top: 18, left: 30, right: 30, bottom: 40)),
             ListView.builder(
               shrinkWrap: true,
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(vertical: 9, horizontal: 24),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 9, horizontal: 24),
                   child: SeminarMax(
                       onTap: () {},
                       row1: row_1,

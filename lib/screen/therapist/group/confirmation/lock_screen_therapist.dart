@@ -34,21 +34,14 @@ Widget popUp() {
   Widget shown =
       controller.isTherapistUploaded.isFalse ? noUpload() : conformed();
 
-  IconData lockicon =
+  Icon lockicon =
       controller.isLockedOpen.isTrue ? IconUtility.lockopen : IconUtility.lock;
   return BackdropFilter(
     filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
     child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(
-            lockicon,
-            color: AppColors.white,
-            size: LockScreenUtil.lockIconSize,
-          ),
-          shown
-        ]),
+        children: [lockicon, shown]),
   );
 }
 

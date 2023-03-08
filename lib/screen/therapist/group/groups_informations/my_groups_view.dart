@@ -24,15 +24,10 @@ class MyGroups extends StatelessWidget {
                       textStyle: AppTextStyles.heading(true),
                       isAlignmentBetween: true,
                       trailingIcon: IconButton(
-                        onPressed: () {
-                          Get.to(const GroupAddView());
-                        },
-                        icon: const Icon(
-                          Icons.add,
-                          size: 40,
-                          color: AppColors.meteorite,
-                        ),
-                      )),
+                          onPressed: () {
+                            Get.to(const GroupAddView());
+                          },
+                          icon: IconUtility.headingAdd)),
                   AppPaddings.appBarPadding),
               ListView.builder(
                 shrinkWrap: true,

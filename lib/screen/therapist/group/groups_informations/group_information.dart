@@ -106,7 +106,7 @@ class GroupInformation extends StatelessWidget {
   Widget heading(BuildContext context) {
     return rowView(
         RowModel(
-            leadingIcon: IconUtility.back,
+            leadingIcon: IconButton(onPressed: () {}, icon: IconUtility.back),
             text: "Anksiyete 1",
             textStyle: AppTextStyles.heading(false),
             isAlignmentBetween: true,

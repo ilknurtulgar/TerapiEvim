@@ -20,7 +20,7 @@ class PopUp extends StatelessWidget {
         : controller.isTestResultReady.isTrue
             ? checkedTest()
             : uncheckedTest();
-    IconData lockicon = controller.isTestResultReady.isTrue
+    Icon lockicon = controller.isTestResultReady.isTrue
         ? IconUtility.lockopen
         : IconUtility.lock;
     return BackdropFilter(
@@ -28,14 +28,7 @@ class PopUp extends StatelessWidget {
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              lockicon,
-              color: AppColors.white,
-              size: LockScreenUtil.lockIconSize,
-            ),
-            shown
-          ]),
+          children: [lockicon, shown]),
     );
   }
 }

@@ -170,8 +170,17 @@ class IconUtility {
   static const IconData navMessage = Icons.chat;
   static const IconData navGroup = Icons.groups;
   static const IconData navProfile = Icons.account_circle;
-  static const IconData lock = Icons.lock_outline;
-  static const IconData lockopen = Icons.lock_open;
+
+  static const Icon lock = Icon(
+    Icons.lock_outline,
+    color: AppColors.white,
+    size: LockScreenUtil.lockIconSize,
+  );
+  static const Icon lockopen = Icon(
+    Icons.lock_open,
+    color: AppColors.white,
+    size: LockScreenUtil.lockIconSize,
+  );
   //degistirilen iconlar
   static const Icon close = Icon(
     Icons.close,
@@ -188,6 +197,11 @@ class IconUtility {
   );
   static const Icon back = Icon(Icons.arrow_back_ios_new);
   static const Icon edit = Icon(Icons.edit_document);
+  static const Icon headingAdd = Icon(
+    Icons.add,
+    size: 40,
+    color: AppColors.meteorite,
+  );
 }
 
 class AppTextStyles {
@@ -312,9 +326,7 @@ class AppPaddings {
   static const EdgeInsets appBarPadding =
       EdgeInsets.symmetric(vertical: 25, horizontal: 20);
 
-    static const EdgeInsets bottomNavBarIcon =
-      EdgeInsets.only(bottom: 5);
-
+  static const EdgeInsets bottomNavBarIcon = EdgeInsets.only(bottom: 5);
 
   static const EdgeInsets loginTitlePadding =
       EdgeInsets.only(top: 60, bottom: 40);
@@ -442,15 +454,17 @@ class AppPaddings {
       EdgeInsets.only(left: 40, right: 40, top: 30);
 
   // gizem paddings(daha devamı gelecek)
-  static EdgeInsets mediumPadding(int paddingNo) =>  EdgeInsets.only(bottom: paddingNo!=1 ? 24 : 0,right: paddingNo!=2 ? 24 : 0 );
-  static EdgeInsets smallPadding(int paddingNo) =>  EdgeInsets.only(bottom: paddingNo!=1 ? 12 : 0,right: paddingNo!=2 ? 12 : 0) ;
-    // 1 numara right
-    // 2 numara bottom
-    // 3 numara bottom ve right
-  static EdgeInsets smallVerticalPadding = const EdgeInsets.symmetric(vertical: 12);
-  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) => EdgeInsets.only(top: 280,left: isThereLeftPadding ? 24 : 0);
-   
-
+  static EdgeInsets mediumPadding(int paddingNo) => EdgeInsets.only(
+      bottom: paddingNo != 1 ? 24 : 0, right: paddingNo != 2 ? 24 : 0);
+  static EdgeInsets smallPadding(int paddingNo) => EdgeInsets.only(
+      bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
+  // 1 numara right
+  // 2 numara bottom
+  // 3 numara bottom ve right
+  static EdgeInsets smallVerticalPadding =
+      const EdgeInsets.symmetric(vertical: 12);
+  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
+      EdgeInsets.only(top: 280, left: isThereLeftPadding ? 24 : 0);
 }
 
 class AppBorderRadius {
@@ -796,6 +810,12 @@ class TextFieldSize {
   static const double dateclockwidth = 150;
 }
 
-SizedBox smallSizedBox() => const SizedBox(height: 12,);
-SizedBox mediumSizedBox() => const SizedBox(height: 24,);
-SizedBox largeSizedBox() => const SizedBox(height: 36,);
+SizedBox smallSizedBox() => const SizedBox(
+      height: 12,
+    );
+SizedBox mediumSizedBox() => const SizedBox(
+      height: 24,
+    );
+SizedBox largeSizedBox() => const SizedBox(
+      height: 36,
+    );

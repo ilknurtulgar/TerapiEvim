@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/t_message_controller.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
-
+import 'package:terapievim/core/base/util/base_utility.dart';
 import '../group/person.dart';
 
 class Election extends StatelessWidget {
@@ -24,7 +24,7 @@ class Election extends StatelessWidget {
             firstRow,
             election.value
                 ? SizedBox(
-                    width: 294,
+                    width: SizeUtil.electionWidth,
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) => rows[index],

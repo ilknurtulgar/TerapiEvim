@@ -1,12 +1,11 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/group/confirmation/uploading.dart';
 import '../../../../controller/therapist_group_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
-import '../../../participant/group/util/lock_screen_utility.dart';
 import '../groups_informations/my_groups_view.dart';
 
 class LockScreenTherapist extends StatelessWidget {
@@ -22,33 +21,26 @@ class LockScreenTherapist extends StatelessWidget {
           Container(
             color: Colors.black.withOpacity(0.8),
           ),
-          popUp()
+          popUp(context)
         ],
       ),
     );
   }
 }
 
-Widget popUp() {
+Widget popUp(BuildContext context) {
   TherapistGroupController controller = Get.find();
   Widget shown =
-      controller.isTherapistUploaded.isFalse ? noUpload() : conformed();
+      controller.isTherapistUploaded.isFalse ? noUpload(context) : conformed();
 
-  IconData lockicon =
+  Icon lockicon =
       controller.isLockedOpen.isTrue ? IconUtility.lockopen : IconUtility.lock;
   return BackdropFilter(
-    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+    filter: Filter.blur,
     child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Icon(
-            lockicon,
-            color: AppColors.white,
-            size: LockScreenUtil.lockIconSize,
-          ),
-          shown
-        ]),
+        children: [lockicon, shown]),
   );
 }
 
@@ -68,8 +60,8 @@ Column conformed() {
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Container(
-        width: LockScreenUtil.lockScreenContainerWidth,
-        height: LockScreenUtil.lockScreenContainerHeight,
+        width: SizeUtil.lockScreenContainerWidth,
+        height: SizeUtil.lockScreenContainerHeight,
         margin: AppPaddings.tLockScreenTextPadding,
         child: Text(
           GroupTextUtil.confirmationText,
@@ -83,15 +75,15 @@ Column conformed() {
   );
 }
 
-Column noUpload() {
+Column noUpload(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Container(
         margin: AppPaddings.tLockScreenNoUploadPadding,
-        width: LockScreenUtil.lockScreenContainerWidth,
-        height: LockScreenUtil.lockScreenContainerHeight,
+        width: SizeUtil.lockScreenContainerWidth,
+        height: SizeUtil.lockScreenContainerHeight,
         child: Text(
           GroupTextUtil.lockScreenWarningText,
           style: AppTextStyles.normalTextStyle("big", false)
@@ -102,11 +94,11 @@ Column noUpload() {
       GestureDetector(
           onTap: () {
             //onaylama sayfasina gitmeli
-            Get.to(TherapistUploadConfirm);
+            context.push(const TherapistUploadConfirm());
           },
           child: Container(
-            width: LockScreenUtil.lockScreenContainerWidth,
-            height: LockScreenUtil.lockScreenHeight,
+            width: SizeUtil.lockScreenContainerWidth,
+            height: SizeUtil.lockScreenHeight,
             decoration: AppBoxDecoration.lockScreenButton,
             child: Center(
               child: Text(GroupTextUtil.confirmText,

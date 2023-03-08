@@ -17,11 +17,6 @@ Widget rowView(RowModel rowModel, EdgeInsets padding) {
               left: rowModel.isAlignmentBetween == false ? 15 : 0),
           child: texts(rowModel),
         ),
-        // rowModel.isAlignmentBetween
-        //     ? const SizedBox(
-        //         width: 140,
-        //       )
-        //     : const SizedBox.shrink(),
         rowModel.trailingIcon!
       ],
     ),

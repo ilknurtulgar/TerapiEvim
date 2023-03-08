@@ -2,6 +2,12 @@
 
 class GroupTextUtil {
   //lockscreen
+  static const String lockScreenText =
+      "Henüz Grubunuz Belli Olmadığı İçin Burası Kilitli";
+
+  static const String lockScreenbuttonText = "Testi Cozmek Icin Tiklayiniz";
+  static const String lockScreencheckedTestString =
+      "Grup kategorileriniz belirlenmistir. Lutfen ilerleyiniz";
 
   static String groupPageText = "Grup Sayfası";
   static String confirmationText = "Belgeniz onaylandı devam edebilirsiniz.";
@@ -75,6 +81,7 @@ class GroupTextUtil {
   static const String terapiEvim = "TerapiEvim";
   static const String yes = "Evet";
   static const String myGroupText = "Grubum";
+  static const String joinText = "Katıl";
 }
 
 class MessageTextUtil {

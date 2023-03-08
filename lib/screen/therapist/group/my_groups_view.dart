@@ -37,15 +37,13 @@ class MyGroups extends StatelessWidget {
                     isAlignmentBetween: true,
                     trailingIcon: IconButton(
                         onPressed: () {}, icon: IconUtility.headingAdd)),
-                const EdgeInsets.only(
-                    top: 18, left: 30, right: 30, bottom: 40)),
+                AppPaddings.appBarPadding),
             ListView.builder(
               shrinkWrap: true,
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 9, horizontal: 24),
+                  padding: AppPaddings.componentPadding,
                   child: SeminarMax(
                       onTap: () {
                         context.push(GroupInformation());

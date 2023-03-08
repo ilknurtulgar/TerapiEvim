@@ -4,8 +4,6 @@ import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
-import '../../../../core/base/models/container_model.dart';
-import '../../../participant/group/util/lock_screen_utility.dart';
 
 class TherapistUploadConfirm extends StatelessWidget {
   const TherapistUploadConfirm({super.key});
@@ -25,7 +23,7 @@ class TherapistUploadConfirm extends StatelessWidget {
               AppPaddings.tLockScreenAppBarPadding),
           Container(
             padding: AppPaddings.lockScreenContainerPadding,
-            width: LockScreenUtil.lockScreenBigContainerWidth,
+            width: SizeUtil.lockScreenBigContainerWidth,
             decoration: AppBoxDecoration.lockScreenBox,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -48,11 +46,7 @@ class TherapistUploadConfirm extends StatelessWidget {
                 ),
                 CustomButton(
                     textColor: Colors.white,
-                    container: ContainerModel(
-                        width: 123,
-                        height: 30,
-                        borderRadius: 100,
-                        backgroundColor: AppColors.butterflyBush),
+                    container: AppContainers.purpleButtonContainer(123),
                     onTap: () {
                       //yukleyeccek
                     },
@@ -68,12 +62,7 @@ class TherapistUploadConfirm extends StatelessWidget {
           ),
           CustomButton(
               textColor: Colors.white,
-              container: ContainerModel(
-                backgroundColor: AppColors.melrose,
-                borderRadius: 100,
-                width: 100,
-                height: 40,
-              ),
+              container: AppContainers.purpleButtonContainer(123),
               onTap: () {},
               text: GroupTextUtil.confirmText)
         ],

@@ -173,7 +173,7 @@ class GroupInformation extends StatelessWidget {
             text: name,
             textStyle: AppTextStyles.heading(false),
             isAlignmentBetween: false),
-        EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0));
+        AppPaddings.miniHeadingPadding(isInMiddle));
   }
 
   PersonMin person(String name, BuildContext context) {

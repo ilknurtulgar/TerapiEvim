@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
 import 'package:terapievim/screen/therapist/group/group.dart';
@@ -5,7 +7,6 @@ import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart'
 
 import '../../../screen/participant/activity/activities.dart';
 import '../../../screen/participant/group/group.dart';
-import '../../../screen/participant/group/util/lock_screen_utility.dart';
 import '../../../screen/participant/home/home.dart';
 import '../../../screen/participant/message/message.dart';
 import '../../../screen/participant/profile/models/group_model.dart';
@@ -174,12 +175,12 @@ class IconUtility {
   static const Icon lock = Icon(
     Icons.lock_outline,
     color: AppColors.white,
-    size: LockScreenUtil.lockIconSize,
+    size: SizeUtil.lockIconSize,
   );
   static const Icon lockopen = Icon(
     Icons.lock_open,
     color: AppColors.white,
-    size: LockScreenUtil.lockIconSize,
+    size: SizeUtil.lockIconSize,
   );
   //degistirilen iconlar
   static const Icon close = Icon(
@@ -337,7 +338,8 @@ class AppPaddings {
       EdgeInsets.symmetric(horizontal: 24, vertical: 8);
   static EdgeInsets miniHeadingPadding(bool isInMiddle) =>
       EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
-
+  static const EdgeInsets rowViewPadding =
+      EdgeInsets.symmetric(vertical: 4, horizontal: 16);
 //yukardakiler kesinlestirildi
   static const EdgeInsets generalPadding = EdgeInsets.all(8);
   static const EdgeInsets reminderPadding =
@@ -388,8 +390,7 @@ class AppPaddings {
 
   //grup
   static const EdgeInsets userTestPadding = EdgeInsets.only(bottom: 20);
-  static const EdgeInsets userTestHeadingPadding =
-      EdgeInsets.symmetric(vertical: 32);
+
   static const EdgeInsets userTestQuestionPadding =
       EdgeInsets.symmetric(vertical: 30, horizontal: 23);
 
@@ -409,18 +410,16 @@ class AppPaddings {
   );
   static EdgeInsets aboutmePadding = const EdgeInsets.symmetric(vertical: 10);
   static EdgeInsets whitebackgroundmargin = const EdgeInsets.only(bottom: 122);
-  static const EdgeInsets rowViewPadding =
-      EdgeInsets.symmetric(vertical: 4, horizontal: 16);
+
   static const EdgeInsets rowViewProfilePadding =
       EdgeInsets.only(top: 15, left: 24, right: 24);
   static const EdgeInsets participantsPadding =
       EdgeInsets.only(left: 25, right: 25);
 
   static const EdgeInsets tLockScreenTextPadding =
-      EdgeInsets.symmetric(vertical: LockScreenUtil.lockScreenHeight);
+      EdgeInsets.symmetric(vertical: SizeUtil.lockScreenHeight);
   static const EdgeInsets tLockScreenNoUploadPadding = EdgeInsets.only(
-      top: LockScreenUtil.lockScreenHeight,
-      bottom: LockScreenUtil.lockScreenHeight * 2);
+      top: SizeUtil.lockScreenHeight, bottom: SizeUtil.lockScreenHeight * 2);
   static const EdgeInsets tLockScreenAppBarPadding =
       EdgeInsets.only(bottom: 83, top: 30);
   static const EdgeInsets lockScreenContainerPadding = EdgeInsets.all(20);
@@ -819,3 +818,22 @@ SizedBox mediumSizedBox() => const SizedBox(
 SizedBox largeSizedBox() => const SizedBox(
       height: 36,
     );
+
+class SizeUtil {
+  static const double lockScreenHeight = 40;
+  static const double lockScreenHeight2 = 50;
+  static const double lockScreenContainerWidth = 250;
+  static const double lockScreenContainerHeight = 100;
+  static const double lockScreenBigContainerWidth = 340;
+  static const double lockScreenBigContainerHeight = 200;
+  static const double electionWidth = 300;
+  static const double lockIconSize = 100;
+  static const double whiteContainerHeight = 191;
+  static const double groupHeight = 120;
+  static const double generalWidth = 342;
+  static const double generalHeight = 52;
+}
+
+class Filter {
+  static ImageFilter blur = ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0);
+}

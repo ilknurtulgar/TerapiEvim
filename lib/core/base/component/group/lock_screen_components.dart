@@ -3,9 +3,9 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/group/category_determination/group_categories/group_categories.dart';
-import 'package:terapievim/screen/participant/group/util/lock_screen_utility.dart';
 
 import '../../../../screen/participant/group/scl90/test_for_users.dart';
+import '../../util/text_utility.dart';
 import '../buttons/custom_button.dart';
 import '../../util/base_utility.dart';
 import '../../../../controller/main_controller.dart';
@@ -27,7 +27,7 @@ class PopUp extends StatelessWidget {
         ? IconUtility.lockopen
         : IconUtility.lock;
     return BackdropFilter(
-      filter: LockScreenUtil.imageF,
+      filter: Filter.blur,
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,7 +41,7 @@ Column checkedTest(BuildContext context) {
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      lockedTextContainer(LockScreenUtil.checkedTestString),
+      lockedTextContainer(GroupTextUtil.lockScreencheckedTestString),
       CustomButton(
           textColor: Colors.white,
           container: AppContainers.purpleButtonContainer(null),
@@ -58,7 +58,7 @@ Column uncheckedTest() {
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      lockedTextContainer(LockScreenUtil.text),
+      lockedTextContainer(GroupTextUtil.lockScreenText),
     ],
   );
 }
@@ -66,8 +66,8 @@ Column uncheckedTest() {
 Column noTest(BuildContext context) {
   return Column(
     children: [
-      lockedTextContainer(LockScreenUtil.text2),
-      const PurpleTextContainer(text: LockScreenUtil.text2),
+      lockedTextContainer(GroupTextUtil.lockScreenText),
+      const PurpleTextContainer(text: GroupTextUtil.lockScreenText),
       testButton(context)
     ],
   );
@@ -79,13 +79,12 @@ GestureDetector testButton(BuildContext context) {
         context.push(const Test());
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(
-            vertical: LockScreenUtil.lockScreenHeight),
-        width: LockScreenUtil.lockScreenContainerWidth,
-        height: LockScreenUtil.lockScreenHeight,
+        margin: const EdgeInsets.symmetric(vertical: SizeUtil.lockScreenHeight),
+        width: SizeUtil.lockScreenContainerWidth,
+        height: SizeUtil.lockScreenHeight,
         decoration: AppBoxDecoration.lockScreenButton,
         child: Center(
-          child: Text(LockScreenUtil.buttonText,
+          child: Text(GroupTextUtil.lockScreenbuttonText,
               style: AppTextStyles.buttonTextStyle(AppColors.white)),
         ),
       ));
@@ -93,10 +92,9 @@ GestureDetector testButton(BuildContext context) {
 
 Widget lockedTextContainer(String text) {
   return Container(
-      margin:
-          const EdgeInsets.symmetric(vertical: LockScreenUtil.lockScreenHeight),
-      width: LockScreenUtil.lockScreenContainerWidth,
-      height: LockScreenUtil.lockScreenContainerHeight,
+      margin: const EdgeInsets.symmetric(vertical: SizeUtil.lockScreenHeight),
+      width: SizeUtil.lockScreenContainerWidth,
+      height: SizeUtil.lockScreenContainerHeight,
       color: AppColors.transparent,
       child: Text(
         text,

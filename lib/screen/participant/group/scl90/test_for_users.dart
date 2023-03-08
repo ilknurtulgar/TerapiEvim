@@ -41,7 +41,6 @@ class PagesForSCL extends StatelessWidget {
               CustomHeading(
                 text: heading,
                 isalignmentstart: false,
-                padding: AppPaddings.userTestHeadingPadding,
               ),
               _controller.testPageIndex.value == 0
                   ? PurpleTextContainer(text: definition)
@@ -62,7 +61,7 @@ class PagesForSCL extends StatelessWidget {
           questions[index + _controller.testPageIndex.value * 3],
       itemCount: 3, //sayfada kac soru olacak sor
       shrinkWrap: true,
-      padding: AppPaddings.userTestQuestionPadding,
+      padding: AppPaddings.componentPadding,
     );
   }
 

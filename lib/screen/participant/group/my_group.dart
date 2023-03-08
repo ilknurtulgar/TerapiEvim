@@ -35,7 +35,7 @@ class MyGroup extends StatelessWidget {
                   text: GroupTextUtil.upcomingMeetingText),
               ActivityBox(
                   istwobutton: false,
-                  buttonText: "Katıl",
+                  buttonText: GroupTextUtil.joinText,
                   isactivity: true,
                   containerModel: AppContainers.containerButton(false),
                   arowModel: DemoInformation.row,

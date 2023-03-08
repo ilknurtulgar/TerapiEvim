@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
@@ -7,7 +6,6 @@ import 'package:terapievim/screen/therapist/group/confirmation/uploading.dart';
 import '../../../../controller/therapist_group_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
-import '../../../participant/group/util/lock_screen_utility.dart';
 import '../groups_informations/my_groups_view.dart';
 
 class LockScreenTherapist extends StatelessWidget {
@@ -38,7 +36,7 @@ Widget popUp(BuildContext context) {
   Icon lockicon =
       controller.isLockedOpen.isTrue ? IconUtility.lockopen : IconUtility.lock;
   return BackdropFilter(
-    filter: ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0),
+    filter: Filter.blur,
     child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -62,8 +60,8 @@ Column conformed() {
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Container(
-        width: LockScreenUtil.lockScreenContainerWidth,
-        height: LockScreenUtil.lockScreenContainerHeight,
+        width: SizeUtil.lockScreenContainerWidth,
+        height: SizeUtil.lockScreenContainerHeight,
         margin: AppPaddings.tLockScreenTextPadding,
         child: Text(
           GroupTextUtil.confirmationText,
@@ -84,8 +82,8 @@ Column noUpload(BuildContext context) {
     children: [
       Container(
         margin: AppPaddings.tLockScreenNoUploadPadding,
-        width: LockScreenUtil.lockScreenContainerWidth,
-        height: LockScreenUtil.lockScreenContainerHeight,
+        width: SizeUtil.lockScreenContainerWidth,
+        height: SizeUtil.lockScreenContainerHeight,
         child: Text(
           GroupTextUtil.lockScreenWarningText,
           style: AppTextStyles.normalTextStyle("big", false)
@@ -99,8 +97,8 @@ Column noUpload(BuildContext context) {
             context.push(const TherapistUploadConfirm());
           },
           child: Container(
-            width: LockScreenUtil.lockScreenContainerWidth,
-            height: LockScreenUtil.lockScreenHeight,
+            width: SizeUtil.lockScreenContainerWidth,
+            height: SizeUtil.lockScreenHeight,
             decoration: AppBoxDecoration.lockScreenButton,
             child: Center(
               child: Text(GroupTextUtil.confirmText,

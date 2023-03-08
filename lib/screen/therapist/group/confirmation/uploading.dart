@@ -21,7 +21,7 @@ class TherapistUploadConfirm extends StatelessWidget {
               RowModel(
                   text: heading,
                   textStyle: AppTextStyles.heading(false),
-                  isAlignmentBetween: false),
+                  isAlignmentBetween: true),
               AppPaddings.tLockScreenAppBarPadding),
           Container(
             padding: AppPaddings.lockScreenContainerPadding,

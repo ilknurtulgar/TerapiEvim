@@ -66,7 +66,9 @@ class TherapistGroupController extends GetxController {
   var isTherapistUploaded = true.obs;
   var isLockedOpen = true.obs;
 
-  RxList<RxList<String>> timeListInControllerList = [['öylesine string'].obs].obs;
+  RxList<RxList<String>> timeListInControllerList = [
+    ['öylesine string'].obs
+  ].obs;
 
   void getTimeListToController(List<String> timeList, int listviewIndex) {
     if (listviewIndex == 0) {
@@ -76,7 +78,8 @@ class TherapistGroupController extends GetxController {
   }
 
   void deleteTime(List<String> timeList, int rowIndex, int listViewIndex) {
-    timeListInControllerList[listViewIndex].remove(timeListInControllerList[listViewIndex][rowIndex]);
-   // print(timeListInControllerList);
+    timeListInControllerList[listViewIndex]
+        .remove(timeListInControllerList[listViewIndex][rowIndex]);
+    // print(timeListInControllerList);
   }
 }

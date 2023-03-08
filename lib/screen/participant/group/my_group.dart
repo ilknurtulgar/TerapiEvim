@@ -6,7 +6,9 @@ import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/group/group_out.dart';
+import 'package:terapievim/screen/therapist/group/therapist_about.dart';
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/util/text_utility.dart';
 
@@ -43,8 +45,12 @@ class MyGroup extends StatelessWidget {
                 text: GroupTextUtil.groupsInformationText,
                 isalignmentstart: true,
               ),
-              therapist(DemoInformation.row),
-              therapist(DemoInformation.row2),
+              therapist(DemoInformation.row, () {
+                context.push(TherapistProfile(isSecTherapist: false));
+              }),
+              therapist(DemoInformation.row2, () {
+                context.push(TherapistProfile(isSecTherapist: true));
+              }),
               CustomHeading(
                 text: GroupTextUtil.participantsText,
                 isalignmentstart: true,
@@ -57,9 +63,9 @@ class MyGroup extends StatelessWidget {
     );
   }
 
-  PersonMin therapist(RowModel row) {
+  PersonMin therapist(RowModel row, Function() fun) {
     return PersonMin(
-      onTap: () {},
+      onTap: fun,
       row: row,
       borderColor: AppColors.cornFlowerBlue,
     );

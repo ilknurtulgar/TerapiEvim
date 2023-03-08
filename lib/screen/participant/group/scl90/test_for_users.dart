@@ -47,6 +47,7 @@ class PagesForSCL extends StatelessWidget {
                   ? PurpleTextContainer(text: definition)
                   : const SizedBox.shrink(),
               questionsWidget(),
+              pageChangeButtons(),
               pageChangeButtons()
             ],
           ),

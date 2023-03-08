@@ -7,6 +7,7 @@ import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/group/metots/new_metot.dart';
 import 'package:terapievim/screen/therapist/group/therapist_about.dart';
 import '../../../../core/base/component/buttons/election.dart';
@@ -37,9 +38,7 @@ class GroupInformation extends StatelessWidget {
               meeting(),
               miniHeadings(GroupTextUtil.groupsInformationText, false),
               navMethod(DemoInformation.secTherapist, () {
-                Get.to(TherapistProfile(
-                  isSecTherapist: true,
-                ));
+                context.push(TherapistProfile(isSecTherapist: true));
               }),
               Election(
                   election:
@@ -106,7 +105,11 @@ class GroupInformation extends StatelessWidget {
   Widget heading(BuildContext context) {
     return rowView(
         RowModel(
-            leadingIcon: IconButton(onPressed: () {}, icon: IconUtility.back),
+            leadingIcon: IconButton(
+                onPressed: () {
+                  context.pop();
+                },
+                icon: IconUtility.back),
             text: "Anksiyete 1",
             textStyle: AppTextStyles.heading(false),
             isAlignmentBetween: true,
@@ -115,7 +118,8 @@ class GroupInformation extends StatelessWidget {
                 IconButton(
                   icon: const Icon(Icons.edit_document),
                   onPressed: () {
-                    Get.to(const NewMetot());
+                    context.push(const NewMetot());
+
                     //new Metot sayfasina godocek
                   },
                 ),
@@ -197,8 +201,6 @@ class GroupInformation extends StatelessWidget {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: Text(name + GroupTextUtil.deleteParticipantText),
-        // content: const Text(
-        //     'Gruptan cikaril'),
         actions: <Widget>[
           TextButton(
             onPressed: () => Get.back(),

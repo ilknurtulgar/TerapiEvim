@@ -12,6 +12,7 @@ import 'package:terapievim/core/base/component/profile/image/custom_circle_avata
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 
 class GroupAddView extends StatelessWidget {
   const GroupAddView({super.key});
@@ -54,7 +55,8 @@ class GroupAddView extends StatelessWidget {
                     trailingIcon: IconButton(
                       icon: IconUtility.close,
                       onPressed: () {
-                        Get.back();
+                        context.pop();
+
                         //geri donus yapmasi lazim
                       },
                     )),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
 import '../../../controller/auth/sign_up_controller.dart';
 import '../../../core/base/component/profile/acception_row.dart';
@@ -66,7 +67,7 @@ class _SignUpPageState extends State<SignUpPage> {
                   : const SizedBox(),
               LoginPageUtility.button(false,false,() {_signUpController.signUpWithEmail();},),
               LoginPageUtility.lineWithOrText(),
-              LoginPageUtility.button(true,false, () => Get.to(() => const ParticipantLoginPage())),
+              LoginPageUtility.button(true,false, () => context.push(const ParticipantLoginPage())),
               mediumSizedBox()
             ],
           ),
@@ -77,8 +78,8 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Container acceptMakingShortCallContainer(TherapistProfileController controller) {
     return Container(
-      height: 56,
-      width: 342,
+      height: SizeUtil.acceptionContainerHeight,
+      width: SizeUtil.generalWidth,
       decoration: const BoxDecoration(
         color: AppColors.white,
         borderRadius: AppBorderRadius.generalBorderRadius,

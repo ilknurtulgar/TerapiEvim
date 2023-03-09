@@ -41,8 +41,8 @@ class BeforeLogin extends StatelessWidget {
 
   SizedBox homeImage() {
     return SizedBox(
-                    height: 150,
-                    width: 150,
+                    height: SizeUtil.homeImageHeight,
+                    width: SizeUtil.homeImageHeight,
                     child: Image(image: AssetImage(LoginSignUpTextUtil.homeImagePath)));
   }
 

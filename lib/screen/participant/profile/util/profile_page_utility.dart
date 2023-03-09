@@ -45,8 +45,8 @@ class ProfilePageUtility {
           textStyle2: AppTextStyles.normalTextStyle('medium', false),
           leadingIcon: Icon(
             isInParticipantPage
-                ? Icons.person_outline
-                : Icons.account_circle_outlined,
+                ? IconUtility.personIcon.icon
+                : IconUtility.navProfile,
             color: Colors.black,
           ),
           isAlignmentBetween: false);
@@ -57,10 +57,10 @@ class ProfilePageUtility {
               text: text,
               leadingIcon: Icon(
                 purpose == 'group'
-                    ? Icons.group_outlined
+                    ? IconUtility.navGroup
                     : purpose == 'method'
-                        ? Icons.description_outlined
-                        : Icons.desktop_windows_outlined,
+                        ? IconUtility.fileIcon.icon
+                        : IconUtility.windowsIcon.icon,
                 color: AppColors.black,
                 size: 25,
               ),

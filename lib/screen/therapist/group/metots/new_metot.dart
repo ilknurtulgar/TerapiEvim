@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/button_group_name_row.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/activity/companent/coping_box.dart';
 
 class NewMetot extends StatelessWidget {
@@ -81,13 +81,13 @@ class NewMetot extends StatelessWidget {
             TextButton(
               child: Text(GroupTextUtil.cancelText),
               onPressed: () {
-                Get.back();
+                context.pop();
               },
             ),
             TextButton(
               child: Text(GroupTextUtil.deleteText),
               onPressed: () {
-                Get.back();
+                context.pop();
               },
             ),
           ],

@@ -26,8 +26,8 @@ class PersonMin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     borderColor ??= AppColors.dustyGray;
-    width ??= Responsive.width(342, context);
-    height ??= Responsive.height(52, context);
+    width ??= Responsive.width(SizeUtil.generalWidth, context);
+    height ??= Responsive.height(SizeUtil.generalHeight, context);
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -40,10 +40,6 @@ class PersonMin extends StatelessWidget {
                   color: AppColors.dustyGray.withOpacity(0.7),
                   blurRadius: 0.6, // soften the shadow
                   spreadRadius: 1.0, //extend the shadow
-                  // offset: Offset(
-                  //   5.0, // Move to right 5  horizontally
-                  //   5.0, // Move to bottom 5 Vertically
-                  // ),
                 )
               ],
               border: Border.all(color: borderColor!.withOpacity(0.8)),

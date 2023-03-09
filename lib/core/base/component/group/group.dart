@@ -28,8 +28,8 @@ class GroupClass extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    width ??= 237;
-    height ??= 120;
+    width ??= SizeUtil.lockScreenContainerWidth;
+    height ??= SizeUtil.groupHeight;
     borderColor ??= AppColors.dustyGray;
 
     return InkWell(
@@ -48,7 +48,7 @@ class GroupClass extends StatelessWidget {
             decoration: BoxDecoration(
                 border:
                     Border.all(color: borderColor!.withOpacity(1), width: 2),
-                borderRadius: BorderRadius.circular(8),
+                borderRadius: AppBorderRadius.generalBorderRadius,
                 color: AppColors.white),
             child: Column(
               mainAxisSize: MainAxisSize.min,
@@ -72,7 +72,7 @@ class GroupClass extends StatelessWidget {
                                 text: '',
                                 textStyle: const TextStyle(),
                                 isAlignmentBetween: false),
-                        const EdgeInsets.symmetric(vertical: 4, horizontal: 16))
+                        AppPaddings.rowViewPadding)
                     : const SizedBox()
               ],
             ),

@@ -65,13 +65,11 @@ Future<void> initialize() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  final Config config = Config.instance;
   if (kIsWeb == false) {
     await FirebaseCrashlytics.instance
         .setCrashlyticsCollectionEnabled(kDebugMode ? false : true);
-  }
 
-  final Config config = Config.instance;
-  if (kIsWeb == false) {
     config.setIsAndroid = Platform.isAndroid;
   }
 }

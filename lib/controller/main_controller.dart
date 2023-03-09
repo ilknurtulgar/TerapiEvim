@@ -6,10 +6,11 @@ import '../core/base/component/toast/toast.dart';
 
 class MainController extends GetxController {
   var currentScreenIndex = 0.obs;
-  var isTestNotSolved = false.obs;
-  var isTestResultReady = true.obs;
-  var isGroupReady = true.obs;
-  var isLogged = false.obs;
+  var isTestNotSolved = true.obs;
+  var isTestResultReady = false.obs;
+  var isGroupReady = false.obs;
+  var isLogged = true.obs;
+  var isTherapist = true.obs; //bunun degisimi yapilacak
 
   late CupertinoTabController tabController;
 
@@ -19,7 +20,6 @@ class MainController extends GetxController {
   @override
   void onInit() {
     tabController = CupertinoTabController();
-
     super.onInit();
   }
 
@@ -30,7 +30,6 @@ class MainController extends GetxController {
 
   ///This functon makes a user to tap back twice to pop
   Future<bool> onWillPop() {
-
     _newTime = DateTime.now();
     if (_newTime.difference(_oldTime) > const Duration(seconds: 2)) {
       _oldTime = _newTime;
@@ -39,26 +38,5 @@ class MainController extends GetxController {
     }
     SystemNavigator.pop();
     return Future.value(true);
-  }
-
-
-  changeScreen(int index) {
-    switch (index) {
-      case 0:
-        currentScreenIndex.value = 0;
-        break;
-      case 1:
-        currentScreenIndex.value = 1;
-        break;
-      case 2:
-        currentScreenIndex.value = 2;
-        break;
-      case 3:
-        currentScreenIndex.value = 3;
-        break;
-      case 4:
-        currentScreenIndex.value = 4;
-        break;
-    }
   }
 }

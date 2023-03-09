@@ -25,17 +25,18 @@ class LoginPageUtility {
 
   static Padding lineWithOrText() {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 30),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          horizontalLine(),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 5),
-            child: Text(LoginSignUpTextUtil.orText),
-          ),
-          horizontalLine()
-        ],
+      padding: AppPaddings.smallVerticalPadding,
+      child: SizedBox(
+        width: 342,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            horizontalLine(),
+            Text(LoginSignUpTextUtil.orText),
+            horizontalLine()
+          ],
+        ),
       ),
     );
   }

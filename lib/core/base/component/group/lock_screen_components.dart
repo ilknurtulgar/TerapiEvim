@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
-import 'package:terapievim/screen/participant/group/util/lock_screen_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:terapievim/screen/participant/group/category_determination/group_categories/group_categories.dart';
 
+import '../../../../screen/participant/group/scl90/test_for_users.dart';
+import '../../util/text_utility.dart';
 import '../buttons/custom_button.dart';
 import '../../util/base_utility.dart';
 import '../../../../controller/main_controller.dart';
@@ -16,41 +19,34 @@ class PopUp extends StatelessWidget {
   Widget build(BuildContext context) {
     MainController controller = Get.find();
     Widget shown = controller.isTestNotSolved.isTrue
-        ? noTest()
+        ? noTest(context)
         : controller.isTestResultReady.isTrue
-            ? checkedTest()
+            ? checkedTest(context)
             : uncheckedTest();
-    IconData lockicon = controller.isTestResultReady.isTrue
+    Icon lockicon = controller.isTestResultReady.isTrue
         ? IconUtility.lockopen
         : IconUtility.lock;
     return BackdropFilter(
-      filter: LockScreenUtil.imageF,
+      filter: Filter.blur,
       child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Icon(
-              lockicon,
-              color: AppColors.white,
-              size: LockScreenUtil.lockIconSize,
-            ),
-            shown
-          ]),
+          children: [lockicon, shown]),
     );
   }
 }
 
-Column checkedTest() {
+Column checkedTest(BuildContext context) {
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      lockedTextContainer(LockScreenUtil.checkedTestString),
+      lockedTextContainer(GroupTextUtil.lockScreencheckedTestString),
       CustomButton(
           textColor: Colors.white,
           container: AppContainers.purpleButtonContainer(null),
           onTap: () {
-            //buradan kategori sayfasina yonlendirilecek
+            context.push(const GroupCategories());
           },
           text: "Grup Kategori Sayfasi ")
     ],
@@ -62,45 +58,43 @@ Column uncheckedTest() {
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      lockedTextContainer(LockScreenUtil.text),
+      lockedTextContainer(GroupTextUtil.lockScreenText),
     ],
   );
 }
 
-Column noTest() {
+Column noTest(BuildContext context) {
   return Column(
     children: [
-      lockedTextContainer(LockScreenUtil.text2),
-      const PurpleTextContainer(text: LockScreenUtil.text2),
-      testButton()
+      lockedTextContainer(GroupTextUtil.lockScreenText),
+      const PurpleTextContainer(text: GroupTextUtil.lockScreenText),
+      testButton(context)
     ],
   );
 }
 
-GestureDetector testButton() {
+GestureDetector testButton(BuildContext context) {
   return GestureDetector(
       onTap: () {
-        //print("Hello bitch");
+        context.push(const Test());
       },
       child: Container(
-        margin: const EdgeInsets.symmetric(
-            vertical: LockScreenUtil.lockScreenHeight),
-        width: LockScreenUtil.lockScreenContainerWidth,
-        height: LockScreenUtil.lockScreenHeight,
+        margin: const EdgeInsets.symmetric(vertical: SizeUtil.lockScreenHeight),
+        width: SizeUtil.lockScreenContainerWidth,
+        height: SizeUtil.lockScreenHeight,
         decoration: AppBoxDecoration.lockScreenButton,
         child: Center(
-          child: Text(LockScreenUtil.buttonText,
-              style: AppTextStyles.buttonTextStyle(AppColors.butterflyBush)),
+          child: Text(GroupTextUtil.lockScreenbuttonText,
+              style: AppTextStyles.buttonTextStyle(AppColors.white)),
         ),
       ));
 }
 
 Widget lockedTextContainer(String text) {
   return Container(
-      margin:
-          const EdgeInsets.symmetric(vertical: LockScreenUtil.lockScreenHeight),
-      width: LockScreenUtil.lockScreenContainerWidth,
-      height: LockScreenUtil.lockScreenContainerHeight,
+      margin: const EdgeInsets.symmetric(vertical: SizeUtil.lockScreenHeight),
+      width: SizeUtil.lockScreenContainerWidth,
+      height: SizeUtil.lockScreenContainerHeight,
       color: AppColors.transparent,
       child: Text(
         text,

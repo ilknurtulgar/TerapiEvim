@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/participant/group/util/lock_screen_utility.dart';
 
 import '../../util/base_utility.dart';
 
@@ -10,8 +9,10 @@ class PurpleTextContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: AppPaddings.lockScreenContainerPadding,
-      width: LockScreenUtil.lockScreenBigContainerWidth,
+      // padding: AppPaddings.lockScreenContainerPadding,
+      //margin: AppPaddings.componentPadding,
+      padding: AppPaddings.componentPadding,
+      width: SizeUtil.lockScreenBigContainerWidth,
       decoration: AppBoxDecoration.lockScreenBox,
       child: Text(
         text,

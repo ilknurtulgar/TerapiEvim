@@ -45,8 +45,14 @@ class _TerapiEvimState extends State<TerapiEvim> {
     return GetMaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
+            //bu thema baska yere gitmesi lazijm
             splashColor: Colors.transparent,
-            scaffoldBackgroundColor: AppColors.blueChalk),
+            scaffoldBackgroundColor: AppColors.blueChalk,
+            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+                backgroundColor: AppColors.white,
+                selectedItemColor: AppColors.black,
+                unselectedItemColor: AppColors.dustyGray,
+                elevation: 70)),
         home: _controller.isLogged.isTrue
             ? const TerapiEvimLogged()
             : const ParticipantLoginPage());

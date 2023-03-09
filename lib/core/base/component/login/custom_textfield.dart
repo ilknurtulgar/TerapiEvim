@@ -34,32 +34,32 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     //sizedboxdan da
     return SizedBox(
-      width: width ?? 342,
-      height: height ?? 60,
-      child: Obx(
-        () => TextField(
-          controller: textController,
-          obscureText: isPassword
-              ? activityController.isObsecure.value
-              : activityController.yasemin.value,
-          textAlign: TextAlign.start,
-          // maxLines: isBig ? 100 : ,
-          decoration: InputDecoration(
-            contentPadding:
-                isBig ? const EdgeInsets.all(20) : AppPaddings.contentPadding,
-            filled: true,
-            fillColor: AppColors.white,
-            labelText: rowModel?.text ?? "",
-            labelStyle: rowModel?.textStyle,
-            suffix: isBig ? rowModel?.trailingIcon : null,
-            prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
-            hintText: rowModel?.text2,
-            hintStyle: rowModel?.textStyle2 ??
-                AppTextStyles.normalTextStyle("small", false),
-            prefixText: isPhoneNumber ? '+90 ' : null,
-            enabledBorder: bordercolor(isBig),
-            focusedBorder: bordercolor(isBig),
-          ),
+
+      width: width ?? SizeUtil.generalWidth,
+      height: height ?? SizeUtil.generalHeight,
+      child: TextField(
+        controller: textController,
+        obscureText: isPassword
+            ? activityController.isObsecure.value
+            : activityController.yasemin.value,
+        textAlign: TextAlign.start,
+        // maxLines: isBig ? 100 : ,
+        decoration: InputDecoration(
+          contentPadding:
+              isBig ? const EdgeInsets.all(20) : AppPaddings.contentPadding,
+          filled: true,
+          fillColor: AppColors.white,
+          labelText: rowModel?.text ?? "",
+          labelStyle: rowModel?.textStyle,
+          suffix: isBig ? rowModel?.trailingIcon : null,
+          prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
+          hintText: rowModel?.text2,
+          hintStyle: rowModel?.textStyle2 ??
+              AppTextStyles.normalTextStyle("small", false),
+          prefixText: isPhoneNumber ? '+90 ' : null,
+          enabledBorder: bordercolor(isBig),
+          focusedBorder: bordercolor(isBig),
+
         ),
       ),
     );
@@ -70,7 +70,9 @@ OutlineInputBorder bordercolor(bool isBig) {
   return OutlineInputBorder(
       borderRadius: AppBorderRadius.generalBorderRadius,
       borderSide: BorderSide(
-        color: isBig ? AppColors.dustyGray : AppColors.cornFlowerBlue,
+        color: isBig
+            ? BorderColorUtil.textfieldBorderColor
+            : BorderColorUtil.generalBorderColor,
         width: 1,
       ));
 }
@@ -82,6 +84,7 @@ RowModel searchModel = RowModel(
     trailingIcon: IconButton(
       onPressed: () {
         Get.to(const FilterScreen());
+        //trendyolfiltreicondüzenleme
       },
       icon: IconUtility.fiterIcon,
     ),

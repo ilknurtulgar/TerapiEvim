@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/home/notification_container.dart';
 
 import 'package:terapievim/core/base/component/home/reminder.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/home/home.dart';
 import 'package:terapievim/screen/therapist/home/session_screen.dart';
 
@@ -13,16 +13,16 @@ class TherapistHome extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Center(
             child: Column(
               children: [
                 headingtext(true, true, GroupTextUtil.terapiEvim),
                 headingtext(false, false, HomeTextUtil.welcome),
                 mindetailesbox(HomeTextUtil.myMinuteSessions,
-                    () => Get.to(const SessionScreen())),
+                    () => context.push(const SessionScreen())),
                 reminderactivity(),
                 notificationcontainer()
               ],

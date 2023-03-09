@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 
 class GroupController extends GetxController {
   var isChosen = List<bool>.filled(10, false)
@@ -21,57 +23,47 @@ class GroupController extends GetxController {
   var isTrue = true.obs;
   late List<Widget> choice = <Widget>[
     Column(
-      children: const [
-        Icon(
-          Icons.check_circle_outline_sharp,
-        ),
+      children: [
+        IconUtility.checkCircleIcon,
         Text(
-          "hiç",
-          style: TextStyle(color: Colors.black),
+          GroupTextUtil.none,
+          style: const TextStyle(color: AppColors.black),
         ),
       ],
     ),
     Column(
-      children: const [
-        Icon(
-          Icons.check_circle_outline_sharp,
-        ),
+      children: [
+        IconUtility.checkCircleIcon,
         Text(
-          "çok az",
-          style: TextStyle(color: Colors.black),
+          GroupTextUtil.veryLittle,
+          style: const TextStyle(color: AppColors.black),
         ),
       ],
     ),
     Column(
-      children: const [
-        Icon(
-          Icons.check_circle_outline_sharp,
-        ),
+      children: [
+        IconUtility.checkCircleIcon,
         Text(
-          "orta",
-          style: TextStyle(color: Colors.black),
+          GroupTextUtil.medium,
+          style: const TextStyle(color: AppColors.black),
         ),
       ],
     ),
     Column(
-      children: const [
-        Icon(
-          Icons.check_circle_outline_sharp,
-        ),
+      children: [
+        IconUtility.checkCircleIcon,
         Text(
-          "fazla",
-          style: TextStyle(color: Colors.black),
+          GroupTextUtil.more,
+          style: const TextStyle(color: AppColors.black),
         ),
       ],
     ),
     Column(
-      children: const [
-        Icon(
-          Icons.check_circle_outline_sharp,
-        ),
+      children: [
+        IconUtility.checkCircleIcon,
         Text(
-          "aşırı",
-          style: TextStyle(color: Colors.black),
+          GroupTextUtil.extreme,
+          style: const TextStyle(color: AppColors.black),
         ),
       ],
     ),

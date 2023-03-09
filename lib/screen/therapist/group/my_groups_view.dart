@@ -8,17 +8,17 @@ import 'package:terapievim/screen/therapist/group/groups_informations/group_info
 
 class MyGroups extends StatelessWidget {
   MyGroups({super.key}); //gecici modeller
-  RowModel row_1 = RowModel(
+  final RowModel row_1 = RowModel(
       leadingIcon: IconUtility.activityIcon,
       text: "Yeme Bozukluğu Grubu 1",
       textStyle: AppTextStyles.groupTextStyle(false),
       isAlignmentBetween: false);
-  RowModel row_2 = RowModel(
+  final RowModel row_2 = RowModel(
       leadingIcon: IconUtility.personIcon,
       text: "Yardımcı Psikolog  : Bekleniyor.. ",
       textStyle: AppTextStyles.groupTextStyle(true),
       isAlignmentBetween: false);
-  RowModel row_3 = RowModel(
+  final RowModel row_3 = RowModel(
       leadingIcon: IconUtility.greyGroupsIcon,
       text: "Katılımcı Sayısı : 0/20",
       textStyle: AppTextStyles.normalTextStyle('small', false),

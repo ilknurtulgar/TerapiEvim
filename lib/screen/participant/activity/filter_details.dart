@@ -42,7 +42,6 @@ class FilterDetails extends StatelessWidget {
         itemBuilder: (context, index) {
           return Obx(
             () => filtermin(DemoInformation.personList[index], () {
-              print(index);
               activityController.iconFilter(index);
             },
                 activityController.activityIcon[index]

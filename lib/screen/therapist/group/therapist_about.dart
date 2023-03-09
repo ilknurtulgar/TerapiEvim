@@ -131,7 +131,7 @@ Text heading(name) {
 Container aboutMe(String aboutme) {
   return Container(
     padding: AppPaddings.aboutmePadding,
-    width: 265,
+    width: SizeUtil.lockScreenContainerWidth,
     child: Text(
       aboutme,
       textAlign: TextAlign.justify,
@@ -143,7 +143,7 @@ Container aboutMe(String aboutme) {
 Container whiteBackground(BuildContext context) {
   return Container(
     width: MediaQuery.of(context).size.width,
-    height: 191,
+    height: SizeUtil.whiteContainerHeight,
     color: AppColors.white,
     margin: AppPaddings.whitebackgroundmargin,
   );

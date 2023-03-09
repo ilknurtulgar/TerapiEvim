@@ -3,6 +3,8 @@ import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:terapievim/screen/therapist/group/groups_informations/group_information.dart';
 
 class MyGroups extends StatelessWidget {
   MyGroups({super.key}); //gecici modeller
@@ -34,22 +36,18 @@ class MyGroups extends StatelessWidget {
                     textStyle: AppTextStyles.heading(true),
                     isAlignmentBetween: true,
                     trailingIcon: IconButton(
-                      onPressed: () {},
-                      icon: const Icon(
-                        Icons.add,
-                        size: 40,
-                        color: AppColors.meteorite,
-                      ),
-                    )),
-                EdgeInsets.only(top: 18, left: 30, right: 30, bottom: 40)),
+                        onPressed: () {}, icon: IconUtility.headingAdd)),
+                AppPaddings.appBarPadding),
             ListView.builder(
               shrinkWrap: true,
               itemCount: 10,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: EdgeInsets.symmetric(vertical: 9, horizontal: 24),
+                  padding: AppPaddings.componentPadding,
                   child: SeminarMax(
-                      onTap: () {},
+                      onTap: () {
+                        context.push(GroupInformation());
+                      },
                       row1: row_1,
                       row2: row_2,
                       row3: row_3,

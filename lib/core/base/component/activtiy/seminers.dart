@@ -23,8 +23,8 @@ class SeminarMin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     borderColor ??= AppColors.dustyGray;
-    width ??= 342;
-    height ??= 52;
+    width ??= SizeUtil.generalWidth;
+    height ??= SizeUtil.generalHeight;
     return InkWell(
       onTap: onTap,
       child: Container(
@@ -32,7 +32,7 @@ class SeminarMin extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
             border: Border.all(color: borderColor!.withOpacity(1)),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: AppBorderRadius.generalBorderRadius,
             color: AppColors.white),
         child: rowView(row, AppPaddings.rowViewPadding),
       ),
@@ -65,8 +65,8 @@ class SeminarMax extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     borderColor ??= AppColors.dustyGray;
-    width ??= Responsive.width(342, context);
-    height ??= Responsive.height(120, context);
+    width ??= Responsive.width(SizeUtil.generalWidth, context);
+    height ??= Responsive.height(SizeUtil.groupHeight, context);
     return InkWell(
       onTap: () {
         onTap();
@@ -76,7 +76,7 @@ class SeminarMax extends StatelessWidget {
         width: width,
         decoration: BoxDecoration(
             border: Border.all(color: borderColor!.withOpacity(1)),
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: AppBorderRadius.generalBorderRadius,
             color: AppColors.white),
         child: Column(
           mainAxisSize: MainAxisSize.max,

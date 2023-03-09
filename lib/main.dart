@@ -71,6 +71,7 @@ Future<void> initialize() async {
   }
 
   final Config config = Config.instance;
-
-  config.setIsAndroid = Platform.isAndroid;
+  if (kIsWeb == false) {
+    config.setIsAndroid = Platform.isAndroid;
+  }
 }

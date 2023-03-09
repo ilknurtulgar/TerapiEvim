@@ -34,6 +34,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     //sizedboxdan da
     return SizedBox(
+
       width: width ?? SizeUtil.generalWidth,
       height: height ?? SizeUtil.generalHeight,
       child: TextField(
@@ -58,6 +59,7 @@ class CustomTextField extends StatelessWidget {
           prefixText: isPhoneNumber ? '+90 ' : null,
           enabledBorder: bordercolor(isBig),
           focusedBorder: bordercolor(isBig),
+
         ),
       ),
     );

@@ -8,7 +8,7 @@ import '../../../../core/base/component/profile/image/custom_circle_avatar.dart'
 
 class ProfilePageUtility {
   static Container backgroundOfThePage() => Container(
-        height: 162,
+        height: SizeUtil.whiteContainerHeight,
         width: window.physicalSize.width,
         color: AppColors.white,
       );
@@ -29,7 +29,7 @@ class ProfilePageUtility {
   static Align profilePagePersonImage(String imagePath) => Align(
         alignment: Alignment.topCenter,
         child: Padding(
-          padding: const EdgeInsets.only(top: 60),
+          padding: const EdgeInsets.only(top: 91),
           child:
               CustomCircleAvatar(imagePath: imagePath, big: true, shadow: true),
         ),
@@ -45,8 +45,8 @@ class ProfilePageUtility {
           textStyle2: AppTextStyles.normalTextStyle('medium', false),
           leadingIcon: Icon(
             isInParticipantPage
-                ? Icons.person_outline
-                : Icons.account_circle_outlined,
+                ? IconUtility.personIcon.icon
+                : IconUtility.navProfile,
             color: Colors.black,
           ),
           isAlignmentBetween: false);
@@ -57,10 +57,10 @@ class ProfilePageUtility {
               text: text,
               leadingIcon: Icon(
                 purpose == 'group'
-                    ? Icons.group_outlined
+                    ? IconUtility.navGroup
                     : purpose == 'method'
-                        ? Icons.description_outlined
-                        : Icons.desktop_windows_outlined,
+                        ? IconUtility.fileIcon.icon
+                        : IconUtility.windowsIcon.icon,
                 color: AppColors.black,
                 size: 25,
               ),
@@ -89,7 +89,7 @@ class ProfilePageUtility {
 
   static CustomDropDown genderDropDown(bool isInProfilePage) => CustomDropDown(
         isGenderPurpose: true,
-        width: isInProfilePage ? 195 : 342,
-        height: isInProfilePage ? 23 : 56,
+        width: isInProfilePage ? SizeUtil.genderDropDownWidth1 : SizeUtil.generalWidth,
+        height: isInProfilePage ? SizeUtil.genderDropDownHeight1 : SizeUtil.genderDropDownHeight2,
       );
 }

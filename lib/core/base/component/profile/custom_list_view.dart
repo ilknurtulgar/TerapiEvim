@@ -23,7 +23,7 @@ class ProfilePageListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 130,
+      height: SizeUtil.listViewHeight,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
@@ -36,15 +36,18 @@ class ProfilePageListView extends StatelessWidget {
     );
   }
 
-  GroupClass groupContainer(int index) {
-    return GroupClass(
-      height: 120,
-      width: 320,
-      borderColor: AppColors.cornFlowerBlue,
-      heading: groupNameList![index],
-      onTap: () {},
-      row1: ProfilePageUtility.doubleTextRow(TherapistProfileTextUtil.advisor, firstRowTextList![index], true),
-      row2: ProfilePageUtility.normalTextRow(secondRowTextList[index],Icons.alarm_outlined,AppTextStyles.normalTextStyle('medium',false)),
+  Padding groupContainer(int index) {
+    return Padding(
+      padding:AppPaddings.smallPadding(3),
+      child: GroupClass(
+        height: SizeUtil.tGroupContainerHeight,
+        width: SizeUtil.tGroupContainerWidth,
+        borderColor: AppColors.cornFlowerBlue,
+        heading: groupNameList![index],
+        onTap: () {},
+        row1: ProfilePageUtility.doubleTextRow(TherapistProfileTextUtil.advisor, firstRowTextList![index], true),
+        row2: ProfilePageUtility.normalTextRow(secondRowTextList[index],Icons.alarm_outlined,AppTextStyles.normalTextStyle('medium',false)),
+      ),
     );
   }
 

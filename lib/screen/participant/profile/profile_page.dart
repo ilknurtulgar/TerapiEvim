@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/profile/custom_list_view.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/profile/models/group_model.dart';
 import 'package:terapievim/screen/participant/profile/profile_setting_page.dart';
 import '../../../core/base/component/group/group.dart';
@@ -21,7 +21,7 @@ class ParticipantProfilePage extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Stack(children: [
             ProfilePageUtility.backgroundOfThePage(),
-            ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() => Get.to(() => ParticipantProfileSettingPage()), 40, 20),
+            ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() => context.push(ParticipantProfileSettingPage()), 40, 20),
             ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
             Padding(
               padding: AppPaddings.profilePageBigPadding(true),
@@ -59,8 +59,8 @@ class ParticipantProfilePage extends StatelessWidget {
 
   Widget participantGroupContainer() {
     return GroupClass(
-      height: 138,
-      width: 350,
+      height: SizeUtil.groupContainerHeight,
+      width: SizeUtil.groupContainerWidth,
       borderColor: AppColors.cornFlowerBlue,
       heading: DemoInformation.groupInformation.groupName,
       onTap: () {}, // navigate to group page

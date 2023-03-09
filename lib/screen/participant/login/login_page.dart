@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
 import 'package:terapievim/screen/participant/profile/util/textfield_utility.dart';
 import '../../../controller/auth/login_controller.dart';
@@ -39,7 +40,7 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
       body: SingleChildScrollView(
         child: Center(
           child: SizedBox(
-            width: 342,
+            width: SizeUtil.generalWidth,
             child: Wrap(
               direction: Axis.vertical,
               crossAxisAlignment: WrapCrossAlignment.center,
@@ -51,7 +52,7 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
               passwordColumn(),
               LoginPageUtility.button(true, true, () {_loginController.loginWithEmail();}),
               LoginPageUtility.lineWithOrText(),
-              LoginPageUtility.button(false, true, () => Get.to(() => const SignUpPage())),
+              LoginPageUtility.button(false, true, () => context.push(const SignUpPage())),
             ]),
           ),
         ),

@@ -44,9 +44,9 @@ class ProfilePageListView extends StatelessWidget {
         width: SizeUtil.tGroupContainerWidth,
         borderColor: AppColors.cornFlowerBlue,
         heading: groupNameList![index],
-        onTap: () {},
+        onTap: () {/*gruba git fonksiyonu*/},
         row1: ProfilePageUtility.doubleTextRow(TherapistProfileTextUtil.advisor, firstRowTextList![index], true),
-        row2: ProfilePageUtility.normalTextRow(secondRowTextList[index],Icons.alarm_outlined,AppTextStyles.normalTextStyle('medium',false)),
+        row2: ProfilePageUtility.normalTextRow(secondRowTextList[index],IconUtility.clockIcon.icon!,AppTextStyles.normalTextStyle('medium',false)),
       ),
     );
   }
@@ -58,15 +58,15 @@ class ProfilePageListView extends StatelessWidget {
                 : firstRowTextList![index], // grup: depresyon grubu yazınca overflow
             row2Text: secondRowTextList[index],
             firstIconData: isForParticipant
-                ? Icons.person_outline
+                ? IconUtility.personIcon.icon!//Icons.person_outline
                 : isForMethod
-                    ? Icons.group_outlined
-                    : Icons.desktop_windows_outlined,
+                    ? IconUtility.greyGroupsIcon.icon!
+                    : IconUtility.windowsIcon.icon!,
             secondIconData: isForMethod
-                ? Icons.description_outlined
+                ? IconUtility.fileIcon.icon!
                 : isForParticipant
-                    ? Icons.desktop_windows_outlined
-                    : Icons.alarm_outlined,
+                    ? IconUtility.windowsIcon.icon!
+                    : IconUtility.clockIcon.icon!,
             purpose: isForMethod ? 'method' : 'seminar',
             isThereButton: true,
             buttonText: isForParticipant

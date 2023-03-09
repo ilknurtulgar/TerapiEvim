@@ -14,14 +14,14 @@ class ParticipantProfilePage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.blueChalk,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: AppColors.blueChalk,
+      body: SafeArea(
+        child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Stack(children: [
             ProfilePageUtility.backgroundOfThePage(),
-            ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() => context.push(ParticipantProfileSettingPage()), 40, 20),
+            ProfilePageUtility.positionedIconButton(IconUtility.settingIcon.icon!,() => context.push(ParticipantProfileSettingPage()), 40, 20),
             ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
             Padding(
               padding: AppPaddings.profilePageBigPadding(true),
@@ -50,7 +50,7 @@ class ParticipantProfilePage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        rowView(ProfilePageUtility.normalTextRow(ParticipantProfileTextUtil.myActiveGroup,Icons.group_outlined,AppTextStyles.profileTextStyles(true,true)),EdgeInsets.zero),
+        rowView(ProfilePageUtility.normalTextRow(ParticipantProfileTextUtil.myActiveGroup,IconUtility.navGroup,AppTextStyles.profileTextStyles(true,true)),EdgeInsets.zero),
         smallSizedBox(),
         participantGroupContainer(),
       ],
@@ -66,7 +66,7 @@ class ParticipantProfilePage extends StatelessWidget {
       onTap: () {}, // navigate to group page
       row1: ProfilePageUtility.doubleTextRow(ParticipantProfileTextUtil.mainTherpist,DemoInformation.groupInformation.mainTherapistName,true),
       row2: ProfilePageUtility.doubleTextRow(ParticipantProfileTextUtil.advisor,DemoInformation.groupInformation.secondTherapistName,true),
-      row3: ProfilePageUtility.normalTextRow(DemoInformation.groupInformation.therapyTime,Icons.alarm_outlined,AppTextStyles.normalTextStyle('medium', false)),
+      row3: ProfilePageUtility.normalTextRow(DemoInformation.groupInformation.therapyTime,IconUtility.clockIcon.icon!,AppTextStyles.normalTextStyle('medium', false)),
     );
   }
 

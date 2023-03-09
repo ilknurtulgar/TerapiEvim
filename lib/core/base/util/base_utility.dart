@@ -139,7 +139,7 @@ class IconUtility {
     Icons.send,
     color: Colors.black,
   );
-  static const Icon settingIcon = Icon(Icons.settings);
+  static const Icon settingIcon = Icon(Icons.settings_outlined);
   static const Icon editIcon = Icon(Icons.edit);
   static const Icon deleteIcon = Icon(Icons.delete);
 
@@ -203,6 +203,8 @@ class IconUtility {
     size: 40,
     color: AppColors.meteorite,
   );
+  static const Icon arrowBack = Icon(Icons.arrow_back_ios_outlined);
+  static const Icon editPencil = Icon(Icons.edit_outlined);
 }
 
 class AppTextStyles {

@@ -3,7 +3,6 @@ import 'package:terapievim/controller/activity_controller.dart';
 import '../../../../controller/profile_controller.dart';
 import '../../../../core/base/component/login/custom_textfield.dart';
 import 'package:flutter/material.dart';
-
 import '../../../../core/base/models/row_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 

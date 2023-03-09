@@ -46,11 +46,11 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         child: Stack(children: [
           ProfilePageUtility.backgroundOfThePage(),
           ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
-          ProfilePageUtility.positionedIconButton(Icons.arrow_back_ios_outlined,() {context.push(const ParticipantProfilePage());}, 35, 340),
-          ProfilePageUtility.positionedIconButton(Icons.edit_outlined, () {/* foto düzenleme */}, 235, 105),
+          ProfilePageUtility.positionedIconButton(IconUtility.arrowBack.icon!,() {context.push(const ParticipantProfilePage());}, 35, 340),
+          ProfilePageUtility.positionedIconButton(IconUtility.editPencil.icon!, () {/* foto düzenleme */}, 260, 100),
           bigColumn(),
           DemoInformation.isForParticipant == false
-              ? Positioned(top: 715,right: 10,child:CustomListWheelScrollView(whatIsFor: 'number of groups'))
+              ? Positioned(top: 855,right: 10,child:CustomListWheelScrollView(whatIsFor: 'number of groups')) // eski değer 715
               : const SizedBox(),
         ]),
       ),

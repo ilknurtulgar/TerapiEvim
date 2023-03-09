@@ -19,7 +19,7 @@ class TherapistProfilePage extends StatelessWidget {
               children: [
                 ProfilePageUtility.backgroundOfThePage(),
                 ProfilePageUtility.profilePagePersonImage(DemoInformation.imagePath),
-                ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() =>context.push(ParticipantProfileSettingPage()),50,10),
+                ProfilePageUtility.positionedIconButton(IconUtility.settingIcon.icon!,() =>context.push(ParticipantProfileSettingPage()),50,10),
                 Padding(
                   padding: AppPaddings.profilePageBigPadding(true),
                   child: Column(
@@ -46,7 +46,7 @@ class TherapistProfilePage extends StatelessWidget {
 
   Padding therapistName() {
     return Padding(
-      padding: const EdgeInsets.only(right: 24),
+      padding: AppPaddings.mediumPadding(1),
       child: Center(
         child: Text(DemoInformation.name,style: AppTextStyles.aboutMeTextStyle(true),
       ),

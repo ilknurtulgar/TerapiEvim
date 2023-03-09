@@ -15,6 +15,7 @@ import 'package:terapievim/screen/participant/login/login_page.dart';
 import 'controller/main_controller.dart';
 import 'controller/therapist_group_controller.dart';
 import 'controller/therapist_profile_controller.dart';
+import 'core/init/cache/local_manager.dart';
 import 'core/init/config/config.dart';
 import 'service/firebase_options.dart';
 
@@ -72,4 +73,6 @@ Future<void> initialize() async {
 
     config.setIsAndroid = Platform.isAndroid;
   }
+
+  await LocalManager.preferencesInit();
 }

@@ -22,8 +22,8 @@ class HomeScreen extends StatelessWidget {
             GroupTextUtil.terapiEvim,
           ),
           headingtext(false, false, HomeTextUtil.welcome),
-          mindetailesbox(
-              HomeTextUtil.copingMethods, () => context.push(const CopingMethods())),
+          mindetailesbox(HomeTextUtil.copingMethods,
+              () => context.push(const CopingMethods())),
           notification(DemoInformation.cardModelhome, DemoInformation.home,
               DemoInformation.home.length)
         ],

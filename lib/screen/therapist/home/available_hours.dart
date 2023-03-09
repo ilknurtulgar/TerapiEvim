@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/home/add_hours_screen.dart';
 import 'package:terapievim/screen/therapist/message/message.dart';
 
@@ -20,7 +20,7 @@ class AvailableHours extends StatelessWidget {
                   const SizedBox.shrink(),
                   IconButton(
                       onPressed: () {
-                        Get.to(const AddHoursScreen());
+                        context.push(const AddHoursScreen());
                       },
                       icon: IconUtility.addIcon)),
               choosingtime(),

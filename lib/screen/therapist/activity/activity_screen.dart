@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
 
@@ -18,7 +18,7 @@ class TherapistActivityScreen extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              activityappbar(),
+              activityappbar(context),
               activityminto(ActivityTextUtil.myupcomingActivities, () {},
                   MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
               myupcomingactivities(),
@@ -81,7 +81,7 @@ class TherapistActivityScreen extends StatelessWidget {
         clockModel: DemoInformation.clockmodel);
   }
 
-  Row activityappbar() {
+  Row activityappbar(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -92,7 +92,8 @@ class TherapistActivityScreen extends StatelessWidget {
         IconButton(
             onPressed: () {
               therapistActivtyController.updatechnage(1);
-              Get.to(const NewActivityScreen());
+
+              context.push(const NewActivityScreen());
             },
             icon: IconUtility.addIcon)
       ],

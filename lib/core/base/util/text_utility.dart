@@ -20,6 +20,13 @@ class GroupTextUtil {
   static String pdfUploadingText =
       "E-Devlet Onaylı Mezuniyet Belgenizi Yükleyiniz (.pdf desteklenmektedir)";
   static String uploadText = "Yükle";
+
+//toggletext
+  static String none = "hiç";
+  static String veryLittle = "çok az";
+  static String medium = "orta";
+  static String more = "fazla";
+  static String extreme = "aşırı";
   //group add
 
   static String monday = "Pazartesi";

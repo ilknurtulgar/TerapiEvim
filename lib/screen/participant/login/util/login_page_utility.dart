@@ -6,8 +6,8 @@ import '../../../../core/base/util/base_utility.dart';
 
 class LoginPageUtility {
   static ContainerModel beforeLoginButtonContainer() => ContainerModel(
-        height: 50,
-        width: 300,
+        height: SizeUtil.beforeLoginButtonHeight,
+        width: SizeUtil.beforeLoginButtonWidth,
         borderRadius: 65,
         backgroundColor: AppColors.butterflyBush,
       );
@@ -15,19 +15,19 @@ class LoginPageUtility {
   static ContainerModel loginSignUpButtonContainer(
           bool isInLoginPage, bool isLoginButton) =>
       ContainerModel(
-          width: 342,
+          width: SizeUtil.generalWidth,
           borderRadius: 8,
           backgroundColor: (isInLoginPage && isLoginButton) ||
                   (isInLoginPage == false && isLoginButton == false)
               ? AppColors.royalBlue
               : AppColors.white,
-          height: 43);
+          height: SizeUtil.loginSignUpButtonHeight);
 
   static Padding lineWithOrText() {
     return Padding(
       padding: AppPaddings.smallVerticalPadding,
       child: SizedBox(
-        width: 342,
+        width: SizeUtil.generalWidth,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -44,8 +44,8 @@ class LoginPageUtility {
   static Container horizontalLine() {
     return Container(
       color: AppColors.black,
-      height: 1,
-      width: 150,
+      height: SizeUtil.horizontalLineHeight,
+      width: SizeUtil.horizontalLineWidth,
     );
   }
 

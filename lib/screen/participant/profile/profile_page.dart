@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/profile/custom_list_view.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/profile/models/group_model.dart';
 import 'package:terapievim/screen/participant/profile/profile_setting_page.dart';
 import '../../../core/base/component/group/group.dart';
@@ -14,14 +14,14 @@ class ParticipantProfilePage extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.blueChalk,
-        body: SingleChildScrollView(
+    return Scaffold(
+      backgroundColor: AppColors.blueChalk,
+      body: SafeArea(
+        child: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: Stack(children: [
             ProfilePageUtility.backgroundOfThePage(),
-            ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() => Get.to(() => ParticipantProfileSettingPage()), 40, 20),
+            ProfilePageUtility.positionedIconButton(IconUtility.settingIcon.icon!,() => context.push(ParticipantProfileSettingPage()), 40, 20),
             ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
             Padding(
               padding: AppPaddings.profilePageBigPadding(true),
@@ -50,7 +50,7 @@ class ParticipantProfilePage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        rowView(ProfilePageUtility.normalTextRow(ParticipantProfileTextUtil.myActiveGroup,Icons.group_outlined,AppTextStyles.profileTextStyles(true,true)),EdgeInsets.zero),
+        rowView(ProfilePageUtility.normalTextRow(ParticipantProfileTextUtil.myActiveGroup,IconUtility.navGroup,AppTextStyles.profileTextStyles(true,true)),EdgeInsets.zero),
         smallSizedBox(),
         participantGroupContainer(),
       ],
@@ -59,14 +59,14 @@ class ParticipantProfilePage extends StatelessWidget {
 
   Widget participantGroupContainer() {
     return GroupClass(
-      height: 138,
-      width: 350,
+      height: SizeUtil.groupContainerHeight,
+      width: SizeUtil.groupContainerWidth,
       borderColor: AppColors.cornFlowerBlue,
       heading: DemoInformation.groupInformation.groupName,
       onTap: () {}, // navigate to group page
       row1: ProfilePageUtility.doubleTextRow(ParticipantProfileTextUtil.mainTherpist,DemoInformation.groupInformation.mainTherapistName,true),
       row2: ProfilePageUtility.doubleTextRow(ParticipantProfileTextUtil.advisor,DemoInformation.groupInformation.secondTherapistName,true),
-      row3: ProfilePageUtility.normalTextRow(DemoInformation.groupInformation.therapyTime,Icons.alarm_outlined,AppTextStyles.normalTextStyle('medium', false)),
+      row3: ProfilePageUtility.normalTextRow(DemoInformation.groupInformation.therapyTime,IconUtility.clockIcon.icon!,AppTextStyles.normalTextStyle('medium', false)),
     );
   }
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
 import '../../../../controller/therapist_profile_controller.dart';
 import '../../util/text_utility.dart';
 
@@ -20,11 +21,11 @@ class AcceptionRow extends StatelessWidget {
                 onPressed: () => controller.acceptionFunction(isForMakingShortCall),
                 icon: Icon(isForMakingShortCall
                     ? controller.isMakingShortCallAccepted.value
-                        ? Icons.check_circle_outline
-                        : Icons.circle_outlined
+                        ? IconUtility.checkCircleIcon.icon
+                        : IconUtility.circleIcon.icon
                     : controller.isBeingAdvisorAccepted.value
-                        ? Icons.check_circle_outline
-                        : Icons.circle_outlined))),
+                        ? IconUtility.checkCircleIcon.icon
+                        : IconUtility.circleIcon.icon))),
             Text(isForMakingShortCall
                 ? LoginSignUpTextUtil.therapistAcceptedMakingShortCall
                 : ProfileSettingsTextUtil.therapistAcceptedRandomTherapistList)

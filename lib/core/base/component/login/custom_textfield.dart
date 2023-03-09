@@ -36,28 +36,30 @@ class CustomTextField extends StatelessWidget {
     return SizedBox(
       width: width ?? 342,
       height: height ?? 60,
-      child: TextField(
-        controller: textController,
-        obscureText: isPassword
-            ? activityController.isObsecure.value
-            : activityController.yasemin.value,
-        textAlign: TextAlign.start,
-        // maxLines: isBig ? 100 : ,
-        decoration: InputDecoration(
-          contentPadding:
-              isBig ? const EdgeInsets.all(20) : AppPaddings.contentPadding,
-          filled: true,
-          fillColor: AppColors.white,
-          labelText: rowModel?.text ?? "",
-          labelStyle: rowModel?.textStyle,
-          suffix: isBig ? rowModel?.trailingIcon : null,
-          prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
-          hintText: rowModel?.text2,
-          hintStyle: rowModel?.textStyle2 ??
-              AppTextStyles.normalTextStyle("small", false),
-          prefixText: isPhoneNumber ? '+90 ' : null,
-          enabledBorder: bordercolor(isBig),
-          focusedBorder: bordercolor(isBig),
+      child: Obx(
+        () => TextField(
+          controller: textController,
+          obscureText: isPassword
+              ? activityController.isObsecure.value
+              : activityController.yasemin.value,
+          textAlign: TextAlign.start,
+          // maxLines: isBig ? 100 : ,
+          decoration: InputDecoration(
+            contentPadding:
+                isBig ? const EdgeInsets.all(20) : AppPaddings.contentPadding,
+            filled: true,
+            fillColor: AppColors.white,
+            labelText: rowModel?.text ?? "",
+            labelStyle: rowModel?.textStyle,
+            suffix: isBig ? rowModel?.trailingIcon : null,
+            prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
+            hintText: rowModel?.text2,
+            hintStyle: rowModel?.textStyle2 ??
+                AppTextStyles.normalTextStyle("small", false),
+            prefixText: isPhoneNumber ? '+90 ' : null,
+            enabledBorder: bordercolor(isBig),
+            focusedBorder: bordercolor(isBig),
+          ),
         ),
       ),
     );

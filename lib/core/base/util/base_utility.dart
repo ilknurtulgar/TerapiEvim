@@ -139,7 +139,7 @@ class IconUtility {
     Icons.send,
     color: Colors.black,
   );
-  static const Icon settingIcon = Icon(Icons.settings);
+  static const Icon settingIcon = Icon(Icons.settings_outlined);
   static const Icon editIcon = Icon(Icons.edit);
   static const Icon deleteIcon = Icon(Icons.delete);
 
@@ -203,6 +203,8 @@ class IconUtility {
     size: 40,
     color: AppColors.meteorite,
   );
+  static const Icon arrowBack = Icon(Icons.arrow_back_ios_outlined);
+  static const Icon editPencil = Icon(Icons.edit_outlined);
 }
 
 class AppTextStyles {
@@ -295,7 +297,7 @@ class AppContainers {
           backgroundColor: AppColors.white);
 
   static ContainerModel purpleButtonContainer(double? width) => ContainerModel(
-        height: 30,
+        height: SizeUtil.purpleButtonHeight,
         width: width,
         borderRadius: 65,
         backgroundColor: AppColors.butterflyBush,
@@ -463,7 +465,7 @@ class AppPaddings {
   static EdgeInsets smallVerticalPadding =
       const EdgeInsets.symmetric(vertical: 12);
   static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
-      EdgeInsets.only(top: 280, left: isThereLeftPadding ? 24 : 0);
+      EdgeInsets.only(top: 305, left: isThereLeftPadding ? 24 : 0);
 }
 
 class AppBorderRadius {
@@ -832,6 +834,40 @@ class SizeUtil {
   static const double groupHeight = 120;
   static const double generalWidth = 342;
   static const double generalHeight = 52;
+  static const double homeImageHeight = 150;
+  static const double beforeLoginButtonWidth = 300;
+  static const double beforeLoginButtonHeight = 50;
+  static const double loginSignUpButtonHeight = 43;
+  static const double horizontalLineWidth = 150;
+  static const double horizontalLineHeight = 1;
+  static const double acceptionContainerHeight = 56;
+  static const double groupContainerHeight = 138;
+  static const double groupContainerWidth = 350;
+  static const double listViewHeight = 130;
+  static const double shortContainerWithButtonHeight = 114;
+  static const double shortContainerWithButtonWidth = 250;
+  static const double shortContainerWithoutButtonHeight = 80;
+  static const double purpleButtonHeight = 30;
+  static const double tGroupContainerHeight = 120;
+  static const double tGroupContainerWidth = 320;
+  static const double miniContainerHeight = 27;
+  static const double miniContainerWidth = 40;
+  static const double listWheelScrollWidth = 70;
+  static const double listWheelScrollHeight1 = 100;
+  static const double listWheelScrollHeight2 = 150;
+  static const double animatedContainerHeight = 20;
+  static const double zeroSize = 0;
+  static const double genderDropDownHeight1 = 23;
+  static const double genderDropDownWidth1 = 195;
+  static const double genderDropDownHeight2 = 56;
+  static const double personBigViewHeight = 750;
+  static const double personSmallViewHeight = 129;
+  static const double personSmallViewWidth = 92;
+  static const double personShortCallViewHeight = 260;
+  static const double personShortCallViewWidth = 340;
+  static const double groupCallBottomContainerHeight = 281;
+  static const double videoCallButtonRowHeight = 117;
+  static const double videoCallButtonContainerHeight = 64;
 }
 
 class Filter {

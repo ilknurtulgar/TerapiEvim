@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/profile/custom_list_view.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import '../../../core/base/component/home/custom_container.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../participant/profile/profile_setting_page.dart';
@@ -19,13 +19,13 @@ class TherapistProfilePage extends StatelessWidget {
               children: [
                 ProfilePageUtility.backgroundOfThePage(),
                 ProfilePageUtility.profilePagePersonImage(DemoInformation.imagePath),
-                ProfilePageUtility.positionedIconButton(Icons.settings_outlined,() => Get.to(ParticipantProfileSettingPage()),50,10),
+                ProfilePageUtility.positionedIconButton(IconUtility.settingIcon.icon!,() =>context.push(ParticipantProfileSettingPage()),50,10),
                 Padding(
-                  padding: const EdgeInsets.only(left: 24,top: 275),
+                  padding: AppPaddings.profilePageBigPadding(true),
                   child: Column(
                     children: [
                       therapistName(),
-                      const SizedBox(height: 20,),
+                      smallSizedBox(),
                       aboutMeColumn(),
                       ProfilePageUtility.boldMainTitleRowView(TherapistProfileTextUtil.myGroups,'group',(){}),
                       ProfilePageListView(isForParticipant: false, isForMethod: false, firstRowTextList: DemoInformation.advisorNames,secondRowTextList: DemoInformation.dates,groupNameList: DemoInformation.groupNameList,),
@@ -33,7 +33,7 @@ class TherapistProfilePage extends StatelessWidget {
                       ProfilePageListView(isForParticipant: false, isForMethod: true,firstRowTextList: DemoInformation.groupNameList,secondRowTextList: DemoInformation.methodNames),
                       ProfilePageUtility.boldMainTitleRowView(TherapistProfileTextUtil.seminars,'seminar',(){}),
                       ProfilePageListView(isForParticipant: false, isForMethod: false,firstRowTextList: DemoInformation.seminarNames,secondRowTextList: DemoInformation.dates,),
-                      const SizedBox(height: 20,)
+                      mediumSizedBox()
                     ],
                   ),
                 ),     
@@ -46,7 +46,7 @@ class TherapistProfilePage extends StatelessWidget {
 
   Padding therapistName() {
     return Padding(
-      padding: const EdgeInsets.only(right: 24),
+      padding: AppPaddings.mediumPadding(1),
       child: Center(
         child: Text(DemoInformation.name,style: AppTextStyles.aboutMeTextStyle(true),
       ),
@@ -60,8 +60,9 @@ class TherapistProfilePage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(TherapistProfileTextUtil.aboutMe,style: AppTextStyles.profileTextStyles(false,true),),
-        const SizedBox(height: 10,),
+        smallSizedBox(),
         aboutMeContainer(),
+        smallSizedBox(),
       ],
     );
   }

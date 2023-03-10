@@ -20,10 +20,10 @@ class ActivitiesScreen extends StatelessWidget {
               children: [
                 search(searchModel),
                 activityminto(ActivityTextUtil.upcomingActivities, () {},
-                    MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
+                    MainAxisAlignment.spaceAround, true, IconUtility.forward),
                 activityseminar(),
                 activityminto(ActivityTextUtil.pastActivities, () {},
-                    MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
+                    MainAxisAlignment.spaceAround, true, IconUtility.forward),
                 activityseminar()
               ],
             ),

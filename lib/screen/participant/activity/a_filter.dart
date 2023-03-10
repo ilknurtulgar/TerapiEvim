@@ -18,9 +18,9 @@ class FilterScreen extends StatelessWidget {
             filtermin(ActivityTextUtil.psychologist, () {
               //  print("tıklıyorum ya");
               Get.to(FilterDetails());
-            }, IconUtility.arrowIcon),
-            filtermin(ActivityTextUtil.date, () {}, IconUtility.arrowIcon),
-            filtermin(ActivityTextUtil.issue, () {}, IconUtility.arrowIcon),
+            }, IconUtility.forward),
+            filtermin(ActivityTextUtil.date, () {}, IconUtility.forward),
+            filtermin(ActivityTextUtil.issue, () {}, IconUtility.forward),
           ],
         ),
       ),

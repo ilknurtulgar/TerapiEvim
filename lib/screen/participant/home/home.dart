@@ -77,5 +77,5 @@ RowModel rowModel(String rowmodeltext) {
       text: rowmodeltext,
       textStyle: AppTextStyles.groupTextStyle(false),
       isAlignmentBetween: true,
-      trailingIcon: IconUtility.arrowIcon);
+      trailingIcon: IconUtility.forward);
 }

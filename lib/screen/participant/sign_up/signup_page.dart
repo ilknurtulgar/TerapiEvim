@@ -41,7 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
   late List<Widget> textfieldList = [
     textfieldUtility.nameSurnameTextfield(_signUpController.nameController, true),
     textfieldUtility.birthOfDateTextfield(_signUpController.birthDateController, true),
-    ProfilePageUtility.genderDropDown(false),
+    ProfilePageUtility.genderDropDown(false,_signUpController.genderController),
     textfieldUtility.mailTextfield(_signUpController.emailController, true),
     textfieldUtility.passwordTextfield(_signUpController.passwordController, true),
     textfieldUtility.phoneTextfield(_signUpController.phoneController, true),

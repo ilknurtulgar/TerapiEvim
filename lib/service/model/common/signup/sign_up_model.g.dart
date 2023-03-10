@@ -11,7 +11,6 @@ SignUpModel _$SignUpModelFromJson(Map<String, dynamic> json) => SignUpModel(
       birthDate: json['birthDate'] as String,
       gender: json['gender'] as String,
       email: json['email'] as String,
-      password: json['password'] as String,
       phone: json['phone'] as String,
     );
 
@@ -21,6 +20,5 @@ Map<String, dynamic> _$SignUpModelToJson(SignUpModel instance) =>
       'birthDate': instance.birthDate,
       'gender': instance.gender,
       'email': instance.email,
-      'password': instance.password,
       'phone': instance.phone,
     };

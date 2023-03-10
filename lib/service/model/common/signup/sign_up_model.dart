@@ -1,6 +1,7 @@
-import 'package:vexana/vexana.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:vexana/vexana.dart';
+
 part 'sign_up_model.g.dart';
 
 @JsonSerializable()
@@ -9,7 +10,6 @@ class SignUpModel extends INetworkModel<SignUpModel> with EquatableMixin {
   String birthDate;
   String gender;
   String email;
-  String password;
   String phone;
 
   SignUpModel({
@@ -17,7 +17,6 @@ class SignUpModel extends INetworkModel<SignUpModel> with EquatableMixin {
     required this.birthDate,
     required this.gender,
     required this.email,
-    required this.password,
     required this.phone,
   });
 
@@ -31,5 +30,5 @@ class SignUpModel extends INetworkModel<SignUpModel> with EquatableMixin {
   Map<String, dynamic>? toJson() => _$SignUpModelToJson(this);
 
   @override
-  List<Object?> get props => [name, birthDate, gender, email, password, phone];
+  List<Object?> get props => [name, birthDate, gender, email, phone];
 }

@@ -1,14 +1,14 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../core/base/component/toast/toast.dart';
+import '../../../core/base/service/base_service.dart';
+import '../../../core/constants/api_const.dart';
 import '../../../core/init/print_dev.dart';
-import '../../../core/managers/firebase/crashlytics_manager.dart';
 import '../../model/common/login/login_model.dart';
 import '../../model/common/signup/sign_up_model.dart';
 import 'i_auth_service.dart';
 
-class AuthService extends IAuthService {
+class AuthService extends IAuthService with BaseService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final CrashlyticsManager _crashlyticsManager = CrashlyticsManager.instance;
 
   @override
   Future<UserCredential?> signInWithEmail(LoginModel loginModel) async {
@@ -28,7 +28,7 @@ class AuthService extends IAuthService {
         flutterErrorToast('Wrong password provided for that user.');
       }
     } catch (e) {
-      await _crashlyticsManager.sendACrash(
+      await crashlyticsManager.sendACrash(
           error: e.toString(),
           stackTrace: StackTrace.current,
           reason: 'error at sign in with email service');
@@ -38,14 +38,19 @@ class AuthService extends IAuthService {
   }
 
   @override
-  Future<UserCredential?> signUpWithEmail(SignUpModel signUpModel) async {
+  Future<UserCredential?> signUpWithEmail({
+    required SignUpModel signUpModel,
+    required String password,
+  }) async {
     try {
       final UserCredential result =
           await _firebaseAuth.createUserWithEmailAndPassword(
         email: signUpModel.email,
-        password: signUpModel.password,
+        password: password,
       );
-      //TODO save data to firestore;
+
+      firestoreManager.create(
+          collectionPath: APIConst.users, value: signUpModel.toJson()!);
 
       return result;
     } on FirebaseAuthException catch (e) {
@@ -58,7 +63,7 @@ class AuthService extends IAuthService {
             .exception('The account already exists for that email.');
       }
     } catch (e) {
-      await _crashlyticsManager.sendACrash(
+      await crashlyticsManager.sendACrash(
           error: e.toString(),
           stackTrace: StackTrace.current,
           reason: 'error at sign up with email service');

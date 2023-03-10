@@ -12,33 +12,33 @@ dependencies:
   flutter:
     sdk: flutter
 
-  cupertino_icons: ^1.0.2
+  cupertino_icons: ^1.0.5
   get: ^4.6.5
   animated_bottom_navigation_bar: ^1.1.0+1
-  firebase_core: ^2.4.1
-  firebase_auth: ^4.2.5
-  cloud_firestore: ^4.3.1
-  firebase_storage: ^11.0.10
-  firebase_crashlytics: ^3.0.11
-  connectivity_plus: ^3.0.2
-  shared_preferences: ^2.0.17
+  firebase_core: ^2.7.1
+  firebase_auth: ^4.2.10
+  cloud_firestore: ^4.4.4
+  firebase_storage: ^11.0.15
+  firebase_crashlytics: ^3.0.16
+  connectivity_plus: ^2.3.5
+  shared_preferences: ^2.0.18
   flutter_secure_storage: ^8.0.0
   equatable: ^2.0.5
-  flutter_native_splash: ^2.2.17
+  flutter_native_splash: ^2.2.19
   json_serializable: ^6.6.1
   json_annotation: ^4.8.0
-  url_launcher: ^6.1.8
-  vexana: ^3.3.2
-  fluttertoast: ^8.1.2
-  image_picker: ^0.8.6+1
-  video_player: ^2.5.1
+  url_launcher: ^6.1.10
+  vexana: ^3.4.1
+  fluttertoast: ^8.2.1
+  image_picker: ^0.8.7
+  video_player: ^2.5.3
   permission_handler: ^10.2.0
   intl: ^0.17.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^2.0.0
+  flutter_lints: ^2.0.1
   build_runner: ^2.3.3 # flutter pub  run build_runner watch
 
 flutter:

@@ -1,10 +1,12 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+
 import '../../../../core/base/component/activtiy/drop_down.dart';
-import '../../../../core/base/models/row_model.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
+import '../../../../core/base/models/row_model.dart';
 
 class ProfilePageUtility {
   static Container backgroundOfThePage() => Container(
@@ -87,7 +89,9 @@ class ProfilePageUtility {
           isAlignmentBetween:
               false); //TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
 
-  static CustomDropDown genderDropDown(bool isInProfilePage) => CustomDropDown(
+  static CustomDropDown genderDropDown(bool isInProfilePage,
+          [TextEditingController? textController]) =>
+      CustomDropDown(
         isGenderPurpose: true,
         width: isInProfilePage
             ? SizeUtil.genderDropDownWidth1
@@ -95,5 +99,6 @@ class ProfilePageUtility {
         height: isInProfilePage
             ? SizeUtil.genderDropDownHeight1
             : SizeUtil.genderDropDownHeight2,
+        textController: textController,
       );
 }

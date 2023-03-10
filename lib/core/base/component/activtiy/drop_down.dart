@@ -9,10 +9,14 @@ class CustomDropDown extends StatefulWidget {
     super.key,
     required this.width,
     required this.height,
+    this.textController,
   });
+
   final double width;
   final double height;
   final bool isGenderPurpose;
+  final TextEditingController? textController;
+
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
 }
@@ -40,7 +44,10 @@ class _CustomDropDownState extends State<CustomDropDown> {
           ),
           Obx(
             () => activityController.selectedBox.value
-                ? ChooseGender(widget: widget)
+                ? ChooseGender(
+                    widget: widget,
+                    textController: widget.textController,
+                  )
                 : const SizedBox.shrink(),
           )
         ],
@@ -59,9 +66,11 @@ class ChooseGender extends StatelessWidget {
   const ChooseGender({
     super.key,
     required this.widget,
+    this.textController,
   });
 
   final CustomDropDown widget;
+  final TextEditingController? textController;
 
   @override
   Widget build(BuildContext context) {
@@ -77,7 +86,7 @@ class ChooseGender extends StatelessWidget {
                   widget.isGenderPurpose
                       ? DemoInformation.genderList[index]
                       : DemoInformation.orderingList[index],
-                  widget.isGenderPurpose);
+                  widget.isGenderPurpose,textController);
               activityController.changeBox();
             },
             child: Text(

@@ -5,7 +5,6 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 
 import 'package:terapievim/screen/participant/home/home.dart';
-import 'package:terapievim/screen/therapist/home/home.dart';
 
 class CopingMethods extends StatelessWidget {
   const CopingMethods({super.key});
@@ -44,13 +43,13 @@ class CopingMethods extends StatelessWidget {
   }
 
   Widget filter(BuildContext context) {
-    return Padding(
+    return const Padding(
       padding: AppPaddings.generalPadding,
       child: Align(
         alignment: Alignment.bottomRight,
         child: CustomDropDown(
             isGenderPurpose: false,
-            height: Responsive.height(40, context),
+            height: SizeUtil.lockScreenHeight,
             width: 135),
       ),
     );

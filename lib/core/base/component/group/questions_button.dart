@@ -23,10 +23,10 @@ class _ToggleQuestionsState extends State<ToggleQuestions> {
         onPressed: ((int index) {
           groupController.selecttooggle(index);
         }),
-        borderRadius: BorderRadius.circular(3),
-        borderColor: Colors.transparent,
-        selectedBorderColor: Colors.transparent,
-        fillColor: Colors.transparent,
+        borderRadius: AppBorderRadius.generalBorderRadius,
+        borderColor: BorderColorUtil.toggleBorderColor,
+        selectedBorderColor: BorderColorUtil.toggleBorderColor,
+        fillColor: AppColors.transparent,
         selectedColor: AppColors.cornFlowerBlue,
         splashColor: AppColors.transparent,
         constraints: const BoxConstraints(minHeight: 3, minWidth: 3),

@@ -30,52 +30,56 @@ class ProfilePageListView extends StatelessWidget {
           itemCount: secondRowTextList.length,
           itemBuilder: ((context, index) {
             return groupNameList == null
-             ? methodSeminarContainer(index)
-             : groupContainer(index);
+                ? methodSeminarContainer(index)
+                : groupContainer(index);
           })),
     );
   }
 
   Padding groupContainer(int index) {
     return Padding(
-      padding:AppPaddings.smallPadding(3),
+      padding: AppPaddings.smallPadding(3),
       child: GroupClass(
         height: SizeUtil.tGroupContainerHeight,
         width: SizeUtil.tGroupContainerWidth,
         borderColor: AppColors.cornFlowerBlue,
         heading: groupNameList![index],
         onTap: () {/*gruba git fonksiyonu*/},
-        row1: ProfilePageUtility.doubleTextRow(TherapistProfileTextUtil.advisor, firstRowTextList![index], true),
-        row2: ProfilePageUtility.normalTextRow(secondRowTextList[index],IconUtility.clockIcon.icon!,AppTextStyles.normalTextStyle('medium',false)),
+        row1: ProfilePageUtility.doubleTextRow(
+            TherapistProfileTextUtil.advisor, firstRowTextList![index], true),
+        row2: ProfilePageUtility.normalTextRow(
+            secondRowTextList[index],
+            IconUtility.clockIcon.icon!,
+            AppTextStyles.normalTextStyle('medium', false)),
       ),
     );
   }
 
   TwoRowShortContainer methodSeminarContainer(int index) {
     return TwoRowShortContainer(
-            row1Text: isForParticipant && isForMethod
-                ? mainTherapistName!
-                : firstRowTextList![index], // grup: depresyon grubu yazınca overflow
-            row2Text: secondRowTextList[index],
-            firstIconData: isForParticipant
-                ? IconUtility.personIcon.icon!//Icons.person_outline
-                : isForMethod
-                    ? IconUtility.greyGroupsIcon.icon!
-                    : IconUtility.windowsIcon.icon!,
-            secondIconData: isForMethod
-                ? IconUtility.fileIcon.icon!
-                : isForParticipant
-                    ? IconUtility.windowsIcon.icon!
-                    : IconUtility.clockIcon.icon!,
-            purpose: isForMethod ? 'method' : 'seminar',
-            isThereButton: true,
-            buttonText: isForParticipant
-                ? isForMethod
-                    ? ParticipantProfileTextUtil.readAgain
-                    : ParticipantProfileTextUtil.watchAgain
-                : isForMethod
-                    ? TherapistProfileTextUtil.view
-                    : TherapistProfileTextUtil.watch,
-          );
+      row1Text: isForParticipant && isForMethod
+          ? mainTherapistName!
+          : firstRowTextList![index], // grup: depresyon grubu yazınca overflow
+      row2Text: secondRowTextList[index],
+      firstIconData: isForParticipant
+          ? IconUtility.personIcon.icon! //Icons.person_outline
+          : isForMethod
+              ? IconUtility.groupsIcon.icon!
+              : IconUtility.windowsIcon.icon!,
+      secondIconData: isForMethod
+          ? IconUtility.fileIcon.icon!
+          : isForParticipant
+              ? IconUtility.windowsIcon.icon!
+              : IconUtility.clockIcon.icon!,
+      purpose: isForMethod ? 'method' : 'seminar',
+      isThereButton: true,
+      buttonText: isForParticipant
+          ? isForMethod
+              ? ParticipantProfileTextUtil.readAgain
+              : ParticipantProfileTextUtil.watchAgain
+          : isForMethod
+              ? TherapistProfileTextUtil.view
+              : TherapistProfileTextUtil.watch,
+    );
   }
 }

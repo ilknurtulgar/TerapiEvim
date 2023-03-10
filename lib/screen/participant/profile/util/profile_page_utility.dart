@@ -71,7 +71,7 @@ class ProfilePageUtility {
                 child: IconButton(
                     onPressed: onTap,
                     alignment: Alignment.centerLeft,
-                    icon: IconUtility.arrowForwardIcon),
+                    icon: IconUtility.forward),
               )),
           EdgeInsets.zero);
 
@@ -89,7 +89,11 @@ class ProfilePageUtility {
 
   static CustomDropDown genderDropDown(bool isInProfilePage) => CustomDropDown(
         isGenderPurpose: true,
-        width: isInProfilePage ? SizeUtil.genderDropDownWidth1 : SizeUtil.generalWidth,
-        height: isInProfilePage ? SizeUtil.genderDropDownHeight1 : SizeUtil.genderDropDownHeight2,
+        width: isInProfilePage
+            ? SizeUtil.genderDropDownWidth1
+            : SizeUtil.generalWidth,
+        height: isInProfilePage
+            ? SizeUtil.genderDropDownHeight1
+            : SizeUtil.genderDropDownHeight2,
       );
 }

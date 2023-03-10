@@ -57,20 +57,8 @@ class AppColors {
 }
 
 class IconUtility {
-  static const Icon chevronIcon = Icon(Icons.chevron_left);
   static const Icon circleIcon = Icon(Icons.circle_outlined);
-  static const Icon arrowIcon = Icon(Icons.keyboard_arrow_right_outlined);
-  static const Icon visibilityIcon = Icon(
-    Icons.visibility,
-  );
-  static const Icon messageIcon = Icon(
-    Icons.forum_outlined,
-    size: 35,
-  );
-  static const Icon addmesaage = Icon(
-    Icons.mark_email_read_outlined,
-    size: 30,
-  );
+  static const Icon visibilityIcon = Icon(Icons.visibility);
 
   static const List<IconData> bottomnavigateIcons = <IconData>[
     IconUtility.navHome,
@@ -81,90 +69,51 @@ class IconUtility {
   ];
   static const Icon visibilityoffIcon = Icon(Icons.visibility_off);
   static const Icon homeIcon = Icon(Icons.home);
-  static const Icon closeIcon = Icon(Icons.close);
-  static const Icon activityIcon =
-      Icon(Icons.laptop_windows_sharp); //browse_activity yok
-  static const Icon groupsIcon = Icon(Icons.groups);
-  static const Icon greyGroupsIcon = Icon(
-    Icons.group,
-    color: AppColors.doveGray,
-  );
+
+  static const Icon activityIcon = Icon(Icons.laptop_windows_sharp);
+  static const Icon groupsIcon = Icon(Icons.group_outlined);
+
   static const Icon chatIcon = Icon(Icons.chat);
-  static const Icon profileIcon = Icon(Icons.account_circle);
+  static const Icon emailIcon = Icon(Icons.mail, color: AppColors.black);
+  static const Icon messageIcon = Icon(Icons.forum_outlined, size: 35);
+
+  static const Icon addmesaage = Icon(Icons.mark_email_read_outlined, size: 30);
+
+  static const Icon personIcon = Icon(Icons.person_outlined);
+
   static const Icon windowsIcon = Icon(Icons.desktop_windows_outlined);
-  static const Icon personIcon = Icon(
-    Icons.person,
-    color: AppColors.black,
-  );
-  static const Icon clockIcon = Icon(
-    Icons.alarm_outlined,
-    color: AppColors.black,
-  );
-  static const Icon addIcon = Icon(
-    Icons.add_circle_outline,
-  );
+  static const Icon clockIcon =
+      Icon(Icons.alarm_outlined, color: AppColors.black);
+
+  static const Icon addIcon = Icon(Icons.add_circle_outline);
+
   static const Icon notification = Icon(Icons.notifications);
   static const Icon logoutIcon = Icon(Icons.logout);
   static const Icon searchIcon = Icon(Icons.search);
   static const Icon fiterIcon = Icon(Icons.list);
-  static const Icon fileIcon = Icon(
-    Icons.description_outlined,
-  );
-  static const Icon fileIconBlack = Icon(
-    Icons.description_outlined,
-  );
-  static const Icon arrowDownIcon = Icon(Icons.keyboard_arrow_down_outlined);
 
-  static Icon micIcon(bool isInCircularContainer) => Icon(
-        Icons.mic,
-        color: isInCircularContainer ? AppColors.black : AppColors.white,
-      );
-  static const Icon micoffIcon = Icon(
-    Icons.mic_off,
-    color: AppColors.red,
-  );
-  static const Icon videcamIcon = Icon(
-    Icons.videocam,
-    color: AppColors.black,
-  );
-  static const Icon videocamoffIcon = Icon(
-    Icons.videocam_off,
-    color: AppColors.black,
-  );
-  static const Icon callendIcon = Icon(
-    Icons.call_end,
-    color: AppColors.white,
-  );
-  static const Icon sendIcon = Icon(
-    Icons.send,
-    color: Colors.black,
-  );
-  static const Icon settingIcon = Icon(Icons.settings_outlined);
-  static const Icon editIcon = Icon(Icons.edit);
+  static const Icon fileIcon = Icon(Icons.description_outlined);
+  static Icon micIcon(bool isInCircularContainer) => Icon(Icons.mic,
+      color: isInCircularContainer ? AppColors.black : AppColors.white);
+  static const Icon micoffIcon = Icon(Icons.mic_off, color: AppColors.red);
+  static const Icon videcamIcon = Icon(Icons.videocam, color: AppColors.black);
+  static const Icon videocamoffIcon =
+      Icon(Icons.videocam_off, color: AppColors.black);
+  static const Icon callendIcon = Icon(Icons.call_end, color: AppColors.white);
+  static const Icon sendIcon = Icon(Icons.send, color: AppColors.black);
+
+  static const Icon settingIcon = Icon(Icons.settings);
+
   static const Icon deleteIcon = Icon(Icons.delete);
 
-  static const Icon lockIcon = Icon(
-    Icons.lock,
-    color: AppColors.black,
-  );
-  static const Icon emailIcon = Icon(
-    Icons.mail,
-    color: AppColors.black,
-  );
-
-  static const Icon calendarIcon = Icon(
-    Icons.calendar_month_outlined,
-    color: AppColors.black,
-  );
+  static const Icon calendarIcon =
+      Icon(Icons.calendar_month_outlined, color: AppColors.black);
 
   static const Icon checkCircleIcon = Icon(Icons.check_circle_outline);
   static const Icon save = Icon(Icons.save, color: AppColors.meteorite);
+
   static const Icon contactPhoneIcon =
       Icon(Icons.contact_phone_outlined, color: AppColors.black);
-  static const arrowForwardIcon = Icon(
-    Icons.arrow_forward_ios,
-    color: AppColors.black,
-  );
 
   static const IconData navHome = Icons.home;
   static const IconData navActivities = Icons.desktop_windows;
@@ -172,39 +121,25 @@ class IconUtility {
   static const IconData navGroup = Icons.groups;
   static const IconData navProfile = Icons.account_circle;
 
-  static const Icon lock = Icon(
-    Icons.lock_outline,
-    color: AppColors.white,
-    size: SizeUtil.lockIconSize,
-  );
-  static const Icon lockopen = Icon(
-    Icons.lock_open,
-    color: AppColors.white,
-    size: SizeUtil.lockIconSize,
-  );
-  //degistirilen iconlar
-  static const Icon close = Icon(
-    Icons.close,
-    size: 30,
-    color: AppColors.meteorite,
-  );
-  static const Icon arrowUp = Icon(
-    Icons.keyboard_arrow_up,
-    size: 30,
-  );
-  static const Icon arrowDown = Icon(
-    Icons.keyboard_arrow_down,
-    size: 30,
-  );
-  static const Icon back = Icon(Icons.arrow_back_ios_new);
-  static const Icon edit = Icon(Icons.edit_document);
-  static const Icon headingAdd = Icon(
-    Icons.add,
-    size: 40,
-    color: AppColors.meteorite,
-  );
-  static const Icon arrowBack = Icon(Icons.arrow_back_ios_outlined);
-  static const Icon editPencil = Icon(Icons.edit_outlined);
+//ikisi de aynı birini seçiniz lütfeen
+//gizemle yasemin
+  static const Icon lockIcon = Icon(Icons.lock);
+  static const Icon lock = Icon(Icons.lock_outline,
+      color: AppColors.white, size: SizeUtil.lockIconSize);
+
+  static const Icon lockopen = Icon(Icons.lock_open,
+      color: AppColors.white, size: SizeUtil.lockIconSize);
+
+  static const Icon close =
+      Icon(Icons.close, size: 30, color: AppColors.meteorite);
+  static const Icon closeIcon = Icon(Icons.close);
+  static const Icon arrowUp = Icon(Icons.keyboard_arrow_up, size: 30);
+  static const Icon arrowDown =
+      Icon(Icons.keyboard_arrow_down_rounded, size: 30);
+  static const Icon back = Icon(Icons.chevron_left, size: 30);
+  static const Icon forward =
+      Icon(Icons.keyboard_arrow_right_outlined, size: 30);
+  static const Icon editPencil = Icon(Icons.edit_outlined, size: 30);
 }
 
 class AppTextStyles {
@@ -313,16 +248,27 @@ class AppContainers {
     return ContainerModel(
         width: bigwidth ? 165 : 97,
         height: 30,
-        borderRadius: 100,
-        backgroundColor: AppColors.butterflyBush);
+        borderRadius: 8,
+        backgroundColor: ButtonColorUtil.generalColor);
   }
 
   static ContainerModel copingbutton = ContainerModel(
       width: 116,
       height: 42,
-      shadowColor: AppColors.cornFlowerBlue,
-      borderRadius: 5,
+      shadowColor: ButtonColorUtil.copingColor,
+      borderRadius: 8,
       backgroundColor: AppColors.white);
+}
+
+class ButtonColorUtil {
+  static const Color generalColor = AppColors.butterflyBush;
+  static const Color copingColor = AppColors.cornFlowerBlue;
+}
+
+class BorderColorUtil {
+  static const Color generalBorderColor = AppColors.cornFlowerBlue;
+  static const Color toggleBorderColor = AppColors.transparent;
+  static const Color textfieldBorderColor = AppColors.dustyGray;
 }
 
 class AppPaddings {
@@ -336,8 +282,9 @@ class AppPaddings {
   static const EdgeInsets headingTopPadding = EdgeInsets.only(
     top: 80,
   );
-  static const EdgeInsets componentPadding =
-      EdgeInsets.symmetric(horizontal: 24, vertical: 8);
+  static const EdgeInsets pagePadding =
+      EdgeInsets.only(left: 24, right: 24, bottom: 80);
+  static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 10);
   static EdgeInsets miniHeadingPadding(bool isInMiddle) =>
       EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
   static const EdgeInsets rowViewPadding =
@@ -476,19 +423,20 @@ class AppBorderRadius {
 }
 
 class AppBoxDecoration {
+  //aynı neredeyse
   static BoxDecoration lockScreenBox = BoxDecoration(
       color: AppColors.white,
       borderRadius: AppBorderRadius.generalBorderRadius,
       border: Border.all(color: AppColors.cornFlowerBlue));
 
-  static BoxDecoration lockScreenButton = const BoxDecoration(
-      color: AppColors.cornFlowerBlue,
-      borderRadius: AppBorderRadius.generalBorderRadius);
-
   static BoxDecoration sendDecoration = BoxDecoration(
       color: AppColors.white,
       borderRadius: AppBorderRadius.generalBorderRadius,
       border: Border.all(color: AppColors.dustyGray));
+
+  static BoxDecoration lockScreenButton = const BoxDecoration(
+      color: AppColors.cornFlowerBlue,
+      borderRadius: AppBorderRadius.generalBorderRadius);
 
   static BoxDecoration notificationDec = BoxDecoration(
       color: AppColors.white,
@@ -623,13 +571,13 @@ class DemoInformation {
     textStyle: AppTextStyles.aboutMeTextStyle(false),
     text2: "Simay Odabasi",
     textStyle2: AppTextStyles.groupTextStyle(true),
-    trailingIcon: IconUtility.arrowForwardIcon,
+    trailingIcon: IconUtility.forward,
   );
   static RowModel methods = RowModel(
       isAlignmentBetween: true,
       text: "Basetme Metotlari ",
       textStyle: AppTextStyles.aboutMeTextStyle(false),
-      trailingIcon: IconUtility.arrowForwardIcon,
+      trailingIcon: IconUtility.forward,
       leadingIcon: IconUtility.fileIcon);
   static RowModel row_1 = RowModel(
       leadingIcon: IconUtility.activityIcon,
@@ -642,7 +590,7 @@ class DemoInformation {
       textStyle: AppTextStyles.groupTextStyle(true),
       isAlignmentBetween: false);
   static RowModel row_3 = RowModel(
-      leadingIcon: IconUtility.greyGroupsIcon,
+      leadingIcon: IconUtility.groupsIcon,
       text: "Katılımcı Sayısı : 0/20",
       textStyle: AppTextStyles.normalTextStyle('small', false),
       isAlignmentBetween: false);
@@ -811,19 +759,17 @@ class TextFieldSize {
   static const double dateclockwidth = 150;
 }
 
-SizedBox smallSizedBox() => const SizedBox(
-      height: 12,
-    );
-SizedBox mediumSizedBox() => const SizedBox(
-      height: 24,
-    );
-SizedBox largeSizedBox() => const SizedBox(
-      height: 36,
-    );
+SizedBox smallSizedBox() => const SizedBox(height: 12);
+SizedBox mediumSizedBox() => const SizedBox(height: 24);
+SizedBox largeSizedBox() => const SizedBox(height: 36);
 
 class SizeUtil {
+  //dropdownheight aynı //filter da aynı
   static const double lockScreenHeight = 40;
+  //pdfcontainer aynı
   static const double lockScreenHeight2 = 50;
+  static const double sendboxheight = 65;
+  //pdfcontainer aynı
   static const double lockScreenContainerWidth = 250;
   static const double lockScreenContainerHeight = 100;
   static const double lockScreenBigContainerWidth = 340;
@@ -831,6 +777,7 @@ class SizeUtil {
   static const double electionWidth = 300;
   static const double lockIconSize = 100;
   static const double whiteContainerHeight = 191;
+  static const double orderDropDownWidth = 135;
   static const double groupHeight = 120;
   static const double generalWidth = 342;
   static const double generalHeight = 52;

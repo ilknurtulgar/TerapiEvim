@@ -18,9 +18,9 @@ class FilterScreen extends StatelessWidget {
             filtermin(ActivityTextUtil.psychologist, () {
               //  print("tıklıyorum ya");
               Get.to(FilterDetails());
-            }, IconUtility.arrowIcon),
-            filtermin(ActivityTextUtil.date, () {}, IconUtility.arrowIcon),
-            filtermin(ActivityTextUtil.issue, () {}, IconUtility.arrowIcon),
+            }, IconUtility.forward),
+            filtermin(ActivityTextUtil.date, () {}, IconUtility.forward),
+            filtermin(ActivityTextUtil.issue, () {}, IconUtility.forward),
           ],
         ),
       ),
@@ -56,7 +56,7 @@ Widget filtermin(String heading, Function()? onTap, Icon icon) {
   return Container(
     padding: AppPaddings.generalPadding,
     margin: AppPaddings.generalPadding,
-    width: 342,
+    width: SizeUtil.generalWidth,
     // height: 56,
     decoration: AppBoxDecoration.sendDecoration,
     child: activityminto(

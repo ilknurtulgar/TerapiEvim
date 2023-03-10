@@ -26,7 +26,6 @@ class _CustomDropDownState extends State<CustomDropDown> {
         children: [
           InkWell(
             onTap: () {
-              print("ben çalışmıyorum kanka");
               activityController.changeBox();
             },
             child: Container(
@@ -79,9 +78,7 @@ class ChooseGender extends StatelessWidget {
                       ? DemoInformation.genderList[index]
                       : DemoInformation.orderingList[index],
                   widget.isGenderPurpose);
-              print(index);
               activityController.changeBox();
-              print("tıklandı");
             },
             child: Text(
               widget.isGenderPurpose

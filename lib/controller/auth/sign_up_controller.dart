@@ -1,15 +1,19 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../core/base/component/toast/toast.dart';
+import '../../core/constants/utils/text_constants/error_text_const.dart';
+import '../../product/enum/local_keys_enum.dart';
 import '../../screen/participant/home/main_home.dart';
 import '../../service/model/common/signup/sign_up_model.dart';
 import '../../service/service/auth/auth_service.dart';
 import '../../service/service/auth/i_auth_service.dart';
+import '../base/base_controller.dart';
 import '../main_controller.dart';
 
-class SignUpController extends GetxController {
+class SignUpController extends GetxController with BaseController {
   late final IAuthService authService;
 
   late final TextEditingController emailController;
@@ -26,6 +30,7 @@ class SignUpController extends GetxController {
   late final FocusNode phoneFocusNode;
 
   RxBool isLoading = false.obs;
+  RxBool isTermsOfUseAccepted = false.obs;
 
   @override
   void onInit() {
@@ -76,59 +81,99 @@ class SignUpController extends GetxController {
 
     isLoading.value = true;
 
-    final UserCredential? result =
-        await authService.signUpWithEmail(SignUpModel(
-      name: nameController.text.trim(),
-      birthDate: birthDateController.text.trim(),
-      gender: genderController.text.trim(),
-      email: emailController.text.trim(),
-      password: passwordController.text.trim(),
-      phone: phoneController.text.trim(),
-    ));
-    isLoading.value = false;
+    final UserCredential? result = await authService.signUpWithEmail(
+        signUpModel: SignUpModel(
+          name: nameController.text.trim(),
+          birthDate: birthDateController.text.trim(),
+          gender: genderController.text.trim(),
+          email: emailController.text.trim(),
+          phone: phoneController.text.trim(),
+        ),
+        password: passwordController.text.trim());
 
     if (result == null) {
-      //TODO: add error that something went wrong
+      flutterErrorToast(ErrorConst.somethingWentWrong);
+      isLoading.value = false;
       return;
     }
 
-    MainController maiController = Get.find();
-    maiController.isLogged.value = true;
+    await saveToLocalData();
 
-    ///TODO:  save user data to cache
+    MainController maiController = Get.find();
+
+    isLoading.value = false;
+
+    maiController.isLogged.value = true;
 
     Get.offUntil(
         MaterialPageRoute(builder: (context) => const TerapiEvimLogged()),
         (route) => false);
   }
 
+  Future<void> saveToLocalData() async {
+    try {
+      await localManager.setStringValue(
+          LocalManagerKeys.name, nameController.text.trim());
+      await localManager.setStringValue(
+          LocalManagerKeys.birthDate, birthDateController.text.trim());
+      await localManager.setStringValue(
+          LocalManagerKeys.gender, genderController.text.trim());
+      await localManager.setStringValue(
+          LocalManagerKeys.email, emailController.text.trim());
+      await localManager.setStringValue(
+          LocalManagerKeys.phone, phoneController.text.trim());
+      await localManager.setStringValue(LocalManagerKeys.token, '');
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+        error: e.toString(),
+        stackTrace: StackTrace.current,
+        reason: 'Error saveToLocalData',
+      );
+      rethrow;
+    }
+  }
+
   bool _validateSignUp() {
     if (emailController.text.contains('@') == false) {
-      flutterErrorToast("Email is incorrect");
+      flutterErrorToast(ErrorConst.wrongEmail);
       return false;
     }
     if (passwordController.text.trim().length < 6) {
-      flutterErrorToast("Password's length is too short");
+      flutterErrorToast(ErrorConst.passwordLengthIsShort);
       return false;
     }
     if (nameController.text.trim().isEmpty) {
-      flutterErrorToast("Name is empty");
+      flutterErrorToast(ErrorConst.nameIsEmpty);
       return false;
     }
     if (birthDateController.text.trim().isEmpty) {
-      flutterErrorToast("Birthday is empty");
+      flutterErrorToast(ErrorConst.birthdateEmpty);
       return false;
     }
 
-    // if (genderController.text.trim().isEmpty) {
-    //   flutterErrorToast("Gender is empty");
-    //   return false;
-    // }
+    if (genderController.text.trim().isEmpty) {
+      //TODO: (BHZ) since genderController is not setUp, as a workaround
+      //TODO: I set gender as female
+      // flutterErrorToast("Gender is empty");
+      // return false;
+      genderController.text = "Kadın";
+      return true;
+    }
     if (phoneController.text.trim().isEmpty) {
-      flutterErrorToast("Phone is empty");
+      flutterErrorToast(ErrorConst.phoneNumberIsEmpty);
       return false;
     }
 
+    if (isTermsOfUseAccepted.value == false) {
+      ///TODO this condition should be deleted in production
+      if (kDebugMode) {
+        flutterInfoToast("Setting isTermsOfUseAccepted to true in debug ");
+        return true;
+      }
+
+      flutterInfoToast(ErrorConst.acceptTermsOfUse);
+      return false;
+    }
     return true;
   }
 }

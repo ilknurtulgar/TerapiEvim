@@ -27,7 +27,7 @@ class MyGroups extends StatelessWidget {
                           onPressed: () {
                             context.push(const GroupAddView());
                           },
-                          icon: IconUtility.headingAdd)),
+                          icon: IconUtility.addIcon)),
                   AppPaddings.appBarPadding),
               ListView.builder(
                 shrinkWrap: true,

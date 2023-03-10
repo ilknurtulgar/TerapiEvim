@@ -15,7 +15,7 @@ class TherapistProfile extends StatelessWidget {
     text: TherapistProfileTextUtil.methods,
     textStyle: AppTextStyles.groupTextStyle(false),
     isAlignmentBetween: false,
-    leadingIcon: IconUtility.fileIconBlack,
+    leadingIcon: IconUtility.fileIcon,
   );
 
   final RowModel seminerleri = RowModel(

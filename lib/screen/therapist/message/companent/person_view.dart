@@ -14,7 +14,7 @@ class PersonView extends StatelessWidget {
   final List<String> list;
   final TherapistyMessageController therapistyMessageController =
       Get.put(TherapistyMessageController());
-    
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,7 +22,7 @@ class PersonView extends StatelessWidget {
         Padding(
           padding: AppPaddings.generalPadding,
           child: Container(
-            width: 342,
+            width: SizeUtil.generalWidth,
             height: 60,
             decoration: AppBoxDecoration.sendDecoration,
             child: InkWell(
@@ -35,7 +35,7 @@ class PersonView extends StatelessWidget {
                         textStyle:
                             AppTextStyles.normalTextStyle("medium", false),
                         isAlignmentBetween: true,
-                        trailingIcon: IconUtility.arrowDownIcon),
+                        trailingIcon: IconUtility.arrowDown),
                     AppPaddings.generalPadding)),
           ),
         ),
@@ -67,5 +67,3 @@ class PersonView extends StatelessWidget {
     );
   }
 }
-
-

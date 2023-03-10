@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/activity/about_activity.dart';
 
 import '../../../core/base/models/row_model.dart';
@@ -20,10 +20,10 @@ class ActivitiesScreen extends StatelessWidget {
               children: [
                 search(searchModel),
                 activityminto(ActivityTextUtil.upcomingActivities, () {},
-                    MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
+                    MainAxisAlignment.spaceAround, true, IconUtility.forward),
                 activityseminar(),
                 activityminto(ActivityTextUtil.pastActivities, () {},
-                    MainAxisAlignment.spaceAround, true, IconUtility.arrowIcon),
+                    MainAxisAlignment.spaceAround, true, IconUtility.forward),
                 activityseminar()
               ],
             ),
@@ -44,7 +44,8 @@ ListView activityseminar() {
         child: ActivityBox(
             onTap: () {
               //  print("tıklıyorum ya");
-              Get.to(const AboutActivityScreen());
+
+              context.push(const AboutActivityScreen());
             },
             istwobutton: false,
             buttonText: ActivityTextUtil.join,

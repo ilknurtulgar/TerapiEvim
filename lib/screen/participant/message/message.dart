@@ -35,8 +35,8 @@ class MessageScreen extends StatelessWidget {
 
   Widget sendbox() {
     return Container(
-      color: Colors.white,
-      height: 65,
+      color: AppColors.white,
+      height: SizeUtil.sendboxheight,
       width: window.physicalSize.width,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

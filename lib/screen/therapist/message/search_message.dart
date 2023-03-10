@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/therapist/message/companent/person_view.dart';
 import 'package:terapievim/screen/therapist/message/message.dart';
@@ -55,7 +55,7 @@ class _SearchMessageState extends State<SearchMessage> {
               leadingIcon: IconUtility.searchIcon,
               trailingIcon: IconButton(
                   onPressed: () {
-                    Get.to(const TherapistMessageScreen());
+                    context.push(const TherapistMessageScreen());
                   },
                   icon: IconUtility.closeIcon))),
           divider(true),

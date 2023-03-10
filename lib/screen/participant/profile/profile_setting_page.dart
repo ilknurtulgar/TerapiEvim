@@ -4,6 +4,7 @@ import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/core/base/component/group/custom_list_wheel_scroll_view.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import '../../../controller/therapist_profile_controller.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../../../core/base/component/profile/acception_row.dart';
@@ -44,12 +45,21 @@ class ParticipantProfileSettingPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Stack(children: [
           ProfilePageUtility.backgroundOfThePage(),
-          ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
-          ProfilePageUtility.positionedIconButton(Icons.arrow_back_ios_outlined,() {Get.to(const ParticipantProfilePage());}, 35, 340),
-          ProfilePageUtility.positionedIconButton(Icons.edit_outlined, () {/* foto düzenleme */}, 235, 105),
+          ProfilePageUtility.profilePagePersonImage(
+              DemoInformation.profileImagePath),
+          ProfilePageUtility.positionedIconButton(IconUtility.forward.icon!,
+              () {
+            context.push(const ParticipantProfilePage());
+          }, 35, 340),
+          ProfilePageUtility.positionedIconButton(IconUtility.editPencil.icon!,
+              () {/* foto düzenleme */}, 260, 100),
           bigColumn(),
           DemoInformation.isForParticipant == false
-              ? Positioned(top: 715,right: 10,child:CustomListWheelScrollView(whatIsFor: 'number of groups'))
+              ? Positioned(
+                  top: 855,
+                  right: 10,
+                  child: CustomListWheelScrollView(
+                      whatIsFor: 'number of groups')) // eski değer 715
               : const SizedBox(),
         ]),
       ),
@@ -74,7 +84,8 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             DemoInformation.isForParticipant == false
                 ? therapistSpecialColumn()
                 : const SizedBox(),
-            smallSizedBox(),
+            smallSizedBox()
+            // danışanın kaydet butonu aşağıya kayıyor buna bakılacak
           ],
         ),
       ),
@@ -88,14 +99,20 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         crossAxisAlignment: WrapCrossAlignment.center,
         spacing: 12,
         children: [
-          SizedBox(width: 342, child: AcceptionRow(isForMakingShortCall: false)),
-          animatedNumberOfGroupsRow(),
-          Text(TherapistProfileTextUtil.aboutMe,style: AppTextStyles.normalTextStyle('medium', false),),
           SizedBox(
-            width: 342,
+              width: SizeUtil.generalWidth,
+              child: AcceptionRow(isForMakingShortCall: false)),
+          animatedNumberOfGroupsRow(),
+          Text(
+            TherapistProfileTextUtil.aboutMe,
+            style: AppTextStyles.normalTextStyle('medium', false),
+          ),
+          SizedBox(
+            width: SizeUtil.generalWidth,
             child: TextField(
               controller: DemoInformation.aboutMeController,
-              decoration: const InputDecoration(fillColor: AppColors.white, filled: true),
+              decoration: const InputDecoration(
+                  fillColor: AppColors.white, filled: true),
               minLines: 5,
               maxLines: 50,
             ),
@@ -113,18 +130,18 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         color: AppColors.transparent,
         height: therapistProfileController.isNumberVisible.value ? 32 : 0,
         child: SizedBox(
-          width: 342,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+          width: SizeUtil.generalWidth,
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text(ProfileSettingsTextUtil.numberOfGroups),
             Container(
-              height: 27,
-              width: 40,
+              height: SizeUtil.miniContainerHeight,
+              width: SizeUtil.miniContainerWidth,
               decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: AppBorderRadius.generalBorderRadius,
-                  border: Border.all(color: AppColors.cornFlowerBlue, width: 1)),
+                  border:
+                      Border.all(color: AppColors.cornFlowerBlue, width: 1)),
             )
           ]),
         ),
@@ -148,7 +165,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
   Center textfieldRow(int rowIndex, Widget textField) {
     return Center(
       child: SizedBox(
-        width: 342,
+        width: SizeUtil.generalWidth,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -156,8 +173,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                  padding: AppPaddings.smallVerticalPadding,
-                  child: textField),
+                  padding: AppPaddings.smallVerticalPadding, child: textField),
             )
           ],
         ),

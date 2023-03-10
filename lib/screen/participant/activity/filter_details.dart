@@ -22,8 +22,8 @@ class FilterDetails extends StatelessWidget {
                 RowModel(
                     text: ActivityTextUtil.psychologist,
                     textStyle: AppTextStyles.normalTextStyle("big", false),
-                    leadingIcon: IconButton(
-                        onPressed: () {}, icon: IconUtility.chevronIcon),
+                    leadingIcon:
+                        IconButton(onPressed: () {}, icon: IconUtility.back),
                     isAlignmentBetween: false),
                 AppPaddings.generalPadding),
             divider(false),
@@ -42,7 +42,6 @@ class FilterDetails extends StatelessWidget {
         itemBuilder: (context, index) {
           return Obx(
             () => filtermin(DemoInformation.personList[index], () {
-              print(index);
               activityController.iconFilter(index);
             },
                 activityController.activityIcon[index]

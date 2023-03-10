@@ -90,7 +90,7 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
     return Padding(
       padding: widget.videoCallViewModel.isTherapistInGroupTherapy
           ? const EdgeInsets.only(bottom: 125)
-          : const EdgeInsets.all(0),
+          : EdgeInsets.zero,
       child: Center(
           child: CircularContainer(
               height: widget.videoCallViewModel.width / 3,

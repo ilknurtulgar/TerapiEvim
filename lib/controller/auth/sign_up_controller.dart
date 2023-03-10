@@ -2,11 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../core/base/component/toast/toast.dart';
 import '../../core/constants/utils/text_constants/error_text_const.dart';
 import '../../product/enum/local_keys_enum.dart';
-import '../../screen/participant/home/main_home.dart';
 import '../../service/model/common/signup/sign_up_model.dart';
 import '../../service/service/auth/auth_service.dart';
 import '../../service/service/auth/i_auth_service.dart';
@@ -104,10 +102,10 @@ class SignUpController extends GetxController with BaseController {
     isLoading.value = false;
 
     maiController.isLogged.value = true;
-
-    Get.offUntil(
-        MaterialPageRoute(builder: (context) => const TerapiEvimLogged()),
-        (route) => false);
+    //
+    // Get.offUntil(
+    //     MaterialPageRoute(builder: (context) => const TerapiEvimLogged()),
+    //     (route) => false);
   }
 
   Future<void> saveToLocalData() async {
@@ -152,12 +150,8 @@ class SignUpController extends GetxController with BaseController {
     }
 
     if (genderController.text.trim().isEmpty) {
-      //TODO: (BHZ) since genderController is not setUp, as a workaround
-      //TODO: I set gender as female
-      // flutterErrorToast("Gender is empty");
-      // return false;
-      genderController.text = "Kadın";
-      return true;
+      flutterErrorToast("Gender is empty");
+      return false;
     }
     if (phoneController.text.trim().isEmpty) {
       flutterErrorToast(ErrorConst.phoneNumberIsEmpty);

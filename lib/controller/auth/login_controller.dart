@@ -1,13 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/main_controller.dart';
-
 import '../../core/base/component/toast/toast.dart';
-import '../../screen/participant/home/main_home.dart';
 import '../../service/model/common/login/login_model.dart';
 import '../../service/service/auth/auth_service.dart';
 import '../../service/service/auth/i_auth_service.dart';
+import '../main_controller.dart';
 
 class LoginController extends GetxController {
   late final IAuthService authService;
@@ -65,9 +63,9 @@ class LoginController extends GetxController {
 
     MainController maiController = Get.find();
     maiController.isLogged.value = true;
-    Get.offUntil(
-        MaterialPageRoute(builder: (context) => const TerapiEvimLogged()),
-        (route) => false);
+    // Get.offUntil(
+    //     MaterialPageRoute(builder: (context) => const TerapiEvimLogged()),
+    //     (route) => false);
   }
 
   bool _validateLogin() {

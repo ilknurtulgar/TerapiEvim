@@ -56,7 +56,7 @@ Widget filtermin(String heading, Function()? onTap, Icon icon) {
   return Container(
     padding: AppPaddings.generalPadding,
     margin: AppPaddings.generalPadding,
-    width: 342,
+    width: SizeUtil.generalWidth,
     // height: 56,
     decoration: AppBoxDecoration.sendDecoration,
     child: activityminto(

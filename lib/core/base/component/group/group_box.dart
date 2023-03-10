@@ -7,8 +7,8 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
-import 'package:terapievim/screen/therapist/home/home.dart';
 
 class ActivityBox extends StatelessWidget {
   ActivityBox(
@@ -35,7 +35,7 @@ class ActivityBox extends StatelessWidget {
     return InkWell(
       onTap: isactivity ? null : onTap,
       child: Container(
-        width: Responsive.width(350, context),
+        width: SizeUtil.generalWidth,
         // height: 140,
         decoration: BoxDecoration(
           color: AppColors.white,
@@ -57,7 +57,8 @@ class ActivityBox extends StatelessWidget {
                         padding: AppPaddings.generalPadding,
                         child: rowbutton(() {
                           therapistActivtyController.updatechnage(0);
-                          Get.to(const NewActivityScreen());
+
+                          context.push(const NewActivityScreen());
                         }, ActivityTextUtil.updateMyInformation, true),
                       )
                     : const SizedBox.shrink(),

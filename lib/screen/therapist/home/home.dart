@@ -64,18 +64,4 @@ class Responsive {
   static height(double p, BuildContext context) {
     return MediaQuery.of(context).size.height * (p / 844);
   }
-
-  static padding(double p, BuildContext context) {
-    return MediaQuery.of(context).padding;
-  }
-
-  static safepadding(double p, BuildContext context) {
-    return MediaQuery.of(context).size.height * (p / 100) -
-        MediaQuery.of(context).padding.top -
-        MediaQuery.of(context).padding.bottom;
-  }
-
-  static paddingtop(double p, BuildContext context) {
-    return MediaQuery.of(context).padding.top * (p / 100);
-  }
 }

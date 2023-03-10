@@ -35,7 +35,7 @@ class PersonView extends StatelessWidget {
                         textStyle:
                             AppTextStyles.normalTextStyle("medium", false),
                         isAlignmentBetween: true,
-                        trailingIcon: IconUtility.arrowDownIcon),
+                        trailingIcon: IconUtility.arrowDown),
                     AppPaddings.generalPadding)),
           ),
         ),

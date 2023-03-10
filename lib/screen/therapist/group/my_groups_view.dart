@@ -19,7 +19,7 @@ class MyGroups extends StatelessWidget {
       textStyle: AppTextStyles.groupTextStyle(true),
       isAlignmentBetween: false);
   final RowModel row_3 = RowModel(
-      leadingIcon: IconUtility.greyGroupsIcon,
+      leadingIcon: IconUtility.groupsIcon,
       text: "Katılımcı Sayısı : 0/20",
       textStyle: AppTextStyles.normalTextStyle('small', false),
       isAlignmentBetween: false);
@@ -36,7 +36,7 @@ class MyGroups extends StatelessWidget {
                     textStyle: AppTextStyles.heading(true),
                     isAlignmentBetween: true,
                     trailingIcon: IconButton(
-                        onPressed: () {}, icon: IconUtility.headingAdd)),
+                        onPressed: () {}, icon: IconUtility.addIcon)),
                 AppPaddings.appBarPadding),
             ListView.builder(
               shrinkWrap: true,

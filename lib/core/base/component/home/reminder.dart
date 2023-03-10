@@ -41,7 +41,7 @@ class Reminder extends StatelessWidget {
   Widget reminderconst() {
     const trailing = Padding(
       padding: EdgeInsets.only(left: 170.0),
-      child: IconUtility.arrowForwardIcon,
+      child: IconUtility.forward,
     );
     return rowView(
         RowModel(

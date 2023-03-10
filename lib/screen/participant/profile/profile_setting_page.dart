@@ -45,12 +45,21 @@ class ParticipantProfileSettingPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Stack(children: [
           ProfilePageUtility.backgroundOfThePage(),
-          ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
-          ProfilePageUtility.positionedIconButton(IconUtility.arrowBack.icon!,() {context.push(const ParticipantProfilePage());}, 35, 340),
-          ProfilePageUtility.positionedIconButton(IconUtility.editPencil.icon!, () {/* foto düzenleme */}, 260, 100),
+          ProfilePageUtility.profilePagePersonImage(
+              DemoInformation.profileImagePath),
+          ProfilePageUtility.positionedIconButton(IconUtility.forward.icon!,
+              () {
+            context.push(const ParticipantProfilePage());
+          }, 35, 340),
+          ProfilePageUtility.positionedIconButton(IconUtility.editPencil.icon!,
+              () {/* foto düzenleme */}, 260, 100),
           bigColumn(),
           DemoInformation.isForParticipant == false
-              ? Positioned(top: 855,right: 10,child:CustomListWheelScrollView(whatIsFor: 'number of groups')) // eski değer 715
+              ? Positioned(
+                  top: 855,
+                  right: 10,
+                  child: CustomListWheelScrollView(
+                      whatIsFor: 'number of groups')) // eski değer 715
               : const SizedBox(),
         ]),
       ),
@@ -90,14 +99,20 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         crossAxisAlignment: WrapCrossAlignment.center,
         spacing: 12,
         children: [
-          SizedBox(width: SizeUtil.generalWidth, child: AcceptionRow(isForMakingShortCall: false)),
+          SizedBox(
+              width: SizeUtil.generalWidth,
+              child: AcceptionRow(isForMakingShortCall: false)),
           animatedNumberOfGroupsRow(),
-          Text(TherapistProfileTextUtil.aboutMe,style: AppTextStyles.normalTextStyle('medium', false),),
+          Text(
+            TherapistProfileTextUtil.aboutMe,
+            style: AppTextStyles.normalTextStyle('medium', false),
+          ),
           SizedBox(
             width: SizeUtil.generalWidth,
             child: TextField(
               controller: DemoInformation.aboutMeController,
-              decoration: const InputDecoration(fillColor: AppColors.white, filled: true),
+              decoration: const InputDecoration(
+                  fillColor: AppColors.white, filled: true),
               minLines: 5,
               maxLines: 50,
             ),
@@ -116,9 +131,8 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         height: therapistProfileController.isNumberVisible.value ? 32 : 0,
         child: SizedBox(
           width: SizeUtil.generalWidth,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text(ProfileSettingsTextUtil.numberOfGroups),
             Container(
               height: SizeUtil.miniContainerHeight,
@@ -126,7 +140,8 @@ class ParticipantProfileSettingPage extends StatelessWidget {
               decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: AppBorderRadius.generalBorderRadius,
-                  border: Border.all(color: AppColors.cornFlowerBlue, width: 1)),
+                  border:
+                      Border.all(color: AppColors.cornFlowerBlue, width: 1)),
             )
           ]),
         ),
@@ -158,8 +173,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                  padding: AppPaddings.smallVerticalPadding,
-                  child: textField),
+                  padding: AppPaddings.smallVerticalPadding, child: textField),
             )
           ],
         ),

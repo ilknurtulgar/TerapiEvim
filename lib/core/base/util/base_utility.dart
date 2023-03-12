@@ -764,64 +764,61 @@ SizedBox mediumSizedBox() => const SizedBox(height: 24);
 SizedBox largeSizedBox() => const SizedBox(height: 36);
 
 class SizeUtil {
-
-  ///Height Factor
-  static double heightFactor = 1;
-
-  ///Width Factor
-  static double widthFactor = 1;
-
-  //dropdownheight aynı //filter da aynı
-  static const double lockScreenHeight = 40;
-  //pdfcontainer aynı
-  static const double lockScreenHeight2 = 50;
-  static const double sendboxheight = 65;
-  //pdfcontainer aynı
-  static const double lockScreenContainerWidth = 250;
-  static const double lockScreenContainerHeight = 100;
-  static const double lockScreenBigContainerWidth = 340;
-  static const double lockScreenBigContainerHeight = 200;
-  static const double electionWidth = 300;
+  static double heightFactor = 1; ///Height Factor
+  static double widthFactor = 1;  ///Width Factor
   static const double lockIconSize = 100;
-  static const double whiteContainerHeight = 191;
-  static const double orderDropDownWidth = 135;
-  static const double groupHeight = 120;
-  static const double generalWidth = 342;
+
   static const double generalHeight = 52;
-  static const double homeImageHeight = 150;
-  static const double beforeLoginButtonWidth = 300;
-  static const double beforeLoginButtonHeight = 50;
-  static const double loginSignUpButtonHeight = 43;
-  static const double horizontalLineWidth = 150;
-  static const double horizontalLineHeight = 1;
-  static const double acceptionContainerHeight = 56;
-  static const double groupContainerHeight = 138;
-  static const double groupContainerWidth = 350;
-  static const double listViewHeight = 130;
-  static const double shortContainerWithButtonHeight = 114;
-  static const double shortContainerWithButtonWidth = 250;
-  static const double shortContainerWithoutButtonHeight = 80;
-  static const double purpleButtonHeight = 30;
-  static const double tGroupContainerHeight = 120;
-  static const double tGroupContainerWidth = 320;
-  static const double miniContainerHeight = 27;
+  static const double generalWidth = 342;
+
+  // küçükten büyüğe sıralama
+  static const double zeroSize = 0;
+  // width
   static const double miniContainerWidth = 40;
   static const double listWheelScrollWidth = 70;
-  static const double listWheelScrollHeight1 = 100;
-  static const double listWheelScrollHeight2 = 150;
-  static const double animatedContainerHeight = 20;
-  static const double zeroSize = 0;
-  static const double genderDropDownHeight1 = 23;
-  static const double genderDropDownWidth1 = 195;
-  static const double genderDropDownHeight2 = 56;
-  static const double personBigViewHeight = 750;
-  static const double personSmallViewHeight = 129;
   static const double personSmallViewWidth = 92;
-  static const double personShortCallViewHeight = 260;
+  static const double orderDropDownWidth = 135;
+  static const double horizontalLineWidth = 150;
+  static const double genderDropDownWidth1 = 195;
+  static const double shortContainerWithButtonWidth = 250;
+  static const double lockScreenContainerWidth = 250; //pdfcontainer aynı
+  static const double electionWidth = 300;
+  static const double beforeLoginButtonWidth = 300;
+  static const double tGroupContainerWidth = 320;
+  static const double lockScreenBigContainerWidth = 340;
   static const double personShortCallViewWidth = 340;
-  static const double groupCallBottomContainerHeight = 281;
-  static const double videoCallButtonRowHeight = 117;
+  static const double groupContainerWidth = 350;
+  // height
+  static const double horizontalLineHeight = 1; // divider kullan
+  static const double animatedContainerHeight = 20;
+  static const double genderDropDownHeight1 = 23;
+  static const double miniContainerHeight = 27;
+  static const double purpleButtonHeight = 30;
+  static const double lockScreenHeight = 40;  //dropdownheight aynı //filter da aynı
+  static const double loginSignUpButtonHeight = 43;
+  static const double beforeLoginButtonHeight = 50;
+  static const double lockScreenHeight2 = 50; //pdfcontainer aynı
+  static const double genderDropDownHeight2 = 56;
+  static const double acceptionContainerHeight = 56;
   static const double videoCallButtonContainerHeight = 64;
+  static const double sendboxheight = 65;
+  static const double shortContainerWithoutButtonHeight = 80;
+  static const double lockScreenContainerHeight = 100;
+  static const double listWheelScrollHeight1 = 100;
+  static const double shortContainerWithButtonHeight = 114;
+  static const double videoCallButtonRowHeight = 117;
+  static const double groupHeight = 120;
+  static const double tGroupContainerHeight = 120;
+  static const double personSmallViewHeight = 129;
+  static const double listViewHeight = 130;
+  static const double groupContainerHeight = 138;
+  static const double homeImageHeight = 150;
+  static const double listWheelScrollHeight2 = 150;
+  static const double whiteContainerHeight = 191;
+  static const double lockScreenBigContainerHeight = 200;
+  static const double personShortCallViewHeight = 260;
+  static const double groupCallBottomContainerHeight = 281;
+  static const double personBigViewHeight = 750;
 }
 
 class Filter {

@@ -1,24 +1,45 @@
 import 'package:firebase_auth/firebase_auth.dart';
+
 import '../../../core/base/component/toast/toast.dart';
 import '../../../core/base/service/base_service.dart';
 import '../../../core/constants/api_const.dart';
+import '../../../core/constants/utils/text_constants/error_text_const.dart';
+import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/init/print_dev.dart';
+import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../model/common/login/login_model.dart';
+import '../../model/common/login/login_response_model.dart';
 import '../../model/common/signup/sign_up_model.dart';
 import 'i_auth_service.dart';
 
 class AuthService extends IAuthService with BaseService {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+  AuthService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
+
   @override
-  Future<UserCredential?> signInWithEmail(LoginModel loginModel) async {
+  Future<LoginResponseModel?> signInWithEmail(LoginModel loginModel) async {
     try {
       final UserCredential result =
           await _firebaseAuth.signInWithEmailAndPassword(
         email: loginModel.email,
         password: loginModel.password,
       );
-      return result;
+      if (result.user == null) {
+        throw Exception(
+            "could not get result.user in auth_service/signInWithEmail");
+      }
+
+      final response =
+          await manager.read<LoginResponseModel, LoginResponseModel>(
+        collectionPath: APIConst.users,
+        docId: result.user!.uid,
+        parseModel: LoginResponseModel(),
+      );
+      if (response.data == null) return null;
+
+      response.data?.userId = result.user!.uid;
+      return response.data;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         flutterErrorToast('No user found for that email.');
@@ -38,7 +59,7 @@ class AuthService extends IAuthService with BaseService {
   }
 
   @override
-  Future<UserCredential?> signUpWithEmail({
+  Future<String?> signUpWithEmail({
     required SignUpModel signUpModel,
     required String password,
   }) async {
@@ -49,18 +70,26 @@ class AuthService extends IAuthService with BaseService {
         password: password,
       );
 
-      firestoreManager.create(
-          collectionPath: APIConst.users, value: signUpModel.toJson()!);
+      if (result.user == null) {
+        throw Exception('result.user is null in auth_service/signUpWithEmail');
+      }
 
-      return result;
+      final bool isSuccess = await manager.createWithDocId(
+          collectionPath: APIConst.users,
+          docId: result.user!.uid,
+          value: signUpModel.toJson()!);
+      if (isSuccess == false) {
+        throw Exception('Could not create user at auth_service');
+      }
+
+      return result.user?.uid;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        flutterErrorToast('The password provided is too weak.');
-        PrintDev.instance.exception('The password provided is too weak.');
+        flutterErrorToast(ErrorConst.passwordIsTooWeak);
+        PrintDev.instance.exception(ErrorConst.passwordIsTooWeak);
       } else if (e.code == 'email-already-in-use') {
-        flutterErrorToast('The account already exists for that email.');
-        PrintDev.instance
-            .exception('The account already exists for that email.');
+        flutterErrorToast(ErrorConst.accountAlreadyExists);
+        PrintDev.instance.exception(ErrorConst.accountAlreadyExists);
       }
     } catch (e) {
       await crashlyticsManager.sendACrash(
@@ -70,5 +99,17 @@ class AuthService extends IAuthService with BaseService {
       rethrow;
     }
     return null;
+  }
+
+  @override
+  Future<void> signOut() async {
+    try {
+      _firebaseAuth.signOut();
+      return;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(), stackTrace: StackTrace.current, reason: '');
+      return;
+    }
   }
 }

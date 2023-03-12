@@ -764,6 +764,13 @@ SizedBox mediumSizedBox() => const SizedBox(height: 24);
 SizedBox largeSizedBox() => const SizedBox(height: 36);
 
 class SizeUtil {
+
+  ///Height Factor
+  static double heightFactor = 1;
+
+  ///Width Factor
+  static double widthFactor = 1;
+
   //dropdownheight aynı //filter da aynı
   static const double lockScreenHeight = 40;
   //pdfcontainer aynı

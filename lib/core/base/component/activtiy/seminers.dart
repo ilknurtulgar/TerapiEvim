@@ -23,7 +23,7 @@ class SeminarMin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     borderColor ??= AppColors.dustyGray;
-    width ??= SizeUtil.generalWidth;
+    //width ??= SizeUtil.generalWidth;
     height ??= SizeUtil.generalHeight;
     return InkWell(
       onTap: onTap,
@@ -34,7 +34,7 @@ class SeminarMin extends StatelessWidget {
             border: Border.all(color: borderColor!.withOpacity(1)),
             borderRadius: AppBorderRadius.generalBorderRadius,
             color: AppColors.white),
-        child: rowView(row, AppPaddings.rowViewPadding),
+        child: Expanded(child: rowView(row, AppPaddings.rowViewPadding)),
       ),
     );
   }

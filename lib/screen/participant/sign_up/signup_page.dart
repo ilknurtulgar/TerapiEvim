@@ -12,19 +12,14 @@ import '../profile/util/profile_page_utility.dart';
 import '../profile/util/textfield_utility.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({
-    super.key,
-  });
-
-  final bool isForParticipant = false;
-
+  const SignUpPage({super.key,});
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
   late final SignUpController _signUpController;
-  TherapistProfileController controller = Get.put(TherapistProfileController());
+  TherapistProfileController controller = Get.put(TherapistProfileController()); 
 
   @override
   void initState() {
@@ -42,15 +37,11 @@ class _SignUpPageState extends State<SignUpPage> {
   TextfieldUtility textfieldUtility = TextfieldUtility();
 
   late List<Widget> textfieldList = [
-    textfieldUtility.nameSurnameTextfield(
-        _signUpController.nameController, true),
-    textfieldUtility.birthOfDateTextfield(
-        _signUpController.birthDateController, true),
-    ProfilePageUtility.genderDropDown(
-        false, _signUpController.genderController),
+    textfieldUtility.nameSurnameTextfield(_signUpController.nameController, true),
+    textfieldUtility.birthOfDateTextfield(_signUpController.birthDateController, true),
+    ProfilePageUtility.genderDropDown(false, _signUpController.genderController),
     textfieldUtility.mailTextfield(_signUpController.emailController, true),
-    textfieldUtility.passwordTextfield(
-        _signUpController.passwordController, true),
+    textfieldUtility.passwordTextfield(_signUpController.passwordController, true),
     textfieldUtility.phoneTextfield(_signUpController.phoneController, true),
   ];
 
@@ -69,19 +60,13 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               LoginPageUtility.title(false),
               ...textfieldList,
-              widget.isForParticipant == false
-                  ? acceptMakingShortCallContainer(controller)
-                  : const SizedBox(),
-              LoginPageUtility.button(
-                false,
-                false,
-                () {
-                  _signUpController.signUpWithEmail(context);
-                },
+              Obx( () => controller.isForParticipant.value == false
+                    ? acceptMakingShortCallContainer()
+                    : const SizedBox(),
               ),
+              LoginPageUtility.button(false,false,() {_signUpController.signUpWithEmail(context);},),
               LoginPageUtility.lineWithOrText(),
-              LoginPageUtility.button(true, false,
-                  () => context.push(const ParticipantLoginPage())),
+              LoginPageUtility.button(true, false,() => context.push(const ParticipantLoginPage())),
               mediumSizedBox()
             ],
           ),
@@ -90,8 +75,7 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Container acceptMakingShortCallContainer(
-      TherapistProfileController controller) {
+  Container acceptMakingShortCallContainer() {
     return Container(
       height: SizeUtil.acceptionContainerHeight,
       width: SizeUtil.generalWidth,

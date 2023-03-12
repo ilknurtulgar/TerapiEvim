@@ -6,5 +6,8 @@ class ErrorConst {
   static const String acceptTermsOfUse = 'Terms of Use is not accepted';
   static const String phoneNumberIsEmpty = 'Phone is empty';
   static const String somethingWentWrong = 'Something went wrong';
+  static const String exceptionRoleNotSelected = 'Exception: Role not selected';
+  static const String accountAlreadyExists = 'The account already exists for that email.';
+  static const String passwordIsTooWeak = 'The password provided is too weak.';
 
 }

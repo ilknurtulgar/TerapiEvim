@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:vexana/vexana.dart';
-
+import '../../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 part 'login_model.g.dart';
 
 @JsonSerializable()

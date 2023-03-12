@@ -1,7 +1,6 @@
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:vexana/vexana.dart';
-
+import '../../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 part 'sign_up_model.g.dart';
 
 @JsonSerializable()
@@ -11,6 +10,7 @@ class SignUpModel extends INetworkModel<SignUpModel> with EquatableMixin {
   String gender;
   String email;
   String phone;
+  String role;
 
   SignUpModel({
     required this.name,
@@ -18,6 +18,7 @@ class SignUpModel extends INetworkModel<SignUpModel> with EquatableMixin {
     required this.gender,
     required this.email,
     required this.phone,
+    required this.role,
   });
 
   @override

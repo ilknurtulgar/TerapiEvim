@@ -6,7 +6,7 @@ import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
 import 'package:terapievim/screen/participant/profile/util/textfield_utility.dart';
 import '../../../controller/auth/login_controller.dart';
-import '../sign_up/signup_page.dart';
+import '../sign_up/before_sign_up.dart';
 
 class ParticipantLoginPage extends StatefulWidget {
   const ParticipantLoginPage({super.key});
@@ -52,7 +52,7 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
               passwordColumn(),
               LoginPageUtility.button(true, true, () {_loginController.loginWithEmail();}),
               LoginPageUtility.lineWithOrText(),
-              LoginPageUtility.button(false, true, () => context.push(const SignUpPage())),
+              LoginPageUtility.button(false, true, () => context.push(BeforeSignUp())),
             ]),
           ),
         ),

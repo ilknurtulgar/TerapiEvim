@@ -1,8 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import '../../core/extension/context_extension.dart';
 import '../../core/base/component/toast/toast.dart';
 import '../../core/constants/utils/text_constants/error_text_const.dart';
 import '../../product/enum/local_keys_enum.dart';
@@ -11,7 +10,6 @@ import '../../service/model/common/signup/sign_up_model.dart';
 import '../../service/service/auth/auth_service.dart';
 import '../../service/service/auth/i_auth_service.dart';
 import '../base/base_controller.dart';
-import '../main_controller.dart';
 
 class SignUpController extends GetxController with BaseController {
   late final IAuthService authService;
@@ -22,6 +20,7 @@ class SignUpController extends GetxController with BaseController {
   late final TextEditingController birthDateController;
   late final TextEditingController genderController;
   late final TextEditingController phoneController;
+
   late final FocusNode emailFocusNode;
   late final FocusNode passwordFocusNode;
   late final FocusNode nameFocusNode;
@@ -29,12 +28,20 @@ class SignUpController extends GetxController with BaseController {
   late final FocusNode genderFocusNode;
   late final FocusNode phoneFocusNode;
 
+  String _userRole = '';
+
+  String get userRole => _userRole;
+
+  set setUserRole(String value) {
+    _userRole = value;
+  }
+
   RxBool isLoading = false.obs;
   RxBool isTermsOfUseAccepted = false.obs;
 
   @override
   void onInit() {
-    authService = AuthService();
+    authService = AuthService(vexaFireManager.networkManager);
     emailController = TextEditingController();
     passwordController = TextEditingController();
     nameController = TextEditingController();
@@ -73,7 +80,7 @@ class SignUpController extends GetxController with BaseController {
     super.dispose();
   }
 
-  Future<void> signUpWithEmail() async {
+  Future<void> signUpWithEmail(BuildContext context) async {
     final bool isValidated = _validateSignUp();
     if (isValidated == false) {
       return;
@@ -81,48 +88,51 @@ class SignUpController extends GetxController with BaseController {
 
     isLoading.value = true;
 
-    final UserCredential? result = await authService.signUpWithEmail(
+    final String? userId = await authService.signUpWithEmail(
         signUpModel: SignUpModel(
           name: nameController.text.trim(),
           birthDate: birthDateController.text.trim(),
           gender: genderController.text.trim(),
           email: emailController.text.trim(),
           phone: phoneController.text.trim(),
+          role: _userRole,
         ),
         password: passwordController.text.trim());
 
-    if (result == null) {
+    if (userId == null) {
       flutterErrorToast(ErrorConst.somethingWentWrong);
       isLoading.value = false;
       return;
     }
 
-    await saveToLocalData();
-
-    MainController maiController = Get.find();
+    await saveToLocalData(userId);
 
     isLoading.value = false;
 
-    maiController.isLogged.value = true;
-
-    Get.offUntil(
-        MaterialPageRoute(builder: (context) => const TerapiEvimLogged()),
-        (route) => false);
+    context.pushAndRemoveUntil(TerapiEvimLogged());
   }
 
-  Future<void> saveToLocalData() async {
+  Future<void> saveToLocalData(String userId) async {
     try {
       await localManager.setStringValue(
           LocalManagerKeys.name, nameController.text.trim());
+
+      await localManager.setNullableStringValue(
+          LocalManagerKeys.userId, userId);
+
       await localManager.setStringValue(
           LocalManagerKeys.birthDate, birthDateController.text.trim());
+
       await localManager.setStringValue(
           LocalManagerKeys.gender, genderController.text.trim());
+
       await localManager.setStringValue(
           LocalManagerKeys.email, emailController.text.trim());
+
       await localManager.setStringValue(
           LocalManagerKeys.phone, phoneController.text.trim());
-      await localManager.setStringValue(LocalManagerKeys.token, '');
+
+      await localManager.setStringValue(LocalManagerKeys.role, _userRole);
     } catch (e) {
       await crashlyticsManager.sendACrash(
         error: e.toString(),
@@ -152,12 +162,8 @@ class SignUpController extends GetxController with BaseController {
     }
 
     if (genderController.text.trim().isEmpty) {
-      //TODO: (BHZ) since genderController is not setUp, as a workaround
-      //TODO: I set gender as female
-      // flutterErrorToast("Gender is empty");
-      // return false;
-      genderController.text = "Kadın";
-      return true;
+      flutterErrorToast("Gender is empty");
+      return false;
     }
     if (phoneController.text.trim().isEmpty) {
       flutterErrorToast(ErrorConst.phoneNumberIsEmpty);
@@ -172,6 +178,12 @@ class SignUpController extends GetxController with BaseController {
       }
 
       flutterInfoToast(ErrorConst.acceptTermsOfUse);
+      return false;
+    }
+
+    /// Check if role is not empty
+    if (_userRole == '') {
+      flutterInfoToast(ErrorConst.exceptionRoleNotSelected);
       return false;
     }
     return true;

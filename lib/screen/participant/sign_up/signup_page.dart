@@ -4,6 +4,7 @@ import 'package:terapievim/controller/therapist_profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
+
 import '../../../controller/auth/sign_up_controller.dart';
 import '../../../core/base/component/profile/acception_row.dart';
 import '../login/login_page.dart';
@@ -11,7 +12,9 @@ import '../profile/util/profile_page_utility.dart';
 import '../profile/util/textfield_utility.dart';
 
 class SignUpPage extends StatefulWidget {
-  const SignUpPage({super.key,});
+  const SignUpPage({
+    super.key,
+  });
 
   final bool isForParticipant = false;
 
@@ -39,16 +42,20 @@ class _SignUpPageState extends State<SignUpPage> {
   TextfieldUtility textfieldUtility = TextfieldUtility();
 
   late List<Widget> textfieldList = [
-    textfieldUtility.nameSurnameTextfield(_signUpController.nameController, true),
-    textfieldUtility.birthOfDateTextfield(_signUpController.birthDateController, true),
-    ProfilePageUtility.genderDropDown(false),
+    textfieldUtility.nameSurnameTextfield(
+        _signUpController.nameController, true),
+    textfieldUtility.birthOfDateTextfield(
+        _signUpController.birthDateController, true),
+    ProfilePageUtility.genderDropDown(
+        false, _signUpController.genderController),
     textfieldUtility.mailTextfield(_signUpController.emailController, true),
-    textfieldUtility.passwordTextfield(_signUpController.passwordController, true),
+    textfieldUtility.passwordTextfield(
+        _signUpController.passwordController, true),
     textfieldUtility.phoneTextfield(_signUpController.phoneController, true),
   ];
 
   ///TODO: use gender controller
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,9 +72,16 @@ class _SignUpPageState extends State<SignUpPage> {
               widget.isForParticipant == false
                   ? acceptMakingShortCallContainer(controller)
                   : const SizedBox(),
-              LoginPageUtility.button(false,false,() {_signUpController.signUpWithEmail();},),
+              LoginPageUtility.button(
+                false,
+                false,
+                () {
+                  _signUpController.signUpWithEmail(context);
+                },
+              ),
               LoginPageUtility.lineWithOrText(),
-              LoginPageUtility.button(true,false, () => context.push(const ParticipantLoginPage())),
+              LoginPageUtility.button(true, false,
+                  () => context.push(const ParticipantLoginPage())),
               mediumSizedBox()
             ],
           ),
@@ -76,7 +90,8 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Container acceptMakingShortCallContainer(TherapistProfileController controller) {
+  Container acceptMakingShortCallContainer(
+      TherapistProfileController controller) {
     return Container(
       height: SizeUtil.acceptionContainerHeight,
       width: SizeUtil.generalWidth,
@@ -87,7 +102,6 @@ class _SignUpPageState extends State<SignUpPage> {
       child: AcceptionRow(isForMakingShortCall: true),
     );
   }
-
 
 /*  textfieldUtility.nameSurnameTextfield(_signUpController.nameController, true),
     textfieldUtility.birthOfDateTextfield( _signUpController.birthDateController, true),

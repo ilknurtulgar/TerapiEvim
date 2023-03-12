@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../init/managers/responsiveness_manager.dart';
 import '../../models/row_model.dart';
 
 Widget rowView(RowModel rowModel, EdgeInsets padding) {
@@ -29,6 +30,7 @@ Widget texts(RowModel rowModel) {
       Text(
         rowModel.text,
         style: rowModel.textStyle,
+        textScaleFactor: ResponsivenessManager.instance.widthFactorMax1 ,
       ),
       Text(
         rowModel.text2!,

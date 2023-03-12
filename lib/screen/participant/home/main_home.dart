@@ -9,6 +9,7 @@ import '../../../controller/main_controller.dart';
 import '../../../core/base/component/bottom_nav_bar/bottom_nav_bar_custom.dart';
 import '../../../core/base/component/bottom_nav_bar/custom_tab_scaffold.dart';
 import '../../../core/constants/ui_constant/size_const.dart';
+import '../../../core/init/managers/responsiveness_manager.dart';
 part 'modules/bottom_nav_bar_icon.dart';
 part 'modules/bottom_nav_bar_items.dart';
 part 'modules/bottom_nav_tab_builder.dart';
@@ -39,6 +40,7 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
 
   @override
   Widget build(BuildContext context) {
+    ResponsivenessManager.instance.setFactorSize(context);
     return WillPopScope(
       onWillPop: _controller.onWillPop,
       child: Scaffold(

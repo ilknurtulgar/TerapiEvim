@@ -301,10 +301,10 @@ packages:
     dependency: transitive
     description:
       name: dio
-      sha256: "3709d74615bba5e443eb141f6a7f4bcc4788f8fae6f743edadfb79c2a8e6287e"
+      sha256: "2644a9e0965a7aa3deb09cb8ce4081db4450c178f472818c8cd34216a3070d7b"
       url: "https://pub.dev"
     source: hosted
-    version: "5.0.1"
+    version: "5.0.2"
   equatable:
     dependency: "direct main"
     description:
@@ -940,10 +940,10 @@ packages:
     dependency: transitive
     description:
       name: sembast
-      sha256: "4997717aa84f0622691815d7e2739988b7f7d3a463302fc878f7d5acfa748e96"
+      sha256: "308223a9d863826835007cc54ec8e6be46ed931bb018692943c9ac2a370e5a5d"
       url: "https://pub.dev"
     source: hosted
-    version: "3.4.0+6"
+    version: "3.4.1"
   sembast_web:
     dependency: transitive
     description:

@@ -12,6 +12,7 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/home/main_home.dart';
 import 'package:terapievim/screen/participant/login/login_page.dart';
 
+import 'controller/auth/auth_controller.dart';
 import 'controller/main_controller.dart';
 import 'controller/therapist_group_controller.dart';
 import 'controller/therapist_profile_controller.dart';
@@ -32,14 +33,7 @@ class TerapiEvim extends StatefulWidget {
 }
 
 class _TerapiEvimState extends State<TerapiEvim> {
-  final MainController _controller = Get.put(MainController());
-  final ActivityController activityController = Get.put(ActivityController());
-  final ProfileController profileController = Get.put(ProfileController());
-  final TherapistProfileController therapistProfileController =
-      Get.put(TherapistProfileController());
-  final TherapistGroupController therapistGroupController =
-      Get.put(TherapistGroupController());
-  final GroupController groupController = Get.put(GroupController());
+  final MainController _controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +48,11 @@ class _TerapiEvimState extends State<TerapiEvim> {
                 selectedItemColor: AppColors.black,
                 unselectedItemColor: AppColors.dustyGray,
                 elevation: 70)),
-        home: _controller.isLogged.isTrue
-            ? const TerapiEvimLogged()
-            : const ParticipantLoginPage());
+        home: Obx(
+          () => _controller.isLogged.isTrue
+              ? const TerapiEvimLogged()
+              : const ParticipantLoginPage(),
+        ));
   }
 }
 
@@ -65,7 +61,7 @@ Future<void> initialize() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-
+  _initializeControllers();
   final Config config = Config.instance;
   if (kIsWeb == false) {
     await FirebaseCrashlytics.instance
@@ -75,4 +71,14 @@ Future<void> initialize() async {
   }
 
   await LocalManager.preferencesInit();
+}
+
+void _initializeControllers() {
+  Get.put(AuthController());
+  Get.put(MainController());
+  Get.put(ActivityController());
+  Get.put(ProfileController());
+  Get.put(TherapistProfileController());
+  Get.put(TherapistGroupController());
+  Get.put(GroupController());
 }

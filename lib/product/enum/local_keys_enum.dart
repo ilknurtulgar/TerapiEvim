@@ -1,6 +1,6 @@
 enum LocalManagerKeys {
   userId, // bool
-  token, // String
+  role, // String
   name, // String
   birthDate, // String
   gender, // String

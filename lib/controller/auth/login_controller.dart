@@ -1,15 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/main_controller.dart';
-
 import '../../core/base/component/toast/toast.dart';
-import '../../screen/participant/home/main_home.dart';
+import '../../product/enum/local_keys_enum.dart';
 import '../../service/model/common/login/login_model.dart';
+import '../../service/model/common/login/login_response_model.dart';
 import '../../service/service/auth/auth_service.dart';
 import '../../service/service/auth/i_auth_service.dart';
+import '../base/base_controller.dart';
+import '../main_controller.dart';
 
-class LoginController extends GetxController {
+class LoginController extends GetxController with BaseController {
   late final IAuthService authService;
 
   late final TextEditingController emailController;
@@ -21,7 +21,7 @@ class LoginController extends GetxController {
 
   @override
   void onInit() {
-    authService = AuthService();
+    authService = AuthService(vexaFireManager.networkManager);
     emailController = TextEditingController();
     passwordController = TextEditingController();
     emailFocusNode = FocusNode();
@@ -49,7 +49,7 @@ class LoginController extends GetxController {
 
     isLoading.value = true;
 
-    final UserCredential? result = await authService.signInWithEmail(
+    final LoginResponseModel? loginResponse = await authService.signInWithEmail(
       LoginModel(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
@@ -58,16 +58,45 @@ class LoginController extends GetxController {
 
     isLoading.value = false;
 
-    if (result == null) {
-      flutterErrorToast("Email is incorrect");
-      return;
-    }
+    if (loginResponse == null) return;
+
+    print('loginResponse:${loginResponse.toJson()}');
+    await saveToLocalData(loginResponse);
 
     MainController maiController = Get.find();
     maiController.isLogged.value = true;
-    Get.offUntil(
-        MaterialPageRoute(builder: (context) => const TerapiEvimLogged()),
-        (route) => false);
+  }
+
+  Future<void> saveToLocalData(LoginResponseModel loginResponse) async {
+    try {
+      await localManager.setNullableStringValue(
+          LocalManagerKeys.name, loginResponse.name);
+
+      await localManager.setNullableStringValue(
+          LocalManagerKeys.userId, loginResponse.userId);
+
+      await localManager.setNullableStringValue(
+          LocalManagerKeys.birthDate, loginResponse.birthDate);
+
+      await localManager.setNullableStringValue(
+          LocalManagerKeys.gender, loginResponse.gender);
+
+      await localManager.setNullableStringValue(
+          LocalManagerKeys.email, loginResponse.email);
+
+      await localManager.setNullableStringValue(
+          LocalManagerKeys.phone, loginResponse.phone);
+
+      await localManager.setNullableStringValue(
+          LocalManagerKeys.role, loginResponse.role);
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+        error: e.toString(),
+        stackTrace: StackTrace.current,
+        reason: 'Error saveToLocalData',
+      );
+      rethrow;
+    }
   }
 
   bool _validateLogin() {

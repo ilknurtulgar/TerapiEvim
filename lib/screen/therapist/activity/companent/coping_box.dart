@@ -54,7 +54,7 @@ class CopingBox extends StatelessWidget {
     return Container(
       decoration: AppBoxDecoration.lockScreenBox,
       width: SizeUtil.largeValueWidth,
-      height: SizeUtil.lockScreenHeight2,
+      height: SizeUtil.generalHeight,
       child: Padding(
         padding: AppPaddings.toppadding,
         child: Text(pdfname,

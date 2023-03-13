@@ -61,7 +61,7 @@ Column conformed() {
     children: [
       Container(
         width: SizeUtil.largeValueWidth,
-        height: SizeUtil.lockScreenContainerHeight,
+        height: SizeUtil.mediumValueHeight,
         margin: AppPaddings.tLockScreenTextPadding,
         child: Text(
           GroupTextUtil.confirmationText,
@@ -83,7 +83,7 @@ Column noUpload(BuildContext context) {
       Container(
         margin: AppPaddings.tLockScreenNoUploadPadding,
         width: SizeUtil.largeValueWidth,
-        height: SizeUtil.lockScreenContainerHeight,
+        height: SizeUtil.mediumValueHeight,
         child: Text(
           GroupTextUtil.lockScreenWarningText,
           style: AppTextStyles.normalTextStyle("big", false)
@@ -98,7 +98,7 @@ Column noUpload(BuildContext context) {
           },
           child: Container(
             width: SizeUtil.largeValueWidth,
-            height: SizeUtil.lockScreenHeight,
+            height: SizeUtil.smallValueHeight,
             decoration: AppBoxDecoration.lockScreenButton,
             child: Center(
               child: Text(GroupTextUtil.confirmText,

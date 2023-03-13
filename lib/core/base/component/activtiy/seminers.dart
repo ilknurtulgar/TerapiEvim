@@ -66,7 +66,7 @@ class SeminarMax extends StatelessWidget {
   Widget build(BuildContext context) {
     borderColor ??= AppColors.dustyGray;
     width ??= Responsive.width(SizeUtil.generalWidth, context);
-    height ??= Responsive.height(SizeUtil.groupHeight, context);
+    height ??= Responsive.height(SizeUtil.doubleNormalValueHeight, context);
     return InkWell(
       onTap: () {
         onTap();

@@ -63,7 +63,7 @@ class SessionScreen extends StatelessWidget {
           padding: AppPaddings.componentPadding,
           child: CustomDropDown(
             isGenderPurpose: false,
-            height: SizeUtil.lockScreenHeight,
+            height: SizeUtil.smallValueHeight,
             width: SizeUtil.normalValueWidth,
           ),
         ));

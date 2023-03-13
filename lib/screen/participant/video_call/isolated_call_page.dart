@@ -45,7 +45,7 @@ class IsolatedCallPage extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: Container(
           color: AppColors.lightBlack,
-          height: SizeUtil.videoCallButtonRowHeight,
+          height: SizeUtil.mediumValueHeight,
           width: window.physicalSize.width,
           child: const VideoCallButtonsRow()),
     );

@@ -16,7 +16,7 @@ class CustomListWheelScrollView extends StatelessWidget {
       angle:  whatIsFor == 'number of groups' ? -pi/2 : 0,
       child: SizedBox(
         width: SizeUtil.lowValueWidth,
-        height: whatIsFor == 'number of groups' ? SizeUtil.listWheelScrollHeight1 : SizeUtil.listWheelScrollHeight2,
+        height: whatIsFor == 'number of groups' ? SizeUtil.mediumValueHeight : SizeUtil.largeValueHeight,
         child: ListWheelScrollView.useDelegate(
           onSelectedItemChanged: (value) => groupController.scrollableWidgetFunction(whatIsFor, value),
           overAndUnderCenterOpacity: 0.75,
@@ -53,7 +53,7 @@ class CustomListWheelScrollView extends StatelessWidget {
                         () => AnimatedContainer(
                           duration: const Duration(milliseconds: 200),
                           color: AppColors.transparent,
-                          height: profileController.isNumberVisible.value ? SizeUtil.animatedContainerHeight : SizeUtil.zeroSize,
+                          height: profileController.isNumberVisible.value ? SizeUtil.lowValueHeight : SizeUtil.zeroSize,
                           child: Transform.rotate(
                             angle: pi / 2,
                             child: Text(

@@ -56,8 +56,8 @@ class ParticipantProfileSettingPage extends StatelessWidget {
           bigColumn(),
           DemoInformation.isForParticipant == false
               ? Positioned(
-                  top: 855,
-                  right: 10,
+                  top: 828,
+                  right: 25,
                   child: CustomListWheelScrollView(
                       whatIsFor: 'number of groups')) // eski değer 715
               : const SizedBox(),
@@ -135,7 +135,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
               Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
             Text(ProfileSettingsTextUtil.numberOfGroups),
             Container(
-              height: SizeUtil.miniContainerHeight,
+              height: SizeUtil.lowValueHeight,
               width: SizeUtil.lowValueWidth,
               decoration: BoxDecoration(
                   color: AppColors.white,

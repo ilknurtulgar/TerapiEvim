@@ -23,7 +23,7 @@ class ProfilePageListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: SizeUtil.listViewHeight,
+      height: SizeUtil.doubleNormalValueHeight,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
@@ -40,7 +40,7 @@ class ProfilePageListView extends StatelessWidget {
     return Padding(
       padding: AppPaddings.smallPadding(3),
       child: GroupClass(
-        height: SizeUtil.tGroupContainerHeight,
+        height: SizeUtil.doubleNormalValueHeight,
         width: SizeUtil.hugeValueWidth,
         borderColor: AppColors.cornFlowerBlue,
         heading: groupNameList![index],

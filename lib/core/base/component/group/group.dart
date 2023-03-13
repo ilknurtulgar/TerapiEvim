@@ -29,7 +29,7 @@ class GroupClass extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     width ??= SizeUtil.largeValueWidth;
-    height ??= SizeUtil.groupHeight;
+    height ??= SizeUtil.doubleNormalValueHeight;
     borderColor ??= AppColors.dustyGray;
 
     return InkWell(

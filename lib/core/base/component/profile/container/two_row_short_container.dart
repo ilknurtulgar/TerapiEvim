@@ -38,7 +38,7 @@ class TwoRowShortContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: Container(
-            height: isThereButton ? SizeUtil.shortContainerWithButtonHeight : SizeUtil.shortContainerWithoutButtonHeight,
+            height: isThereButton ? SizeUtil.doubleNormalValueHeight : SizeUtil.doubleSmallValueHeight,
             width: isThereButton ? SizeUtil.largeValueWidth : SizeUtil.generalWidth,
             decoration: containerDecoration(), //
             child: Padding(

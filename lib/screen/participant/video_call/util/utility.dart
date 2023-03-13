@@ -8,7 +8,7 @@ class VideoCallUtility {
   static VideoCallViewModel personBigView(
           PersonInCallModel person, bool isTherapistInGroupTherapy) =>
       VideoCallViewModel(
-          height: SizeUtil.personBigViewHeight,
+          height: SizeUtil.highestValueHeight,
           width: PixelScreen().logicalWidth,
           borderRadius: 0,
           person: person,
@@ -17,7 +17,7 @@ class VideoCallUtility {
   static VideoCallViewModel personSmallView(
           PersonInCallModel person, bool isNameShown) =>
       VideoCallViewModel(
-          height: SizeUtil.personSmallViewHeight,
+          height: SizeUtil.doubleNormalValueHeight,
           width: SizeUtil.smallValueWidth,
           borderRadius: 8,
           person: person,
@@ -25,7 +25,7 @@ class VideoCallUtility {
           isTherapistInGroupTherapy: false);
   static VideoCallViewModel personShortCallView(PersonInCallModel person) =>
       VideoCallViewModel(
-        height: SizeUtil.personShortCallViewHeight,
+        height: SizeUtil.hugeValueHeight,
         width: SizeUtil.generalWidth,
         borderRadius: 12,
         isNameShown: false,

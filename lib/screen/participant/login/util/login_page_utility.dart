@@ -6,7 +6,7 @@ import '../../../../core/base/util/base_utility.dart';
 
 class LoginPageUtility {
   static ContainerModel beforeLoginButtonContainer() => ContainerModel(
-        height: SizeUtil.beforeLoginButtonHeight,
+        height: SizeUtil.smallValueHeight,
         width: SizeUtil.hugeValueWidth,
         borderRadius: 65,
         backgroundColor: AppColors.butterflyBush,
@@ -21,7 +21,7 @@ class LoginPageUtility {
                   (isInLoginPage == false && isLoginButton == false)
               ? AppColors.royalBlue
               : AppColors.white,
-          height: SizeUtil.loginSignUpButtonHeight);
+          height: SizeUtil.smallValueHeight);
 
   static Padding lineWithOrText() {
     return Padding(

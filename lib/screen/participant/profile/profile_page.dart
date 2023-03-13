@@ -59,7 +59,7 @@ class ParticipantProfilePage extends StatelessWidget {
 
   Widget participantGroupContainer() {
     return GroupClass(
-      height: SizeUtil.groupContainerHeight,
+      height: SizeUtil.largeValueHeight,
       width: SizeUtil.highestValueWidth,
       borderColor: AppColors.cornFlowerBlue,
       heading: DemoInformation.groupInformation.groupName,

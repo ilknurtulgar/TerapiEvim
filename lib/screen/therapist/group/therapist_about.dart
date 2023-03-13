@@ -143,7 +143,7 @@ Container aboutMe(String aboutme) {
 Container whiteBackground(BuildContext context) {
   return Container(
     width: MediaQuery.of(context).size.width,
-    height: SizeUtil.whiteContainerHeight,
+    height: SizeUtil.highValueHeight,
     color: AppColors.white,
     margin: AppPaddings.whitebackgroundmargin,
   );

@@ -64,7 +64,7 @@ class SessionScreen extends StatelessWidget {
           child: CustomDropDown(
             isGenderPurpose: false,
             height: SizeUtil.lockScreenHeight,
-            width: SizeUtil.orderDropDownWidth,
+            width: SizeUtil.normalValueWidth,
           ),
         ));
   }

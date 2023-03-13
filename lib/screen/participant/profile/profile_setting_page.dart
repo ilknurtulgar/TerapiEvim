@@ -136,7 +136,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             Text(ProfileSettingsTextUtil.numberOfGroups),
             Container(
               height: SizeUtil.miniContainerHeight,
-              width: SizeUtil.miniContainerWidth,
+              width: SizeUtil.lowValueWidth,
               decoration: BoxDecoration(
                   color: AppColors.white,
                   borderRadius: AppBorderRadius.generalBorderRadius,

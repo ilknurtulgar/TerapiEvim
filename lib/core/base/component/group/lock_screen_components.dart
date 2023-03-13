@@ -80,7 +80,7 @@ GestureDetector testButton(BuildContext context) {
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: SizeUtil.lockScreenHeight),
-        width: SizeUtil.lockScreenContainerWidth,
+        width: SizeUtil.largeValueWidth,
         height: SizeUtil.lockScreenHeight,
         decoration: AppBoxDecoration.lockScreenButton,
         child: Center(
@@ -93,7 +93,7 @@ GestureDetector testButton(BuildContext context) {
 Widget lockedTextContainer(String text) {
   return Container(
       margin: const EdgeInsets.symmetric(vertical: SizeUtil.lockScreenHeight),
-      width: SizeUtil.lockScreenContainerWidth,
+      width: SizeUtil.largeValueWidth,
       height: SizeUtil.lockScreenContainerHeight,
       color: AppColors.transparent,
       child: Text(

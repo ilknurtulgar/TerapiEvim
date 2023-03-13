@@ -94,7 +94,7 @@ class ProfilePageUtility {
       CustomDropDown(
         isGenderPurpose: true,
         width: isInProfilePage
-            ? SizeUtil.genderDropDownWidth1
+            ? SizeUtil.mediumValueWidth
             : SizeUtil.generalWidth,
         height: isInProfilePage
             ? SizeUtil.genderDropDownHeight1

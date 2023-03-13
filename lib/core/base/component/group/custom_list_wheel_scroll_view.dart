@@ -15,7 +15,7 @@ class CustomListWheelScrollView extends StatelessWidget {
     return Transform.rotate(
       angle:  whatIsFor == 'number of groups' ? -pi/2 : 0,
       child: SizedBox(
-        width: SizeUtil.listWheelScrollWidth,
+        width: SizeUtil.lowValueWidth,
         height: whatIsFor == 'number of groups' ? SizeUtil.listWheelScrollHeight1 : SizeUtil.listWheelScrollHeight2,
         child: ListWheelScrollView.useDelegate(
           onSelectedItemChanged: (value) => groupController.scrollableWidgetFunction(whatIsFor, value),

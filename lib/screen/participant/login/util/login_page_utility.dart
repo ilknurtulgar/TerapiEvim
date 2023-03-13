@@ -7,7 +7,7 @@ import '../../../../core/base/util/base_utility.dart';
 class LoginPageUtility {
   static ContainerModel beforeLoginButtonContainer() => ContainerModel(
         height: SizeUtil.beforeLoginButtonHeight,
-        width: SizeUtil.beforeLoginButtonWidth,
+        width: SizeUtil.hugeValueWidth,
         borderRadius: 65,
         backgroundColor: AppColors.butterflyBush,
       );
@@ -45,7 +45,7 @@ class LoginPageUtility {
     return Container(
       color: AppColors.black,
       height: SizeUtil.horizontalLineHeight,
-      width: SizeUtil.horizontalLineWidth,
+      width: SizeUtil.normalValueWidth,
     );
   }
 

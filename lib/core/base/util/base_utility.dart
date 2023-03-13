@@ -769,25 +769,18 @@ class SizeUtil {
   static const double lockIconSize = 100;
 
   static const double generalHeight = 52;
-  static const double generalWidth = 342;
+  static const double generalWidth = 342; //lockScreenBigContainerWidth,purpleTextContainer,personShortCallViewWidth
 
   // küçükten büyüğe sıralama
   static const double zeroSize = 0;
   // width
-  static const double miniContainerWidth = 40;
-  static const double listWheelScrollWidth = 70;
-  static const double personSmallViewWidth = 92;
-  static const double orderDropDownWidth = 135;
-  static const double horizontalLineWidth = 150;
-  static const double genderDropDownWidth1 = 195;
-  static const double shortContainerWithButtonWidth = 250;
-  static const double lockScreenContainerWidth = 250; //pdfcontainer aynı
-  static const double electionWidth = 300;
-  static const double beforeLoginButtonWidth = 300;
-  static const double tGroupContainerWidth = 320;
-  static const double lockScreenBigContainerWidth = 340;
-  static const double personShortCallViewWidth = 340;
-  static const double groupContainerWidth = 350;
+  static const double lowValueWidth = 40; // profil sayfasındaki mini container ve listwheelscrollview için 
+  static const double smallValueWidth = 92; // video call person small view
+  static const double normalValueWidth = 150; // orderDropDownWidth,horizontalLineWidth 
+  static const double mediumValueWidth = 195; // profil sayfasındaki genderDropDown
+  static const double largeValueWidth = 250; //shortContainerWithButtonWidth,lockScreenContainerWidth,pdf container 
+  static const double hugeValueWidth = 320; //electionWidth(eski değeri 300),beforeLoginButtonWidth,terapist profil sayfasındaki GroupContainerWidth
+  static const double highestValueWidth = 350; //danışan sayfasındaki groupContainerWidth
   // height
   static const double horizontalLineHeight = 1; // divider kullan
   static const double animatedContainerHeight = 20;

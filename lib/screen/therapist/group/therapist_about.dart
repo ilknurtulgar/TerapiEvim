@@ -131,7 +131,7 @@ Text heading(name) {
 Container aboutMe(String aboutme) {
   return Container(
     padding: AppPaddings.aboutmePadding,
-    width: SizeUtil.lockScreenContainerWidth,
+    width: SizeUtil.largeValueWidth,
     child: Text(
       aboutme,
       textAlign: TextAlign.justify,

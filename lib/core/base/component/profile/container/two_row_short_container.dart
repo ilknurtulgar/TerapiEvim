@@ -39,7 +39,7 @@ class TwoRowShortContainer extends StatelessWidget {
           ),
           child: Container(
             height: isThereButton ? SizeUtil.shortContainerWithButtonHeight : SizeUtil.shortContainerWithoutButtonHeight,
-            width: isThereButton ? SizeUtil.shortContainerWithButtonWidth : SizeUtil.generalWidth,
+            width: isThereButton ? SizeUtil.largeValueWidth : SizeUtil.generalWidth,
             decoration: containerDecoration(), //
             child: Padding(
               padding: const EdgeInsets.only(left: 10),

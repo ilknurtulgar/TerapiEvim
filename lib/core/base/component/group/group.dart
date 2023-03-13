@@ -28,7 +28,7 @@ class GroupClass extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    width ??= SizeUtil.lockScreenContainerWidth;
+    width ??= SizeUtil.largeValueWidth;
     height ??= SizeUtil.groupHeight;
     borderColor ??= AppColors.dustyGray;
 

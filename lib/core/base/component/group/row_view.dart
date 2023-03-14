@@ -3,7 +3,10 @@ import 'package:flutter/material.dart';
 import '../../../init/managers/responsiveness_manager.dart';
 import '../../models/row_model.dart';
 
-Widget rowView(RowModel rowModel, EdgeInsets padding) {
+Widget rowView(
+  RowModel rowModel,
+  EdgeInsets padding,
+) {
   return Padding(
     padding: padding,
     child: Row(

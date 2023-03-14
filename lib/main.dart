@@ -9,8 +9,7 @@ import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/controller/group_controller.dart';
 import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/participant/home/main_home.dart';
-import 'package:terapievim/screen/participant/login/login_page.dart';
+import 'package:terapievim/screen/therapist/group/therapist_about.dart';
 
 import 'controller/auth/auth_controller.dart';
 import 'controller/main_controller.dart';
@@ -38,21 +37,23 @@ class _TerapiEvimState extends State<TerapiEvim> {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: ThemeData(
-            //bu thema baska yere gitmesi lazijm
-            splashColor: Colors.transparent,
-            scaffoldBackgroundColor: AppColors.blueChalk,
-            bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-                backgroundColor: AppColors.white,
-                selectedItemColor: AppColors.black,
-                unselectedItemColor: AppColors.dustyGray,
-                elevation: 70)),
-        home: Obx(
-          () => _controller.isLogged.isTrue
-              ? const TerapiEvimLogged()
-              : const ParticipantLoginPage(),
-        ));
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+          //bu thema baska yere gitmesi lazijm
+          splashColor: Colors.transparent,
+          scaffoldBackgroundColor: AppColors.blueChalk,
+          bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+              backgroundColor: AppColors.white,
+              selectedItemColor: AppColors.black,
+              unselectedItemColor: AppColors.dustyGray,
+              elevation: 70)),
+      home: TherapistProfile(isSecTherapist: true),
+      // home: Obx(
+      //   () => _controller.isLogged.isTrue
+      //       ? const TerapiEvimLogged()
+      //       : const ParticipantLoginPage(),
+      // ),
+    );
   }
 }
 

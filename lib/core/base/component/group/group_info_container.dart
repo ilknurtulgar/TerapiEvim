@@ -23,9 +23,8 @@ class GroupInformationContainer extends StatelessWidget {
       elevation: 5,
       borderRadius: BorderRadius.circular(16),
       child: Container(
-        width: 342,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16), color: AppColors.white),
+        width: SizeUtil.generalWidth,
+        decoration: AppBoxDecoration.shadow,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 15),
           child: insideTheContainer(),

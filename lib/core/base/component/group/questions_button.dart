@@ -41,7 +41,7 @@ class _ToggleQuestionsState extends State<ToggleQuestions> {
 Container togglebuttonsview() {
   return Container(
     margin: AppPaddings.toggleButtonsPadding,
-    decoration: AppBoxDecoration.lockScreenBox,
+    decoration: AppBoxDecoration.purpleBorder,
     width: 341,
     child: Column(children: [
       CustomHeading(

@@ -77,7 +77,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Container acceptMakingShortCallContainer() {
     return Container(
-      height: SizeUtil.acceptionContainerHeight,
+      height: SizeUtil.generalHeight,
       width: SizeUtil.generalWidth,
       decoration: const BoxDecoration(
         color: AppColors.white,

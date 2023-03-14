@@ -28,8 +28,8 @@ class GroupClass extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    width ??= SizeUtil.lockScreenContainerWidth;
-    height ??= SizeUtil.groupHeight;
+    width ??= SizeUtil.largeValueWidth;
+    height ??= SizeUtil.doubleNormalValueHeight;
     borderColor ??= AppColors.dustyGray;
 
     return InkWell(

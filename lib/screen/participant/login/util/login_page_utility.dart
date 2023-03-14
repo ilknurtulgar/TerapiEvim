@@ -6,8 +6,8 @@ import '../../../../core/base/util/base_utility.dart';
 
 class LoginPageUtility {
   static ContainerModel beforeLoginButtonContainer() => ContainerModel(
-        height: SizeUtil.beforeLoginButtonHeight,
-        width: SizeUtil.beforeLoginButtonWidth,
+        height: SizeUtil.smallValueHeight,
+        width: SizeUtil.hugeValueWidth,
         borderRadius: 65,
         backgroundColor: AppColors.butterflyBush,
       );
@@ -21,33 +21,30 @@ class LoginPageUtility {
                   (isInLoginPage == false && isLoginButton == false)
               ? AppColors.royalBlue
               : AppColors.white,
-          height: SizeUtil.loginSignUpButtonHeight);
+          height: SizeUtil.smallValueHeight);
 
   static Padding lineWithOrText() {
     return Padding(
       padding: AppPaddings.smallVerticalPadding,
-      child: SizedBox(
-        width: SizeUtil.generalWidth,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            horizontalLine(),
-            Text(LoginSignUpTextUtil.orText),
-            horizontalLine()
-          ],
-        ),
+      child: Row(
+        children: [
+          myDivider(true),
+          Text(LoginSignUpTextUtil.orText),
+          myDivider(false),
+        ],
       ),
     );
   }
 
-  static Container horizontalLine() {
-    return Container(
-      color: AppColors.black,
-      height: SizeUtil.horizontalLineHeight,
-      width: SizeUtil.horizontalLineWidth,
-    );
-  }
+  static SizedBox  myDivider(bool isAtLeft) => SizedBox(
+    width: SizeUtil.normalValueWidth,
+    child: Divider(
+          color: AppColors.black,
+          endIndent: isAtLeft ? 10 : 0,
+          indent: isAtLeft ? 0 : 10,
+          thickness: 1,
+        ),
+  );
 
   static CustomButton button(
       bool isForLogin, bool isInLoginPage, Function() onTap) {

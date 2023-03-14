@@ -92,7 +92,7 @@ Widget activity(RowModel row, Function() func) {
   return SeminarMin(
     onTap: func,
     row: row,
-    borderColor: AppColors.cornFlowerBlue,
+    isBorderPurple: true,
   );
 }
 

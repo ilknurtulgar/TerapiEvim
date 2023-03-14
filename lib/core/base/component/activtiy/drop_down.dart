@@ -34,7 +34,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
             },
             child: Container(
               alignment: Alignment.center,
-              decoration: AppBoxDecoration.lockScreenBox,
+              decoration: AppBoxDecoration.purpleBorder,
               height: widget.height,
               width: widget.width,
               child: Obx(() => textpurpose(widget.isGenderPurpose
@@ -75,7 +75,7 @@ class ChooseGender extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: AppBoxDecoration.lockScreenBox,
+      decoration: AppBoxDecoration.purpleBorder,
       child: ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
@@ -86,7 +86,8 @@ class ChooseGender extends StatelessWidget {
                   widget.isGenderPurpose
                       ? DemoInformation.genderList[index]
                       : DemoInformation.orderingList[index],
-                  widget.isGenderPurpose,textController);
+                  widget.isGenderPurpose,
+                  textController);
               activityController.changeBox();
             },
             child: Text(

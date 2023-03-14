@@ -37,11 +37,7 @@ class ActivityBox extends StatelessWidget {
       child: Container(
         width: SizeUtil.generalWidth,
         // height: 140,
-        decoration: BoxDecoration(
-          color: AppColors.white,
-          border: Border.all(color: AppColors.cornFlowerBlue, width: 2),
-          borderRadius: AppBorderRadius.generalBorderRadius,
-        ),
+        decoration: AppBoxDecoration.purpleBorder,
         child: Column(
           children: [
             rowView(arowModel, AppPaddings.activityBoxPadding),

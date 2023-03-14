@@ -425,7 +425,7 @@ class AppBorderRadius {
 
 class AppBoxDecoration {
   //aynı neredeyse
-  static BoxDecoration lockScreenBox = BoxDecoration(
+  static BoxDecoration purpleBorder = BoxDecoration(
       color: AppColors.white,
       borderRadius: AppBorderRadius.generalBorderRadius,
       border: Border.all(color: AppColors.cornFlowerBlue));
@@ -439,7 +439,7 @@ class AppBoxDecoration {
       color: AppColors.cornFlowerBlue,
       borderRadius: AppBorderRadius.generalBorderRadius);
 
-  static BoxDecoration notificationDec = BoxDecoration(
+  static BoxDecoration shadow = BoxDecoration(
       color: AppColors.white,
       borderRadius: AppBorderRadius.notificationradius,
       boxShadow: [
@@ -448,6 +448,25 @@ class AppBoxDecoration {
             blurRadius: 7,
             offset: const Offset(0, 3))
       ]);
+  static BoxDecoration shadowGeneralRadius = BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      color: AppColors.white,
+      border: Border.all(color: Colors.grey.withOpacity(0.50), width: 1));
+  static BoxDecoration noBorder = const BoxDecoration(
+    color: AppColors.white,
+    borderRadius: AppBorderRadius.generalBorderRadius,
+  );
+  //  BoxDecoration(
+  //       border: Border.all(color: borderColor!.withOpacity(1)),
+  //       borderRadius: AppBorderRadius.generalBorderRadius,
+  //       color: AppColors.white)
+  // static BoxDecoration groupBoxDecoration = BoxDecoration(//widthi gormezden geliyorum daha cok benzer seyler olussun uygulamada diye
+  //   color: AppColors.white,
+  //   border: Border.all(color: AppColors.cornFlowerBlue, width: 2),
+  //   borderRadius: AppBorderRadius.generalBorderRadius,
+  // );
+  // BoxDecoration(
+  //           borderRadius: BorderRadius.circular(16), color: AppColors.white)//group info box deco bunu notificationluyla esletiyorum
 }
 
 Padding colon(bool isInAlertDialog) {
@@ -765,36 +784,57 @@ SizedBox mediumSizedBox() => const SizedBox(height: 24);
 SizedBox largeSizedBox() => const SizedBox(height: 36);
 
 class SizeUtil {
-  static double heightFactor = 1; ///Height Factor
-  static double widthFactor = 1;  ///Width Factor
+  static double heightFactor = 1;
+
+  ///Height Factor
+  static double widthFactor = 1;
+
+  ///Width Factor
   static const double lockIconSize = 100;
 
-  static const double generalHeight = 52; //lockScreenHeight2(pdfcontainer aynı),kayıt olma sayfasındaki genderDropDownHeight,acceptionContainerHeight
-  static const double generalWidth = 342; //lockScreenBigContainerWidth,purpleTextContainer,personShortCallViewWidth
+  static const double generalHeight =
+      52; //lockScreenHeight2(pdfcontainer aynı),kayıt olma sayfasındaki genderDropDownHeight,acceptionContainerHeight
+  static const double generalWidth =
+      342; //lockScreenBigContainerWidth,purpleTextContainer,personShortCallViewWidth
 
   // küçükten büyüğe sıralama
   static const double zeroSize = 0;
   // width
-  static const double lowValueWidth = 40; // profil sayfasındaki mini container ve listwheelscrollview için 
+  static const double lowValueWidth =
+      40; // profil sayfasındaki mini container ve listwheelscrollview için
   static const double smallValueWidth = 92; // video call person small view
-  static const double normalValueWidth = 150; // orderDropDownWidth,horizontalLineWidth 
-  static const double mediumValueWidth = 195; // profil sayfasındaki genderDropDown
-  static const double largeValueWidth = 250; //shortContainerWithButtonWidth,lockScreenContainerWidth,pdf container
-  static const double hugeValueWidth = 320; //electionWidth(eski değeri 300),beforeLoginButtonWidth,terapist profil sayfasındaki GroupContainerWidth
-  static const double highestValueWidth = 350; //danışan sayfasındaki groupContainerWidth
+  static const double normalValueWidth =
+      150; // orderDropDownWidth,horizontalLineWidth
+  static const double mediumValueWidth =
+      195; // profil sayfasındaki genderDropDown
+  static const double largeValueWidth =
+      250; //shortContainerWithButtonWidth,lockScreenContainerWidth,pdf container
+  static const double hugeValueWidth =
+      320; //electionWidth(eski değeri 300),beforeLoginButtonWidth,terapist profil sayfasındaki GroupContainerWidth
+  static const double highestValueWidth =
+      350; //danışan sayfasındaki groupContainerWidth
   // height
-  static const double lowValueHeight = 30; //animatedContainerHeight(listwheelscrollviewdaki),profil sayfasındaki genderDropDownHeight,miniContainerHeight,purpleButtonHeight
-  static const double smallValueHeight = 40; // lockScreenHeight(dropdownheight,filter aynı),loginSignUpButtonHeight,beforeLoginButtonHeight
-  static const double normalValueHeight = 65; // videoCallButtonCircularContainerHeight,sendboxheight
-  static const double doubleSmallValueHeight = 80; // shortContainerWithoutButtonHeight(participantWihtShortCallTime componenti)
-  static const double mediumValueHeight = 100; // lockScreenContainerHeight,terapist profil sayfasındaki 'number of groups' için listWheelScrollHeight,videoCallButtonRowHeight
-    // belki mediumValueHeight ile  doubleNormalValueHeight ortak 130 olabilir
-    // tGroupContainerHeightve shortContainerWithButtonHeight ne değer verilirse verilsin heightları değişmiyor
-  static const double doubleNormalValueHeight = 130; // shortContainerWithButtonHeight(114),groupHeight(seminar max'ta kullanılıyor),tGroupContainerHeight(120),personSmallViewHeight,listViewHeight
-  static const double largeValueHeight = 150 ; // groupContainerHeight(danışan profil sayfasındaki),homeImageHeight,saat için listWheelScrollHeight
-  static const double highValueHeight = 200; // arka plandaki whiteContainerHeight(eski değeri 191),lockScreenBigContainerHeight
-    // lockScreenBigContainerHeight hiçbir yerde kullanılmıyor
-  static const double hugeValueHeight = 281; // personShortCallViewHeight,groupCallBottomContainerHeight
+  static const double lowValueHeight =
+      30; //animatedContainerHeight(listwheelscrollviewdaki),profil sayfasındaki genderDropDownHeight,miniContainerHeight,purpleButtonHeight
+  static const double smallValueHeight =
+      40; // lockScreenHeight(dropdownheight,filter aynı),loginSignUpButtonHeight,beforeLoginButtonHeight
+  static const double normalValueHeight =
+      65; // videoCallButtonCircularContainerHeight,sendboxheight
+  static const double doubleSmallValueHeight =
+      80; // shortContainerWithoutButtonHeight(participantWihtShortCallTime componenti)
+  static const double mediumValueHeight =
+      100; // lockScreenContainerHeight,terapist profil sayfasındaki 'number of groups' için listWheelScrollHeight,videoCallButtonRowHeight
+  // belki mediumValueHeight ile  doubleNormalValueHeight ortak 130 olabilir
+  // tGroupContainerHeightve shortContainerWithButtonHeight ne değer verilirse verilsin heightları değişmiyor
+  static const double doubleNormalValueHeight =
+      130; // shortContainerWithButtonHeight(114),groupHeight(seminar max'ta kullanılıyor),tGroupContainerHeight(120),personSmallViewHeight,listViewHeight
+  static const double largeValueHeight =
+      150; // groupContainerHeight(danışan profil sayfasındaki),homeImageHeight,saat için listWheelScrollHeight
+  static const double highValueHeight =
+      200; // arka plandaki whiteContainerHeight(eski değeri 191),lockScreenBigContainerHeight
+  // lockScreenBigContainerHeight hiçbir yerde kullanılmıyor
+  static const double hugeValueHeight =
+      281; // personShortCallViewHeight,groupCallBottomContainerHeight
   static const double highestValueHeight = 750; // personBigViewHeight
 }
 

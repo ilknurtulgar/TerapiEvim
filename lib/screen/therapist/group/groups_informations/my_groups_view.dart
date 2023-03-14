@@ -34,13 +34,14 @@ class MyGroups extends StatelessWidget {
                 itemCount: 10,
                 itemBuilder: (context, index) {
                   return SeminarMax(
-                      onTap: () {
-                        context.push(GroupInformation());
-                      },
-                      row1: DemoInformation.row_1,
-                      row2: DemoInformation.row_2,
-                      row3: DemoInformation.row_3,
-                      borderColor: AppColors.cornFlowerBlue);
+                    onTap: () {
+                      context.push(GroupInformation());
+                    },
+                    row1: DemoInformation.row_1,
+                    row2: DemoInformation.row_2,
+                    row3: DemoInformation.row_3,
+                    isBorderPurple: true,
+                  );
                 },
               )
             ],

@@ -174,7 +174,7 @@ class GroupAddView extends StatelessWidget {
     Icon trailingIcon = IconUtility.emailIcon;
 
     return PersonMin(
-        borderColor: AppColors.cornFlowerBlue,
+        isBorderPurple: true,
         onTap: () {
           secTherapistChooseDialog(context, therapistName, controller);
           trailingIcon = IconUtility.checkCircleIcon;

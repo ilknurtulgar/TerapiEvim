@@ -27,7 +27,7 @@ class Reminder extends StatelessWidget {
       child: InkWell(
         onTap: () {},
         child: Container(
-          decoration: AppBoxDecoration.notificationDec,
+          decoration: AppBoxDecoration.shadow,
           width: Responsive.width(342, context),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,

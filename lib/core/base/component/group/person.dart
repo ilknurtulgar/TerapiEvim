@@ -9,36 +9,29 @@ import 'row_view.dart';
 class PersonMin extends StatelessWidget {
   PersonMin({
     super.key,
-    this.borderColor,
+    this.isBorderPurple,
     required this.onTap,
     required this.row,
   });
 
   final RowModel row;
   final Function() onTap;
-  Color? borderColor;
+  bool? isBorderPurple;
 
   @override
   Widget build(BuildContext context) {
-    borderColor ??= AppColors.dustyGray;
-
     return InkWell(
       onTap: onTap,
       child: Container(
           margin: AppPaddings.componentPadding,
           height: Responsive.height(SizeUtil.generalHeight, context),
           width: Responsive.width(SizeUtil.generalWidth, context),
-          decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: AppColors.dustyGray.withOpacity(0.7),
-                  blurRadius: 0.6, // soften the shadow
-                  spreadRadius: 1.0, //extend the shadow
-                )
-              ],
-              border: Border.all(color: borderColor!.withOpacity(0.8)),
-              borderRadius: AppBorderRadius.generalBorderRadius,
-              color: AppColors.white),
+          // ignore: unrelated_type_equality_checks
+          decoration: isBorderPurple == Null
+              ? AppBoxDecoration.sendDecoration
+              : !isBorderPurple!
+                  ? AppBoxDecoration.purpleBorder
+                  : AppBoxDecoration.sendDecoration,
           child: rowView(row, AppPaddings.rowViewPadding)),
     );
   }

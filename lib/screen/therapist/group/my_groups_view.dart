@@ -43,13 +43,14 @@ class MyGroups extends StatelessWidget {
               itemCount: 10,
               itemBuilder: (context, index) {
                 return SeminarMax(
-                    onTap: () {
-                      context.push(GroupInformation());
-                    },
-                    row1: row_1,
-                    row2: row_2,
-                    row3: row_3,
-                    borderColor: AppColors.cornFlowerBlue);
+                  onTap: () {
+                    context.push(GroupInformation());
+                  },
+                  row1: row_1,
+                  row2: row_2,
+                  row3: row_3,
+                  isBorderPurple: true,
+                );
               },
             )
           ],

@@ -232,7 +232,7 @@ class AppContainers {
           backgroundColor: AppColors.white);
 
   static ContainerModel purpleButtonContainer(double? width) => ContainerModel(
-        height: SizeUtil.purpleButtonHeight,
+        height: SizeUtil.lowValueHeight,
         width: width,
         borderRadius: 65,
         backgroundColor: AppColors.butterflyBush,
@@ -366,9 +366,9 @@ class AppPaddings {
       EdgeInsets.only(left: 25, right: 25);
 
   static const EdgeInsets tLockScreenTextPadding =
-      EdgeInsets.symmetric(vertical: SizeUtil.lockScreenHeight);
+      EdgeInsets.symmetric(vertical: SizeUtil.smallValueHeight);
   static const EdgeInsets tLockScreenNoUploadPadding = EdgeInsets.only(
-      top: SizeUtil.lockScreenHeight, bottom: SizeUtil.lockScreenHeight * 2);
+      top: SizeUtil.smallValueHeight, bottom: SizeUtil.smallValueHeight * 2);
   static const EdgeInsets tLockScreenAppBarPadding =
       EdgeInsets.only(bottom: 83, top: 30);
   static const EdgeInsets lockScreenContainerPadding = EdgeInsets.all(20);
@@ -764,57 +764,37 @@ SizedBox mediumSizedBox() => const SizedBox(height: 24);
 SizedBox largeSizedBox() => const SizedBox(height: 36);
 
 class SizeUtil {
-  //dropdownheight aynı //filter da aynı
-  static const double lockScreenHeight = 40;
-  //pdfcontainer aynı
-  static const double lockScreenHeight2 = 50;
-  static const double sendboxheight = 65;
-  //pdfcontainer aynı
-  static const double lockScreenContainerWidth = 250;
-  static const double lockScreenContainerHeight = 100;
-  static const double lockScreenBigContainerWidth = 340;
-  static const double lockScreenBigContainerHeight = 200;
-  static const double electionWidth = 300;
+  static double heightFactor = 1; ///Height Factor
+  static double widthFactor = 1;  ///Width Factor
   static const double lockIconSize = 100;
-  static const double whiteContainerHeight = 191;
-  static const double orderDropDownWidth = 135;
-  static const double groupHeight = 120;
-  static const double generalWidth = 342;
-  static const double generalHeight = 52;
-  static const double homeImageHeight = 150;
-  static const double beforeLoginButtonWidth = 300;
-  static const double beforeLoginButtonHeight = 50;
-  static const double loginSignUpButtonHeight = 43;
-  static const double horizontalLineWidth = 150;
-  static const double horizontalLineHeight = 1;
-  static const double acceptionContainerHeight = 56;
-  static const double groupContainerHeight = 138;
-  static const double groupContainerWidth = 350;
-  static const double listViewHeight = 130;
-  static const double shortContainerWithButtonHeight = 114;
-  static const double shortContainerWithButtonWidth = 250;
-  static const double shortContainerWithoutButtonHeight = 80;
-  static const double purpleButtonHeight = 30;
-  static const double tGroupContainerHeight = 120;
-  static const double tGroupContainerWidth = 320;
-  static const double miniContainerHeight = 27;
-  static const double miniContainerWidth = 40;
-  static const double listWheelScrollWidth = 70;
-  static const double listWheelScrollHeight1 = 100;
-  static const double listWheelScrollHeight2 = 150;
-  static const double animatedContainerHeight = 20;
+
+  static const double generalHeight = 52; //lockScreenHeight2(pdfcontainer aynı),kayıt olma sayfasındaki genderDropDownHeight,acceptionContainerHeight
+  static const double generalWidth = 342; //lockScreenBigContainerWidth,purpleTextContainer,personShortCallViewWidth
+
+  // küçükten büyüğe sıralama
   static const double zeroSize = 0;
-  static const double genderDropDownHeight1 = 23;
-  static const double genderDropDownWidth1 = 195;
-  static const double genderDropDownHeight2 = 56;
-  static const double personBigViewHeight = 750;
-  static const double personSmallViewHeight = 129;
-  static const double personSmallViewWidth = 92;
-  static const double personShortCallViewHeight = 260;
-  static const double personShortCallViewWidth = 340;
-  static const double groupCallBottomContainerHeight = 281;
-  static const double videoCallButtonRowHeight = 117;
-  static const double videoCallButtonContainerHeight = 64;
+  // width
+  static const double lowValueWidth = 40; // profil sayfasındaki mini container ve listwheelscrollview için 
+  static const double smallValueWidth = 92; // video call person small view
+  static const double normalValueWidth = 150; // orderDropDownWidth,horizontalLineWidth 
+  static const double mediumValueWidth = 195; // profil sayfasındaki genderDropDown
+  static const double largeValueWidth = 250; //shortContainerWithButtonWidth,lockScreenContainerWidth,pdf container
+  static const double hugeValueWidth = 320; //electionWidth(eski değeri 300),beforeLoginButtonWidth,terapist profil sayfasındaki GroupContainerWidth
+  static const double highestValueWidth = 350; //danışan sayfasındaki groupContainerWidth
+  // height
+  static const double lowValueHeight = 30; //animatedContainerHeight(listwheelscrollviewdaki),profil sayfasındaki genderDropDownHeight,miniContainerHeight,purpleButtonHeight
+  static const double smallValueHeight = 40; // lockScreenHeight(dropdownheight,filter aynı),loginSignUpButtonHeight,beforeLoginButtonHeight
+  static const double normalValueHeight = 65; // videoCallButtonCircularContainerHeight,sendboxheight
+  static const double doubleSmallValueHeight = 80; // shortContainerWithoutButtonHeight(participantWihtShortCallTime componenti)
+  static const double mediumValueHeight = 100; // lockScreenContainerHeight,terapist profil sayfasındaki 'number of groups' için listWheelScrollHeight,videoCallButtonRowHeight
+    // belki mediumValueHeight ile  doubleNormalValueHeight ortak 130 olabilir
+    // tGroupContainerHeightve shortContainerWithButtonHeight ne değer verilirse verilsin heightları değişmiyor
+  static const double doubleNormalValueHeight = 130; // shortContainerWithButtonHeight(114),groupHeight(seminar max'ta kullanılıyor),tGroupContainerHeight(120),personSmallViewHeight,listViewHeight
+  static const double largeValueHeight = 150 ; // groupContainerHeight(danışan profil sayfasındaki),homeImageHeight,saat için listWheelScrollHeight
+  static const double highValueHeight = 200; // arka plandaki whiteContainerHeight(eski değeri 191),lockScreenBigContainerHeight
+    // lockScreenBigContainerHeight hiçbir yerde kullanılmıyor
+  static const double hugeValueHeight = 281; // personShortCallViewHeight,groupCallBottomContainerHeight
+  static const double highestValueHeight = 750; // personBigViewHeight
 }
 
 class Filter {

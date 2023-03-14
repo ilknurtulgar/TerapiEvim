@@ -38,8 +38,8 @@ class TwoRowShortContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: Container(
-            height: isThereButton ? SizeUtil.shortContainerWithButtonHeight : SizeUtil.shortContainerWithoutButtonHeight,
-            width: isThereButton ? SizeUtil.shortContainerWithButtonWidth : SizeUtil.generalWidth,
+            height: isThereButton ? SizeUtil.doubleNormalValueHeight : SizeUtil.doubleSmallValueHeight,
+            width: isThereButton ? SizeUtil.largeValueWidth : SizeUtil.generalWidth,
             decoration: containerDecoration(), //
             child: Padding(
               padding: const EdgeInsets.only(left: 10),

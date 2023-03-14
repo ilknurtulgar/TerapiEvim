@@ -12,8 +12,6 @@ class TherapistProfileController extends GetxController {
       isBeingAdvisorAccepted.value = !isBeingAdvisorAccepted.value;
       isNumberVisible.value = !isNumberVisible.value;
     }
-    print('çalışıyor');
   }
-
- 
+  var isForParticipant = true.obs;
 }

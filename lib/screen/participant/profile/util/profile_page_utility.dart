@@ -10,7 +10,7 @@ import '../../../../core/base/models/row_model.dart';
 
 class ProfilePageUtility {
   static Container backgroundOfThePage() => Container(
-        height: SizeUtil.whiteContainerHeight,
+        height: SizeUtil.highValueHeight,
         width: window.physicalSize.width,
         color: AppColors.white,
       );
@@ -31,7 +31,7 @@ class ProfilePageUtility {
   static Align profilePagePersonImage(String imagePath) => Align(
         alignment: Alignment.topCenter,
         child: Padding(
-          padding: const EdgeInsets.only(top: 91),
+          padding: const EdgeInsets.only(top: 100),
           child:
               CustomCircleAvatar(imagePath: imagePath, big: true, shadow: true),
         ),
@@ -94,11 +94,11 @@ class ProfilePageUtility {
       CustomDropDown(
         isGenderPurpose: true,
         width: isInProfilePage
-            ? SizeUtil.genderDropDownWidth1
+            ? SizeUtil.mediumValueWidth
             : SizeUtil.generalWidth,
         height: isInProfilePage
-            ? SizeUtil.genderDropDownHeight1
-            : SizeUtil.genderDropDownHeight2,
+            ? SizeUtil.lowValueHeight
+            : SizeUtil.generalHeight,
         textController: textController,
       );
 }

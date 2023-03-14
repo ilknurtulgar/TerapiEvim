@@ -12,7 +12,7 @@ class PurpleTextContainer extends StatelessWidget {
       // padding: AppPaddings.lockScreenContainerPadding,
       //margin: AppPaddings.componentPadding,
       padding: AppPaddings.componentPadding,
-      width: SizeUtil.lockScreenBigContainerWidth,
+      width: SizeUtil.generalWidth,
       decoration: AppBoxDecoration.lockScreenBox,
       child: Text(
         text,

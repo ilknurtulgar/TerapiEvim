@@ -23,11 +23,7 @@ class MethodAndSeminarShortInfoContainer extends StatelessWidget {
       child: Container(
         height: 114,
         width: 250,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8),
-            color: AppColors.white,
-            border:
-                Border.all(color: Colors.grey.withOpacity(0.50), width: 1)), //
+        decoration: AppBoxDecoration.shadowGeneralRadius, //
         child: Padding(
           padding: const EdgeInsets.only(left: 10),
           child: Center(

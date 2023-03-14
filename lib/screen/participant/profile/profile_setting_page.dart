@@ -140,11 +140,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             Container(
               height: SizeUtil.lowValueHeight,
               width: SizeUtil.lowValueWidth,
-              decoration: BoxDecoration(
-                  color: AppColors.white,
-                  borderRadius: AppBorderRadius.generalBorderRadius,
-                  border:
-                      Border.all(color: AppColors.cornFlowerBlue, width: 1)),
+              decoration: AppBoxDecoration.purpleBorder,
             )
           ]),
         ),

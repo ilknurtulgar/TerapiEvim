@@ -53,9 +53,10 @@ Padding mindetailesbox(
   return Padding(
     padding: context.paddingMainHorizontal2,
     child: SeminarMin(
-        onTap: onTap,
-        row: rowModel(rowmodeltext),
-        borderColor: AppColors.cornFlowerBlue),
+      onTap: onTap,
+      row: rowModel(rowmodeltext),
+      isBorderPurple: true,
+    ),
   );
 }
 

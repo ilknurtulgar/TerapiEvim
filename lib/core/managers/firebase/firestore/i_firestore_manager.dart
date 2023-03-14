@@ -22,7 +22,11 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
     required String docId,
   });
 
-  Future<bool> update();
+  Future<IResponseModel<R?, E?>> update<T extends INetworkModel<T>, R>({
+    required String collectionPath,
+    required String docId,
+    required T data,
+  });
 
   Future<bool> delete();
 }

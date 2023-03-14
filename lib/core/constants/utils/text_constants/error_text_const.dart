@@ -9,5 +9,7 @@ class ErrorConst {
   static const String exceptionRoleNotSelected = 'Exception: Role not selected';
   static const String accountAlreadyExists = 'The account already exists for that email.';
   static const String passwordIsTooWeak = 'The password provided is too weak.';
+  static const String currentUserIsNull = '"Current user is null"';
+  static const String passwordIsNull = '"Password is null"';
 
 }

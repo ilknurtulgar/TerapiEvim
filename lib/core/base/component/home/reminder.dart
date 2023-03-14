@@ -22,17 +22,20 @@ class Reminder extends StatelessWidget {
     late String reminderTypeText = textSet(reminderType);
     late String reminderName = nameSet(reminderType);
 
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        decoration: AppBoxDecoration.notificationDec,
-        width: Responsive.width(342, context),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            reminderconst(),
-            reminderContent(reminderTypeText, reminderName)
-          ],
+    return Padding(
+      padding: AppPaddings.componentPadding,
+      child: InkWell(
+        onTap: () {},
+        child: Container(
+          decoration: AppBoxDecoration.notificationDec,
+          width: Responsive.width(342, context),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              reminderconst(),
+              reminderContent(reminderTypeText, reminderName)
+            ],
+          ),
         ),
       ),
     );

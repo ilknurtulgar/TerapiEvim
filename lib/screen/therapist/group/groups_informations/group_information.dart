@@ -179,7 +179,6 @@ class GroupInformation extends StatelessWidget {
   PersonMin person(String name, BuildContext context) {
     TherapistGroupController controller = Get.find();
     return PersonMin(
-        padding: AppPaddings.tGroupPersonPadding,
         borderColor: AppColors.cornFlowerBlue,
         onTap: () {
           deleteParticipantDialog(context, name, controller);

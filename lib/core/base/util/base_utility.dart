@@ -279,12 +279,13 @@ class AppPaddings {
 
   static const EdgeInsets loginTitlePadding =
       EdgeInsets.only(top: 60, bottom: 40);
+
   static const EdgeInsets headingTopPadding = EdgeInsets.only(
     top: 80,
   );
   static const EdgeInsets pagePadding =
       EdgeInsets.only(left: 24, right: 24, bottom: 80);
-  static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 10);
+  static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 8);
   static EdgeInsets miniHeadingPadding(bool isInMiddle) =>
       EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
   static const EdgeInsets rowViewPadding =

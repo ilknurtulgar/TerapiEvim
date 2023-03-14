@@ -7,33 +7,27 @@ import 'row_view.dart';
 
 // ignore: must_be_immutable
 class PersonMin extends StatelessWidget {
-  PersonMin(
-      {super.key,
-      this.width,
-      this.height,
-      this.borderColor,
-      required this.onTap,
-      required this.row,
-      this.padding});
-  final EdgeInsets? padding;
+  PersonMin({
+    super.key,
+    this.borderColor,
+    required this.onTap,
+    required this.row,
+  });
+
   final RowModel row;
   final Function() onTap;
   Color? borderColor;
 
-  double? width;
-  double? height;
-
   @override
   Widget build(BuildContext context) {
     borderColor ??= AppColors.dustyGray;
-    width ??= Responsive.width(SizeUtil.generalWidth, context);
-    height ??= Responsive.height(SizeUtil.generalHeight, context);
+
     return InkWell(
       onTap: onTap,
       child: Container(
-          margin: padding ?? const EdgeInsets.only(bottom: 16),
-          height: height,
-          width: width,
+          margin: AppPaddings.componentPadding,
+          height: Responsive.height(SizeUtil.generalHeight, context),
+          width: Responsive.width(SizeUtil.generalWidth, context),
           decoration: BoxDecoration(
               boxShadow: [
                 BoxShadow(

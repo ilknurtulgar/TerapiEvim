@@ -42,17 +42,14 @@ class MyGroups extends StatelessWidget {
               shrinkWrap: true,
               itemCount: 10,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: AppPaddings.componentPadding,
-                  child: SeminarMax(
-                      onTap: () {
-                        context.push(GroupInformation());
-                      },
-                      row1: row_1,
-                      row2: row_2,
-                      row3: row_3,
-                      borderColor: AppColors.cornFlowerBlue),
-                );
+                return SeminarMax(
+                    onTap: () {
+                      context.push(GroupInformation());
+                    },
+                    row1: row_1,
+                    row2: row_2,
+                    row3: row_3,
+                    borderColor: AppColors.cornFlowerBlue);
               },
             )
           ],

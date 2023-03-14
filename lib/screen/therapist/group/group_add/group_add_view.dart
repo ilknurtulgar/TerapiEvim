@@ -174,7 +174,6 @@ class GroupAddView extends StatelessWidget {
     Icon trailingIcon = IconUtility.emailIcon;
 
     return PersonMin(
-        padding: AppPaddings.tGroupPersonPadding,
         borderColor: AppColors.cornFlowerBlue,
         onTap: () {
           secTherapistChooseDialog(context, therapistName, controller);
@@ -219,8 +218,6 @@ class GroupAddView extends StatelessWidget {
   PersonMin day(String dayName) {
     TherapistGroupController controller = Get.find();
     return PersonMin(
-        height: 48,
-        padding: AppPaddings.tGroupPersonPadding,
         onTap: () {
           controller.changeChoosenDay(dayName);
           controller.changeDayElection();

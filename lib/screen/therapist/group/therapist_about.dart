@@ -75,8 +75,6 @@ class TherapistProfile extends StatelessWidget {
               ),
               Positioned(
                 top: 87,
-                // left: 50,
-                // right: 50,
                 child: CustomCircleAvatar(
                     imagePath: DemoInformation.imagePath,
                     big: true,
@@ -90,24 +88,23 @@ class TherapistProfile extends StatelessWidget {
   }
 }
 
-Padding activity(RowModel row, Function() func) {
-  return Padding(
-    padding: AppPaddings.rowViewProfilePadding,
-    child: SeminarMin(
-      onTap: func,
-      row: row,
-      borderColor: AppColors.cornFlowerBlue,
-    ),
+Widget activity(RowModel row, Function() func) {
+  return SeminarMin(
+    onTap: func,
+    row: row,
+    borderColor: AppColors.cornFlowerBlue,
   );
 }
 
 Widget otherGroups(List<RowModel> groups) {
   return Padding(
-    padding: const EdgeInsets.only(bottom: 10.0),
+    padding: const EdgeInsets.only(
+      bottom: 10.0,
+    ),
     child: Column(
       children: [
         CustomHeading(
-            padding: AppPaddings.aboutOtherGroupsPadding,
+            padding: AppPaddings.miniHeadingPadding(false),
             text: GroupTextUtil.secTherapistGroupsText,
             isalignmentstart: true),
         ListView.builder(

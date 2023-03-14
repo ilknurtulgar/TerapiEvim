@@ -20,22 +20,22 @@ class ParticipantProfileSettingPage extends StatelessWidget {
   });
 
   TextfieldUtility textfieldUtility = TextfieldUtility();
-  ProfileController profileController = Get.find();
+  ProfileController profileController = Get.put(ProfileController());
   TherapistProfileController therapistProfileController = Get.find();
   TherapistGroupController therapistGroupController = Get.find();
 
   late List<Widget> textfieldList = [
     textfieldUtility.nameSurnameTextfield(
-        DemoInformation.nameSurnameControllerInSetting, false),
+        profileController.nameController, false),
     textfieldUtility.birthOfDateTextfield(
-        profileController.birthOfDateController.value, false),
-    ProfilePageUtility.genderDropDown(true),
+        profileController.birthdayController, false),
+    ProfilePageUtility.genderDropDown(true,profileController.genderController),
     textfieldUtility.mailTextfield(
-        DemoInformation.mailControllerInSetting, false),
+        profileController.emailController, false),
     textfieldUtility.passwordTextfield(
-        DemoInformation.passwordControllerInSetting, false),
+        profileController.passwordController, false),
     textfieldUtility.phoneTextfield(
-        DemoInformation.phoneControllerInSetting, false),
+        profileController.phoneNumberController, false),
   ];
 
   @override
@@ -118,6 +118,9 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             ),
           ), // custom textfield about me için update edilince bunun yerine custom geleceği için extract etmedim
           saveButton(),
+          SizedBox(
+            height: 200,
+          ) //geçici
         ],
       ),
     );
@@ -156,7 +159,9 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         child: CustomButton(
             textColor: AppColors.white,
             container: AppContainers.purpleButtonContainer(150),
-            onTap: () {},
+            onTap: () {
+              profileController.save();
+            },
             text: ProfileSettingsTextUtil.save),
       ),
     );

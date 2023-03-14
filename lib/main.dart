@@ -61,7 +61,6 @@ Future<void> initialize() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  _initializeControllers();
   final Config config = Config.instance;
   if (kIsWeb == false) {
     await FirebaseCrashlytics.instance
@@ -71,13 +70,14 @@ Future<void> initialize() async {
   }
 
   await LocalManager.preferencesInit();
+  _initializeControllers();
+
 }
 
 void _initializeControllers() {
   Get.put(AuthController());
   Get.put(MainController());
   Get.put(ActivityController());
-  Get.put(ProfileController());
   Get.put(TherapistProfileController());
   Get.put(TherapistGroupController());
   Get.put(GroupController());

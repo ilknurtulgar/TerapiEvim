@@ -32,7 +32,7 @@ class LoginController extends GetxController with BaseController {
 
   @override
   void dispose() {
-    flutterErrorToast("ON DISPOSE");
+   // flutterErrorToast("ON DISPOSE");
     emailController.dispose();
     passwordController.dispose();
     emailFocusNode.dispose();

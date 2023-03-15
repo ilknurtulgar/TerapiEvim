@@ -118,7 +118,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             ),
           ), // custom textfield about me için update edilince bunun yerine custom geleceği için extract etmedim
           saveButton(),
-          SizedBox(
+          const SizedBox(
             height: 200,
           ) //geçici
         ],
@@ -154,7 +154,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
       child: Center(
         child: CustomButton(
             textColor: AppColors.white,
-            container: AppContainers.purpleButtonContainer(150),
+            container: AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
             onTap: () {
               profileController.save();
             },

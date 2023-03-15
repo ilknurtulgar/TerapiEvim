@@ -59,8 +59,8 @@ class ParticipantProfilePage extends StatelessWidget {
 
   Widget participantGroupContainer() {
     return GroupClass(
-      height: SizeUtil.groupContainerHeight,
-      width: SizeUtil.groupContainerWidth,
+      height: SizeUtil.largeValueHeight,
+      width: SizeUtil.highestValueWidth,
       borderColor: AppColors.cornFlowerBlue,
       heading: DemoInformation.groupInformation.groupName,
       onTap: () {}, // navigate to group page

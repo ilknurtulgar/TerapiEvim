@@ -23,8 +23,8 @@ class TherapistUploadConfirm extends StatelessWidget {
               AppPaddings.tLockScreenAppBarPadding),
           Container(
             padding: AppPaddings.lockScreenContainerPadding,
-            width: SizeUtil.lockScreenBigContainerWidth,
-            decoration: AppBoxDecoration.lockScreenBox,
+            width: SizeUtil.generalWidth,
+            decoration: AppBoxDecoration.purpleBorder,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

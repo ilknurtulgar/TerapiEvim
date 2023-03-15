@@ -60,8 +60,8 @@ Column conformed() {
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Container(
-        width: SizeUtil.lockScreenContainerWidth,
-        height: SizeUtil.lockScreenContainerHeight,
+        width: SizeUtil.largeValueWidth,
+        height: SizeUtil.mediumValueHeight,
         margin: AppPaddings.tLockScreenTextPadding,
         child: Text(
           GroupTextUtil.confirmationText,
@@ -82,8 +82,8 @@ Column noUpload(BuildContext context) {
     children: [
       Container(
         margin: AppPaddings.tLockScreenNoUploadPadding,
-        width: SizeUtil.lockScreenContainerWidth,
-        height: SizeUtil.lockScreenContainerHeight,
+        width: SizeUtil.largeValueWidth,
+        height: SizeUtil.mediumValueHeight,
         child: Text(
           GroupTextUtil.lockScreenWarningText,
           style: AppTextStyles.normalTextStyle("big", false)
@@ -97,8 +97,8 @@ Column noUpload(BuildContext context) {
             context.push(const TherapistUploadConfirm());
           },
           child: Container(
-            width: SizeUtil.lockScreenContainerWidth,
-            height: SizeUtil.lockScreenHeight,
+            width: SizeUtil.largeValueWidth,
+            height: SizeUtil.smallValueHeight,
             decoration: AppBoxDecoration.lockScreenButton,
             child: Center(
               child: Text(GroupTextUtil.confirmText,

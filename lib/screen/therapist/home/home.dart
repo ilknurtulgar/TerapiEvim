@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/home/notification_container.dart';
-
 import 'package:terapievim/core/base/component/home/reminder.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
@@ -22,7 +21,7 @@ class TherapistHome extends StatelessWidget {
                 headingtext(true, true, GroupTextUtil.terapiEvim),
                 headingtext(false, false, HomeTextUtil.welcome),
                 mindetailesbox(HomeTextUtil.myMinuteSessions,
-                    () => context.push(const SessionScreen())),
+                    () => context.push(const SessionScreen()), context),
                 reminderactivity(),
                 notificationcontainer()
               ],

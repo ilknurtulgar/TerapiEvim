@@ -67,7 +67,7 @@ class MyGroup extends StatelessWidget {
     return PersonMin(
       onTap: fun,
       row: row,
-      borderColor: AppColors.cornFlowerBlue,
+      isBorderPurple: true,
     );
   }
 

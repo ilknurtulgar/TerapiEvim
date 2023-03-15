@@ -45,7 +45,7 @@ class GroupInformation extends StatelessWidget {
                       ControllerElection.therapistGroupControllerParticipant,
                   firstRow: Obx(() => SizedBox(
                         child: SeminarMin(
-                          borderColor: AppColors.meteorite,
+                          isBorderPurple: true,
                           onTap: () {
                             controller.changeParticipantElection();
                           },
@@ -97,8 +97,7 @@ class GroupInformation extends StatelessWidget {
   Padding navMethod(RowModel row, Function() func) {
     return Padding(
       padding: AppPaddings.tGroupMetotPadding,
-      child:
-          SeminarMin(borderColor: AppColors.meteorite, onTap: func, row: row),
+      child: SeminarMin(isBorderPurple: true, onTap: func, row: row),
     );
   }
 
@@ -179,8 +178,7 @@ class GroupInformation extends StatelessWidget {
   PersonMin person(String name, BuildContext context) {
     TherapistGroupController controller = Get.find();
     return PersonMin(
-        padding: AppPaddings.tGroupPersonPadding,
-        borderColor: AppColors.cornFlowerBlue,
+        isBorderPurple: true,
         onTap: () {
           deleteParticipantDialog(context, name, controller);
         },

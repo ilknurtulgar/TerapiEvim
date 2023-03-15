@@ -49,7 +49,7 @@ class CopingMethods extends StatelessWidget {
         alignment: Alignment.bottomRight,
         child: CustomDropDown(
             isGenderPurpose: false,
-            height: SizeUtil.lockScreenHeight,
+            height: SizeUtil.smallValueHeight,
             width: 135),
       ),
     );

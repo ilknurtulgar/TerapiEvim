@@ -25,7 +25,7 @@ class GroupTherapyCallPage extends StatelessWidget {
       alignment: Alignment.bottomCenter,
       child: Container(
           color: AppColors.lightBlack,
-          height: SizeUtil.groupCallBottomContainerHeight,
+          height: SizeUtil.hugeValueHeight,
           width: PixelScreen().logicalWidth,
           child: Column(
             children: [

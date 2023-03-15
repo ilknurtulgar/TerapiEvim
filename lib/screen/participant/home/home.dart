@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/home/notification_from_ther_container.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
+import 'package:terapievim/core/base/component/home/notification_from_ther_container.dart';
+import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/home/coping_methods.dart';
@@ -23,7 +23,7 @@ class HomeScreen extends StatelessWidget {
           ),
           headingtext(false, false, HomeTextUtil.welcome),
           mindetailesbox(HomeTextUtil.copingMethods,
-              () => context.push(const CopingMethods())),
+              () => context.push(const CopingMethods()), context),
           notification(DemoInformation.cardModelhome, DemoInformation.home,
               DemoInformation.home.length)
         ],
@@ -48,13 +48,15 @@ ListView notification(
   );
 }
 
-Padding mindetailesbox(String rowmodeltext, Function()? onTap) {
+Padding mindetailesbox(
+    String rowmodeltext, Function()? onTap, BuildContext context) {
   return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 10),
+    padding: context.paddingMainHorizontal2,
     child: SeminarMin(
-        onTap: onTap,
-        row: rowModel(rowmodeltext),
-        borderColor: AppColors.cornFlowerBlue),
+      onTap: onTap,
+      row: rowModel(rowmodeltext),
+      isBorderPurple: true,
+    ),
   );
 }
 

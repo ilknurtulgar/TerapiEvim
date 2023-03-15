@@ -15,9 +15,6 @@ class SignUpPage extends StatefulWidget {
   const SignUpPage({
     super.key,
   });
-
-  final bool isForParticipant = false;
-
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
@@ -38,6 +35,7 @@ class _SignUpPageState extends State<SignUpPage> {
     Get.delete<SignUpController>();
     super.dispose();
   }
+
 
   TextfieldUtility textfieldUtility = TextfieldUtility();
 
@@ -69,9 +67,11 @@ class _SignUpPageState extends State<SignUpPage> {
             children: [
               LoginPageUtility.title(false),
               ...textfieldList,
-              widget.isForParticipant == false
-                  ? acceptMakingShortCallContainer(controller)
-                  : const SizedBox(),
+              Obx(
+                () => controller.isForParticipant.value == false
+                    ? acceptMakingShortCallContainer()
+                    : const SizedBox(),
+              ),
               LoginPageUtility.button(
                 false,
                 false,
@@ -90,15 +90,11 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Container acceptMakingShortCallContainer(
-      TherapistProfileController controller) {
+  Container acceptMakingShortCallContainer() {
     return Container(
-      height: SizeUtil.acceptionContainerHeight,
+      height: SizeUtil.generalHeight,
       width: SizeUtil.generalWidth,
-      decoration: const BoxDecoration(
-        color: AppColors.white,
-        borderRadius: AppBorderRadius.generalBorderRadius,
-      ),
+      decoration: AppBoxDecoration.noBorder,
       child: AcceptionRow(isForMakingShortCall: true),
     );
   }

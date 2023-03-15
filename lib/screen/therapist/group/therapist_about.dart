@@ -75,8 +75,6 @@ class TherapistProfile extends StatelessWidget {
               ),
               Positioned(
                 top: 87,
-                // left: 50,
-                // right: 50,
                 child: CustomCircleAvatar(
                     imagePath: DemoInformation.imagePath,
                     big: true,
@@ -90,24 +88,23 @@ class TherapistProfile extends StatelessWidget {
   }
 }
 
-Padding activity(RowModel row, Function() func) {
-  return Padding(
-    padding: AppPaddings.rowViewProfilePadding,
-    child: SeminarMin(
-      onTap: func,
-      row: row,
-      borderColor: AppColors.cornFlowerBlue,
-    ),
+Widget activity(RowModel row, Function() func) {
+  return SeminarMin(
+    onTap: func,
+    row: row,
+    isBorderPurple: true,
   );
 }
 
 Widget otherGroups(List<RowModel> groups) {
   return Padding(
-    padding: const EdgeInsets.only(bottom: 10.0),
+    padding: const EdgeInsets.only(
+      bottom: 10.0,
+    ),
     child: Column(
       children: [
         CustomHeading(
-            padding: AppPaddings.aboutOtherGroupsPadding,
+            padding: AppPaddings.miniHeadingPadding(false),
             text: GroupTextUtil.secTherapistGroupsText,
             isalignmentstart: true),
         ListView.builder(
@@ -131,7 +128,7 @@ Text heading(name) {
 Container aboutMe(String aboutme) {
   return Container(
     padding: AppPaddings.aboutmePadding,
-    width: SizeUtil.lockScreenContainerWidth,
+    width: SizeUtil.largeValueWidth,
     child: Text(
       aboutme,
       textAlign: TextAlign.justify,
@@ -143,7 +140,7 @@ Container aboutMe(String aboutme) {
 Container whiteBackground(BuildContext context) {
   return Container(
     width: MediaQuery.of(context).size.width,
-    height: SizeUtil.whiteContainerHeight,
+    height: SizeUtil.highValueHeight,
     color: AppColors.white,
     margin: AppPaddings.whitebackgroundmargin,
   );

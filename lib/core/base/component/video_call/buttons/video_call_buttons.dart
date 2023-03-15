@@ -27,7 +27,7 @@ class _CustomVideoCallButtonState extends State<CustomVideoCallButton> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 15),
       child: CircularContainer(
-        height: SizeUtil.videoCallButtonContainerHeight,
+        height: SizeUtil.normalValueHeight,
         color: widget.backgroundColor,
         widget: IconButton(
             iconSize: 30,

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'i_firestore_manager.dart';
 import 'interface/i_fire_response_model.dart';
 import 'interface/i_network_model.dart';
@@ -61,12 +62,6 @@ class FirestoreManager<E extends INetworkModel<E>?>
   }
 
   @override
-  Future<bool> delete() {
-    // TODO: implement delete
-    throw UnimplementedError();
-  }
-
-  @override
   Future<IResponseModel<R?, E?>> read<T extends INetworkModel<T>, R>({
     required T parseModel,
     required String collectionPath,
@@ -88,9 +83,39 @@ class FirestoreManager<E extends INetworkModel<E>?>
     }
   }
 
+  @override
+  Future<IResponseModel<R?, E?>> update<T extends INetworkModel<T>, R>({
+    required String collectionPath,
+    required String docId,
+    required T data,
+  }) async {
+    try {
+      if (data.toJson() == null) {
+        return ResponseModel<R, E>(
+            error: ErrorModel(description: "data is empty"));
+      }
+      await _database
+          .collection(collectionPath)
+          .doc(docId)
+          .update(data.toJson()!);
+
+      return ResponseModel<R, E>();
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(), stackTrace: StackTrace.current, reason: '');
+      return ResponseModel<R, E>(error: ErrorModel(description: e.toString()));
+    }
+  }
+
+  @override
+  Future<bool> delete() {
+    // TODO: implement delete
+    throw UnimplementedError();
+  }
+
   ResponseModel<R, E> _getResponseResult<T extends INetworkModel, R>(
       dynamic data, T parserModel) {
-    final model = _parseBody<R, T>(data, parserModel,true);
+    final model = _parseBody<R, T>(data, parserModel, true);
 
     return ResponseModel<R, E>(data: model);
   }
@@ -98,17 +123,10 @@ class FirestoreManager<E extends INetworkModel<E>?>
   ///TODO: finish _onError implementation
   ResponseModel<R, E> _onError<R>(Object e) {
     final errorResponse = e.toString();
-    CustomLogger(
-        isEnabled: isLoggerEnabled ?? false, data: errorResponse);
+    CustomLogger(isEnabled: isLoggerEnabled ?? false, data: errorResponse);
     var error = ErrorModel<E>(description: errorResponse, statusCode: null);
     return ResponseModel<R, E>(
         error: ErrorModel<E>(
             description: error.description, statusCode: error.statusCode));
-  }
-
-  @override
-  Future<bool> update() {
-    // TODO: implement update
-    throw UnimplementedError();
   }
 }

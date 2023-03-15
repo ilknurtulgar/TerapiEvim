@@ -22,7 +22,7 @@ class NotificationContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final String notificationText = textSet(type);
     return Container(
-      decoration: AppBoxDecoration.notificationDec,
+      decoration: AppBoxDecoration.shadow,
       width: Responsive.width(342, context),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

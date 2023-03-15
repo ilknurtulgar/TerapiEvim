@@ -728,6 +728,8 @@ class DemoInformation {
       TextEditingController(text: "Kerem Engin");
   static TextEditingController mailControllerInSetting =
       TextEditingController(text: "test@gmail.com");
+static TextEditingController birthdayControllerInSetting =
+      TextEditingController(text: "25/05/1995");
   static TextEditingController passwordControllerInSetting =
       TextEditingController(text: "asdf");
   static TextEditingController phoneControllerInSetting =

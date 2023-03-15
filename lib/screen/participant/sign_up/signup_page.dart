@@ -36,6 +36,7 @@ class _SignUpPageState extends State<SignUpPage> {
     super.dispose();
   }
 
+
   TextfieldUtility textfieldUtility = TextfieldUtility();
 
   late List<Widget> textfieldList = [

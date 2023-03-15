@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/group/participant_container.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/therapist/group/group.dart';
 import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart';
 
@@ -584,6 +586,9 @@ class DemoInformation {
   static const String clock = "19:20";
 
   //group
+  static const String aboutme =
+      "Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım";
+  static const String therapistName2 = "Kerem Engin";
   static RowModel secTherapist = RowModel(
     isAlignmentBetween: true,
     leadingIcon: IconUtility.personIcon,
@@ -592,6 +597,12 @@ class DemoInformation {
     text2: "Simay Odabasi",
     textStyle2: AppTextStyles.groupTextStyle(true),
     trailingIcon: IconUtility.forward,
+  );
+  static RowModel clockRow = RowModel(
+    leadingIcon: IconUtility.clockIcon,
+    text: "Ocak 15, 2023,  20:00",
+    textStyle: AppTextStyles.groupTextStyle(true),
+    isAlignmentBetween: false,
   );
   static RowModel methods = RowModel(
       isAlignmentBetween: true,
@@ -614,6 +625,11 @@ class DemoInformation {
       text: "Katılımcı Sayısı : 0/20",
       textStyle: AppTextStyles.normalTextStyle('small', false),
       isAlignmentBetween: false);
+  static var tmpParticipant = participantContainer(
+      CardModel(imagePath: DemoInformation.imagePath, title: "Aleyna Tilki"),
+      52,
+      342);
+  static int tmpParticipantNumber = 5;
   static String tmpNewMetotText = "Yeni Yazimda size bla bla anlattim";
   static String tmppdfName = "YeniliklerleBasaCikma.pdf";
   static List<String> groupNames = [
@@ -664,7 +680,7 @@ class DemoInformation {
   static RowModel row2 = RowModel(
     isAlignmentBetween: true,
     leadingIcon: IconUtility.personIcon,
-    text: "Yardimci Psikolog: ",
+    text: GroupTextUtil.secondTherapistText,
     textStyle: AppTextStyles.groupTextStyle(false),
     text2: "Ozlem Ulusan",
     textStyle2: AppTextStyles.groupTextStyle(true),
@@ -676,6 +692,12 @@ class DemoInformation {
       text: "Aleyna Tilki",
       textStyle: AppTextStyles.groupTextStyle(true));
 
+  static CardModel tmpMainTherapist =
+      CardModel(imagePath: DemoInformation.imagePath, title: "Simay Selli");
+  static String tmpGroupName = "Anksiyete";
+  static int geciciKategoriSayisi = 5;
+
+  static int tmpSessionNumber = 2;
   // video call
   // group therapy call page,isolated call page,short call page
 
@@ -728,7 +750,7 @@ class DemoInformation {
       TextEditingController(text: "Kerem Engin");
   static TextEditingController mailControllerInSetting =
       TextEditingController(text: "test@gmail.com");
-static TextEditingController birthdayControllerInSetting =
+  static TextEditingController birthdayControllerInSetting =
       TextEditingController(text: "25/05/1995");
   static TextEditingController passwordControllerInSetting =
       TextEditingController(text: "asdf");

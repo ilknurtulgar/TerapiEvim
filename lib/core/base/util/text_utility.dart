@@ -89,6 +89,13 @@ class GroupTextUtil {
   static const String yes = "Evet";
   static const String myGroupText = "Grubum";
   static const String joinText = "Katıl";
+
+  //test for users
+  static const String testHeading = "Psikolojik Tarama Testi";
+  static const String testDefinition =
+      "Kendine en uygun grubu bulabilmesi ve en efektif yardimi alabilmesi adina psikolojik test olan   testini ve 15 dakikalık terapist görüşmesi ölçeklerini kullanarak grup kategorileriniz açılmaktadır. ";
+  static const String previousPage = "Onceki Sayfa";
+  static const String nextPage = "Sonraki Sayfa";
 }
 
 class MessageTextUtil {

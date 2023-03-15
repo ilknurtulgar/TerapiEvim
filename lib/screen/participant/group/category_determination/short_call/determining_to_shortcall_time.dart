@@ -26,7 +26,7 @@ class ShortCallTime extends StatelessWidget {
                       isAlignmentBetween: true,
                       trailingIcon: saveButton()),
                   AppPaddings.appBarPadding),
-              line(),
+              divider(false),
               CustomHeading(
                 text: hiUser,
                 isalignmentstart: false,
@@ -38,15 +38,6 @@ class ShortCallTime extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Divider line() {
-    return const Divider(
-      color: AppColors.black,
-      indent: 10,
-      endIndent: 10,
-      height: 0.1,
     );
   }
 

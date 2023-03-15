@@ -45,7 +45,7 @@ class TherapistUploadConfirm extends StatelessWidget {
                   ),
                 ),
                 CustomButton(
-                    textColor: Colors.white,
+                    textColor: AppColors.white,
                     container: AppContainers.purpleButtonContainer(123),
                     onTap: () {
                       //yukleyeccek
@@ -61,7 +61,7 @@ class TherapistUploadConfirm extends StatelessWidget {
             height: 60,
           ),
           CustomButton(
-              textColor: Colors.white,
+              textColor: AppColors.white,
               container: AppContainers.purpleButtonContainer(123),
               onTap: () {},
               text: GroupTextUtil.confirmText)

@@ -34,11 +34,7 @@ class GroupOut extends StatelessWidget {
     return TextButton(
       onPressed: () {
         if (text == GroupTextUtil.yes) {
-          //degistirilecek
-          //print("Iptal");
-        } else {
-          //print("evet");
-        }
+        } else {}
         Get.back();
       },
       child: Text(

@@ -77,21 +77,9 @@ class GroupInformation extends StatelessWidget {
         istwobutton: false,
         containerModel: AppContainers.containerButton(false),
         buttonText: GroupTextUtil.startText,
-        arowModel: RowModel(
-          leadingIcon: IconUtility.personIcon,
-          isAlignmentBetween: false,
-          text: GroupTextUtil.secondTherapistText,
-          textStyle: AppTextStyles.aboutMeTextStyle(false),
-          text2: "Ozlem Ulusan", //sadece isim alinacak
-          textStyle2: AppTextStyles.groupTextStyle(true),
-        ),
+        arowModel: DemoInformation.row2,
         isactivity: true,
-        clockModel: RowModel(
-          leadingIcon: IconUtility.clockIcon,
-          text: "Ocak 15, 2023,  20:00",
-          textStyle: AppTextStyles.groupTextStyle(true),
-          isAlignmentBetween: false,
-        ));
+        clockModel: DemoInformation.clockRow);
   }
 
   Padding navMethod(RowModel row, Function() func) {
@@ -109,7 +97,7 @@ class GroupInformation extends StatelessWidget {
                   context.pop();
                 },
                 icon: IconUtility.back),
-            text: "Anksiyete 1",
+            text: DemoInformation.tmpGroupName,
             textStyle: AppTextStyles.heading(false),
             isAlignmentBetween: true,
             trailingIcon: Row(

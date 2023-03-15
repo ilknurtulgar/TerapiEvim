@@ -12,7 +12,7 @@ class CopingBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: AppBoxDecoration.shadow,
-      width: 342,
+      width: SizeUtil.generalWidth,
       child: Column(
         children: [heading(), pdfcontainer(), rowbutton()],
       ),

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_profile_controller.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
 import 'package:terapievim/screen/participant/sign_up/signup_page.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../../../core/base/util/base_utility.dart';
@@ -65,7 +64,7 @@ class BeforeSignUp extends StatelessWidget {
     return Padding(
       padding: AppPaddings.smallVerticalPadding,
       child: CustomButton(
-        container: LoginPageUtility.beforeLoginButtonContainer(),
+        container: AppContainers.beforeLoginButtonContainer,
         onTap: () {
           controller.isForParticipant.value = isForParticipant;
           context.push(const SignUpPage());

@@ -33,6 +33,3 @@ class CustomText extends StatelessWidget {
     );
   }
 }
-
-ContainerModel customTextModel = ContainerModel(
-    width: 342, borderRadius: 8, backgroundColor: AppColors.white);

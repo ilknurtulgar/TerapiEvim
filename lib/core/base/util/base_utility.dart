@@ -221,7 +221,7 @@ class AppTextStyles {
 
 class AppContainers {
   static ContainerModel classicWhiteContainer = ContainerModel(
-      width: 342,
+      width: SizeUtil.generalWidth,
       borderRadius: 8,
       backgroundColor: AppColors
           .white); // bunun height'ı içindeki child'ın uzunluğuna göre değişiyor
@@ -241,15 +241,15 @@ class AppContainers {
       ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
   static ContainerModel lightPurpleButtonContainer(double? width) =>
       ContainerModel(
-        height: 40,
+        height: SizeUtil.smallValueHeight,
         width: width,
         borderRadius: 65,
         backgroundColor: AppColors.melrose,
       );
   static ContainerModel containerButton(bool bigwidth) {
     return ContainerModel(
-        width: bigwidth ? 165 : 97,
-        height: 30,
+        width: bigwidth ? 165 : 97, //
+        height: SizeUtil.lowValueHeight,
         borderRadius: 8,
         backgroundColor: ButtonColorUtil.generalColor);
   }
@@ -260,6 +260,34 @@ class AppContainers {
       shadowColor: ButtonColorUtil.copingColor,
       borderRadius: 8,
       backgroundColor: AppColors.white);
+
+  static ContainerModel smallTimeContainer = ContainerModel(
+      borderRadius: 8, backgroundColor: AppColors.white, height: 33, width: 71);
+
+  static ContainerModel notificationButton = ContainerModel(
+      backgroundColor: AppColors.butterflyBush,
+      borderRadius: 100,
+      height: 30,
+      shadowColor: AppColors.butterflyBush,
+      width: 175);
+
+  static ContainerModel beforeLoginButtonContainer = ContainerModel(
+        height: SizeUtil.smallValueHeight,
+        width: SizeUtil.hugeValueWidth,
+        borderRadius: 65,
+        backgroundColor: AppColors.butterflyBush,
+      );
+
+  static ContainerModel loginSignUpButtonContainer(
+          bool isInLoginPage, bool isLoginButton) =>
+      ContainerModel(
+          width: SizeUtil.generalWidth,
+          borderRadius: 8,
+          backgroundColor: (isInLoginPage && isLoginButton) ||
+                  (isInLoginPage == false && isLoginButton == false)
+              ? AppColors.royalBlue
+              : AppColors.white,
+          height: SizeUtil.smallValueHeight);
 }
 
 class ButtonColorUtil {

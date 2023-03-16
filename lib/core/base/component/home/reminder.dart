@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/therapist/home/home.dart';
-
 import '../../util/text_utility.dart';
 
 //terapist sayfasi hatirlatmalar
@@ -22,17 +20,20 @@ class Reminder extends StatelessWidget {
     late String reminderTypeText = textSet(reminderType);
     late String reminderName = nameSet(reminderType);
 
-    return InkWell(
-      onTap: () {},
-      child: Container(
-        decoration: AppBoxDecoration.notificationDec,
-        width: Responsive.width(342, context),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            reminderconst(),
-            reminderContent(reminderTypeText, reminderName)
-          ],
+    return Padding(
+      padding: AppPaddings.componentPadding,
+      child: InkWell(
+        onTap: () {},
+        child: Container(
+          decoration: AppBoxDecoration.shadow,
+          width: SizeUtil.generalWidth,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              reminderconst(),
+              reminderContent(reminderTypeText, reminderName)
+            ],
+          ),
         ),
       ),
     );

@@ -24,7 +24,7 @@ class TherapistUploadConfirm extends StatelessWidget {
           Container(
             padding: AppPaddings.lockScreenContainerPadding,
             width: SizeUtil.generalWidth,
-            decoration: AppBoxDecoration.lockScreenBox,
+            decoration: AppBoxDecoration.purpleBorder,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -35,7 +35,7 @@ class TherapistUploadConfirm extends StatelessWidget {
                       style: AppTextStyles.aboutMeTextStyle(false),
                     )),
                 const SizedBox(
-                  height: 70,
+                  height: SizeUtil.normalValueHeight,
                 ),
                 Padding(
                   padding: AppPaddings.tLockScreenPdfPadding,
@@ -45,24 +45,22 @@ class TherapistUploadConfirm extends StatelessWidget {
                   ),
                 ),
                 CustomButton(
-                    textColor: Colors.white,
-                    container: AppContainers.purpleButtonContainer(123),
+                    textColor: AppColors.white,
+                    container: AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
                     onTap: () {
                       //yukleyeccek
                     },
                     text: GroupTextUtil.uploadText),
-                const SizedBox(
-                  height: 10,
-                )
+                smallSizedBox()
               ],
             ),
           ),
           const SizedBox(
-            height: 60,
+            height: SizeUtil.normalValueHeight,
           ),
           CustomButton(
-              textColor: Colors.white,
-              container: AppContainers.purpleButtonContainer(123),
+              textColor: AppColors.white,
+              container: AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
               onTap: () {},
               text: GroupTextUtil.confirmText)
         ],

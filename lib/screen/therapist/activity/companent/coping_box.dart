@@ -11,8 +11,8 @@ class CopingBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: AppBoxDecoration.notificationDec,
-      width: 342,
+      decoration: AppBoxDecoration.shadow,
+      width: SizeUtil.generalWidth,
       child: Column(
         children: [heading(), pdfcontainer(), rowbutton()],
       ),
@@ -52,7 +52,7 @@ class CopingBox extends StatelessWidget {
 
   Container pdfcontainer() {
     return Container(
-      decoration: AppBoxDecoration.lockScreenBox,
+      decoration: AppBoxDecoration.purpleBorder,
       width: SizeUtil.largeValueWidth,
       height: SizeUtil.generalHeight,
       child: Padding(

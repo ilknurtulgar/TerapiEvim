@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:terapievim/controller/activity_controller.dart';
-import '../../../../controller/profile_controller.dart';
 import '../../../../core/base/component/login/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/base/models/row_model.dart';
@@ -37,7 +36,7 @@ class TextfieldUtility {
             isAlignmentBetween: false,
             leadingIcon: IconButton(
                 icon: IconUtility.calendarIcon,
-                onPressed: () => profileController.choosingBirthday())),
+                onPressed: () => choosingBirthday(textController))),
         isPhoneNumber: false,
         isBig: isBig,
         isPassword: false,
@@ -95,5 +94,24 @@ class TextfieldUtility {
           isRowModel: true);
 
   ActivityController activityController = Get.find();
-  ProfileController profileController = Get.find();
+
+  Future<void> choosingBirthday(TextEditingController controller) async {
+    DateTime? pickedDate = await Get.dialog(DatePickerDialog(
+        initialDate: DateTime(1990),
+        firstDate: DateTime(1923),
+        lastDate: DateTime(2004)));
+    String? day;
+    String? month;
+    String? year;
+    if (pickedDate != null) {
+      day = pickedDate.day.toInt() < 10
+          ? '0${pickedDate.day.toString()}'
+          : pickedDate.day.toString();
+      month = pickedDate.month.toInt() < 10
+          ? '0${pickedDate.month.toString()}'
+          : pickedDate.month.toString();
+      year = pickedDate.year.toString();
+      controller.text = '$day/$month/$year';
+    }
+  }
 }

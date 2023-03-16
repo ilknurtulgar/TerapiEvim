@@ -17,7 +17,6 @@ class TherapistProfile extends StatelessWidget {
     isAlignmentBetween: false,
     leadingIcon: IconUtility.fileIcon,
   );
-
   final RowModel seminerleri = RowModel(
     text: TherapistProfileTextUtil.seminars,
     textStyle: AppTextStyles.groupTextStyle(false),
@@ -31,9 +30,7 @@ class TherapistProfile extends StatelessWidget {
     leadingIcon: IconUtility.chatIcon,
   );
   //geciciler assagida
-  final String aboutme =
-      "Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım";
-  final String name = "Kerem Engin";
+
   @override
   Widget build(BuildContext context) {
     List<RowModel> groups = [
@@ -56,8 +53,8 @@ class TherapistProfile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   whiteBackground(context),
-                  heading(name),
-                  aboutMe(aboutme),
+                  heading(DemoInformation.therapistName2),
+                  aboutMe(DemoInformation.aboutme),
                   isSecTherapist
                       ? const SizedBox.shrink()
                       : activity(basetmeMetodlari, () {
@@ -75,8 +72,6 @@ class TherapistProfile extends StatelessWidget {
               ),
               Positioned(
                 top: 87,
-                // left: 50,
-                // right: 50,
                 child: CustomCircleAvatar(
                     imagePath: DemoInformation.imagePath,
                     big: true,
@@ -90,24 +85,21 @@ class TherapistProfile extends StatelessWidget {
   }
 }
 
-Padding activity(RowModel row, Function() func) {
-  return Padding(
-    padding: AppPaddings.rowViewProfilePadding,
-    child: SeminarMin(
-      onTap: func,
-      row: row,
-      borderColor: AppColors.cornFlowerBlue,
-    ),
+Widget activity(RowModel row, Function() func) {
+  return SeminarMin(
+    onTap: func,
+    row: row,
+    isBorderPurple: true,
   );
 }
 
 Widget otherGroups(List<RowModel> groups) {
   return Padding(
-    padding: const EdgeInsets.only(bottom: 10.0),
+    padding: AppPaddings.tGroupPersonPadding,
     child: Column(
       children: [
         CustomHeading(
-            padding: AppPaddings.aboutOtherGroupsPadding,
+            padding: AppPaddings.miniHeadingPadding(false),
             text: GroupTextUtil.secTherapistGroupsText,
             isalignmentstart: true),
         ListView.builder(

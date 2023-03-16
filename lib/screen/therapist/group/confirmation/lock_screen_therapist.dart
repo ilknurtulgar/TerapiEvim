@@ -49,7 +49,7 @@ Column conformed() {
   Widget button = controller.isLockedOpen.isTrue
       ? CustomButton(
           textColor: Colors.white,
-          container: AppContainers.purpleButtonContainer(110),
+          container: AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
           onTap: () {
             //buradan kategori sayfasina yonlendirilecek
           },

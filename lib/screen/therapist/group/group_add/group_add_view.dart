@@ -154,8 +154,8 @@ class GroupAddView extends StatelessWidget {
           : AppPaddings.tGroupLastButtonPadding,
       child: CustomButton(
           container: isLastButton
-              ? AppContainers.purpleButtonContainer(140)
-              : AppContainers.lightPurpleButtonContainer(173),
+              ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)
+              : AppContainers.lightPurpleButtonContainer(SizeUtil.mediumValueWidth),
           textColor: isLastButton ? AppColors.white : AppColors.meteorite,
           onTap: () {
             if (isLastButton) {
@@ -174,8 +174,7 @@ class GroupAddView extends StatelessWidget {
     Icon trailingIcon = IconUtility.emailIcon;
 
     return PersonMin(
-        padding: AppPaddings.tGroupPersonPadding,
-        borderColor: AppColors.cornFlowerBlue,
+        isBorderPurple: true,
         onTap: () {
           secTherapistChooseDialog(context, therapistName, controller);
           trailingIcon = IconUtility.checkCircleIcon;
@@ -219,8 +218,6 @@ class GroupAddView extends StatelessWidget {
   PersonMin day(String dayName) {
     TherapistGroupController controller = Get.find();
     return PersonMin(
-        height: 48,
-        padding: AppPaddings.tGroupPersonPadding,
         onTap: () {
           controller.changeChoosenDay(dayName);
           controller.changeDayElection();

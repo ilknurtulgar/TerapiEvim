@@ -6,6 +6,7 @@ import 'package:terapievim/core/base/component/group/purple_text_container.dart'
 import 'package:terapievim/controller/test_questions_controller.dart';
 
 import '../../../../core/base/util/base_utility.dart';
+import '../../../../core/base/util/text_utility.dart';
 
 class Test extends StatelessWidget {
   const Test({super.key});
@@ -23,13 +24,7 @@ class PagesForSCL extends StatelessWidget {
     required this.questions,
   });
   final TestController _controller = Get.put(TestController());
-
   final List<Widget> questions;
-
-  final String heading = "Psikolojik Tarama Testi";
-  final String definition =
-      "Kendine en uygun grubu bulabilmesi ve en efektif yardimi alabilmesi adina psikolojik test olan   testini ve 15 dakikalık terapist görüşmesi ölçeklerini kullanarak grup kategorileriniz açılmaktadır. ";
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,11 +34,12 @@ class PagesForSCL extends StatelessWidget {
           () => Column(
             children: [
               CustomHeading(
-                text: heading,
+                text: GroupTextUtil.testHeading,
                 isalignmentstart: false,
               ),
               _controller.testPageIndex.value == 0
-                  ? PurpleTextContainer(text: definition)
+                  ? const PurpleTextContainer(
+                      text: GroupTextUtil.testDefinition)
                   : const SizedBox.shrink(),
               questionsWidget(),
               pageChangeButtons(),
@@ -74,12 +70,12 @@ class PagesForSCL extends StatelessWidget {
             textColor: Colors.white,
             container: AppContainers.purpleButtonContainer(null),
             onTap: _controller.previousPage,
-            text: "Onceki Sayfa"),
+            text: GroupTextUtil.previousPage),
         CustomButton(
             textColor: Colors.white,
             container: AppContainers.purpleButtonContainer(null),
             onTap: _controller.nextPage,
-            text: "Sonraki Sayfa"),
+            text: GroupTextUtil.nextPage),
       ],
     );
   }

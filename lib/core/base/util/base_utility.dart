@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/group/participant_container.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/therapist/group/group.dart';
 import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart';
 
@@ -219,10 +221,56 @@ class AppTextStyles {
 
 class AppContainers {
   static ContainerModel classicWhiteContainer = ContainerModel(
-      width: 342,
+      width: SizeUtil.generalWidth,
       borderRadius: 8,
       backgroundColor: AppColors
           .white); // bunun height'ı içindeki child'ın uzunluğuna göre değişiyor
+
+  static ContainerModel smallTimeContainer = ContainerModel(
+      borderRadius: 8,
+      backgroundColor: AppColors.white,
+      height: SizeUtil.smallValueHeight,
+      width: SizeUtil.smallValueWidth);
+
+  static ContainerModel beforeLoginButtonContainer = ContainerModel(
+    height: SizeUtil.smallValueHeight,
+    width: SizeUtil.hugeValueWidth,
+    borderRadius: 65,
+    backgroundColor: AppColors.butterflyBush,
+  );
+
+  static ContainerModel notificationButton = ContainerModel(
+      backgroundColor: AppColors.butterflyBush,
+      borderRadius: 100,
+      height: SizeUtil.lowValueHeight,
+      shadowColor: AppColors.butterflyBush,
+      width: SizeUtil.mediumValueWidth);
+
+  static ContainerModel copingbutton = ContainerModel(
+      width: SizeUtil.smallValueWidth,
+      height: SizeUtil.smallValueHeight,
+      shadowColor: ButtonColorUtil.copingColor,
+      borderRadius: 8,
+      backgroundColor: AppColors.white);
+
+  static ContainerModel containerButton(bool bigwidth) {
+    return ContainerModel(
+        width: bigwidth ? SizeUtil.mediumValueWidth : SizeUtil.smallValueWidth,
+        height: SizeUtil.lowValueHeight,
+        borderRadius: 8,
+        backgroundColor: ButtonColorUtil.generalColor);
+  }
+
+  static ContainerModel loginSignUpButtonContainer(
+          bool isInLoginPage, bool isLoginButton) =>
+      ContainerModel(
+          width: SizeUtil.generalWidth,
+          borderRadius: 8,
+          backgroundColor: (isInLoginPage && isLoginButton) ||
+                  (isInLoginPage == false && isLoginButton == false)
+              ? AppColors.royalBlue
+              : AppColors.white,
+          height: SizeUtil.smallValueHeight);
 
   static ContainerModel participantContainer(double height, double width) =>
       ContainerModel(
@@ -239,25 +287,11 @@ class AppContainers {
       ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
   static ContainerModel lightPurpleButtonContainer(double? width) =>
       ContainerModel(
-        height: 40,
+        height: SizeUtil.smallValueHeight,
         width: width,
         borderRadius: 65,
         backgroundColor: AppColors.melrose,
       );
-  static ContainerModel containerButton(bool bigwidth) {
-    return ContainerModel(
-        width: bigwidth ? 165 : 97,
-        height: 30,
-        borderRadius: 8,
-        backgroundColor: ButtonColorUtil.generalColor);
-  }
-
-  static ContainerModel copingbutton = ContainerModel(
-      width: 116,
-      height: 42,
-      shadowColor: ButtonColorUtil.copingColor,
-      borderRadius: 8,
-      backgroundColor: AppColors.white);
 }
 
 class ButtonColorUtil {
@@ -279,12 +313,13 @@ class AppPaddings {
 
   static const EdgeInsets loginTitlePadding =
       EdgeInsets.only(top: 60, bottom: 40);
+
   static const EdgeInsets headingTopPadding = EdgeInsets.only(
     top: 80,
   );
   static const EdgeInsets pagePadding =
       EdgeInsets.only(left: 24, right: 24, bottom: 80);
-  static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 10);
+  static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 8);
   static EdgeInsets miniHeadingPadding(bool isInMiddle) =>
       EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
   static const EdgeInsets rowViewPadding =
@@ -379,7 +414,7 @@ class AppPaddings {
   static const EdgeInsets tGroupaddAppBarPadding =
       EdgeInsets.symmetric(vertical: 32, horizontal: 30);
   static const EdgeInsets tGroupAddTimeChoosePadding =
-      EdgeInsets.symmetric(horizontal: 100);
+      EdgeInsets.symmetric(horizontal: 80);
   static const EdgeInsets tGroupFirstButtonPadding =
       EdgeInsets.symmetric(vertical: 24.0);
   static const EdgeInsets tGroupLastButtonPadding = EdgeInsets.only(
@@ -424,7 +459,7 @@ class AppBorderRadius {
 
 class AppBoxDecoration {
   //aynı neredeyse
-  static BoxDecoration lockScreenBox = BoxDecoration(
+  static BoxDecoration purpleBorder = BoxDecoration(
       color: AppColors.white,
       borderRadius: AppBorderRadius.generalBorderRadius,
       border: Border.all(color: AppColors.cornFlowerBlue));
@@ -438,7 +473,7 @@ class AppBoxDecoration {
       color: AppColors.cornFlowerBlue,
       borderRadius: AppBorderRadius.generalBorderRadius);
 
-  static BoxDecoration notificationDec = BoxDecoration(
+  static BoxDecoration shadow = BoxDecoration(
       color: AppColors.white,
       borderRadius: AppBorderRadius.notificationradius,
       boxShadow: [
@@ -447,6 +482,25 @@ class AppBoxDecoration {
             blurRadius: 7,
             offset: const Offset(0, 3))
       ]);
+  static BoxDecoration shadowGeneralRadius = BoxDecoration(
+      borderRadius: BorderRadius.circular(8),
+      color: AppColors.white,
+      border: Border.all(color: Colors.grey.withOpacity(0.50), width: 1));
+  static BoxDecoration noBorder = const BoxDecoration(
+    color: AppColors.white,
+    borderRadius: AppBorderRadius.generalBorderRadius,
+  );
+  //  BoxDecoration(
+  //       border: Border.all(color: borderColor!.withOpacity(1)),
+  //       borderRadius: AppBorderRadius.generalBorderRadius,
+  //       color: AppColors.white)
+  // static BoxDecoration groupBoxDecoration = BoxDecoration(//widthi gormezden geliyorum daha cok benzer seyler olussun uygulamada diye
+  //   color: AppColors.white,
+  //   border: Border.all(color: AppColors.cornFlowerBlue, width: 2),
+  //   borderRadius: AppBorderRadius.generalBorderRadius,
+  // );
+  // BoxDecoration(
+  //           borderRadius: BorderRadius.circular(16), color: AppColors.white)//group info box deco bunu notificationluyla esletiyorum
 }
 
 Padding colon(bool isInAlertDialog) {
@@ -564,6 +618,9 @@ class DemoInformation {
   static const String clock = "19:20";
 
   //group
+  static const String aboutme =
+      "Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım";
+  static const String therapistName2 = "Kerem Engin";
   static RowModel secTherapist = RowModel(
     isAlignmentBetween: true,
     leadingIcon: IconUtility.personIcon,
@@ -572,6 +629,12 @@ class DemoInformation {
     text2: "Simay Odabasi",
     textStyle2: AppTextStyles.groupTextStyle(true),
     trailingIcon: IconUtility.forward,
+  );
+  static RowModel clockRow = RowModel(
+    leadingIcon: IconUtility.clockIcon,
+    text: "Ocak 15, 2023,  20:00",
+    textStyle: AppTextStyles.groupTextStyle(true),
+    isAlignmentBetween: false,
   );
   static RowModel methods = RowModel(
       isAlignmentBetween: true,
@@ -594,6 +657,11 @@ class DemoInformation {
       text: "Katılımcı Sayısı : 0/20",
       textStyle: AppTextStyles.normalTextStyle('small', false),
       isAlignmentBetween: false);
+  static var tmpParticipant = participantContainer(
+      CardModel(imagePath: DemoInformation.imagePath, title: "Aleyna Tilki"),
+      52,
+      342);
+  static int tmpParticipantNumber = 5;
   static String tmpNewMetotText = "Yeni Yazimda size bla bla anlattim";
   static String tmppdfName = "YeniliklerleBasaCikma.pdf";
   static List<String> groupNames = [
@@ -644,7 +712,7 @@ class DemoInformation {
   static RowModel row2 = RowModel(
     isAlignmentBetween: true,
     leadingIcon: IconUtility.personIcon,
-    text: "Yardimci Psikolog: ",
+    text: GroupTextUtil.secondTherapistText,
     textStyle: AppTextStyles.groupTextStyle(false),
     text2: "Ozlem Ulusan",
     textStyle2: AppTextStyles.groupTextStyle(true),
@@ -656,6 +724,12 @@ class DemoInformation {
       text: "Aleyna Tilki",
       textStyle: AppTextStyles.groupTextStyle(true));
 
+  static CardModel tmpMainTherapist =
+      CardModel(imagePath: DemoInformation.imagePath, title: "Simay Selli");
+  static String tmpGroupName = "Anksiyete";
+  static int geciciKategoriSayisi = 5;
+
+  static int tmpSessionNumber = 2;
   // video call
   // group therapy call page,isolated call page,short call page
 
@@ -708,6 +782,8 @@ class DemoInformation {
       TextEditingController(text: "Kerem Engin");
   static TextEditingController mailControllerInSetting =
       TextEditingController(text: "test@gmail.com");
+  static TextEditingController birthdayControllerInSetting =
+      TextEditingController(text: "25/05/1995");
   static TextEditingController passwordControllerInSetting =
       TextEditingController(text: "asdf");
   static TextEditingController phoneControllerInSetting =
@@ -764,36 +840,59 @@ SizedBox mediumSizedBox() => const SizedBox(height: 24);
 SizedBox largeSizedBox() => const SizedBox(height: 36);
 
 class SizeUtil {
-  static double heightFactor = 1; ///Height Factor
-  static double widthFactor = 1;  ///Width Factor
+  static double heightFactor = 1;
+
+  ///Height Factor
+  static double widthFactor = 1;
+
+  ///Width Factor
   static const double lockIconSize = 100;
 
-  static const double generalHeight = 52; //lockScreenHeight2(pdfcontainer aynı),kayıt olma sayfasındaki genderDropDownHeight,acceptionContainerHeight
-  static const double generalWidth = 342; //lockScreenBigContainerWidth,purpleTextContainer,personShortCallViewWidth
+  static const double generalHeight =
+      52; //lockScreenHeight2(pdfcontainer aynı),kayıt olma sayfasındaki genderDropDownHeight,acceptionContainerHeight
+  static const double generalWidth =
+      342; //lockScreenBigContainerWidth,purpleTextContainer,personShortCallViewWidth
+  static const double bnbHeight = 60;
+  static const double participantContainerWidth = 178;
 
   // küçükten büyüğe sıralama
   static const double zeroSize = 0;
   // width
-  static const double lowValueWidth = 40; // profil sayfasındaki mini container ve listwheelscrollview için 
+  static const double lowValueWidth =
+      40; // profil sayfasındaki mini container ve listwheelscrollview için
   static const double smallValueWidth = 92; // video call person small view
-  static const double normalValueWidth = 150; // orderDropDownWidth,horizontalLineWidth 
-  static const double mediumValueWidth = 195; // profil sayfasındaki genderDropDown
-  static const double largeValueWidth = 250; //shortContainerWithButtonWidth,lockScreenContainerWidth,pdf container
-  static const double hugeValueWidth = 320; //electionWidth(eski değeri 300),beforeLoginButtonWidth,terapist profil sayfasındaki GroupContainerWidth
-  static const double highestValueWidth = 350; //danışan sayfasındaki groupContainerWidth
+  static const double normalValueWidth =
+      150; // orderDropDownWidth,horizontalLineWidth
+  static const double mediumValueWidth =
+      195; // profil sayfasındaki genderDropDown
+  static const double largeValueWidth =
+      250; //shortContainerWithButtonWidth,lockScreenContainerWidth,pdf container
+  static const double hugeValueWidth =
+      320; //electionWidth(eski değeri 300),beforeLoginButtonWidth,terapist profil sayfasındaki GroupContainerWidth
+  static const double highestValueWidth =
+      350; //danışan sayfasındaki groupContainerWidth
   // height
-  static const double lowValueHeight = 30; //animatedContainerHeight(listwheelscrollviewdaki),profil sayfasındaki genderDropDownHeight,miniContainerHeight,purpleButtonHeight
-  static const double smallValueHeight = 40; // lockScreenHeight(dropdownheight,filter aynı),loginSignUpButtonHeight,beforeLoginButtonHeight
-  static const double normalValueHeight = 65; // videoCallButtonCircularContainerHeight,sendboxheight
-  static const double doubleSmallValueHeight = 80; // shortContainerWithoutButtonHeight(participantWihtShortCallTime componenti)
-  static const double mediumValueHeight = 100; // lockScreenContainerHeight,terapist profil sayfasındaki 'number of groups' için listWheelScrollHeight,videoCallButtonRowHeight
-    // belki mediumValueHeight ile  doubleNormalValueHeight ortak 130 olabilir
-    // tGroupContainerHeightve shortContainerWithButtonHeight ne değer verilirse verilsin heightları değişmiyor
-  static const double doubleNormalValueHeight = 130; // shortContainerWithButtonHeight(114),groupHeight(seminar max'ta kullanılıyor),tGroupContainerHeight(120),personSmallViewHeight,listViewHeight
-  static const double largeValueHeight = 150 ; // groupContainerHeight(danışan profil sayfasındaki),homeImageHeight,saat için listWheelScrollHeight
-  static const double highValueHeight = 200; // arka plandaki whiteContainerHeight(eski değeri 191),lockScreenBigContainerHeight
-    // lockScreenBigContainerHeight hiçbir yerde kullanılmıyor
-  static const double hugeValueHeight = 281; // personShortCallViewHeight,groupCallBottomContainerHeight
+  static const double lowValueHeight =
+      30; //animatedContainerHeight(listwheelscrollviewdaki),profil sayfasındaki genderDropDownHeight,miniContainerHeight,purpleButtonHeight
+  static const double smallValueHeight =
+      40; // lockScreenHeight(dropdownheight,filter aynı),loginSignUpButtonHeight,beforeLoginButtonHeight
+  static const double normalValueHeight =
+      65; // videoCallButtonCircularContainerHeight,sendboxheight
+  static const double doubleSmallValueHeight =
+      80; // shortContainerWithoutButtonHeight(participantWihtShortCallTime componenti)
+  static const double mediumValueHeight =
+      100; // lockScreenContainerHeight,terapist profil sayfasındaki 'number of groups' için listWheelScrollHeight,videoCallButtonRowHeight
+  // belki mediumValueHeight ile  doubleNormalValueHeight ortak 130 olabilir
+  // tGroupContainerHeightve shortContainerWithButtonHeight ne değer verilirse verilsin heightları değişmiyor
+  static const double doubleNormalValueHeight =
+      130; // shortContainerWithButtonHeight(114),groupHeight(seminar max'ta kullanılıyor),tGroupContainerHeight(120),personSmallViewHeight,listViewHeight
+  static const double largeValueHeight =
+      150; // groupContainerHeight(danışan profil sayfasındaki),homeImageHeight,saat için listWheelScrollHeight
+  static const double highValueHeight =
+      200; // arka plandaki whiteContainerHeight(eski değeri 191),lockScreenBigContainerHeight
+  // lockScreenBigContainerHeight hiçbir yerde kullanılmıyor
+  static const double hugeValueHeight =
+      281; // personShortCallViewHeight,groupCallBottomContainerHeight
   static const double highestValueHeight = 750; // personBigViewHeight
 }
 

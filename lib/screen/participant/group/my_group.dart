@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/group/participant_container.dart';
-import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/component/group/person.dart';
@@ -67,23 +65,17 @@ class MyGroup extends StatelessWidget {
     return PersonMin(
       onTap: fun,
       row: row,
-      borderColor: AppColors.cornFlowerBlue,
+      isBorderPurple: true,
     );
   }
 
   ListView participants(RowModel person) {
-    var tmpParticipant = participantContainer(
-        CardModel(imagePath: DemoInformation.imagePath, title: "Aleyna Tilki"),
-        52,
-        342);
-    int tmpParticipantNumber = 5;
-    //gecici katilimci modeli
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       padding: AppPaddings.participantsPadding,
       shrinkWrap: true,
-      itemCount: tmpParticipantNumber,
-      itemBuilder: ((context, index) => tmpParticipant),
+      itemCount: DemoInformation.tmpParticipantNumber,
+      itemBuilder: ((context, index) => DemoInformation.tmpParticipant),
     );
   }
 }

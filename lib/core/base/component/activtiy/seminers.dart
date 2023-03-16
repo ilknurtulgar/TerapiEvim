@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/therapist/home/home.dart';
 import '../../util/base_utility.dart';
 import '../group/row_view.dart';
 import '../../models/row_model.dart';
@@ -8,32 +7,28 @@ import '../../models/row_model.dart';
 class SeminarMin extends StatelessWidget {
   SeminarMin(
       {super.key,
-      this.width,
-      this.height,
-      this.borderColor,
+      //this.width,
+      //this.height,
+      this.isBorderPurple,
       required this.onTap,
       required this.row});
 
   final Function()? onTap;
-  Color? borderColor;
+  bool? isBorderPurple;
   final RowModel row;
-  double? width;
-  double? height;
 
   @override
   Widget build(BuildContext context) {
-    borderColor ??= AppColors.dustyGray;
-    //width ??= SizeUtil.generalWidth;
-    height ??= SizeUtil.generalHeight;
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: height,
-        width: width,
-        decoration: BoxDecoration(
-            border: Border.all(color: borderColor!.withOpacity(1)),
-            borderRadius: AppBorderRadius.generalBorderRadius,
-            color: AppColors.white),
+        height: SizeUtil.generalHeight,
+        // ignore: unrelated_type_equality_checks
+        decoration: isBorderPurple == Null
+            ? AppBoxDecoration.sendDecoration
+            : !isBorderPurple!
+                ? AppBoxDecoration.purpleBorder
+                : AppBoxDecoration.sendDecoration,
         child: Expanded(child: rowView(row, AppPaddings.rowViewPadding)),
       ),
     );
@@ -44,9 +39,7 @@ class SeminarMin extends StatelessWidget {
 class SeminarMax extends StatelessWidget {
   SeminarMax({
     super.key,
-    this.width,
-    this.height,
-    this.borderColor,
+    this.isBorderPurple,
     required this.onTap,
     required this.row1,
     required this.row2,
@@ -57,27 +50,23 @@ class SeminarMax extends StatelessWidget {
   final RowModel row3;
 
   final Function() onTap;
-  Color? borderColor;
-
-  double? width;
-  double? height;
+  bool? isBorderPurple;
 
   @override
   Widget build(BuildContext context) {
-    borderColor ??= AppColors.dustyGray;
-    width ??= Responsive.width(SizeUtil.generalWidth, context);
-    height ??= Responsive.height(SizeUtil.doubleNormalValueHeight, context);
     return InkWell(
       onTap: () {
         onTap();
       },
       child: Container(
-        height: height,
-        width: width,
-        decoration: BoxDecoration(
-            border: Border.all(color: borderColor!.withOpacity(1)),
-            borderRadius: AppBorderRadius.generalBorderRadius,
-            color: AppColors.white),
+        height: SizeUtil.doubleNormalValueHeight,
+        width: SizeUtil.generalWidth,
+        // ignore: unrelated_type_equality_checks
+        decoration: isBorderPurple == Null
+            ? AppBoxDecoration.sendDecoration
+            : !isBorderPurple!
+                ? AppBoxDecoration.purpleBorder
+                : AppBoxDecoration.sendDecoration,
         child: Column(
           mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.center,

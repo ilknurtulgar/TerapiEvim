@@ -272,7 +272,7 @@ class AppContainers {
               : AppColors.white,
           height: SizeUtil.smallValueHeight);
 
-  static ContainerModel participantContainer(double height, double width) =>
+  static ContainerModel participantContainer(double height, {double? width}) =>
       ContainerModel(
           height: height, //52,
           width: width, //342,
@@ -448,6 +448,10 @@ class AppPaddings {
       const EdgeInsets.symmetric(vertical: 12);
   static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
       EdgeInsets.only(top: 305, left: isThereLeftPadding ? 24 : 0);
+
+  static EdgeInsets customContainerInsidePadding(bool isHorizontal) =>
+      EdgeInsets.symmetric(
+          horizontal: isHorizontal ? 16 : 0, vertical: isHorizontal ? 0 : 16);
 }
 
 class AppBorderRadius {
@@ -596,7 +600,7 @@ class DemoInformation {
   static const String message =
       "Flutter, Google tarafından oluşturulan açık kaynaklı bir UI yazılım geliştirme kitidir. Android, iOS, Windows, Mac, Linux ve web için uygulamalar geliştirmek için kullanılıyor. Flutter'ın ilk sürümü  olarak biliniyordu ve Android işletim sisteminde çalışıyordu.";
   static const List<String> home = [
-    "fdvd",
+    "fdvd deneme deneme deneme deneme ssssdsfsmbfdmösfbsfösbnöfmbsöbfnömsbfö deneme deneme deneme deneme denemeee deneme deneme deneme",
     "fşdv",
     "fgbng",
     "yasemin",
@@ -659,8 +663,7 @@ class DemoInformation {
       isAlignmentBetween: false);
   static var tmpParticipant = participantContainer(
       CardModel(imagePath: DemoInformation.imagePath, title: "Aleyna Tilki"),
-      52,
-      342);
+      SizeUtil.normalValueHeight);
   static int tmpParticipantNumber = 5;
   static String tmpNewMetotText = "Yeni Yazimda size bla bla anlattim";
   static String tmppdfName = "YeniliklerleBasaCikma.pdf";

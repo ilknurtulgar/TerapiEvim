@@ -1,6 +1,5 @@
-import 'package:vexana/vexana.dart';
 import 'package:json_annotation/json_annotation.dart';
-
+import '../../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 part 'activity_model.g.dart';
 
 @JsonSerializable()

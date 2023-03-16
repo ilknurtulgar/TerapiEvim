@@ -226,6 +226,52 @@ class AppContainers {
       backgroundColor: AppColors
           .white); // bunun height'ı içindeki child'ın uzunluğuna göre değişiyor
 
+  static ContainerModel smallTimeContainer = ContainerModel(
+      borderRadius: 8,
+      backgroundColor: AppColors.white,
+      height: SizeUtil.smallValueHeight,
+      width: SizeUtil.smallValueWidth);
+
+  static ContainerModel beforeLoginButtonContainer = ContainerModel(
+    height: SizeUtil.smallValueHeight,
+    width: SizeUtil.hugeValueWidth,
+    borderRadius: 65,
+    backgroundColor: AppColors.butterflyBush,
+  );
+
+  static ContainerModel notificationButton = ContainerModel(
+      backgroundColor: AppColors.butterflyBush,
+      borderRadius: 100,
+      height: SizeUtil.lowValueHeight,
+      shadowColor: AppColors.butterflyBush,
+      width: SizeUtil.mediumValueWidth);
+
+  static ContainerModel copingbutton = ContainerModel(
+      width: SizeUtil.smallValueWidth,
+      height: SizeUtil.smallValueHeight,
+      shadowColor: ButtonColorUtil.copingColor,
+      borderRadius: 8,
+      backgroundColor: AppColors.white);
+
+  static ContainerModel containerButton(bool bigwidth) {
+    return ContainerModel(
+        width: bigwidth ? SizeUtil.mediumValueWidth : SizeUtil.smallValueWidth,
+        height: SizeUtil.lowValueHeight,
+        borderRadius: 8,
+        backgroundColor: ButtonColorUtil.generalColor);
+  }
+
+  static ContainerModel loginSignUpButtonContainer(
+          bool isInLoginPage, bool isLoginButton) =>
+      ContainerModel(
+          width: SizeUtil.generalWidth,
+          borderRadius: 8,
+          backgroundColor: (isInLoginPage && isLoginButton) ||
+                  (isInLoginPage == false && isLoginButton == false)
+              ? AppColors.royalBlue
+              : AppColors.white,
+          height: SizeUtil.smallValueHeight);
+
   static ContainerModel participantContainer(double height, double width) =>
       ContainerModel(
           height: height, //52,
@@ -246,48 +292,6 @@ class AppContainers {
         borderRadius: 65,
         backgroundColor: AppColors.melrose,
       );
-  static ContainerModel containerButton(bool bigwidth) {
-    return ContainerModel(
-        width: bigwidth ? 165 : 97, //
-        height: SizeUtil.lowValueHeight,
-        borderRadius: 8,
-        backgroundColor: ButtonColorUtil.generalColor);
-  }
-
-  static ContainerModel copingbutton = ContainerModel(
-      width: 116,
-      height: 42,
-      shadowColor: ButtonColorUtil.copingColor,
-      borderRadius: 8,
-      backgroundColor: AppColors.white);
-
-  static ContainerModel smallTimeContainer = ContainerModel(
-      borderRadius: 8, backgroundColor: AppColors.white, height: 33, width: 71);
-
-  static ContainerModel notificationButton = ContainerModel(
-      backgroundColor: AppColors.butterflyBush,
-      borderRadius: 100,
-      height: 30,
-      shadowColor: AppColors.butterflyBush,
-      width: 175);
-
-  static ContainerModel beforeLoginButtonContainer = ContainerModel(
-        height: SizeUtil.smallValueHeight,
-        width: SizeUtil.hugeValueWidth,
-        borderRadius: 65,
-        backgroundColor: AppColors.butterflyBush,
-      );
-
-  static ContainerModel loginSignUpButtonContainer(
-          bool isInLoginPage, bool isLoginButton) =>
-      ContainerModel(
-          width: SizeUtil.generalWidth,
-          borderRadius: 8,
-          backgroundColor: (isInLoginPage && isLoginButton) ||
-                  (isInLoginPage == false && isLoginButton == false)
-              ? AppColors.royalBlue
-              : AppColors.white,
-          height: SizeUtil.smallValueHeight);
 }
 
 class ButtonColorUtil {
@@ -410,7 +414,7 @@ class AppPaddings {
   static const EdgeInsets tGroupaddAppBarPadding =
       EdgeInsets.symmetric(vertical: 32, horizontal: 30);
   static const EdgeInsets tGroupAddTimeChoosePadding =
-      EdgeInsets.symmetric(horizontal: 100);
+      EdgeInsets.symmetric(horizontal: 80);
   static const EdgeInsets tGroupFirstButtonPadding =
       EdgeInsets.symmetric(vertical: 24.0);
   static const EdgeInsets tGroupLastButtonPadding = EdgeInsets.only(
@@ -848,6 +852,8 @@ class SizeUtil {
       52; //lockScreenHeight2(pdfcontainer aynı),kayıt olma sayfasındaki genderDropDownHeight,acceptionContainerHeight
   static const double generalWidth =
       342; //lockScreenBigContainerWidth,purpleTextContainer,personShortCallViewWidth
+  static const double bnbHeight = 60;
+  static const double participantContainerWidth = 178;
 
   // küçükten büyüğe sıralama
   static const double zeroSize = 0;

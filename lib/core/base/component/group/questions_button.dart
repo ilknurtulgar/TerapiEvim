@@ -42,7 +42,7 @@ Container togglebuttonsview() {
   return Container(
     margin: AppPaddings.toggleButtonsPadding,
     decoration: AppBoxDecoration.purpleBorder,
-    width: 341,
+    width: SizeUtil.generalWidth,
     child: Column(children: [
       CustomHeading(
         isalignmentstart: true,

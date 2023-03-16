@@ -119,7 +119,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
           ), // custom textfield about me için update edilince bunun yerine custom geleceği için extract etmedim
           saveButton(),
           const SizedBox(
-            height: 200,
+            height: SizeUtil.highValueHeight,
           ) //geçici
         ],
       ),

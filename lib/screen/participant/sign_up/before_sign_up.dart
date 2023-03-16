@@ -18,7 +18,7 @@ class BeforeSignUp extends StatelessWidget {
         child: Column(
           children: [
             getBackIconbutton(),
-            const SizedBox(height: 100,), // bu sized box'ı ev resmine top 100 padding vermemek için kullandım
+            const SizedBox(height: SizeUtil.mediumValueHeight,), // bu sized box'ı ev resmine top 100 padding vermemek için kullandım
             homeImage(),
             Text(LoginSignUpTextUtil.appName,style: AppTextStyles.heading(true),),
             smallSizedBox(),

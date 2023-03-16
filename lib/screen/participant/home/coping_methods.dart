@@ -50,7 +50,7 @@ class CopingMethods extends StatelessWidget {
         child: CustomDropDown(
             isGenderPurpose: false,
             height: SizeUtil.smallValueHeight,
-            width: 135),
+            width: SizeUtil.normalValueWidth),
       ),
     );
   }

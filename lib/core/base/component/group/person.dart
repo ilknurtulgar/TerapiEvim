@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 
 import '../../../../../core/base/util/base_utility.dart';
-import '../../../../screen/therapist/home/home.dart';
 import 'row_view.dart';
 
 // ignore: must_be_immutable
@@ -24,8 +23,8 @@ class PersonMin extends StatelessWidget {
       onTap: onTap,
       child: Container(
           margin: AppPaddings.componentPadding,
-          height: Responsive.height(SizeUtil.generalHeight, context),
-          width: Responsive.width(SizeUtil.generalWidth, context),
+          height: SizeUtil.generalHeight,
+          width: SizeUtil.generalWidth,
           // ignore: unrelated_type_equality_checks
           decoration: isBorderPurple == Null
               ? AppBoxDecoration.sendDecoration

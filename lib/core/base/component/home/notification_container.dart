@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
-import 'package:terapievim/screen/therapist/home/home.dart';
 import '../../models/row_model.dart';
 import '../../util/base_utility.dart';
 import '../../util/text_utility.dart';
@@ -22,7 +21,7 @@ class NotificationContainer extends StatelessWidget {
     final String notificationText = textSet(type);
     return Container(
       decoration: AppBoxDecoration.shadow,
-      width: Responsive.width(342, context),
+      width: SizeUtil.generalWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

@@ -29,7 +29,7 @@ class ChoosingTimeGroupTherapy extends StatelessWidget {
         child: Center(
             child: Obx(() => Text(isHour
                 ? controller.chosenHour.value
-                : controller.chosenMinutes.value))),
+                : controller.chosenMinutes.value,style: AppTextStyles.normalTextStyle('medium',false),))),
       ),
     );
   }

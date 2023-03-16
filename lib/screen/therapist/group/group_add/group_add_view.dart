@@ -154,8 +154,8 @@ class GroupAddView extends StatelessWidget {
           : AppPaddings.tGroupLastButtonPadding,
       child: CustomButton(
           container: isLastButton
-              ? AppContainers.purpleButtonContainer(140)
-              : AppContainers.lightPurpleButtonContainer(173),
+              ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)
+              : AppContainers.lightPurpleButtonContainer(SizeUtil.mediumValueWidth),
           textColor: isLastButton ? AppColors.white : AppColors.meteorite,
           onTap: () {
             if (isLastButton) {

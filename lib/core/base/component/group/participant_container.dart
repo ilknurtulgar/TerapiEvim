@@ -3,8 +3,8 @@ import '../../models/card_model.dart';
 import '../home/custom_container.dart';
 
 CustomContainer participantContainer(
-        CardModel cardModel, double height, double width) =>
+        CardModel cardModel, double height,{double? width} ) =>
     CustomContainer(
-        containerModel: AppContainers.participantContainer(height, width),
+        containerModel: AppContainers.participantContainer(height,width: width),
         isThereCardModel: true,
         cardModel: cardModel);

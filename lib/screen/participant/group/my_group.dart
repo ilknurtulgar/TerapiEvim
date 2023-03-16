@@ -72,7 +72,6 @@ class MyGroup extends StatelessWidget {
   ListView participants(RowModel person) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
-      padding: AppPaddings.participantsPadding,
       shrinkWrap: true,
       itemCount: DemoInformation.tmpParticipantNumber,
       itemBuilder: ((context, index) => DemoInformation.tmpParticipant),

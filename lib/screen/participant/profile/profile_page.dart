@@ -11,7 +11,7 @@ import 'util/profile_page_utility.dart';
 
 class ParticipantProfilePage extends StatelessWidget {
   const ParticipantProfilePage({super.key});
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +21,13 @@ class ParticipantProfilePage extends StatelessWidget {
           scrollDirection: Axis.vertical,
           child: Stack(children: [
             ProfilePageUtility.backgroundOfThePage(),
-            ProfilePageUtility.positionedIconButton(IconUtility.settingIcon.icon!,() => context.push(ParticipantProfileSettingPage()), 40, 20),
-            ProfilePageUtility.profilePagePersonImage(DemoInformation.profileImagePath),
+            ProfilePageUtility.positionedIconButton(
+                IconUtility.settingIcon.icon!,
+                () => context.push(ParticipantProfileSettingPage()),
+                40,
+                20),
+            ProfilePageUtility.profilePagePersonImage(
+                DemoInformation.profileImagePath),
             Padding(
               padding: AppPaddings.profilePageBigPadding(true),
               child: Column(
@@ -31,10 +36,27 @@ class ParticipantProfilePage extends StatelessWidget {
                   smallSizedBox(),
                   participantGroupColumn(),
                   smallSizedBox(),
-                  ProfilePageUtility.boldMainTitleRowView(ParticipantProfileTextUtil.lastRead,'method', (){}),
-                  ProfilePageListView(isForParticipant: true, isForMethod: true,mainTherapistName: DemoInformation.groupInformation.mainTherapistName,secondRowTextList: DemoInformation.groupInformation.methodTitles,),
-                  ProfilePageUtility.boldMainTitleRowView(ParticipantProfileTextUtil.joinedSeminars,'seminar', (){}),
-                  ProfilePageListView(isForParticipant: true, isForMethod: false,firstRowTextList:DemoInformation.lastWatchedSeminars.getSeminarsTherapistName(),secondRowTextList: DemoInformation.lastWatchedSeminars.getSeminarTitles()),
+                  ProfilePageUtility.boldMainTitleRowView(
+                      ParticipantProfileTextUtil.lastRead, 'method', () {}),
+                  ProfilePageListView(
+                    isForParticipant: true,
+                    isForMethod: true,
+                    mainTherapistName:
+                        DemoInformation.groupInformation.mainTherapistName,
+                    secondRowTextList:
+                        DemoInformation.groupInformation.methodTitles,
+                  ),
+                  ProfilePageUtility.boldMainTitleRowView(
+                      ParticipantProfileTextUtil.joinedSeminars,
+                      'seminar',
+                      () {}),
+                  ProfilePageListView(
+                      isForParticipant: true,
+                      isForMethod: false,
+                      firstRowTextList: DemoInformation.lastWatchedSeminars
+                          .getSeminarsTherapistName(),
+                      secondRowTextList: DemoInformation.lastWatchedSeminars
+                          .getSeminarTitles()),
                   smallSizedBox(),
                 ],
               ),
@@ -50,7 +72,12 @@ class ParticipantProfilePage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        rowView(ProfilePageUtility.normalTextRow(ParticipantProfileTextUtil.myActiveGroup,IconUtility.navGroup,AppTextStyles.profileTextStyles(true,true)),EdgeInsets.zero),
+        rowView(
+            ProfilePageUtility.normalTextRow(
+                ParticipantProfileTextUtil.myActiveGroup,
+                IconUtility.navGroup,
+                AppTextStyles.profileTextStyles(true, true)),
+            EdgeInsets.zero),
         smallSizedBox(),
         participantGroupContainer(),
       ],
@@ -59,14 +86,20 @@ class ParticipantProfilePage extends StatelessWidget {
 
   Widget participantGroupContainer() {
     return GroupClass(
-      height: SizeUtil.largeValueHeight,
       width: SizeUtil.highestValueWidth,
-      borderColor: AppColors.cornFlowerBlue,
+      isBorderPurple: true,
       heading: DemoInformation.groupInformation.groupName,
       onTap: () {}, // navigate to group page
-      row1: ProfilePageUtility.doubleTextRow(ParticipantProfileTextUtil.mainTherpist,DemoInformation.groupInformation.mainTherapistName,true),
-      row2: ProfilePageUtility.doubleTextRow(ParticipantProfileTextUtil.advisor,DemoInformation.groupInformation.secondTherapistName,true),
-      row3: ProfilePageUtility.normalTextRow(DemoInformation.groupInformation.therapyTime,IconUtility.clockIcon.icon!,AppTextStyles.normalTextStyle('medium', false)),
+      row1: ProfilePageUtility.doubleTextRow(
+          ParticipantProfileTextUtil.mainTherpist,
+          DemoInformation.groupInformation.mainTherapistName,
+          true),
+      row2: ProfilePageUtility.doubleTextRow(ParticipantProfileTextUtil.advisor,
+          DemoInformation.groupInformation.secondTherapistName, true),
+      row3: ProfilePageUtility.normalTextRow(
+          DemoInformation.groupInformation.therapyTime,
+          IconUtility.clockIcon.icon!,
+          AppTextStyles.normalTextStyle('medium', false)),
     );
   }
 
@@ -76,8 +109,12 @@ class ParticipantProfilePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(DemoInformation.nameSurname,style: AppTextStyles.normalTextStyle('big', false),),
-          Text(DemoInformation.birthOfDate,style: AppTextStyles.normalTextStyle('medium', false)),
+          Text(
+            DemoInformation.nameSurname,
+            style: AppTextStyles.normalTextStyle('big', false),
+          ),
+          Text(DemoInformation.birthOfDate,
+              style: AppTextStyles.normalTextStyle('medium', false)),
         ],
       ),
     );
@@ -85,19 +122,19 @@ class ParticipantProfilePage extends StatelessWidget {
 }
 
 extension SeminarListExtension on List<SeminarModelInProfilePage> {
-  List<String> getSeminarTitles(){
-    int i=0;
-    List<String> seminarTitles=[];
-    for(i=0 ; i<length ; i++){
+  List<String> getSeminarTitles() {
+    int i = 0;
+    List<String> seminarTitles = [];
+    for (i = 0; i < length; i++) {
       seminarTitles.add(this[i].seminarTitle);
     }
     return seminarTitles;
   }
 
-  List<String> getSeminarsTherapistName(){
-    int i=0;
-    List<String> therapistList=[];
-    for(i=0 ; i<length ; i++){
+  List<String> getSeminarsTherapistName() {
+    int i = 0;
+    List<String> therapistList = [];
+    for (i = 0; i < length; i++) {
       therapistList.add(this[i].therapistName);
     }
     return therapistList;

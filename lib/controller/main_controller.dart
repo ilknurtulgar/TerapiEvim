@@ -10,7 +10,7 @@ class MainController extends GetxController {
   var isTestResultReady = true.obs;
   var isGroupReady = true.obs;
   var isLogged = false.obs;
-  var isTherapist = false.obs; //bunun degisimi yapilacak
+  var isTherapist = true.obs; //bunun degisimi yapilacak
 
   late CupertinoTabController tabController;
 

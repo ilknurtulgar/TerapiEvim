@@ -1,5 +1,6 @@
 import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
+import '../../model/common/profile/about_me_model.dart';
 import '../../model/common/profile/birth_date_model.dart';
 import '../../model/common/profile/gender_model.dart';
 import '../../model/common/profile/name_model.dart';
@@ -27,5 +28,7 @@ abstract class IProfileSettingsService {
 
   Future<String?> updatePhoneNumber(PhoneNumberModel phoneNumber);
 
-  Future<String?> updatePassword(PasswordModel passwordModel);
+  Future<String?> updatePassword(PasswordModel password);
+
+  Future<String?> updateAboutMe(AboutMeModel aboutMe);
 }

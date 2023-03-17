@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/therapist/home/home.dart';
-
 import '../../util/text_utility.dart';
 
 //terapist sayfasi hatirlatmalar
@@ -28,7 +26,7 @@ class Reminder extends StatelessWidget {
         onTap: () {},
         child: Container(
           decoration: AppBoxDecoration.shadow,
-          width: Responsive.width(342, context),
+          width: SizeUtil.generalWidth,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

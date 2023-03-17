@@ -13,7 +13,7 @@ class ButtonWithGroupName extends StatelessWidget {
       padding: AppPaddings.componentPadding,
       child: Center(
         child: SizedBox(
-          width: 305,
+          width: SizeUtil.hugeValueWidth,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [

@@ -29,7 +29,7 @@ class GroupTherapyCallPage extends StatelessWidget {
           width: PixelScreen().logicalWidth,
           child: Column(
             children: [
-              const SizedBox(height: 20),
+              mediumSizedBox(),
               participantRow(),
               const VideoCallButtonsRow(),
             ],

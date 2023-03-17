@@ -221,12 +221,58 @@ class AppTextStyles {
 
 class AppContainers {
   static ContainerModel classicWhiteContainer = ContainerModel(
-      width: 342,
+      width: SizeUtil.generalWidth,
       borderRadius: 8,
       backgroundColor: AppColors
           .white); // bunun height'ı içindeki child'ın uzunluğuna göre değişiyor
 
-  static ContainerModel participantContainer(double height, double width) =>
+  static ContainerModel smallTimeContainer = ContainerModel(
+      borderRadius: 8,
+      backgroundColor: AppColors.white,
+      height: SizeUtil.smallValueHeight,
+      width: SizeUtil.smallValueWidth);
+
+  static ContainerModel beforeLoginButtonContainer = ContainerModel(
+    height: SizeUtil.smallValueHeight,
+    width: SizeUtil.hugeValueWidth,
+    borderRadius: 65,
+    backgroundColor: AppColors.butterflyBush,
+  );
+
+  static ContainerModel notificationButton = ContainerModel(
+      backgroundColor: AppColors.butterflyBush,
+      borderRadius: 100,
+      height: SizeUtil.lowValueHeight,
+      shadowColor: AppColors.butterflyBush,
+      width: SizeUtil.mediumValueWidth);
+
+  static ContainerModel copingbutton = ContainerModel(
+      width: SizeUtil.smallValueWidth,
+      height: SizeUtil.smallValueHeight,
+      shadowColor: ButtonColorUtil.copingColor,
+      borderRadius: 8,
+      backgroundColor: AppColors.white);
+
+  static ContainerModel containerButton(bool bigwidth) {
+    return ContainerModel(
+        width: bigwidth ? SizeUtil.mediumValueWidth : SizeUtil.smallValueWidth,
+        height: SizeUtil.lowValueHeight,
+        borderRadius: 8,
+        backgroundColor: ButtonColorUtil.generalColor);
+  }
+
+  static ContainerModel loginSignUpButtonContainer(
+          bool isInLoginPage, bool isLoginButton) =>
+      ContainerModel(
+          width: SizeUtil.generalWidth,
+          borderRadius: 8,
+          backgroundColor: (isInLoginPage && isLoginButton) ||
+                  (isInLoginPage == false && isLoginButton == false)
+              ? AppColors.royalBlue
+              : AppColors.white,
+          height: SizeUtil.smallValueHeight);
+
+  static ContainerModel participantContainer(double height, {double? width}) =>
       ContainerModel(
           height: height, //52,
           width: width, //342,
@@ -241,25 +287,11 @@ class AppContainers {
       ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
   static ContainerModel lightPurpleButtonContainer(double? width) =>
       ContainerModel(
-        height: 40,
+        height: SizeUtil.smallValueHeight,
         width: width,
         borderRadius: 65,
         backgroundColor: AppColors.melrose,
       );
-  static ContainerModel containerButton(bool bigwidth) {
-    return ContainerModel(
-        width: bigwidth ? 165 : 97,
-        height: 30,
-        borderRadius: 8,
-        backgroundColor: ButtonColorUtil.generalColor);
-  }
-
-  static ContainerModel copingbutton = ContainerModel(
-      width: 116,
-      height: 42,
-      shadowColor: ButtonColorUtil.copingColor,
-      borderRadius: 8,
-      backgroundColor: AppColors.white);
 }
 
 class ButtonColorUtil {
@@ -382,7 +414,7 @@ class AppPaddings {
   static const EdgeInsets tGroupaddAppBarPadding =
       EdgeInsets.symmetric(vertical: 32, horizontal: 30);
   static const EdgeInsets tGroupAddTimeChoosePadding =
-      EdgeInsets.symmetric(horizontal: 100);
+      EdgeInsets.symmetric(horizontal: 80);
   static const EdgeInsets tGroupFirstButtonPadding =
       EdgeInsets.symmetric(vertical: 24.0);
   static const EdgeInsets tGroupLastButtonPadding = EdgeInsets.only(
@@ -416,6 +448,10 @@ class AppPaddings {
       const EdgeInsets.symmetric(vertical: 12);
   static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
       EdgeInsets.only(top: 305, left: isThereLeftPadding ? 24 : 0);
+
+  static EdgeInsets customContainerInsidePadding(bool isHorizontal) =>
+      EdgeInsets.symmetric(
+          horizontal: isHorizontal ? 16 : 0, vertical: isHorizontal ? 0 : 16);
 }
 
 class AppBorderRadius {
@@ -564,7 +600,7 @@ class DemoInformation {
   static const String message =
       "Flutter, Google tarafından oluşturulan açık kaynaklı bir UI yazılım geliştirme kitidir. Android, iOS, Windows, Mac, Linux ve web için uygulamalar geliştirmek için kullanılıyor. Flutter'ın ilk sürümü  olarak biliniyordu ve Android işletim sisteminde çalışıyordu.";
   static const List<String> home = [
-    "fdvd",
+    "fdvd deneme deneme deneme deneme ssssdsfsmbfdmösfbsfösbnöfmbsöbfnömsbfö deneme deneme deneme deneme denemeee deneme deneme deneme",
     "fşdv",
     "fgbng",
     "yasemin",
@@ -627,8 +663,7 @@ class DemoInformation {
       isAlignmentBetween: false);
   static var tmpParticipant = participantContainer(
       CardModel(imagePath: DemoInformation.imagePath, title: "Aleyna Tilki"),
-      52,
-      342);
+      SizeUtil.normalValueHeight);
   static int tmpParticipantNumber = 5;
   static String tmpNewMetotText = "Yeni Yazimda size bla bla anlattim";
   static String tmppdfName = "YeniliklerleBasaCikma.pdf";
@@ -820,6 +855,8 @@ class SizeUtil {
       52; //lockScreenHeight2(pdfcontainer aynı),kayıt olma sayfasındaki genderDropDownHeight,acceptionContainerHeight
   static const double generalWidth =
       342; //lockScreenBigContainerWidth,purpleTextContainer,personShortCallViewWidth
+  static const double bnbHeight = 60;
+  static const double participantContainerWidth = 178;
 
   // küçükten büyüğe sıralama
   static const double zeroSize = 0;

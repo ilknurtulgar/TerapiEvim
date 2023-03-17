@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
-import 'package:terapievim/core/base/models/container_model.dart';
-import 'package:terapievim/screen/therapist/home/home.dart';
 import '../../models/row_model.dart';
 import '../../util/base_utility.dart';
 import '../../util/text_utility.dart';
@@ -23,7 +21,7 @@ class NotificationContainer extends StatelessWidget {
     final String notificationText = textSet(type);
     return Container(
       decoration: AppBoxDecoration.shadow,
-      width: Responsive.width(342, context),
+      width: SizeUtil.generalWidth,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -40,12 +38,7 @@ class NotificationContainer extends StatelessWidget {
       padding: const EdgeInsets.only(),
       child: CustomButton(
           textColor: Colors.white,
-          container: ContainerModel(
-              backgroundColor: AppColors.butterflyBush,
-              borderRadius: 100,
-              height: 30,
-              shadowColor: AppColors.butterflyBush,
-              width: 175),
+          container: AppContainers.notificationButton,
           onTap: () {},
           text: "Tekrar Psikolog Bul"),
     );

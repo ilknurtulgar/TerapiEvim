@@ -1,13 +1,16 @@
 import '../crashlytics_manager.dart';
 import 'interface/i_fire_response_model.dart';
 import 'interface/i_network_model.dart';
+import 'models/created_id_response.dart';
 
 abstract class IFirestoreManager<E extends INetworkModel<E>?> {
   final CrashlyticsManager crashlyticsManager = CrashlyticsManager.instance;
 
-  Future<bool> create({
+  Future<CreatedIdResponse?> create({
     required String collectionPath,
-    required Map<String, dynamic> value,
+    required Map<String, dynamic> data,
+    String? docId,
+    String? collectionPath2,
   });
 
   Future<bool> createWithDocId({
@@ -20,13 +23,22 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
     required T parseModel,
     required String collectionPath,
     required String docId,
+    String? collectionPath2,
+    String? docId2,
   });
 
   Future<IResponseModel<R?, E?>> update<T extends INetworkModel<T>, R>({
     required String collectionPath,
     required String docId,
+    String? collectionPath2,
+    String? docId2,
     required T data,
   });
 
-  Future<bool> delete();
+  Future<bool> delete({
+    required String collectionPath,
+    required String docId,
+    String? collectionPath2,
+    String? docId2,
+  });
 }

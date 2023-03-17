@@ -35,7 +35,7 @@ class TherapistUploadConfirm extends StatelessWidget {
                       style: AppTextStyles.aboutMeTextStyle(false),
                     )),
                 const SizedBox(
-                  height: 70,
+                  height: SizeUtil.normalValueHeight,
                 ),
                 Padding(
                   padding: AppPaddings.tLockScreenPdfPadding,
@@ -46,23 +46,21 @@ class TherapistUploadConfirm extends StatelessWidget {
                 ),
                 CustomButton(
                     textColor: AppColors.white,
-                    container: AppContainers.purpleButtonContainer(123),
+                    container: AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
                     onTap: () {
                       //yukleyeccek
                     },
                     text: GroupTextUtil.uploadText),
-                const SizedBox(
-                  height: 10,
-                )
+                smallSizedBox()
               ],
             ),
           ),
           const SizedBox(
-            height: 60,
+            height: SizeUtil.normalValueHeight,
           ),
           CustomButton(
               textColor: AppColors.white,
-              container: AppContainers.purpleButtonContainer(123),
+              container: AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
               onTap: () {},
               text: GroupTextUtil.confirmText)
         ],

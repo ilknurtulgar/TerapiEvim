@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../../extension/context_extension.dart';
 import '../../../init/config/config.dart';
+import '../../util/base_utility.dart';
 
 const double _kTabBarHeight = 50.0;
 
@@ -30,7 +31,7 @@ class CupertinoTabBar extends StatelessWidget implements PreferredSizeWidget {
     this.border = const Border(
       top: BorderSide(
         color: _kDefaultTabBarBorderColor,
-        width: 0.0, // 0.0 means one physical pixel
+        width: SizeUtil.zeroSize, // 0.0 means one physical pixel
       ),
     ),
   })  : assert(
@@ -224,11 +225,11 @@ class CupertinoTabBar extends StatelessWidget implements PreferredSizeWidget {
   List<Widget> _buildSingleTabItem(
       BottomNavigationBarItem item, bool active, BuildContext context) {
     return <Widget>[
-      const SizedBox(height: 12),
+      smallSizedBox(),
       Center(
         child: SizedBox(
-          height: 28,
-          width: 28,
+          height: SizeUtil.lowValueHeight,
+          width: SizeUtil.lowValueHeight, // height ve width değerleri birbirine eşit olması gerektiği için width'e height değeri verdim
           child: active ? item.activeIcon : item.icon,
         ),
       ),

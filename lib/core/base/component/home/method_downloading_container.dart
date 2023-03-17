@@ -26,25 +26,25 @@ class MethodDownloadingContainer extends StatelessWidget {
       cardModel: cardModel,
       time: time,
       widget: Padding(
-        padding: const EdgeInsets.only(left: 20),
+        padding: AppPaddings.customContainerInsidePadding(true),
         child: Align(
           alignment: Alignment.centerLeft,
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              explanation,
-              style: AppTextStyles.normalTextStyle('medium', false),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 17),
-              child: CustomButton(
-                  textColor: Colors.purple,
-                  container: AppContainers.purpleButtonContainer(128),
-                  onTap: buttonOnTap,
-                  text: buttonText,
-                  icon: IconUtility.fileIcon),
-            )
-          ]),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(explanation,
+                   style: AppTextStyles.normalTextStyle('medium', false),
+              ),
+              Padding(
+               padding: AppPaddings.customContainerInsidePadding(false),
+               child: CustomButton(
+                textColor: Colors.purple,
+                container: AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
+                onTap: buttonOnTap,
+                text: buttonText,
+                icon: IconUtility.fileIcon),
+              )
+            ]),
         ),
       ),
     );

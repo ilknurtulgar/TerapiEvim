@@ -43,12 +43,10 @@ class _CustomButtonState extends State<CustomButton> {
             ? MainAxisSize.max
             : MainAxisSize.min,
         children: [
-          widget.icon ?? const SizedBox(),
-          widget.icon != null
-              ? const SizedBox(
-                  width: 10,
-                )
-              : const SizedBox(),
+          widget.icon != null ?  Padding(
+            padding: const EdgeInsets.only(right: 10),
+            child: widget.icon,
+          ) : const SizedBox(),
           Text(
             widget.text,
             style: AppTextStyles.buttonTextStyle(widget.textColor),

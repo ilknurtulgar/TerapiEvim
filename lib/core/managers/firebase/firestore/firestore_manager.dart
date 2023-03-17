@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'i_firestore_manager.dart';
 import 'interface/i_fire_response_model.dart';
 import 'interface/i_network_model.dart';
+import 'models/created_id_response.dart';
 import 'models/empty_model.dart';
 import 'models/error_model.dart';
 import 'models/response_model.dart';
@@ -28,19 +29,35 @@ class FirestoreManager<E extends INetworkModel<E>?>
   final FirebaseFirestore _database = FirebaseFirestore.instance;
 
   @override
-  Future<bool> create({
+  Future<CreatedIdResponse?> create({
     required String collectionPath,
-    required Map<String, dynamic> value,
+    required Map<String, dynamic> data,
+    String? docId,
+    String? collectionPath2,
   }) async {
+    CreatedIdResponse? createdIdResponse;
+    DocumentReference? documentReference;
     try {
-      await _database.collection(collectionPath).add(value);
-      return true;
+      if (collectionPath2 != null) {
+        documentReference = await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .add(data);
+      }
+      {
+        documentReference =
+            await _database.collection(collectionPath).add(data);
+      }
+
+      createdIdResponse = CreatedIdResponse(id: documentReference.id);
+      return createdIdResponse;
     } catch (e) {
       await crashlyticsManager.sendACrash(
           error: e.toString(),
           stackTrace: StackTrace.current,
           reason: 'error at firestore_manager/create');
-      return false;
+      return null;
     }
   }
 
@@ -66,12 +83,23 @@ class FirestoreManager<E extends INetworkModel<E>?>
     required T parseModel,
     required String collectionPath,
     required String docId,
+    String? collectionPath2,
+    String? docId2,
   }) async {
+    DocumentSnapshot? response;
     try {
-      final DocumentSnapshot response =
-          await _database.collection(collectionPath).doc(docId).get();
+      if (collectionPath2 != null && docId2 != null) {
+        response = await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .doc(docId2)
+            .get();
+      }
+      response = await _database.collection(collectionPath).doc(docId).get();
+
       if (response.data() == null) {
-        throw Exception();
+        throw Exception("response.data() is null in firestoreManager");
       }
       final data = response.data() as Map<String, dynamic>;
 
@@ -87,6 +115,8 @@ class FirestoreManager<E extends INetworkModel<E>?>
   Future<IResponseModel<R?, E?>> update<T extends INetworkModel<T>, R>({
     required String collectionPath,
     required String docId,
+    String? collectionPath2,
+    String? docId2,
     required T data,
   }) async {
     try {
@@ -94,10 +124,20 @@ class FirestoreManager<E extends INetworkModel<E>?>
         return ResponseModel<R, E>(
             error: ErrorModel(description: "data is empty"));
       }
-      await _database
-          .collection(collectionPath)
-          .doc(docId)
-          .update(data.toJson()!);
+
+      if (collectionPath2 != null && docId2 != null) {
+        await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .doc(docId2)
+            .update(data.toJson()!);
+      } else {
+        await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .update(data.toJson()!);
+      }
 
       return ResponseModel<R, E>();
     } catch (e) {
@@ -108,7 +148,12 @@ class FirestoreManager<E extends INetworkModel<E>?>
   }
 
   @override
-  Future<bool> delete() {
+  Future<bool> delete({
+    required String collectionPath,
+    required String docId,
+    String? collectionPath2,
+    String? docId2,
+  }) {
     // TODO: implement delete
     throw UnimplementedError();
   }

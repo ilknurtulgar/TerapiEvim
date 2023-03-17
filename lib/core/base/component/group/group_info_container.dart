@@ -26,7 +26,7 @@ class GroupInformationContainer extends StatelessWidget {
         width: SizeUtil.generalWidth,
         decoration: AppBoxDecoration.shadow,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 12),
           child: insideTheContainer(),
         ),
       ),
@@ -43,10 +43,10 @@ class GroupInformationContainer extends StatelessWidget {
                 groupName, AppTextStyles.groupTextStyle(false))),
         therapistRow(mainTherapist, 'Grup Terapisti: ', () {
           /* ana psikolog sayfasına gitme fonksiyonu */
-        }, 192),
+        }, SizeUtil.mediumValueWidth),
         therapistRow(secondTherapist, 'Yardımcı Psikolog: ', () {
           /* yardımcı psikolog sayfasına gitme fonksiyonu */
-        }, 170),
+        }, SizeUtil.participantContainerWidth),
         Text('Katılımcı Sayısı: $numberOfParticipant',
             style: AppTextStyles.groupTextStyle(true)),
         paddedText(
@@ -61,9 +61,7 @@ class GroupInformationContainer extends StatelessWidget {
               onTap: () {},
               text: 'Katıl',
             )),
-        const SizedBox(
-          height: 15,
-        )
+        smallSizedBox()// eski hali const SizedBox(height: 15,)
       ],
     );
   }
@@ -81,14 +79,15 @@ class GroupInformationContainer extends StatelessWidget {
   Row therapistRow(
       CardModel therapist, String text, Function() func, double width) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(text, style: AppTextStyles.groupTextStyle(true)),
         InkWell(
             onTap: func,
             child: participantContainer(
               therapist,
-              50,
-              width,
+              SizeUtil.normalValueHeight,
+              width: width,
             )),
       ],
     );

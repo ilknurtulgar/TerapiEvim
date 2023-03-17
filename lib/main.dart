@@ -8,7 +8,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/controller/group_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/therapist/group/therapist_about.dart';
+import 'package:terapievim/screen/participant/home/main_home.dart';
 
 import 'controller/auth/auth_controller.dart';
 import 'controller/main_controller.dart';
@@ -16,6 +16,7 @@ import 'controller/therapist_group_controller.dart';
 import 'controller/therapist_profile_controller.dart';
 import 'core/init/cache/local_manager.dart';
 import 'core/init/config/config.dart';
+import 'screen/participant/login/login_page.dart';
 import 'service/firebase_options.dart';
 
 void main() async {
@@ -46,12 +47,11 @@ class _TerapiEvimState extends State<TerapiEvim> {
               selectedItemColor: AppColors.black,
               unselectedItemColor: AppColors.dustyGray,
               elevation: 70)),
-      home: TherapistProfile(isSecTherapist: true),
-      // home: Obx(
-      //   () => _controller.isLogged.isTrue
-      //       ? const TerapiEvimLogged()
-      //       : const ParticipantLoginPage(),
-      // ),
+      home: Obx(
+        () => _controller.isLogged.isTrue
+            ? const TerapiEvimLogged()
+            : const ParticipantLoginPage(),
+      ),
     );
   }
 }
@@ -71,7 +71,6 @@ Future<void> initialize() async {
 
   await LocalManager.preferencesInit();
   _initializeControllers();
-
 }
 
 void _initializeControllers() {

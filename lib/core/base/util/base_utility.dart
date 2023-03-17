@@ -10,7 +10,6 @@ import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart'
 import '../../../screen/participant/activity/activities.dart';
 import '../../../screen/participant/group/group.dart';
 import '../../../screen/participant/home/home.dart';
-import '../../../screen/participant/message/message.dart';
 import '../../../screen/participant/profile/models/group_model.dart';
 import '../../../screen/participant/profile/profile_page.dart';
 import '../../../screen/participant/video_call/model/person_in_call_model.dart';
@@ -532,7 +531,7 @@ class NavigateUtil {
     const HomeScreen(),
     const ActivitiesScreen(),
     GroupScreen(),
-    MessageScreen(),
+    // MessageScreen(),
     const ParticipantProfilePage(),
   ];
 }

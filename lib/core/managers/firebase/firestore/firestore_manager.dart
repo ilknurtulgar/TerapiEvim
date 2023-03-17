@@ -83,12 +83,23 @@ class FirestoreManager<E extends INetworkModel<E>?>
     required T parseModel,
     required String collectionPath,
     required String docId,
+    String? collectionPath2,
+    String? docId2,
   }) async {
+    DocumentSnapshot? response;
     try {
-      final DocumentSnapshot response =
-          await _database.collection(collectionPath).doc(docId).get();
+      if (collectionPath2 != null && docId2 != null) {
+        response = await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .doc(docId2)
+            .get();
+      }
+      response = await _database.collection(collectionPath).doc(docId).get();
+
       if (response.data() == null) {
-        throw Exception();
+        throw Exception("response.data() is null in firestoreManager");
       }
       final data = response.data() as Map<String, dynamic>;
 
@@ -137,7 +148,12 @@ class FirestoreManager<E extends INetworkModel<E>?>
   }
 
   @override
-  Future<bool> delete() {
+  Future<bool> delete({
+    required String collectionPath,
+    required String docId,
+    String? collectionPath2,
+    String? docId2,
+  }) {
     // TODO: implement delete
     throw UnimplementedError();
   }

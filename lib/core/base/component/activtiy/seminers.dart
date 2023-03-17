@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/therapist/home/home.dart';
 import '../../util/base_utility.dart';
 import '../group/row_view.dart';
 import '../../models/row_model.dart';
@@ -60,8 +59,8 @@ class SeminarMax extends StatelessWidget {
         onTap();
       },
       child: Container(
-        height: Responsive.height(SizeUtil.doubleNormalValueHeight, context),
-        width: Responsive.width(SizeUtil.generalWidth, context),
+        height: SizeUtil.doubleNormalValueHeight,
+        width: SizeUtil.generalWidth,
         // ignore: unrelated_type_equality_checks
         decoration: isBorderPurple == Null
             ? AppBoxDecoration.sendDecoration

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/home/method_downloading_container.dart';
-import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 
 import 'package:terapievim/screen/participant/home/home.dart';
+import 'package:terapievim/screen/therapist/home/session_screen.dart';
 
 class CopingMethods extends StatelessWidget {
   const CopingMethods({super.key});
@@ -12,14 +12,22 @@ class CopingMethods extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              headingtext(false, true, HomeTextUtil.copingMethods),
-              filter(context),
-              methodbuilder()
-            ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: AppPaddings.componentPadding,
+            child: Stack(
+              children: [
+                Column(
+                  children: [
+                    headingtext(false, true, HomeTextUtil.copingMethods),
+                    sizedbox(),
+                    methodbuilder()
+                  ],
+                ),
+                Positioned(top: 104, right: 24, child: orderdropdown()),
+              ],
+            ),
           ),
         ),
       ),
@@ -39,19 +47,6 @@ class CopingMethods extends StatelessWidget {
             buttonText: HomeTextUtil.readMethod);
       },
       itemCount: DemoInformation.home.length,
-    );
-  }
-
-  Widget filter(BuildContext context) {
-    return const Padding(
-      padding: AppPaddings.generalPadding,
-      child: Align(
-        alignment: Alignment.bottomRight,
-        child: CustomDropDown(
-            isGenderPurpose: false,
-            height: SizeUtil.smallValueHeight,
-            width: 135),
-      ),
     );
   }
 }

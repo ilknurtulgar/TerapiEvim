@@ -16,6 +16,7 @@ import '../../../screen/therapist/activity/activity_screen.dart';
 import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
 
+import '../../init/managers/responsiveness_manager.dart';
 import '../models/card_model.dart';
 
 import '../component/group/questions_button.dart';
@@ -290,6 +291,7 @@ class AppPaddings {
       EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
   static const EdgeInsets rowViewPadding =
       EdgeInsets.symmetric(vertical: 4, horizontal: 16);
+
 //yukardakiler kesinlestirildi
   static const EdgeInsets generalPadding = EdgeInsets.all(8);
   static const EdgeInsets reminderPadding =
@@ -485,7 +487,7 @@ Padding colon(bool isInAlertDialog) {
 class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
     const TherapistHome(),
-    const TherapistActivityScreen(),
+    TherapistActivityScreen(),
     TherapistGroupPage(),
     const TherapistMessageScreen(),
     const TherapistProfilePage(),
@@ -728,7 +730,7 @@ class DemoInformation {
       TextEditingController(text: "Kerem Engin");
   static TextEditingController mailControllerInSetting =
       TextEditingController(text: "test@gmail.com");
-static TextEditingController birthdayControllerInSetting =
+  static TextEditingController birthdayControllerInSetting =
       TextEditingController(text: "25/05/1995");
   static TextEditingController passwordControllerInSetting =
       TextEditingController(text: "asdf");
@@ -842,4 +844,13 @@ class SizeUtil {
 
 class Filter {
   static ImageFilter blur = ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0);
+}
+
+//responsiveness vermemiz gereken textlerde bunu çağırabiliriz.
+Widget responsivenestext(String text, TextStyle style) {
+  return Text(
+    text,
+    style: style,
+    textScaleFactor: ResponsivenessManager.instance.widthFactorMax1,
+  );
 }

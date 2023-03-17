@@ -6,30 +6,12 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 
+import '../../../core/base/util/base_model.dart';
+
 class TherapistProfile extends StatelessWidget {
-  TherapistProfile({super.key, required this.isSecTherapist});
+  const TherapistProfile({super.key, required this.isSecTherapist});
   final bool isSecTherapist;
 
-  //bu row modeller fix ama nereye koyulacagi tartisilmasi lazim
-  final RowModel basetmeMetodlari = RowModel(
-    text: TherapistProfileTextUtil.methods,
-    textStyle: AppTextStyles.groupTextStyle(false),
-    isAlignmentBetween: false,
-    leadingIcon: IconUtility.fileIcon,
-  );
-
-  final RowModel seminerleri = RowModel(
-    text: TherapistProfileTextUtil.seminars,
-    textStyle: AppTextStyles.groupTextStyle(false),
-    isAlignmentBetween: false,
-    leadingIcon: IconUtility.activityIcon,
-  );
-  final RowModel mesajGonder = RowModel(
-    text: GroupTextUtil.sendMessageText,
-    textStyle: AppTextStyles.groupTextStyle(false),
-    isAlignmentBetween: false,
-    leadingIcon: IconUtility.chatIcon,
-  );
   //geciciler assagida
   final String aboutme =
       "Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım";
@@ -60,14 +42,14 @@ class TherapistProfile extends StatelessWidget {
                   aboutMe(aboutme),
                   isSecTherapist
                       ? const SizedBox.shrink()
-                      : activity(basetmeMetodlari, () {
+                      : activity(UiBaseModel.basetmeMetotlari(), () {
                           //buraya fonksiyonlari ekelenecek
                           // print("basettin mi");
                         }),
-                  activity(seminerleri, () {
+                  activity(UiBaseModel.seminerleri(), () {
                     //print("seminermismis");
                   }),
-                  activity(mesajGonder, () {
+                  activity(UiBaseModel.mesajGonder(), () {
                     // print("selam");
                   }),
                   isSecTherapist ? otherGroups(groups) : const SizedBox.shrink()

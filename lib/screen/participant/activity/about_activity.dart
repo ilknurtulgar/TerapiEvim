@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/therapist/group/therapist_about.dart';
 
 import '../../../core/base/component/profile/image/custom_circle_avatar.dart';
+import '../../../core/base/util/base_model.dart';
 
 class AboutActivityScreen extends StatelessWidget {
   const AboutActivityScreen({super.key});
@@ -23,16 +23,18 @@ class AboutActivityScreen extends StatelessWidget {
                   heading(DemoInformation.aboutmeaperson),
                   aboutMe(DemoInformation.aboutmeaperson),
                   activity(
-                      aboutrowmodel(DemoInformation.aboutmeabactivity,
+                      UiBaseModel.aboutrowmodel(
+                          DemoInformation.aboutmeabactivity,
                           IconUtility.activityIcon),
                       () {}),
                   aboutactivtynamebox(),
                   activity(
-                      aboutrowmodel(
+                      UiBaseModel.aboutrowmodel(
                           ActivityTextUtil.seminars, IconUtility.activityIcon),
                       () {}),
                   activity(
-                      aboutrowmodel(DemoInformation.clockabomeactivty,
+                      UiBaseModel.aboutrowmodel(
+                          DemoInformation.clockabomeactivty,
                           IconUtility.clockIcon),
                       () {}),
                   sizedbox()
@@ -61,13 +63,5 @@ class AboutActivityScreen extends StatelessWidget {
       padding: AppPaddings.rowViewProfilePadding,
       child: PurpleTextContainer(text: DemoInformation.aboutmeabactivity),
     );
-  }
-
-  RowModel aboutrowmodel(String headingtext, Icon leadingIcon) {
-    return RowModel(
-        text: headingtext,
-        textStyle: AppTextStyles.groupTextStyle(false),
-        leadingIcon: leadingIcon,
-        isAlignmentBetween: false);
   }
 }

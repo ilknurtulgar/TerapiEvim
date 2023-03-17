@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/participant/activity/filter_details.dart';
 
@@ -12,16 +12,18 @@ class FilterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          children: [
-            filterappbar(),
-            filtermin(ActivityTextUtil.psychologist, () {
-              //  print("tıklıyorum ya");
-              Get.to(FilterDetails());
-            }, IconUtility.forward),
-            filtermin(ActivityTextUtil.date, () {}, IconUtility.forward),
-            filtermin(ActivityTextUtil.issue, () {}, IconUtility.forward),
-          ],
+        body: Padding(
+          padding: AppPaddings.pagePadding,
+          child: Column(
+            children: [
+              filterappbar(),
+              filtermin(ActivityTextUtil.psychologist, () {
+                context.push(FilterDetails());
+              }, IconUtility.forward),
+              filtermin(ActivityTextUtil.date, () {}, IconUtility.forward),
+              filtermin(ActivityTextUtil.issue, () {}, IconUtility.forward),
+            ],
+          ),
         ),
       ),
     );
@@ -53,13 +55,15 @@ class FilterScreen extends StatelessWidget {
 }
 
 Widget filtermin(String heading, Function()? onTap, Icon icon) {
-  return Container(
-    padding: AppPaddings.generalPadding,
-    margin: AppPaddings.generalPadding,
-    width: SizeUtil.generalWidth,
-    // height: 56,
-    decoration: AppBoxDecoration.sendDecoration,
-    child: activityminto(
-        heading, onTap, MainAxisAlignment.spaceBetween, false, icon),
+  return Padding(
+    padding: AppPaddings.componentPadding,
+    child: Container(
+      // width: SizeUtil.generalWidth,
+      height: 56,
+
+      decoration: AppBoxDecoration.sendDecoration,
+      child: activityminto(
+          heading, onTap, MainAxisAlignment.spaceBetween, false, icon),
+    ),
   );
 }

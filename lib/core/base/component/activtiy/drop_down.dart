@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/screen/therapist/home/home.dart';
 
 class CustomDropDown extends StatefulWidget {
   const CustomDropDown({
@@ -24,33 +25,36 @@ class CustomDropDown extends StatefulWidget {
 class _CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: widget.width,
-      child: Column(
-        children: [
-          InkWell(
-            onTap: () {
-              activityController.changeBox();
-            },
-            child: Container(
-              alignment: Alignment.center,
-              decoration: AppBoxDecoration.purpleBorder,
-              height: widget.height,
-              width: widget.width,
-              child: Obx(() => textpurpose(widget.isGenderPurpose
-                  ? activityController.gender.value
-                  : activityController.order.value)),
+    return Padding(
+      padding: AppPaddings.componentPadding,
+      child: SizedBox(
+        width: Responsive.width(widget.width, context),
+        child: Column(
+          children: [
+            InkWell(
+              onTap: () {
+                activityController.changeBox();
+              },
+              child: Container(
+                alignment: Alignment.center,
+                decoration: AppBoxDecoration.purpleBorder,
+                height: widget.height,
+                width: Responsive.width(widget.width, context),
+                child: Obx(() => textpurpose(widget.isGenderPurpose
+                    ? activityController.gender.value
+                    : activityController.order.value)),
+              ),
             ),
-          ),
-          Obx(
-            () => activityController.selectedBox.value
-                ? ChooseGender(
-                    widget: widget,
-                    textController: widget.textController,
-                  )
-                : const SizedBox.shrink(),
-          )
-        ],
+            Obx(
+              () => activityController.selectedBox.value
+                  ? ChooseGender(
+                      widget: widget,
+                      textController: widget.textController,
+                    )
+                  : const SizedBox.shrink(),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -90,11 +94,14 @@ class ChooseGender extends StatelessWidget {
                   textController);
               activityController.changeBox();
             },
-            child: Text(
-              widget.isGenderPurpose
-                  ? DemoInformation.genderList[index]
-                  : DemoInformation.orderingList[index],
-              textAlign: TextAlign.center,
+            child: Padding(
+              padding: AppPaddings.componentPadding,
+              child: Text(
+                widget.isGenderPurpose
+                    ? DemoInformation.genderList[index]
+                    : DemoInformation.orderingList[index],
+                textAlign: TextAlign.center,
+              ),
             ),
           );
         },

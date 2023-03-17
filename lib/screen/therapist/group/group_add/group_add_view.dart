@@ -14,6 +14,8 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 
+import '../../../../core/base/util/base_model.dart';
+
 class GroupAddView extends StatelessWidget {
   const GroupAddView({super.key});
 
@@ -47,20 +49,7 @@ class GroupAddView extends StatelessWidget {
         child: SingleChildScrollView(
             child: Column(
           children: [
-            rowView(
-                RowModel(
-                    text: GroupTextUtil.addGroupText,
-                    textStyle: AppTextStyles.heading(false),
-                    isAlignmentBetween: true,
-                    trailingIcon: IconButton(
-                      icon: IconUtility.close,
-                      onPressed: () {
-                        context.pop();
-
-                        //geri donus yapmasi lazim
-                      },
-                    )),
-                AppPaddings.appBarPadding),
+            rowView(appRow(context), AppPaddings.appBarPadding),
             miniHeadings(GroupTextUtil.groupNameText, false),
             CustomTextField(
                 isPhoneNumber: false,
@@ -93,6 +82,19 @@ class GroupAddView extends StatelessWidget {
     );
   }
 
+  RowModel appRow(BuildContext context) {
+    return UiBaseModel.appBarModel(
+        GroupTextUtil.addGroupText,
+        IconButton(
+          icon: IconUtility.close,
+          onPressed: () {
+            context.pop();
+
+            //geri donus yapmasi lazim
+          },
+        ));
+  }
+
   Obx dayRow() {
     TherapistGroupController controller = Get.find();
     return Obx(
@@ -101,14 +103,18 @@ class GroupAddView extends StatelessWidget {
               onTap: () {
                 controller.changeDayElection();
               },
-              row: RowModel(
-                  text: controller.choosenDay.value,
-                  textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
-                  isAlignmentBetween: true,
-                  trailingIcon: controller.isDayElectionOpen.isTrue
-                      ? IconUtility.arrowUp
-                      : IconUtility.arrowDown))),
+              row: dayRowModel(controller))),
     );
+  }
+
+  RowModel dayRowModel(TherapistGroupController controller) {
+    return RowModel(
+        text: controller.choosenDay.value,
+        textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
+        isAlignmentBetween: true,
+        trailingIcon: controller.isDayElectionOpen.isTrue
+            ? IconUtility.arrowUp
+            : IconUtility.arrowDown);
   }
 
   Obx secTherapist() {
@@ -119,30 +125,32 @@ class GroupAddView extends StatelessWidget {
             onTap: () {
               controller.changeSecTherapistElection();
             },
-            row: RowModel(
-              text: controller.choosenSecTherapist.value,
-              textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
-              isAlignmentBetween: true,
-              leadingIcon: controller.isSecTherapistChoosed.isTrue
-                  ? CustomCircleAvatar(
-                      imagePath: DemoInformation.imagePath,
-                      big: false,
-                      shadow: false)
-                  : const SizedBox.shrink(),
-              trailingIcon: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  controller.isSecTherapistChoosed.isTrue
-                      ? IconUtility.checkCircleIcon
-                      : const SizedBox(
-                          width: 2,
-                        ),
-                  controller.isSecTherapistElectionOpen.value
-                      ? IconUtility.arrowUp
-                      : IconUtility.arrowDown,
-                ],
-              ),
-            )),
+            row: secTherapistRowModel(controller)),
+      ),
+    );
+  }
+
+  RowModel secTherapistRowModel(TherapistGroupController controller) {
+    return RowModel(
+      text: controller.choosenSecTherapist.value,
+      textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
+      isAlignmentBetween: true,
+      leadingIcon: controller.isSecTherapistChoosed.isTrue
+          ? CustomCircleAvatar(
+              imagePath: DemoInformation.imagePath, big: false, shadow: false)
+          : const SizedBox.shrink(),
+      trailingIcon: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          controller.isSecTherapistChoosed.isTrue
+              ? IconUtility.checkCircleIcon
+              : const SizedBox(
+                  width: 2,
+                ),
+          controller.isSecTherapistElectionOpen.value
+              ? IconUtility.arrowUp
+              : IconUtility.arrowDown,
+        ],
       ),
     );
   }

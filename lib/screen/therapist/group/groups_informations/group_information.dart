@@ -5,6 +5,7 @@ import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
@@ -38,7 +39,7 @@ class GroupInformation extends StatelessWidget {
               meeting(),
               miniHeadings(GroupTextUtil.groupsInformationText, false),
               navMethod(DemoInformation.secTherapist, () {
-                context.push(TherapistProfile(isSecTherapist: true));
+                context.push(const TherapistProfile(isSecTherapist: true));
               }),
               Election(
                   election:
@@ -182,15 +183,7 @@ class GroupInformation extends StatelessWidget {
         onTap: () {
           deleteParticipantDialog(context, name, controller);
         },
-        row: RowModel(
-            text: name,
-            leadingIcon: CustomCircleAvatar(
-                big: false,
-                imagePath: DemoInformation.imagePath,
-                shadow: false),
-            textStyle: AppTextStyles.groupTextStyle(true),
-            isAlignmentBetween: true,
-            trailingIcon: IconUtility.deleteIcon));
+        row: UiBaseModel.groupInfoPerson(name));
   }
 
   Future<String?> deleteParticipantDialog(

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import '../../../util/base_model.dart';
 import '../../buttons/custom_button.dart';
 import '../../../util/base_utility.dart';
 import '../../group/row_view.dart';
-import '../../../../../screen/participant/profile/util/profile_page_utility.dart';
 
 class MethodAndSeminarShortInfoContainer extends StatelessWidget {
   const MethodAndSeminarShortInfoContainer({
@@ -32,14 +32,14 @@ class MethodAndSeminarShortInfoContainer extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   rowView(
-                      ProfilePageUtility.normalTextRow(
+                      UiBaseModel.normalTextRow(
                           row1Text,
                           Icons.person_outlined,
                           const TextStyle(
                               fontSize: 17, fontWeight: FontWeight.bold)),
                       const EdgeInsets.only(top: 5)),
                   rowView(
-                      ProfilePageUtility.normalTextRow(
+                      UiBaseModel.normalTextRow(
                           row2Text,
                           isSecondRowMethod
                               ? Icons.description_outlined

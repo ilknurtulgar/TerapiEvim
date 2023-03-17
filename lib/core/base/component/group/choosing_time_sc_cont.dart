@@ -1,5 +1,15 @@
+// ignore: must_be_immutable
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/group/person.dart';
+import 'package:terapievim/core/base/component/group/row_view.dart';
 
-/*// ignore: must_be_immutable
+import '../../../../controller/group_controller.dart';
+import '../../../../controller/therapist_group_controller.dart';
+import '../../models/row_model.dart';
+import '../../util/base_model.dart';
+import '../../util/base_utility.dart';
+
 class ChoosingTimeForSCContainer extends StatelessWidget {
   // choosing time for short call container
   ChoosingTimeForSCContainer(
@@ -30,10 +40,12 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
           child: Column(
             children: [
               rowView(
-                  GroupScreenUtility.therapistRowInChoosingTimeForSCC(
-                      therapistName),
+                  UiBaseModel.secDeterminationModel(
+                      therapistName, IconUtility.personIcon),
                   const EdgeInsets.fromLTRB(25, 15, 25, 4)),
-              rowView(GroupScreenUtility.dateRowInChoosingTimeForSCC(date),
+              rowView(
+                  UiBaseModel.secDeterminationModel(
+                      'Tarih: $date', IconUtility.calendarIcon),
                   const EdgeInsets.fromLTRB(25, 7, 25, 10)),
               timeButtonList(),
               const SizedBox(
@@ -64,34 +76,35 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
       child: PersonMin(
-        height: 40,
-        width: 304,
         onTap: isForParticipant
             ? () => groupController.choosingTime(
                 timeList.length, rowIndex, listviewIndex)
             : () {},
-        row: RowModel(
-          isAlignmentBetween: true,
-          text: isForParticipant
-              ? timeList[rowIndex]
-              : therapistGroupController.timeListInControllerList[listviewIndex]
-                  [rowIndex],
-          textStyle: AppTextStyles.normalTextStyle('medium', false),
-          leadingIcon: IconUtility.clockIcon,
-          trailingIcon: isForParticipant
-              ? Obx(() => Icon(Icons.check_circle_outline,
-                  color: listviewIndex ==
-                              groupController.listviewIndexInController.value &&
-                          rowIndex == groupController.rowIndexInController.value
-                      ? AppColors.black
-                      : AppColors.transparent))
-              : IconButton(
-                  onPressed: () => therapistGroupController.deleteTime(
-                      timeList, rowIndex, listviewIndex),
-                  icon: const Icon(Icons.delete_outline)),
-        ),
+        row: timebUttonRow(rowIndex),
       ),
     );
   }
+
+  RowModel timebUttonRow(int rowIndex) {
+    return RowModel(
+      isAlignmentBetween: true,
+      text: isForParticipant
+          ? timeList[rowIndex]
+          : therapistGroupController.timeListInControllerList[listviewIndex]
+              [rowIndex],
+      textStyle: AppTextStyles.normalTextStyle('medium', false),
+      leadingIcon: IconUtility.clockIcon,
+      trailingIcon: isForParticipant
+          ? Obx(() => Icon(Icons.check_circle_outline,
+              color: listviewIndex ==
+                          groupController.listviewIndexInController.value &&
+                      rowIndex == groupController.rowIndexInController.value
+                  ? AppColors.black
+                  : AppColors.transparent))
+          : IconButton(
+              onPressed: () => therapistGroupController.deleteTime(
+                  timeList, rowIndex, listviewIndex),
+              icon: const Icon(Icons.delete_outline)),
+    );
+  }
 }
-*/

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import '../../../../../core/base/component/group/custom_heading.dart';
+import '../../../../../core/base/util/base_model.dart';
 import '../../../../../core/base/util/text_utility.dart';
 
 class ShortCallTime extends StatelessWidget {
@@ -20,12 +20,7 @@ class ShortCallTime extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               rowView(
-                  RowModel(
-                      text: GroupTextUtil.terapiEvim,
-                      textStyle: AppTextStyles.heading(false),
-                      isAlignmentBetween: true,
-                      trailingIcon: saveButton()),
-                  AppPaddings.appBarPadding),
+                  UiBaseModel.determiningappBar(), AppPaddings.appBarPadding),
               line(),
               CustomHeading(
                 text: hiUser,
@@ -50,13 +45,6 @@ class ShortCallTime extends StatelessWidget {
     );
   }
 
-  IconButton saveButton() {
-    return IconButton(
-      icon: IconUtility.save,
-      onPressed: () {},
-    );
-  }
-
   Widget timeChoose() {
     return ListView.builder(
       shrinkWrap: true,
@@ -75,4 +63,11 @@ class ShortCallTime extends StatelessWidget {
       ),
     );
   }
+}
+
+IconButton saveButton() {
+  return IconButton(
+    icon: IconUtility.save,
+    onPressed: () {},
+  );
 }

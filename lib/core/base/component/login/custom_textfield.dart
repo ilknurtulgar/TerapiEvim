@@ -3,8 +3,6 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/controller/activity_controller.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/screen/participant/activity/a_filter.dart';
 
 ActivityController activityController = Get.find();
 
@@ -34,7 +32,6 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     //sizedboxdan da
     return SizedBox(
-
       width: width ?? SizeUtil.generalWidth,
       height: height ?? SizeUtil.generalHeight,
       child: TextField(
@@ -59,7 +56,6 @@ class CustomTextField extends StatelessWidget {
           prefixText: isPhoneNumber ? '+90 ' : null,
           enabledBorder: bordercolor(isBig),
           focusedBorder: bordercolor(isBig),
-
         ),
       ),
     );
@@ -76,17 +72,3 @@ OutlineInputBorder bordercolor(bool isBig) {
         width: 1,
       ));
 }
-
-RowModel searchModel = RowModel(
-    isAlignmentBetween: true,
-    text: ActivityTextUtil.searchText,
-    leadingIcon: IconUtility.searchIcon,
-    trailingIcon: IconButton(
-      onPressed: () {
-        Get.to(const FilterScreen());
-        //trendyolfiltreicondüzenleme
-      },
-      icon: IconUtility.fiterIcon,
-    ),
-    textStyle2: AppTextStyles.heading(false),
-    textStyle: AppTextStyles.groupTextStyle(true));

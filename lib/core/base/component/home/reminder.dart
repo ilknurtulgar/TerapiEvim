@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import '../../util/text_utility.dart';
 
@@ -40,18 +40,7 @@ class Reminder extends StatelessWidget {
   }
 
   Widget reminderconst() {
-    const trailing = Padding(
-      padding: EdgeInsets.only(left: 170.0),
-      child: IconUtility.forward,
-    );
-    return rowView(
-        RowModel(
-            text: HomeTextUtil.reminder,
-            textStyle: AppTextStyles.groupTextStyle(true),
-            leadingIcon: IconUtility.notification,
-            trailingIcon: trailing,
-            isAlignmentBetween: false),
-        AppPaddings.reminderPadding);
+    return rowView(UiBaseModel.rowcontainer(true), AppPaddings.reminderPadding);
   }
 
   Padding reminderContent(String reminderTypeText, String reminderName) {

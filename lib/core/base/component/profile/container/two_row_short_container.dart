@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import '../../../util/base_model.dart';
 import '../../buttons/custom_button.dart';
 import '../../../util/base_utility.dart';
 import '../../group/row_view.dart';
-import '../../../../../screen/participant/profile/util/profile_page_utility.dart';
 
 class TwoRowShortContainer extends StatelessWidget {
   const TwoRowShortContainer({
@@ -38,8 +38,12 @@ class TwoRowShortContainer extends StatelessWidget {
             borderRadius: BorderRadius.circular(8),
           ),
           child: Container(
-            height: isThereButton ? SizeUtil.doubleNormalValueHeight : SizeUtil.doubleSmallValueHeight,
-            width: isThereButton ? SizeUtil.largeValueWidth : SizeUtil.generalWidth,
+            height: isThereButton
+                ? SizeUtil.doubleNormalValueHeight
+                : SizeUtil.doubleSmallValueHeight,
+            width: isThereButton
+                ? SizeUtil.largeValueWidth
+                : SizeUtil.generalWidth,
             decoration: containerDecoration(), //
             child: Padding(
               padding: const EdgeInsets.only(left: 10),
@@ -71,7 +75,7 @@ class TwoRowShortContainer extends StatelessWidget {
 
   Widget secondRow() {
     return rowView(
-        ProfilePageUtility.normalTextRow(
+        UiBaseModel.normalTextRow(
             row2Text,
             secondIconData,
             AppTextStyles.profileTextStyles(
@@ -82,9 +86,9 @@ class TwoRowShortContainer extends StatelessWidget {
   Widget firstRow() {
     return rowView(
         purpose != 'date'
-            ? ProfilePageUtility.normalTextRow(row1Text, firstIconData,
+            ? UiBaseModel.normalTextRow(row1Text, firstIconData,
                 AppTextStyles.profileTextStyles(false, true))
-            : ProfilePageUtility.doubleTextRow('Danışan: ', row1Text, false),
+            : UiBaseModel.doubleTextRow('Danışan: ', row1Text, false),
         const EdgeInsets.only(top: 5));
   }
 

@@ -7,6 +7,8 @@ import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/activity/about_activity.dart';
 
 import '../../../core/base/models/row_model.dart';
+import '../../../core/base/util/base_model.dart';
+import 'a_filter.dart';
 
 class ActivitiesScreen extends StatelessWidget {
   const ActivitiesScreen({super.key});
@@ -18,7 +20,17 @@ class ActivitiesScreen extends StatelessWidget {
           child: Center(
             child: Column(
               children: [
-                search(searchModel),
+                search(UiBaseModel.searchModel(
+                  ActivityTextUtil.searchText,
+                  IconButton(
+                    onPressed: () {
+                      context.push(const FilterScreen());
+
+                      //trendyolfiltreicondüzenleme
+                    },
+                    icon: IconUtility.fiterIcon,
+                  ),
+                )),
                 activityminto(ActivityTextUtil.upcomingActivities, () {},
                     MainAxisAlignment.spaceAround, true, IconUtility.forward),
                 activityseminar(),
@@ -65,11 +77,14 @@ Widget activityminto(String text, Function()? onPressed,
   return Row(
     mainAxisAlignment: mainAxisAlignment,
     children: [
-      Text(
-        text,
-        style: isButterfly
-            ? AppTextStyles.groupTextStyle(false)
-            : AppTextStyles.normalTextStyle("medium", false),
+      Padding(
+        padding: const EdgeInsets.only(left: 10),
+        child: Text(
+          text,
+          style: isButterfly
+              ? AppTextStyles.groupTextStyle(false)
+              : AppTextStyles.normalTextStyle("medium", false),
+        ),
       ),
       IconButton(
         icon: icon,

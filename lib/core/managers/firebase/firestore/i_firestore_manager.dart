@@ -23,6 +23,8 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
     required T parseModel,
     required String collectionPath,
     required String docId,
+    String? collectionPath2,
+    String? docId2,
   });
 
   Future<IResponseModel<R?, E?>> update<T extends INetworkModel<T>, R>({
@@ -33,5 +35,10 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
     required T data,
   });
 
-  Future<bool> delete();
+  Future<bool> delete({
+    required String collectionPath,
+    required String docId,
+    String? collectionPath2,
+    String? docId2,
+  });
 }

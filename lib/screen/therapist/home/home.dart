@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/home/notification_container.dart';
 import 'package:terapievim/core/base/component/home/reminder.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';

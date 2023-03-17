@@ -3,9 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 
-import 'base/base_controller.dart';
-
-class GroupController extends GetxController with BaseController {
+class GroupController extends GetxController {
   var isChosen = List<bool>.filled(10, false)
       .obs; // 10 değerini öylesine listeyi false ile doldurmak için verdim, fonksiyon içerisinde listenin uzunluğuna göre değişiyor
   var rowIndexInController = (-1)

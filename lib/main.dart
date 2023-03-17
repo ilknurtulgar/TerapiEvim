@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
@@ -9,7 +8,6 @@ import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/controller/group_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/home/main_home.dart';
-
 import 'controller/auth/auth_controller.dart';
 import 'controller/main_controller.dart';
 import 'controller/therapist_group_controller.dart';
@@ -58,6 +56,7 @@ class _TerapiEvimState extends State<TerapiEvim> {
 
 Future<void> initialize() async {
   WidgetsFlutterBinding.ensureInitialized();
+
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

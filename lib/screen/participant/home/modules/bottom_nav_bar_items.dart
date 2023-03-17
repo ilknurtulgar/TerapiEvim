@@ -7,7 +7,7 @@ List<BottomNavigationBarItem> _bottomNavBarItems(BuildContext context) {
   int i;
 
   for (i = 0; i < 5; i++) {
-    if (!isTherapist && i == 4) {
+    if ((!isTherapist && i != 4) || isTherapist) {
       bottomBarList.add(BottomNavigationBarItem(
         icon: _BottomNavBarItem(i, context.theme, false),
         activeIcon: _BottomNavBarItem(i, context.theme, true),

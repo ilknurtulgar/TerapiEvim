@@ -33,7 +33,7 @@ Widget texts(RowModel rowModel) {
       Text(
         rowModel.text,
         style: rowModel.textStyle,
-        textScaleFactor: ResponsivenessManager.instance.widthFactorMax1 ,
+        textScaleFactor: ResponsivenessManager.instance.widthFactorMax1,
       ),
       Text(
         rowModel.text2!,

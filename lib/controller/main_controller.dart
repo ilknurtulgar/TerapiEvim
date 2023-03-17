@@ -6,11 +6,11 @@ import '../core/base/component/toast/toast.dart';
 
 class MainController extends GetxController {
   var currentScreenIndex = 0.obs;
-  var isTestNotSolved = true.obs;
-  var isTestResultReady = false.obs;
-  var isGroupReady = false.obs;
+  var isTestNotSolved = false.obs;
+  var isTestResultReady = true.obs;
+  var isGroupReady = true.obs;
   var isLogged = false.obs;
-  var isTherapist = true.obs; //bunun degisimi yapilacak
+  var isTherapist = false.obs; //bunun degisimi yapilacak
 
   late CupertinoTabController tabController;
 

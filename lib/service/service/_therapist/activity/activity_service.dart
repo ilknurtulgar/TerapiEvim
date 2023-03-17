@@ -7,8 +7,8 @@ import '../../../../core/managers/firebase/firestore/models/empty_model.dart';
 import '../../../model/therapist/activity/activity_model.dart';
 import 'i_activity_service.dart';
 
-class ProfileSettingsService extends IActivityService with BaseService {
-  ProfileSettingsService(
+class ActivityService extends IActivityService with BaseService {
+  ActivityService(
       IFirestoreManager<ErrorModelCustom> manager, String userId)
       : super(manager, userId);
 

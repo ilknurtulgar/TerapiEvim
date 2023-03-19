@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/activity/activities.dart';
@@ -29,7 +29,7 @@ class _SearchMessageState extends State<SearchMessage> {
                   physics: const NeverScrollableScrollPhysics(),
                   itemBuilder: (context, index) {
                     return PersonView(
-                        gruopName: DemoInformation.groupList[index],
+                        groupName: DemoInformation.groupList[index],
                         list: DemoInformation.personList);
                   },
                   itemCount: DemoInformation.groupList.length,
@@ -48,12 +48,9 @@ class _SearchMessageState extends State<SearchMessage> {
       padding: const EdgeInsets.all(8.0),
       child: Column(
         children: [
-          search(RowModel(
-              text: MessageTextUtil.searchtext,
-              textStyle: AppTextStyles.normalTextStyle("medium", true),
-              isAlignmentBetween: true,
-              leadingIcon: IconUtility.searchIcon,
-              trailingIcon: IconButton(
+          search(UiBaseModel.searchModel(
+              MessageTextUtil.searchtext,
+              IconButton(
                   onPressed: () {
                     context.push(const TherapistMessageScreen());
                   },

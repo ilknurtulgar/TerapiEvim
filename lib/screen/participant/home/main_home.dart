@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart'
     hide CupertinoTabBar, CupertinoTabScaffold, CupertinoTabController;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/tactivity_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 import '../../../controller/main_controller.dart';
@@ -22,8 +21,6 @@ class TerapiEvimLogged extends StatefulWidget {
 
 class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
   final MainController _controller = Get.find();
-  TherapistActivtyController therapistActivtyController =
-      Get.put(TherapistActivtyController());
 
   @override
   void initState() {

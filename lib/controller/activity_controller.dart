@@ -1,3 +1,4 @@
+// ignore: implementation_imports
 import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:get/get.dart';
 

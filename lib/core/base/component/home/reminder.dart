@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import '../../util/base_model.dart';
 import '../../util/text_utility.dart';
 
-//terapist sayfasi hatirlatmalar
 class Reminder extends StatelessWidget {
+  ///terapist sayfasi hatirlatmalar
   const Reminder(
       {super.key,
       required this.reminderType,
@@ -20,43 +20,27 @@ class Reminder extends StatelessWidget {
     late String reminderTypeText = textSet(reminderType);
     late String reminderName = nameSet(reminderType);
 
-    return Padding(
-      padding: AppPaddings.componentPadding,
-      child: InkWell(
-        onTap: () {},
-        child: Container(
-          decoration: AppBoxDecoration.shadow,
-          width: SizeUtil.generalWidth,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              reminderconst(),
-              reminderContent(reminderTypeText, reminderName)
-            ],
-          ),
+    return InkWell(
+      onTap: () {},
+      child: Container(
+        margin: AppPaddings.componentPadding,
+        decoration: AppBoxDecoration.shadow,
+        width: SizeUtil.generalWidth,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            rowView(UiBaseModel.rowcontainer(true),
+                AppPaddings.miniHeadingPadding(true)),
+            reminderContent(reminderTypeText, reminderName)
+          ],
         ),
       ),
     );
   }
 
-  Widget reminderconst() {
-    const trailing = Padding(
-      padding: EdgeInsets.only(left: 170.0),
-      child: IconUtility.forward,
-    );
-    return rowView(
-        RowModel(
-            text: HomeTextUtil.reminder,
-            textStyle: AppTextStyles.groupTextStyle(true),
-            leadingIcon: IconUtility.notification,
-            trailingIcon: trailing,
-            isAlignmentBetween: false),
-        AppPaddings.reminderPadding);
-  }
-
   Padding reminderContent(String reminderTypeText, String reminderName) {
     return Padding(
-      padding: AppPaddings.reminderPadding,
+      padding: AppPaddings.miniHeadingPadding(true),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -64,19 +48,20 @@ class Reminder extends StatelessWidget {
             reminderTypeText,
             style: AppTextStyles.groupTextStyle(false),
           ),
-          Padding(
-              padding: AppPaddings.reminderBetweenText,
-              child: customText("$reminderName $name")),
+          customText("$reminderName $name"),
           customText("${HomeTextUtil.timeTwoDots} $time"),
         ],
       ),
     );
   }
 
-  Text customText(String reminderTypeText) {
-    return Text(
-      reminderTypeText,
-      style: AppTextStyles.groupTextStyle(true),
+  Widget customText(String reminderTypeText) {
+    return Padding(
+      padding: AppPaddings.miniTopPadding,
+      child: Text(
+        reminderTypeText,
+        style: AppTextStyles.groupTextStyle(true),
+      ),
     );
   }
 }

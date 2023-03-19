@@ -21,5 +21,5 @@ abstract class IActivityService {
 
   Future<List<ActivityModel?>?> getActivities(int currentPage);
 
-  Future<String?> deleteActivity(ActivityModel activity);
+  Future<String?> deleteActivity(String activityId);
 }

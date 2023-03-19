@@ -10,7 +10,6 @@ import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart'
 import '../../../screen/participant/activity/activities.dart';
 import '../../../screen/participant/group/group.dart';
 import '../../../screen/participant/home/home.dart';
-import '../../../screen/participant/message/message.dart';
 import '../../../screen/participant/profile/models/group_model.dart';
 import '../../../screen/participant/profile/profile_page.dart';
 import '../../../screen/participant/video_call/model/person_in_call_model.dart';
@@ -18,6 +17,7 @@ import '../../../screen/therapist/activity/activity_screen.dart';
 import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
 
+import '../../init/managers/responsiveness_manager.dart';
 import '../models/card_model.dart';
 
 import '../component/group/questions_button.dart';
@@ -324,12 +324,11 @@ class AppPaddings {
       EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
   static const EdgeInsets rowViewPadding =
       EdgeInsets.symmetric(vertical: 4, horizontal: 16);
+
+  static const EdgeInsets miniTopPadding = EdgeInsets.only(top: 10);
+
 //yukardakiler kesinlestirildi
   static const EdgeInsets generalPadding = EdgeInsets.all(8);
-  static const EdgeInsets reminderPadding =
-      EdgeInsets.symmetric(vertical: 16, horizontal: 16);
-  static const EdgeInsets reminderBetweenText =
-      EdgeInsets.symmetric(vertical: 16.0);
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
       0, 10, 20, 10); // sağ alt bütün mor butonlar için geçerli
   static const EdgeInsets copingButtonPadding =
@@ -368,15 +367,9 @@ class AppPaddings {
       EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 20);
   static const EdgeInsets datePadding = EdgeInsets.only(left: 19);
   static const EdgeInsets clockPadding = EdgeInsets.only(left: 30);
-  static const EdgeInsets notificationContainerPadding =
-      EdgeInsets.only(bottom: 11, top: 8);
   static const EdgeInsets contentPadding = EdgeInsets.all(3);
 
   //grup
-  static const EdgeInsets userTestPadding = EdgeInsets.only(bottom: 20);
-
-  static const EdgeInsets userTestQuestionPadding =
-      EdgeInsets.symmetric(vertical: 30, horizontal: 23);
 
   static EdgeInsets groupCategoryPadding =
       const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24);
@@ -421,7 +414,7 @@ class AppPaddings {
     left: 150,
     top: 30,
   );
-  static const EdgeInsets tGroupPersonPadding = EdgeInsets.only(top: 10);
+
   static const EdgeInsets tGroupMetotPadding =
       EdgeInsets.symmetric(vertical: 7);
   static const EdgeInsets tGroupAppBarPaddong =
@@ -532,7 +525,7 @@ class NavigateUtil {
     const HomeScreen(),
     const ActivitiesScreen(),
     GroupScreen(),
-    MessageScreen(),
+    // MessageScreen(),
     const ParticipantProfilePage(),
   ];
 }
@@ -901,4 +894,13 @@ class SizeUtil {
 
 class Filter {
   static ImageFilter blur = ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0);
+}
+
+//responsiveness vermemiz gereken textlerde bunu çağırabiliriz.
+Widget responsivenestext(String text, TextStyle style) {
+  return Text(
+    text,
+    style: style,
+    textScaleFactor: ResponsivenessManager.instance.widthFactorMax1,
+  );
 }

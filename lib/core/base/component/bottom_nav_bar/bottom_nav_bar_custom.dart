@@ -36,7 +36,7 @@ class CupertinoTabBar extends StatelessWidget implements PreferredSizeWidget {
     ),
   })  : assert(
           items.length >= 2,
-          "Tabs need at least 2 items to conform to Apple's HIG",
+          //  "Tabs need at least 2 items to conform to Apple's HIG",
         ),
         assert(0 <= currentIndex && currentIndex < items.length),
         assert(height >= 0.0);
@@ -229,7 +229,8 @@ class CupertinoTabBar extends StatelessWidget implements PreferredSizeWidget {
       Center(
         child: SizedBox(
           height: SizeUtil.lowValueHeight,
-          width: SizeUtil.lowValueHeight, // height ve width değerleri birbirine eşit olması gerektiği için width'e height değeri verdim
+          width: SizeUtil
+              .lowValueHeight, // height ve width değerleri birbirine eşit olması gerektiği için width'e height değeri verdim
           child: active ? item.activeIcon : item.icon,
         ),
       ),

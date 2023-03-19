@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
+import 'package:terapievim/core/base/component/group/row_view.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
+
 import '../../../../../core/base/component/group/custom_heading.dart';
+import '../../../../../core/base/util/base_model.dart';
 import '../../../../../core/base/util/text_utility.dart';
 
 class ShortCallTime extends StatelessWidget {
   const ShortCallTime({super.key});
+
   // gecici
 
   @override
@@ -20,13 +22,8 @@ class ShortCallTime extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               rowView(
-                  RowModel(
-                      text: GroupTextUtil.terapiEvim,
-                      textStyle: AppTextStyles.heading(false),
-                      isAlignmentBetween: true,
-                      trailingIcon: saveButton()),
-                  AppPaddings.appBarPadding),
-              divider(false),
+                  UiBaseModel.determiningappBar(), AppPaddings.appBarPadding),
+              line(),
               CustomHeading(
                 text: hiUser,
                 isalignmentstart: false,
@@ -41,10 +38,12 @@ class ShortCallTime extends StatelessWidget {
     );
   }
 
-  IconButton saveButton() {
-    return IconButton(
-      icon: IconUtility.save,
-      onPressed: () {},
+  Divider line() {
+    return const Divider(
+      color: AppColors.black,
+      indent: 10,
+      endIndent: 10,
+      height: 0.1,
     );
   }
 
@@ -66,4 +65,11 @@ class ShortCallTime extends StatelessWidget {
       ),
     );
   }
+}
+
+IconButton saveButton() {
+  return IconButton(
+    icon: IconUtility.save,
+    onPressed: () {},
+  );
 }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import '../../models/row_model.dart';
 import '../../util/text_utility.dart';
 
-//terapist sayfasi hatirlatmalar
 class Reminder extends StatelessWidget {
+  ///terapist sayfasi hatirlatmalar
   const Reminder(
       {super.key,
       required this.reminderType,
@@ -35,8 +35,7 @@ class Reminder extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
+      ),);
   }
 
   Widget reminderconst() {

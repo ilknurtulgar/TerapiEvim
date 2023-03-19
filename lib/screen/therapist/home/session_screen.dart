@@ -13,9 +13,9 @@ class SessionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: SingleChildScrollView(
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
           child: Stack(children: [
             Column(
               children: [
@@ -55,17 +55,12 @@ class SessionScreen extends StatelessWidget {
       physics: const NeverScrollableScrollPhysics(),
     );
   }
+}
 
-  Align orderdropdown() {
-    return const Align(
-        alignment: Alignment.bottomRight,
-        child: Padding(
-          padding: AppPaddings.componentPadding,
-          child: CustomDropDown(
-            isGenderPurpose: false,
-            height: SizeUtil.smallValueHeight,
-            width: SizeUtil.normalValueWidth,
-          ),
-        ));
-  }
+Widget orderdropdown() {
+  return const CustomDropDown(
+    isGenderPurpose: false,
+    height: SizeUtil.smallValueHeight,
+    width: SizeUtil.normalValueWidth,
+  );
 }

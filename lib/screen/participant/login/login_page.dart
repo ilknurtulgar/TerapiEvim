@@ -23,6 +23,7 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
   @override
   void initState() {
     _loginController = Get.put(LoginController());
+
     super.initState();
   }
 
@@ -42,18 +43,22 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
           child: SizedBox(
             width: SizeUtil.generalWidth,
             child: Wrap(
-              direction: Axis.vertical,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: 24,
-              children: [
-              largeSizedBox(),
-              LoginPageUtility.title(true),
-              textfieldUtility.mailTextfield(_loginController.emailController, true),
-              passwordColumn(),
-              LoginPageUtility.button(true, true, () {_loginController.loginWithEmail();}),
-              LoginPageUtility.lineWithOrText(),
-              LoginPageUtility.button(false, true, () => context.push(BeforeSignUp())),
-            ]),
+                direction: Axis.vertical,
+                crossAxisAlignment: WrapCrossAlignment.center,
+                spacing: 24,
+                children: [
+                  largeSizedBox(),
+                  LoginPageUtility.title(true),
+                  textfieldUtility.mailTextfield(
+                      _loginController.emailController, true),
+                  passwordColumn(),
+                  LoginPageUtility.button(true, true, () {
+                    _loginController.loginWithEmail();
+                  }),
+                  LoginPageUtility.lineWithOrText(),
+                  LoginPageUtility.button(
+                      false, true, () => context.push(BeforeSignUp())),
+                ]),
           ),
         ),
       ),
@@ -62,12 +67,13 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
 
   Column passwordColumn() {
     return Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                 textfieldUtility.passwordTextfield(_loginController.passwordController, true),
-                 forgotYourPasswordTextButton(),
-              ],
-            );
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        textfieldUtility.passwordTextfield(
+            _loginController.passwordController, true),
+        forgotYourPasswordTextButton(),
+      ],
+    );
   }
 
   Widget forgotYourPasswordTextButton() {

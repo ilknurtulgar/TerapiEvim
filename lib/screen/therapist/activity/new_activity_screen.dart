@@ -5,7 +5,6 @@ import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/participant/home/home.dart';
 import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart';
 
@@ -19,8 +18,6 @@ class NewActivityScreen extends StatefulWidget {
 TherapistActivtyController therapistActivtyController = Get.find();
 
 class _NewActivityScreenState extends State<NewActivityScreen> {
-  TextEditingController activitynamController = TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,7 +41,9 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
                 child: Obx(
                   () => therapistActivtyController.isUpdate.value
                       ? butterFlyButton(ActivityTextUtil.update, () {})
-                      : butterFlyButton(ActivityTextUtil.create, () {}),
+                      : butterFlyButton(ActivityTextUtil.create, () {
+                          therapistActivtyController.createActivity();
+                        }),
                 ),
               )
             ],
@@ -58,13 +57,14 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
     return CustomTextField(
         isPhoneNumber: false,
         isBig: true,
-        textController: activitynamController,
+        textController: therapistActivtyController.activitynamController,
         isPassword: false,
         isRowModel: false);
   }
 
   Widget eventabout() {
-    return textfield(342, 204);
+    return textfield(
+        342, 204, therapistActivtyController.activitydescriptionController);
   }
 
   Row dateclocktextfield() {
@@ -72,11 +72,13 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
       children: [
         Padding(
           padding: AppPaddings.datePadding,
-          child: textfield(160, 60),
+          child: textfield(
+              160, 60, therapistActivtyController.activitydateController),
         ),
         Padding(
           padding: AppPaddings.clockPadding,
-          child: textfield(160, 60),
+          child: textfield(
+              160, 60, therapistActivtyController.activitytimeController),
         ),
       ],
     );
@@ -95,13 +97,14 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
     );
   }
 
-  Widget textfield(double width, double height) {
+  Widget textfield(double width, double height,
+      TextEditingController textEditingController) {
     return CustomTextField(
         height: height,
         width: width,
         isPhoneNumber: false,
         isBig: true,
-        textController: activityTextController,
+        textController: textEditingController,
         isPassword: false,
         isRowModel: false);
   }

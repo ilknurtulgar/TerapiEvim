@@ -64,6 +64,12 @@ class GroupTextUtil {
   static String deleteParticipantText =
       "   kişisini gruptan çıkarmak istediğinize emin misiniz?";
   static String myGroupsText = "Gruplarım";
+  //group info container
+  static String gruopTherapist = 'Grup Terapisti: ';
+  static String groupsecTherapist = 'Yardımcı Psikolog: ';
+  static String participantNumber = 'Katılımcı Sayısı: ';
+  static String sessionNumber = 'Seans Sayısı: ';
+  static String join = 'Katıl';
 
   //new metot
 

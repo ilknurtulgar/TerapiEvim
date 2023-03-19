@@ -37,7 +37,9 @@ class ParticipantProfilePage extends StatelessWidget {
                   smallSizedBox(),
                   participantGroupColumn(),
                   smallSizedBox(),
+
                   UiBaseModel.boldMainTitleRowView(
+
                       ParticipantProfileTextUtil.lastRead, 'method', () {}),
                   ProfilePageListView(
                     isForParticipant: true,
@@ -47,7 +49,9 @@ class ParticipantProfilePage extends StatelessWidget {
                     secondRowTextList:
                         DemoInformation.groupInformation.methodTitles,
                   ),
+
                   UiBaseModel.boldMainTitleRowView(
+
                       ParticipantProfileTextUtil.joinedSeminars,
                       'seminar',
                       () {}),
@@ -74,7 +78,9 @@ class ParticipantProfilePage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         rowView(
+
             UiBaseModel.normalTextRow(
+
                 ParticipantProfileTextUtil.myActiveGroup,
                 IconUtility.navGroup,
                 AppTextStyles.profileTextStyles(true, true)),
@@ -87,9 +93,8 @@ class ParticipantProfilePage extends StatelessWidget {
 
   Widget participantGroupContainer() {
     return GroupClass(
-      height: SizeUtil.largeValueHeight,
       width: SizeUtil.highestValueWidth,
-      borderColor: AppColors.cornFlowerBlue,
+      isBorderPurple: true,
       heading: DemoInformation.groupInformation.groupName,
       onTap: () {}, // navigate to group page
       row1: UiBaseModel.doubleTextRow(ParticipantProfileTextUtil.mainTherpist,
@@ -97,6 +102,7 @@ class ParticipantProfilePage extends StatelessWidget {
       row2: UiBaseModel.doubleTextRow(ParticipantProfileTextUtil.advisor,
           DemoInformation.groupInformation.secondTherapistName, true),
       row3: UiBaseModel.normalTextRow(
+
           DemoInformation.groupInformation.therapyTime,
           IconUtility.clockIcon.icon!,
           AppTextStyles.normalTextStyle('medium', false)),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 import '../buttons/custom_button.dart';
 import 'participant_container.dart';
 import '../../util/base_utility.dart';
@@ -21,7 +22,7 @@ class GroupInformationContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       elevation: 5,
-      borderRadius: BorderRadius.circular(16),
+      borderRadius: AppBorderRadius.notificationradius,
       child: Container(
         width: SizeUtil.generalWidth,
         decoration: AppBoxDecoration.shadow,
@@ -41,17 +42,17 @@ class GroupInformationContainer extends StatelessWidget {
         Center(
             child: paddedText(const EdgeInsets.symmetric(vertical: 15),
                 groupName, AppTextStyles.groupTextStyle(false))),
-        therapistRow(mainTherapist, 'Grup Terapisti: ', () {
+        therapistRow(mainTherapist, GroupTextUtil.gruopTherapist, () {
           /* ana psikolog sayfasına gitme fonksiyonu */
         }, SizeUtil.mediumValueWidth),
-        therapistRow(secondTherapist, 'Yardımcı Psikolog: ', () {
+        therapistRow(secondTherapist, GroupTextUtil.groupsecTherapist, () {
           /* yardımcı psikolog sayfasına gitme fonksiyonu */
         }, SizeUtil.participantContainerWidth),
-        Text('Katılımcı Sayısı: $numberOfParticipant',
+        Text(GroupTextUtil.participantNumber + numberOfParticipant.toString(),
             style: AppTextStyles.groupTextStyle(true)),
         paddedText(
             const EdgeInsets.only(top: 20, bottom: 10),
-            'Seans Sayısı: $numberOfSession',
+            GroupTextUtil.sessionNumber + numberOfSession.toString(),
             AppTextStyles.groupTextStyle(true)),
         Align(
             alignment: Alignment.centerRight,
@@ -59,9 +60,9 @@ class GroupInformationContainer extends StatelessWidget {
               textColor: Colors.white,
               container: AppContainers.purpleButtonContainer(null),
               onTap: () {},
-              text: 'Katıl',
+              text: GroupTextUtil.join,
             )),
-        smallSizedBox()// eski hali const SizedBox(height: 15,)
+        smallSizedBox() // eski hali const SizedBox(height: 15,)
       ],
     );
   }

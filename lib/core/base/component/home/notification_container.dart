@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/buttons/custom_button.dart';
-import '../../models/row_model.dart';
+import '../../util/base_model.dart';
 import '../../util/base_utility.dart';
 import '../../util/text_utility.dart';
+import '../buttons/custom_button.dart';
 import '../group/row_view.dart';
 
 class NotificationContainer extends StatelessWidget {
@@ -46,13 +46,7 @@ class NotificationContainer extends StatelessWidget {
 }
 
 Widget notificationConst() {
-  return rowView(
-      RowModel(
-          text: HomeTextUtil.notification,
-          textStyle: AppTextStyles.groupTextStyle(true),
-          leadingIcon: IconUtility.notification,
-          isAlignmentBetween: false),
-      AppPaddings.reminderPadding);
+  return rowView(UiBaseModel.rowcontainer(false), AppPaddings.reminderPadding);
 }
 
 Padding notificationContent(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/t_message_controller.dart';
+import 'package:terapievim/core/base/util/base_model.dart';
 
 import '../../../../core/base/component/group/row_view.dart';
 import '../../../../core/base/component/home/custom_container.dart';
@@ -9,8 +10,8 @@ import '../../../../core/base/models/row_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 
 class PersonView extends StatelessWidget {
-  PersonView({super.key, required this.gruopName, required this.list});
-  final String gruopName;
+  PersonView({super.key, required this.groupName, required this.list});
+  final String groupName;
   final List<String> list;
   final TherapistyMessageController therapistyMessageController =
       Get.put(TherapistyMessageController());
@@ -29,13 +30,7 @@ class PersonView extends StatelessWidget {
                 onTap: () {
                   therapistyMessageController.personListchange();
                 },
-                child: rowView(
-                    RowModel(
-                        text: gruopName,
-                        textStyle:
-                            AppTextStyles.normalTextStyle("medium", false),
-                        isAlignmentBetween: true,
-                        trailingIcon: IconUtility.arrowDown),
+                child: rowView(UiBaseModel.personviewRowModel(groupName),
                     AppPaddings.generalPadding)),
           ),
         ),

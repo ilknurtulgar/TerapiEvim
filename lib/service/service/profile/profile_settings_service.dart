@@ -6,6 +6,7 @@ import '../../../core/constants/utils/text_constants/error_text_const.dart';
 import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/empty_model.dart';
+import '../../model/common/profile/about_me_model.dart';
 import '../../model/common/profile/birth_date_model.dart';
 import '../../model/common/profile/gender_model.dart';
 import '../../model/common/profile/name_model.dart';
@@ -73,7 +74,7 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
   }
 
   @override
-  Future<String?> updatePassword(PasswordModel passwordModel) async {
+  Future<String?> updatePassword(PasswordModel password) async {
     try {
       final FirebaseAuth firebaseAuth = FirebaseAuth.instance;
 
@@ -81,12 +82,12 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
         throw Exception(ErrorConst.currentUserIsNull);
       }
 
-      if (passwordModel.password == null) {
+      if (password.password == null) {
         throw Exception(ErrorConst.passwordIsNull);
       }
 
       await firebaseAuth.currentUser
-          ?.updatePassword(passwordModel.password!)
+          ?.updatePassword(password.password!)
           .catchError((onError) async {
         throw Exception(onError);
       });
@@ -95,5 +96,18 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
     } catch (e) {
       return e.toString();
     }
+  }
+
+  @override
+  Future<String?> updateAboutMe(AboutMeModel aboutMe) async {
+    final result = await manager.update<AboutMeModel, EmptyModel>(
+      collectionPath: APIConst.users,
+      docId: userId,
+      data: aboutMe,
+    );
+    if (result.error != null) {
+      return result.error?.description;
+    }
+    return null;
   }
 }

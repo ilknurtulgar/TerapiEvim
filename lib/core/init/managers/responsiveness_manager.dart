@@ -54,8 +54,8 @@ class ResponsivenessManager {
     if (heightFactor < 0.5) {
       heightFactor = 0.5;
     }
-    print('heightFactor:${heightFactor}');
-    print('widthFactorMax1:${widthFactorMax1}');
+    //print('heightFactor:${heightFactor}');
+    //print('widthFactorMax1:${widthFactorMax1}');
     SizeUtil.heightFactor = heightFactorMax1.roundToPrecision(3);
     SizeUtil.widthFactor = widthFactorMax1.roundToPrecision(3);
   }

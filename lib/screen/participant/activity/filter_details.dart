@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/participant/activity/a_filter.dart';
 import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
+
+import '../../../core/base/util/base_model.dart';
 
 class FilterDetails extends StatelessWidget {
   FilterDetails({super.key});
@@ -18,14 +19,7 @@ class FilterDetails extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            rowView(
-                RowModel(
-                    text: ActivityTextUtil.psychologist,
-                    textStyle: AppTextStyles.normalTextStyle("big", false),
-                    leadingIcon:
-                        IconButton(onPressed: () {}, icon: IconUtility.back),
-                    isAlignmentBetween: false),
-                AppPaddings.generalPadding),
+            rowView(UiBaseModel.filterdetails(), AppPaddings.generalPadding),
             divider(false),
             filterchoice(),
             divider(false),

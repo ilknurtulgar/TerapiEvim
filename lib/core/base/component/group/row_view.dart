@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../init/managers/responsiveness_manager.dart';
 import '../../models/row_model.dart';
+import '../../util/base_utility.dart';
 
 Widget rowView(
   RowModel rowModel,
@@ -30,11 +30,8 @@ Widget rowView(
 Widget texts(RowModel rowModel) {
   return Row(
     children: [
-      Text(
-        rowModel.text,
-        style: rowModel.textStyle,
-        textScaleFactor: ResponsivenessManager.instance.widthFactorMax1,
-      ),
+
+      responsivenestext(rowModel.text, rowModel.textStyle),
       Text(
         rowModel.text2!,
         style: rowModel.textStyle2,

@@ -1,15 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/login/custom_textfield.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
 
+import '../../../controller/tactivity_controller.dart';
 import '../../../core/base/component/group/group_box.dart';
+import '../../participant/activity/a_filter.dart';
 
-class TherapistActivityScreen extends StatelessWidget {
+class TherapistActivityScreen extends StatefulWidget {
   const TherapistActivityScreen({super.key});
+
+  @override
+  State<TherapistActivityScreen> createState() =>
+      _TherapistActivityScreenState();
+}
+
+class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
+  TherapistActivtyController therapistActivtyController =
+      Get.put(TherapistActivtyController());
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +99,17 @@ class TherapistActivityScreen extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 2, top: 10),
-          child: search(searchModel),
+          child: search(UiBaseModel.searchModel(
+            ActivityTextUtil.searchText,
+            IconButton(
+              onPressed: () {
+                context.push(const FilterScreen());
+
+                //trendyolfiltreicondüzenleme
+              },
+              icon: IconUtility.fiterIcon,
+            ),
+          )),
         ),
         IconButton(
             onPressed: () {

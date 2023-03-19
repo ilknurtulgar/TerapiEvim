@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../../screen/participant/profile/util/profile_page_utility.dart';
+import '../../util/base_model.dart';
 import '../../util/base_utility.dart';
 import '../../util/text_utility.dart';
 import '../group/group.dart';
@@ -44,9 +44,9 @@ class ProfilePageListView extends StatelessWidget {
         isBorderPurple: true,
         heading: groupNameList![index],
         onTap: () {/*gruba git fonksiyonu*/},
-        row1: ProfilePageUtility.doubleTextRow(
+        row1: UiBaseModel.doubleTextRow(
             TherapistProfileTextUtil.advisor, firstRowTextList![index], true),
-        row2: ProfilePageUtility.normalTextRow(
+        row2: UiBaseModel.normalTextRow(
             secondRowTextList[index],
             IconUtility.clockIcon.icon!,
             AppTextStyles.normalTextStyle('medium', false)),

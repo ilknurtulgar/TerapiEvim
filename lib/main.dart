@@ -6,14 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/controller/group_controller.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/participant/home/main_home.dart';
 import 'controller/auth/auth_controller.dart';
 import 'controller/main_controller.dart';
 import 'controller/therapist_group_controller.dart';
 import 'controller/therapist_profile_controller.dart';
+import 'core/base/util/base_utility.dart';
 import 'core/init/cache/local_manager.dart';
 import 'core/init/config/config.dart';
+import 'screen/participant/home/main_home.dart';
 import 'screen/participant/login/login_page.dart';
 import 'service/firebase_options.dart';
 

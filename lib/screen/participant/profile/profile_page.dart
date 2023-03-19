@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/profile/custom_list_view.dart';
+import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
@@ -36,7 +37,9 @@ class ParticipantProfilePage extends StatelessWidget {
                   smallSizedBox(),
                   participantGroupColumn(),
                   smallSizedBox(),
-                  ProfilePageUtility.boldMainTitleRowView(
+
+                  UiBaseModel.boldMainTitleRowView(
+
                       ParticipantProfileTextUtil.lastRead, 'method', () {}),
                   ProfilePageListView(
                     isForParticipant: true,
@@ -46,7 +49,9 @@ class ParticipantProfilePage extends StatelessWidget {
                     secondRowTextList:
                         DemoInformation.groupInformation.methodTitles,
                   ),
-                  ProfilePageUtility.boldMainTitleRowView(
+
+                  UiBaseModel.boldMainTitleRowView(
+
                       ParticipantProfileTextUtil.joinedSeminars,
                       'seminar',
                       () {}),
@@ -73,7 +78,9 @@ class ParticipantProfilePage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         rowView(
-            ProfilePageUtility.normalTextRow(
+
+            UiBaseModel.normalTextRow(
+
                 ParticipantProfileTextUtil.myActiveGroup,
                 IconUtility.navGroup,
                 AppTextStyles.profileTextStyles(true, true)),
@@ -90,13 +97,12 @@ class ParticipantProfilePage extends StatelessWidget {
       isBorderPurple: true,
       heading: DemoInformation.groupInformation.groupName,
       onTap: () {}, // navigate to group page
-      row1: ProfilePageUtility.doubleTextRow(
-          ParticipantProfileTextUtil.mainTherpist,
-          DemoInformation.groupInformation.mainTherapistName,
-          true),
-      row2: ProfilePageUtility.doubleTextRow(ParticipantProfileTextUtil.advisor,
+      row1: UiBaseModel.doubleTextRow(ParticipantProfileTextUtil.mainTherpist,
+          DemoInformation.groupInformation.mainTherapistName, true),
+      row2: UiBaseModel.doubleTextRow(ParticipantProfileTextUtil.advisor,
           DemoInformation.groupInformation.secondTherapistName, true),
-      row3: ProfilePageUtility.normalTextRow(
+      row3: UiBaseModel.normalTextRow(
+
           DemoInformation.groupInformation.therapyTime,
           IconUtility.clockIcon.icon!,
           AppTextStyles.normalTextStyle('medium', false)),

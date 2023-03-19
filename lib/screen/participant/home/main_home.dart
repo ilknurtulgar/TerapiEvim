@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 import '../../../controller/main_controller.dart';
+import '../../../controller/tactivity_controller.dart';
 import '../../../core/base/component/bottom_nav_bar/bottom_nav_bar_custom.dart';
 import '../../../core/base/component/bottom_nav_bar/custom_tab_scaffold.dart';
 import '../../../core/init/managers/responsiveness_manager.dart';
@@ -26,6 +27,7 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
   void initState() {
     _controller.onInit();
     super.initState();
+    Get.put(TherapistActivtyController());
   }
 
   @override

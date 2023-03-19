@@ -6,6 +6,8 @@ import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/home/home.dart';
 import 'package:terapievim/screen/therapist/home/session_screen.dart';
 
+import '../../../core/base/component/home/notification_container.dart';
+
 class TherapistHome extends StatelessWidget {
   const TherapistHome({super.key});
 

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/home/notification_from_ther_container.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/home/coping_methods.dart';
+
+import '../../../core/base/util/base_model.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -54,7 +55,7 @@ Padding mindetailesbox(
     padding: context.paddingMainHorizontal2,
     child: SeminarMin(
       onTap: onTap,
-      row: rowModel(rowmodeltext),
+      row: UiBaseModel.rowModel(rowmodeltext),
       isBorderPurple: true,
     ),
   );
@@ -70,14 +71,4 @@ Widget headingtext(bool isHeading, bool isPadding, String heading) {
           style: AppTextStyles.heading(isHeading),
         ),
       ));
-}
-
-//kalıcı
-
-RowModel rowModel(String rowmodeltext) {
-  return RowModel(
-      text: rowmodeltext,
-      textStyle: AppTextStyles.groupTextStyle(false),
-      isAlignmentBetween: true,
-      trailingIcon: IconUtility.forward);
 }

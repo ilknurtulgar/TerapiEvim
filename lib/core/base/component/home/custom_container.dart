@@ -3,6 +3,7 @@ import 'package:terapievim/core/base/component/profile/image/custom_circle_avata
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
+import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 
 class CustomContainer extends StatelessWidget {
   const CustomContainer(
@@ -20,19 +21,24 @@ class CustomContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Card(
-        elevation: 5,
-        color: containerModel.backgroundColor,
-        shadowColor: containerModel.shadowColor,
-        shape: customContainerShape(),
-        child: SizedBox(
-          width: containerModel.width,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              isThereCardModel ? listTile() : const SizedBox(),
-              widget ?? const SizedBox(),
-            ],
+      child: Padding(
+        padding: AppPaddings.componentPadding,
+        child: Card(
+          elevation: 5,
+          color: containerModel.backgroundColor,
+          shadowColor: containerModel.shadowColor,
+          shape: customContainerShape(),
+          child: SizedBox(
+            height: widget==null ? containerModel.height : null,
+            width: (widget==null && containerModel.width!=null) ? containerModel.width : PixelScreen().logicalWidth,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: widget==null ? MainAxisAlignment.center : MainAxisAlignment.start,
+              children: [
+                isThereCardModel ? listTile() : const SizedBox(),
+                widget ?? const SizedBox(),
+              ],
+            ),
           ),
         ),
       ),

@@ -17,15 +17,15 @@ class LoginPageUtility {
     );
   }
 
-  static SizedBox  myDivider(bool isAtLeft) => SizedBox(
-    width: SizeUtil.normalValueWidth,
-    child: Divider(
+  static SizedBox myDivider(bool isAtLeft) => SizedBox(
+        width: SizeUtil.normalValueWidth,
+        child: Divider(
           color: AppColors.black,
           endIndent: isAtLeft ? 10 : 0,
           indent: isAtLeft ? 0 : 10,
           thickness: 1,
         ),
-  );
+      );
 
   static CustomButton button(
       bool isForLogin, bool isInLoginPage, Function() onTap) {

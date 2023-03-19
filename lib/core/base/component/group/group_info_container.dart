@@ -87,7 +87,7 @@ class GroupInformationContainer extends StatelessWidget {
             child: participantContainer(
               therapist,
               SizeUtil.normalValueHeight,
-              width,
+              width: width,
             )),
       ],
     );

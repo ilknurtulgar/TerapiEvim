@@ -22,25 +22,28 @@ class NotificationFromTherContainer extends StatelessWidget {
       containerModel: AppContainers.classicWhiteContainer,
       isThereCardModel: true,
       cardModel: cardModel,
-      widget: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Padding(
-            padding: const EdgeInsets.only(left: 20),
-            child: Text(
-              explanation,
-              textAlign: TextAlign.left,
-              style: AppTextStyles.normalTextStyle('small', false),
-            )),
-        Align(
-            alignment: Alignment.centerRight,
-            child: Padding(
-                padding: AppPaddings.purpleButtonAtRight,
+      widget: Padding(
+        padding: AppPaddings.customContainerInsidePadding(true),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            explanation,
+            textAlign: TextAlign.left,
+            style: AppTextStyles.normalTextStyle('small', false),
+          ),
+          Padding(
+              padding: AppPaddings.customContainerInsidePadding(false),
+              child: Align(
+                alignment: Alignment.centerRight,
                 child: CustomButton(
                   textColor: Colors.white,
                   container: AppContainers.purpleButtonContainer(null),
                   onTap: buttonOnTap,
                   text: buttonText,
-                )))
-      ]),
+                ),
+              ))
+        ]),
+      ),
     );
   }
 }

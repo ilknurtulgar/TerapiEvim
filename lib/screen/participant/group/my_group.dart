@@ -5,9 +5,9 @@ import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/group/group_out.dart';
 import 'package:terapievim/screen/therapist/group/therapist_about.dart';
 import '../../../core/base/component/group/row_view.dart';
+import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/text_utility.dart';
 
 class MyGroup extends StatelessWidget {
@@ -15,19 +15,13 @@ class MyGroup extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    RowModel appBar = RowModel(
-        text: GroupTextUtil.myGroupText,
-        textStyle: AppTextStyles.heading(false),
-        trailingIcon: const GroupOut(),
-        isAlignmentBetween: true);
-
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              rowView(appBar, AppPaddings.appBarPadding),
+              rowView(UiBaseModel.appBar(), AppPaddings.appBarPadding),
               CustomHeading(
                   isalignmentstart: true,
                   text: GroupTextUtil.upcomingMeetingText),
@@ -72,7 +66,6 @@ class MyGroup extends StatelessWidget {
   ListView participants(RowModel person) {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
-      padding: AppPaddings.participantsPadding,
       shrinkWrap: true,
       itemCount: DemoInformation.tmpParticipantNumber,
       itemBuilder: ((context, index) => DemoInformation.tmpParticipant),

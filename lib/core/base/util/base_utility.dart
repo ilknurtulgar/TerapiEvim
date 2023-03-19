@@ -10,7 +10,6 @@ import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart'
 import '../../../screen/participant/activity/activities.dart';
 import '../../../screen/participant/group/group.dart';
 import '../../../screen/participant/home/home.dart';
-import '../../../screen/participant/message/message.dart';
 import '../../../screen/participant/profile/models/group_model.dart';
 import '../../../screen/participant/profile/profile_page.dart';
 import '../../../screen/participant/video_call/model/person_in_call_model.dart';
@@ -18,6 +17,7 @@ import '../../../screen/therapist/activity/activity_screen.dart';
 import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
 
+import '../../init/managers/responsiveness_manager.dart';
 import '../models/card_model.dart';
 
 import '../component/group/questions_button.dart';
@@ -272,7 +272,7 @@ class AppContainers {
               : AppColors.white,
           height: SizeUtil.smallValueHeight);
 
-  static ContainerModel participantContainer(double height, double width) =>
+  static ContainerModel participantContainer(double height, {double? width}) =>
       ContainerModel(
           height: height, //52,
           width: width, //342,
@@ -324,6 +324,7 @@ class AppPaddings {
       EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
   static const EdgeInsets rowViewPadding =
       EdgeInsets.symmetric(vertical: 4, horizontal: 16);
+
 //yukardakiler kesinlestirildi
   static const EdgeInsets generalPadding = EdgeInsets.all(8);
   static const EdgeInsets reminderPadding =
@@ -448,6 +449,10 @@ class AppPaddings {
       const EdgeInsets.symmetric(vertical: 12);
   static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
       EdgeInsets.only(top: 305, left: isThereLeftPadding ? 24 : 0);
+
+  static EdgeInsets customContainerInsidePadding(bool isHorizontal) =>
+      EdgeInsets.symmetric(
+          horizontal: isHorizontal ? 16 : 0, vertical: isHorizontal ? 0 : 16);
 }
 
 class AppBorderRadius {
@@ -519,7 +524,7 @@ Padding colon(bool isInAlertDialog) {
 class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
     const TherapistHome(),
-    const TherapistActivityScreen(),
+    TherapistActivityScreen(),
     TherapistGroupPage(),
     const TherapistMessageScreen(),
     const TherapistProfilePage(),
@@ -528,7 +533,7 @@ class NavigateUtil {
     const HomeScreen(),
     const ActivitiesScreen(),
     GroupScreen(),
-    MessageScreen(),
+    // MessageScreen(),
     const ParticipantProfilePage(),
   ];
 }
@@ -596,7 +601,7 @@ class DemoInformation {
   static const String message =
       "Flutter, Google tarafından oluşturulan açık kaynaklı bir UI yazılım geliştirme kitidir. Android, iOS, Windows, Mac, Linux ve web için uygulamalar geliştirmek için kullanılıyor. Flutter'ın ilk sürümü  olarak biliniyordu ve Android işletim sisteminde çalışıyordu.";
   static const List<String> home = [
-    "fdvd",
+    "fdvd deneme deneme deneme deneme ssssdsfsmbfdmösfbsfösbnöfmbsöbfnömsbfö deneme deneme deneme deneme denemeee deneme deneme deneme",
     "fşdv",
     "fgbng",
     "yasemin",
@@ -659,8 +664,7 @@ class DemoInformation {
       isAlignmentBetween: false);
   static var tmpParticipant = participantContainer(
       CardModel(imagePath: DemoInformation.imagePath, title: "Aleyna Tilki"),
-      52,
-      342);
+      SizeUtil.normalValueHeight);
   static int tmpParticipantNumber = 5;
   static String tmpNewMetotText = "Yeni Yazimda size bla bla anlattim";
   static String tmppdfName = "YeniliklerleBasaCikma.pdf";
@@ -898,4 +902,13 @@ class SizeUtil {
 
 class Filter {
   static ImageFilter blur = ImageFilter.blur(sigmaX: 10.0, sigmaY: 10.0);
+}
+
+//responsiveness vermemiz gereken textlerde bunu çağırabiliriz.
+Widget responsivenestext(String text, TextStyle style) {
+  return Text(
+    text,
+    style: style,
+    textScaleFactor: ResponsivenessManager.instance.widthFactorMax1,
+  );
 }

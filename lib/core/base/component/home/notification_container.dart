@@ -12,7 +12,6 @@ class NotificationContainer extends StatelessWidget {
       required this.name,
       required this.contentText});
   final NotificationType type;
-
   final String name;
   final String contentText;
 
@@ -20,6 +19,7 @@ class NotificationContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     final String notificationText = textSet(type);
     return Container(
+      margin: AppPaddings.componentPadding,
       decoration: AppBoxDecoration.shadow,
       width: SizeUtil.generalWidth,
       child: Column(
@@ -35,7 +35,7 @@ class NotificationContainer extends StatelessWidget {
 
   Padding notificationButton() {
     return Padding(
-      padding: const EdgeInsets.only(),
+      padding: AppPaddings.rowViewPadding,
       child: CustomButton(
           textColor: Colors.white,
           container: AppContainers.notificationButton,
@@ -46,13 +46,14 @@ class NotificationContainer extends StatelessWidget {
 }
 
 Widget notificationConst() {
-  return rowView(UiBaseModel.rowcontainer(false), AppPaddings.reminderPadding);
+  return rowView(
+      UiBaseModel.rowcontainer(false), AppPaddings.miniHeadingPadding(true));
 }
 
 Padding notificationContent(
     String reminderTypeText, String name, String contentText) {
   return Padding(
-    padding: AppPaddings.reminderPadding,
+    padding: AppPaddings.miniHeadingPadding(true),
     child: Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -60,19 +61,20 @@ Padding notificationContent(
           reminderTypeText,
           style: AppTextStyles.groupTextStyle(false),
         ),
-        Padding(
-            padding: AppPaddings.reminderBetweenText,
-            child: customText("${HomeTextUtil.therapyNameTwoDots} $name")),
+        customText("${HomeTextUtil.therapyNameTwoDots} $name"),
         customText(contentText),
       ],
     ),
   );
 }
 
-Text customText(String reminderTypeText) {
-  return Text(
-    reminderTypeText,
-    style: AppTextStyles.groupTextStyle(true),
+Widget customText(String reminderTypeText) {
+  return Padding(
+    padding: AppPaddings.miniTopPadding,
+    child: Text(
+      reminderTypeText,
+      style: AppTextStyles.groupTextStyle(true),
+    ),
   );
 }
 

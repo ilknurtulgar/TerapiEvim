@@ -325,12 +325,10 @@ class AppPaddings {
   static const EdgeInsets rowViewPadding =
       EdgeInsets.symmetric(vertical: 4, horizontal: 16);
 
+  static const EdgeInsets miniTopPadding = EdgeInsets.only(top: 10);
+
 //yukardakiler kesinlestirildi
   static const EdgeInsets generalPadding = EdgeInsets.all(8);
-  static const EdgeInsets reminderPadding =
-      EdgeInsets.symmetric(vertical: 16, horizontal: 16);
-  static const EdgeInsets reminderBetweenText =
-      EdgeInsets.symmetric(vertical: 16.0);
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
       0, 10, 20, 10); // sağ alt bütün mor butonlar için geçerli
   static const EdgeInsets copingButtonPadding =
@@ -369,15 +367,9 @@ class AppPaddings {
       EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 20);
   static const EdgeInsets datePadding = EdgeInsets.only(left: 19);
   static const EdgeInsets clockPadding = EdgeInsets.only(left: 30);
-  static const EdgeInsets notificationContainerPadding =
-      EdgeInsets.only(bottom: 11, top: 8);
   static const EdgeInsets contentPadding = EdgeInsets.all(3);
 
   //grup
-  static const EdgeInsets userTestPadding = EdgeInsets.only(bottom: 20);
-
-  static const EdgeInsets userTestQuestionPadding =
-      EdgeInsets.symmetric(vertical: 30, horizontal: 23);
 
   static EdgeInsets groupCategoryPadding =
       const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24);
@@ -422,7 +414,7 @@ class AppPaddings {
     left: 150,
     top: 30,
   );
-  static const EdgeInsets tGroupPersonPadding = EdgeInsets.only(top: 10);
+
   static const EdgeInsets tGroupMetotPadding =
       EdgeInsets.symmetric(vertical: 7);
   static const EdgeInsets tGroupAppBarPaddong =
@@ -524,7 +516,7 @@ Padding colon(bool isInAlertDialog) {
 class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
     const TherapistHome(),
-    TherapistActivityScreen(),
+    const TherapistActivityScreen(),
     TherapistGroupPage(),
     const TherapistMessageScreen(),
     const TherapistProfilePage(),

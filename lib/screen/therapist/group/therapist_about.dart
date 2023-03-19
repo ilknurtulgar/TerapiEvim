@@ -76,7 +76,7 @@ Widget activity(RowModel row, Function() func) {
 
 Widget otherGroups(List<RowModel> groups) {
   return Padding(
-    padding: AppPaddings.tGroupPersonPadding,
+    padding: AppPaddings.miniTopPadding,
     child: Column(
       children: [
         CustomHeading(

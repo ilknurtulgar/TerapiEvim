@@ -1,5 +1,5 @@
-import 'package:vexana/vexana.dart';
 import 'package:json_annotation/json_annotation.dart';
+import '../../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 import 'meetings_date.dart';
 part 't_group_model.g.dart';
 

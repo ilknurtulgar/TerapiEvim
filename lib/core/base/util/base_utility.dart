@@ -442,9 +442,12 @@ class AppPaddings {
   static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
       EdgeInsets.only(top: 305, left: isThereLeftPadding ? 24 : 0);
 
-  static EdgeInsets customContainerInsidePadding(bool isHorizontal) =>
-      EdgeInsets.symmetric(
-          horizontal: isHorizontal ? 16 : 0, vertical: isHorizontal ? 0 : 16);
+  static EdgeInsets customContainerInsidePadding(int paddingNo) =>
+      EdgeInsets.symmetric(horizontal: paddingNo != 2 ? 16 : 0, vertical: paddingNo != 1 ? 16 : 0);
+  // 1 numara horizontal
+  // 2 numara vertical
+  // 3 numara horizontal ve vertical
+  static EdgeInsets componentOnlyTopPadding = const EdgeInsets.only(top: 8);
 }
 
 class AppBorderRadius {
@@ -802,7 +805,7 @@ class DemoInformation {
   static List<String> methodNames =
       List.generate(5, (index) => 'Kendini Bil ${index + 1}');
   static List<String> seminarNames =
-      List.generate(5, (index) => 'Seminar ${index + 1}');
+      List.generate(5, (index) => 'Seminar  seminneeerrrrr ${index + 1}');
   static List<String> advisorNames =
       List.generate(5, (index) => 'Yeşim ${index + 1}');
 }

@@ -26,7 +26,7 @@ class MethodDownloadingContainer extends StatelessWidget {
       cardModel: cardModel,
       time: time,
       widget: Padding(
-        padding: AppPaddings.customContainerInsidePadding(true),
+        padding: AppPaddings.customContainerInsidePadding(1),
         child: Align(
           alignment: Alignment.centerLeft,
           child: Column(
@@ -36,7 +36,7 @@ class MethodDownloadingContainer extends StatelessWidget {
                    style: AppTextStyles.normalTextStyle('medium', false),
               ),
               Padding(
-               padding: AppPaddings.customContainerInsidePadding(false),
+               padding: AppPaddings.customContainerInsidePadding(2),
                child: CustomButton(
                 textColor: Colors.purple,
                 container: AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),

@@ -9,10 +9,15 @@ class ChoosingTimeGroupTherapy extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        timeContainer(true), // saat 
-        colon(false),
-        timeContainer(false) // dakika
+        Row(
+          children: [
+            timeContainer(true), // saat 
+            colon(false),
+            timeContainer(false) // dakika
+          ],
+        ),
       ],
     );
   }

@@ -19,17 +19,18 @@ class SessionScreen extends StatelessWidget {
           child: Stack(children: [
             Column(
               children: [
-                Padding(
-                  padding: AppPaddings.topAppbar,
-                  child: messageappbar(
-                    HomeTextUtil.myMinuteSessions,
-                    const SizedBox.shrink(),
-                    IconButton(
-                        onPressed: () {
-                          context.push(const AvailableHours());
-                        },
-                        icon: IconUtility.clockIcon),
-                  ),
+                messageappbar(
+                  HomeTextUtil.myMinuteSessions,
+                  IconButton(
+                      onPressed: () {
+                        context.pop();
+                      },
+                      icon: IconUtility.back),
+                  IconButton(
+                      onPressed: () {
+                        context.push(const AvailableHours());
+                      },
+                      icon: IconUtility.clockIcon),
                 ),
                 sizedbox(),
                 aboutparticipant(),

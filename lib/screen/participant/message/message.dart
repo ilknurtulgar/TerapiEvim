@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../core/base/component/group/custom_heading.dart';
 import '../../../core/base/component/login/custom_textfield.dart';
@@ -19,7 +20,7 @@ class MessageScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            messageappbar(),
+            doubleappbar(context),
             Padding(
               padding: AppPaddings.dividerPadding,
               child: divider(false),
@@ -98,17 +99,15 @@ class MessageScreen extends StatelessWidget {
     );
   }
 
-  Widget messageappbar() {
-    return Padding(
-      padding: AppPaddings.appbarLeftPadding,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          circleavatar(),
-          CustomHeading(
-              text: DemoInformation.headingabactivity, isalignmentstart: false),
-        ],
-      ),
+  Widget doubleappbar(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        backButton(context, () => context.pop()),
+        circleavatar(),
+        CustomHeading(
+            text: DemoInformation.headingabactivity, isalignmentstart: false),
+      ],
     );
   }
 

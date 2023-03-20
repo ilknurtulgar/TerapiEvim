@@ -904,3 +904,20 @@ Widget responsivenestext(String text, TextStyle style) {
     textScaleFactor: ResponsivenessManager.instance.widthFactorMax1,
   );
 }
+
+class Responsive {
+  static width(double p, BuildContext context) {
+    return MediaQuery.of(context).size.width * (p / 390);
+  }
+
+  static height(double p, BuildContext context) {
+    return MediaQuery.of(context).size.height * (p / 844);
+  }
+}
+
+IconButton backButton(BuildContext context, Function()? onPressed) {
+  return IconButton(onPressed: onPressed, icon: IconUtility.back);
+}
+
+IconButton closeIcon(Function()? onPressed) =>
+    IconButton(onPressed: onPressed, icon: IconUtility.close);

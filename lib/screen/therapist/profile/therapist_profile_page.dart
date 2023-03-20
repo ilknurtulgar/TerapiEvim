@@ -28,7 +28,7 @@ class TherapistProfilePage extends StatelessWidget {
                   50,
                   10),
               Padding(
-                padding: AppPaddings.profilePageBigPadding(true),
+                padding: AppPaddings.profilePageBigPadding(true),//left padding genel page padding zamanında kaldırılacak
                 child: Column(
                   children: [
                     therapistName(),
@@ -97,18 +97,15 @@ class TherapistProfilePage extends StatelessWidget {
     );
   }
 
-  Padding aboutMeContainer() {
-    return Padding(
-      padding: const EdgeInsets.only(right: 20),
-      child: CustomContainer(
-        containerModel: AppContainers.classicWhiteContainer,
-        isThereCardModel: false,
-        widget: Padding(
-          padding: const EdgeInsets.all(15),
-          child: Text(
-            DemoInformation.aboutMeController.text,
-            style: AppTextStyles.normalTextStyle('medium', false),
-          ),
+  Widget aboutMeContainer() {
+    return CustomContainer(
+      containerModel: AppContainers.classicWhiteContainer,
+      isThereCardModel: false,
+      widget: Padding(
+        padding: AppPaddings.customContainerInsidePadding(3),
+        child: Text(
+          DemoInformation.aboutMeController.text,
+          style: AppTextStyles.normalTextStyle('medium', false),
         ),
       ),
     );

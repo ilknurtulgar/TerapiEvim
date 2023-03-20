@@ -13,6 +13,12 @@ class ActivityService extends IActivityService with BaseService {
 
   @override
   Future<CreatedIdResponse?> createActivity(ActivityModel activity) async {
+    /// Setting empty string so it is not null
+    activity.id = '';
+
+    /// Setting empty list so it is not null
+    activity.participantsId = [];
+
     final CreatedIdResponse? createdIdResponse = await manager.create(
       collectionPath: APIConst.therapist,
       docId: userId,

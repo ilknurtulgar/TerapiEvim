@@ -5,7 +5,4 @@ import 'package:terapievim/service/service/_therapist/activity/i_activity_servic
 void main() {
   final VexaFireManager vexaFireManager = VexaFireManager.instance;
 
-  IActivityService activityService =
-      ActivityService(vexaFireManager.networkManager, '22');
-
 }

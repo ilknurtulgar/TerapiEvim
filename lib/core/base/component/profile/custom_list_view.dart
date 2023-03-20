@@ -40,9 +40,8 @@ class ProfilePageListView extends StatelessWidget {
     return Padding(
       padding: AppPaddings.smallPadding(3),
       child: GroupClass(
-        height: SizeUtil.doubleNormalValueHeight,
         width: SizeUtil.hugeValueWidth,
-        borderColor: AppColors.cornFlowerBlue,
+        isBorderPurple: true,
         heading: groupNameList![index],
         onTap: () {/*gruba git fonksiyonu*/},
         row1: UiBaseModel.doubleTextRow(

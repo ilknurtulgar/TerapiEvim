@@ -30,6 +30,7 @@ Widget rowView(
 Widget texts(RowModel rowModel) {
   return Row(
     children: [
+
       responsivenestext(rowModel.text, rowModel.textStyle),
       Text(
         rowModel.text2!,

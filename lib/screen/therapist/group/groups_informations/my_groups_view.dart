@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
@@ -7,6 +6,8 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart';
 import 'package:terapievim/screen/therapist/group/groups_informations/group_information.dart';
+
+import '../../../../core/base/component/group/group.dart';
 
 class MyGroups extends StatelessWidget {
   const MyGroups({super.key}); //gecici modeller
@@ -33,7 +34,7 @@ class MyGroups extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: 10,
                 itemBuilder: (context, index) {
-                  return SeminarMax(
+                  return GroupClass(
                     onTap: () {
                       context.push(GroupInformation());
                     },

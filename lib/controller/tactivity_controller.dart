@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/product/enum/local_keys_enum.dart';
 import 'package:terapievim/service/model/therapist/activity/activity_model.dart';
 
+import '../core/base/component/toast/toast.dart';
 import '../service/service/_therapist/activity/activity_service.dart';
 import '../service/service/_therapist/activity/i_activity_service.dart';
 import 'base/base_controller.dart';
@@ -21,6 +22,24 @@ class TherapistActivtyController extends GetxController with BaseController {
     // TODO: implement dispose
     super.dispose();
     activitynamController.dispose();
+    activitydateController.dispose();
+    activitydescriptionController.dispose();
+    activitytimeController.dispose();
+  }
+
+  Future<bool> updateActivity() async {
+    final result = await activityService.updateActivity(ActivityModel(
+      date: activitydateController.text.trim(),
+      description: activitydescriptionController.text.trim(),
+      hour: activitytimeController.text.trim(),
+      title: activitynamController.text.trim(),
+    ));
+
+    if (result == null) {
+      ///TODO add error handler
+      return false;
+    }
+    return true;
   }
 
   Future<bool> createActivity() async {
@@ -30,7 +49,6 @@ class TherapistActivtyController extends GetxController with BaseController {
       hour: activitytimeController.text.trim(),
       title: activitynamController.text.trim(),
     ));
-    print(result?.id);
 
     if (result == null) {
       ///TODO add error handler
@@ -46,6 +64,29 @@ class TherapistActivtyController extends GetxController with BaseController {
   final TextEditingController activitytimeController = TextEditingController();
 
   late IActivityService activityService;
+  Future<void> activtiyAdd() async {
+    final isValidted = _validateAddActivity();
+    if (isValidted == false) {
+      return;
+    }
+  }
+
+  bool _validateAddActivity() {
+    if (activitynamController.text.trim().isEmpty) {
+      flutterErrorToast("EVent Name  is empty");
+      return false;
+    }
+    if (activitydescriptionController.text.trim().isEmpty) {
+      flutterErrorToast("Event About is empty");
+    }
+    if (activitydateController.text.trim().isEmpty) {
+      flutterErrorToast("History is empty");
+    }
+    if (activitytimeController.text.trim().isEmpty) {
+      flutterErrorToast(" Time is empty");
+    }
+    return true;
+  }
 
   var isUpdate = false.obs;
   void updatechnage(int index) {

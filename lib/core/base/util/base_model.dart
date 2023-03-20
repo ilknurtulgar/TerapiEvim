@@ -168,4 +168,9 @@ class UiBaseModel {
       textStyle: AppTextStyles.groupTextStyle(true),
       isAlignmentBetween: true,
       trailingIcon: IconUtility.deleteIcon);
+  static secRowModel(Widget trailingIcon, String text) => RowModel(
+      trailingIcon: trailingIcon,
+      text: text,
+      textStyle: AppTextStyles.heading(false),
+      isAlignmentBetween: true);
 }

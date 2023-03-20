@@ -39,14 +39,11 @@ class TherapistHome extends StatelessWidget {
     );
   }
 
-  Padding notificationcontainer() {
-    return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24, vertical: 8),
-      child: NotificationContainer(
-        type: NotificationType.shortcallFail,
-        contentText: DemoInformation.notificationcontenttext,
-        name: DemoInformation.groupname,
-      ),
+  Widget notificationcontainer() {
+    return const NotificationContainer(
+      type: NotificationType.shortcallFail,
+      contentText: DemoInformation.notificationcontenttext,
+      name: DemoInformation.groupname,
     );
   }
 
@@ -56,15 +53,5 @@ class TherapistHome extends StatelessWidget {
       name: DemoInformation.name,
       time: DemoInformation.clockabomeactivty,
     );
-  }
-}
-
-class Responsive {
-  static width(double p, BuildContext context) {
-    return MediaQuery.of(context).size.width * (p / 390);
-  }
-
-  static height(double p, BuildContext context) {
-    return MediaQuery.of(context).size.height * (p / 844);
   }
 }

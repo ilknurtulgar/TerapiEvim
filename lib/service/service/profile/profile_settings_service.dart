@@ -16,16 +16,19 @@ import 'i_profile_settings_service.dart';
 
 class ProfileSettingsService extends IProfileSettingsService with BaseService {
   ProfileSettingsService(
-      IFirestoreManager<ErrorModelCustom> manager, String userId)
-      : super(manager, userId);
+      IFirestoreManager<ErrorModelCustom> manager)
+      : super(manager);
 
   @override
   Future<String?> updateBirthDate(
     BirthDateModel birthdate,
   ) async {
+    if (userId == null) return 'UserId is null';
+
+
     final result = await manager.update<BirthDateModel, EmptyModel>(
       collectionPath: APIConst.users,
-      docId: userId,
+      docId: userId!,
       data: birthdate,
     );
     if (result.error != null) {
@@ -36,9 +39,12 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
 
   @override
   Future<String?> updateGender(GenderModel gender) async {
+    if (userId == null) return 'UserId is null';
+
+
     final result = await manager.update<GenderModel, EmptyModel>(
       collectionPath: APIConst.users,
-      docId: userId,
+      docId: userId!,
       data: gender,
     );
     if (result.error != null) {
@@ -49,9 +55,11 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
 
   @override
   Future<String?> updateName(NameModel name) async {
+    if (userId == null) return 'UserId is null';
+
     final result = await manager.update<NameModel, EmptyModel>(
       collectionPath: APIConst.users,
-      docId: userId,
+      docId: userId!,
       data: name,
     );
     if (result.error != null) {
@@ -62,9 +70,11 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
 
   @override
   Future<String?> updatePhoneNumber(PhoneNumberModel phoneNumber) async {
+    if (userId == null) return 'UserId is null';
+
     final result = await manager.update<PhoneNumberModel, EmptyModel>(
       collectionPath: APIConst.users,
-      docId: userId,
+      docId: userId!,
       data: phoneNumber,
     );
     if (result.error != null) {
@@ -100,9 +110,12 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
 
   @override
   Future<String?> updateAboutMe(AboutMeModel aboutMe) async {
+    if (userId == null) return 'UserId is null';
+
+
     final result = await manager.update<AboutMeModel, EmptyModel>(
       collectionPath: APIConst.users,
-      docId: userId,
+      docId: userId!,
       data: aboutMe,
     );
     if (result.error != null) {

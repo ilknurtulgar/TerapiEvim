@@ -8,16 +8,11 @@ import '../../../model/therapist/activity/activity_model.dart';
 import 'i_activity_service.dart';
 
 class ActivityService extends IActivityService with BaseService {
-  ActivityService(IFirestoreManager<ErrorModelCustom> manager, String userId)
-      : super(manager, userId);
+  ActivityService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
 
   @override
   Future<CreatedIdResponse?> createActivity(ActivityModel activity) async {
-    /// Setting empty string so it is not null
-    activity.id = '';
-
-    /// Setting empty list so it is not null
-    activity.participantsId = [];
+    if (userId == null) return null;
 
     final CreatedIdResponse? createdIdResponse = await manager.create(
       collectionPath: APIConst.therapist,
@@ -35,9 +30,11 @@ class ActivityService extends IActivityService with BaseService {
 
   @override
   Future<String?> updateActivity(ActivityModel activity) async {
+    if (userId == null) return null;
+
     final result = await manager.update<ActivityModel, EmptyModel>(
       collectionPath: APIConst.therapist,
-      docId: userId,
+      docId: userId!,
       collectionPath2: APIConst.activities,
       docId2: activity.id,
       data: activity,
@@ -51,9 +48,11 @@ class ActivityService extends IActivityService with BaseService {
 
   @override
   Future<String?> deleteActivity(String activityId) async {
+    if (userId == null) return null;
+
     final result = await manager.delete(
       collectionPath: APIConst.therapist,
-      docId: userId,
+      docId: userId!,
       collectionPath2: APIConst.activities,
       docId2: activityId,
     );
@@ -65,9 +64,11 @@ class ActivityService extends IActivityService with BaseService {
 
   @override
   Future<ActivityModel?> getActivityById(String activityId) async {
+    if (userId == null) return null;
+
     final result = await manager.read<ActivityModel, ActivityModel>(
       collectionPath: APIConst.therapist,
-      docId: userId,
+      docId: userId!,
       collectionPath2: APIConst.activities,
       docId2: activityId,
       parseModel: ActivityModel(),
@@ -81,9 +82,11 @@ class ActivityService extends IActivityService with BaseService {
 
   @override
   Future<List<ActivityModel?>?> getActivities(int currentPage) async {
+    if (userId == null) return null;
+
     final result = await manager.read<ActivityModel, List<ActivityModel>>(
       collectionPath: APIConst.therapist,
-      docId: userId,
+      docId: userId!,
       collectionPath2: APIConst.activities,
       parseModel: ActivityModel(),
     );

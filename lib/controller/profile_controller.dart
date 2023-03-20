@@ -12,9 +12,8 @@ import 'base/base_controller.dart';
 class ProfileController extends GetxController with BaseController {
   @override
   void onInit() {
-    final String userId = localManager.getStringValue(LocalManagerKeys.userId);
 
-    service = ProfileSettingsService(vexaFireManager.networkManager, userId);
+    service = ProfileSettingsService(vexaFireManager.networkManager);
 
     name = localManager.getStringValue(LocalManagerKeys.name);
     nameController.text = name;
@@ -30,6 +29,7 @@ class ProfileController extends GetxController with BaseController {
 
     phoneNumber = localManager.getStringValue(LocalManagerKeys.phone);
     phoneNumberController.text = phoneNumber;
+    super.onInit();
   }
 
   late final IProfileSettingsService service;

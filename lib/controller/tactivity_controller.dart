@@ -11,12 +11,10 @@ import 'base/base_controller.dart';
 class TherapistActivtyController extends GetxController with BaseController {
   @override
   void onInit() {
-    // TODO: implement onInit
-    super.onInit();
-    final String userId = localManager.getStringValue(LocalManagerKeys.userId);
-    activityService = ActivityService(vexaFireManager.networkManager, userId);
 
-    print("thrapist activity init");
+    activityService = ActivityService(vexaFireManager.networkManager);
+
+    super.onInit();
   }
 
   @override

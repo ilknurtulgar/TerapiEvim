@@ -4,21 +4,21 @@ import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../../core/managers/firebase/firestore/models/empty_model.dart';
-import '../../../model/therapist/activity/activity_model.dart';
-import 'i_activity_service.dart';
+import '../../../model/therapist/group/t_group_model.dart';
+import 'i_t_group_service.dart';
 
-class ActivityService extends IActivityService with BaseService {
-  ActivityService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
+class TActivityService extends ITGroupService with BaseService {
+  TActivityService(IFirestoreManager<ErrorModelCustom> manager)
+      : super(manager);
 
   @override
-  Future<CreatedIdResponse?> createActivity(ActivityModel activity) async {
+  Future<CreatedIdResponse?> createGroup(TGroupModel group) async {
     if (userId == null) return null;
-
     final CreatedIdResponse? createdIdResponse = await manager.create(
       collectionPath: APIConst.therapist,
-      docId: userId,
-      collectionPath2: APIConst.activities,
-      data: activity.toJson()!,
+      docId: userId!,
+      collectionPath2: APIConst.groups,
+      data: group.toJson()!,
     );
 
     if (createdIdResponse != null) {
@@ -29,15 +29,14 @@ class ActivityService extends IActivityService with BaseService {
   }
 
   @override
-  Future<String?> updateActivity(ActivityModel activity) async {
+  Future<String?> updateGroup(TGroupModel group) async {
     if (userId == null) return null;
-
-    final result = await manager.update<ActivityModel, EmptyModel>(
+    final result = await manager.update<TGroupModel, EmptyModel>(
       collectionPath: APIConst.therapist,
       docId: userId!,
-      collectionPath2: APIConst.activities,
-      docId2: activity.id,
-      data: activity,
+      collectionPath2: APIConst.groups,
+      docId2: group.id,
+      data: group,
     );
     if (result.error != null) {
       return result.error?.description;
@@ -47,14 +46,14 @@ class ActivityService extends IActivityService with BaseService {
   }
 
   @override
-  Future<String?> deleteActivity(String activityId) async {
+  Future<String?> deleteGroup(String groupId) async {
     if (userId == null) return null;
 
     final result = await manager.delete(
       collectionPath: APIConst.therapist,
       docId: userId!,
-      collectionPath2: APIConst.activities,
-      docId2: activityId,
+      collectionPath2: APIConst.groups,
+      docId2: groupId,
     );
     if (result == false) {
       return "ERROR";
@@ -63,15 +62,14 @@ class ActivityService extends IActivityService with BaseService {
   }
 
   @override
-  Future<ActivityModel?> getActivityById(String activityId) async {
+  Future<TGroupModel?> getGroupById(String groupId) async {
     if (userId == null) return null;
-
-    final result = await manager.read<ActivityModel, ActivityModel>(
+    final result = await manager.read<TGroupModel, TGroupModel>(
       collectionPath: APIConst.therapist,
       docId: userId!,
-      collectionPath2: APIConst.activities,
-      docId2: activityId,
-      parseModel: ActivityModel(),
+      collectionPath2: APIConst.groups,
+      docId2: groupId,
+      parseModel: TGroupModel(),
     );
     if (result.error != null) {
       return null;
@@ -81,14 +79,14 @@ class ActivityService extends IActivityService with BaseService {
   }
 
   @override
-  Future<List<ActivityModel?>?> getActivities(int currentPage) async {
+  Future<List<TGroupModel?>?> getGroups(int currentPage) async {
     if (userId == null) return null;
 
-    final result = await manager.read<ActivityModel, List<ActivityModel>>(
+    final result = await manager.read<TGroupModel, List<TGroupModel>>(
       collectionPath: APIConst.therapist,
       docId: userId!,
       collectionPath2: APIConst.activities,
-      parseModel: ActivityModel(),
+      parseModel: TGroupModel(),
     );
     if (result.error != null) {
       return [];

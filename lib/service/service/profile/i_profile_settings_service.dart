@@ -12,13 +12,9 @@ abstract class IProfileSettingsService {
   /// but if String is returned, it means an error
   /// has occurred, and description is in String
 
-  IProfileSettingsService(
-    this.manager,
-    this.userId,
-  );
+  IProfileSettingsService(this.manager);
 
   final IFirestoreManager<ErrorModelCustom> manager;
-  final String userId;
 
   Future<String?> updateName(NameModel name);
 

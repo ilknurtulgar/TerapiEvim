@@ -4,7 +4,6 @@ part 'activity_model.g.dart';
 
 @JsonSerializable()
 class ActivityModel extends INetworkModel<ActivityModel> {
-  String? id;
   String? title;
   String? description;
   String? date;
@@ -12,7 +11,6 @@ class ActivityModel extends INetworkModel<ActivityModel> {
   List<String>? participantsId;
 
   ActivityModel({
-    this.id,
     this.title,
     this.description,
     this.date,

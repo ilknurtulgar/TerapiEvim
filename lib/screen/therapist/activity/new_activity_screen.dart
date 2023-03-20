@@ -3,10 +3,14 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/tactivity_controller.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/login/custom_textfield.dart';
+import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/screen/participant/home/home.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart';
+
+import '../../../core/base/component/group/row_view.dart';
+import '../../../core/base/models/row_model.dart';
 
 class NewActivityScreen extends StatefulWidget {
   const NewActivityScreen({super.key});
@@ -27,8 +31,16 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
             children: [
               Obx(
                 () => therapistActivtyController.isUpdate.value
-                    ? headingtext(false, true, ActivityTextUtil.activityUpdate)
-                    : headingtext(false, true, ActivityTextUtil.newActivity),
+                    ? secappview(
+                        context,
+                        UiBaseModel.secRowModel(closeIcon(() {
+                          context.pop();
+                        }), ActivityTextUtil.update))
+                    : secappview(
+                        context,
+                        UiBaseModel.secRowModel(closeIcon(() {
+                          context.pop();
+                        }), ActivityTextUtil.newActivity)),
               ),
               miniHeadings(ActivityTextUtil.eventName, false),
               eventname(),
@@ -40,7 +52,10 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
                 padding: const EdgeInsets.only(top: 20, bottom: 20, right: 30),
                 child: Obx(
                   () => therapistActivtyController.isUpdate.value
-                      ? butterFlyButton(ActivityTextUtil.update, () {})
+                      ? butterFlyButton(ActivityTextUtil.update, () {
+                          therapistActivtyController.updateActivity();
+                          therapistActivtyController.activtiyAdd();
+                        })
                       : butterFlyButton(ActivityTextUtil.create, () {
                           therapistActivtyController.createActivity();
                         }),
@@ -135,4 +150,8 @@ Widget butterFlyButton(String buttonname, Function() onTap) {
           text: buttonname),
     ),
   );
+}
+
+Widget secappview(BuildContext context, RowModel rowModel) {
+  return rowView(rowModel, AppPaddings.loginTitlePadding);
 }

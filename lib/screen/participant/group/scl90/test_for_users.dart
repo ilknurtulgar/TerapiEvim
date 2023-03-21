@@ -43,7 +43,6 @@ class PagesForSCL extends StatelessWidget {
                   : const SizedBox.shrink(),
               questionsWidget(),
               pageChangeButtons(),
-              pageChangeButtons()
             ],
           ),
         ),

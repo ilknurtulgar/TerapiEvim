@@ -9,12 +9,12 @@ class SeminarMin extends StatelessWidget {
       {super.key,
       //this.width,
       //this.height,
-      this.isBorderPurple,
+      this.isBorderPurple = false,
       required this.onTap,
       required this.row});
 
   final Function()? onTap;
-  bool? isBorderPurple;
+  bool isBorderPurple;
   final RowModel row;
 
   @override
@@ -26,7 +26,7 @@ class SeminarMin extends StatelessWidget {
         // ignore: unrelated_type_equality_checks
         decoration: isBorderPurple == Null
             ? AppBoxDecoration.sendDecoration
-            : !isBorderPurple!
+            : !isBorderPurple
                 ? AppBoxDecoration.purpleBorder
                 : AppBoxDecoration.sendDecoration,
         child: Expanded(child: rowView(row, AppPaddings.rowViewPadding)),

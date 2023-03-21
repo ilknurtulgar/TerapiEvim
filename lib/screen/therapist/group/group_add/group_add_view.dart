@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
-import 'package:terapievim/core/base/component/buttons/election.dart';
 import 'package:terapievim/core/base/component/group/choosing_time_group_therapy.dart';
 import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
@@ -13,7 +12,7 @@ import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-
+import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/util/base_model.dart';
 
 class GroupAddView extends StatelessWidget {
@@ -63,7 +62,7 @@ class GroupAddView extends StatelessWidget {
                     ControllerElection.therapistGroupControllerSecTherapist,
                 firstRow: secTherapist(),
                 rows: persons),
-            button(controller, false),
+            button(context, controller, false),
             miniHeadings(GroupTextUtil.meetDayText, false),
             miniHeadings(GroupTextUtil.dayText, true),
             Election(
@@ -72,7 +71,7 @@ class GroupAddView extends StatelessWidget {
                 rows: days),
             miniHeadings(GroupTextUtil.timeText, true),
             ChoosingTimeGroupTherapy(),
-            button(controller, true)
+            button(context, controller, true)
           ],
         )),
       ),
@@ -152,7 +151,8 @@ class GroupAddView extends StatelessWidget {
     );
   }
 
-  Padding button(TherapistGroupController controller, bool isLastButton) {
+  Padding button(BuildContext context, TherapistGroupController controller,
+      bool isLastButton) {
     return Padding(
       padding: isLastButton
           ? AppPaddings.tGroupFirstButtonPadding
@@ -160,10 +160,13 @@ class GroupAddView extends StatelessWidget {
       child: CustomButton(
           container: isLastButton
               ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)
-              : AppContainers.lightPurpleButtonContainer(SizeUtil.mediumValueWidth),
+              : AppContainers.lightPurpleButtonContainer(
+                  SizeUtil.mediumValueWidth),
           textColor: isLastButton ? AppColors.white : AppColors.meteorite,
           onTap: () {
             if (isLastButton) {
+              //grup olusturma sureci
+              context.pop();
             } else {
               controller.changeChoosenSecTherapist("Eren Jaeger");
             }

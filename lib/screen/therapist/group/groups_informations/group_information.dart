@@ -13,7 +13,6 @@ import 'package:terapievim/screen/therapist/group/metots/new_metot.dart';
 import 'package:terapievim/screen/therapist/group/therapist_about.dart';
 import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/component/group/person.dart';
-import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 
 // ignore: must_be_immutable
 class GroupInformation extends StatelessWidget {

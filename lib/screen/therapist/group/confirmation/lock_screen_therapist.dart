@@ -30,8 +30,9 @@ class LockScreenTherapist extends StatelessWidget {
 
 Widget popUp(BuildContext context) {
   TherapistGroupController controller = Get.find();
-  Widget shown =
-      controller.isTherapistUploaded.isFalse ? noUpload(context) : conformed();
+  Widget shown = controller.isTherapistUploaded.isFalse
+      ? noUpload(context)
+      : conformed(context);
 
   Icon lockicon =
       controller.isLockedOpen.isTrue ? IconUtility.lockopen : IconUtility.lock;
@@ -44,13 +45,15 @@ Widget popUp(BuildContext context) {
   );
 }
 
-Column conformed() {
+Column conformed(BuildContext context) {
   TherapistGroupController controller = Get.find();
   Widget button = controller.isLockedOpen.isTrue
       ? CustomButton(
           textColor: Colors.white,
-          container: AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
+          container:
+              AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
           onTap: () {
+            context.push(const MyGroups());
             //buradan kategori sayfasina yonlendirilecek
           },
           text: GroupTextUtil.groupPageText)
@@ -76,6 +79,7 @@ Column conformed() {
 }
 
 Column noUpload(BuildContext context) {
+  TherapistGroupController controller = Get.find();
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -94,6 +98,7 @@ Column noUpload(BuildContext context) {
       GestureDetector(
           onTap: () {
             //onaylama sayfasina gitmeli
+
             context.push(const TherapistUploadConfirm());
           },
           child: Container(

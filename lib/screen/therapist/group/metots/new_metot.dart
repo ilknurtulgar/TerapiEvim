@@ -88,6 +88,7 @@ class NewMetot extends StatelessWidget {
               child: Text(GroupTextUtil.deleteText),
               onPressed: () {
                 context.pop();
+                context.pop();
               },
             ),
           ],

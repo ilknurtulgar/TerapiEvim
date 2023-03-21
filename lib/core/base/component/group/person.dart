@@ -8,14 +8,14 @@ import 'row_view.dart';
 class PersonMin extends StatelessWidget {
   PersonMin({
     super.key,
-    this.isBorderPurple,
+    this.isBorderPurple = false,
     required this.onTap,
     required this.row,
   });
 
   final RowModel row;
   final Function() onTap;
-  bool? isBorderPurple;
+  bool isBorderPurple;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class PersonMin extends StatelessWidget {
           // ignore: unrelated_type_equality_checks
           decoration: isBorderPurple == Null
               ? AppBoxDecoration.sendDecoration
-              : !isBorderPurple!
+              : !isBorderPurple
                   ? AppBoxDecoration.purpleBorder
                   : AppBoxDecoration.sendDecoration,
           child: rowView(row, AppPaddings.rowViewPadding)),

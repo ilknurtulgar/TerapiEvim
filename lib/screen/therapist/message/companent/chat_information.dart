@@ -21,16 +21,13 @@ ContainerModel? containerModel;
 class _ChatInformationState extends State<ChatInformation> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: AppPaddings.chatInformationPadding,
-      child: InkWell(
-        onTap: () => context.push(MessageScreen()),
-        child: CustomContainer(
-            time: DemoInformation.clock,
-            containerModel: AppContainers.classicWhiteContainer,
-            isThereCardModel: true,
-            cardModel: widget.cardModel),
-      ),
+    return InkWell(
+      onTap: () => context.push(MessageScreen()),
+      child: CustomContainer(
+          time: DemoInformation.clock,
+          containerModel: AppContainers.classicWhiteContainer,
+          isThereCardModel: true,
+          cardModel: widget.cardModel),
     );
   }
 }

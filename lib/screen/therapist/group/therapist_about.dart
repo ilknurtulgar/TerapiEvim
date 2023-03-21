@@ -5,6 +5,7 @@ import 'package:terapievim/core/base/component/profile/image/custom_circle_avata
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../core/base/util/base_model.dart';
 
@@ -119,5 +120,11 @@ Container whiteBackground(BuildContext context) {
     height: SizeUtil.highValueHeight,
     color: AppColors.white,
     margin: AppPaddings.whitebackgroundmargin,
+    child: IconButton(
+      icon: IconUtility.back,
+      onPressed: () {
+        context.pop();
+      },
+    ),
   );
 }

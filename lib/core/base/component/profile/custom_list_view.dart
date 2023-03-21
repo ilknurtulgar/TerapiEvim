@@ -23,7 +23,7 @@ class ProfilePageListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: SizeUtil.doubleNormalValueHeight,
+      height: SizeUtil.largeValueHeight,//eski değeri SizeUtil.doubleNormalValueHeight,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,

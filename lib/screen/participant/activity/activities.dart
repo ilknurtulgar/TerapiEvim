@@ -17,7 +17,8 @@ class ActivitiesScreen extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Center(
+          child: Padding(
+            padding: AppPaddings.pagePadding,
             child: Column(
               children: [
                 search(UiBaseModel.searchModel(
@@ -51,22 +52,19 @@ ListView activityseminar() {
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
     itemBuilder: (context, index) {
-      return Padding(
-        padding: AppPaddings.activitySeminarPadding,
-        child: ActivityBox(
-            onTap: () {
-              //  print("tıklıyorum ya");
+      return ActivityBox(
+          onTap: () {
+            //  print("tıklıyorum ya");
 
-              context.push(const AboutActivityScreen());
-            },
-            istwobutton: false,
-            buttonText: ActivityTextUtil.join,
-            containerModel: AppContainers.containerButton(false),
-            isactivity: false,
-            arowModel: DemoInformation.arowmodel,
-            ayrowwModel: DemoInformation.ayrowmodel,
-            clockModel: DemoInformation.clockmodel),
-      );
+            context.push(const AboutActivityScreen());
+          },
+          istwobutton: false,
+          buttonText: ActivityTextUtil.join,
+          containerModel: AppContainers.containerButton(false),
+          isactivity: false,
+          arowModel: DemoInformation.arowmodel,
+          ayrowwModel: DemoInformation.ayrowmodel,
+          clockModel: DemoInformation.clockmodel);
     },
     itemCount: 2,
   );

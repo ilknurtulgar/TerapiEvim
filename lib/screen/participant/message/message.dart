@@ -21,10 +21,7 @@ class MessageScreen extends StatelessWidget {
         child: Column(
           children: [
             doubleappbar(context),
-            Padding(
-              padding: AppPaddings.dividerPadding,
-              child: divider(false),
-            ),
+            divider(false),
             Expanded(
               child: SingleChildScrollView(child: messageexpanded(context)),
             ),
@@ -72,7 +69,7 @@ class MessageScreen extends StatelessWidget {
         isStart
             ? circleavatar()
             : Padding(
-                padding: AppPaddings.circleAvatarPadding,
+                padding: AppPaddings.componentPadding,
                 child: constrainedbox(context, message),
               ),
         isStart ? constrainedbox(context, message) : circleavatar()

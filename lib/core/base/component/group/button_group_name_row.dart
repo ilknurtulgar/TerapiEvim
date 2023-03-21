@@ -11,17 +11,12 @@ class ButtonWithGroupName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: AppPaddings.componentPadding,
-      child: Center(
-        child: SizedBox(
-          width: SizeUtil.hugeValueWidth,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(text,style: const TextStyle(fontSize: 21,fontWeight: FontWeight.w500,color: AppColors.black),),
-              switchButton(),
-            ],
-          ),
-        ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(text,style: const TextStyle(fontSize: 21,fontWeight: FontWeight.w500,color: AppColors.black),),
+          switchButton(),
+        ],
       ),
     );
   }

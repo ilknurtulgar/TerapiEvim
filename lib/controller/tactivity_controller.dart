@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/product/enum/local_keys_enum.dart';
 import 'package:terapievim/service/model/therapist/activity/activity_model.dart';
 
 import '../core/base/component/toast/toast.dart';
@@ -11,7 +10,6 @@ import 'base/base_controller.dart';
 class TherapistActivtyController extends GetxController with BaseController {
   @override
   void onInit() {
-
     activityService = ActivityService(vexaFireManager.networkManager);
 
     super.onInit();

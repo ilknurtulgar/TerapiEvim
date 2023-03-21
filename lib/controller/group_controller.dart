@@ -25,46 +25,36 @@ class GroupController extends GetxController {
     Column(
       children: [
         IconUtility.checkCircleIcon,
-        Text(
-          GroupTextUtil.none,
-          style: const TextStyle(color: AppColors.black),
-        ),
+        responsivenestext(
+            GroupTextUtil.none, const TextStyle(color: AppColors.black))
       ],
     ),
     Column(
       children: [
         IconUtility.checkCircleIcon,
-        Text(
-          GroupTextUtil.veryLittle,
-          style: const TextStyle(color: AppColors.black),
-        ),
+        responsivenestext(
+            GroupTextUtil.veryLittle, const TextStyle(color: AppColors.black))
       ],
     ),
     Column(
       children: [
         IconUtility.checkCircleIcon,
-        Text(
-          GroupTextUtil.medium,
-          style: const TextStyle(color: AppColors.black),
-        ),
+        responsivenestext(
+            GroupTextUtil.medium, const TextStyle(color: AppColors.black))
       ],
     ),
     Column(
       children: [
         IconUtility.checkCircleIcon,
-        Text(
-          GroupTextUtil.more,
-          style: const TextStyle(color: AppColors.black),
-        ),
+        responsivenestext(
+            GroupTextUtil.more, const TextStyle(color: AppColors.black))
       ],
     ),
     Column(
       children: [
         IconUtility.checkCircleIcon,
-        Text(
-          GroupTextUtil.extreme,
-          style: const TextStyle(color: AppColors.black),
-        ),
+        responsivenestext(
+            GroupTextUtil.extreme, const TextStyle(color: AppColors.black))
       ],
     ),
   ].obs;

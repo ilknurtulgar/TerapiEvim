@@ -28,7 +28,7 @@ class MyGroup extends StatelessWidget {
               ActivityBox(
                   istwobutton: false,
                   buttonText: GroupTextUtil.joinText,
-                  isactivity: true,
+                  isactivity: false,
                   containerModel: AppContainers.containerButton(false),
                   arowModel: DemoInformation.row,
                   ayrowwModel: DemoInformation.row,
@@ -38,10 +38,10 @@ class MyGroup extends StatelessWidget {
                 isalignmentstart: true,
               ),
               therapist(DemoInformation.row, () {
-                context.push(TherapistProfile(isSecTherapist: false));
+                context.push(const TherapistProfile(isSecTherapist: false));
               }),
               therapist(DemoInformation.row2, () {
-                context.push(TherapistProfile(isSecTherapist: true));
+                context.push(const TherapistProfile(isSecTherapist: true));
               }),
               CustomHeading(
                 text: GroupTextUtil.participantsText,

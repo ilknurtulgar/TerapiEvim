@@ -11,8 +11,10 @@ class CopingBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: AppPaddings.componentPadding,
       decoration: AppBoxDecoration.shadow,
-      width: SizeUtil.generalWidth,
+      //width: SizeUtil.generalWidth,
+      height: SizeUtil.highValueHeight,
       child: Column(
         children: [heading(), pdfcontainer(), rowbutton()],
       ),
@@ -21,7 +23,7 @@ class CopingBox extends StatelessWidget {
 
   Row rowbutton() {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         copingbutton(() => null, ActivityTextUtil.add, true),
         copingbutton(() => null, ActivityTextUtil.share, false)
@@ -29,37 +31,37 @@ class CopingBox extends StatelessWidget {
     );
   }
 
-  Padding copingbutton(Function() onTap, String copingtext, bool isAdd) {
-    return Padding(
-      padding: AppPaddings.copingButtonPadding,
-      child: CustomButton(
-          icon: isAdd ? IconUtility.fileIcon : null,
-          container: AppContainers.copingbutton,
-          textColor: AppColors.black,
-          onTap: onTap,
-          text: copingtext),
-    );
+  Widget copingbutton(Function() onTap, String copingtext, bool isAdd) {
+    return CustomButton(
+        icon: isAdd ? IconUtility.fileIcon : null,
+        container: AppContainers.copingbutton,
+        textColor: AppColors.black,
+        onTap: onTap,
+        text: copingtext);
   }
 
   CustomHeading heading() {
     return CustomHeading(
-      padding: AppPaddings.customHeadingPadding,
+      padding: AppPaddings.rowViewPadding,
       text: copingtext,
       isalignmentstart: true,
       isToggle: true,
     );
   }
 
-  Container pdfcontainer() {
-    return Container(
-      decoration: AppBoxDecoration.purpleBorder,
-      width: SizeUtil.largeValueWidth,
-      height: SizeUtil.generalHeight,
-      child: Padding(
-        padding: AppPaddings.toppadding,
-        child: Text(pdfname,
-            textAlign: TextAlign.center,
-            style: AppTextStyles.normalTextStyle("medium", false)),
+  Widget pdfcontainer() {
+    return Padding(
+      padding: AppPaddings.rowViewPadding,
+      child: Container(
+        margin: AppPaddings.componentPadding,
+        decoration: AppBoxDecoration.purpleBorder,
+        //  width: SizeUtil.largeValueWidth,
+        height: SizeUtil.generalHeight,
+        child: Align(
+          alignment: Alignment.center,
+          child: Text(pdfname,
+              style: AppTextStyles.normalTextStyle("medium", false)),
+        ),
       ),
     );
   }

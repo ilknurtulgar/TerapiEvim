@@ -71,10 +71,7 @@ class GroupAddView extends StatelessWidget {
                 firstRow: dayRow(),
                 rows: days),
             miniHeadings(GroupTextUtil.timeText, true),
-            Padding(
-              padding: AppPaddings.tGroupAddTimeChoosePadding,
-              child: ChoosingTimeGroupTherapy(),
-            ),
+            ChoosingTimeGroupTherapy(),
             button(controller, true)
           ],
         )),

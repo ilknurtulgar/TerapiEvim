@@ -41,25 +41,33 @@ class TwoRowShortContainer extends StatelessWidget {
             height: isThereButton
                 ? SizeUtil.doubleNormalValueHeight
                 : SizeUtil.doubleSmallValueHeight,
-            width: isThereButton
+            /*width: isThereButton  // yazıya göre genişleyecek şekilde ayarladım o yüzden width değerlerini kapattım
                 ? SizeUtil.largeValueWidth
-                : SizeUtil.generalWidth,
+                : SizeUtil.generalWidth,*/
             decoration: containerDecoration(), //
             child: Padding(
-              padding: const EdgeInsets.only(left: 10),
-              child: Center(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      firstRow(),
-                      secondRow(),
-                      isThereButton ? button() : const SizedBox()
-                    ]),
-              ),
+              padding: AppPaddings.customContainerInsidePadding(1),
+              child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    rowViewColumn(),
+                    isThereButton ? button() : const SizedBox()
+                  ]),
             ),
           ),
         ));
+  }
+
+  Column rowViewColumn() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        firstRow(),
+        secondRow(),
+      ],
+    );
   }
 
   BoxDecoration containerDecoration() {
@@ -80,7 +88,7 @@ class TwoRowShortContainer extends StatelessWidget {
             secondIconData,
             AppTextStyles.profileTextStyles(
                 false, purpose != 'date' ? true : false)),
-        const EdgeInsets.only(top: 10));
+        AppPaddings.componentPadding);
   }
 
   Widget firstRow() {
@@ -89,19 +97,14 @@ class TwoRowShortContainer extends StatelessWidget {
             ? UiBaseModel.normalTextRow(row1Text, firstIconData,
                 AppTextStyles.profileTextStyles(false, true))
             : UiBaseModel.doubleTextRow('Danışan: ', row1Text, false),
-        const EdgeInsets.only(top: 5));
+        isThereButton ? EdgeInsets.zero : AppPaddings.componentOnlyTopPadding);
   }
 
-  Padding button() {
-    return Padding(
-        padding: AppPaddings.purpleButtonAtRight,
-        child: Align(
-          alignment: Alignment.centerRight,
-          child: CustomButton(
-              textColor: AppColors.white,
-              container: AppContainers.purpleButtonContainer(null),
-              onTap: () {}, // izle ya da dosyayı oku fonksiyonu
-              text: buttonText ?? ""),
-        ));
+  Widget button() {
+    return CustomButton(
+        textColor: AppColors.white,
+        container: AppContainers.purpleButtonContainer(null),
+        onTap: () {}, // izle ya da dosyayı oku fonksiyonu
+        text: buttonText ?? "");
   }
 }

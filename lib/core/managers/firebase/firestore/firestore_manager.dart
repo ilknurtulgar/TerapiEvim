@@ -44,8 +44,7 @@ class FirestoreManager<E extends INetworkModel<E>?>
             .doc(docId)
             .collection(collectionPath2)
             .add(data);
-      }
-      {
+      } else {
         documentReference =
             await _database.collection(collectionPath).add(data);
       }
@@ -95,8 +94,10 @@ class FirestoreManager<E extends INetworkModel<E>?>
             .collection(collectionPath2)
             .doc(docId2)
             .get();
+
+      }else{
+        response = await _database.collection(collectionPath).doc(docId).get();
       }
-      response = await _database.collection(collectionPath).doc(docId).get();
 
       if (response.data() == null) {
         throw Exception("response.data() is null in firestoreManager");

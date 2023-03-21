@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../screen/participant/group/category_determination/short_call/determining_to_shortcall_time.dart';
 import '../../../screen/participant/group/group_out.dart';
@@ -90,11 +91,16 @@ class UiBaseModel {
         isAlignmentBetween: false);
   }
 
-  static RowModel filterdetails() => RowModel(
+  static RowModel filterdetails(BuildContext context) => RowModel(
       text: ActivityTextUtil.psychologist,
+      trailingIcon: IconButton(
+          onPressed: () {
+            context.pop();
+          },
+          icon: IconUtility.checkCircleIcon),
       textStyle: AppTextStyles.normalTextStyle("big", false),
       leadingIcon: IconButton(onPressed: () {}, icon: IconUtility.back),
-      isAlignmentBetween: false);
+      isAlignmentBetween: true);
 
   ///
   static RowModel appBarModel(String text, Widget trailingIcon) => RowModel(
@@ -168,4 +174,9 @@ class UiBaseModel {
       textStyle: AppTextStyles.groupTextStyle(true),
       isAlignmentBetween: true,
       trailingIcon: IconUtility.deleteIcon);
+  static secRowModel(Widget trailingIcon, String text) => RowModel(
+      trailingIcon: trailingIcon,
+      text: text,
+      textStyle: AppTextStyles.heading(false),
+      isAlignmentBetween: true);
 }

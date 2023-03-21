@@ -20,8 +20,7 @@ class TherapistActivityScreen extends StatefulWidget {
 }
 
 class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
-  TherapistActivtyController therapistActivtyController =
-      Get.put(TherapistActivtyController());
+  final TherapistActivtyController therapistActivtyController = Get.find();
 
   @override
   Widget build(BuildContext context) {

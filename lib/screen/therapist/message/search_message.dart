@@ -4,7 +4,6 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/therapist/message/companent/person_view.dart';
-import 'package:terapievim/screen/therapist/message/message.dart';
 
 import '../../../core/base/util/text_utility.dart';
 
@@ -44,20 +43,14 @@ class _SearchMessageState extends State<SearchMessage> {
   }
 
   Widget searchappbar() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        children: [
-          search(UiBaseModel.searchModel(
-              MessageTextUtil.searchtext,
-              IconButton(
-                  onPressed: () {
-                    context.push(const TherapistMessageScreen());
-                  },
-                  icon: IconUtility.closeIcon))),
-          divider(true),
-        ],
-      ),
+    return Column(
+      children: [
+        search(UiBaseModel.doubleappbarModel(
+            MessageTextUtil.searchtext,
+            backButton(context, () => context.pop()),
+            closeIcon(() => context.pop()))),
+        divider(true),
+      ],
     );
   }
 }

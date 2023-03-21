@@ -17,16 +17,16 @@ class CustomHeading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      alignment: isalignmentstart
-          ? AlignmentDirectional.centerStart
-          : Alignment.center,
-      padding: padding ?? AppPaddings.appBarPadding,
-      child: Text(
-        text,
-        style: isToggle != null
-            ? AppTextStyles.normalTextStyle("medium", false)
-            : AppTextStyles.heading(false),
-      ),
-    );
+        alignment: isalignmentstart
+            ? AlignmentDirectional.centerStart
+            : Alignment.center,
+        padding: padding ?? AppPaddings.appBarPadding,
+        child: responsivenestext(
+          text,
+          isToggle != null
+              ? AppTextStyles.normalTextStyle("medium", false)
+              : AppTextStyles.heading(false),
+        ));
   }
 }
+//responsivenesstext yaseminle konuş!

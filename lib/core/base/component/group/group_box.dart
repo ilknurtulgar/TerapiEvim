@@ -34,37 +34,33 @@ class ActivityBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: isactivity ? null : onTap,
-      child: Container(
-        width: SizeUtil.generalWidth,
-        // height: 140,
-        decoration: AppBoxDecoration.purpleBorder,
-        child: Column(
-          children: [
-            rowView(arowModel, AppPaddings.activityBoxPadding),
-            isactivity
-                ? const SizedBox.shrink()
-                : rowView(ayrowwModel!, AppPaddings.activityBoxPadding),
-            rowView(clockModel, AppPaddings.activityBoxPadding),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                istwobutton
-                    ? Padding(
-                        padding: AppPaddings.generalPadding,
-                        child: rowbutton(() {
+      child: Padding(
+        padding: AppPaddings.componentPadding,
+        child: Container(
+          height: SizeUtil.largeValueHeight,
+          decoration: AppBoxDecoration.purpleBorder,
+          child: Column(
+            children: [
+              rowView(arowModel, AppPaddings.rowViewPadding),
+              isactivity
+                  ? const SizedBox.shrink()
+                  : rowView(ayrowwModel!, AppPaddings.rowViewPadding),
+              rowView(clockModel, AppPaddings.rowViewPadding),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  istwobutton
+                      ? rowbutton(() {
                           therapistActivtyController.updatechnage(0);
 
                           context.push(const NewActivityScreen());
-                        }, ActivityTextUtil.updateMyInformation, true),
-                      )
-                    : const SizedBox.shrink(),
-                Padding(
-                  padding: AppPaddings.generalPadding,
-                  child: rowbutton(() {}, buttonText, false),
-                ),
-              ],
-            )
-          ],
+                        }, ActivityTextUtil.updateMyInformation, true)
+                      : const SizedBox.shrink(),
+                  rowbutton(() {}, buttonText, false),
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

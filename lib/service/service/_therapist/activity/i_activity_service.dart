@@ -4,13 +4,9 @@ import '../../../../core/managers/firebase/firestore/models/created_id_response.
 import '../../../model/therapist/activity/activity_model.dart';
 
 abstract class IActivityService {
-  IActivityService(
-    this.manager,
-    this.userId,
-  );
+  IActivityService(this.manager);
 
   final IFirestoreManager<ErrorModelCustom> manager;
-  final String userId;
 
   /// if result is null, it means an activity was not added
   Future<CreatedIdResponse?> createActivity(ActivityModel activity);

@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../core/base/component/group/custom_heading.dart';
 import '../../../core/base/component/login/custom_textfield.dart';
@@ -19,11 +20,8 @@ class MessageScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            messageappbar(),
-            Padding(
-              padding: AppPaddings.dividerPadding,
-              child: divider(false),
-            ),
+            doubleappbar(context),
+            divider(false),
             Expanded(
               child: SingleChildScrollView(child: messageexpanded(context)),
             ),
@@ -71,7 +69,7 @@ class MessageScreen extends StatelessWidget {
         isStart
             ? circleavatar()
             : Padding(
-                padding: AppPaddings.circleAvatarPadding,
+                padding: AppPaddings.componentPadding,
                 child: constrainedbox(context, message),
               ),
         isStart ? constrainedbox(context, message) : circleavatar()
@@ -98,17 +96,15 @@ class MessageScreen extends StatelessWidget {
     );
   }
 
-  Widget messageappbar() {
-    return Padding(
-      padding: AppPaddings.appbarLeftPadding,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          circleavatar(),
-          CustomHeading(
-              text: DemoInformation.headingabactivity, isalignmentstart: false),
-        ],
-      ),
+  Widget doubleappbar(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        backButton(context, () => context.pop()),
+        circleavatar(),
+        CustomHeading(
+            text: DemoInformation.headingabactivity, isalignmentstart: false),
+      ],
     );
   }
 

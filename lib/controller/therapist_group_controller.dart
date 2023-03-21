@@ -63,8 +63,15 @@ class TherapistGroupController extends GetxController {
   }
 
   //lock screen controller
-  var isTherapistUploaded = true.obs;
-  var isLockedOpen = true.obs;
+  var isTherapistUploaded = false.obs;
+  var isLockedOpen = false.obs;
+  void changeIsTherapistLoaded() {
+    isTherapistUploaded.value = !isTherapistUploaded.value;
+  }
+
+  void changeisLockedOpen() {
+    isLockedOpen.value = !isLockedOpen.value;
+  }
 
   RxList<RxList<String>> timeListInControllerList = [
     ['öylesine string'].obs

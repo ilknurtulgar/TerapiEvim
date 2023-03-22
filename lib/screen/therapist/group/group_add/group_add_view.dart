@@ -46,33 +46,36 @@ class GroupAddView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-            child: Column(
-          children: [
-            rowView(appRow(context), AppPaddings.appBarPadding),
-            miniHeadings(GroupTextUtil.groupNameText, false),
-            CustomTextField(
-                isPhoneNumber: false,
-                isBig: true,
-                textController: groupNameController,
-                isPassword: false,
-                isRowModel: false),
-            miniHeadings(GroupTextUtil.secondTherapistText, false),
-            Election(
-                election:
-                    ControllerElection.therapistGroupControllerSecTherapist,
-                firstRow: secTherapist(),
-                rows: persons),
-            button(context, controller, false),
-            miniHeadings(GroupTextUtil.meetDayText, false),
-            miniHeadings(GroupTextUtil.dayText, true),
-            Election(
-                election: ControllerElection.therapistGroupControllerDay,
-                firstRow: dayRow(),
-                rows: days),
-            miniHeadings(GroupTextUtil.timeText, true),
-            ChoosingTimeGroupTherapy(),
-            button(context, controller, true)
-          ],
+            child: Padding(
+          padding: AppPaddings.pagePadding,
+          child: Column(
+            children: [
+              rowView(appRow(context), AppPaddings.appBarPadding),
+              miniHeadings(GroupTextUtil.groupNameText, false),
+              CustomTextField(
+                  isPhoneNumber: false,
+                  isBig: true,
+                  textController: groupNameController,
+                  isPassword: false,
+                  isRowModel: false),
+              miniHeadings(GroupTextUtil.secondTherapistText, false),
+              Election(
+                  election:
+                      ControllerElection.therapistGroupControllerSecTherapist,
+                  firstRow: secTherapist(),
+                  rows: persons),
+              button(context, controller, false),
+              miniHeadings(GroupTextUtil.meetDayText, false),
+              miniHeadings(GroupTextUtil.dayText, true),
+              Election(
+                  election: ControllerElection.therapistGroupControllerDay,
+                  firstRow: dayRow(),
+                  rows: days),
+              miniHeadings(GroupTextUtil.timeText, true),
+              ChoosingTimeGroupTherapy(),
+              button(context, controller, true)
+            ],
+          ),
         )),
       ),
     );
@@ -154,9 +157,7 @@ class GroupAddView extends StatelessWidget {
   Padding button(BuildContext context, TherapistGroupController controller,
       bool isLastButton) {
     return Padding(
-      padding: isLastButton
-          ? AppPaddings.tGroupFirstButtonPadding
-          : AppPaddings.tGroupLastButtonPadding,
+      padding: AppPaddings.componentPadding,
       child: CustomButton(
           container: isLastButton
               ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)

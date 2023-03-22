@@ -31,19 +31,22 @@ class PagesForSCL extends StatelessWidget {
       body: SingleChildScrollView(
         padding: AppPaddings.appBarPadding,
         child: Obx(
-          () => Column(
-            children: [
-              CustomHeading(
-                text: GroupTextUtil.testHeading,
-                isalignmentstart: false,
-              ),
-              _controller.testPageIndex.value == 0
-                  ? const PurpleTextContainer(
-                      text: GroupTextUtil.testDefinition)
-                  : const SizedBox.shrink(),
-              questionsWidget(),
-              pageChangeButtons(),
-            ],
+          () => Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              children: [
+                CustomHeading(
+                  text: GroupTextUtil.testHeading,
+                  isalignmentstart: false,
+                ),
+                _controller.testPageIndex.value == 0
+                    ? const PurpleTextContainer(
+                        text: GroupTextUtil.testDefinition)
+                    : const SizedBox.shrink(),
+                questionsWidget(),
+                pageChangeButtons(),
+              ],
+            ),
           ),
         ),
       ),

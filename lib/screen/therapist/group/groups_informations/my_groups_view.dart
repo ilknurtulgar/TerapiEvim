@@ -17,35 +17,38 @@ class MyGroups extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              rowView(
-                  RowModel(
-                      text: GroupTextUtil.myGroupsText,
-                      textStyle: AppTextStyles.heading(true),
-                      isAlignmentBetween: true,
-                      trailingIcon: IconButton(
-                          onPressed: () {
-                            context.push(const GroupAddView());
-                          },
-                          icon: IconUtility.addIcon)),
-                  AppPaddings.appBarPadding),
-              ListView.builder(
-                shrinkWrap: true,
-                itemCount: 10,
-                itemBuilder: (context, index) {
-                  return GroupClass(
-                    onTap: () {
-                      context.push(GroupInformation());
-                    },
-                    row1: DemoInformation.row_1,
-                    row2: DemoInformation.row_2,
-                    row3: DemoInformation.row_3,
-                    isBorderPurple: true,
-                  );
-                },
-              )
-            ],
+          child: Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              children: [
+                rowView(
+                    RowModel(
+                        text: GroupTextUtil.myGroupsText,
+                        textStyle: AppTextStyles.heading(true),
+                        isAlignmentBetween: true,
+                        trailingIcon: IconButton(
+                            onPressed: () {
+                              context.push(const GroupAddView());
+                            },
+                            icon: IconUtility.addIcon)),
+                    AppPaddings.appBarPadding),
+                ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 10,
+                  itemBuilder: (context, index) {
+                    return GroupClass(
+                      onTap: () {
+                        context.push(GroupInformation());
+                      },
+                      row1: DemoInformation.row_1,
+                      row2: DemoInformation.row_2,
+                      row3: DemoInformation.row_3,
+                      isBorderPurple: true,
+                    );
+                  },
+                )
+              ],
+            ),
           ),
         ),
       ),

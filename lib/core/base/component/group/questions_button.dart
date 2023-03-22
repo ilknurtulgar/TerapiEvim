@@ -18,9 +18,10 @@ class _ToggleQuestionsState extends State<ToggleQuestions> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: AppPaddings.componentPadding,
       padding: AppPaddings.componentPadding,
       decoration: AppBoxDecoration.purpleBorder,
-      height: SizeUtil.largeValueHeight,
+      // height: SizeUtil.largeValueHeight,
       child: Column(children: [
         CustomHeading(
           padding: AppPaddings.rowViewPadding,

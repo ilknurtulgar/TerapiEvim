@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/util/base_model.dart';
+import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
@@ -17,63 +16,66 @@ class TherapistUploadConfirm extends StatelessWidget {
     TherapistGroupController controller = Get.find();
     return Scaffold(
       body: SafeArea(
-          child: Column(
-        children: [
-          rowView(
-              UiBaseModel.uploadingapp, AppPaddings.tLockScreenAppBarPadding),
-          Container(
-            padding: AppPaddings.lockScreenContainerPadding,
-            width: SizeUtil.generalWidth,
-            decoration: AppBoxDecoration.purpleBorder,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Padding(
-                    padding: AppPaddings.tLockScreenUploadTextPadding,
-                    child: Text(
-                      GroupTextUtil.whyConfirmingText,
-                      style: AppTextStyles.aboutMeTextStyle(false),
-                    )),
-                const SizedBox(
-                  height: SizeUtil.normalValueHeight,
-                ),
-                Padding(
-                  padding: AppPaddings.tLockScreenPdfPadding,
-                  child: Text(
+          child: Padding(
+        padding: AppPaddings.pagePadding,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            CustomHeading(
+              text: GroupTextUtil.confirmingText,
+              isalignmentstart: false,
+              padding: AppPaddings.appBarPadding,
+            ),
+            Container(
+              padding: AppPaddings.appBarPadding,
+              width: SizeUtil.generalWidth,
+              decoration: AppBoxDecoration.purpleBorder,
+              // height: SizeUtil.bigValueHeight,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    GroupTextUtil.whyConfirmingText,
+                    style: AppTextStyles.aboutMeTextStyle(false),
+                  ),
+                  const SizedBox(
+                    height: SizeUtil.normalValueHeight,
+                  ),
+                  Text(
                     GroupTextUtil.pdfUploadingText,
                     style: AppTextStyles.aboutMeTextStyle(false),
                   ),
-                ),
-                CustomButton(
-                    textColor: AppColors.white,
-                    container: AppContainers.purpleButtonContainer(
-                        SizeUtil.smallValueWidth),
-                    onTap: () {
-                      //yukleyeccek
-                    },
-                    text: GroupTextUtil.uploadText),
-                smallSizedBox()
-              ],
+                  sizedbox(),
+                  CustomButton(
+                      textColor: AppColors.white,
+                      container: AppContainers.purpleButtonContainer(
+                          SizeUtil.smallValueWidth),
+                      onTap: () {
+                        //yukleyeccek
+                      },
+                      text: GroupTextUtil.uploadText),
+                  // smallSizedBox()
+                ],
+              ),
             ),
-          ),
-          const SizedBox(
-            height: SizeUtil.normalValueHeight,
-          ),
-          CustomButton(
-              textColor: AppColors.white,
-              container:
-                  AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
-              onTap: () {
-                controller.changeIsTherapistLoaded();
-                controller.changeisLockedOpen();
-
-                context
-                    .pop(); //iki kere yapmam gerekiyor cunku lock screeenin tekrar build edilmesi gerekiyor
-                context.pop();
-                context.push(const LockScreenTherapist());
-              },
-              text: GroupTextUtil.confirmText)
-        ],
+            // const SizedBox(
+            //   height: SizeUtil.normalValueHeight,
+            // ),
+            CustomButton(
+                textColor: AppColors.white,
+                container: AppContainers.purpleButtonContainer(
+                    SizeUtil.smallValueWidth),
+                onTap: () {
+                  controller.changeIsTherapistLoaded();
+                  controller.changeisLockedOpen();
+                  context
+                      .pop(); //iki kere yapmam gerekiyor cunku lock screeenin tekrar build edilmesi gerekiyor
+                  context.pop();
+                  context.push(const LockScreenTherapist());
+                },
+                text: GroupTextUtil.confirmText)
+          ],
+        ),
       )),
     );
   }

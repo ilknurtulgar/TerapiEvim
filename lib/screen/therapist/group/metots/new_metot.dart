@@ -16,15 +16,18 @@ class NewMetot extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              heading(context),
-              CopingBox(
-                  copingtext: DemoInformation.tmpNewMetotText,
-                  pdfname: DemoInformation.tmppdfName),
-              text(),
-              otherGroups(),
-            ],
+          child: Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              children: [
+                heading(context),
+                CopingBox(
+                    copingtext: DemoInformation.tmpNewMetotText,
+                    pdfname: DemoInformation.tmppdfName),
+                text(),
+                otherGroups(),
+              ],
+            ),
           ),
         ),
       ),
@@ -33,18 +36,21 @@ class NewMetot extends StatelessWidget {
 
   Padding text() {
     return Padding(
-      padding: AppPaddings.newMetotPadding,
+      padding: AppPaddings.miniHeadingPadding(false),
       child: CustomHeading(
           text: GroupTextUtil.shareOtherGroupsText, isalignmentstart: false),
     );
   }
 
-  ListView otherGroups() {
-    return ListView.builder(
-      itemCount: DemoInformation.groupNames.length,
-      shrinkWrap: true,
-      itemBuilder: (context, index) => ButtonWithGroupName(
-          text: DemoInformation.groupNames[index], index: index),
+  Padding otherGroups() {
+    return Padding(
+      padding: AppPaddings.rowViewPadding,
+      child: ListView.builder(
+        itemCount: DemoInformation.groupNames.length,
+        shrinkWrap: true,
+        itemBuilder: (context, index) => ButtonWithGroupName(
+            text: DemoInformation.groupNames[index], index: index),
+      ),
     );
   }
 
@@ -57,6 +63,7 @@ class NewMetot extends StatelessWidget {
               icon: IconUtility.deleteIcon,
               onPressed: () {
                 deleteMetotDialog(context);
+                context.pop();
               },
             ),
             isAlignmentBetween: true),

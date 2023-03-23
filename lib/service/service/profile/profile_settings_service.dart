@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../core/base/service/base_service.dart';
@@ -6,6 +8,7 @@ import '../../../core/constants/utils/text_constants/error_text_const.dart';
 import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/empty_model.dart';
+import '../../../core/managers/firebase/storage/storage_manager.dart';
 import '../../model/common/profile/about_me_model.dart';
 import '../../model/common/profile/birth_date_model.dart';
 import '../../model/common/profile/gender_model.dart';
@@ -15,8 +18,7 @@ import '../../model/common/profile/phone_number_model.dart';
 import 'i_profile_settings_service.dart';
 
 class ProfileSettingsService extends IProfileSettingsService with BaseService {
-  ProfileSettingsService(
-      IFirestoreManager<ErrorModelCustom> manager)
+  ProfileSettingsService(IFirestoreManager<ErrorModelCustom> manager)
       : super(manager);
 
   @override
@@ -24,7 +26,6 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
     BirthDateModel birthdate,
   ) async {
     if (userId == null) return 'UserId is null';
-
 
     final result = await manager.update<BirthDateModel, EmptyModel>(
       collectionPath: APIConst.users,
@@ -40,7 +41,6 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
   @override
   Future<String?> updateGender(GenderModel gender) async {
     if (userId == null) return 'UserId is null';
-
 
     final result = await manager.update<GenderModel, EmptyModel>(
       collectionPath: APIConst.users,
@@ -112,7 +112,6 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
   Future<String?> updateAboutMe(AboutMeModel aboutMe) async {
     if (userId == null) return 'UserId is null';
 
-
     final result = await manager.update<AboutMeModel, EmptyModel>(
       collectionPath: APIConst.users,
       docId: userId!,
@@ -122,5 +121,27 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
       return result.error?.description;
     }
     return null;
+  }
+
+  Future<String?> uploadAvatarImage(File file) async {
+    try {
+      if (userId == null) {
+        return null;
+      }
+
+      FirebaseStorageManager storageManager = FirebaseStorageManager.instance;
+
+      final String? imageUrl = await storageManager.storage
+          .uploadAvatarImage(userId: userId!, file: file);
+
+      return imageUrl;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+        error: e.toString(),
+        stackTrace: StackTrace.current,
+        reason: 'Error uploadAvatarImage',
+      );
+      return null;
+    }
   }
 }

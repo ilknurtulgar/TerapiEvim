@@ -353,7 +353,6 @@ class AppPaddings {
       const EdgeInsets.symmetric(vertical: 12);
   static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
       EdgeInsets.only(top: 305, left: isThereLeftPadding ? 24 : 0);
-
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
       EdgeInsets.symmetric(
           horizontal: paddingNo != 2 ? 16 : 0,
@@ -362,6 +361,7 @@ class AppPaddings {
   // 2 numara vertical
   // 3 numara horizontal ve vertical
   static EdgeInsets componentOnlyTopPadding = const EdgeInsets.only(top: 8);
+  static EdgeInsets rowLeftSmallPadding = const EdgeInsets.only(left: 10);
 }
 
 class AppBorderRadius {

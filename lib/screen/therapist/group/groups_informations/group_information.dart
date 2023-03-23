@@ -13,7 +13,6 @@ import 'package:terapievim/screen/therapist/group/metots/new_metot.dart';
 import 'package:terapievim/screen/therapist/group/therapist_about.dart';
 import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/component/group/person.dart';
-import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 
 // ignore: must_be_immutable
 class GroupInformation extends StatelessWidget {
@@ -31,44 +30,50 @@ class GroupInformation extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              heading(context),
-              miniHeadings(GroupTextUtil.upcomingMeetingText, false),
-              meeting(),
-              miniHeadings(GroupTextUtil.groupsInformationText, false),
-              navMethod(DemoInformation.secTherapist, () {
-                context.push(const TherapistProfile(isSecTherapist: true));
-              }),
-              Election(
-                  election:
-                      ControllerElection.therapistGroupControllerParticipant,
-                  firstRow: Obx(() => SizedBox(
-                        child: SeminarMin(
-                          isBorderPurple: true,
-                          onTap: () {
-                            controller.changeParticipantElection();
-                          },
-                          row: RowModel(
-                            text: GroupTextUtil.participantsText,
-                            textStyle: AppTextStyles.aboutMeTextStyle(false),
-                            leadingIcon: IconUtility.groupsIcon,
-                            isAlignmentBetween: true,
-                            trailingIcon:
-                                controller.isParticipantElectionOpen.isTrue
-                                    ? IconUtility.arrowUp
-                                    : IconUtility.arrowDown,
-                          ),
-                        ),
-                      )),
-                  rows: participantRow),
-              navMethod(DemoInformation.methods, () {
-                //method sayfasina gidecek
-              }),
-            ],
+          child: Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                heading(context),
+                miniHeadings(GroupTextUtil.upcomingMeetingText, false),
+                meeting(),
+                miniHeadings(GroupTextUtil.groupsInformationText, false),
+                navMethod(DemoInformation.secTherapist, () {
+                  context.push(const TherapistProfile(isSecTherapist: true));
+                }),
+                Election(
+                    election:
+                        ControllerElection.therapistGroupControllerParticipant,
+                    firstRow: Obx(() => SizedBox(
+                          child: participants(),
+                        )),
+                    rows: participantRow),
+                navMethod(DemoInformation.methods, () {
+                  //method sayfasina gidecek
+                }),
+              ],
+            ),
           ),
         ),
+      ),
+    );
+  }
+
+  SeminarMin participants() {
+    return SeminarMin(
+      isBorderPurple: true,
+      onTap: () {
+        controller.changeParticipantElection();
+      },
+      row: RowModel(
+        text: GroupTextUtil.participantsText,
+        textStyle: AppTextStyles.aboutMeTextStyle(false),
+        leadingIcon: IconUtility.groupsIcon,
+        isAlignmentBetween: true,
+        trailingIcon: controller.isParticipantElectionOpen.isTrue
+            ? IconUtility.arrowUp
+            : IconUtility.arrowDown,
       ),
     );
   }
@@ -85,7 +90,7 @@ class GroupInformation extends StatelessWidget {
 
   Padding navMethod(RowModel row, Function() func) {
     return Padding(
-      padding: AppPaddings.tGroupMetotPadding,
+      padding: AppPaddings.componentPadding,
       child: SeminarMin(isBorderPurple: true, onTap: func, row: row),
     );
   }
@@ -119,7 +124,7 @@ class GroupInformation extends StatelessWidget {
                 )
               ],
             )),
-        AppPaddings.appBarPadding);
+        AppPaddings.componentPadding);
   }
 
   Future<void> deleteGroupDialog(BuildContext context) {

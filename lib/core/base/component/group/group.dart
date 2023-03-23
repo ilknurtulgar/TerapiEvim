@@ -17,7 +17,7 @@ class GroupClass extends StatelessWidget {
     this.row3,
   });
   final bool? isBorderPurple;
-  final Function onTap;
+  final Function()? onTap;
   final RowModel row1;
   final RowModel row2;
   final RowModel? row3;
@@ -35,7 +35,7 @@ class GroupClass extends StatelessWidget {
     return Padding(
       padding: AppPaddings.componentPadding,
       child: InkWell(
-        onTap: () => onTap,
+        onTap: onTap,
         child: Material(
           elevation: 5,
           shadowColor:
@@ -49,7 +49,7 @@ class GroupClass extends StatelessWidget {
                 ? AppBoxDecoration.purpleBorder
                 : AppBoxDecoration.sendDecoration,
             child: Padding(
-              padding: AppPaddings.timeChoosePadding,
+              padding: AppPaddings.componentPadding,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,

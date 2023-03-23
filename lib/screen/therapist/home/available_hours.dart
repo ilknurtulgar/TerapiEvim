@@ -17,7 +17,9 @@ class AvailableHours extends StatelessWidget {
             children: [
               messageappbar(
                   HomeTextUtil.myAvailableHours,
-                  const SizedBox.shrink(),
+                  backButton(context, () {
+                    context.pop();
+                  }),
                   IconButton(
                       onPressed: () {
                         context.push(const AddHoursScreen());

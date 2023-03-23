@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
-import 'package:terapievim/core/base/component/buttons/election.dart';
 import 'package:terapievim/core/base/component/group/choosing_time_group_therapy.dart';
 import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
@@ -13,7 +12,7 @@ import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-
+import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/util/base_model.dart';
 
 class GroupAddView extends StatelessWidget {
@@ -47,36 +46,36 @@ class GroupAddView extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-            child: Column(
-          children: [
-            rowView(appRow(context), AppPaddings.appBarPadding),
-            miniHeadings(GroupTextUtil.groupNameText, false),
-            CustomTextField(
-                isPhoneNumber: false,
-                isBig: true,
-                textController: groupNameController,
-                isPassword: false,
-                isRowModel: false),
-            miniHeadings(GroupTextUtil.secondTherapistText, false),
-            Election(
-                election:
-                    ControllerElection.therapistGroupControllerSecTherapist,
-                firstRow: secTherapist(),
-                rows: persons),
-            button(controller, false),
-            miniHeadings(GroupTextUtil.meetDayText, false),
-            miniHeadings(GroupTextUtil.dayText, true),
-            Election(
-                election: ControllerElection.therapistGroupControllerDay,
-                firstRow: dayRow(),
-                rows: days),
-            miniHeadings(GroupTextUtil.timeText, true),
-            Padding(
-              padding: AppPaddings.tGroupAddTimeChoosePadding,
-              child: ChoosingTimeGroupTherapy(),
-            ),
-            button(controller, true)
-          ],
+            child: Padding(
+          padding: AppPaddings.pagePadding,
+          child: Column(
+            children: [
+              rowView(appRow(context), AppPaddings.appBarPadding),
+              miniHeadings(GroupTextUtil.groupNameText, false),
+              CustomTextField(
+                  isPhoneNumber: false,
+                  isBig: true,
+                  textController: groupNameController,
+                  isPassword: false,
+                  isRowModel: false),
+              miniHeadings(GroupTextUtil.secondTherapistText, false),
+              Election(
+                  election:
+                      ControllerElection.therapistGroupControllerSecTherapist,
+                  firstRow: secTherapist(),
+                  rows: persons),
+              button(context, controller, false),
+              miniHeadings(GroupTextUtil.meetDayText, false),
+              miniHeadings(GroupTextUtil.dayText, true),
+              Election(
+                  election: ControllerElection.therapistGroupControllerDay,
+                  firstRow: dayRow(),
+                  rows: days),
+              miniHeadings(GroupTextUtil.timeText, true),
+              ChoosingTimeGroupTherapy(),
+              button(context, controller, true)
+            ],
+          ),
         )),
       ),
     );
@@ -155,18 +154,20 @@ class GroupAddView extends StatelessWidget {
     );
   }
 
-  Padding button(TherapistGroupController controller, bool isLastButton) {
+  Padding button(BuildContext context, TherapistGroupController controller,
+      bool isLastButton) {
     return Padding(
-      padding: isLastButton
-          ? AppPaddings.tGroupFirstButtonPadding
-          : AppPaddings.tGroupLastButtonPadding,
+      padding: AppPaddings.componentPadding,
       child: CustomButton(
           container: isLastButton
               ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)
-              : AppContainers.lightPurpleButtonContainer(SizeUtil.mediumValueWidth),
+              : AppContainers.lightPurpleButtonContainer(
+                  SizeUtil.mediumValueWidth),
           textColor: isLastButton ? AppColors.white : AppColors.meteorite,
           onTap: () {
             if (isLastButton) {
+              //grup olusturma sureci
+              context.pop();
             } else {
               controller.changeChoosenSecTherapist("Eren Jaeger");
             }

@@ -5,6 +5,7 @@ import 'package:terapievim/core/base/component/profile/image/custom_circle_avata
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../core/base/util/base_model.dart';
 
@@ -34,21 +35,30 @@ class TherapistProfile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   whiteBackground(context),
-                  heading(DemoInformation.therapistName2),
-                  aboutMe(DemoInformation.aboutme),
-                  isSecTherapist
-                      ? const SizedBox.shrink()
-                      : activity(UiBaseModel.basetmeMetotlari(), () {
-                          //buraya fonksiyonlari ekelenecek
-                          // print("basettin mi");
+                  Padding(
+                    padding: AppPaddings.pagePadding,
+                    child: Column(
+                      children: [
+                        heading(DemoInformation.therapistName2),
+                        aboutMe(DemoInformation.aboutme),
+                        isSecTherapist
+                            ? const SizedBox.shrink()
+                            : activity(UiBaseModel.basetmeMetotlari(), () {
+                                //buraya fonksiyonlari ekelenecek
+                                // print("basettin mi");
+                              }),
+                        activity(UiBaseModel.seminerleri(), () {
+                          //print("seminermismis");
                         }),
-                  activity(UiBaseModel.seminerleri(), () {
-                    //print("seminermismis");
-                  }),
-                  activity(UiBaseModel.mesajGonder(), () {
-                    // print("selam");
-                  }),
-                  isSecTherapist ? otherGroups(groups) : const SizedBox.shrink()
+                        activity(UiBaseModel.mesajGonder(), () {
+                          // print("selam");
+                        }),
+                        isSecTherapist
+                            ? otherGroups(groups)
+                            : const SizedBox.shrink()
+                      ],
+                    ),
+                  )
                 ],
               ),
               Positioned(
@@ -67,10 +77,13 @@ class TherapistProfile extends StatelessWidget {
 }
 
 Widget activity(RowModel row, Function() func) {
-  return SeminarMin(
-    onTap: func,
-    row: row,
-    isBorderPurple: true,
+  return Padding(
+    padding: AppPaddings.miniTopPadding,
+    child: SeminarMin(
+      onTap: func,
+      row: row,
+      isBorderPurple: true,
+    ),
   );
 }
 
@@ -93,17 +106,20 @@ Widget otherGroups(List<RowModel> groups) {
   );
 }
 
-Text heading(name) {
-  return Text(
-    name,
-    textAlign: TextAlign.center,
-    style: AppTextStyles.aboutMeTextStyle(true),
+Padding heading(name) {
+  return Padding(
+    padding: AppPaddings.headingTopPadding,
+    child: Text(
+      name,
+      textAlign: TextAlign.center,
+      style: AppTextStyles.aboutMeTextStyle(true),
+    ),
   );
 }
 
 Container aboutMe(String aboutme) {
   return Container(
-    padding: AppPaddings.aboutmePadding,
+    padding: AppPaddings.componentPadding,
     width: SizeUtil.largeValueWidth,
     child: Text(
       aboutme,
@@ -118,6 +134,11 @@ Container whiteBackground(BuildContext context) {
     width: MediaQuery.of(context).size.width,
     height: SizeUtil.highValueHeight,
     color: AppColors.white,
-    margin: AppPaddings.whitebackgroundmargin,
+    child: IconButton(
+      icon: IconUtility.back,
+      onPressed: () {
+        context.pop();
+      },
+    ),
   );
 }

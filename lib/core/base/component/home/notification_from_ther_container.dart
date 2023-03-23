@@ -23,7 +23,7 @@ class NotificationFromTherContainer extends StatelessWidget {
       isThereCardModel: true,
       cardModel: cardModel,
       widget: Padding(
-        padding: AppPaddings.customContainerInsidePadding(true),
+        padding: AppPaddings.customContainerInsidePadding(1),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
@@ -32,7 +32,7 @@ class NotificationFromTherContainer extends StatelessWidget {
             style: AppTextStyles.normalTextStyle('small', false),
           ),
           Padding(
-              padding: AppPaddings.customContainerInsidePadding(false),
+              padding: AppPaddings.customContainerInsidePadding(2),
               child: Align(
                 alignment: Alignment.centerRight,
                 child: CustomButton(

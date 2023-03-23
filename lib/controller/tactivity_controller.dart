@@ -26,10 +26,11 @@ class TherapistActivtyController extends GetxController with BaseController {
   }
 
   Future<bool> updateActivity() async {
+    ///TODO: model should be validated
     final result = await activityService.updateActivity(ActivityModel(
-      date: activitydateController.text.trim(),
+      // date: activitydateController.text.trim(),
       description: activitydescriptionController.text.trim(),
-      hour: activitytimeController.text.trim(),
+      // hour: activitytimeController.text.trim(),
       title: activitynamController.text.trim(),
     ));
 
@@ -42,9 +43,9 @@ class TherapistActivtyController extends GetxController with BaseController {
 
   Future<bool> createActivity() async {
     final result = await activityService.createActivity(ActivityModel(
-      date: activitydateController.text.trim(),
+      // date: activitydateController.text.trim(),
       description: activitydescriptionController.text.trim(),
-      hour: activitytimeController.text.trim(),
+      // hour: activitytimeController.text.trim(),
       title: activitynamController.text.trim(),
     ));
 
@@ -62,6 +63,7 @@ class TherapistActivtyController extends GetxController with BaseController {
   final TextEditingController activitytimeController = TextEditingController();
 
   late IActivityService activityService;
+
   Future<void> activtiyAdd() async {
     final isValidted = _validateAddActivity();
     if (isValidted == false) {
@@ -87,6 +89,7 @@ class TherapistActivtyController extends GetxController with BaseController {
   }
 
   var isUpdate = false.obs;
+
   void updatechnage(int index) {
     if (index == 0) {
       isUpdate.value = true;

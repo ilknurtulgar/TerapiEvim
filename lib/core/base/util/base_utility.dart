@@ -255,9 +255,9 @@ class AppContainers {
 
   static ContainerModel containerButton(bool bigwidth) {
     return ContainerModel(
-        width: bigwidth ? SizeUtil.mediumValueWidth : SizeUtil.smallValueWidth,
+        width: bigwidth ? SizeUtil.normalValueWidth : SizeUtil.smallValueWidth,
         height: SizeUtil.lowValueHeight,
-        borderRadius: 8,
+        borderRadius: 16,
         backgroundColor: ButtonColorUtil.generalColor);
   }
 
@@ -307,7 +307,7 @@ class BorderColorUtil {
 
 class AppPaddings {
   static const EdgeInsets appBarPadding =
-      EdgeInsets.symmetric(vertical: 25, horizontal: 20);
+      EdgeInsets.symmetric(vertical: 20, horizontal: 20);
 
   static const EdgeInsets bottomNavBarIcon = EdgeInsets.only(bottom: 5);
 
@@ -318,116 +318,28 @@ class AppPaddings {
     top: 80,
   );
   static const EdgeInsets pagePadding =
-      EdgeInsets.only(left: 24, right: 24, bottom: 80);
+      EdgeInsets.only(left: 24, right: 24, bottom: 80, top: 15);
   static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 8);
   static EdgeInsets miniHeadingPadding(bool isInMiddle) =>
       EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
   static const EdgeInsets rowViewPadding =
-      EdgeInsets.symmetric(vertical: 4, horizontal: 16);
+      EdgeInsets.symmetric(vertical: 4, horizontal: 15);
 
   static const EdgeInsets miniTopPadding = EdgeInsets.only(top: 10);
 
-//yukardakiler kesinlestirildi
+//yukardakiler kesinlestirildi ortak kullanim
   static const EdgeInsets generalPadding = EdgeInsets.all(8);
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
       0, 10, 20, 10); // sağ alt bütün mor butonlar için geçerli
-  static const EdgeInsets copingButtonPadding =
-      EdgeInsets.only(left: 10, right: 10, top: 25, bottom: 25);
-  static const EdgeInsets appmpadding = EdgeInsets.all(15);
-  static const EdgeInsets activitySeminarPadding = EdgeInsets.only(
-    left: 70,
-    top: 20,
-    right: 70,
-  );
-  static const EdgeInsets dividerPadding = EdgeInsets.only(bottom: 10);
-  static const EdgeInsets circleAvatarPadding = EdgeInsets.only(
-    top: 10,
-    right: 5,
-  );
-  static const EdgeInsets activityBoxPadding =
-      EdgeInsets.symmetric(horizontal: 15, vertical: 3);
 
-  static const EdgeInsets toggleButtonsPadding = EdgeInsets.only(bottom: 30);
-
-  static const EdgeInsets appbarLeftPadding = EdgeInsets.only(left: 10);
-  static const EdgeInsets customHeadingPadding = EdgeInsets.only(
-    top: 20,
-    left: 15,
-    right: 15,
-    bottom: 25,
-  );
-  static const EdgeInsets toppadding = EdgeInsets.only(
-    top: 10,
-  );
-  static const EdgeInsets chatInformationPadding = EdgeInsets.all(2);
-  static const EdgeInsets topAppbar = EdgeInsets.only(top: 45);
-  // static const EdgeInsets startpadding = EdgeInsets.only(left: 35, top: 35);
-  // static const EdgeInsets centerpadding = EdgeInsets.only(left: 150, top: 35);
-  static const EdgeInsets eventAboutPadding =
-      EdgeInsets.only(left: 9, right: 9, top: 10, bottom: 20);
-  static const EdgeInsets datePadding = EdgeInsets.only(left: 19);
-  static const EdgeInsets clockPadding = EdgeInsets.only(left: 30);
   static const EdgeInsets contentPadding = EdgeInsets.all(3);
 
   //grup
-
-  static EdgeInsets groupCategoryPadding =
-      const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24);
-  static EdgeInsets appbarPadding =
-      const EdgeInsets.only(right: 10.0, left: 10, top: 10);
-  static EdgeInsets shortCallHeadingPadding = const EdgeInsets.all(10);
-  static EdgeInsets timeChoosePadding =
-      const EdgeInsets.symmetric(vertical: 12.0);
+//gruptan bu iki padding kaldi onlari da ben kullanmiyorum
   static EdgeInsets timeChossingBetweenPadding =
       const EdgeInsets.only(top: 26, left: 26, right: 26);
-  static EdgeInsets customheadingPadding = const EdgeInsets.only(
-    left: 15,
-    bottom: 15,
-    top: 20,
-  );
-  static EdgeInsets aboutmePadding = const EdgeInsets.symmetric(vertical: 10);
-  static EdgeInsets whitebackgroundmargin = const EdgeInsets.only(bottom: 122);
-
   static const EdgeInsets rowViewProfilePadding =
       EdgeInsets.only(top: 15, left: 24, right: 24);
-  static const EdgeInsets participantsPadding =
-      EdgeInsets.only(left: 25, right: 25);
-
-  static const EdgeInsets tLockScreenTextPadding =
-      EdgeInsets.symmetric(vertical: SizeUtil.smallValueHeight);
-  static const EdgeInsets tLockScreenNoUploadPadding = EdgeInsets.only(
-      top: SizeUtil.smallValueHeight, bottom: SizeUtil.smallValueHeight * 2);
-  static const EdgeInsets tLockScreenAppBarPadding =
-      EdgeInsets.only(bottom: 83, top: 30);
-  static const EdgeInsets lockScreenContainerPadding = EdgeInsets.all(20);
-  static const EdgeInsets tLockScreenUploadTextPadding =
-      EdgeInsets.symmetric(vertical: 60, horizontal: 55);
-  static const EdgeInsets tLockScreenPdfPadding =
-      EdgeInsets.symmetric(vertical: 30, horizontal: 55);
-  static const EdgeInsets tGroupaddAppBarPadding =
-      EdgeInsets.symmetric(vertical: 32, horizontal: 30);
-  static const EdgeInsets tGroupAddTimeChoosePadding =
-      EdgeInsets.symmetric(horizontal: 80);
-  static const EdgeInsets tGroupFirstButtonPadding =
-      EdgeInsets.symmetric(vertical: 24.0);
-  static const EdgeInsets tGroupLastButtonPadding = EdgeInsets.only(
-    left: 150,
-    top: 30,
-  );
-
-  static const EdgeInsets tGroupMetotPadding =
-      EdgeInsets.symmetric(vertical: 7);
-  static const EdgeInsets tGroupAppBarPaddong =
-      EdgeInsets.symmetric(vertical: 25, horizontal: 10);
-  static const EdgeInsets tMyGroupAppBarPadding =
-      EdgeInsets.only(top: 18, left: 30, right: 30, bottom: 40);
-  static const EdgeInsets tMyGroupPadding =
-      EdgeInsets.symmetric(vertical: 9, horizontal: 24);
-  static const EdgeInsets newMetotAppBarPadding =
-      EdgeInsets.symmetric(vertical: 33, horizontal: 23);
-  static const EdgeInsets newMetotPadding = EdgeInsets.symmetric(vertical: 40);
-  static const EdgeInsets aboutOtherGroupsPadding =
-      EdgeInsets.only(left: 40, right: 40, top: 30);
 
   // gizem paddings(daha devamı gelecek)
   static EdgeInsets mediumPadding(int paddingNo) => EdgeInsets.only(
@@ -443,7 +355,9 @@ class AppPaddings {
       EdgeInsets.only(top: 305, left: isThereLeftPadding ? 24 : 0);
 
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
-      EdgeInsets.symmetric(horizontal: paddingNo != 2 ? 16 : 0, vertical: paddingNo != 1 ? 16 : 0);
+      EdgeInsets.symmetric(
+          horizontal: paddingNo != 2 ? 16 : 0,
+          vertical: paddingNo != 1 ? 16 : 0);
   // 1 numara horizontal
   // 2 numara vertical
   // 3 numara horizontal ve vertical
@@ -688,20 +602,20 @@ class DemoInformation {
   static String userName = "Yasemin";
   static int tmpCount = 5;
   static List<Widget> questions = [
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview(),
-    togglebuttonsview()
+    const ToggleQuestions(),
+    const ToggleQuestions(),
+    const ToggleQuestions(),
+    const ToggleQuestions(),
+    const ToggleQuestions(),
+    const ToggleQuestions(),
+    const ToggleQuestions(),
+    const ToggleQuestions(),
+    const ToggleQuestions(),
+    const ToggleQuestions(),
   ];
   static String imagePath = "assets/images/doctorfotosu.jpeg";
   static RowModel row = RowModel(
-    isAlignmentBetween: true,
+    isAlignmentBetween: false,
     leadingIcon: IconUtility.personIcon,
     text: "Grup Terapisti : ",
     textStyle: AppTextStyles.groupTextStyle(false),
@@ -861,7 +775,9 @@ class SizeUtil {
       40; // profil sayfasındaki mini container ve listwheelscrollview için
   static const double smallValueWidth = 92; // video call person small view
   static const double normalValueWidth =
-      150; // orderDropDownWidth,horizontalLineWidth
+
+      /// orderDropDownWidth,horizontalLineWidth,bilgilerimi güncelle width buradan geliyor patladığı için böyle yaptım (170) 150'ydi.
+      170;
   static const double mediumValueWidth =
       195; // profil sayfasındaki genderDropDown
   static const double largeValueWidth =
@@ -900,7 +816,7 @@ class Filter {
 }
 
 //responsiveness vermemiz gereken textlerde bunu çağırabiliriz.
-Widget responsivenestext(String text, TextStyle style) {
+Widget responsivenestext(String text, TextStyle? style) {
   return Text(
     text,
     style: style,

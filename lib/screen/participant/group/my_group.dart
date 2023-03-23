@@ -18,37 +18,40 @@ class MyGroup extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              rowView(UiBaseModel.appBar(), AppPaddings.appBarPadding),
-              CustomHeading(
+          child: Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                rowView(UiBaseModel.appBar(), AppPaddings.appBarPadding),
+                CustomHeading(
+                    isalignmentstart: true,
+                    text: GroupTextUtil.upcomingMeetingText),
+                ActivityBox(
+                    istwobutton: false,
+                    buttonText: GroupTextUtil.joinText,
+                    isactivity: false,
+                    containerModel: AppContainers.containerButton(false),
+                    arowModel: DemoInformation.row,
+                    ayrowwModel: DemoInformation.row,
+                    clockModel: DemoInformation.row),
+                CustomHeading(
+                  text: GroupTextUtil.groupsInformationText,
                   isalignmentstart: true,
-                  text: GroupTextUtil.upcomingMeetingText),
-              ActivityBox(
-                  istwobutton: false,
-                  buttonText: GroupTextUtil.joinText,
-                  isactivity: true,
-                  containerModel: AppContainers.containerButton(false),
-                  arowModel: DemoInformation.row,
-                  ayrowwModel: DemoInformation.row,
-                  clockModel: DemoInformation.row),
-              CustomHeading(
-                text: GroupTextUtil.groupsInformationText,
-                isalignmentstart: true,
-              ),
-              therapist(DemoInformation.row, () {
-                context.push(TherapistProfile(isSecTherapist: false));
-              }),
-              therapist(DemoInformation.row2, () {
-                context.push(TherapistProfile(isSecTherapist: true));
-              }),
-              CustomHeading(
-                text: GroupTextUtil.participantsText,
-                isalignmentstart: true,
-              ),
-              participants(DemoInformation.person),
-            ],
+                ),
+                therapist(DemoInformation.row, () {
+                  context.push(const TherapistProfile(isSecTherapist: false));
+                }),
+                therapist(DemoInformation.row2, () {
+                  context.push(const TherapistProfile(isSecTherapist: true));
+                }),
+                CustomHeading(
+                  text: GroupTextUtil.participantsText,
+                  isalignmentstart: true,
+                ),
+                participants(DemoInformation.person),
+              ],
+            ),
           ),
         ),
       ),

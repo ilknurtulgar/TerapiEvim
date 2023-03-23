@@ -85,16 +85,8 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
   Row dateclocktextfield() {
     return Row(
       children: [
-        Padding(
-          padding: AppPaddings.datePadding,
-          child: textfield(
-              160, 60, therapistActivtyController.activitydateController),
-        ),
-        Padding(
-          padding: AppPaddings.clockPadding,
-          child: textfield(
-              160, 60, therapistActivtyController.activitytimeController),
-        ),
+        textfield(160, 60, therapistActivtyController.activitydateController),
+        textfield(160, 60, therapistActivtyController.activitytimeController),
       ],
     );
   }
@@ -139,17 +131,11 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
 }
 
 Widget butterFlyButton(String buttonname, Function() onTap) {
-  return Padding(
-    padding: AppPaddings.generalPadding,
-    child: Align(
-      alignment: Alignment.bottomRight,
-      child: CustomButton(
-          container: AppContainers.containerButton(true),
-          textColor: AppColors.white,
-          onTap: onTap,
-          text: buttonname),
-    ),
-  );
+  return CustomButton(
+      container: AppContainers.containerButton(true),
+      textColor: AppColors.white,
+      onTap: onTap,
+      text: buttonname);
 }
 
 Widget secappview(BuildContext context, RowModel rowModel) {

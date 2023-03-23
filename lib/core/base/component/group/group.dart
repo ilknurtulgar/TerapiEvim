@@ -49,7 +49,7 @@ class GroupClass extends StatelessWidget {
                 ? AppBoxDecoration.purpleBorder
                 : AppBoxDecoration.sendDecoration,
             child: Padding(
-              padding: AppPaddings.timeChoosePadding,
+              padding: AppPaddings.componentPadding,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,

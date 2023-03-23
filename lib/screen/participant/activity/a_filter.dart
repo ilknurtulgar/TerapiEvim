@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/group/row_view.dart';
+import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/participant/activity/filter_details.dart';
+
+import '../../../core/base/component/activtiy/filtermin.dart';
 
 class FilterScreen extends StatelessWidget {
   const FilterScreen({super.key});
@@ -16,7 +19,7 @@ class FilterScreen extends StatelessWidget {
           padding: AppPaddings.pagePadding,
           child: Column(
             children: [
-              filterappbar(),
+              filterappbar(context),
               filtermin(ActivityTextUtil.psychologist, () {
                 context.push(FilterDetails());
               }, IconUtility.forward),
@@ -29,8 +32,27 @@ class FilterScreen extends StatelessWidget {
     );
   }
 
-  Row filterappbar() {
-    return Row(
+  Widget filterappbar(BuildContext context) {
+    return rowView(
+        UiBaseModel.secRowModel(
+            Row(
+              children: [
+                TextButton(
+                    onPressed: () {},
+                    child: Text(
+                      ActivityTextUtil.clean,
+                      style: AppTextStyles.normalTextStyle("small", false),
+                    )),
+                IconButton(
+                    onPressed: () {
+                      context.pop();
+                    },
+                    icon: IconUtility.closeIcon)
+              ],
+            ),
+            ActivityTextUtil.filtering),
+        AppPaddings.componentPadding);
+    /* Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         Text(
@@ -46,24 +68,14 @@ class FilterScreen extends StatelessWidget {
                   ActivityTextUtil.clean,
                   style: AppTextStyles.normalTextStyle("small", false),
                 )),
-            IconButton(onPressed: () {}, icon: IconUtility.closeIcon)
+            IconButton(
+                onPressed: () {
+                  context.pop();
+                },
+                icon: IconUtility.closeIcon)
           ],
         ),
       ],
-    );
+    );*/
   }
-}
-
-Widget filtermin(String heading, Function()? onTap, Icon icon) {
-  return Padding(
-    padding: AppPaddings.componentPadding,
-    child: Container(
-      // width: SizeUtil.generalWidth,
-      height: 56,
-
-      decoration: AppBoxDecoration.sendDecoration,
-      child: activityminto(
-          heading, onTap, MainAxisAlignment.spaceBetween, false, icon),
-    ),
-  );
 }

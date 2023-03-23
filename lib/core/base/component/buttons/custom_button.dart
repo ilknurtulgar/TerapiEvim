@@ -24,11 +24,14 @@ class _CustomButtonState extends State<CustomButton> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: widget.onTap,
-      child: Container(
-        height: widget.container.height,
-        width: widget.container.width,
-        decoration: containerDecoration(),
-        child: insideTheButton(),
+      child: Padding(
+        padding: AppPaddings.rowViewPadding,
+        child: Container(
+          height: widget.container.height,
+          width: widget.container.width,
+          decoration: containerDecoration(),
+          child: insideTheButton(),
+        ),
       ),
     );
   }
@@ -43,10 +46,12 @@ class _CustomButtonState extends State<CustomButton> {
             ? MainAxisSize.max
             : MainAxisSize.min,
         children: [
-          widget.icon != null ?  Padding(
-            padding: const EdgeInsets.only(right: 10),
-            child: widget.icon,
-          ) : const SizedBox(),
+          widget.icon != null
+              ? Padding(
+                  padding: const EdgeInsets.only(right: 10),
+                  child: widget.icon,
+                )
+              : const SizedBox(),
           Text(
             widget.text,
             style: AppTextStyles.buttonTextStyle(widget.textColor),

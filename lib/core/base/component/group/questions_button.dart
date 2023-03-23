@@ -13,10 +13,28 @@ class ToggleQuestions extends StatefulWidget {
 }
 
 class _ToggleQuestionsState extends State<ToggleQuestions> {
-  GroupController groupController = Get.put(GroupController());
+  GroupController groupController = Get.find();
 
   @override
   Widget build(BuildContext context) {
+    return Container(
+      margin: AppPaddings.componentPadding,
+      padding: AppPaddings.componentPadding,
+      decoration: AppBoxDecoration.purpleBorder,
+      // height: SizeUtil.largeValueHeight,
+      child: Column(children: [
+        CustomHeading(
+          padding: AppPaddings.rowViewPadding,
+          isalignmentstart: false,
+          isToggle: true,
+          text: DemoInformation.question,
+        ),
+        selecttoggle(),
+      ]),
+    );
+  }
+
+  Obx selecttoggle() {
     return Obx(
       () => ToggleButtons(
         direction: Axis.horizontal,
@@ -36,20 +54,4 @@ class _ToggleQuestionsState extends State<ToggleQuestions> {
       ),
     );
   }
-}
-
-Container togglebuttonsview() {
-  return Container(
-    margin: AppPaddings.toggleButtonsPadding,
-    decoration: AppBoxDecoration.purpleBorder,
-    width: SizeUtil.generalWidth,
-    child: Column(children: [
-      CustomHeading(
-        isalignmentstart: true,
-        isToggle: true,
-        text: DemoInformation.question,
-      ),
-      const ToggleQuestions(),
-    ]),
-  );
 }

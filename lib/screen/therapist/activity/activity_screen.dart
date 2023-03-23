@@ -27,23 +27,26 @@ class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              activityappbar(context),
-              activityminto(ActivityTextUtil.myupcomingActivities, () {},
-                  MainAxisAlignment.spaceAround, true, IconUtility.forward),
-              myupcomingactivities(),
-              activityminto(ActivityTextUtil.otherUpComingActivities, () {},
-                  MainAxisAlignment.spaceAround, true, IconUtility.forward),
-              otherupcomingactivites(),
-              activityminto(ActivityTextUtil.myPastActivities, () {},
-                  MainAxisAlignment.spaceAround, true, IconUtility.forward),
-              mypastactivites(),
-              activityminto(ActivityTextUtil.otherPastActivities, () {},
-                  MainAxisAlignment.spaceAround, true, IconUtility.forward),
-              otherpastactivites(),
-              sizedbox()
-            ],
+          child: Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              children: [
+                activityappbar(context),
+                activityminto(ActivityTextUtil.myupcomingActivities, () {},
+                    MainAxisAlignment.spaceAround, true, IconUtility.forward),
+                myupcomingactivities(),
+                activityminto(ActivityTextUtil.activity, () {},
+                    MainAxisAlignment.spaceAround, true, IconUtility.forward),
+                otherupcomingactivites(),
+                activityminto(ActivityTextUtil.myActivty, () {},
+                    MainAxisAlignment.spaceAround, true, IconUtility.forward),
+                mypastactivites(),
+                /*
+                activityminto(ActivityTextUtil.otherPastActivities, () {},
+                    MainAxisAlignment.spaceAround, true, IconUtility.forward),
+                otherpastactivites(),*/
+              ],
+            ),
           ),
         ),
       ),

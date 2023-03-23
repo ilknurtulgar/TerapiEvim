@@ -171,9 +171,11 @@ class ActivityTextUtil {
   static String share = "Paylaş";
   static String join = "Katıl";
   static String watchTheRecording = "Kaydı İzle";
-  static String myupcomingActivities = "Yaklaşan Aktivitelerim";
+  static String myupcomingActivities = "Yaklaşan Aktivitem";
   static String upcomingActivities = "Yaklaşan Aktiviteler";
   static String pastActivities = "Geçmiş Aktiviteler";
+  static String activity = "Aktiviteler";
+  static String myActivty = "Aktivitelerim";
   static String otherUpComingActivities = "Yaklaşan Diğer Aktiviteler";
   static String start = "Başla";
   static String myPastActivities = "Geçmiş Aktivitelerim";

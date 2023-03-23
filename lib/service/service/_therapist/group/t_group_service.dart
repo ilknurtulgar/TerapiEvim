@@ -13,7 +13,9 @@ class TActivityService extends ITGroupService with BaseService {
 
   @override
   Future<CreatedIdResponse?> createGroup(TGroupModel group) async {
+
     if (userId == null) return null;
+
     final CreatedIdResponse? createdIdResponse = await manager.create(
       collectionPath: APIConst.therapist,
       docId: userId!,
@@ -35,7 +37,7 @@ class TActivityService extends ITGroupService with BaseService {
       collectionPath: APIConst.therapist,
       docId: userId!,
       collectionPath2: APIConst.groups,
-      docId2: group.id,
+      docId2: group.groupId,
       data: group,
     );
     if (result.error != null) {

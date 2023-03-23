@@ -7,18 +7,28 @@ part of 't_group_model.dart';
 // **************************************************************************
 
 TGroupModel _$TGroupModelFromJson(Map<String, dynamic> json) => TGroupModel(
-      id: json['id'] as String?,
+      groupId: json['groupId'] as String?,
+      therapistId: json['therapistId'] as String?,
       name: json['name'] as String?,
       therapistHelperId: json['therapistHelperId'] as String?,
-      meetingsDate: (json['meetingsDate'] as List<dynamic>?)
-          ?.map((e) => MeetingsDate.fromJson(e as Map<String, dynamic>))
+      therapistHelperName: json['therapistHelperName'] as String?,
+      hasHelperTherapistAccepted: json['hasHelperTherapistAccepted'] as bool?,
+      maxAllowedParticipants: json['maxAllowedParticipants'] as int?,
+      participantsId: (json['participantsId'] as List<dynamic>?)
+          ?.map((e) => e as String?)
           .toList(),
+      dateTime: TGroupModel._timestampFromJson(json['dateTime'] as Timestamp?),
     );
 
 Map<String, dynamic> _$TGroupModelToJson(TGroupModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'groupId': instance.groupId,
+      'therapistId': instance.therapistId,
       'name': instance.name,
       'therapistHelperId': instance.therapistHelperId,
-      'meetingsDate': instance.meetingsDate,
+      'therapistHelperName': instance.therapistHelperName,
+      'hasHelperTherapistAccepted': instance.hasHelperTherapistAccepted,
+      'maxAllowedParticipants': instance.maxAllowedParticipants,
+      'participantsId': instance.participantsId,
+      'dateTime': TGroupModel._timestampToJson(instance.dateTime),
     };

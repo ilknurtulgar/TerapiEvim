@@ -59,8 +59,9 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
   }
 
   Widget micIconButton() {
-    return Align(
-      alignment: Alignment.bottomRight,
+    return Positioned(
+      top: Responsive.height(8, context),
+      right: Responsive.width(8, context),
       child: IconButton(
           onPressed: () => micOnOffFunc(),
           icon: widget.videoCallViewModel.person.isMicOn == false

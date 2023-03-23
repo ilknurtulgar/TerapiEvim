@@ -156,10 +156,6 @@ class UiBaseModel {
 
   static mesajGonder() =>
       roleModel(GroupTextUtil.sendMessageText, IconUtility.chatIcon);
-  static RowModel uploadingapp = RowModel(
-      text: GroupTextUtil.confirmingText,
-      textStyle: AppTextStyles.heading(false),
-      isAlignmentBetween: true);
 
   static personviewRowModel(String groupName) => RowModel(
       text: groupName,

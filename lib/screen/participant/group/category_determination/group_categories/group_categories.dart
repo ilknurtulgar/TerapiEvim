@@ -17,14 +17,17 @@ class _GroupCategoriesState extends State<GroupCategories> {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              CustomHeading(
-                text: GroupTextUtil.groupCategoriesHeading,
-                isalignmentstart: false,
-              ),
-              listOfGroupCategories(),
-            ],
+          child: Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              children: [
+                CustomHeading(
+                  text: GroupTextUtil.groupCategoriesHeading,
+                  isalignmentstart: false,
+                ),
+                listOfGroupCategories(),
+              ],
+            ),
           ),
         ),
       ),
@@ -36,7 +39,7 @@ class _GroupCategoriesState extends State<GroupCategories> {
       shrinkWrap: true,
       itemCount: DemoInformation.geciciKategoriSayisi,
       itemBuilder: (context, index) => Padding(
-        padding: AppPaddings.groupCategoryPadding,
+        padding: AppPaddings.componentPadding,
         child: GroupInformationContainer(
             groupName: DemoInformation.tmpGroupName,
             mainTherapist: DemoInformation.tmpMainTherapist,

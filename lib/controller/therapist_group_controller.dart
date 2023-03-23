@@ -63,7 +63,7 @@ class TherapistGroupController extends GetxController {
   }
 
   //lock screen controller
-  var isTherapistUploaded = false.obs;
+  var isTherapistUploaded = true.obs;
   var isLockedOpen = false.obs;
   void changeIsTherapistLoaded() {
     isTherapistUploaded.value = !isTherapistUploaded.value;

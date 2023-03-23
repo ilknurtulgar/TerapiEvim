@@ -94,8 +94,7 @@ class FirestoreManager<E extends INetworkModel<E>?>
             .collection(collectionPath2)
             .doc(docId2)
             .get();
-
-      }else{
+      } else {
         response = await _database.collection(collectionPath).doc(docId).get();
       }
 
@@ -103,6 +102,44 @@ class FirestoreManager<E extends INetworkModel<E>?>
         throw Exception("response.data() is null in firestoreManager");
       }
       final data = response.data() as Map<String, dynamic>;
+
+      return _getResponseResult<T, R>(data, parseModel);
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(), stackTrace: StackTrace.current, reason: '');
+      return _onError(e);
+    }
+  }
+
+  @override
+  Future<IResponseModel<R?, E?>> readOrdered<T extends INetworkModel<T>, R>({
+    required T parseModel,
+    required String collectionPath,
+    required String docId,
+    required String field,
+    bool isDescending = false,
+    required int limit,
+    String? collectionPath2,
+  }) async {
+    QuerySnapshot? response;
+    try {
+      if (collectionPath2 != null) {
+        response = await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .limit(limit)
+            .orderBy(field, descending: isDescending)
+            .get();
+      } else {
+        response = await _database
+            .collection(collectionPath)
+            .orderBy(field, descending: isDescending)
+            .limit(limit)
+            .get();
+      }
+
+      final data = response.docs as List<Map<String, dynamic>>;
 
       return _getResponseResult<T, R>(data, parseModel);
     } catch (e) {

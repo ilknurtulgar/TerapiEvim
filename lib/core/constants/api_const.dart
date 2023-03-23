@@ -4,4 +4,8 @@ class APIConst {
   static const String activities = 'activities';
   static const String groups = 'groups';
   static const String therapist = 'therapist';
+
+
+  static const String storageImages = 'images';
+
 }

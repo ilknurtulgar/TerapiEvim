@@ -41,8 +41,10 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
     ResponsivenessManager.instance.setFactorSize(context);
     return WillPopScope(
       onWillPop: _controller.onWillPop,
-      child: Scaffold(
-        bottomNavigationBar: buildCupertinoTabScaffold(context),
+      child: SafeArea(
+        child: Scaffold(
+          bottomNavigationBar: buildCupertinoTabScaffold(context),
+        ),
       ),
     );
   }

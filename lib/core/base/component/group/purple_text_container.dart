@@ -9,7 +9,8 @@ class PurpleTextContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: AppPaddings.componentPadding,
+      margin: AppPaddings.miniHeadingPadding(false),
+      padding: AppPaddings.appBarPadding,
       width: SizeUtil.generalWidth,
       decoration: AppBoxDecoration.purpleBorder,
       child: Text(

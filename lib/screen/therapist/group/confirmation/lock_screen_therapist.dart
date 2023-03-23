@@ -34,8 +34,9 @@ Widget popUp(BuildContext context) {
       ? noUpload(context)
       : conformed(context);
 
-  Icon lockicon =
-      controller.isLockedOpen.isTrue ? IconUtility.lockopen : IconUtility.lock;
+  Icon lockicon = controller.isTherapistUploaded.isTrue
+      ? IconUtility.lockopen
+      : IconUtility.lock;
   return BackdropFilter(
     filter: Filter.blur,
     child: Column(
@@ -46,18 +47,6 @@ Widget popUp(BuildContext context) {
 }
 
 Column conformed(BuildContext context) {
-  TherapistGroupController controller = Get.find();
-  Widget button = controller.isLockedOpen.isTrue
-      ? CustomButton(
-          textColor: Colors.white,
-          container:
-              AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
-          onTap: () {
-            context.push(const MyGroups());
-            //buradan kategori sayfasina yonlendirilecek
-          },
-          text: GroupTextUtil.groupPageText)
-      : const SizedBox();
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,7 +54,7 @@ Column conformed(BuildContext context) {
       Container(
         width: SizeUtil.largeValueWidth,
         height: SizeUtil.mediumValueHeight,
-        margin: AppPaddings.tLockScreenTextPadding,
+        margin: AppPaddings.loginTitlePadding,
         child: Text(
           GroupTextUtil.confirmationText,
           style: AppTextStyles.normalTextStyle("big", false)
@@ -73,19 +62,26 @@ Column conformed(BuildContext context) {
           textAlign: TextAlign.center,
         ),
       ),
-      button
+      CustomButton(
+          text: GroupTextUtil.groupPageText,
+          textColor: Colors.white,
+          container:
+              AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
+          onTap: () {
+            context.push(const MyGroups());
+            //buradan kategori sayfasina yonlendirilecek
+          }),
     ],
   );
 }
 
 Column noUpload(BuildContext context) {
-  TherapistGroupController controller = Get.find();
   return Column(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       Container(
-        margin: AppPaddings.tLockScreenNoUploadPadding,
+        margin: AppPaddings.loginTitlePadding,
         width: SizeUtil.largeValueWidth,
         height: SizeUtil.mediumValueHeight,
         child: Text(

@@ -16,7 +16,7 @@ class GroupTextUtil {
   static String confirmText = "Onayla";
   static String confirmingText = "Onaylama";
   static String whyConfirmingText =
-      "Neden onaylama yapmasını bildiren yazı"; //degistirilecek
+      "Neden onaylama yapmasını bildiren yazı Neden onaylama yapmasını bildiren yazı Neden onaylama yapmasını bildiren yazı Neden onaylama yapmasını bildiren yazı Neden onaylama yapmasını bildiren yazı Neden onaylama yapmasını bildiren yazı Neden onaylama yapmasını bildiren yazı Neden onaylama yapmasını bildiren yazı Neden onaylama yapmasını bildiren yazı "; //degistirilecek
   static String pdfUploadingText =
       "E-Devlet Onaylı Mezuniyet Belgenizi Yükleyiniz (.pdf desteklenmektedir)";
   static String uploadText = "Yükle";

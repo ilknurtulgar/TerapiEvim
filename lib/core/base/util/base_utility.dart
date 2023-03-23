@@ -307,7 +307,7 @@ class BorderColorUtil {
 
 class AppPaddings {
   static const EdgeInsets appBarPadding =
-      EdgeInsets.symmetric(vertical: 25, horizontal: 20);
+      EdgeInsets.symmetric(vertical: 20, horizontal: 20);
 
   static const EdgeInsets bottomNavBarIcon = EdgeInsets.only(bottom: 5);
 
@@ -318,7 +318,7 @@ class AppPaddings {
     top: 80,
   );
   static const EdgeInsets pagePadding =
-      EdgeInsets.only(left: 24, right: 24, bottom: 80);
+      EdgeInsets.only(left: 24, right: 24, bottom: 80, top: 15);
   static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 8);
   static EdgeInsets miniHeadingPadding(bool isInMiddle) =>
       EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
@@ -327,7 +327,7 @@ class AppPaddings {
 
   static const EdgeInsets miniTopPadding = EdgeInsets.only(top: 10);
 
-//yukardakiler kesinlestirildi
+//yukardakiler kesinlestirildi ortak kullanim
   static const EdgeInsets generalPadding = EdgeInsets.all(8);
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
       0, 10, 20, 10); // sağ alt bütün mor butonlar için geçerli
@@ -335,58 +335,11 @@ class AppPaddings {
   static const EdgeInsets contentPadding = EdgeInsets.all(3);
 
   //grup
-
-  static EdgeInsets groupCategoryPadding =
-      const EdgeInsets.symmetric(vertical: 12.0, horizontal: 24);
-
-  static EdgeInsets timeChoosePadding =
-      const EdgeInsets.symmetric(vertical: 12.0);
+//gruptan bu iki padding kaldi onlari da ben kullanmiyorum
   static EdgeInsets timeChossingBetweenPadding =
       const EdgeInsets.only(top: 26, left: 26, right: 26);
-
-  static EdgeInsets aboutmePadding = const EdgeInsets.symmetric(vertical: 10);
-  static EdgeInsets whitebackgroundmargin = const EdgeInsets.only(bottom: 122);
-
   static const EdgeInsets rowViewProfilePadding =
       EdgeInsets.only(top: 15, left: 24, right: 24);
-  static const EdgeInsets participantsPadding =
-      EdgeInsets.only(left: 25, right: 25);
-
-  static const EdgeInsets tLockScreenTextPadding =
-      EdgeInsets.symmetric(vertical: SizeUtil.smallValueHeight);
-  static const EdgeInsets tLockScreenNoUploadPadding = EdgeInsets.only(
-      top: SizeUtil.smallValueHeight, bottom: SizeUtil.smallValueHeight * 2);
-  static const EdgeInsets tLockScreenAppBarPadding =
-      EdgeInsets.only(bottom: 83, top: 30);
-  static const EdgeInsets lockScreenContainerPadding = EdgeInsets.all(20);
-  static const EdgeInsets tLockScreenUploadTextPadding =
-      EdgeInsets.symmetric(vertical: 60, horizontal: 55);
-  static const EdgeInsets tLockScreenPdfPadding =
-      EdgeInsets.symmetric(vertical: 30, horizontal: 55);
-  static const EdgeInsets tGroupaddAppBarPadding =
-      EdgeInsets.symmetric(vertical: 32, horizontal: 30);
-  static const EdgeInsets tGroupAddTimeChoosePadding =
-      EdgeInsets.symmetric(horizontal: 80);
-  static const EdgeInsets tGroupFirstButtonPadding =
-      EdgeInsets.symmetric(vertical: 24.0);
-  static const EdgeInsets tGroupLastButtonPadding = EdgeInsets.only(
-    left: 150,
-    top: 30,
-  );
-
-  static const EdgeInsets tGroupMetotPadding =
-      EdgeInsets.symmetric(vertical: 7);
-  static const EdgeInsets tGroupAppBarPaddong =
-      EdgeInsets.symmetric(vertical: 25, horizontal: 10);
-  static const EdgeInsets tMyGroupAppBarPadding =
-      EdgeInsets.only(top: 18, left: 30, right: 30, bottom: 40);
-  static const EdgeInsets tMyGroupPadding =
-      EdgeInsets.symmetric(vertical: 9, horizontal: 24);
-  static const EdgeInsets newMetotAppBarPadding =
-      EdgeInsets.symmetric(vertical: 33, horizontal: 23);
-  static const EdgeInsets newMetotPadding = EdgeInsets.symmetric(vertical: 40);
-  static const EdgeInsets aboutOtherGroupsPadding =
-      EdgeInsets.only(left: 40, right: 40, top: 30);
 
   // gizem paddings(daha devamı gelecek)
   static EdgeInsets mediumPadding(int paddingNo) => EdgeInsets.only(
@@ -400,7 +353,6 @@ class AppPaddings {
       const EdgeInsets.symmetric(vertical: 12);
   static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
       EdgeInsets.only(top: 305, left: isThereLeftPadding ? 24 : 0);
-
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
       EdgeInsets.symmetric(
           horizontal: paddingNo != 2 ? 16 : 0,
@@ -408,7 +360,8 @@ class AppPaddings {
   // 1 numara horizontal
   // 2 numara vertical
   // 3 numara horizontal ve vertical
-  static EdgeInsets componentOnlyTopPadding = const EdgeInsets.only(top: 8);
+  static EdgeInsets componentOnlyPadding(bool isTop) => EdgeInsets.only(top: isTop ? 8 : 0,bottom: isTop ? 0 : 8);
+  static EdgeInsets rowLeftSmallPadding = const EdgeInsets.only(left: 10);
 }
 
 class AppBorderRadius {

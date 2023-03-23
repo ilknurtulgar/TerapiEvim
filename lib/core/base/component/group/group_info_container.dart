@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import '../../../../screen/participant/video_call/util/utility.dart';
 import '../buttons/custom_button.dart';
 import 'participant_container.dart';
 import '../../util/base_utility.dart';
@@ -20,15 +21,17 @@ class GroupInformationContainer extends StatelessWidget {
   final int numberOfSession;
   @override
   Widget build(BuildContext context) {
-    return Material(
-      elevation: 5,
-      borderRadius: AppBorderRadius.notificationradius,
-      child: Container(
-        width: SizeUtil.generalWidth,
-        decoration: AppBoxDecoration.shadow,
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: insideTheContainer(),
+    return Padding(
+      padding: AppPaddings.componentPadding,
+      child: Material(
+        elevation: 5,
+        borderRadius: AppBorderRadius.notificationradius,
+        child: Container(
+          decoration: AppBoxDecoration.shadow,
+          child: Padding(
+            padding: AppPaddings.customContainerInsidePadding(3),
+            child: insideTheContainer(),
+          ),
         ),
       ),
     );
@@ -39,19 +42,17 @@ class GroupInformationContainer extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(
-            child: paddedText(const EdgeInsets.symmetric(vertical: 15),
-                groupName, AppTextStyles.groupTextStyle(false))),
-        therapistRow(mainTherapist, GroupTextUtil.gruopTherapist, () {
+        Center(child: paddedText(AppPaddings.componentOnlyPadding(false),groupName, AppTextStyles.groupTextStyle(false))),
+        therapistColumn(mainTherapist, GroupTextUtil.gruopTherapist, () {
           /* ana psikolog sayfasına gitme fonksiyonu */
-        }, SizeUtil.mediumValueWidth),
-        therapistRow(secondTherapist, GroupTextUtil.groupsecTherapist, () {
+        }),
+        therapistColumn(secondTherapist, GroupTextUtil.groupsecTherapist, () {
           /* yardımcı psikolog sayfasına gitme fonksiyonu */
-        }, SizeUtil.participantContainerWidth),
+        }),
         Text(GroupTextUtil.participantNumber + numberOfParticipant.toString(),
             style: AppTextStyles.groupTextStyle(true)),
         paddedText(
-            const EdgeInsets.only(top: 20, bottom: 10),
+            AppPaddings.componentPadding,
             GroupTextUtil.sessionNumber + numberOfSession.toString(),
             AppTextStyles.groupTextStyle(true)),
         Align(
@@ -62,7 +63,6 @@ class GroupInformationContainer extends StatelessWidget {
               onTap: () {},
               text: GroupTextUtil.join,
             )),
-        smallSizedBox() // eski hali const SizedBox(height: 15,)
       ],
     );
   }
@@ -77,19 +77,26 @@ class GroupInformationContainer extends StatelessWidget {
     );
   }
 
-  Row therapistRow(
-      CardModel therapist, String text, Function() func, double width) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Column therapistColumn(
+      CardModel therapist, String text, Function() func,) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(text, style: AppTextStyles.groupTextStyle(true)),
-        InkWell(
-            onTap: func,
-            child: participantContainer(
-              therapist,
-              SizeUtil.normalValueHeight,
-              width: width,
-            )),
+        Row(
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: InkWell(
+                  onTap: func,
+                  child: participantContainer(
+                    therapist,
+                    SizeUtil.normalValueHeight,
+                    width: PixelScreen().logicalWidth<300 ? SizeUtil.mediumValueWidth : SizeUtil.largeValueWidth,
+                  )),
+            ),
+          ],
+        ),
       ],
     );
   }

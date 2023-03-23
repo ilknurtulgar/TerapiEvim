@@ -360,7 +360,7 @@ class AppPaddings {
   // 1 numara horizontal
   // 2 numara vertical
   // 3 numara horizontal ve vertical
-  static EdgeInsets componentOnlyTopPadding = const EdgeInsets.only(top: 8);
+  static EdgeInsets componentOnlyPadding(bool isTop) => EdgeInsets.only(top: isTop ? 8 : 0,bottom: isTop ? 0 : 8);
   static EdgeInsets rowLeftSmallPadding = const EdgeInsets.only(left: 10);
 }
 

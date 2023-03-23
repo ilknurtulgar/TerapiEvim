@@ -9,9 +9,9 @@ part of 'phone_number_model.dart';
 PhoneNumberModel _$PhoneNumberModelFromJson(Map<String, dynamic> json) =>
     PhoneNumberModel(
       gender: json['gender'] as String?,
-     );
+    );
 
 Map<String, dynamic> _$PhoneNumberModelToJson(PhoneNumberModel instance) =>
     <String, dynamic>{
       'gender': instance.gender,
-       };
+    };

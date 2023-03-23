@@ -1,5 +1,6 @@
 import '../../../../core/base/service/base_service.dart';
 import '../../../../core/constants/api_const.dart';
+import '../../../../core/constants/app_const.dart';
 import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
@@ -13,7 +14,6 @@ class TActivityService extends ITGroupService with BaseService {
 
   @override
   Future<CreatedIdResponse?> createGroup(TGroupModel group) async {
-
     if (userId == null) return null;
 
     final CreatedIdResponse? createdIdResponse = await manager.create(
@@ -81,14 +81,22 @@ class TActivityService extends ITGroupService with BaseService {
   }
 
   @override
-  Future<List<TGroupModel?>?> getGroups(int currentPage) async {
+  Future<List<TGroupModel?>?> getGroupsOrdered({
+    String lastDocId = '',
+    String orderField = AppConst.dateTime,
+    bool isDescending = false,
+  }) async {
     if (userId == null) return null;
 
-    final result = await manager.read<TGroupModel, List<TGroupModel>>(
+    final result =
+        await manager.readManyOrdered<TGroupModel, List<TGroupModel>>(
       collectionPath: APIConst.therapist,
       docId: userId!,
       collectionPath2: APIConst.activities,
       parseModel: TGroupModel(),
+      isDescending: isDescending,
+      field: orderField,
+      lastDocumentId: lastDocId,
     );
     if (result.error != null) {
       return [];

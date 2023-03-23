@@ -74,13 +74,12 @@ class ActivityService extends IActivityService with BaseService {
     if (userId == null) return null;
 
     final result =
-        await manager.readOrdered<ActivityModel, List<ActivityModel>>(
+        await manager.readOneOrdered<ActivityModel, List<ActivityModel>>(
       collectionPath: APIConst.therapist,
       docId: userId!,
       collectionPath2: APIConst.activities,
       parseModel: ActivityModel(),
       field: AppConst.dateTime,
-      limit: 1,
       isDescending: true,
     );
 

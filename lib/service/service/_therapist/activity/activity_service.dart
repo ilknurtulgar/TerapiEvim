@@ -1,5 +1,6 @@
 import '../../../../core/base/service/base_service.dart';
 import '../../../../core/constants/api_const.dart';
+import '../../../../core/constants/app_const.dart';
 import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
@@ -13,6 +14,9 @@ class ActivityService extends IActivityService with BaseService {
   @override
   Future<CreatedIdResponse?> createActivity(ActivityModel activity) async {
     if (userId == null) return null;
+
+    /// Setting id of a current therapist
+    activity.therapistId = userId;
 
     final CreatedIdResponse? createdIdResponse = await manager.create(
       collectionPath: APIConst.therapist,
@@ -31,6 +35,9 @@ class ActivityService extends IActivityService with BaseService {
   @override
   Future<String?> updateActivity(ActivityModel activity) async {
     if (userId == null) return null;
+
+    /// Overriding id of a current therapist
+    activity.therapistId = userId;
 
     final result = await manager.update<ActivityModel, EmptyModel>(
       collectionPath: APIConst.therapist,
@@ -60,6 +67,29 @@ class ActivityService extends IActivityService with BaseService {
       return "ERROR";
     }
     return null;
+  }
+
+  @override
+  Future<ActivityModel?> getRecentActivity() async {
+    if (userId == null) return null;
+
+    final result =
+        await manager.readOrdered<ActivityModel, List<ActivityModel>>(
+      collectionPath: APIConst.therapist,
+      docId: userId!,
+      collectionPath2: APIConst.activities,
+      parseModel: ActivityModel(),
+      field: AppConst.dateTime,
+      limit: 1,
+      isDescending: true,
+    );
+
+    if (result.error != null) {
+      return null;
+    }
+    if (result.data == null) return null;
+
+    return result.data![0];
   }
 
   @override

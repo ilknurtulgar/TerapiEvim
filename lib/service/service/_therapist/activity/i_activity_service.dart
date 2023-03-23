@@ -11,7 +11,10 @@ abstract class IActivityService {
   /// if result is null, it means an activity was not added
   Future<CreatedIdResponse?> createActivity(ActivityModel activity);
 
+
   Future<String?> updateActivity(ActivityModel activity);
+
+  Future<ActivityModel?> getRecentActivity();
 
   Future<ActivityModel?> getActivityById(String activityId);
 

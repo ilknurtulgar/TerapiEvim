@@ -70,7 +70,7 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
   Padding participantChoosingTimeButton(int rowIndex) {
     return Padding(
       padding: rowIndex == timeList.length - 1
-            ? AppPaddings.componentOnlyTopPadding
+            ? AppPaddings.componentOnlyPadding(true)
             : AppPaddings.componentPadding,
       child: PersonMin(
         onTap: () => groupController.choosingTime(timeList.length, rowIndex, listviewIndex),

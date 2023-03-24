@@ -29,22 +29,23 @@ class MethodDownloadingContainer extends StatelessWidget {
         padding: AppPaddings.customContainerInsidePadding(1),
         child: Align(
           alignment: Alignment.centerLeft,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(explanation,
-                   style: AppTextStyles.normalTextStyle('medium', false),
-              ),
-              Padding(
-               padding: AppPaddings.customContainerInsidePadding(2),
-               child: CustomButton(
-                textColor: Colors.purple,
-                container: AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
-                onTap: buttonOnTap,
-                text: buttonText,
-                icon: IconUtility.fileIcon),
-              )
-            ]),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              explanation,
+              style: AppTextStyles.normalTextStyle('medium', false),
+            ),
+            Padding(
+              padding: AppPaddings.customContainerInsidePadding(2),
+              child: CustomButton(
+                  textColor: AppColors.white,
+                  container: AppContainers.purpleButtonContainer(
+                      SizeUtil.normalValueWidth),
+                  onTap: buttonOnTap,
+                  text: buttonText,
+                  icon: IconUtility.fileIcon),
+            )
+          ]),
         ),
       ),
     );

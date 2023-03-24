@@ -2,7 +2,6 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import '../../../../core/base/component/activtiy/drop_down.dart';
-import '../../../../core/base/component/login/custom_textfield.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 
 class ProfilePageUtility {
@@ -39,9 +38,6 @@ class ProfilePageUtility {
   static CustomDropDown genderDropDown(bool isInProfilePage,
           [TextEditingController? textController]) =>
       CustomDropDown(
-        onTap: () {
-          activityController.changeBox();
-        },
         isGenderPurpose: true,
         width:
             isInProfilePage ? SizeUtil.mediumValueWidth : SizeUtil.generalWidth,

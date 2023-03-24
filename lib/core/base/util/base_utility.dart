@@ -94,7 +94,10 @@ class IconUtility {
   static const Icon searchIcon = Icon(Icons.search);
   static const Icon fiterIcon = Icon(Icons.list);
 
-  static const Icon fileIcon = Icon(Icons.description_outlined);
+  static const Icon fileIcon = Icon(
+    Icons.description_outlined,
+    color: AppColors.white,
+  );
   static Icon micIcon(bool isInCircularContainer) => Icon(Icons.mic,
       color: isInCircularContainer ? AppColors.black : AppColors.white);
   static const Icon micoffIcon = Icon(Icons.mic_off, color: AppColors.red);
@@ -209,7 +212,7 @@ class AppTextStyles {
       fontSize: isName ? 16 : 18,
       fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
       //sor!
-      color: isName ? AppColors.black : AppColors.deepCove);
+      color: isName ? AppColors.black : AppColors.meteorite);
 
   static TextStyle profileTextStyles(bool isBig, bool isBold) => TextStyle(
         fontFamily: 'Roboto',
@@ -326,9 +329,9 @@ class AppPaddings {
       EdgeInsets.symmetric(vertical: 4, horizontal: 15);
 
   static const EdgeInsets miniTopPadding = EdgeInsets.only(top: 10);
-
+  static const EdgeInsets mediumxPadding = EdgeInsets.only(top: 25, bottom: 15);
 //yukardakiler kesinlestirildi ortak kullanim
-  static const EdgeInsets generalPadding = EdgeInsets.all(8);
+  static const EdgeInsets generalPadding = EdgeInsets.all(5);
   static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
       0, 10, 20, 10); // sağ alt bütün mor butonlar için geçerli
 
@@ -360,7 +363,8 @@ class AppPaddings {
   // 1 numara horizontal
   // 2 numara vertical
   // 3 numara horizontal ve vertical
-  static EdgeInsets componentOnlyPadding(bool isTop) => EdgeInsets.only(top: isTop ? 8 : 0,bottom: isTop ? 0 : 8);
+  static EdgeInsets componentOnlyPadding(bool isTop) =>
+      EdgeInsets.only(top: isTop ? 8 : 0, bottom: isTop ? 0 : 8);
   static EdgeInsets rowLeftSmallPadding = const EdgeInsets.only(left: 10);
 }
 
@@ -432,7 +436,7 @@ Padding colon(bool isInAlertDialog) {
 
 class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
-    TherapistHome(),
+    const TherapistHome(),
     const TherapistActivityScreen(),
     TherapistGroupPage(),
     const TherapistMessageScreen(),
@@ -491,7 +495,7 @@ class DemoInformation {
   //message
   static const String headingabactivity = "Canan Karatay";
   static const String aboutmeaperson =
-      "   hepinize merhaba arkadaşlar.kanalıma hoşgeldiniz,Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım  ";
+      "hepinize merhaba arkadaşlar.kanalıma hoşgeldiniz,Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım  ";
 
   static const String aboutmeabactivity =
       "Neden Katılmalısın?Potansiyellerini keşfetmek, ihtiyaçlarını doğru şekilde tanımlayabilmek ve hayatta arzu ettiği başarılara ulaşabilmesi için ihtiyaçları ve eksik hissedilen yönleri geliştirmek için katılmalısınKimler Katılmalı?Kişisel gelişimine önem veren ve kendini geliştirmeyi hedefleyen, bölüm farketmeksizin üniversite öğrencileri, çalışma hayatında olan ve çalışma hayatına hazırlanan herkes.";

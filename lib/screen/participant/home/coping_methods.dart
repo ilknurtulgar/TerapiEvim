@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/home/method_downloading_container.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 
-import 'package:terapievim/screen/participant/home/home.dart';
 import 'package:terapievim/screen/therapist/home/session_screen.dart';
+
+import '../../../core/base/component/group/row_view.dart';
+import '../../../core/base/util/base_model.dart';
 
 class CopingMethods extends StatelessWidget {
   const CopingMethods({super.key});
@@ -14,20 +17,16 @@ class CopingMethods extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Padding(
-            padding: AppPaddings.componentPadding,
-            child: Stack(
-              children: [
-                Column(
-                  children: [
-                    headingtext(false, true, HomeTextUtil.copingMethods),
-                    sizedbox(),
-                    methodbuilder()
-                  ],
+          child: Stack(
+            children: [
+              Padding(
+                padding: AppPaddings.pagePadding,
+                child: Column(
+                  children: [approw(context), sizedbox(), methodbuilder()],
                 ),
-                Positioned(top: 104, right: 24, child: orderdropdown()),
-              ],
-            ),
+              ),
+              Positioned(top: 80, right: 24, child: orderdropdown()),
+            ],
           ),
         ),
       ),
@@ -49,4 +48,13 @@ class CopingMethods extends StatelessWidget {
       itemCount: DemoInformation.home.length,
     );
   }
+}
+
+Widget approw(
+  BuildContext context,
+) {
+  return rowView(
+      UiBaseModel.leadinfRowModel(backButton(context, () => context.pop()),
+          HomeTextUtil.copingMethods, false),
+      AppPaddings.mediumxPadding);
 }

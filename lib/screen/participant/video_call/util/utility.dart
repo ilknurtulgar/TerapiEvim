@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
 import '../model/person_in_call_model.dart';
 import '../model/video_call_view_model.dart';
@@ -23,10 +24,10 @@ class VideoCallUtility {
           person: person,
           isNameShown: isNameShown,
           isTherapistInGroupTherapy: false);
-  static VideoCallViewModel personShortCallView(PersonInCallModel person) =>
+  static VideoCallViewModel personShortCallView(PersonInCallModel person,BuildContext context) =>
       VideoCallViewModel(
-        height: SizeUtil.hugeValueHeight,
-        width: SizeUtil.generalWidth,
+        height: Responsive.height(SizeUtil.hugeValueHeight, context),//SizeUtil.hugeValueHeight,
+        width: Responsive.width(SizeUtil.generalWidth, context),//SizeUtil.generalWidth,
         borderRadius: 12,
         isNameShown: false,
         isTherapistInGroupTherapy: false,

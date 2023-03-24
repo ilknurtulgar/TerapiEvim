@@ -67,11 +67,14 @@ class ActivityBox extends StatelessWidget {
   }
 
   Widget rowbutton(Function() onTap, String buttonText, bool bigWidth) {
-    return CustomButton(
-      textColor: AppColors.white,
-      container: AppContainers.containerButton(bigWidth),
-      onTap: onTap,
-      text: buttonText,
+    return Padding(
+      padding: AppPaddings.rowViewPadding,
+      child: CustomButton(
+        textColor: AppColors.white,
+        container: AppContainers.containerButton(bigWidth),
+        onTap: onTap,
+        text: buttonText,
+      ),
     );
   }
 }

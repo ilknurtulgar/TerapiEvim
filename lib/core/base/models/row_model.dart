@@ -27,7 +27,7 @@ class RowModel {
   }
 
   SizedBox space() => const SizedBox(
-        height: (SizeUtil.smallValueHeight)/2,
-        width: (SizeUtil.lowValueWidth)/2,
+        height: (SizeUtil.smallValueHeight) / 2,
+        width: (SizeUtil.lowValueWidth) / 2,
       );
 }

@@ -86,7 +86,7 @@ class UiBaseModel {
   static RowModel aboutrowmodel(String headingtext, Icon leadingIcon) {
     return RowModel(
         text: headingtext,
-        textStyle: AppTextStyles.groupTextStyle(false),
+        textStyle: AppTextStyles.groupTextStyle(true),
         leadingIcon: leadingIcon,
         isAlignmentBetween: false);
   }
@@ -175,4 +175,10 @@ class UiBaseModel {
       text: text,
       textStyle: AppTextStyles.heading(false),
       isAlignmentBetween: true);
+  static leadinfRowModel(Widget leadingIcon, String text, bool isHeading) =>
+      RowModel(
+          text: text,
+          textStyle: AppTextStyles.heading(isHeading),
+          leadingIcon: leadingIcon,
+          isAlignmentBetween: true);
 }

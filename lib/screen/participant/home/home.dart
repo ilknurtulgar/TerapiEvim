@@ -14,20 +14,27 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          headingtext(
-            true,
-            true,
-            GroupTextUtil.terapiEvim,
+    return Scaffold(
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              children: [
+                headingtext(
+                  true,
+                  true,
+                  GroupTextUtil.terapiEvim,
+                ),
+                headingtext(false, false, HomeTextUtil.welcome),
+                mindetailesbox(HomeTextUtil.copingMethods,
+                    () => context.push(const CopingMethods()), context),
+                notification(DemoInformation.cardModelhome,
+                    DemoInformation.home, DemoInformation.home.length)
+              ],
+            ),
           ),
-          headingtext(false, false, HomeTextUtil.welcome),
-          mindetailesbox(HomeTextUtil.copingMethods,
-              () => context.push(const CopingMethods()), context),
-          notification(DemoInformation.cardModelhome, DemoInformation.home,
-              DemoInformation.home.length)
-        ],
+        ),
       ),
     );
   }
@@ -49,15 +56,12 @@ ListView notification(
   );
 }
 
-Padding mindetailesbox(
+Widget mindetailesbox(
     String rowmodeltext, Function()? onTap, BuildContext context) {
-  return Padding(
-    padding: context.paddingMainHorizontal2,
-    child: SeminarMin(
-      onTap: onTap,
-      row: UiBaseModel.rowModel(rowmodeltext),
-      isBorderPurple: true,
-    ),
+  return SeminarMin(
+    onTap: onTap,
+    row: UiBaseModel.rowModel(rowmodeltext),
+    isBorderPurple: true,
   );
 }
 
@@ -71,4 +75,17 @@ Widget headingtext(bool isHeading, bool isPadding, String heading) {
           style: AppTextStyles.heading(isHeading),
         ),
       ));
+}
+
+Widget titleText(String title) {
+  return Padding(
+    padding: AppPaddings.mediumxPadding,
+    child: Align(
+      alignment: Alignment.center,
+      child: Text(
+        title,
+        style: AppTextStyles.heading(false),
+      ),
+    ),
+  );
 }

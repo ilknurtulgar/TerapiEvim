@@ -40,7 +40,7 @@ class TherapistProfile extends StatelessWidget {
                     child: Column(
                       children: [
                         heading(DemoInformation.therapistName2),
-                        aboutMe(DemoInformation.aboutme),
+                        aboutMe(DemoInformation.aboutme, context),
                         isSecTherapist
                             ? const SizedBox.shrink()
                             : activity(UiBaseModel.basetmeMetotlari(), () {
@@ -82,7 +82,7 @@ Widget activity(RowModel row, Function() func) {
     child: SeminarMin(
       onTap: func,
       row: row,
-      isBorderPurple: true,
+      isBorderPurple: false,
     ),
   );
 }
@@ -117,16 +117,10 @@ Padding heading(name) {
   );
 }
 
-Container aboutMe(String aboutme) {
-  return Container(
-    padding: AppPaddings.componentPadding,
-    width: SizeUtil.largeValueWidth,
-    child: Text(
-      aboutme,
-      textAlign: TextAlign.justify,
-      style: AppTextStyles.aboutMeTextStyle(false),
-    ),
-  );
+Widget aboutMe(String aboutme, BuildContext context) {
+  return SizedBox(
+      width: Responsive.width(270, context),
+      child: responsivenestext(aboutme, AppTextStyles.aboutMeTextStyle(false)));
 }
 
 Container whiteBackground(BuildContext context) {

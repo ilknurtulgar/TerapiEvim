@@ -73,20 +73,20 @@ class TherapistGroupController extends GetxController {
     isLockedOpen.value = !isLockedOpen.value;
   }
 
-  RxList<RxList<String>> timeListInControllerList = [
-    ['öylesine string'].obs
-  ].obs;
+  var timeListsInController = [].obs;
 
-  void getTimeListToController(List<String> timeList, int listviewIndex) {
-    if (listviewIndex == 0) {
-      timeListInControllerList.clear();
-    }
+  // müsait olduğum saatler sayfasında saat ekle kısmında kaydet butonuyla timeListsInController'a saat listesi ekleneceği için bu fonksiyona gerek kalmıyor 
+  /*void getTimeListToController(List<String> timeList) {
     timeListInControllerList.add(timeList.obs);
+  }*/
+
+  void deleteTimeInMainPage(int rowIndex, int listViewIndex) {
+    timeListsInController[listViewIndex].remove(timeListsInController[listViewIndex][rowIndex]);
+    // print(timeListInControllerList);
   }
 
-  void deleteTime(List<String> timeList, int rowIndex, int listViewIndex) {
-    timeListInControllerList[listViewIndex]
-        .remove(timeListInControllerList[listViewIndex][rowIndex]);
-    // print(timeListInControllerList);
+  var tempTimes = [].obs; // ilknur bu listeye saatleri teker teker ekleyecek ardından kaydet butonuna basınca bu liste timeListInControllerList e eklenecek sonra başka bir tarih için tempList temizlenecek
+  void deleteTimeInAddingPage(int rowIndex) {
+    tempTimes.remove(tempTimes[rowIndex]);
   }
 }

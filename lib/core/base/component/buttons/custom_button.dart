@@ -24,14 +24,11 @@ class _CustomButtonState extends State<CustomButton> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: widget.onTap,
-      child: Padding(
-        padding: AppPaddings.rowViewPadding,
-        child: Container(
-          height: widget.container.height,
-          width: widget.container.width,
-          decoration: containerDecoration(),
-          child: insideTheButton(),
-        ),
+      child: Container(
+        height: widget.container.height,
+        width: widget.container.width,
+        decoration: containerDecoration(),
+        child: insideTheButton(),
       ),
     );
   }

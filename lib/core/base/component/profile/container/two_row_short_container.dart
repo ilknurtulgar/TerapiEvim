@@ -97,7 +97,7 @@ class TwoRowShortContainer extends StatelessWidget {
             ? UiBaseModel.normalTextRow(row1Text, firstIconData,
                 AppTextStyles.profileTextStyles(false, true))
             : UiBaseModel.doubleTextRow('Danışan: ', row1Text, false),
-        isThereButton ? EdgeInsets.zero : AppPaddings.componentOnlyTopPadding);
+        isThereButton ? EdgeInsets.zero : AppPaddings.componentOnlyPadding(true));
   }
 
   Widget button() {

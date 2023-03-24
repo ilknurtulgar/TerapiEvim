@@ -17,26 +17,26 @@ class SessionScreen extends StatelessWidget {
       body: SafeArea(
         child: SingleChildScrollView(
           child: Stack(children: [
-            Column(
-              children: [
-                messageappbar(
-                  HomeTextUtil.myMinuteSessions,
-                  IconButton(
-                      onPressed: () {
-                        context.pop();
-                      },
-                      icon: IconUtility.back),
-                  IconButton(
-                      onPressed: () {
-                        context.push(const AvailableHours());
-                      },
-                      icon: IconUtility.clockIcon),
-                ),
-                sizedbox(),
-                aboutparticipant(),
-              ],
+            Padding(
+              padding: AppPaddings.pagePadding,
+              child: Column(
+                children: [
+                  doubleappbar(
+                    HomeTextUtil.myMinuteSessions,
+                    backButton(context, () => context.pop()),
+                    IconButton(
+                        padding: EdgeInsets.zero,
+                        onPressed: () {
+                          context.push(const AvailableHours());
+                        },
+                        icon: IconUtility.clockIcon),
+                  ),
+                  sizedbox(),
+                  aboutparticipant(),
+                ],
+              ),
             ),
-            Positioned(top: 104, right: 24, child: orderdropdown()),
+            Positioned(top: 90, right: 24, child: orderdropdown()),
           ]),
         ),
       ),
@@ -47,9 +47,7 @@ class SessionScreen extends StatelessWidget {
     return ListView.builder(
       itemBuilder: (context, index) {
         return participantWihtShortCallTime(
-            //sorun devam ediyor
-            DemoInformation.copingList[index],
-            DemoInformation.date);
+            DemoInformation.copingList[index], DemoInformation.date);
       },
       itemCount: DemoInformation.copingList.length,
       shrinkWrap: true,

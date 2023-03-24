@@ -15,7 +15,7 @@ class AvailableHours extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: [
-              messageappbar(
+              doubleappbar(
                   HomeTextUtil.myAvailableHours,
                   backButton(context, () {
                     context.pop();

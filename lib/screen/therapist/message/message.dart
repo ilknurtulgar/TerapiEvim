@@ -51,8 +51,8 @@ class _TherapistMessageScreenState extends State<TherapistMessageScreen> {
   }
 }
 
-Widget messageappbar(String apptext, Widget leadingIcon, Widget trailingIcon) {
+Widget doubleappbar(String apptext, Widget leadingIcon, Widget trailingIcon) {
   return rowView(
       UiBaseModel.doubleappbarModel(apptext, leadingIcon, trailingIcon),
-      AppPaddings.loginTitlePadding);
+      AppPaddings.mediumxPadding);
 }

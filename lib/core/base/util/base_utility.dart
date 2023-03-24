@@ -198,7 +198,7 @@ class AppTextStyles {
       //basliklarin hepsi
 
       color: AppColors.meteorite,
-      fontSize: isMainHeading ? 32 : 24,
+      fontSize: isMainHeading ? 32 : 18,
       fontFamily: "Roboto",
       fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
       letterSpacing: 0.07);
@@ -839,7 +839,8 @@ class Responsive {
 }
 
 IconButton backButton(BuildContext context, Function()? onPressed) {
-  return IconButton(onPressed: onPressed, icon: IconUtility.back);
+  return IconButton(
+      padding: EdgeInsets.zero, onPressed: onPressed, icon: IconUtility.back);
 }
 
 IconButton closeIcon(Function()? onPressed) =>

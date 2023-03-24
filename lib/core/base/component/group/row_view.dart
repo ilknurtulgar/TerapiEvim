@@ -11,15 +11,17 @@ Widget rowView(
     padding: padding,
     child: Row(
       mainAxisAlignment: rowModel.isAlignmentBetween
-          ? MainAxisAlignment.spaceBetween
+          ? MainAxisAlignment.spaceAround
           : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         rowModel.leadingIcon!,
-        Padding(
-          padding: EdgeInsets.only(
-              left: rowModel.isAlignmentBetween == false ? 15 : 0),
-          child: texts(rowModel),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.only(
+                left: rowModel.isAlignmentBetween == false ? 15 : 0),
+            child: texts(rowModel),
+          ),
         ),
         rowModel.trailingIcon!
       ],
@@ -29,6 +31,7 @@ Widget rowView(
 
 Widget texts(RowModel rowModel) {
   return Row(
+    mainAxisAlignment: MainAxisAlignment.center,
     children: [
       responsivenestext(rowModel.text, rowModel.textStyle),
       responsivenestext(rowModel.text2!, rowModel.textStyle2),

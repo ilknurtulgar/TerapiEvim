@@ -29,6 +29,8 @@ class MethodDownloadingContainer extends StatelessWidget {
         padding: AppPaddings.customContainerInsidePadding(1),
         child: Align(
           alignment: Alignment.centerLeft,
+
+
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [

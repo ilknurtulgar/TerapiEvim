@@ -5,10 +5,9 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/activity/about_activity.dart';
+import 'package:terapievim/screen/participant/home/home.dart';
 
 import '../../../core/base/models/row_model.dart';
-import '../../../core/base/util/base_model.dart';
-import 'a_filter.dart';
 
 class ActivitiesScreen extends StatelessWidget {
   const ActivitiesScreen({super.key});
@@ -21,23 +20,13 @@ class ActivitiesScreen extends StatelessWidget {
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-                search(UiBaseModel.searchModel(
-                  ActivityTextUtil.searchText,
-                  IconButton(
-                    onPressed: () {
-                      context.push(const FilterScreen());
-
-                      //trendyolfiltreicondüzenleme
-                    },
-                    icon: IconUtility.fiterIcon,
-                  ),
-                )),
+                titleText(ActivityTextUtil.activity),
                 activityminto(ActivityTextUtil.upcomingActivities, () {},
-                    MainAxisAlignment.spaceAround, true, IconUtility.forward),
-                activityseminar(),
+                    MainAxisAlignment.spaceBetween, true, IconUtility.forward),
+                activityLoadseminar(),
                 activityminto(ActivityTextUtil.pastActivities, () {},
-                    MainAxisAlignment.spaceAround, true, IconUtility.forward),
-                activityseminar()
+                    MainAxisAlignment.spaceBetween, true, IconUtility.forward),
+                activityPastseminar()
               ],
             ),
           ),
@@ -47,7 +36,7 @@ class ActivitiesScreen extends StatelessWidget {
   }
 }
 
-ListView activityseminar() {
+ListView activityLoadseminar() {
   return ListView.builder(
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
@@ -70,19 +59,39 @@ ListView activityseminar() {
   );
 }
 
+ListView activityPastseminar() {
+  return ListView.builder(
+    shrinkWrap: true,
+    physics: const NeverScrollableScrollPhysics(),
+    itemBuilder: (context, index) {
+      return ActivityBox(
+          onTap: () {
+            //  print("tıklıyorum ya");
+
+            context.push(const AboutActivityScreen());
+          },
+          istwobutton: false,
+          buttonText: ActivityTextUtil.watchTheRecording,
+          containerModel: AppContainers.containerButton(false),
+          isactivity: false,
+          arowModel: DemoInformation.arowmodel,
+          ayrowwModel: DemoInformation.ayrowmodel,
+          clockModel: DemoInformation.clockmodel);
+    },
+    itemCount: 2,
+  );
+}
+
 Widget activityminto(String text, Function()? onPressed,
     MainAxisAlignment mainAxisAlignment, bool isButterfly, Icon icon) {
   return Row(
     mainAxisAlignment: mainAxisAlignment,
     children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 10),
-        child: Text(
-          text,
-          style: isButterfly
-              ? AppTextStyles.groupTextStyle(false)
-              : AppTextStyles.normalTextStyle("medium", false),
-        ),
+      Text(
+        text,
+        style: isButterfly
+            ? AppTextStyles.groupTextStyle(false)
+            : AppTextStyles.normalTextStyle("medium", false),
       ),
       IconButton(
         icon: icon,
@@ -104,3 +113,17 @@ Widget search(RowModel rowmodel) {
     textController: activityTextController,
   );
 }
+
+
+
+/*   search(UiBaseModel.searchModel(
+                  ActivityTextUtil.searchText,
+                  IconButton(
+                    onPressed: () {
+                      context.push(const FilterScreen());
+
+                      //trendyolfiltreicondüzenleme
+                    },
+                    icon: IconUtility.fiterIcon,
+                  ),
+                )),*/

@@ -12,29 +12,31 @@ class BeforeSignUp extends StatelessWidget {
   final TherapistProfileController controller = Get.find();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.blueChalk,
-      body: Center(
-        child: Column(
-          children: [
-            getBackIconbutton(),
-            Expanded(
-              child: Padding(
-              padding: AppPaddings.pagePadding,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    homeImage(),
-                    text(1),
-                    text(2),
-                    text(3),
-                    button(true,context),
-                    button(false,context),
-                  ],
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.blueChalk,
+        body: Center(
+          child: Column(
+            children: [
+              getBackIconbutton(),
+              Expanded(
+                child: Padding(
+                padding: AppPaddings.pagePadding,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      homeImage(),
+                      text(1),
+                      text(2),
+                      text(3),
+                      button(true,context),
+                      button(false,context),
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

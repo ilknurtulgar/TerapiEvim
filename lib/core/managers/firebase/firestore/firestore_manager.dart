@@ -113,45 +113,8 @@ class FirestoreManager<E extends INetworkModel<E>?>
   }
 
   @override
-  Future<IResponseModel<R?, E?>> readOneOrdered<T extends INetworkModel<T>, R>({
-    required T parseModel,
-    required String collectionPath,
-    required String docId,
-    required String field,
-    bool isDescending = false,
-    String? collectionPath2,
-  }) async {
-    QuerySnapshot? response;
-    try {
-      if (collectionPath2 != null) {
-        response = await _database
-            .collection(collectionPath)
-            .doc(docId)
-            .collection(collectionPath2)
-            .limit(1)
-            .orderBy(field, descending: isDescending)
-            .get();
-      } else {
-        response = await _database
-            .collection(collectionPath)
-            .orderBy(field, descending: isDescending)
-            .limit(1)
-            .get();
-      }
-
-      final data = response.docs as List<Map<String, dynamic>>;
-
-      return _getResponseResult<T, R>(data, parseModel);
-    } catch (e) {
-      await crashlyticsManager.sendACrash(
-          error: e.toString(), stackTrace: StackTrace.current, reason: '');
-      return _onError(e);
-    }
-  }
-
-  @override
   Future<IResponseModel<R?, E?>>
-      readManyOrdered<T extends INetworkModel<T>, R>({
+      readOrdered<T extends INetworkModel<T>, R>({
     required String collectionPath,
     String? collectionPath2,
     required String docId,

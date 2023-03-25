@@ -4,10 +4,10 @@ import 'package:json_annotation/json_annotation.dart';
 import '../../../../core/managers/converter/timestamp_converter.dart';
 import '../../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 
-part 'activity_model.g.dart';
+part 't_activity_model.g.dart';
 
 @JsonSerializable()
-class ActivityModel extends INetworkModel<ActivityModel> {
+class TActivityModel extends INetworkModel<TActivityModel> {
   String? id;
   String? therapistId;
   String? title;
@@ -22,7 +22,7 @@ class ActivityModel extends INetworkModel<ActivityModel> {
   bool? isFinished;
   List<String>? participantsId;
 
-  ActivityModel({
+  TActivityModel({
     this.therapistId,
     this.title,
     this.description,
@@ -32,12 +32,12 @@ class ActivityModel extends INetworkModel<ActivityModel> {
   });
 
   @override
-  ActivityModel fromJson(Map<String, dynamic> json) =>
-      ActivityModel.fromJson(json);
+  TActivityModel fromJson(Map<String, dynamic> json) =>
+      TActivityModel.fromJson(json);
 
-  factory ActivityModel.fromJson(Map<String, dynamic> json) =>
-      _$ActivityModelFromJson(json);
+  factory TActivityModel.fromJson(Map<String, dynamic> json) =>
+      _$TActivityModelFromJson(json);
 
   @override
-  Map<String, dynamic>? toJson() => _$ActivityModelToJson(this);
+  Map<String, dynamic>? toJson() => _$TActivityModelToJson(this);
 }

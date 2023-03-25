@@ -74,7 +74,7 @@ class TCopingService extends ITCopingService with BaseService {
     if (userId == null) return null;
 
     final result = await manager
-        .readManyOrdered<TCopingMethodModel, List<TCopingMethodModel>>(
+        .readOrdered<TCopingMethodModel, List<TCopingMethodModel>>(
       collectionPath: APIConst.therapist,
       docId: userId!,
       collectionPath2: APIConst.copingMethods,

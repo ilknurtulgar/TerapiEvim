@@ -1,13 +1,13 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'activity_model.dart';
+part of 't_activity_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ActivityModel _$ActivityModelFromJson(Map<String, dynamic> json) =>
-    ActivityModel(
+TActivityModel _$TActivityModelFromJson(Map<String, dynamic> json) =>
+    TActivityModel(
       therapistId: json['therapistId'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
@@ -19,7 +19,7 @@ ActivityModel _$ActivityModelFromJson(Map<String, dynamic> json) =>
           .toList(),
     )..id = json['id'] as String?;
 
-Map<String, dynamic> _$ActivityModelToJson(ActivityModel instance) =>
+Map<String, dynamic> _$TActivityModelToJson(TActivityModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'therapistId': instance.therapistId,

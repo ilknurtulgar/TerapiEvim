@@ -89,7 +89,7 @@ class TActivityService extends ITGroupService with BaseService {
     if (userId == null) return null;
 
     final result =
-        await manager.readManyOrdered<TGroupModel, List<TGroupModel>>(
+        await manager.readOrdered<TGroupModel, List<TGroupModel>>(
       collectionPath: APIConst.therapist,
       docId: userId!,
       collectionPath2: APIConst.activities,

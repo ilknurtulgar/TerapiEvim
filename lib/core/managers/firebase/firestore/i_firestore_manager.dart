@@ -27,17 +27,8 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
     String? docId2,
   });
 
-  Future<IResponseModel<R?, E?>> readOneOrdered<T extends INetworkModel<T>, R>({
-    required T parseModel,
-    required String collectionPath,
-    required String docId,
-    required String field,
-    bool isDescending = false,
-    String? collectionPath2,
-  });
-
   Future<IResponseModel<R?, E?>>
-      readManyOrdered<T extends INetworkModel<T>, R>({
+      readOrdered<T extends INetworkModel<T>, R>({
     required T parseModel,
     required String lastDocumentId,
     required String collectionPath,

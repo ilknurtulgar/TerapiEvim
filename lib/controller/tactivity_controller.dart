@@ -1,13 +1,28 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/service/model/therapist/activity/activity_model.dart';
 
 import '../core/base/component/toast/toast.dart';
+import '../core/constants/app_const.dart';
+import '../service/model/therapist/activity/t_activity_model.dart';
 import '../service/service/_therapist/activity/activity_service.dart';
 import '../service/service/_therapist/activity/i_activity_service.dart';
 import 'base/base_controller.dart';
 
 class TherapistActivtyController extends GetxController with BaseController {
+  var isUpdate = false.obs;
+
+  final TextEditingController activitynamController = TextEditingController();
+
+  final TextEditingController activitydescriptionController =
+      TextEditingController();
+
+  final TextEditingController activitydateController = TextEditingController();
+
+  final TextEditingController activitytimeController = TextEditingController();
+
+  late IActivityService activityService;
+
   @override
   void onInit() {
     activityService = ActivityService(vexaFireManager.networkManager);
@@ -25,71 +40,6 @@ class TherapistActivtyController extends GetxController with BaseController {
     activitytimeController.dispose();
   }
 
-  Future<bool> updateActivity() async {
-    ///TODO: model should be validated
-    final result = await activityService.updateActivity(ActivityModel(
-      // date: activitydateController.text.trim(),
-      description: activitydescriptionController.text.trim(),
-      // hour: activitytimeController.text.trim(),
-      title: activitynamController.text.trim(),
-    ));
-
-    if (result == null) {
-      ///TODO add error handler
-      return false;
-    }
-    return true;
-  }
-
-  Future<bool> createActivity() async {
-    final result = await activityService.createActivity(ActivityModel(
-      // date: activitydateController.text.trim(),
-      description: activitydescriptionController.text.trim(),
-      // hour: activitytimeController.text.trim(),
-      title: activitynamController.text.trim(),
-    ));
-
-    if (result == null) {
-      ///TODO add error handler
-      return false;
-    }
-    return true;
-  }
-
-  final TextEditingController activitynamController = TextEditingController();
-  final TextEditingController activitydescriptionController =
-      TextEditingController();
-  final TextEditingController activitydateController = TextEditingController();
-  final TextEditingController activitytimeController = TextEditingController();
-
-  late IActivityService activityService;
-
-  Future<void> activtiyAdd() async {
-    final isValidted = _validateAddActivity();
-    if (isValidted == false) {
-      return;
-    }
-  }
-
-  bool _validateAddActivity() {
-    if (activitynamController.text.trim().isEmpty) {
-      flutterErrorToast("EVent Name  is empty");
-      return false;
-    }
-    if (activitydescriptionController.text.trim().isEmpty) {
-      flutterErrorToast("Event About is empty");
-    }
-    if (activitydateController.text.trim().isEmpty) {
-      flutterErrorToast("History is empty");
-    }
-    if (activitytimeController.text.trim().isEmpty) {
-      flutterErrorToast(" Time is empty");
-    }
-    return true;
-  }
-
-  var isUpdate = false.obs;
-
   void updatechnage(int index) {
     if (index == 0) {
       isUpdate.value = true;
@@ -98,5 +48,79 @@ class TherapistActivtyController extends GetxController with BaseController {
       isUpdate.value = false;
     }
     //s isUpdate.value = !isUpdate.value;
+  }
+
+  Future<bool> createActivity() async {
+    final bool isValidated = _validateActivity();
+
+    if (isValidated) return false;
+
+    final result = await activityService.createActivity(TActivityModel(
+      title: activitynamController.text.trim(),
+      description: activitydescriptionController.text.trim(),
+      isFinished: false,
+      dateTime: Timestamp.fromDate(DateTime.now()),
+      participantsId: [],
+    ));
+
+    if (result == null) {
+      ///TODO add error handler
+      return false;
+    }
+    return true;
+  }
+
+  Future<bool> updateActivity() async {
+    final bool isValidated = _validateActivity();
+
+    if (isValidated) return false;
+
+    final result = await activityService.updateActivity(TActivityModel(
+      title: activitynamController.text.trim(),
+      description: activitydescriptionController.text.trim(),
+      dateTime: Timestamp.fromDate(DateTime.now()),
+    ));
+
+    if (result == null) {
+      ///TODO add error handler
+      return false;
+    }
+    return true;
+  }
+
+  Future<TActivityModel?> getRecentActivity() async {
+    final TActivityModel? result = await activityService.getRecentActivity();
+    return result;
+  }
+
+  Future<List<TActivityModel?>?> getMyActivities(
+      {String lastDocId = ''}) async {
+    final List<TActivityModel?>? result =
+        await activityService.getMyActivitiesOrdered(
+      lastDocId: lastDocId,
+      isDescending: true,
+      orderField: AppConst.dateTime,
+    );
+    return result;
+  }
+
+  bool _validateActivity() {
+    if (activitynamController.text.trim().isEmpty) {
+      flutterErrorToast("Event Name  is empty");
+      return false;
+    }
+    if (activitydescriptionController.text.trim().isEmpty) {
+      flutterErrorToast("Description is empty");
+      return false;
+    }
+    if (activitydateController.text.trim().isEmpty) {
+      flutterErrorToast("Date is empty");
+      return false;
+    }
+    if (activitytimeController.text.trim().isEmpty) {
+      flutterErrorToast("Time is empty");
+      return false;
+    }
+    return true;
   }
 }

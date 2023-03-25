@@ -360,11 +360,13 @@ class AppPaddings {
       EdgeInsets.only(top: 15, left: 24, right: 24);
 
   // gizem paddings(daha devamı gelecek)
- static EdgeInsets smallPadding(int paddingNo) => EdgeInsets.only(bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
+  static EdgeInsets smallPadding(int paddingNo) => EdgeInsets.only(
+      bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
   // 1 numara right
   // 2 numara bottom
   // 3 numara bottom ve right
-  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
+  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
+      EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
       EdgeInsets.symmetric(
           horizontal: paddingNo != 2 ? 16 : 0,
@@ -372,10 +374,16 @@ class AppPaddings {
   // 1 numara horizontal
   // 2 numara vertical
   // 3 numara horizontal ve vertical
-  static EdgeInsets componentOnlyPadding(int paddingNo) =>EdgeInsets.only(top: paddingNo==1 ? 8 : 0, bottom: paddingNo==2 ? 0 : 8,right: paddingNo==3 ? 24 : 0,left: paddingNo==4 ? 10 : 0);
+  static EdgeInsets componentOnlyPadding(int paddingNo) => EdgeInsets.only(
+      top: paddingNo == 1 ? 8 : 0,
+      bottom: paddingNo == 2 ? 0 : 8,
+      right: paddingNo == 3 ? 24 : 0,
+      left: paddingNo == 4 ? 10 : 0);
   // burada ayrı ayrı olan 4 farklı only paddingini tek paddingte topladım
-  static EdgeInsets smallPersonViewPadding = const EdgeInsets.only(top: 16, left: 8, right: 8);
-  static EdgeInsets smallHorizontalPadding = const  EdgeInsets.symmetric(horizontal: 8);
+  static EdgeInsets smallPersonViewPadding =
+      const EdgeInsets.only(top: 16, left: 8, right: 8);
+  static EdgeInsets smallHorizontalPadding =
+      const EdgeInsets.symmetric(horizontal: 8);
 }
 
 // birinci grup önceden kullandıklarım ama artık ikinci grubu kullancağım
@@ -385,7 +393,7 @@ SizedBox mediumSizedBox() => const SizedBox(height: 24);
 SizedBox largeSizedBox() => const SizedBox(height: 36);
 
 SizedBox smallSizedBox1() => const SizedBox(width: 8);
-SizedBox mediumSizedBox1() => const SizedBox(height:16);
+SizedBox mediumSizedBox1() => const SizedBox(height: 16);
 SizedBox largeSizedBox1() => const SizedBox(height: 32);
 
 class AppBorderRadius {
@@ -772,8 +780,6 @@ class TextFieldSize {
   static const double dateclockwidth = 150;
 }
 
-
-
 class SizeUtil {
   static double heightFactor = 1;
 
@@ -851,6 +857,10 @@ Widget responsivenestext(String text, TextStyle? style) {
 class Responsive {
   static width(double p, BuildContext context) {
     return MediaQuery.of(context).size.width * (p / 390);
+  }
+
+  static widthForBackIcon(BuildContext context) {
+    return MediaQuery.of(context).size.width - 50;
   }
 
   static height(double p, BuildContext context) {

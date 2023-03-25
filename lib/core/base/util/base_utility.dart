@@ -18,12 +18,14 @@ import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
 
 import '../../init/managers/responsiveness_manager.dart';
+import '../component/group/row_view.dart';
 import '../models/card_model.dart';
 
 import '../component/group/questions_button.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
 
 import '../models/row_model.dart';
+import 'base_model.dart';
 
 class AppColors {
   static const Color blueChalk = Color.fromRGBO(238, 227, 255, 1);
@@ -198,7 +200,7 @@ class AppTextStyles {
       //basliklarin hepsi
 
       color: AppColors.meteorite,
-      fontSize: isMainHeading ? 32 : 18,
+      fontSize: isMainHeading ? 32 : 19,
       fontFamily: "Roboto",
       fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
       letterSpacing: 0.07);
@@ -259,6 +261,14 @@ class AppContainers {
   static ContainerModel containerButton(bool bigwidth) {
     return ContainerModel(
         width: bigwidth ? SizeUtil.normalValueWidth : SizeUtil.smallValueWidth,
+        height: SizeUtil.lowValueHeight,
+        borderRadius: 16,
+        backgroundColor: ButtonColorUtil.generalColor);
+  }
+
+  static ContainerModel hugeContainerButton() {
+    return ContainerModel(
+        width: 170,
         height: SizeUtil.lowValueHeight,
         borderRadius: 16,
         backgroundColor: ButtonColorUtil.generalColor);
@@ -326,7 +336,8 @@ class AppPaddings {
   static EdgeInsets miniHeadingPadding(bool isInMiddle) =>
       EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
   static const EdgeInsets rowViewPadding =
-      EdgeInsets.symmetric(vertical: 4, horizontal: 15);
+      //15
+      EdgeInsets.symmetric(vertical: 4, horizontal: 12);
 
   static const EdgeInsets miniTopPadding = EdgeInsets.only(top: 10);
   static const EdgeInsets mediumxPadding = EdgeInsets.only(top: 25, bottom: 15);
@@ -781,7 +792,7 @@ class SizeUtil {
   static const double normalValueWidth =
 
       /// orderDropDownWidth,horizontalLineWidth,bilgilerimi güncelle width buradan geliyor patladığı için böyle yaptım (170) 150'ydi.
-      170;
+      150;
   static const double mediumValueWidth =
       195; // profil sayfasındaki genderDropDown
   static const double largeValueWidth =
@@ -804,7 +815,9 @@ class SizeUtil {
   // belki mediumValueHeight ile  doubleNormalValueHeight ortak 130 olabilir
   // tGroupContainerHeightve shortContainerWithButtonHeight ne değer verilirse verilsin heightları değişmiyor
   static const double doubleNormalValueHeight =
-      130; // shortContainerWithButtonHeight(114),groupHeight(seminar max'ta kullanılıyor),tGroupContainerHeight(120),personSmallViewHeight,listViewHeight
+
+      ///130
+      140; // shortContainerWithButtonHeight(114),groupHeight(seminar max'ta kullanılıyor),tGroupContainerHeight(120),personSmallViewHeight,listViewHeight
   static const double largeValueHeight =
       150; // groupContainerHeight(danışan profil sayfasındaki),homeImageHeight,saat için listWheelScrollHeight
   static const double highValueHeight =
@@ -845,3 +858,9 @@ IconButton backButton(BuildContext context, Function()? onPressed) {
 
 IconButton closeIcon(Function()? onPressed) =>
     IconButton(onPressed: onPressed, icon: IconUtility.close);
+
+Widget doubleappbar(String apptext, Widget leadingIcon, Widget trailingIcon) {
+  return rowView(
+      UiBaseModel.doubleappbarModel(apptext, leadingIcon, trailingIcon),
+      AppPaddings.mediumxPadding);
+}

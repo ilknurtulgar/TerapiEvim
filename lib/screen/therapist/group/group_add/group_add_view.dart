@@ -243,6 +243,6 @@ Widget miniHeadings(String name, bool isInMiddle) {
       RowModel(
           text: name,
           textStyle: AppTextStyles.heading(false),
-          isAlignmentBetween: false),
+          isAlignmentBetween: true),
       AppPaddings.miniHeadingPadding(isInMiddle));
 }

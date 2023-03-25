@@ -25,7 +25,7 @@ class PopUp extends StatelessWidget {
             : uncheckedTest();
     Icon lockicon = controller.isTestResultReady.isTrue
         ? IconUtility.lockopen
-        : IconUtility.lock;
+        : IconUtility.lock(true);
     return BackdropFilter(
       filter: Filter.blur,
       child: Column(

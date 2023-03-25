@@ -78,8 +78,8 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
   Row dateclocktextfield() {
     return Row(
       children: [
-        textfield(160, 60, therapistActivtyController.activitydateController),
-        textfield(160, 60, therapistActivtyController.activitytimeController),
+        Expanded(child: textfield(160, 60, therapistActivtyController.activitydateController)),
+        Expanded(child: textfield(160, 60, therapistActivtyController.activitytimeController)),
       ],
     );
   }
@@ -89,9 +89,9 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        miniHeadings(ActivityTextUtil.date, false),
+        Expanded(child: miniHeadings(ActivityTextUtil.date, false)),
         // activityname(ActivityTextUtil.date, AppPaddings.startpadding),
-        miniHeadings(ActivityTextUtil.clock, true)
+        Expanded(child: miniHeadings(ActivityTextUtil.clock, true))
         // activityname(ActivityTextUtil.clock, AppPaddings.centerpadding),
       ],
     );

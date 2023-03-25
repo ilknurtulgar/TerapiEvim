@@ -21,15 +21,18 @@ class SeminarMin extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Container(
-        height: SizeUtil.generalHeight,
-        // ignore: unrelated_type_equality_checks
-        decoration: isBorderPurple == Null
-            ? AppBoxDecoration.sendDecoration
-            : !isBorderPurple
-                ? AppBoxDecoration.purpleBorder
-                : AppBoxDecoration.sendDecoration,
-        child: Expanded(child: rowView(row, AppPaddings.rowViewPadding)),
+      child: Padding(
+        padding: AppPaddings.componentPadding,
+        child: Container(
+          height: SizeUtil.generalHeight,
+          // ignore: unrelated_type_equality_checks
+          decoration: isBorderPurple == Null
+              ? AppBoxDecoration.sendDecoration
+              : !isBorderPurple
+                  ? AppBoxDecoration.purpleBorder
+                  : AppBoxDecoration.sendDecoration,
+          child: rowView(row, AppPaddings.rowViewPadding),
+        ),
       ),
     );
   }

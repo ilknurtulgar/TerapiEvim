@@ -24,14 +24,11 @@ class _CustomButtonState extends State<CustomButton> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: widget.onTap,
-      child: Padding(
-        padding: AppPaddings.rowViewPadding,
-        child: Container(
-          height: widget.container.height,
-          width: widget.container.width,
-          decoration: containerDecoration(),
-          child: insideTheButton(),
-        ),
+      child: Container(
+        height: widget.container.height,
+        width: widget.container.width,
+        decoration: containerDecoration(),
+        child: insideTheButton(),
       ),
     );
   }
@@ -52,9 +49,14 @@ class _CustomButtonState extends State<CustomButton> {
                   child: widget.icon,
                 )
               : const SizedBox(),
-          Text(
-            widget.text,
-            style: AppTextStyles.buttonTextStyle(widget.textColor),
+          Expanded(
+            child: Text(
+              widget.text,
+              maxLines: 1,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.clip,
+              style: AppTextStyles.buttonTextStyle(widget.textColor),
+            ),
           ),
         ],
       ),

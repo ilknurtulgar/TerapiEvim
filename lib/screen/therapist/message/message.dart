@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
@@ -19,20 +18,19 @@ class TherapistMessageScreen extends StatefulWidget {
 class _TherapistMessageScreenState extends State<TherapistMessageScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Column(
+    return Scaffold(
+      body: Padding(
+        padding: AppPaddings.pagePadding,
+        child: Column(
           children: [
-            secappview(
-                context,
-                UiBaseModel.secRowModel(
-                  IconButton(
-                      onPressed: () {
-                        context.push(const SearchMessage());
-                      },
-                      icon: IconUtility.addmesaage),
-                  MessageTextUtil.messageapptext,
-                )),
+            secappview(UiBaseModel.secRowModel(
+              IconButton(
+                  onPressed: () {
+                    context.push(const SearchMessage());
+                  },
+                  icon: IconUtility.addmesaage),
+              MessageTextUtil.messageapptext,
+            )),
             Expanded(
               child: ListView.builder(
                 shrinkWrap: true,
@@ -49,10 +47,4 @@ class _TherapistMessageScreenState extends State<TherapistMessageScreen> {
       ),
     );
   }
-}
-
-Widget messageappbar(String apptext, Widget leadingIcon, Widget trailingIcon) {
-  return rowView(
-      UiBaseModel.doubleappbarModel(apptext, leadingIcon, trailingIcon),
-      AppPaddings.loginTitlePadding);
 }

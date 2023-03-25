@@ -18,12 +18,14 @@ import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
 
 import '../../init/managers/responsiveness_manager.dart';
+import '../component/group/row_view.dart';
 import '../models/card_model.dart';
 
 import '../component/group/questions_button.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
 
 import '../models/row_model.dart';
+import 'base_model.dart';
 
 class AppColors {
   static const Color blueChalk = Color.fromRGBO(238, 227, 255, 1);
@@ -79,7 +81,10 @@ class IconUtility {
   static const Icon emailIcon = Icon(Icons.mail, color: AppColors.black);
   static const Icon messageIcon = Icon(Icons.forum_outlined, size: 35);
 
-  static const Icon addmesaage = Icon(Icons.mark_email_read_outlined, size: 30);
+  static const Icon addmesaage = Icon(
+    Icons.mark_email_read_outlined,
+    size: 30,
+  );
 
   static const Icon personIcon = Icon(Icons.person_outlined);
 
@@ -94,7 +99,10 @@ class IconUtility {
   static const Icon searchIcon = Icon(Icons.search);
   static const Icon fiterIcon = Icon(Icons.list);
 
-  static const Icon fileIcon = Icon(Icons.description_outlined);
+  static const Icon fileIcon = Icon(
+    Icons.description_outlined,
+    color: AppColors.white,
+  );
   static Icon micIcon(bool isInCircularContainer) => Icon(Icons.mic,
       color: isInCircularContainer ? AppColors.black : AppColors.white);
   static const Icon micoffIcon = Icon(Icons.mic_off, color: AppColors.red);
@@ -128,6 +136,9 @@ class IconUtility {
   static const Icon lockIcon = Icon(Icons.lock);
   static const Icon lock = Icon(Icons.lock_outline,
       color: AppColors.white, size: SizeUtil.lockIconSize);
+
+  static const Icon lockSmall =
+      Icon(Icons.lock_outline, color: AppColors.black);
 
   static const Icon lockopen = Icon(Icons.lock_open,
       color: AppColors.white, size: SizeUtil.lockIconSize);
@@ -195,7 +206,7 @@ class AppTextStyles {
       //basliklarin hepsi
 
       color: AppColors.meteorite,
-      fontSize: isMainHeading ? 32 : 24,
+      fontSize: isMainHeading ? 32 : 19,
       fontFamily: "Roboto",
       fontWeight: isMainHeading ? FontWeight.w600 : FontWeight.w500,
       letterSpacing: 0.07);
@@ -209,7 +220,7 @@ class AppTextStyles {
       fontSize: isName ? 16 : 18,
       fontWeight: isName ? FontWeight.w400 : FontWeight.w500,
       //sor!
-      color: isName ? AppColors.black : AppColors.deepCove);
+      color: isName ? AppColors.black : AppColors.meteorite);
 
   static TextStyle profileTextStyles(bool isBig, bool isBold) => TextStyle(
         fontFamily: 'Roboto',
@@ -256,6 +267,14 @@ class AppContainers {
   static ContainerModel containerButton(bool bigwidth) {
     return ContainerModel(
         width: bigwidth ? SizeUtil.normalValueWidth : SizeUtil.smallValueWidth,
+        height: SizeUtil.lowValueHeight,
+        borderRadius: 16,
+        backgroundColor: ButtonColorUtil.generalColor);
+  }
+
+  static ContainerModel hugeContainerButton() {
+    return ContainerModel(
+        width: 170,
         height: SizeUtil.lowValueHeight,
         borderRadius: 16,
         backgroundColor: ButtonColorUtil.generalColor);
@@ -323,14 +342,13 @@ class AppPaddings {
   static EdgeInsets miniHeadingPadding(bool isInMiddle) =>
       EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
   static const EdgeInsets rowViewPadding =
-      EdgeInsets.symmetric(vertical: 4, horizontal: 15);
+      //15
+      EdgeInsets.symmetric(vertical: 4, horizontal: 12);
 
   static const EdgeInsets miniTopPadding = EdgeInsets.only(top: 10);
-
+  static const EdgeInsets mediumxPadding = EdgeInsets.only(top: 25, bottom: 15);
 //yukardakiler kesinlestirildi ortak kullanim
-  static const EdgeInsets generalPadding = EdgeInsets.all(8);
-  static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
-      0, 10, 20, 10); // sağ alt bütün mor butonlar için geçerli
+  static const EdgeInsets generalPadding = EdgeInsets.all(5);
 
   static const EdgeInsets contentPadding = EdgeInsets.all(3);
 
@@ -342,18 +360,11 @@ class AppPaddings {
       EdgeInsets.only(top: 15, left: 24, right: 24);
 
   // gizem paddings(daha devamı gelecek)
-  static EdgeInsets mediumPadding(int paddingNo) => EdgeInsets.only(
-      bottom: paddingNo != 1 ? 24 : 0, right: paddingNo != 2 ? 24 : 0);
-  static EdgeInsets smallPadding(int paddingNo) => EdgeInsets.only(
-      bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
+ static EdgeInsets smallPadding(int paddingNo) => EdgeInsets.only(bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
   // 1 numara right
   // 2 numara bottom
   // 3 numara bottom ve right
-  static EdgeInsets smallVerticalPadding =
-      const EdgeInsets.symmetric(vertical: 12);
-  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
-      EdgeInsets.only(top: 305, left: isThereLeftPadding ? 24 : 0);
-
+  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
       EdgeInsets.symmetric(
           horizontal: paddingNo != 2 ? 16 : 0,
@@ -361,8 +372,21 @@ class AppPaddings {
   // 1 numara horizontal
   // 2 numara vertical
   // 3 numara horizontal ve vertical
-  static EdgeInsets componentOnlyTopPadding = const EdgeInsets.only(top: 8);
+  static EdgeInsets componentOnlyPadding(int paddingNo) =>EdgeInsets.only(top: paddingNo==1 ? 8 : 0, bottom: paddingNo==2 ? 0 : 8,right: paddingNo==3 ? 24 : 0,left: paddingNo==4 ? 10 : 0);
+  // burada ayrı ayrı olan 4 farklı only paddingini tek paddingte topladım
+  static EdgeInsets smallPersonViewPadding = const EdgeInsets.only(top: 16, left: 8, right: 8);
+  static EdgeInsets smallHorizontalPadding = const  EdgeInsets.symmetric(horizontal: 8);
 }
+
+// birinci grup önceden kullandıklarım ama artık ikinci grubu kullancağım
+// ikinci gruba geçiş süreci tamamlanınca birinci grubu sileceğim
+SizedBox smallSizedBox() => const SizedBox(height: 12);
+SizedBox mediumSizedBox() => const SizedBox(height: 24);
+SizedBox largeSizedBox() => const SizedBox(height: 36);
+
+SizedBox smallSizedBox1() => const SizedBox(width: 8);
+SizedBox mediumSizedBox1() => const SizedBox(height:16);
+SizedBox largeSizedBox1() => const SizedBox(height: 32);
 
 class AppBorderRadius {
   static const BorderRadius generalBorderRadius =
@@ -491,7 +515,7 @@ class DemoInformation {
   //message
   static const String headingabactivity = "Canan Karatay";
   static const String aboutmeaperson =
-      "   hepinize merhaba arkadaşlar.kanalıma hoşgeldiniz,Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım  ";
+      "hepinize merhaba arkadaşlar.kanalıma hoşgeldiniz,Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım  ";
 
   static const String aboutmeabactivity =
       "Neden Katılmalısın?Potansiyellerini keşfetmek, ihtiyaçlarını doğru şekilde tanımlayabilmek ve hayatta arzu ettiği başarılara ulaşabilmesi için ihtiyaçları ve eksik hissedilen yönleri geliştirmek için katılmalısınKimler Katılmalı?Kişisel gelişimine önem veren ve kendini geliştirmeyi hedefleyen, bölüm farketmeksizin üniversite öğrencileri, çalışma hayatında olan ve çalışma hayatına hazırlanan herkes.";
@@ -748,9 +772,7 @@ class TextFieldSize {
   static const double dateclockwidth = 150;
 }
 
-SizedBox smallSizedBox() => const SizedBox(height: 12);
-SizedBox mediumSizedBox() => const SizedBox(height: 24);
-SizedBox largeSizedBox() => const SizedBox(height: 36);
+
 
 class SizeUtil {
   static double heightFactor = 1;
@@ -777,7 +799,7 @@ class SizeUtil {
   static const double normalValueWidth =
 
       /// orderDropDownWidth,horizontalLineWidth,bilgilerimi güncelle width buradan geliyor patladığı için böyle yaptım (170) 150'ydi.
-      170;
+      150;
   static const double mediumValueWidth =
       195; // profil sayfasındaki genderDropDown
   static const double largeValueWidth =
@@ -800,7 +822,9 @@ class SizeUtil {
   // belki mediumValueHeight ile  doubleNormalValueHeight ortak 130 olabilir
   // tGroupContainerHeightve shortContainerWithButtonHeight ne değer verilirse verilsin heightları değişmiyor
   static const double doubleNormalValueHeight =
-      130; // shortContainerWithButtonHeight(114),groupHeight(seminar max'ta kullanılıyor),tGroupContainerHeight(120),personSmallViewHeight,listViewHeight
+
+      ///130
+      140; // shortContainerWithButtonHeight(114),groupHeight(seminar max'ta kullanılıyor),tGroupContainerHeight(120),personSmallViewHeight,listViewHeight
   static const double largeValueHeight =
       150; // groupContainerHeight(danışan profil sayfasındaki),homeImageHeight,saat için listWheelScrollHeight
   static const double highValueHeight =
@@ -835,8 +859,15 @@ class Responsive {
 }
 
 IconButton backButton(BuildContext context, Function()? onPressed) {
-  return IconButton(onPressed: onPressed, icon: IconUtility.back);
+  return IconButton(
+      padding: EdgeInsets.zero, onPressed: onPressed, icon: IconUtility.back);
 }
 
 IconButton closeIcon(Function()? onPressed) =>
     IconButton(onPressed: onPressed, icon: IconUtility.close);
+
+Widget doubleappbar(String apptext, Widget leadingIcon, Widget trailingIcon) {
+  return rowView(
+      UiBaseModel.doubleappbarModel(apptext, leadingIcon, trailingIcon),
+      AppPaddings.mediumxPadding);
+}

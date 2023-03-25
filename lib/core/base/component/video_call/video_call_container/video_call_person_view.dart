@@ -2,12 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/video_call/video_call_container/circular_container.dart';
 import '../../../../../screen/participant/video_call/model/video_call_view_model.dart';
+import '../../../../../screen/participant/video_call/util/utility.dart';
 
 class VideoCallPersonView extends StatefulWidget {
   const VideoCallPersonView(
-      {super.key, required this.videoCallViewModel, this.onDoubleTap});
+      {super.key,
+      required this.videoCallViewModel,
+      this.onDoubleTap,
+      required this.isInShortCallPage});
   final VideoCallViewModel videoCallViewModel;
   final Function()? onDoubleTap;
+  final bool isInShortCallPage;
   @override
   State<VideoCallPersonView> createState() => _VideoCallPersonViewState();
 }
@@ -59,8 +64,9 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
   }
 
   Widget micIconButton() {
-    return Align(
-      alignment: Alignment.bottomRight,
+    return Positioned(
+      top: Responsive.height(8, context),
+      right: Responsive.width(8, context),
       child: IconButton(
           onPressed: () => micOnOffFunc(),
           icon: widget.videoCallViewModel.person.isMicOn == false
@@ -72,6 +78,9 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
   Container personView() {
     return Container(
         height: widget.videoCallViewModel.height,
+        width: widget.isInShortCallPage && PixelScreen().logicalWidth > PixelScreen().logicalHeight
+                                          ? Responsive.width(SizeUtil.normalValueWidth, context)
+                                          : widget.videoCallViewModel.width,
         decoration: BoxDecoration(
             color: AppColors.doveGray,
             borderRadius:
@@ -93,13 +102,20 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
           : EdgeInsets.zero,
       child: Center(
           child: CircularContainer(
-              height: widget.videoCallViewModel.width / 3,
+              height:  widget.isInShortCallPage && PixelScreen().logicalWidth > PixelScreen().logicalHeight
+                                          ? Responsive.width(SizeUtil.normalValueWidth, context)/5
+                                          : widget.videoCallViewModel.width/3,
+              
               color: AppColors.orange,
-              widget: Text(
-                widget.videoCallViewModel.person.name.substring(0, 1),
-                style: TextStyle(
-                    fontSize: widget.videoCallViewModel.width / 5,
-                    color: AppColors.white),
+              widget: Center(
+                child: Text(
+                  widget.videoCallViewModel.person.name.substring(0, 1),
+                  style: TextStyle(
+                      fontSize:  widget.isInShortCallPage && PixelScreen().logicalWidth > PixelScreen().logicalHeight
+                                          ? Responsive.width(SizeUtil.normalValueWidth, context)/8
+                                          : widget.videoCallViewModel.width/5,
+                      color: AppColors.white),
+                ),
               ))),
     );
   }

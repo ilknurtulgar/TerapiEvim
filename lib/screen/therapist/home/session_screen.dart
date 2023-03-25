@@ -14,19 +14,17 @@ class SessionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Stack(children: [
-            Column(
+      body: SingleChildScrollView(
+        child: Stack(children: [
+          Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
               children: [
-                messageappbar(
+                doubleappbar(
                   HomeTextUtil.myMinuteSessions,
+                  backButton(context, () => context.pop()),
                   IconButton(
-                      onPressed: () {
-                        context.pop();
-                      },
-                      icon: IconUtility.back),
-                  IconButton(
+                      padding: EdgeInsets.zero,
                       onPressed: () {
                         context.push(const AvailableHours());
                       },
@@ -36,9 +34,9 @@ class SessionScreen extends StatelessWidget {
                 aboutparticipant(),
               ],
             ),
-            Positioned(top: 104, right: 24, child: orderdropdown()),
-          ]),
-        ),
+          ),
+          Positioned(top: 90, right: 24, child: orderdropdown()),
+        ]),
       ),
     );
   }
@@ -47,9 +45,7 @@ class SessionScreen extends StatelessWidget {
     return ListView.builder(
       itemBuilder: (context, index) {
         return participantWihtShortCallTime(
-            //sorun devam ediyor
-            DemoInformation.copingList[index],
-            DemoInformation.date);
+            DemoInformation.copingList[index], DemoInformation.date);
       },
       itemCount: DemoInformation.copingList.length,
       shrinkWrap: true,

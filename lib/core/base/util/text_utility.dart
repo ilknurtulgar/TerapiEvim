@@ -27,6 +27,7 @@ class GroupTextUtil {
   static String medium = "orta";
   static String more = "fazla";
   static String extreme = "aşırı";
+
   //group add
 
   static String monday = "Pazartesi";
@@ -64,6 +65,7 @@ class GroupTextUtil {
   static String deleteParticipantText =
       "   kişisini gruptan çıkarmak istediğinize emin misiniz?";
   static String myGroupsText = "Gruplarım";
+
   //group info container
   static String gruopTherapist = 'Grup Terapisti: ';
   static String groupsecTherapist = 'Yardımcı Psikolog: ';
@@ -117,6 +119,7 @@ class LoginSignUpTextUtil {
   static String therapistAcceptedMakingShortCall =
       '''15 dakikalık terapiyi sırayla yapmayı kabul
 ediyorum.KVKK kabul ediyorum.''';
+
   // before login page
   static String whoAreYou = '''Kim olarak uygulamaya devam
 etmek istersiniz?''';
@@ -171,9 +174,11 @@ class ActivityTextUtil {
   static String share = "Paylaş";
   static String join = "Katıl";
   static String watchTheRecording = "Kaydı İzle";
-  static String myupcomingActivities = "Yaklaşan Aktivitelerim";
+  static String myupcomingActivities = "Yaklaşan Aktivitem";
   static String upcomingActivities = "Yaklaşan Aktiviteler";
   static String pastActivities = "Geçmiş Aktiviteler";
+  static String activity = "Aktiviteler";
+  static String myActivty = "Aktivitelerim";
   static String otherUpComingActivities = "Yaklaşan Diğer Aktiviteler";
   static String start = "Başla";
   static String myPastActivities = "Geçmiş Aktivitelerim";
@@ -196,7 +201,8 @@ class ActivityTextUtil {
   static const String issue = "Konu";
   static const String seminars = "Seminerleri";
   static const String searchText = "Ne aramıştınız";
-  static const String updateMyInformation = "Bilgilerimi Güncelle";
+  static const String updateMyInformation = "Güncelle";
+// static const String updateMyInformation = "Bilgilerimi Güncelle";
 }
 
 class HomeTextUtil {

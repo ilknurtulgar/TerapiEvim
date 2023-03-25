@@ -24,16 +24,13 @@ class CustomVideoCallButton extends StatefulWidget {
 class _CustomVideoCallButtonState extends State<CustomVideoCallButton> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 15),
-      child: CircularContainer(
-        height: SizeUtil.normalValueHeight,
-        color: widget.backgroundColor,
-        widget: IconButton(
-            iconSize: 30,
-            icon: widget.isThisOn ? widget.icon : widget.offIcon!,
-            onPressed: widget.onTap),
-      ),
+    return CircularContainer(
+      height: SizeUtil.normalValueHeight,
+      color: widget.backgroundColor,
+      widget: IconButton(
+          iconSize: 30,
+          icon: widget.isThisOn ? widget.icon : widget.offIcon!,
+          onPressed: widget.onTap),
     );
   }
 }
@@ -48,7 +45,10 @@ class VideoCallButtonsRow extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         VideoCallUtility.cameraIconButton(() => () {}, true),
-        VideoCallUtility.micIconButton(() => () {}, true),
+        Padding(
+          padding: AppPaddings.customContainerInsidePadding(3),
+          child: VideoCallUtility.micIconButton(() => () {}, true),
+        ),
         VideoCallUtility.endingCallButton(() => () {}),
       ],
     );

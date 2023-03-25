@@ -25,22 +25,19 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: AppPaddings.pagePadding,
           child: Column(
             children: [
               Obx(
                 () => therapistActivtyController.isUpdate.value
-                    ? secappview(
-                        context,
-                        UiBaseModel.secRowModel(closeIcon(() {
-                          context.pop();
-                        }), ActivityTextUtil.update))
-                    : secappview(
-                        context,
-                        UiBaseModel.secRowModel(closeIcon(() {
-                          context.pop();
-                        }), ActivityTextUtil.newActivity)),
+                    ? secappview(UiBaseModel.secRowModel(closeIcon(() {
+                        context.pop();
+                      }), ActivityTextUtil.update))
+                    : secappview(UiBaseModel.secRowModel(closeIcon(() {
+                        context.pop();
+                      }), ActivityTextUtil.newActivity)),
               ),
               miniHeadings(ActivityTextUtil.eventName, false),
               eventname(),
@@ -48,18 +45,14 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
               eventabout(),
               dateclockrow(),
               dateclocktextfield(),
-              Padding(
-                padding: const EdgeInsets.only(top: 20, bottom: 20, right: 30),
-                child: Obx(
-                  () => therapistActivtyController.isUpdate.value
-                      ? butterFlyButton(ActivityTextUtil.update, () {
-                          therapistActivtyController.updateActivity();
-                          therapistActivtyController.activtiyAdd();
-                        })
-                      : butterFlyButton(ActivityTextUtil.create, () {
-                          therapistActivtyController.createActivity();
-                        }),
-                ),
+              Obx(
+                () => therapistActivtyController.isUpdate.value
+                    ? butterFlyButton(ActivityTextUtil.update, () {
+                        therapistActivtyController.updateActivity();
+                      })
+                    : butterFlyButton(ActivityTextUtil.create, () {
+                        therapistActivtyController.createActivity();
+                      }),
               )
             ],
           ),
@@ -85,8 +78,8 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
   Row dateclocktextfield() {
     return Row(
       children: [
-        textfield(160, 60, therapistActivtyController.activitydateController),
-        textfield(160, 60, therapistActivtyController.activitytimeController),
+        Expanded(child: textfield(160, 60, therapistActivtyController.activitydateController)),
+        Expanded(child: textfield(160, 60, therapistActivtyController.activitytimeController)),
       ],
     );
   }
@@ -96,9 +89,9 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        miniHeadings(ActivityTextUtil.date, false),
+        Expanded(child: miniHeadings(ActivityTextUtil.date, false)),
         // activityname(ActivityTextUtil.date, AppPaddings.startpadding),
-        miniHeadings(ActivityTextUtil.clock, true)
+        Expanded(child: miniHeadings(ActivityTextUtil.clock, true))
         // activityname(ActivityTextUtil.clock, AppPaddings.centerpadding),
       ],
     );
@@ -131,13 +124,16 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
 }
 
 Widget butterFlyButton(String buttonname, Function() onTap) {
-  return CustomButton(
-      container: AppContainers.containerButton(true),
-      textColor: AppColors.white,
-      onTap: onTap,
-      text: buttonname);
+  return Align(
+    alignment: Alignment.bottomRight,
+    child: CustomButton(
+        container: AppContainers.containerButton(true),
+        textColor: AppColors.white,
+        onTap: onTap,
+        text: buttonname),
+  );
 }
 
-Widget secappview(BuildContext context, RowModel rowModel) {
-  return rowView(rowModel, AppPaddings.loginTitlePadding);
+Widget secappview(RowModel rowModel) {
+  return rowView(rowModel, AppPaddings.mediumxPadding);
 }

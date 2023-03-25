@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
@@ -16,8 +18,8 @@ class ShortCallPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-            therapistCallView(),
-            VideoCallPersonView(videoCallViewModel: VideoCallUtility.personShortCallView(DemoInformation.personNo1)), // participantCallView
+            therapistCallView(context),
+            VideoCallPersonView(videoCallViewModel: VideoCallUtility.personShortCallView(DemoInformation.personNo1,context),isInShortCallPage: true,), // participantCallView
             const VideoCallButtonsRow(),
           ],
         ),
@@ -25,11 +27,11 @@ class ShortCallPage extends StatelessWidget {
     );
   }
 
-  Padding therapistCallView() {
+  Padding therapistCallView(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20),
+      padding: AppPaddings.customContainerInsidePadding(2),
       child: VideoCallPersonView(
-          videoCallViewModel: VideoCallUtility.personShortCallView(DemoInformation.therapist)),
+          videoCallViewModel: VideoCallUtility.personShortCallView(DemoInformation.therapist,context),isInShortCallPage: true,),
     );
   }
 }

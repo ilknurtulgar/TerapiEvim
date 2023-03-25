@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
@@ -9,7 +10,6 @@ import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
 
 import '../../../controller/tactivity_controller.dart';
 import '../../../core/base/component/group/group_box.dart';
-import '../../participant/activity/a_filter.dart';
 
 class TherapistActivityScreen extends StatefulWidget {
   const TherapistActivityScreen({super.key});
@@ -25,24 +25,34 @@ class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: AppPaddings.pagePadding,
           child: Column(
             children: [
-              activityappbar(context),
+              rowView(
+                  UiBaseModel.appBarModel(
+                      ActivityTextUtil.activity,
+                      IconButton(
+                          onPressed: () {
+                            therapistActivtyController.updatechnage(1);
+                            context.push(const NewActivityScreen());
+                          },
+                          icon: IconUtility.addIcon)),
+                  AppPaddings.mediumxPadding),
               activityminto(ActivityTextUtil.myupcomingActivities, () {},
-                  MainAxisAlignment.spaceAround, true, IconUtility.forward),
+                  MainAxisAlignment.spaceBetween, true, IconUtility.forward),
               myupcomingactivities(),
-              activityminto(ActivityTextUtil.otherUpComingActivities, () {},
-                  MainAxisAlignment.spaceAround, true, IconUtility.forward),
+              activityminto(ActivityTextUtil.activity, () {},
+                  MainAxisAlignment.spaceBetween, true, IconUtility.forward),
               otherupcomingactivites(),
-              activityminto(ActivityTextUtil.myPastActivities, () {},
-                  MainAxisAlignment.spaceAround, true, IconUtility.forward),
+              activityminto(ActivityTextUtil.myActivty, () {},
+                  MainAxisAlignment.spaceBetween, true, IconUtility.forward),
               mypastactivites(),
+              /*
               activityminto(ActivityTextUtil.otherPastActivities, () {},
                   MainAxisAlignment.spaceAround, true, IconUtility.forward),
-              otherpastactivites(),
-              sizedbox()
+              otherpastactivites(),*/
             ],
           ),
         ),
@@ -54,7 +64,7 @@ class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
     return ActivityBox(
         istwobutton: false,
         buttonText: ActivityTextUtil.join,
-        containerModel: AppContainers.containerButton(false),
+        containerModel: AppContainers.containerButton(true),
         isactivity: false,
         arowModel: DemoInformation.arowmodel,
         ayrowwModel: DemoInformation.ayrowmodel,
@@ -86,13 +96,13 @@ class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
     return ActivityBox(
         istwobutton: true,
         buttonText: ActivityTextUtil.start,
-        containerModel: AppContainers.containerButton(true),
+        containerModel: AppContainers.containerButton(false),
         isactivity: true,
         arowModel: DemoInformation.arowmodel,
         clockModel: DemoInformation.clockmodel);
   }
 
-  Row activityappbar(BuildContext context) {
+  /*Row activityappbar(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -120,4 +130,5 @@ class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
       ],
     );
   }
+}*/
 }

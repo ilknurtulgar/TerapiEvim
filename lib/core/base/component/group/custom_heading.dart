@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/base/util/base_utility.dart';
 
-// ignore: must_be_immutable
 class CustomHeading extends StatelessWidget {
-  CustomHeading(
+  const CustomHeading(
       {super.key,
       required this.text,
-      this.isToggle,
       required this.isalignmentstart,
+      this.isToggle = false,
       this.padding});
-  String text;
-  bool? isToggle;
-  bool isalignmentstart;
-  EdgeInsets? padding;
+
+  final String text;
+  final bool isToggle;
+  final bool isalignmentstart;
+  final EdgeInsets? padding;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,10 +24,9 @@ class CustomHeading extends StatelessWidget {
         padding: padding ?? AppPaddings.appBarPadding,
         child: responsivenestext(
           text,
-          isToggle != null
+          isToggle
               ? AppTextStyles.normalTextStyle("medium", false)
               : AppTextStyles.heading(false),
         ));
   }
 }
-//responsivenesstext yaseminle konuş!

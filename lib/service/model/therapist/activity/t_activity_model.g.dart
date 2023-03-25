@@ -1,29 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'activity_model.dart';
+part of 't_activity_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-ActivityModel _$ActivityModelFromJson(Map<String, dynamic> json) =>
-    ActivityModel(
-      id: json['id'] as String?,
+TActivityModel _$TActivityModelFromJson(Map<String, dynamic> json) =>
+    TActivityModel(
+      therapistId: json['therapistId'] as String?,
       title: json['title'] as String?,
       description: json['description'] as String?,
-      date: json['date'] as String?,
-      hour: json['hour'] as String?,
+      dateTime:
+          TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?),
+      isFinished: json['isFinished'] as bool?,
       participantsId: (json['participantsId'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
-    );
+    )..id = json['id'] as String?;
 
-Map<String, dynamic> _$ActivityModelToJson(ActivityModel instance) =>
+Map<String, dynamic> _$TActivityModelToJson(TActivityModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'therapistId': instance.therapistId,
       'title': instance.title,
       'description': instance.description,
-      'date': instance.date,
-      'hour': instance.hour,
+      'dateTime': TimeStampConverter.timestampToJson(instance.dateTime),
+      'isFinished': instance.isFinished,
       'participantsId': instance.participantsId,
     };

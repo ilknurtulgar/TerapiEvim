@@ -1,20 +1,39 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../../core/managers/converter/timestamp_converter.dart';
 import '../../../../core/managers/firebase/firestore/interface/i_network_model.dart';
-import 'meetings_date.dart';
+
 part 't_group_model.g.dart';
 
 @JsonSerializable()
 class TGroupModel extends INetworkModel<TGroupModel> {
-  String? id;
+  String? groupId;
+  String? therapistId;
   String? name;
   String? therapistHelperId;
-  List<MeetingsDate>? meetingsDate;
+  String? therapistHelperName;
+  bool? hasHelperTherapistAccepted;
+  int? maxAllowedParticipants;
+  List<String?>? participantsId;
+
+  /// Timestamp.fromDate(DateTime.now()) is an example of using timeStamp
+  @JsonKey(
+    fromJson: TimeStampConverter.timestampFromJson,
+    toJson: TimeStampConverter.timestampToJson,
+  )
+  Timestamp? dateTime;
 
   TGroupModel({
-    this.id,
+    this.groupId,
+    this.therapistId,
     this.name,
     this.therapistHelperId,
-    this.meetingsDate,
+    this.therapistHelperName,
+    this.hasHelperTherapistAccepted,
+    this.maxAllowedParticipants,
+    this.participantsId,
+    this.dateTime,
   });
 
   @override

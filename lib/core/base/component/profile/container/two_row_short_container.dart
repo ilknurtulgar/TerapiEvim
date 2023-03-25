@@ -14,6 +14,7 @@ class TwoRowShortContainer extends StatelessWidget {
     this.buttonText,
     required this.purpose,
     required this.isThereButton,
+    required this.isInTherapist,
   });
   final String row1Text;
   final String row2Text;
@@ -22,6 +23,7 @@ class TwoRowShortContainer extends StatelessWidget {
   final String? buttonText;
   final String purpose;
   final bool isThereButton;
+  final bool isInTherapist;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -31,7 +33,7 @@ class TwoRowShortContainer extends StatelessWidget {
             : AppPaddings.componentPadding,
         child: Material(
           elevation: 5,
-          shadowColor: isThereButton == true && purpose == 'seminar'
+          shadowColor: isThereButton == true && isInTherapist==true
               ? AppColors.cornFlowerBlue
               : AppColors.transparent,
           shape: RoundedRectangleBorder(
@@ -41,9 +43,8 @@ class TwoRowShortContainer extends StatelessWidget {
             height: isThereButton
                 ? SizeUtil.doubleNormalValueHeight
                 : SizeUtil.doubleSmallValueHeight,
-            /*width: isThereButton  // yazıya göre genişleyecek şekilde ayarladım o yüzden width değerlerini kapattım
-                ? SizeUtil.largeValueWidth
-                : SizeUtil.generalWidth,*/
+            width:
+                isThereButton ? SizeUtil.hugeValueWidth : SizeUtil.generalWidth,
             decoration: containerDecoration(), //
             child: Padding(
               padding: AppPaddings.customContainerInsidePadding(1),
@@ -75,10 +76,10 @@ class TwoRowShortContainer extends StatelessWidget {
         borderRadius: AppBorderRadius.generalBorderRadius,
         color: AppColors.white,
         border: Border.all(
-            color: isThereButton == true && purpose == 'seminar'
+            color: isThereButton == true && isInTherapist==true
                 ? AppColors.cornFlowerBlue
                 : Colors.grey.withOpacity(0.50),
-            width: 2));
+            width: 1));
   }
 
   Widget secondRow() {
@@ -97,13 +98,15 @@ class TwoRowShortContainer extends StatelessWidget {
             ? UiBaseModel.normalTextRow(row1Text, firstIconData,
                 AppTextStyles.profileTextStyles(false, true))
             : UiBaseModel.doubleTextRow('Danışan: ', row1Text, false),
-        isThereButton ? EdgeInsets.zero : AppPaddings.componentOnlyTopPadding);
+        isThereButton
+            ? EdgeInsets.zero
+            : AppPaddings.componentOnlyPadding(1));
   }
 
   Widget button() {
     return CustomButton(
         textColor: AppColors.white,
-        container: AppContainers.purpleButtonContainer(null),
+        container: AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
         onTap: () {}, // izle ya da dosyayı oku fonksiyonu
         text: buttonText ?? "");
   }

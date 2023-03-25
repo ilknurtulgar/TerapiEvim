@@ -168,10 +168,12 @@ class ParticipantProfileSettingPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(ProfileSettingsTextUtil.informationTitle[rowIndex]),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                  padding: AppPaddings.customContainerInsidePadding(2), child: textField),
+            Expanded(
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: Padding(
+                    padding: AppPaddings.customContainerInsidePadding(2), child: textField),
+              ),
             )
           ],
         ),

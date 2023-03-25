@@ -11,9 +11,12 @@ import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart'
 
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/models/row_model.dart';
+import '../../../service/model/therapist/activity/t_activity_model.dart';
 
 class NewActivityScreen extends StatefulWidget {
-  const NewActivityScreen({super.key});
+  const NewActivityScreen({super.key, this.activity});
+
+  final TActivityModel? activity;
 
   @override
   State<NewActivityScreen> createState() => _NewActivityScreenState();
@@ -22,6 +25,19 @@ class NewActivityScreen extends StatefulWidget {
 TherapistActivtyController therapistActivtyController = Get.find();
 
 class _NewActivityScreenState extends State<NewActivityScreen> {
+  @override
+  void initState() {
+    if (widget.activity != null) {
+      therapistActivtyController.activitynamController.text =
+          widget.activity?.title ?? '';
+      therapistActivtyController.activitydescriptionController.text =
+          widget.activity?.description ?? '';
+
+      ///TODO handle others controllers
+    }
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +65,6 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
                 () => therapistActivtyController.isUpdate.value
                     ? butterFlyButton(ActivityTextUtil.update, () {
                         therapistActivtyController.updateActivity();
-                        therapistActivtyController.activtiyAdd();
                       })
                     : butterFlyButton(ActivityTextUtil.create, () {
                         therapistActivtyController.createActivity();
@@ -79,8 +94,12 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
   Row dateclocktextfield() {
     return Row(
       children: [
-        textfield(160, 60, therapistActivtyController.activitydateController),
-        textfield(160, 60, therapistActivtyController.activitytimeController),
+        Expanded(
+            child: textfield(
+                160, 60, therapistActivtyController.activitydateController)),
+        Expanded(
+            child: textfield(
+                160, 60, therapistActivtyController.activitytimeController)),
       ],
     );
   }
@@ -90,9 +109,9 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        miniHeadings(ActivityTextUtil.date, false),
+        Expanded(child: miniHeadings(ActivityTextUtil.date, false)),
         // activityname(ActivityTextUtil.date, AppPaddings.startpadding),
-        miniHeadings(ActivityTextUtil.clock, true)
+        Expanded(child: miniHeadings(ActivityTextUtil.clock, true))
         // activityname(ActivityTextUtil.clock, AppPaddings.centerpadding),
       ],
     );

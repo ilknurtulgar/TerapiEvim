@@ -21,7 +21,7 @@ class _GroupCategoriesState extends State<GroupCategories> {
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-                CustomHeading(
+                const CustomHeading(
                   text: GroupTextUtil.groupCategoriesHeading,
                   isalignmentstart: false,
                 ),

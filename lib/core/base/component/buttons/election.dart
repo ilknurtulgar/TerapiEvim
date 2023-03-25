@@ -23,7 +23,7 @@ class Election extends StatelessWidget {
             firstRow,
             election.value
                 ? SizedBox(
-                    width: SizeUtil.hugeValueWidth,
+                    width: Responsive.width(SizeUtil.hugeValueWidth, context),
                     child: ListView.builder(
                       physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) => rows[index],

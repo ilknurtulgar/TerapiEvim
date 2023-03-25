@@ -24,14 +24,14 @@ class SeminarMin extends StatelessWidget {
       child: Padding(
         padding: AppPaddings.componentPadding,
         child: Container(
-          height: SizeUtil.generalHeight,
+          height: Responsive.height(SizeUtil.generalHeight, context),
           // ignore: unrelated_type_equality_checks
           decoration: isBorderPurple == Null
               ? AppBoxDecoration.sendDecoration
               : !isBorderPurple
                   ? AppBoxDecoration.purpleBorder
                   : AppBoxDecoration.sendDecoration,
-          child: Expanded(child: rowView(row, AppPaddings.rowViewPadding)),
+          child: rowView(row, AppPaddings.rowViewPadding),
         ),
       ),
     );

@@ -25,7 +25,7 @@ class PopUp extends StatelessWidget {
             : uncheckedTest();
     Icon lockicon = controller.isTestResultReady.isTrue
         ? IconUtility.lockopen
-        : IconUtility.lock;
+        : IconUtility.lock(true);
     return BackdropFilter(
       filter: Filter.blur,
       child: Column(
@@ -44,7 +44,8 @@ Column checkedTest(BuildContext context) {
       lockedTextContainer(GroupTextUtil.lockScreencheckedTestString),
       CustomButton(
           textColor: Colors.white,
-          container: AppContainers.purpleButtonContainer(null),
+          container:
+              AppContainers.purpleButtonContainer(SizeUtil.largeValueWidth),
           onTap: () {
             context.push(const GroupCategories());
           },

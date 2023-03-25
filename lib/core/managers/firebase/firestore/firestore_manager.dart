@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../../../constants/app_const.dart';
 import 'i_firestore_manager.dart';
 import 'interface/i_fire_response_model.dart';
 import 'interface/i_network_model.dart';
@@ -113,25 +114,56 @@ class FirestoreManager<E extends INetworkModel<E>?>
 
   @override
   Future<IResponseModel<R?, E?>> readOrdered<T extends INetworkModel<T>, R>({
-    required T parseModel,
     required String collectionPath,
+    String? collectionPath2,
     required String docId,
     required String field,
+    required T parseModel,
+    required String lastDocumentId,
+    int limit = AppConst.itemsPerPage,
     bool isDescending = false,
-    required int limit,
-    String? collectionPath2,
   }) async {
     QuerySnapshot? response;
+    DocumentSnapshot<Map<String, dynamic>>? docSnapshot;
     try {
-      if (collectionPath2 != null) {
+      if (lastDocumentId.isNotEmpty) {
+        /// Creates a path which checks if it is nested
+        final String collectionPathString = collectionPath2 != null
+            ? '$collectionPath/${'$docId/$collectionPath2/'}$lastDocumentId'
+            : '$collectionPath/$lastDocumentId';
+
+        docSnapshot = await _database.doc(collectionPathString).get();
+      }
+
+      /// return paginated items
+      if (collectionPath2 != null && lastDocumentId.isNotEmpty) {
         response = await _database
             .collection(collectionPath)
             .doc(docId)
             .collection(collectionPath2)
-            .limit(limit)
             .orderBy(field, descending: isDescending)
+            .startAfterDocument(docSnapshot!)
+            .limit(limit)
             .get();
-      } else {
+      } else if (lastDocumentId.isNotEmpty) {
+        response = await _database
+            .collection(collectionPath)
+            .orderBy(field, descending: isDescending)
+            .startAfterDocument(docSnapshot!)
+            .limit(limit)
+            .get();
+      }
+
+      ///This code is executed if lastDocumentId is not provided
+      if (collectionPath2 != null && lastDocumentId.isEmpty) {
+        response = await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .orderBy(field, descending: isDescending)
+            .limit(limit)
+            .get();
+      } else if (lastDocumentId.isEmpty) {
         response = await _database
             .collection(collectionPath)
             .orderBy(field, descending: isDescending)
@@ -139,9 +171,10 @@ class FirestoreManager<E extends INetworkModel<E>?>
             .get();
       }
 
-      final data = response.docs as List<Map<String, dynamic>>;
+      final List<QueryDocumentSnapshot<Object?>>? queryList = response?.docs;
 
-      return _getResponseResult<T, R>(data, parseModel);
+
+      return _getResponseResult<T, R>(queryList, parseModel);
     } catch (e) {
       await crashlyticsManager.sendACrash(
           error: e.toString(), stackTrace: StackTrace.current, reason: '');

@@ -18,24 +18,22 @@ class _SearchMessageState extends State<SearchMessage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Center(
-            child: Column(
-              children: [
-                searchappbar(),
-                ListView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemBuilder: (context, index) {
-                    return PersonView(
-                        groupName: DemoInformation.groupList[index],
-                        list: DemoInformation.personList);
-                  },
-                  itemCount: DemoInformation.groupList.length,
-                  shrinkWrap: true,
-                ),
-              ],
-            ),
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            children: [
+              searchappbar(),
+              ListView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (context, index) {
+                  return PersonView(
+                      groupName: DemoInformation.groupList[index],
+                      list: DemoInformation.personList);
+                },
+                itemCount: DemoInformation.groupList.length,
+                shrinkWrap: true,
+              ),
+            ],
           ),
         ),
       ),

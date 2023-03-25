@@ -49,9 +49,14 @@ class _CustomButtonState extends State<CustomButton> {
                   child: widget.icon,
                 )
               : const SizedBox(),
-          Text(
-            widget.text,
-            style: AppTextStyles.buttonTextStyle(widget.textColor),
+          Expanded(
+            child: Text(
+              widget.text,
+              maxLines: 1,
+              textAlign: TextAlign.center,
+              overflow: TextOverflow.clip,
+              style: AppTextStyles.buttonTextStyle(widget.textColor),
+            ),
           ),
         ],
       ),

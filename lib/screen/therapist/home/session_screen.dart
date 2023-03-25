@@ -14,31 +14,29 @@ class SessionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Stack(children: [
-            Padding(
-              padding: AppPaddings.pagePadding,
-              child: Column(
-                children: [
-                  doubleappbar(
-                    HomeTextUtil.myMinuteSessions,
-                    backButton(context, () => context.pop()),
-                    IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {
-                          context.push(const AvailableHours());
-                        },
-                        icon: IconUtility.clockIcon),
-                  ),
-                  sizedbox(),
-                  aboutparticipant(),
-                ],
-              ),
+      body: SingleChildScrollView(
+        child: Stack(children: [
+          Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              children: [
+                doubleappbar(
+                  HomeTextUtil.myMinuteSessions,
+                  backButton(context, () => context.pop()),
+                  IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {
+                        context.push(const AvailableHours());
+                      },
+                      icon: IconUtility.clockIcon),
+                ),
+                sizedbox(),
+                aboutparticipant(),
+              ],
             ),
-            Positioned(top: 90, right: 24, child: orderdropdown()),
-          ]),
-        ),
+          ),
+          Positioned(top: 90, right: 24, child: orderdropdown()),
+        ]),
       ),
     );
   }

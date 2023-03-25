@@ -3,7 +3,6 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/home/add_hours_screen.dart';
-import 'package:terapievim/screen/therapist/message/message.dart';
 
 class AvailableHours extends StatelessWidget {
   const AvailableHours({super.key});
@@ -11,8 +10,9 @@ class AvailableHours extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: AppPaddings.pagePadding,
           child: Column(
             children: [
               doubleappbar(

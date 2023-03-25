@@ -12,7 +12,7 @@ ActivityModel _$ActivityModelFromJson(Map<String, dynamic> json) =>
       title: json['title'] as String?,
       description: json['description'] as String?,
       dateTime:
-          ActivityModel._timestampFromJson(json['dateTime'] as Timestamp?),
+          TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?),
       isFinished: json['isFinished'] as bool?,
       participantsId: (json['participantsId'] as List<dynamic>?)
           ?.map((e) => e as String)
@@ -25,7 +25,7 @@ Map<String, dynamic> _$ActivityModelToJson(ActivityModel instance) =>
       'therapistId': instance.therapistId,
       'title': instance.title,
       'description': instance.description,
-      'dateTime': ActivityModel._timestampToJson(instance.dateTime),
+      'dateTime': TimeStampConverter.timestampToJson(instance.dateTime),
       'isFinished': instance.isFinished,
       'participantsId': instance.participantsId,
     };

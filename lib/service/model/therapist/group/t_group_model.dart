@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../../core/managers/converter/timestamp_converter.dart';
 import '../../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 
 part 't_group_model.g.dart';
@@ -17,18 +18,11 @@ class TGroupModel extends INetworkModel<TGroupModel> {
   List<String?>? participantsId;
 
   /// Timestamp.fromDate(DateTime.now()) is an example of using timeStamp
-  @JsonKey(fromJson: _timestampFromJson, toJson: _timestampToJson)
+  @JsonKey(
+    fromJson: TimeStampConverter.timestampFromJson,
+    toJson: TimeStampConverter.timestampToJson,
+  )
   Timestamp? dateTime;
-
-  static Timestamp? _timestampFromJson(Timestamp? timestamp) {
-    return timestamp;
-  }
-
-  static Timestamp? _timestampToJson(Timestamp? timestamp) {
-    return timestamp != null
-        ? Timestamp.fromMillisecondsSinceEpoch(timestamp.millisecondsSinceEpoch)
-        : null;
-  }
 
   TGroupModel({
     this.groupId,

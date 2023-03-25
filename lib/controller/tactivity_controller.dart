@@ -53,7 +53,7 @@ class TherapistActivtyController extends GetxController with BaseController {
   Future<bool> createActivity() async {
     final bool isValidated = _validateActivity();
 
-    if (isValidated) return false;
+    if (isValidated == false) return false;
 
     final result = await activityService.createActivity(TActivityModel(
       title: activitynamController.text.trim(),

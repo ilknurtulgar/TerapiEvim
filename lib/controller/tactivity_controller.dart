@@ -58,9 +58,12 @@ class TherapistActivtyController extends GetxController with BaseController {
     final result = await activityService.createActivity(TActivityModel(
       title: activitynamController.text.trim(),
       description: activitydescriptionController.text.trim(),
-      isFinished: false,
       dateTime: Timestamp.fromDate(DateTime.now()),
       participantsId: [],
+      isFinished: false,
+      isStarted: false,
+      recordUrl: '',
+      roomId: '',
     ));
 
     if (result == null) {

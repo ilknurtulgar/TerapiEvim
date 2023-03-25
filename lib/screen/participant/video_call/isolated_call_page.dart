@@ -28,7 +28,7 @@ class IsolatedCallPage extends StatelessWidget {
   Positioned personSmallViewInCall() {
     return Positioned(
         right: 20,
-        bottom: 137,
+        bottom: 120,
         child: Obx(
           () => VideoCallPersonView(
               onDoubleTap: () => videoCallController.changeViewPlaces(),
@@ -36,7 +36,9 @@ class IsolatedCallPage extends StatelessWidget {
                   videoCallController.isViewPlaceChanged.value
                       ? DemoInformation.therapist
                       : DemoInformation.personNo1,
-                  false)),
+                  false),
+                isInShortCallPage: false,
+                ),
         ));
   }
 
@@ -59,7 +61,9 @@ class IsolatedCallPage extends StatelessWidget {
               videoCallController.isViewPlaceChanged.value
                   ? DemoInformation.personNo1
                   : DemoInformation.therapist,
-              false)),
+              false),
+          isInShortCallPage: false,
+          ),
     );
   }
 }

@@ -37,7 +37,7 @@ class ActivityBox extends StatelessWidget {
       child: Padding(
         padding: AppPaddings.componentPadding,
         child: Container(
-          height: SizeUtil.largeValueHeight,
+          height: SizeUtil.doubleNormalValueHeight,
           decoration: AppBoxDecoration.purpleBorder,
           child: Column(
             children: [
@@ -54,9 +54,11 @@ class ActivityBox extends StatelessWidget {
                           therapistActivtyController.updatechnage(0);
 
                           context.push(const NewActivityScreen());
-                        }, ActivityTextUtil.updateMyInformation, true)
+                        }, ActivityTextUtil.updateMyInformation,
+                          AppContainers.hugeContainerButton())
                       : const SizedBox.shrink(),
-                  rowbutton(() {}, buttonText, false),
+                  rowbutton(
+                      () {}, buttonText, AppContainers.containerButton(false)),
                 ],
               )
             ],
@@ -66,12 +68,13 @@ class ActivityBox extends StatelessWidget {
     );
   }
 
-  Widget rowbutton(Function() onTap, String buttonText, bool bigWidth) {
+  Widget rowbutton(
+      Function() onTap, String buttonText, ContainerModel containerbutton) {
     return Padding(
       padding: AppPaddings.rowViewPadding,
       child: CustomButton(
         textColor: AppColors.white,
-        container: AppContainers.containerButton(bigWidth),
+        container: containerbutton,
         onTap: onTap,
         text: buttonText,
       ),

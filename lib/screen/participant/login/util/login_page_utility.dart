@@ -4,16 +4,13 @@ import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
 
 class LoginPageUtility {
-  static Padding lineWithOrText() {
-    return Padding(
-      padding: AppPaddings.smallVerticalPadding,
-      child: Row(
-        children: [
-          myDivider(true),
-          Text(LoginSignUpTextUtil.orText),
-          myDivider(false),
-        ],
-      ),
+  static Row lineWithOrText() {
+    return Row(
+      children: [
+        myDivider(true),
+        Text(LoginSignUpTextUtil.orText),
+        myDivider(false),
+      ],
     );
   }
 

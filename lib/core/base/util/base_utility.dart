@@ -81,7 +81,10 @@ class IconUtility {
   static const Icon emailIcon = Icon(Icons.mail, color: AppColors.black);
   static const Icon messageIcon = Icon(Icons.forum_outlined, size: 35);
 
-  static const Icon addmesaage = Icon(Icons.mark_email_read_outlined, size: 30);
+  static const Icon addmesaage = Icon(
+    Icons.mark_email_read_outlined,
+    size: 30,
+  );
 
   static const Icon personIcon = Icon(Icons.person_outlined);
 
@@ -343,8 +346,6 @@ class AppPaddings {
   static const EdgeInsets mediumxPadding = EdgeInsets.only(top: 25, bottom: 15);
 //yukardakiler kesinlestirildi ortak kullanim
   static const EdgeInsets generalPadding = EdgeInsets.all(5);
-  static EdgeInsets purpleButtonAtRight = const EdgeInsets.fromLTRB(
-      0, 10, 20, 10); // sağ alt bütün mor butonlar için geçerli
 
   static const EdgeInsets contentPadding = EdgeInsets.all(3);
 
@@ -356,17 +357,11 @@ class AppPaddings {
       EdgeInsets.only(top: 15, left: 24, right: 24);
 
   // gizem paddings(daha devamı gelecek)
-  static EdgeInsets mediumPadding(int paddingNo) => EdgeInsets.only(
-      bottom: paddingNo != 1 ? 24 : 0, right: paddingNo != 2 ? 24 : 0);
-  static EdgeInsets smallPadding(int paddingNo) => EdgeInsets.only(
-      bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
+ static EdgeInsets smallPadding(int paddingNo) => EdgeInsets.only(bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
   // 1 numara right
   // 2 numara bottom
   // 3 numara bottom ve right
-  static EdgeInsets smallVerticalPadding =
-      const EdgeInsets.symmetric(vertical: 12);
-  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
-      EdgeInsets.only(top: 305, left: isThereLeftPadding ? 24 : 0);
+  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
       EdgeInsets.symmetric(
           horizontal: paddingNo != 2 ? 16 : 0,
@@ -374,10 +369,21 @@ class AppPaddings {
   // 1 numara horizontal
   // 2 numara vertical
   // 3 numara horizontal ve vertical
-  static EdgeInsets componentOnlyPadding(bool isTop) =>
-      EdgeInsets.only(top: isTop ? 8 : 0, bottom: isTop ? 0 : 8);
-  static EdgeInsets rowLeftSmallPadding = const EdgeInsets.only(left: 10);
+  static EdgeInsets componentOnlyPadding(int paddingNo) =>EdgeInsets.only(top: paddingNo==1 ? 8 : 0, bottom: paddingNo==2 ? 0 : 8,right: paddingNo==3 ? 24 : 0,left: paddingNo==4 ? 10 : 0);
+  // burada ayrı ayrı olan 4 farklı only paddingini tek paddingte topladım
+  static EdgeInsets smallPersonViewPadding = const EdgeInsets.only(top: 16, left: 8, right: 8);
+  static EdgeInsets smallHorizontalPadding = const  EdgeInsets.symmetric(horizontal: 8);
 }
+
+// birinci grup önceden kullandıklarım ama artık ikinci grubu kullancağım
+// ikinci gruba geçiş süreci tamamlanınca birinci grubu sileceğim
+SizedBox smallSizedBox() => const SizedBox(height: 12);
+SizedBox mediumSizedBox() => const SizedBox(height: 24);
+SizedBox largeSizedBox() => const SizedBox(height: 36);
+
+SizedBox smallSizedBox1() => const SizedBox(width: 8);
+SizedBox mediumSizedBox1() => const SizedBox(height:16);
+SizedBox largeSizedBox1() => const SizedBox(height: 32);
 
 class AppBorderRadius {
   static const BorderRadius generalBorderRadius =
@@ -763,9 +769,7 @@ class TextFieldSize {
   static const double dateclockwidth = 150;
 }
 
-SizedBox smallSizedBox() => const SizedBox(height: 12);
-SizedBox mediumSizedBox() => const SizedBox(height: 24);
-SizedBox largeSizedBox() => const SizedBox(height: 36);
+
 
 class SizeUtil {
   static double heightFactor = 1;

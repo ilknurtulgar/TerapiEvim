@@ -42,7 +42,7 @@ class GroupInformationContainer extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(child: paddedText(AppPaddings.componentOnlyPadding(false),groupName, AppTextStyles.groupTextStyle(false))),
+        Center(child: paddedText(AppPaddings.componentOnlyPadding(2),groupName, AppTextStyles.groupTextStyle(false))),
         therapistColumn(mainTherapist, GroupTextUtil.gruopTherapist, () {
           /* ana psikolog sayfasına gitme fonksiyonu */
         }),
@@ -59,7 +59,7 @@ class GroupInformationContainer extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: CustomButton(
               textColor: Colors.white,
-              container: AppContainers.purpleButtonContainer(null),
+              container: AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
               onTap: () {},
               text: GroupTextUtil.join,
             )),

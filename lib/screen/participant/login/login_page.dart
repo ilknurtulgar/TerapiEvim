@@ -40,26 +40,24 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
       backgroundColor: AppColors.blueChalk,
       body: SingleChildScrollView(
         child: Center(
-          child: SizedBox(
-            width: SizeUtil.generalWidth,
-            child: Wrap(
-                direction: Axis.vertical,
-                crossAxisAlignment: WrapCrossAlignment.center,
-                spacing: 24,
-                children: [
-                  largeSizedBox(),
-                  LoginPageUtility.title(true),
-                  textfieldUtility.mailTextfield(
-                      _loginController.emailController, true),
-                  passwordColumn(),
-                  LoginPageUtility.button(true, true, () {
-                    _loginController.loginWithEmail();
-                  }),
-                  LoginPageUtility.lineWithOrText(),
-                  LoginPageUtility.button(
-                      false, true, () => context.push(BeforeSignUp())),
-                ]),
-          ),
+          child: Wrap(
+              direction: Axis.vertical,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              spacing: 32,
+              children: [
+                largeSizedBox1(),
+                LoginPageUtility.title(true),
+                textfieldUtility.mailTextfield(
+                    _loginController.emailController, true),
+                passwordColumn(),
+                LoginPageUtility.button(true, true, () {
+                  _loginController.loginWithEmail();
+                }),
+                LoginPageUtility.lineWithOrText(),
+                LoginPageUtility.button(
+                    false, true, () => context.push(BeforeSignUp())),
+                largeSizedBox1()
+              ]),
         ),
       ),
     );

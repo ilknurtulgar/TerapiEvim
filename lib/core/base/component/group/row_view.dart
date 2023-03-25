@@ -11,7 +11,7 @@ Widget rowView(
     padding: padding,
     child: Row(
       mainAxisAlignment: rowModel.isAlignmentBetween
-          ? MainAxisAlignment.spaceAround
+          ? MainAxisAlignment.spaceBetween
           : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [

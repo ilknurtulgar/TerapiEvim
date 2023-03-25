@@ -21,11 +21,7 @@ class HomeScreen extends StatelessWidget {
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-                headingtext(
-                  true,
-                  true,
-                  GroupTextUtil.terapiEvim,
-                ),
+                headingtext(true, true, GroupTextUtil.terapiEvim),
                 headingtext(false, false, HomeTextUtil.welcome),
                 mindetailesbox(HomeTextUtil.copingMethods,
                     () => context.push(const CopingMethods()), context),

@@ -13,22 +13,24 @@ class AddHoursScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          secappview(
-            context,
-            UiBaseModel.secRowModel(
-              closeIcon(() {
-                context.pop();
-              }),
-              ActivityTextUtil.addNewClock,
+      body: Padding(
+        padding: AppPaddings.pagePadding,
+        child: Column(
+          children: [
+            secappview(
+              UiBaseModel.secRowModel(
+                closeIcon(() {
+                  context.pop();
+                }),
+                ActivityTextUtil.addNewClock,
+              ),
             ),
-          ),
-          minheading(ActivityTextUtil.date),
-          minheading(ActivityTextUtil.addClock),
-          minheading(ActivityTextUtil.clocks),
-          butterFlyButton(ActivityTextUtil.save, () {})
-        ],
+            minheading(ActivityTextUtil.date),
+            minheading(ActivityTextUtil.addClock),
+            minheading(ActivityTextUtil.clocks),
+            butterFlyButton(ActivityTextUtil.save, () {})
+          ],
+        ),
       ),
     );
   }
@@ -37,7 +39,7 @@ class AddHoursScreen extends StatelessWidget {
     return CustomHeading(
       text: text,
       isalignmentstart: true,
-      isToggle: true,
+      isToggle: false,
     );
   }
 }

@@ -23,10 +23,9 @@ class CustomHeading extends StatelessWidget {
         padding: padding ?? AppPaddings.appBarPadding,
         child: responsivenestext(
           text,
-          isToggle != null
+          isToggle!
               ? AppTextStyles.normalTextStyle("medium", false)
               : AppTextStyles.heading(false),
         ));
   }
 }
-//responsivenesstext yaseminle konuş!

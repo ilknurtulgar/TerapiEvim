@@ -8,10 +8,9 @@ part 't_activity_model.g.dart';
 
 @JsonSerializable()
 class TActivityModel extends INetworkModel<TActivityModel> {
-  String? id;
-  String? therapistId;
-  String? title;
-  String? description;
+  String? id, therapistId, title, description, roomId, recordUrl;
+  bool? isFinished, isStarted;
+  List<String>? participantsId;
 
   /// Timestamp.fromDate(DateTime.now()) is an example of using timeStamp
   @JsonKey(
@@ -19,8 +18,6 @@ class TActivityModel extends INetworkModel<TActivityModel> {
     toJson: TimeStampConverter.timestampToJson,
   )
   Timestamp? dateTime;
-  bool? isFinished;
-  List<String>? participantsId;
 
   TActivityModel({
     this.therapistId,
@@ -28,7 +25,10 @@ class TActivityModel extends INetworkModel<TActivityModel> {
     this.description,
     this.dateTime,
     this.isFinished,
+    this.isStarted,
     this.participantsId,
+    this.roomId,
+    this.recordUrl,
   });
 
   @override

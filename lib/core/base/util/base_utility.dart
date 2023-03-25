@@ -387,8 +387,6 @@ class AppPaddings {
   static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
       EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
 
-
-
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
       EdgeInsets.symmetric(
           horizontal: paddingNo != 2 ? 16 : 0,
@@ -419,9 +417,6 @@ SizedBox mediumSizedBox() => const SizedBox(height: 24);
 SizedBox largeSizedBox() => const SizedBox(height: 36);
 
 SizedBox smallSizedBox1() => const SizedBox(width: 8);
-
-SizedBox mediumSizedBox1() => const SizedBox(height: 16);
-=======
 
 SizedBox mediumSizedBox1() => const SizedBox(height: 16);
 

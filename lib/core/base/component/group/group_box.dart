@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/tactivity_controller.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
-import 'package:terapievim/core/base/models/container_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
+import 'package:terapievim/core/base/models/container_model.dart';
+import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
@@ -21,6 +21,7 @@ class ActivityBox extends StatelessWidget {
       this.onTap,
       required this.isactivity,
       required this.clockModel});
+
   final ContainerModel containerModel;
   final RowModel arowModel;
   final RowModel? ayrowwModel;
@@ -30,6 +31,7 @@ class ActivityBox extends StatelessWidget {
   final Function()? onTap;
   final String buttonText;
   final TherapistActivtyController therapistActivtyController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -54,12 +56,14 @@ class ActivityBox extends StatelessWidget {
                         ? rowbutton(() {
                             therapistActivtyController.updatechnage(0);
 
-                            context.push(const NewActivityScreen());
+                            context.push(NewActivityScreen(
+                                activity: therapistActivtyController
+                                    .recentActivities[0]));
                           }, ActivityTextUtil.updateMyInformation,
                             AppContainers.hugeContainerButton())
                         : const SizedBox.shrink(),
-                    rowbutton(
-                        () {}, buttonText, AppContainers.containerButton(false)),
+                    rowbutton(() {}, buttonText,
+                        AppContainers.containerButton(false)),
                   ],
                 ),
               )

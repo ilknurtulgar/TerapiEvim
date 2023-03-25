@@ -23,9 +23,17 @@ class TherapistActivtyController extends GetxController with BaseController {
 
   late IActivityService activityService;
 
+  RxList<TActivityModel?> recentActivities = <TActivityModel?>[].obs;
+
   @override
-  void onInit() {
+  Future<void> onInit() async {
     activityService = ActivityService(vexaFireManager.networkManager);
+
+    TActivityModel? recentActivity = await activityService.getRecentActivity();
+
+    recentActivities.add(await activityService.getRecentActivity());
+
+    print('recentActivity:${recentActivity?.toJson()}');
 
     super.onInit();
   }
@@ -55,7 +63,7 @@ class TherapistActivtyController extends GetxController with BaseController {
 
     if (isValidated == false) return false;
 
-    final result = await activityService.createActivity(TActivityModel(
+    final TActivityModel activity = TActivityModel(
       title: activitynamController.text.trim(),
       description: activitydescriptionController.text.trim(),
       dateTime: Timestamp.fromDate(DateTime.now()),
@@ -64,7 +72,9 @@ class TherapistActivtyController extends GetxController with BaseController {
       isStarted: false,
       recordUrl: '',
       roomId: '',
-    ));
+    );
+
+    final result = await activityService.createActivity(activity);
 
     if (result == null) {
       ///TODO add error handler
@@ -77,12 +87,18 @@ class TherapistActivtyController extends GetxController with BaseController {
     final bool isValidated = _validateActivity();
 
     if (isValidated) return false;
-
-    final result = await activityService.updateActivity(TActivityModel(
+    final TActivityModel activity = TActivityModel(
       title: activitynamController.text.trim(),
       description: activitydescriptionController.text.trim(),
       dateTime: Timestamp.fromDate(DateTime.now()),
-    ));
+      // participantsId: [],
+      isFinished: false,
+      isStarted: false,
+      recordUrl: '',
+      roomId: '',
+    );
+
+    final result = await activityService.updateActivity(activity);
 
     if (result == null) {
       ///TODO add error handler

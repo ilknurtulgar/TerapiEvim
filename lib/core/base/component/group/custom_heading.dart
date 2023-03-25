@@ -7,13 +7,15 @@ class CustomHeading extends StatelessWidget {
   CustomHeading(
       {super.key,
       required this.text,
-      this.isToggle,
+      this.isToggle = false,
       required this.isalignmentstart,
       this.padding});
+
   String text;
-  bool? isToggle;
+  bool isToggle;
   bool isalignmentstart;
   EdgeInsets? padding;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +25,7 @@ class CustomHeading extends StatelessWidget {
         padding: padding ?? AppPaddings.appBarPadding,
         child: responsivenestext(
           text,
-          isToggle!
+          isToggle
               ? AppTextStyles.normalTextStyle("medium", false)
               : AppTextStyles.heading(false),
         ));

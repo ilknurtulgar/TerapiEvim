@@ -16,23 +16,18 @@ class TherapistHome extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              headingtext(true, true, GroupTextUtil.terapiEvim),
-              headingtext(false, false, HomeTextUtil.welcome),
-              mindetailesbox(HomeTextUtil.myMinuteSessions,
-                  () => context.push(const SessionScreen()), context),
-              reminderactivity(),
-              const Padding(
-                padding: AppPaddings.componentPadding,
-                child: Reminder(
-                  reminderType: ReminderType.activity,
-                  name: DemoInformation.name,
-                  time: DemoInformation.clockabomeactivty,
-                ),
-              ),
-              notificationcontainer()
-            ],
+          child: Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              children: [
+                headingtext(true, true, GroupTextUtil.terapiEvim),
+                headingtext(false, false, HomeTextUtil.welcome),
+                mindetailesbox(HomeTextUtil.myMinuteSessions,
+                    () => context.push(const SessionScreen()), context),
+                reminderactivity(),
+                notificationcontainer()
+              ],
+            ),
           ),
         ),
       ),

@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:cloud_firestore_platform_interface/src/timestamp.dart';
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/participant_container.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
@@ -16,44 +17,55 @@ import '../../../screen/participant/video_call/model/person_in_call_model.dart';
 import '../../../screen/therapist/activity/activity_screen.dart';
 import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
-
 import '../../init/managers/responsiveness_manager.dart';
-import '../component/group/row_view.dart';
-import '../models/card_model.dart';
-
+import '../../managers/converter/date_time_manager.dart';
 import '../component/group/questions_button.dart';
+import '../component/group/row_view.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
-
+import '../models/card_model.dart';
 import '../models/row_model.dart';
 import 'base_model.dart';
 
 class AppColors {
   static const Color blueChalk = Color.fromRGBO(238, 227, 255, 1);
+
   //uygulamanin genelindeki lila renk
   static const Color cornFlowerBlue = Color.fromRGBO(102, 99, 255, 1);
+
   //container golgeleri
   static const Color white = Color.fromRGBO(254, 254, 254, 1);
+
   //duz beyaz
   static const Color melrose = Color.fromRGBO(208, 188, 255, 1);
+
   //acik renk butonlarin background
   static const Color meteorite = Color.fromRGBO(57, 30, 114, 1);
+
   //acik renk buton text rengi
   static const Color butterflyBush = Color.fromRGBO(103, 80, 164, 1);
+
   //koyu renk buton
   static const Color deepCove = Color.fromRGBO(11, 7, 54, 1);
+
   //Text renkleri
   static const Color dustyGray = Color.fromRGBO(149, 149, 149, 1);
+
   //navbar
   static const Color black = Color.fromRGBO(0, 0, 0, 1);
   static const Color coldPurple = Color.fromRGBO(185, 168, 220, 1);
+
   //mesaj
   static const Color royalBlue = Color.fromRGBO(99, 86, 229, 1);
+
   //login buton
   static const Color doveGray = Color.fromRGBO(98, 98, 98, 1);
+
   //kamera kapandığında gözüken renk
   static const Color mineShaft = Color.fromRGBO(56, 56, 56, 1);
+
   //videolu görüşmedeki arka plan rengi
   static const Color lightBlack = Color.fromRGBO(0, 0, 0, 0.7);
+
   //isolated call'daki şeffaf siyah renk
   static const Color red = Colors.red;
   static const Color orange = Colors.orange;
@@ -103,6 +115,7 @@ class IconUtility {
     Icons.description_outlined,
     color: AppColors.white,
   );
+
   static Icon micIcon(bool isInCircularContainer) => Icon(Icons.mic,
       color: isInCircularContainer ? AppColors.black : AppColors.white);
   static const Icon micoffIcon = Icon(Icons.mic_off, color: AppColors.red);
@@ -167,6 +180,7 @@ class AppTextStyles {
                 : 12,
         color: isGreyText ? AppColors.dustyGray : AppColors.black,
       );
+
   // small size --> psikolojik test sorularının seçenekleri,psikolog paylaşımlarındaki açıklamalar
   // big size --> Filtreleme sayfasındaki başlıklar
   // medium size --> textfield yazıları,mesajlar,test soruları,test hakkında bilgilendirme yazıları,card'daki titlelar,seminer containerlerı içindeki bold olmayan başlıklar
@@ -178,6 +192,7 @@ class AppTextStyles {
       fontWeight: FontWeight.w500,
       fontSize: 18, // önceki değer 16,
       color: textColor);
+
   static TextStyle methodsPageTextStyle(bool isDateText, bool isOrderButton,
           bool isExplanationText, bool isDocument) =>
       TextStyle(
@@ -202,6 +217,7 @@ class AppTextStyles {
         color: isName ? AppColors.black : AppColors.deepCove,
         fontSize: isName ? 31 : 14,
       );
+
   static TextStyle heading(bool isMainHeading) => TextStyle(
       //basliklarin hepsi
 
@@ -215,6 +231,7 @@ class AppTextStyles {
       fontFamily: 'Roboto',
       fontWeight: FontWeight.w400,
       color: AppColors.black);
+
   static TextStyle groupTextStyle(bool isName) => TextStyle(
       fontFamily: 'Roboto',
       fontSize: isName ? 16 : 18,
@@ -339,6 +356,7 @@ class AppPaddings {
   static const EdgeInsets pagePadding =
       EdgeInsets.only(left: 24, right: 24, bottom: 80, top: 15);
   static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 8);
+
   static EdgeInsets miniHeadingPadding(bool isInMiddle) =>
       EdgeInsets.symmetric(vertical: 16, horizontal: isInMiddle ? 10 : 0);
   static const EdgeInsets rowViewPadding =
@@ -347,6 +365,7 @@ class AppPaddings {
 
   static const EdgeInsets miniTopPadding = EdgeInsets.only(top: 10);
   static const EdgeInsets mediumxPadding = EdgeInsets.only(top: 25, bottom: 15);
+
 //yukardakiler kesinlestirildi ortak kullanim
   static const EdgeInsets generalPadding = EdgeInsets.all(5);
 
@@ -362,15 +381,20 @@ class AppPaddings {
   // gizem paddings(daha devamı gelecek)
   static EdgeInsets smallPadding(int paddingNo) => EdgeInsets.only(
       bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
+
   // 1 numara right
   // 2 numara bottom
   // 3 numara bottom ve right
   static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
       EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
+
+
+
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
       EdgeInsets.symmetric(
           horizontal: paddingNo != 2 ? 16 : 0,
           vertical: paddingNo != 1 ? 16 : 0);
+
   // 1 numara horizontal
   // 2 numara vertical
   // 3 numara horizontal ve vertical
@@ -379,6 +403,7 @@ class AppPaddings {
       bottom: paddingNo == 2 ? 0 : 8,
       right: paddingNo == 3 ? 24 : 0,
       left: paddingNo == 4 ? 10 : 0);
+
   // burada ayrı ayrı olan 4 farklı only paddingini tek paddingte topladım
   static EdgeInsets smallPersonViewPadding =
       const EdgeInsets.only(top: 16, left: 8, right: 8);
@@ -389,11 +414,18 @@ class AppPaddings {
 // birinci grup önceden kullandıklarım ama artık ikinci grubu kullancağım
 // ikinci gruba geçiş süreci tamamlanınca birinci grubu sileceğim
 SizedBox smallSizedBox() => const SizedBox(height: 12);
+
 SizedBox mediumSizedBox() => const SizedBox(height: 24);
+
 SizedBox largeSizedBox() => const SizedBox(height: 36);
 
 SizedBox smallSizedBox1() => const SizedBox(width: 8);
+
 SizedBox mediumSizedBox1() => const SizedBox(height: 16);
+=======
+
+SizedBox mediumSizedBox1() => const SizedBox(height: 16);
+
 SizedBox largeSizedBox1() => const SizedBox(height: 32);
 
 class AppBorderRadius {
@@ -436,17 +468,17 @@ class AppBoxDecoration {
     color: AppColors.white,
     borderRadius: AppBorderRadius.generalBorderRadius,
   );
-  //  BoxDecoration(
-  //       border: Border.all(color: borderColor!.withOpacity(1)),
-  //       borderRadius: AppBorderRadius.generalBorderRadius,
-  //       color: AppColors.white)
-  // static BoxDecoration groupBoxDecoration = BoxDecoration(//widthi gormezden geliyorum daha cok benzer seyler olussun uygulamada diye
-  //   color: AppColors.white,
-  //   border: Border.all(color: AppColors.cornFlowerBlue, width: 2),
-  //   borderRadius: AppBorderRadius.generalBorderRadius,
-  // );
-  // BoxDecoration(
-  //           borderRadius: BorderRadius.circular(16), color: AppColors.white)//group info box deco bunu notificationluyla esletiyorum
+//  BoxDecoration(
+//       border: Border.all(color: borderColor!.withOpacity(1)),
+//       borderRadius: AppBorderRadius.generalBorderRadius,
+//       color: AppColors.white)
+// static BoxDecoration groupBoxDecoration = BoxDecoration(//widthi gormezden geliyorum daha cok benzer seyler olussun uygulamada diye
+//   color: AppColors.white,
+//   border: Border.all(color: AppColors.cornFlowerBlue, width: 2),
+//   borderRadius: AppBorderRadius.generalBorderRadius,
+// );
+// BoxDecoration(
+//           borderRadius: BorderRadius.circular(16), color: AppColors.white)//group info box deco bunu notificationluyla esletiyorum
 }
 
 Padding colon(bool isInAlertDialog) {
@@ -495,6 +527,7 @@ class DemoInformation {
     "anksiyete",
     "panik atak",
   ];
+
   //toggle
   static const String question =
       "1.Yasemini insanlar 100 üzerinden  ne kadar severlerse yasemin ne kadar mutlu olur( slm Yasemin aşko <3 )?(Cevap yok hehe)";
@@ -507,6 +540,14 @@ class DemoInformation {
       textStyle: const TextStyle(),
       leadingIcon: IconUtility.activityIcon);
 
+  static RowModel recentActivityTitle(String title) {
+    return RowModel(
+        isAlignmentBetween: false,
+        text: title,
+        textStyle: const TextStyle(),
+        leadingIcon: IconUtility.activityIcon);
+  }
+
   static RowModel ayrowmodel = RowModel(
       isAlignmentBetween: false,
       text: "Özlem Ulusan",
@@ -517,6 +558,16 @@ class DemoInformation {
       text: "Ocak 15,2023,20:00",
       textStyle: const TextStyle(),
       leadingIcon: IconUtility.clockIcon);
+
+  static RowModel recentActivityTime(Timestamp timestamp) {
+    return RowModel(
+        isAlignmentBetween: false,
+        text: DateTimeManager.getFormattedDateFromFormattedString(
+            value: timestamp.toDate().toIso8601String()),
+        textStyle: const TextStyle(),
+        leadingIcon: IconUtility.clockIcon);
+  }
+
   static const List<String> orderingList = ["yeniden eskiye", "eskiden yeniye"];
   static const List<String> genderList = ["kadın", "erkek"];
 
@@ -675,6 +726,7 @@ class DemoInformation {
   static int geciciKategoriSayisi = 5;
 
   static int tmpSessionNumber = 2;
+
   // video call
   // group therapy call page,isolated call page,short call page
 
@@ -722,6 +774,7 @@ class DemoInformation {
     SeminarModelInProfilePage(
         therapistName: 'Mert Engin', seminarTitle: 'Seminer 3')
   ];
+
   // profile setting page
   static TextEditingController nameSurnameControllerInSetting =
       TextEditingController(text: "Kerem Engin");
@@ -798,6 +851,7 @@ class SizeUtil {
 
   // küçükten büyüğe sıralama
   static const double zeroSize = 0;
+
   // width
   static const double lowValueWidth =
       40; // profil sayfasındaki mini container ve listwheelscrollview için

@@ -64,7 +64,7 @@ class TextfieldUtility {
             text: isBig ? 'Şifre' : "",
             textStyle: const TextStyle(color: AppColors.black),
             isAlignmentBetween: false,
-            leadingIcon: IconUtility.lock,
+            leadingIcon: IconUtility.lockSmall,
             trailingIcon: Obx(
               () => IconButton(
                 icon: Icon(activityController.isObsecure.value

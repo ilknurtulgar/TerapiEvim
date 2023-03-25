@@ -137,6 +137,9 @@ class IconUtility {
   static const Icon lock = Icon(Icons.lock_outline,
       color: AppColors.white, size: SizeUtil.lockIconSize);
 
+  static const Icon lockSmall =
+      Icon(Icons.lock_outline, color: AppColors.black);
+
   static const Icon lockopen = Icon(Icons.lock_open,
       color: AppColors.white, size: SizeUtil.lockIconSize);
 

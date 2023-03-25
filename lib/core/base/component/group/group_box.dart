@@ -41,25 +41,27 @@ class ActivityBox extends StatelessWidget {
           decoration: AppBoxDecoration.purpleBorder,
           child: Column(
             children: [
-              rowView(arowModel, AppPaddings.rowViewPadding),
+              Expanded(child: rowView(arowModel, AppPaddings.rowViewPadding)),
               isactivity
                   ? const SizedBox.shrink()
                   : rowView(ayrowwModel!, AppPaddings.rowViewPadding),
               rowView(clockModel, AppPaddings.rowViewPadding),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  istwobutton
-                      ? rowbutton(() {
-                          therapistActivtyController.updatechnage(0);
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    istwobutton
+                        ? rowbutton(() {
+                            therapistActivtyController.updatechnage(0);
 
-                          context.push(const NewActivityScreen());
-                        }, ActivityTextUtil.updateMyInformation,
-                          AppContainers.hugeContainerButton())
-                      : const SizedBox.shrink(),
-                  rowbutton(
-                      () {}, buttonText, AppContainers.containerButton(false)),
-                ],
+                            context.push(const NewActivityScreen());
+                          }, ActivityTextUtil.updateMyInformation,
+                            AppContainers.hugeContainerButton())
+                        : const SizedBox.shrink(),
+                    rowbutton(
+                        () {}, buttonText, AppContainers.containerButton(false)),
+                  ],
+                ),
               )
             ],
           ),

@@ -49,7 +49,6 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
                 () => therapistActivtyController.isUpdate.value
                     ? butterFlyButton(ActivityTextUtil.update, () {
                         therapistActivtyController.updateActivity();
-                        therapistActivtyController.activtiyAdd();
                       })
                     : butterFlyButton(ActivityTextUtil.create, () {
                         therapistActivtyController.createActivity();

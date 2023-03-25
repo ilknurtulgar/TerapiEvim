@@ -31,7 +31,7 @@ class SeminarMin extends StatelessWidget {
               : !isBorderPurple
                   ? AppBoxDecoration.purpleBorder
                   : AppBoxDecoration.sendDecoration,
-          child: Expanded(child: rowView(row, AppPaddings.rowViewPadding)),
+          child: rowView(row, AppPaddings.rowViewPadding),
         ),
       ),
     );

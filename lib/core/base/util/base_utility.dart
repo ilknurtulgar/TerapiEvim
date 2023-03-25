@@ -388,6 +388,8 @@ class AppPaddings {
   static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
       EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
 
+
+
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
       EdgeInsets.symmetric(
           horizontal: paddingNo != 2 ? 16 : 0,
@@ -418,6 +420,9 @@ SizedBox mediumSizedBox() => const SizedBox(height: 24);
 SizedBox largeSizedBox() => const SizedBox(height: 36);
 
 SizedBox smallSizedBox1() => const SizedBox(width: 8);
+
+SizedBox mediumSizedBox1() => const SizedBox(height: 16);
+=======
 
 SizedBox mediumSizedBox1() => const SizedBox(height: 16);
 
@@ -906,6 +911,10 @@ Widget responsivenestext(String text, TextStyle? style) {
 class Responsive {
   static width(double p, BuildContext context) {
     return MediaQuery.of(context).size.width * (p / 390);
+  }
+
+  static widthForBackIcon(BuildContext context) {
+    return MediaQuery.of(context).size.width - 50;
   }
 
   static height(double p, BuildContext context) {

@@ -35,7 +35,7 @@ class PagesForSCL extends StatelessWidget {
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-                CustomHeading(
+                const CustomHeading(
                   text: GroupTextUtil.testHeading,
                   isalignmentstart: false,
                 ),
@@ -70,12 +70,14 @@ class PagesForSCL extends StatelessWidget {
       children: [
         CustomButton(
             textColor: Colors.white,
-            container: AppContainers.purpleButtonContainer(null),
+            container:
+                AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
             onTap: _controller.previousPage,
             text: GroupTextUtil.previousPage),
         CustomButton(
             textColor: Colors.white,
-            container: AppContainers.purpleButtonContainer(null),
+            container:
+                AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
             onTap: _controller.nextPage,
             text: GroupTextUtil.nextPage),
       ],

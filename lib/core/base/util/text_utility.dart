@@ -1,6 +1,8 @@
 //buraya sadece uygulamada fix duracak olan textler konacaktir
 
 class GroupTextUtil {
+  static const String findAnotherTherapist = "Tekrar Psikolog Bul";
+  static const String notificationSecThe = "Yardimci Psikolog Bulunmasi";
   //lockscreen
   static const String lockScreenText =
       "Henüz Grubunuz Belli Olmadığı İçin Burası Kilitli";

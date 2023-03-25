@@ -44,7 +44,8 @@ Column checkedTest(BuildContext context) {
       lockedTextContainer(GroupTextUtil.lockScreencheckedTestString),
       CustomButton(
           textColor: Colors.white,
-          container: AppContainers.purpleButtonContainer(null),
+          container:
+              AppContainers.purpleButtonContainer(SizeUtil.largeValueWidth),
           onTap: () {
             context.push(const GroupCategories());
           },

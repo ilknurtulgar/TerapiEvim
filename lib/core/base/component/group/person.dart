@@ -23,8 +23,8 @@ class PersonMin extends StatelessWidget {
       onTap: onTap,
       child: Container(
           margin: AppPaddings.componentPadding,
-          height: SizeUtil.generalHeight,
-          width: SizeUtil.generalWidth,
+          height: Responsive.height(SizeUtil.generalHeight, context),
+          width: Responsive.width(SizeUtil.generalWidth, context),
           // ignore: unrelated_type_equality_checks
           decoration: isBorderPurple == Null
               ? AppBoxDecoration.sendDecoration

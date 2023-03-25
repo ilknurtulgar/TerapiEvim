@@ -9,8 +9,8 @@ class GroupClass extends StatelessWidget {
   GroupClass({
     super.key,
     this.heading,
-    this.width,
-    this.isBorderPurple,
+    this.width = SizeUtil.largeValueWidth,
+    this.isBorderPurple = false,
     required this.onTap,
     required this.row1,
     required this.row2,
@@ -26,8 +26,6 @@ class GroupClass extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    width ??= SizeUtil.largeValueWidth;
-    isBorderPurple ?? false;
     row3 ??
         RowModel(
             text: '', textStyle: const TextStyle(), isAlignmentBetween: false);
@@ -44,7 +42,7 @@ class GroupClass extends StatelessWidget {
             borderRadius: AppBorderRadius.generalBorderRadius,
           ),
           child: Container(
-            width: width,
+            width: Responsive.width(width!, context),
             decoration: isBorderPurple!
                 ? AppBoxDecoration.purpleBorder
                 : AppBoxDecoration.sendDecoration,
@@ -59,7 +57,9 @@ class GroupClass extends StatelessWidget {
                       : groupHeading(heading!),
                   rowView(row1, AppPaddings.rowViewPadding),
                   rowView(row2, AppPaddings.rowViewPadding),
-                  row3 !=null ? rowView(row3!, AppPaddings.rowViewPadding) : const SizedBox()
+                  row3 != null
+                      ? rowView(row3!, AppPaddings.rowViewPadding)
+                      : const SizedBox()
                 ],
               ),
             ),

@@ -21,7 +21,7 @@ class NotificationContainer extends StatelessWidget {
     return Container(
       margin: AppPaddings.componentPadding,
       decoration: AppBoxDecoration.shadow,
-      width: SizeUtil.generalWidth,
+      width: Responsive.width(SizeUtil.generalWidth, context),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -40,7 +40,7 @@ class NotificationContainer extends StatelessWidget {
           textColor: Colors.white,
           container: AppContainers.notificationButton,
           onTap: () {},
-          text: "Tekrar Psikolog Bul"),
+          text: GroupTextUtil.findAnotherTherapist),
     );
   }
 }
@@ -81,5 +81,5 @@ Widget customText(String reminderTypeText) {
 enum NotificationType { shortcallFail }
 
 String textSet(NotificationType type) {
-  return "Yardimci Psikolog Bulunmasi";
+  return GroupTextUtil.notificationSecThe;
 }

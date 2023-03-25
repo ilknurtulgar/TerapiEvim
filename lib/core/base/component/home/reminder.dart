@@ -25,7 +25,7 @@ class Reminder extends StatelessWidget {
       child: Container(
         margin: AppPaddings.componentPadding,
         decoration: AppBoxDecoration.shadow,
-        width: SizeUtil.generalWidth,
+        width: Responsive.width(SizeUtil.generalWidth, context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [

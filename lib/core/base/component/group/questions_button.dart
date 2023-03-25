@@ -23,7 +23,7 @@ class _ToggleQuestionsState extends State<ToggleQuestions> {
       decoration: AppBoxDecoration.purpleBorder,
       // height: SizeUtil.largeValueHeight,
       child: Column(children: [
-        CustomHeading(
+        const CustomHeading(
           padding: AppPaddings.rowViewPadding,
           isalignmentstart: false,
           isToggle: true,

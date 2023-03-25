@@ -41,8 +41,8 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
             padding: AppPaddings.customContainerInsidePadding(3),
             child: Column(
               children: [
-                isForParticipant ? rowView(UiBaseModel.secDeterminationModel(therapistName!, IconUtility.personIcon),AppPaddings.rowLeftSmallPadding) : const SizedBox(),
-                rowView(UiBaseModel.secDeterminationModel('Tarih: $date', IconUtility.calendarIcon),AppPaddings.rowLeftSmallPadding),
+                isForParticipant ? rowView(UiBaseModel.secDeterminationModel(therapistName!, IconUtility.personIcon),AppPaddings.componentOnlyPadding(4)) : const SizedBox(),
+                rowView(UiBaseModel.secDeterminationModel('Tarih: $date', IconUtility.calendarIcon),AppPaddings.componentOnlyPadding(4)),
                 timeButtonList(),
               ],
             ),
@@ -70,7 +70,7 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
   Padding participantChoosingTimeButton(int rowIndex) {
     return Padding(
       padding: rowIndex == timeList.length - 1
-            ? AppPaddings.componentOnlyPadding(true)
+            ? AppPaddings.componentOnlyPadding(1)
             : AppPaddings.componentPadding,
       child: PersonMin(
         onTap: () => groupController.choosingTime(timeList.length, rowIndex, listviewIndex),

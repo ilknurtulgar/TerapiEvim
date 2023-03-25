@@ -111,7 +111,7 @@ class ParticipantProfilePage extends StatelessWidget {
 
   Padding nameAndBirthDateColumn() {
     return Padding(
-      padding: AppPaddings.mediumPadding(1),
+      padding: AppPaddings.componentOnlyPadding(3),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [

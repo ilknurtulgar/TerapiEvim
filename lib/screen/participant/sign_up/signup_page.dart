@@ -56,37 +56,36 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.blueChalk,
-      body: SingleChildScrollView(
-        child: Center(
-          child: Wrap(
-            direction: Axis.vertical,
-            spacing: 24,
-            crossAxisAlignment: WrapCrossAlignment.center,
-            children: [
-              LoginPageUtility.title(false),
-              ...textfieldList,
-              Obx(
-                () => controller.isForParticipant.value == false
-                    ? acceptMakingShortCallContainer()
-                    : const SizedBox(),
-              ),
-              LoginPageUtility.button(
-                false,
-                false,
-                () {
-                  _signUpController.signUpWithEmail(context);
-                },
-              ),
-              LoginPageUtility.lineWithOrText(),
-              LoginPageUtility.button(true, false,
-                  () => context.push(const ParticipantLoginPage())),
-              mediumSizedBox()
-            ],
+        backgroundColor: AppColors.blueChalk,
+        body: SingleChildScrollView(
+          child: Center(
+            child: Wrap(
+              direction: Axis.vertical,
+              spacing: 32,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                LoginPageUtility.title(false),
+                ...textfieldList,
+                Obx(
+                  () => controller.isForParticipant.value == false
+                      ? acceptMakingShortCallContainer()
+                      : const SizedBox(),
+                ),
+                LoginPageUtility.button(
+                  false,
+                  false,
+                  () {
+                    _signUpController.signUpWithEmail(context);
+                  },
+                ),
+                LoginPageUtility.lineWithOrText(),
+                LoginPageUtility.button(true, false,
+                    () => context.push(const ParticipantLoginPage())),
+                const SizedBox()
+                ],
+            ),
           ),
-        ),
-      ),
-    );
+        ));
   }
 
   Container acceptMakingShortCallContainer() {

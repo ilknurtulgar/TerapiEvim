@@ -58,7 +58,7 @@ class TherapistProfilePage extends StatelessWidget {
                       firstRowTextList: DemoInformation.seminarNames,
                       secondRowTextList: DemoInformation.dates,
                     ),
-                    mediumSizedBox()
+                    mediumSizedBox1()
                   ],
                 ),
               ),
@@ -71,7 +71,7 @@ class TherapistProfilePage extends StatelessWidget {
 
   Padding therapistName() {
     return Padding(
-      padding: AppPaddings.mediumPadding(1),
+      padding: AppPaddings.componentOnlyPadding(3),
       child: Center(
         child: Text(
           DemoInformation.name,
@@ -90,22 +90,22 @@ class TherapistProfilePage extends StatelessWidget {
           TherapistProfileTextUtil.aboutMe,
           style: AppTextStyles.profileTextStyles(false, true),
         ),
-        smallSizedBox(),
         aboutMeContainer(),
-        smallSizedBox(),
       ],
     );
   }
 
   Widget aboutMeContainer() {
-    return CustomContainer(
-      containerModel: AppContainers.classicWhiteContainer,
-      isThereCardModel: false,
-      widget: Padding(
-        padding: AppPaddings.customContainerInsidePadding(3),
-        child: Text(
-          DemoInformation.aboutMeController.text,
-          style: AppTextStyles.normalTextStyle('medium', false),
+    return Padding(
+      padding: AppPaddings.customContainerInsidePadding(2),
+      child: Container(
+        decoration: AppBoxDecoration.purpleBorder,
+        child: Padding(
+          padding: AppPaddings.customContainerInsidePadding(3),
+          child: Text(
+            DemoInformation.aboutMeController.text,
+            style: AppTextStyles.normalTextStyle('medium', false),
+          ),
         ),
       ),
     );

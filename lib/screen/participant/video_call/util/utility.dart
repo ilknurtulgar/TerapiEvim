@@ -9,7 +9,7 @@ class VideoCallUtility {
   static VideoCallViewModel personBigView(
           PersonInCallModel person, bool isTherapistInGroupTherapy) =>
       VideoCallViewModel(
-          height: SizeUtil.highestValueHeight,
+          height: PixelScreen() .logicalHeight,           // SizeUtil.highestValueHeight,
           width: PixelScreen().logicalWidth,
           borderRadius: 0,
           person: person,

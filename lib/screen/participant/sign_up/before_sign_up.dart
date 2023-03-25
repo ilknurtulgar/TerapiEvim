@@ -18,16 +18,22 @@ class BeforeSignUp extends StatelessWidget {
         child: Column(
           children: [
             getBackIconbutton(),
-            const SizedBox(height: SizeUtil.mediumValueHeight,), // bu sized box'ı ev resmine top 100 padding vermemek için kullandım
-            homeImage(),
-            Text(LoginSignUpTextUtil.appName,style: AppTextStyles.heading(true),),
-            smallSizedBox(),
-            Text(LoginSignUpTextUtil.welcome,style: AppTextStyles.normalTextStyle('medium', false),),
-            smallSizedBox(),
-            questionText(),
-            smallSizedBox(),
-            button(true,context),
-            button(false,context),
+            Expanded(
+              child: Padding(
+              padding: AppPaddings.pagePadding,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    homeImage(),
+                    text(1),
+                    text(2),
+                    text(3),
+                    button(true,context),
+                    button(false,context),
+                  ],
+                ),
+              ),
+            )
           ],
         ),
       ),
@@ -45,11 +51,14 @@ class BeforeSignUp extends StatelessWidget {
             )));
   }
 
-  Text questionText() {
-    return Text(
-      LoginSignUpTextUtil.whoAreYou,
-      style: AppTextStyles.normalTextStyle('medium', false),
-      textAlign: TextAlign.center,
+  Widget text(int textNo) {
+    return Padding(
+      padding: textNo==1 ? EdgeInsets.zero : textNo==2 ? AppPaddings.customContainerInsidePadding(2) :  AppPaddings.componentOnlyPadding(2),
+      child: Text(
+        textNo==1 ? LoginSignUpTextUtil.appName : textNo==2 ?  LoginSignUpTextUtil.welcome : LoginSignUpTextUtil.whoAreYou,
+        style: textNo==1 ? AppTextStyles.heading(true) : AppTextStyles.normalTextStyle('medium', false),
+        textAlign: TextAlign.center,
+      ),
     );
   }
 
@@ -62,7 +71,7 @@ class BeforeSignUp extends StatelessWidget {
 
   Padding button(bool isForParticipant, BuildContext context) {
     return Padding(
-      padding: AppPaddings.smallVerticalPadding,
+      padding: AppPaddings.customContainerInsidePadding(2),
       child: CustomButton(
         container: AppContainers.beforeLoginButtonContainer,
         onTap: () {

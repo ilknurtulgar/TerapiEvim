@@ -30,6 +30,7 @@ class SessionScreen extends StatelessWidget {
                       onPressed: () {
                         context.push(const AvailableHours());
                       },
+                      alignment: Alignment.centerRight,
                       icon: IconUtility.clockIcon),
                 ),
                 sizedbox(),

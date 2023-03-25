@@ -12,7 +12,7 @@ class GroupTherapyCallPage extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
-            VideoCallPersonView(videoCallViewModel: VideoCallUtility.personBigView(DemoInformation.therapist, true)),
+            VideoCallPersonView(videoCallViewModel: VideoCallUtility.personBigView(DemoInformation.therapist, true),isInShortCallPage: false,),
             participantsRowWithButtonsContainer()
           ],
         ),
@@ -29,7 +29,6 @@ class GroupTherapyCallPage extends StatelessWidget {
           width: PixelScreen().logicalWidth,
           child: Column(
             children: [
-              mediumSizedBox(),
               participantRow(),
               const VideoCallButtonsRow(),
             ],
@@ -37,17 +36,21 @@ class GroupTherapyCallPage extends StatelessWidget {
     );
   }
 
-  Expanded participantRow() {
+  Widget participantRow() {
     return Expanded(
-      child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: DemoInformation.participants.length,
-          itemBuilder: ((context, index) {
-            return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10),
-                child: VideoCallPersonView(
-                    videoCallViewModel: VideoCallUtility.personSmallView(DemoInformation.participants[index], true)));
-          })),
+      child: Padding(
+        padding: AppPaddings.smallHorizontalPadding,
+        child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: DemoInformation.participants.length,
+            itemBuilder: ((context, index) {
+              return Padding(
+                  padding: AppPaddings.smallPersonViewPadding,
+                  child: VideoCallPersonView(
+                      isInShortCallPage: false,
+                      videoCallViewModel: VideoCallUtility.personSmallView(DemoInformation.participants[index], true)));
+            })),
+      ),
     );
   }
 }

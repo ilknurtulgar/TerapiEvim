@@ -79,6 +79,7 @@ class ProfilePageListView extends StatelessWidget {
           : isForMethod
               ? TherapistProfileTextUtil.view
               : TherapistProfileTextUtil.watch,
+      isInTherapist: isForParticipant ? false : true,
     );
   }
 }

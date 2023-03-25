@@ -19,7 +19,7 @@ class ShortCallPage extends StatelessWidget {
           mainAxisSize: MainAxisSize.max,
           children: [
             therapistCallView(context),
-            VideoCallPersonView(videoCallViewModel: VideoCallUtility.personShortCallView(DemoInformation.personNo1,context)), // participantCallView
+            VideoCallPersonView(videoCallViewModel: VideoCallUtility.personShortCallView(DemoInformation.personNo1,context),isInShortCallPage: true,), // participantCallView
             const VideoCallButtonsRow(),
           ],
         ),
@@ -29,9 +29,9 @@ class ShortCallPage extends StatelessWidget {
 
   Padding therapistCallView(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 20), //değişecek
+      padding: AppPaddings.customContainerInsidePadding(2),
       child: VideoCallPersonView(
-          videoCallViewModel: VideoCallUtility.personShortCallView(DemoInformation.therapist,context)),
+          videoCallViewModel: VideoCallUtility.personShortCallView(DemoInformation.therapist,context),isInShortCallPage: true,),
     );
   }
 }

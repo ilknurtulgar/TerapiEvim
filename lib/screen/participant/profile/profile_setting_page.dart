@@ -37,7 +37,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
     textfieldUtility.phoneTextfield(
         profileController.phoneNumberController, false),
   ];
-
+  // To Do : icon butonlarının positionlarının cihazlara göre ayarlanması
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,12 +47,12 @@ class ParticipantProfileSettingPage extends StatelessWidget {
           ProfilePageUtility.backgroundOfThePage(),
           ProfilePageUtility.profilePagePersonImage(
               DemoInformation.profileImagePath),
-          ProfilePageUtility.positionedIconButton(IconUtility.forward.icon!,
+          ProfilePageUtility.positionedIconButton(IconUtility.back.icon!,
               () {
             context.push(const ParticipantProfilePage());
           }, 35, 340),
           ProfilePageUtility.positionedIconButton(IconUtility.editPencil.icon!,
-              () {/* foto düzenleme */}, 260, 100),
+              () {/* foto düzenleme */}, 270, 100),
           bigColumn(),
           DemoInformation.isForParticipant == false
               ? Positioned(
@@ -97,7 +97,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
       child: Wrap(
         direction: Axis.vertical,
         crossAxisAlignment: WrapCrossAlignment.center,
-        spacing: 12,
+        spacing: 16,
         children: [
           SizedBox(
               width: SizeUtil.generalWidth,
@@ -148,18 +148,15 @@ class ParticipantProfileSettingPage extends StatelessWidget {
     );
   }
 
-  Padding saveButton() {
-    return Padding(
-      padding: AppPaddings.smallPadding(2),
-      child: Center(
-        child: CustomButton(
-            textColor: AppColors.white,
-            container: AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
-            onTap: () {
-              profileController.save();
-            },
-            text: ProfileSettingsTextUtil.save),
-      ),
+  Widget saveButton() {
+    return Center(
+      child: CustomButton(
+          textColor: AppColors.white,
+          container: AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
+          onTap: () {
+            profileController.save();
+          },
+          text: ProfileSettingsTextUtil.save),
     );
   }
 
@@ -174,7 +171,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Padding(
-                  padding: AppPaddings.smallVerticalPadding, child: textField),
+                  padding: AppPaddings.customContainerInsidePadding(2), child: textField),
             )
           ],
         ),

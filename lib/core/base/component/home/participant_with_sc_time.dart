@@ -10,4 +10,5 @@ TwoRowShortContainer participantWihtShortCallTime(
       secondIconData: Icons.alarm_outlined,
       purpose: 'date',
       isThereButton: false,
+      isInTherapist: false,
     ); // birinci satırda danışan ismi ikinci satırda 15 dakikalık seansın tarihinin ve zamanının yazdığı container

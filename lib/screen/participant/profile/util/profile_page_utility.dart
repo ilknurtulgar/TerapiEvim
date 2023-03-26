@@ -24,12 +24,28 @@ class ProfilePageUtility {
                 size: 25,
               )));
 
-  static Align profilePagePersonImage(String imagePath) => Align(
+  static Align profilePagePersonImage(String imagePath,bool isThereEditButton,{Function()? onPressed}) =>
+      Align(
         alignment: Alignment.topCenter,
         child: Padding(
           padding: const EdgeInsets.only(top: 100),
-          child:
-              CustomCircleAvatar(imagePath: imagePath, big: true, shadow: true),
+          child: SizedBox(
+            width: 202,
+            height: 210,
+            child: Stack(
+              children: [
+                CustomCircleAvatar(
+                    imagePath: imagePath, big: true, shadow: true),
+                isThereEditButton ? Align(
+                  alignment: Alignment.bottomRight,
+                  child: IconButton(
+                    onPressed: onPressed,
+                    icon: IconUtility.editPencil,
+                  ),
+                ) : const SizedBox()
+              ],
+            ),
+          ),
         ),
       );
 

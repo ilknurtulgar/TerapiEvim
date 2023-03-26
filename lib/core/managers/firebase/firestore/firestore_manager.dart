@@ -113,8 +113,7 @@ class FirestoreManager<E extends INetworkModel<E>?>
   }
 
   @override
-  Future<IResponseModel<R?, E?>>
-      readOrdered<T extends INetworkModel<T>, R>({
+  Future<IResponseModel<R?, E?>> readOrdered<T extends INetworkModel<T>, R>({
     required String collectionPath,
     String? collectionPath2,
     required String docId,
@@ -172,9 +171,10 @@ class FirestoreManager<E extends INetworkModel<E>?>
             .get();
       }
 
-      final data = response?.docs as List<Map<String, dynamic>>;
+      final List<QueryDocumentSnapshot<Object?>>? queryList = response?.docs;
 
-      return _getResponseResult<T, R>(data, parseModel);
+
+      return _getResponseResult<T, R>(queryList, parseModel);
     } catch (e) {
       await crashlyticsManager.sendACrash(
           error: e.toString(), stackTrace: StackTrace.current, reason: '');

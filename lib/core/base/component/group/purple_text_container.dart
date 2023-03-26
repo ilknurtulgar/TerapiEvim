@@ -11,7 +11,7 @@ class PurpleTextContainer extends StatelessWidget {
     return Container(
       margin: AppPaddings.miniHeadingPadding(false),
       padding: AppPaddings.appBarPadding,
-      width: SizeUtil.generalWidth,
+      width: Responsive.width(SizeUtil.generalWidth, context),
       decoration: AppBoxDecoration.purpleBorder,
       child: Text(
         text,

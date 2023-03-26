@@ -225,7 +225,7 @@ class CupertinoTabBar extends StatelessWidget implements PreferredSizeWidget {
   List<Widget> _buildSingleTabItem(
       BottomNavigationBarItem item, bool active, BuildContext context) {
     return <Widget>[
-      smallSizedBox(),
+      const SizedBox(height: 12),
       Center(
         child: SizedBox(
           height: SizeUtil.lowValueHeight,

@@ -64,7 +64,7 @@ class UiBaseModel {
               textStyle: AppTextStyles.profileTextStyles(true, true),
               isAlignmentBetween: false,
               trailingIcon: Padding(
-                padding: EdgeInsets.only(left: text.length < 15 ? 160 : 80),
+                padding: EdgeInsets.zero,// EdgeInsets.only(left: text.length < 15 ? 160 : 80),
                 child: IconButton(
                     onPressed: onTap,
                     alignment: Alignment.centerLeft,

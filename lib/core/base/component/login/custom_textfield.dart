@@ -32,7 +32,7 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     //sizedboxdan da
     return SizedBox(
-      width: width ?? SizeUtil.generalWidth,
+      width: width ?? Responsive.width(SizeUtil.generalWidth,context),
       height: height ?? SizeUtil.generalHeight,
       child: TextField(
         controller: textController,

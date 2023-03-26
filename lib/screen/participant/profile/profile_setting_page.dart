@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/main_controller.dart';
 import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/core/base/component/group/custom_list_wheel_scroll_view.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart';
 import '../../../controller/therapist_profile_controller.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../../../core/base/component/profile/acception_row.dart';
@@ -23,21 +25,19 @@ class ParticipantProfileSettingPage extends StatelessWidget {
   ProfileController profileController = Get.put(ProfileController());
   TherapistProfileController therapistProfileController = Get.find();
   TherapistGroupController therapistGroupController = Get.find();
-
+  MainController mainController = Get.find();
   late List<Widget> textfieldList = [
     textfieldUtility.nameSurnameTextfield(
         profileController.nameController, false),
     textfieldUtility.birthOfDateTextfield(
         profileController.birthdayController, false),
-    ProfilePageUtility.genderDropDown(true,profileController.genderController),
-    textfieldUtility.mailTextfield(
-        profileController.emailController, false),
+    ProfilePageUtility.genderDropDown(true, profileController.genderController),
+    textfieldUtility.mailTextfield(profileController.emailController, false),
     textfieldUtility.passwordTextfield(
         profileController.passwordController, false),
     textfieldUtility.phoneTextfield(
         profileController.phoneNumberController, false),
   ];
-  // To Do : icon butonlarının positionlarının cihazlara göre ayarlanması
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,45 +46,65 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         child: Stack(children: [
           ProfilePageUtility.backgroundOfThePage(),
           ProfilePageUtility.profilePagePersonImage(
-              DemoInformation.profileImagePath),
-          ProfilePageUtility.positionedIconButton(IconUtility.back.icon!,
-              () {
-            context.push(const ParticipantProfilePage());
-          }, 35, 340),
-          ProfilePageUtility.positionedIconButton(IconUtility.editPencil.icon!,
-              () {/* foto düzenleme */}, 270, 100),
-          bigColumn(),
-          DemoInformation.isForParticipant == false
+            DemoInformation.profileImagePath,
+            true,
+            onPressed: () {
+              /* foto edit */
+            },
+          ),
+          getBackIconButton(context),
+          bigColumn(context),
+          /*DemoInformation.isForParticipant == false
               ? Positioned(
-                  top: 828,
+                  top: 940,
                   right: 25,
                   child: CustomListWheelScrollView(
                       whatIsFor: 'number of groups')) // eski değer 715
-              : const SizedBox(),
+              : const SizedBox(),*/
         ]),
       ),
     );
   }
 
-  Padding bigColumn() {
+  Positioned getBackIconButton(BuildContext context) {
+    return Positioned(
+      top: Responsive.height(40, context),
+      left: Responsive.width(20, context),
+      child: Align(
+        alignment: Alignment.topLeft,
+        child: IconButton(
+            onPressed: () {
+              mainController.isTherapist.isFalse ? context.push(const ParticipantProfilePage()): context.push(const TherapistProfilePage()) ;
+            },
+            icon: IconUtility.back),
+      ),
+    );
+  }
+
+  Padding bigColumn(BuildContext context) {
     return Padding(
-      padding: AppPaddings.profilePageBigPadding(false),
+      padding: AppPaddings.profilePageBigPadding(
+          false), 
       child: Center(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             ListView.builder(
+              padding: EdgeInsets.zero,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: ProfileSettingsTextUtil.informationTitle.length,
               itemBuilder: (context, index) {
-                return textfieldRow(index, textfieldList[index]);
+                return textfieldColumn(index, textfieldList[index]);
               },
             ),
-            DemoInformation.isForParticipant ? saveButton() : const SizedBox(),
-            DemoInformation.isForParticipant == false
-                ? therapistSpecialColumn()
-                : const SizedBox(),
-            smallSizedBox()
+            Obx(() => mainController.isTherapist.isFalse ? saveButton() : const SizedBox()),
+            Obx(
+             () => mainController.isTherapist.isTrue
+                  ? therapistSpecialColumn(context)
+                  : const SizedBox(),
+            ),
+            smallSizedBox(),
             // danışanın kaydet butonu aşağıya kayıyor buna bakılacak
           ],
         ),
@@ -92,56 +112,59 @@ class ParticipantProfileSettingPage extends StatelessWidget {
     );
   }
 
-  Center therapistSpecialColumn() {
-    return Center(
-      child: Wrap(
-        direction: Axis.vertical,
-        crossAxisAlignment: WrapCrossAlignment.center,
-        spacing: 16,
-        children: [
-          SizedBox(
-              width: SizeUtil.generalWidth,
-              child: AcceptionRow(isForMakingShortCall: false)),
-          animatedNumberOfGroupsRow(),
-          Text(
-            TherapistProfileTextUtil.aboutMe,
-            style: AppTextStyles.normalTextStyle('medium', false),
+  Widget therapistSpecialColumn(BuildContext context) {
+    return Wrap(
+      direction: Axis.vertical,
+      crossAxisAlignment: WrapCrossAlignment.center,
+      alignment: WrapAlignment.center,
+      spacing: 10,
+      children: [
+        SizedBox(
+            width: Responsive.width(SizeUtil.generalWidth, context),
+            child: AcceptionRow(isForMakingShortCall: false)),
+        animatedNumberOfGroupsRow(context),
+        Text(
+          TherapistProfileTextUtil.aboutMe,
+          style: AppTextStyles.normalTextStyle('medium', false),
+        ),
+        SizedBox(
+          width: Responsive.width(SizeUtil.generalWidth, context),
+          child: TextField(
+            controller: DemoInformation.aboutMeController,
+            decoration:
+                const InputDecoration(fillColor: AppColors.white, filled: true),
+            minLines: 5,
+            maxLines: 50,
           ),
-          SizedBox(
-            width: SizeUtil.generalWidth,
-            child: TextField(
-              controller: DemoInformation.aboutMeController,
-              decoration: const InputDecoration(
-                  fillColor: AppColors.white, filled: true),
-              minLines: 5,
-              maxLines: 50,
-            ),
-          ), // custom textfield about me için update edilince bunun yerine custom geleceği için extract etmedim
-          saveButton(),
-          const SizedBox(
-            height: SizeUtil.highValueHeight,
-          ) //geçici
-        ],
-      ),
+        ), // custom textfield about me için update edilince bunun yerine custom geleceği için extract etmedim
+        saveButton(),
+      ],
     );
   }
 
-  Obx animatedNumberOfGroupsRow() {
+  Obx animatedNumberOfGroupsRow(BuildContext context) {
     return Obx(
       () => AnimatedContainer(
         duration: const Duration(milliseconds: 400),
         color: AppColors.transparent,
-        height: therapistProfileController.isNumberVisible.value ? 32 : 0,
+        height: therapistProfileController.isNumberVisible.value ? 37 : 0,
         child: SizedBox(
-          width: SizeUtil.generalWidth,
-          child:
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-            Text(ProfileSettingsTextUtil.numberOfGroups),
-            Container(
-              height: SizeUtil.lowValueHeight,
-              width: SizeUtil.lowValueWidth,
-              decoration: AppBoxDecoration.purpleBorder,
-            )
+          width: Responsive.width(SizeUtil.generalWidth, context),
+          child: Stack(clipBehavior: Clip.none, children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(child: Text(ProfileSettingsTextUtil.numberOfGroups)),
+                Container(
+                  height: SizeUtil.lowValueHeight,
+                  width: SizeUtil.lowValueWidth,
+                  decoration: AppBoxDecoration.purpleBorder,
+                )
+              ],
+            ),
+            Align(
+                alignment: Alignment.centerRight,
+                child: CustomListWheelScrollView(whatIsFor: 'number of groups'))
           ]),
         ),
       ),
@@ -149,10 +172,12 @@ class ParticipantProfileSettingPage extends StatelessWidget {
   }
 
   Widget saveButton() {
-    return Center(
+    return Padding(
+      padding: AppPaddings.pagePadding,
       child: CustomButton(
           textColor: AppColors.white,
-          container: AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
+          container:
+              AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
           onTap: () {
             profileController.save();
           },
@@ -160,21 +185,17 @@ class ParticipantProfileSettingPage extends StatelessWidget {
     );
   }
 
-  Center textfieldRow(int rowIndex, Widget textField) {
+  Center textfieldColumn(int rowIndex, Widget textField) {
     return Center(
-      child: SizedBox(
-        width: SizeUtil.generalWidth,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(ProfileSettingsTextUtil.informationTitle[rowIndex]),
-            Align(
-              alignment: Alignment.bottomRight,
-              child: Padding(
-                  padding: AppPaddings.customContainerInsidePadding(2), child: textField),
-            )
-          ],
-        ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text(ProfileSettingsTextUtil.informationTitle[rowIndex]),
+          Padding(
+              padding: AppPaddings.customContainerInsidePadding(2),
+              child: textField)
+        ],
       ),
     );
   }

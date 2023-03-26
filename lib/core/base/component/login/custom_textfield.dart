@@ -32,30 +32,33 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     //sizedboxdan da
     return SizedBox(
-      width: width ?? Responsive.width(SizeUtil.generalWidth,context),
+      width: width ?? Responsive.width(SizeUtil.generalWidth, context),
       height: height ?? SizeUtil.generalHeight,
-      child: TextField(
-        controller: textController,
-        obscureText: isPassword
-            ? activityController.isObsecure.value
-            : activityController.yasemin.value,
-        textAlign: TextAlign.start,
-        // maxLines: isBig ? 100 : ,
-        decoration: InputDecoration(
-          contentPadding:
-              isBig ? const EdgeInsets.all(20) : AppPaddings.contentPadding,
-          filled: true,
-          fillColor: AppColors.white,
-          labelText: rowModel?.text ?? "",
-          labelStyle: rowModel?.textStyle,
-          suffix: isBig ? rowModel?.trailingIcon : null,
-          prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
-          hintText: rowModel?.text2,
-          hintStyle: rowModel?.textStyle2 ??
-              AppTextStyles.normalTextStyle("small", false),
-          prefixText: isPhoneNumber ? '+90 ' : null,
-          enabledBorder: bordercolor(isBig),
-          focusedBorder: bordercolor(isBig),
+      child: Padding(
+        padding: AppPaddings.componentPadding,
+        child: TextField(
+          controller: textController,
+          obscureText: isPassword
+              ? activityController.isObsecure.value
+              : activityController.yasemin.value,
+          textAlign: TextAlign.start,
+          // maxLines: isBig ? 100 : ,
+          decoration: InputDecoration(
+            contentPadding:
+                isBig ? const EdgeInsets.all(20) : AppPaddings.contentPadding,
+            filled: true,
+            fillColor: AppColors.white,
+            labelText: rowModel?.text ?? "",
+            labelStyle: rowModel?.textStyle,
+            suffix: isBig ? rowModel?.trailingIcon : null,
+            prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
+            hintText: rowModel?.text2,
+            hintStyle: rowModel?.textStyle2 ??
+                AppTextStyles.normalTextStyle("small", false),
+            prefixText: isPhoneNumber ? '+90 ' : null,
+            enabledBorder: bordercolor(isBig),
+            focusedBorder: bordercolor(isBig),
+          ),
         ),
       ),
     );

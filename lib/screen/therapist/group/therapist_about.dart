@@ -8,6 +8,7 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../core/base/util/base_model.dart';
+import '../../participant/profile/util/profile_page_utility.dart';
 
 class TherapistProfile extends StatelessWidget {
   const TherapistProfile({super.key, required this.isSecTherapist});
@@ -67,7 +68,12 @@ class TherapistProfile extends StatelessWidget {
                     imagePath: DemoInformation.imagePath,
                     big: true,
                     shadow: true),
-              )
+              ),
+              ProfilePageUtility.positionedIconButton(
+                  IconUtility.back.icon!,
+                  () => context.pop(),
+                  SizeUtil.lowValueWidth,
+                  Responsive.widthForBackIcon(context))
             ],
           ),
         ),
@@ -128,11 +134,5 @@ Container whiteBackground(BuildContext context) {
     width: MediaQuery.of(context).size.width,
     height: SizeUtil.highValueHeight,
     color: AppColors.white,
-    child: IconButton(
-      icon: IconUtility.back,
-      onPressed: () {
-        context.pop();
-      },
-    ),
   );
 }

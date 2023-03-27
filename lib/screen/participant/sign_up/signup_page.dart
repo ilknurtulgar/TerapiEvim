@@ -76,11 +76,11 @@ class _SignUpPageState extends State<SignUpPage> {
                   false,
                   () {
                     _signUpController.signUpWithEmail(context);
-                  },
+                  },context
                 ),
-                LoginPageUtility.lineWithOrText(),
+                LoginPageUtility.lineWithOrText(context),
                 LoginPageUtility.button(true, false,
-                    () => context.push(const ParticipantLoginPage())),
+                    () => context.push(const ParticipantLoginPage()),context),
                 const SizedBox()
                 ],
             ),
@@ -90,13 +90,15 @@ class _SignUpPageState extends State<SignUpPage> {
 
   Container acceptMakingShortCallContainer() {
     return Container(
-      height: SizeUtil.generalHeight,
-      width: SizeUtil.generalWidth,
       decoration: AppBoxDecoration.noBorder,
-      child: AcceptionRow(isForMakingShortCall: true),
+      child: SizedBox(
+        width: Responsive.width(SizeUtil.generalWidth, context),
+        child: Padding(
+          padding: MediaQuery.of(context).size.width < 574 ? AppPaddings.componentPadding : EdgeInsets.zero,
+          child: AcceptionRow(isForMakingShortCall: true),
+        )),
     );
   }
-
 /*  textfieldUtility.nameSurnameTextfield(_signUpController.nameController, true),
     textfieldUtility.birthOfDateTextfield( _signUpController.birthDateController, true),
     ///TODO: use gender controller

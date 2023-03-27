@@ -144,11 +144,10 @@ class IconUtility {
   static const IconData navGroup = Icons.groups;
   static const IconData navProfile = Icons.account_circle;
 
-//ikisi de aynı birini seçiniz lütfeen
-//gizemle yasemin
-  static const Icon lockIcon = Icon(Icons.lock);
-  static const Icon lock = Icon(Icons.lock_outline,
-      color: AppColors.white, size: SizeUtil.lockIconSize);
+  static Icon lock(bool isLockScreen) => isLockScreen
+      ? const Icon(Icons.lock_outline,
+          color: AppColors.white, size: SizeUtil.lockIconSize)
+      : const Icon(Icons.lock, color: AppColors.black);
 
   static const Icon lockSmall =
       Icon(Icons.lock_outline, color: AppColors.black);
@@ -230,7 +229,7 @@ class AppTextStyles {
       fontSize: 49,
       fontFamily: 'Roboto',
       fontWeight: FontWeight.w400,
-      color: AppColors.black);
+      color: AppColors.deepCove);
 
   static TextStyle groupTextStyle(bool isName) => TextStyle(
       fontFamily: 'Roboto',
@@ -298,9 +297,9 @@ class AppContainers {
   }
 
   static ContainerModel loginSignUpButtonContainer(
-          bool isInLoginPage, bool isLoginButton) =>
+          bool isInLoginPage, bool isLoginButton,BuildContext context) =>
       ContainerModel(
-          width: SizeUtil.generalWidth,
+          width: Responsive.width(SizeUtil.generalWidth, context),
           borderRadius: 8,
           backgroundColor: (isInLoginPage && isLoginButton) ||
                   (isInLoginPage == false && isLoginButton == false)
@@ -378,29 +377,12 @@ class AppPaddings {
   static const EdgeInsets rowViewProfilePadding =
       EdgeInsets.only(top: 15, left: 24, right: 24);
 
-  // gizem paddings(daha devamı gelecek)
-  static EdgeInsets smallPadding(int paddingNo) => EdgeInsets.only(
-      bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
-
-  // 1 numara right
-  // 2 numara bottom
-  // 3 numara bottom ve right
-  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
-      EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
-
-  static EdgeInsets customContainerInsidePadding(int paddingNo) =>
-      EdgeInsets.symmetric(
-          horizontal: paddingNo != 2 ? 16 : 0,
-          vertical: paddingNo != 1 ? 16 : 0);
-
-  // 1 numara horizontal
-  // 2 numara vertical
-  // 3 numara horizontal ve vertical
-  static EdgeInsets componentOnlyPadding(int paddingNo) => EdgeInsets.only(
-      top: paddingNo == 1 ? 8 : 0,
-      bottom: paddingNo == 2 ? 0 : 8,
-      right: paddingNo == 3 ? 24 : 0,
-      left: paddingNo == 4 ? 10 : 0);
+ static EdgeInsets horizontalListViewPadding(int paddingNo) => EdgeInsets.only(bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
+  // 1 numara right , 2 numara bottom , 3 numara bottom ve right
+  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
+  static EdgeInsets customContainerInsidePadding(int paddingNo) => EdgeInsets.symmetric(horizontal: paddingNo != 2 ? 16 : 0,vertical: paddingNo != 1 ? 16 : 0);
+  // 1 numara horizontal, 2 numara vertical, 3 numara horizontal ve vertical
+  static EdgeInsets componentOnlyPadding(int paddingNo) =>EdgeInsets.only(top: paddingNo==1 ? 8 : 0, bottom: paddingNo==2 ? 0 : 8,right: paddingNo==3 ? 24 : 0,left: paddingNo==4 ? 10 : 0);
 
   // burada ayrı ayrı olan 4 farklı only paddingini tek paddingte topladım
   static EdgeInsets smallPersonViewPadding =
@@ -409,19 +391,10 @@ class AppPaddings {
       const EdgeInsets.symmetric(horizontal: 8);
 }
 
-// birinci grup önceden kullandıklarım ama artık ikinci grubu kullancağım
-// ikinci gruba geçiş süreci tamamlanınca birinci grubu sileceğim
-SizedBox smallSizedBox() => const SizedBox(height: 12);
+SizedBox smallSizedBox() => const SizedBox(width: 8);
+SizedBox mediumSizedBox() => const SizedBox(height:16);
+SizedBox largeSizedBox() => const SizedBox(height: 32);
 
-SizedBox mediumSizedBox() => const SizedBox(height: 24);
-
-SizedBox largeSizedBox() => const SizedBox(height: 36);
-
-SizedBox smallSizedBox1() => const SizedBox(width: 8);
-
-SizedBox mediumSizedBox1() => const SizedBox(height: 16);
-
-SizedBox largeSizedBox1() => const SizedBox(height: 32);
 
 class AppBorderRadius {
   static const BorderRadius generalBorderRadius =
@@ -784,7 +757,6 @@ class DemoInformation {
   static TextEditingController aboutMeController = TextEditingController(
       text:
           '''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''');
-  static bool isForParticipant = false;
 
   // therapist profile page
   static List<String> dates = [
@@ -906,6 +878,10 @@ Widget responsivenestext(String text, TextStyle? style) {
 class Responsive {
   static width(double p, BuildContext context) {
     return MediaQuery.of(context).size.width * (p / 390);
+  }
+
+  static widthForBackIcon(BuildContext context) {
+    return MediaQuery.of(context).size.width - 50;
   }
 
   static height(double p, BuildContext context) {

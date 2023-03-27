@@ -26,9 +26,11 @@ class AcceptionRow extends StatelessWidget {
                     : controller.isBeingAdvisorAccepted.value
                         ? IconUtility.checkCircleIcon.icon
                         : IconUtility.circleIcon.icon))),
-            Text(isForMakingShortCall
-                ? LoginSignUpTextUtil.therapistAcceptedMakingShortCall
-                : ProfileSettingsTextUtil.therapistAcceptedRandomTherapistList)
+            Expanded(
+              child: Text(isForMakingShortCall
+                  ? LoginSignUpTextUtil.therapistAcceptedMakingShortCall
+                  : ProfileSettingsTextUtil.therapistAcceptedRandomTherapistList),
+            )
           ]);
   }
 }

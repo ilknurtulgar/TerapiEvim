@@ -1,6 +1,8 @@
 //buraya sadece uygulamada fix duracak olan textler konacaktir
 
 class GroupTextUtil {
+  static const String findAnotherTherapist = "Tekrar Psikolog Bul";
+  static const String notificationSecThe = "Yardimci Psikolog Bulunmasi";
   //lockscreen
   static const String lockScreenText =
       "Henüz Grubunuz Belli Olmadığı İçin Burası Kilitli";
@@ -117,9 +119,7 @@ class LoginSignUpTextUtil {
   static String forgotYourPassword = 'Şifreni mi unuttun?';
   static String orText = 'Ya da';
   static String therapistAcceptedMakingShortCall =
-      '''15 dakikalık terapiyi sırayla yapmayı kabul
-ediyorum.KVKK kabul ediyorum.''';
-
+      '''15 dakikalık terapiyi sırayla yapmayı kabul ediyorum.KVKK kabul ediyorum.''';
   // before login page
   static String whoAreYou = '''Kim olarak uygulamaya devam
 etmek istersiniz?''';
@@ -151,10 +151,8 @@ class ProfileSettingsTextUtil {
   ];
   static String save = 'Kaydet';
   static String therapistAcceptedRandomTherapistList =
-      '''Random yardımcı psikolog listesinde
-bulunmak istiyorum.''';
-  static String numberOfGroups = '''Yardımcı psikologluk yapabileceğim
-grup sayısı''';
+      '''Random yardımcı psikolog listesinde bulunmak istiyorum.''';
+  static String numberOfGroups = '''Yardımcı psikologluk yapabileceğim grup sayısı''';
 }
 
 class TherapistProfileTextUtil {

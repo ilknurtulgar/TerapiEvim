@@ -1,6 +1,7 @@
 //buraya sadece uygulamada fix duracak olan textler konacaktir
 
 class GroupTextUtil {
+  static const String messageToTherapist = "Grup Terapistine Mesaj Gonder";
   static const String findAnotherTherapist = "Tekrar Psikolog Bul";
   static const String notificationSecThe = "Yardimci Psikolog Bulunmasi";
   //lockscreen
@@ -152,7 +153,8 @@ class ProfileSettingsTextUtil {
   static String save = 'Kaydet';
   static String therapistAcceptedRandomTherapistList =
       '''Random yardımcı psikolog listesinde bulunmak istiyorum.''';
-  static String numberOfGroups = '''Yardımcı psikologluk yapabileceğim grup sayısı''';
+  static String numberOfGroups =
+      '''Yardımcı psikologluk yapabileceğim grup sayısı''';
 }
 
 class TherapistProfileTextUtil {
@@ -219,4 +221,100 @@ class HomeTextUtil {
   static const String copingMethods = "BAŞ ETME METOTLARI";
   static const String readMethod = "Metotu Oku";
   static const String detail = "Detaylar";
+}
+
+class Scl90 {
+  static const String finish = "Bitir";
+  static const List<String> questions = [
+    "Baş ağrısı ",
+    "Sinirlilik ya da içinin titremesi",
+    "Zihinden atamadığınız yineleyici (tekrarlayıcı) hoşa gitmeyen düşünceler",
+    "Baygınlık ve baş dönmeler",
+    "Cinsel arzuya ilginin kaybı",
+    "Başkaları tarafından eleştirilme duygusu",
+    "Herhangi bir kimsenin düşüncelerinizi kontrol edebileceği fikri",
+    "Sorunlarınızdan pek çoğu için başkalarının suçlanması gerektiği fikri",
+    "Olayları anımsamada (hatırlamada) güçlülük",
+    "Dikkatsizlik veya sakarlıkla ilgili endişeler",
+    "Kolayca gücenme, rahatsız olma hissi",
+    "Göğüs veya kalp bölgesinde ağrılar",
+    "Caddelerde veya açık alanlarda korku hissi",
+    "Enerjinizde azalma veya yavaşlama hali",
+    "Yaşamınızın sona ermesi düşünceleri",
+    "Başka kişilerin duymadıkları sesleri duyma",
+    "Titreme",
+    "Çoğu kişiye güvenilmemesi gerektiği düşüncesi",
+    "İştah azalması",
+    "Kolayca ağlama",
+    "Karşı cinsten kişilerle ilgili utangaçlık ve rahatsızlık hissi",
+    "Tuzağa  düşürülmüş veya tuzağa yakalanmış hissi",
+    "Bir neden olmaksızın aniden korkuya kapılma",
+    "Kontrol edilmeyen öfke patlamaları",
+    "Evden dışarı yalnız çıkma korkusu",
+    "Olanlar için kendini suçlama",
+    "Belin alt kısmında ağrılar",
+    "İşlerin yapılmasında erteleme düşüncesi",
+    "Yalnız hissi",
+    "Karamsarlık hissi",
+    "Her şey için çok fazla endişe duyma",
+    "Her şeye karşı ilgisizlik hali",
+    "Korku hissi",
+    "Duygularınızın kolayca incitilebilmesi hali",
+    "Diğer insanların sizin düşündüklerinizi bilmesi hissi",
+    "Başkalarının sizi anlamadığı veya hissedemeyeceği duygusu",
+    "Başkalarının sizi sevmediği ya da dostça olmayan davranışlar gösterdiği hissi",
+    "İşlerin doğru yapıldığından emin olabilmek için çok yavaş yapmak",
+    "Kalbin çok  hızlı çarpması",
+    "Bulantı veya midede rahatsızlık hissi",
+    "Kendini başkalarından aşağı görme",
+    "Adele (kas) ağrıları",
+    "Başkalarının sizi gözlediği veya hakkınızda konuştuğu hissi",
+    "Uykuya dalmada güçlük",
+    "Yaptığınız işleri bir ya da birkaç kez kontrol etme",
+    "Karar vermede güçlük",
+    "Otobüz, tren, metro gibi araçlarla yolculuk etme korkusu",
+    "Nefes almada güçlük",
+    "Soğuk ve sıcak basması",
+    "Sizi korkutan belirli uğraş, yer veya nesnelerden kaçınma durumu",
+    "Hiç bir şey düşünmeme hali",
+    "Bedeninizin bazı kısımlarında uyuşma, karıncalanma olması",
+    "Boğazınıza bir yumru tıkanmış hissi",
+    "Gelecek konusunda ümitsizlik",
+    "Düşüncelerinizi bir konuya yoğunlaştırmada güçlülük",
+    "Bedeninizin çeşitli kısımlarında zayıflılık hissi",
+    "Gerginlik veya coşku hissi",
+    "Kol ve bacaklarda ağırlık hissi",
+    "Ölüm ya da ölme düşünceleri",
+    "Aşırı yemek yeme",
+    "İnsanlar size batığı veya hakkınızda konuştuğu zaman rahatsızlık duyma",
+    "Size ait olmayan düşüncelere sahip olma",
+    "Bir başkasına vurmak, zarar vermek, yaralamak dürtülerinin olması",
+    "Sabahın erken saatlerinde uyanma",
+    "Yıkanma, sayma, dokunma gibi bazı hareketleri yenileme hali",
+    "Uykuda huzursuzluk, rahat uyuyamama",
+    "Bazı şeyleri kırıp dökme isteği",
+    "Başkalarının yanında kendini çok sıkılgan hissetme",
+    "Başkalarının yanında kendini çok sıkılgan hissetme",
+    "Çarşı, sinema gibi kalabalık yerlerde rahatsızlık hissi",
+    "Her şeyin bir yük gibi görünmesi",
+    "Dehşet ve panik nöbetleri",
+    "Toplum içinde yer içerken huzursuzluk hissi",
+    "Sık sık tartışmaya girme",
+    "Yalnız bıraktığınızda sinirlilik hali",
+    "Başkalarının sizi başarılarınız için yeterince takdir etmediği duygusu",
+    "Başkalarıyla birlikte olunan durumlarda bile yalnızlık hissetme",
+    "Yerinizde durmayacak ölçüde rahatsızlık duyma",
+    "Değersizlik duygusu",
+    "Size kötü bir şey olacakmış duygusu",
+    "Bağırma ya da eşyaları fırlatma",
+    "Topluluk içinde bayılacağınız korkusu",
+    "Eğer izin verirseniz insanların sizi sömüreceği duygusu",
+    "Cinsellik konusunda sizi çok rahatsız eden düşüncelerinizin olması",
+    "Günahlarınızdan dolayı cezalandırmanız gerektiği düşüncesi",
+    "Korkutucu türden düşünce ve hayaller",
+    "Bedeninizde ciddi bir rahatsızlık olduğu düşüncesi",
+    "Başka bir kişiye karşı asla yakınlık duymama",
+    "Suçluluk duygusu",
+    "Aklınızda bir bozukluğun olduğu düşüncesi ",
+  ];
 }

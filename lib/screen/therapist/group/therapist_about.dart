@@ -51,9 +51,6 @@ class TherapistProfile extends StatelessWidget {
                         activity(UiBaseModel.seminerleri(), () {
                           //print("seminermismis");
                         }),
-                        activity(UiBaseModel.mesajGonder(), () {
-                          // print("selam");
-                        }),
                         isSecTherapist
                             ? otherGroups(groups)
                             : const SizedBox.shrink()

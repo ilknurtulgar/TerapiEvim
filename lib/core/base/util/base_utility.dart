@@ -19,7 +19,6 @@ import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
 import '../../init/managers/responsiveness_manager.dart';
 import '../../managers/converter/date_time_manager.dart';
-import '../component/group/questions_button.dart';
 import '../component/group/row_view.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
 import '../models/card_model.dart';
@@ -297,7 +296,7 @@ class AppContainers {
   }
 
   static ContainerModel loginSignUpButtonContainer(
-          bool isInLoginPage, bool isLoginButton,BuildContext context) =>
+          bool isInLoginPage, bool isLoginButton, BuildContext context) =>
       ContainerModel(
           width: Responsive.width(SizeUtil.generalWidth, context),
           borderRadius: 8,
@@ -377,12 +376,21 @@ class AppPaddings {
   static const EdgeInsets rowViewProfilePadding =
       EdgeInsets.only(top: 15, left: 24, right: 24);
 
- static EdgeInsets horizontalListViewPadding(int paddingNo) => EdgeInsets.only(bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
+  static EdgeInsets horizontalListViewPadding(int paddingNo) => EdgeInsets.only(
+      bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
   // 1 numara right , 2 numara bottom , 3 numara bottom ve right
-  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
-  static EdgeInsets customContainerInsidePadding(int paddingNo) => EdgeInsets.symmetric(horizontal: paddingNo != 2 ? 16 : 0,vertical: paddingNo != 1 ? 16 : 0);
+  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
+      EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
+  static EdgeInsets customContainerInsidePadding(int paddingNo) =>
+      EdgeInsets.symmetric(
+          horizontal: paddingNo != 2 ? 16 : 0,
+          vertical: paddingNo != 1 ? 16 : 0);
   // 1 numara horizontal, 2 numara vertical, 3 numara horizontal ve vertical
-  static EdgeInsets componentOnlyPadding(int paddingNo) =>EdgeInsets.only(top: paddingNo==1 ? 8 : 0, bottom: paddingNo==2 ? 0 : 8,right: paddingNo==3 ? 24 : 0,left: paddingNo==4 ? 10 : 0);
+  static EdgeInsets componentOnlyPadding(int paddingNo) => EdgeInsets.only(
+      top: paddingNo == 1 ? 8 : 0,
+      bottom: paddingNo == 2 ? 0 : 8,
+      right: paddingNo == 3 ? 24 : 0,
+      left: paddingNo == 4 ? 10 : 0);
 
   // burada ayrı ayrı olan 4 farklı only paddingini tek paddingte topladım
   static EdgeInsets smallPersonViewPadding =
@@ -392,9 +400,8 @@ class AppPaddings {
 }
 
 SizedBox smallSizedBox() => const SizedBox(width: 8);
-SizedBox mediumSizedBox() => const SizedBox(height:16);
+SizedBox mediumSizedBox() => const SizedBox(height: 16);
 SizedBox largeSizedBox() => const SizedBox(height: 32);
-
 
 class AppBorderRadius {
   static const BorderRadius generalBorderRadius =
@@ -495,10 +502,6 @@ class DemoInformation {
     "anksiyete",
     "panik atak",
   ];
-
-  //toggle
-  static const String question =
-      "1.Yasemini insanlar 100 üzerinden  ne kadar severlerse yasemin ne kadar mutlu olur( slm Yasemin aşko <3 )?(Cevap yok hehe)";
 
 //activity
   static const String aboutActivtyName = "Grup Terapilerinin Etkisi";
@@ -652,18 +655,7 @@ class DemoInformation {
   static List<String> timelist = ["12.00", "15.00", "20.00"];
   static String userName = "Yasemin";
   static int tmpCount = 5;
-  static List<Widget> questions = [
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-  ];
+
   static String imagePath = "assets/images/doctorfotosu.jpeg";
   static RowModel row = RowModel(
     isAlignmentBetween: false,

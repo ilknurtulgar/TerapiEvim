@@ -5,14 +5,11 @@ import 'package:terapievim/core/base/component/group/custom_heading.dart';
 
 import 'package:terapievim/core/base/util/base_utility.dart';
 
-class ToggleQuestions extends StatefulWidget {
-  const ToggleQuestions({super.key});
+// ignore: must_be_immutable
+class ToggleQuestions extends StatelessWidget {
+  ToggleQuestions({super.key, required this.question});
+  final String question;
 
-  @override
-  State<ToggleQuestions> createState() => _ToggleQuestionsState();
-}
-
-class _ToggleQuestionsState extends State<ToggleQuestions> {
   GroupController groupController = Get.find();
 
   @override
@@ -21,13 +18,12 @@ class _ToggleQuestionsState extends State<ToggleQuestions> {
       margin: AppPaddings.componentPadding,
       padding: AppPaddings.componentPadding,
       decoration: AppBoxDecoration.purpleBorder,
-      // height: SizeUtil.largeValueHeight,
       child: Column(children: [
-        const CustomHeading(
+        CustomHeading(
           padding: AppPaddings.rowViewPadding,
           isalignmentstart: false,
           isToggle: true,
-          text: DemoInformation.question,
+          text: question,
         ),
         selecttoggle(),
       ]),

@@ -29,7 +29,7 @@ class TwoRowShortContainer extends StatelessWidget {
     return Padding(
         //left right 24 verince oluyor
         padding: isThereButton
-            ? AppPaddings.smallPadding(3)
+            ? AppPaddings.horizontalListViewPadding(3)
             : AppPaddings.componentPadding,
         child: Material(
           elevation: 5,

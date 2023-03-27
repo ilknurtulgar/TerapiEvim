@@ -32,11 +32,11 @@ class CustomTextField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //sizedboxdan da
-    return Padding(
-      padding: AppPaddings.componentPadding,
-      child: SizedBox(
-        width: width ?? SizeUtil.generalWidth,
-        height: height ?? SizeUtil.generalHeight,
+    return SizedBox(
+      width: width ?? Responsive.width(SizeUtil.generalWidth, context),
+      height: height ?? SizeUtil.generalHeight,
+      child: Padding(
+        padding: AppPaddings.componentPadding,
         child: TextField(
           controller: textController,
           obscureText: isPassword

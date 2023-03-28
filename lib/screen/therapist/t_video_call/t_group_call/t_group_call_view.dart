@@ -41,18 +41,18 @@ class _TGroupCallViewState extends State<TGroupCallView> {
     });
   }
 
-  void setMeetingEventListener(Room _room, BuildContext context) {
-    setParticipantStreamEvents(_room.localParticipant);
-    _room.on(
+  void setMeetingEventListener(Room room, BuildContext context) {
+    setParticipantStreamEvents(room.localParticipant);
+    room.on(
       Events.participantJoined,
       (Participant participant) => setParticipantStreamEvents(participant),
     );
-    _room.on(Events.participantLeft, (String participantId) {
+    room.on(Events.participantLeft, (String participantId) {
       if (participantVideoStreams.containsKey(participantId)) {
         setState(() => participantVideoStreams.remove(participantId));
       }
     });
-    _room.on(Events.roomLeft, () {
+    room.on(Events.roomLeft, () {
       participantVideoStreams.clear();
       context.pushAndRemoveUntil(const TerapiEvimLogged());
     });
@@ -65,7 +65,7 @@ class _TGroupCallViewState extends State<TGroupCallView> {
     room = VideoSDK.createRoom(
       roomId: widget.meetingId,
       token: widget.token,
-      displayName: "Yash Chudasama",
+      displayName: "Hello World",
       micEnabled: micEnabled,
       camEnabled: camEnabled,
       maxResolution: 'hd',
@@ -98,16 +98,21 @@ class _TGroupCallViewState extends State<TGroupCallView> {
                     ),
                   )
                   .toList(),
-              MeetingControls(
-                onToggleMicButtonPressed: () {
-                  micEnabled ? room.muteMic() : room.unmuteMic();
-                  micEnabled = !micEnabled;
-                },
-                onToggleCameraButtonPressed: () {
-                  camEnabled ? room.disableCam() : room.enableCam();
-                  camEnabled = !camEnabled;
-                },
-                onLeaveButtonPressed: () => room.leave(),
+
+              Stack(
+                children: [
+                  MeetingControls(
+                    onToggleMicButtonPressed: () {
+                      micEnabled ? room.muteMic() : room.unmuteMic();
+                      micEnabled = !micEnabled;
+                    },
+                    onToggleCameraButtonPressed: () {
+                      camEnabled ? room.disableCam() : room.enableCam();
+                      camEnabled = !camEnabled;
+                    },
+                    onLeaveButtonPressed: () => room.leave(),
+                  ),
+                ],
               ),
             ],
           ),

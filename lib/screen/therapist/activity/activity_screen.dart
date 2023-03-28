@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/util/base_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/activity/activities.dart';
-import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
-import 'package:terapievim/service/model/therapist/activity/t_activity_model.dart';
 
 import '../../../controller/tactivity_controller.dart';
 import '../../../core/base/component/group/group_box.dart';
+import '../../../core/base/component/group/row_view.dart';
+import '../../../core/base/util/base_model.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/util/text_utility.dart';
+import '../../../core/extension/context_extension.dart';
+import '../../../service/model/common/activity/t_activity_model.dart';
+import '../../participant/activity/activities.dart';
+import 'new_activity_screen.dart';
 
 class TherapistActivityScreen extends StatefulWidget {
   const TherapistActivityScreen({super.key});

@@ -11,7 +11,7 @@ import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart'
 
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/models/row_model.dart';
-import '../../../service/model/therapist/activity/t_activity_model.dart';
+import '../../../service/model/common/activity/t_activity_model.dart';
 
 class NewActivityScreen extends StatefulWidget {
   const NewActivityScreen({super.key, this.activity});

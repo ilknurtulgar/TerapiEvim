@@ -10,6 +10,7 @@ TActivityModel _$TActivityModelFromJson(Map<String, dynamic> json) =>
     TActivityModel(
       id: json['id'] as String?,
       therapistId: json['therapistId'] as String?,
+      therapistName: json['therapistName'] as String?,
       participantsId: (json['participantsId'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
@@ -21,7 +22,7 @@ TActivityModel _$TActivityModelFromJson(Map<String, dynamic> json) =>
       isStarted: json['isStarted'] as bool?,
       meetingId: json['meetingId'] as String?,
       recordUrl: json['recordUrl'] as String?,
-    )..therapistName = json['therapistName'] as String?;
+    );
 
 Map<String, dynamic> _$TActivityModelToJson(TActivityModel instance) =>
     <String, dynamic>{

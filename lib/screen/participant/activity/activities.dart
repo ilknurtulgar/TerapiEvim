@@ -74,6 +74,9 @@ Widget activityLoadSeminar(PActivityController pActivityController) {
             onTap: () {
               context.push(const AboutActivityScreen());
             },
+            onButtonTap: (){
+              pActivityController.joinActivity(context,activity);
+            },
             istwobutton: false,
             buttonText: ActivityTextUtil.join,
             containerModel: AppContainers.containerButton(false),
@@ -95,7 +98,7 @@ ListView activityPastSeminar() {
     physics: const NeverScrollableScrollPhysics(),
     itemBuilder: (context, index) {
       return ActivityBox(
-          onTap: () {
+          onButtonTap: () {
             context.push(const AboutActivityScreen());
           },
           istwobutton: false,

@@ -3,8 +3,8 @@ import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../model/therapist/activity/t_activity_model.dart';
 
-abstract class IActivityService {
-  IActivityService(this.manager);
+abstract class ITActivityService {
+  ITActivityService(this.manager);
 
   final IFirestoreManager<ErrorModelCustom> manager;
 

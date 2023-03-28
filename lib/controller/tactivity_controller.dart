@@ -5,8 +5,8 @@ import 'package:get/get.dart';
 import '../core/base/component/toast/toast.dart';
 import '../core/constants/app_const.dart';
 import '../service/model/therapist/activity/t_activity_model.dart';
-import '../service/service/_therapist/activity/activity_service.dart';
-import '../service/service/_therapist/activity/i_activity_service.dart';
+import '../service/service/_therapist/activity/i_t_activity_service.dart';
+import '../service/service/_therapist/activity/t_activity_service.dart';
 import 'base/base_controller.dart';
 
 class TherapistActivtyController extends GetxController with BaseController {
@@ -21,13 +21,13 @@ class TherapistActivtyController extends GetxController with BaseController {
 
   final TextEditingController activitytimeController = TextEditingController();
 
-  late IActivityService activityService;
+  late ITActivityService activityService;
 
   RxList<TActivityModel?> recentActivities = <TActivityModel?>[].obs;
 
   @override
   Future<void> onInit() async {
-    activityService = ActivityService(vexaFireManager.networkManager);
+    activityService = TActivityService(vexaFireManager.networkManager);
 
     TActivityModel? recentActivity = await activityService.getRecentActivity();
 

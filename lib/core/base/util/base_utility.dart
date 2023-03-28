@@ -524,6 +524,14 @@ class DemoInformation {
       text: "Özlem Ulusan",
       textStyle: const TextStyle(),
       leadingIcon: IconUtility.personIcon);
+
+  static RowModel recentActivity(String therapistName){
+   return RowModel(
+    isAlignmentBetween: false,
+    text: therapistName,
+    textStyle: const TextStyle(),
+    leadingIcon: IconUtility.personIcon);
+  }
   static RowModel clockmodel = RowModel(
       isAlignmentBetween: false,
       text: "Ocak 15,2023,20:00",

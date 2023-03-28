@@ -8,7 +8,13 @@ part 't_activity_model.g.dart';
 
 @JsonSerializable()
 class TActivityModel extends INetworkModel<TActivityModel> {
-  String? id, therapistId, title, description, meetingId, recordUrl;
+  String? id,
+      therapistId,
+      therapistName,
+      title,
+      description,
+      meetingId,
+      recordUrl;
   bool? isFinished, isStarted;
   List<String>? participantsId;
 

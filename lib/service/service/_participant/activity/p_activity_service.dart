@@ -3,7 +3,7 @@ import '../../../../core/constants/api_const.dart';
 import '../../../../core/constants/app_const.dart';
 import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
-import '../../../model/therapist/activity/t_activity_model.dart';
+import '../../../model/common/activity/t_activity_model.dart';
 import 'i_p_activity_service.dart';
 
 class PActivityService extends IPActivityService with BaseService {
@@ -11,8 +11,8 @@ class PActivityService extends IPActivityService with BaseService {
       : super(manager);
 
   @override
-  Future<TActivityModel?> getRecentActivities() async {
-    if (userId == null) return null;
+  Future<List<TActivityModel?>> getRecentActivities() async {
+    if (userId == null) return [];
 
     final result =
         await manager.readOrdered<TActivityModel, List<TActivityModel>>(
@@ -25,12 +25,12 @@ class PActivityService extends IPActivityService with BaseService {
     );
 
     if (result.error != null) {
-      return null;
+      return [];
     }
-    if (result.data == null) return null;
-    if (result.data!.isEmpty) return null;
+    if (result.data == null) return [];
+    if (result.data!.isEmpty) return [];
 
-    return result.data![0];
+    return result.data!;
   }
 
   @override

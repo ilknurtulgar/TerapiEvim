@@ -21,12 +21,13 @@ TActivityModel _$TActivityModelFromJson(Map<String, dynamic> json) =>
       isStarted: json['isStarted'] as bool?,
       meetingId: json['meetingId'] as String?,
       recordUrl: json['recordUrl'] as String?,
-    );
+    )..therapistName = json['therapistName'] as String?;
 
 Map<String, dynamic> _$TActivityModelToJson(TActivityModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'therapistId': instance.therapistId,
+      'therapistName': instance.therapistName,
       'title': instance.title,
       'description': instance.description,
       'meetingId': instance.meetingId,

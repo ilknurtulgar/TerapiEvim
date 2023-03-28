@@ -62,8 +62,9 @@ class ActivityBox extends StatelessWidget {
                           }, ActivityTextUtil.updateMyInformation,
                             AppContainers.hugeContainerButton())
                         : const SizedBox.shrink(),
-                    rowbutton(() {}, buttonText,
-                        AppContainers.containerButton(false)),
+                    rowbutton(() {
+                      onTap != null ? onTap!() : null;
+                    }, buttonText, AppContainers.containerButton(false)),
                   ],
                 ),
               )

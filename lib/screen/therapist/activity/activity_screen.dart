@@ -46,10 +46,11 @@ class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
                   MainAxisAlignment.spaceBetween, true, IconUtility.forward),
               Obx(
                 () => myupcomingactivities(
-                  therapistActivtyController.recentActivities.isEmpty
-                      ? null
-                      : therapistActivtyController.recentActivities[0],
-                ),
+                    context,
+                    therapistActivtyController,
+                    therapistActivtyController.recentActivities.isEmpty
+                        ? null
+                        : therapistActivtyController.recentActivities[0]),
               ),
               activityminto(ActivityTextUtil.activity, () {},
                   MainAxisAlignment.spaceBetween, true, IconUtility.forward),
@@ -100,12 +101,19 @@ class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
         clockModel: DemoInformation.clockmodel);
   }
 
-  ActivityBox myupcomingactivities(TActivityModel? recentActivity) {
+  ActivityBox myupcomingactivities(
+      BuildContext context,
+      TherapistActivtyController therapistActivtyController,
+      TActivityModel? recentActivity) {
     return ActivityBox(
         istwobutton: true,
         buttonText: ActivityTextUtil.start,
         containerModel: AppContainers.containerButton(false),
         isactivity: true,
+        onTap: () {
+          therapistActivtyController.createMeeting(
+              context: context, activity: recentActivity);
+        },
         arowModel: DemoInformation.recentActivityTitle(
             recentActivity?.title ?? 'Empty'),
         clockModel: DemoInformation.recentActivityTime(

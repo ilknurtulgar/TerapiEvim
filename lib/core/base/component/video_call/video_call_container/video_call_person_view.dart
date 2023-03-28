@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/video_call/video_call_container/circular_container.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
+
 import '../../../../../screen/participant/video_call/model/video_call_view_model.dart';
 import '../../../../../screen/participant/video_call/util/utility.dart';
 
@@ -10,9 +11,11 @@ class VideoCallPersonView extends StatefulWidget {
       required this.videoCallViewModel,
       this.onDoubleTap,
       required this.isInShortCallPage});
+
   final VideoCallViewModel videoCallViewModel;
   final Function()? onDoubleTap;
   final bool isInShortCallPage;
+
   @override
   State<VideoCallPersonView> createState() => _VideoCallPersonViewState();
 }
@@ -46,10 +49,12 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
         width: widget.videoCallViewModel.width,
         child: Column(
           children: [
-            InkWell(
-              onTap: () => cameraOnOffFunc(),
-              onDoubleTap: widget.onDoubleTap,
-              child: Stack(children: [personView(), micIconButton()]),
+            Expanded(
+              child: InkWell(
+                onTap: () => cameraOnOffFunc(),
+                onDoubleTap: widget.onDoubleTap,
+                child: Stack(children: [personView(), micIconButton()]),
+              ),
             ),
             widget.videoCallViewModel.isNameShown
                 ? nameSurnameText(widget.videoCallViewModel.person.name)
@@ -78,9 +83,10 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
   Container personView() {
     return Container(
         height: widget.videoCallViewModel.height,
-        width: widget.isInShortCallPage && PixelScreen().logicalWidth > PixelScreen().logicalHeight
-                                          ? Responsive.width(SizeUtil.normalValueWidth, context)
-                                          : widget.videoCallViewModel.width,
+        width: widget.isInShortCallPage &&
+                PixelScreen().logicalWidth > PixelScreen().logicalHeight
+            ? Responsive.width(SizeUtil.normalValueWidth, context)
+            : widget.videoCallViewModel.width,
         decoration: BoxDecoration(
             color: AppColors.doveGray,
             borderRadius:
@@ -102,18 +108,22 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
           : EdgeInsets.zero,
       child: Center(
           child: CircularContainer(
-              height:  widget.isInShortCallPage && PixelScreen().logicalWidth > PixelScreen().logicalHeight
-                                          ? Responsive.width(SizeUtil.normalValueWidth, context)/5
-                                          : widget.videoCallViewModel.width/3,
-              
+              height: widget.isInShortCallPage &&
+                      PixelScreen().logicalWidth > PixelScreen().logicalHeight
+                  ? Responsive.width(SizeUtil.normalValueWidth, context) / 5
+                  : widget.videoCallViewModel.width / 3,
               color: AppColors.orange,
               widget: Center(
                 child: Text(
                   widget.videoCallViewModel.person.name.substring(0, 1),
                   style: TextStyle(
-                      fontSize:  widget.isInShortCallPage && PixelScreen().logicalWidth > PixelScreen().logicalHeight
-                                          ? Responsive.width(SizeUtil.normalValueWidth, context)/8
-                                          : widget.videoCallViewModel.width/5,
+                      fontSize: widget.isInShortCallPage &&
+                              PixelScreen().logicalWidth >
+                                  PixelScreen().logicalHeight
+                          ? Responsive.width(
+                                  SizeUtil.normalValueWidth, context) /
+                              8
+                          : widget.videoCallViewModel.width / 5,
                       color: AppColors.white),
                 ),
               ))),

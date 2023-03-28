@@ -58,7 +58,7 @@ class TherapistActivtyController extends GetxController with BaseController {
     //s isUpdate.value = !isUpdate.value;
   }
 
-  Future<bool> createActivity() async {
+  Future<bool> createActivity(BuildContext context) async {
     final bool isValidated = _validateActivity();
 
     if (isValidated == false) return false;
@@ -74,29 +74,35 @@ class TherapistActivtyController extends GetxController with BaseController {
       roomId: '',
     );
 
+    final NavigatorState navigator = Navigator.of(context);
+
     final result = await activityService.createActivity(activity);
 
     if (result == null) {
       ///TODO add error handler
       return false;
     }
+    navigationManager.maybePop(navigator);
     return true;
   }
 
-  Future<bool> updateActivity() async {
+  Future<bool> updateActivity(BuildContext context) async {
     final bool isValidated = _validateActivity();
 
-    if (isValidated) return false;
+    if (isValidated == false) return false;
+
     final TActivityModel activity = TActivityModel(
       title: activitynamController.text.trim(),
       description: activitydescriptionController.text.trim(),
       dateTime: Timestamp.fromDate(DateTime.now()),
+
       // participantsId: [],
       isFinished: false,
       isStarted: false,
       recordUrl: '',
       roomId: '',
     );
+    final NavigatorState navigator = Navigator.of(context);
 
     final result = await activityService.updateActivity(activity);
 
@@ -104,6 +110,7 @@ class TherapistActivtyController extends GetxController with BaseController {
       ///TODO add error handler
       return false;
     }
+    navigationManager.maybePop(navigator);
     return true;
   }
 

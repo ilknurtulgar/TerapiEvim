@@ -3,5 +3,6 @@ class AppConst {
   static const int oneItemPerPage = 1;
 
   static const String dateTime = 'dateTime';
+  static const String id = 'id';
   static const String emptyString = '';
 }

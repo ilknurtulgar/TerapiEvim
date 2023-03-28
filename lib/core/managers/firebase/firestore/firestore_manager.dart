@@ -38,19 +38,23 @@ class FirestoreManager<E extends INetworkModel<E>?>
   }) async {
     CreatedIdResponse? createdIdResponse;
     DocumentReference? documentReference;
+
     try {
       if (collectionPath2 != null) {
-        documentReference = await _database
+        documentReference = _database
             .collection(collectionPath)
             .doc(docId)
             .collection(collectionPath2)
-            .add(data);
+            .doc();
       } else {
-        documentReference =
-            await _database.collection(collectionPath).add(data);
+        documentReference = _database.collection(collectionPath).doc();
       }
+      data[AppConst.id] = documentReference.id;
+
+      await documentReference.set(data);
 
       createdIdResponse = CreatedIdResponse(id: documentReference.id);
+
       return createdIdResponse;
     } catch (e) {
       await crashlyticsManager.sendACrash(
@@ -172,7 +176,6 @@ class FirestoreManager<E extends INetworkModel<E>?>
       }
 
       final List<QueryDocumentSnapshot<Object?>>? queryList = response?.docs;
-
 
       return _getResponseResult<T, R>(queryList, parseModel);
     } catch (e) {

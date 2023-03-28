@@ -89,6 +89,7 @@ class ActivityService extends IActivityService with BaseService {
       return null;
     }
     if (result.data == null) return null;
+    if (result.data!.isEmpty) return null;
 
     return result.data![0];
   }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
@@ -105,9 +106,10 @@ class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
         buttonText: ActivityTextUtil.start,
         containerModel: AppContainers.containerButton(false),
         isactivity: true,
-        arowModel: DemoInformation.recentActivityTitle(recentActivity!.title!),
-        clockModel:
-            DemoInformation.recentActivityTime(recentActivity.dateTime!));
+        arowModel: DemoInformation.recentActivityTitle(
+            recentActivity?.title ?? 'Empty'),
+        clockModel: DemoInformation.recentActivityTime(
+            recentActivity?.dateTime ?? Timestamp.now()));
   }
 
 /*Row activityappbar(BuildContext context) {

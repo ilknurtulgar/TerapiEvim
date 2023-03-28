@@ -10,6 +10,11 @@ import '../models/row_model.dart';
 import 'base_utility.dart';
 
 class UiBaseModel {
+  static RowModel messageToTherapist = RowModel(
+      leadingIcon: IconUtility.chatIcon,
+      text: GroupTextUtil.messageToTherapist,
+      textStyle: AppTextStyles.groupTextStyle(false),
+      isAlignmentBetween: false);
   static RowModel searchModel(String text, Widget trailingIcon) => RowModel(
       isAlignmentBetween: true,
       text: text,
@@ -64,7 +69,8 @@ class UiBaseModel {
               textStyle: AppTextStyles.profileTextStyles(true, true),
               isAlignmentBetween: false,
               trailingIcon: Padding(
-                padding: EdgeInsets.zero,// EdgeInsets.only(left: text.length < 15 ? 160 : 80),
+                padding: EdgeInsets
+                    .zero, // EdgeInsets.only(left: text.length < 15 ? 160 : 80),
                 child: IconButton(
                     onPressed: onTap,
                     alignment: Alignment.centerLeft,
@@ -120,8 +126,8 @@ class UiBaseModel {
           leadingIcon: leadingIcon,
           isAlignmentBetween: true);
 
-  static RowModel appBar() =>
-      appBarModel(GroupTextUtil.myGroupText, const GroupOut());
+  static RowModel appBar() => appBarModel(GroupTextUtil.myGroupText,
+      const GroupOut()); //GroupOut cikinca silinecek o buton
 
   static RowModel determiningappBar() =>
       appBarModel(GroupTextUtil.terapiEvim, saveButton());

@@ -6,10 +6,10 @@ import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../../core/managers/firebase/firestore/models/empty_model.dart';
 import '../../../model/therapist/activity/t_activity_model.dart';
-import 'i_activity_service.dart';
+import 'i_t_activity_service.dart';
 
-class ActivityService extends IActivityService with BaseService {
-  ActivityService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
+class TActivityService extends ITActivityService with BaseService {
+  TActivityService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
 
   @override
   Future<CreatedIdResponse?> createActivity(TActivityModel activity) async {
@@ -19,9 +19,7 @@ class ActivityService extends IActivityService with BaseService {
     activity.therapistId = userId;
 
     final CreatedIdResponse? createdIdResponse = await manager.create(
-      collectionPath: APIConst.therapist,
-      docId: userId,
-      collectionPath2: APIConst.activities,
+      collectionPath: APIConst.activities,
       data: activity.toJson()!,
     );
 
@@ -34,23 +32,28 @@ class ActivityService extends IActivityService with BaseService {
 
   @override
   Future<String?> updateActivity(TActivityModel activity) async {
-    if (userId == null) return null;
+    try {
+      if (userId == null) return null;
 
-    /// Overriding id of a current therapist
-    activity.therapistId = userId;
+      if (activity.id == null) {
+        throw Exception(
+            "ID is null in TActivityModel. activity_service/updateActivity");
+      }
+      final result = await manager.update<TActivityModel, EmptyModel>(
+        collectionPath: APIConst.activities,
+        docId: activity.id!,
+        data: activity,
+      );
+      if (result.error != null) {
+        return result.error?.description;
+      }
 
-    final result = await manager.update<TActivityModel, EmptyModel>(
-      collectionPath: APIConst.therapist,
-      docId: userId!,
-      collectionPath2: APIConst.activities,
-      docId2: activity.id,
-      data: activity,
-    );
-    if (result.error != null) {
-      return result.error?.description;
+      return null;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(), stackTrace: StackTrace.current, reason: '');
+      return null;
     }
-
-    return null;
   }
 
   @override
@@ -58,10 +61,8 @@ class ActivityService extends IActivityService with BaseService {
     if (userId == null) return null;
 
     final result = await manager.delete(
-      collectionPath: APIConst.therapist,
-      docId: userId!,
-      collectionPath2: APIConst.activities,
-      docId2: activityId,
+      collectionPath: APIConst.activities,
+      docId: activityId,
     );
     if (result == false) {
       return "ERROR";
@@ -74,14 +75,14 @@ class ActivityService extends IActivityService with BaseService {
     if (userId == null) return null;
 
     final result =
-        await manager.readOrdered<TActivityModel, List<TActivityModel>>(
+        await manager.readOrderedById<TActivityModel, List<TActivityModel>>(
       parseModel: TActivityModel(),
-      collectionPath: APIConst.therapist,
-      docId: userId!,
-      collectionPath2: APIConst.activities,
-      field: AppConst.dateTime,
+      collectionPath: APIConst.activities,
+      orderField: AppConst.dateTime,
       limit: AppConst.oneItemPerPage,
       lastDocumentId: AppConst.emptyString,
+      whereIsEqualTo: userId!,
+      whereField: AppConst.therapistId,
       isDescending: true,
     );
 
@@ -89,6 +90,7 @@ class ActivityService extends IActivityService with BaseService {
       return null;
     }
     if (result.data == null) return null;
+    if (result.data!.isEmpty) return null;
 
     return result.data![0];
   }
@@ -97,11 +99,9 @@ class ActivityService extends IActivityService with BaseService {
   Future<TActivityModel?> getActivityById(String activityId) async {
     if (userId == null) return null;
 
-    final result = await manager.read<TActivityModel, TActivityModel>(
-      collectionPath: APIConst.therapist,
-      docId: userId!,
-      collectionPath2: APIConst.activities,
-      docId2: activityId,
+    final result = await manager.readOne<TActivityModel, TActivityModel>(
+      collectionPath: APIConst.activities,
+      docId: activityId,
       parseModel: TActivityModel(),
     );
     if (result.error != null) {
@@ -120,14 +120,15 @@ class ActivityService extends IActivityService with BaseService {
     if (userId == null) return null;
 
     final result =
-        await manager.readOrdered<TActivityModel, List<TActivityModel>>(
-            collectionPath: APIConst.therapist,
-            docId: userId!,
-            collectionPath2: APIConst.activities,
-            parseModel: TActivityModel(),
-            lastDocumentId: lastDocId,
-            field: orderField,
-            isDescending: isDescending);
+        await manager.readOrderedById<TActivityModel, List<TActivityModel>>(
+      collectionPath: APIConst.activities,
+      parseModel: TActivityModel(),
+      whereIsEqualTo: userId!,
+      whereField: AppConst.therapistId,
+      orderField: orderField,
+      isDescending: isDescending,
+      lastDocumentId: lastDocId,
+    );
     if (result.error != null) {
       return [];
     }

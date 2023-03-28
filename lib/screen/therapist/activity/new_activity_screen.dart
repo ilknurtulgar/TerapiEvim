@@ -64,10 +64,10 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
               Obx(
                 () => therapistActivtyController.isUpdate.value
                     ? butterFlyButton(ActivityTextUtil.update, () {
-                        therapistActivtyController.updateActivity();
+                        therapistActivtyController.updateActivity(context);
                       })
                     : butterFlyButton(ActivityTextUtil.create, () {
-                        therapistActivtyController.createActivity();
+                        therapistActivtyController.createActivity(context);
                       }),
               )
             ],

@@ -51,7 +51,7 @@ class TCopingService extends ITCopingService with BaseService {
   Future<TCopingMethodModel?> getCopingMethodById(String copingMethodId) async {
     if (userId == null) return null;
 
-    final result = await manager.read<TCopingMethodModel, TCopingMethodModel>(
+    final result = await manager.readOne<TCopingMethodModel, TCopingMethodModel>(
       collectionPath: APIConst.therapist,
       docId: userId!,
       collectionPath2: APIConst.copingMethods,
@@ -80,7 +80,7 @@ class TCopingService extends ITCopingService with BaseService {
       collectionPath2: APIConst.copingMethods,
       parseModel: TCopingMethodModel(),
       isDescending: isDescending,
-      field: orderField,
+      orderField: orderField,
       lastDocumentId: lastDocId,
     );
     if (result.error != null) {

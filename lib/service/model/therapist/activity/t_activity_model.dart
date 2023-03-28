@@ -20,13 +20,14 @@ class TActivityModel extends INetworkModel<TActivityModel> {
   Timestamp? dateTime;
 
   TActivityModel({
+    this.id,
     this.therapistId,
+    this.participantsId,
     this.title,
     this.description,
     this.dateTime,
     this.isFinished,
     this.isStarted,
-    this.participantsId,
     this.roomId,
     this.recordUrl,
   });

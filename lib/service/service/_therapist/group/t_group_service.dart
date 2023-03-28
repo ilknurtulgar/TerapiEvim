@@ -66,7 +66,7 @@ class TActivityService extends ITGroupService with BaseService {
   @override
   Future<TGroupModel?> getGroupById(String groupId) async {
     if (userId == null) return null;
-    final result = await manager.read<TGroupModel, TGroupModel>(
+    final result = await manager.readOne<TGroupModel, TGroupModel>(
       collectionPath: APIConst.therapist,
       docId: userId!,
       collectionPath2: APIConst.groups,
@@ -95,7 +95,7 @@ class TActivityService extends ITGroupService with BaseService {
       collectionPath2: APIConst.activities,
       parseModel: TGroupModel(),
       isDescending: isDescending,
-      field: orderField,
+      orderField: orderField,
       lastDocumentId: lastDocId,
     );
     if (result.error != null) {

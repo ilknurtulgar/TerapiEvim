@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/video_call/video_call_container/circular_container.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/video_call/util/utility.dart';
-import 'package:terapievim/core/base/component/video_call/video_call_container/circular_container.dart';
 
 class CustomVideoCallButton extends StatefulWidget {
   const CustomVideoCallButton(
@@ -11,6 +11,7 @@ class CustomVideoCallButton extends StatefulWidget {
       required this.icon,
       this.offIcon,
       required this.backgroundColor});
+
   final Function() onTap;
   final bool isThisOn;
   final Icon icon;
@@ -36,7 +37,16 @@ class _CustomVideoCallButtonState extends State<CustomVideoCallButton> {
 }
 
 class VideoCallButtonsRow extends StatelessWidget {
-  const VideoCallButtonsRow({super.key});
+  const VideoCallButtonsRow({
+    super.key,
+    required this.onToggleMicButtonPressed,
+    required this.onToggleCameraButtonPressed,
+    required this.onLeaveButtonPressed,
+  });
+
+  final void Function() onToggleMicButtonPressed;
+  final void Function() onToggleCameraButtonPressed;
+  final void Function() onLeaveButtonPressed;
 
   @override
   Widget build(BuildContext context) {
@@ -44,12 +54,12 @@ class VideoCallButtonsRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        VideoCallUtility.cameraIconButton(() => () {}, true),
+        VideoCallUtility.cameraIconButton(onToggleCameraButtonPressed, true),
         Padding(
           padding: AppPaddings.customContainerInsidePadding(3),
-          child: VideoCallUtility.micIconButton(() => () {}, true),
+          child: VideoCallUtility.micIconButton(onToggleMicButtonPressed, true),
         ),
-        VideoCallUtility.endingCallButton(() => () {}),
+        VideoCallUtility.endingCallButton(onLeaveButtonPressed),
       ],
     );
   }

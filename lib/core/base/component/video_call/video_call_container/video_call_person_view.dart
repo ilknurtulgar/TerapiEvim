@@ -107,26 +107,26 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
           ? const EdgeInsets.only(bottom: 125)
           : EdgeInsets.zero,
       child: Center(
-          child: CircularContainer(
-              height: widget.isInShortCallPage &&
-                      PixelScreen().logicalWidth > PixelScreen().logicalHeight
-                  ? Responsive.width(SizeUtil.normalValueWidth, context) / 5
-                  : widget.videoCallViewModel.width / 3,
-              color: AppColors.orange,
-              widget: Center(
-                child: Text(
-                  widget.videoCallViewModel.person.name.substring(0, 1),
-                  style: TextStyle(
-                      fontSize: widget.isInShortCallPage &&
-                              PixelScreen().logicalWidth >
-                                  PixelScreen().logicalHeight
-                          ? Responsive.width(
-                                  SizeUtil.normalValueWidth, context) /
-                              8
-                          : widget.videoCallViewModel.width / 5,
-                      color: AppColors.white),
-                ),
-              ))),
+        child: CircularContainer(
+          height: widget.isInShortCallPage &&
+                  PixelScreen().logicalWidth > PixelScreen().logicalHeight
+              ? Responsive.width(SizeUtil.normalValueWidth, context) / 5
+              : widget.videoCallViewModel.width / 3,
+          color: AppColors.orange,
+          widget: Center(
+            child: Text(
+              widget.videoCallViewModel.person.name.substring(0, 1),
+              style: TextStyle(
+                  fontSize: widget.isInShortCallPage &&
+                          PixelScreen().logicalWidth >
+                              PixelScreen().logicalHeight
+                      ? Responsive.width(SizeUtil.normalValueWidth, context) / 8
+                      : widget.videoCallViewModel.width / 5,
+                  color: AppColors.white),
+            ),
+          ),
+        ),
+      ),
     );
   }
 

@@ -4,6 +4,10 @@ import 'package:get/get.dart';
 
 import '../core/base/component/toast/toast.dart';
 import '../core/constants/app_const.dart';
+import '../core/init/navigation/navigation_manager.dart';
+import '../core/managers/videosdk/i_video_sdk_manager.dart';
+import '../core/managers/videosdk/video_sdk_manager.dart';
+import '../screen/therapist/t_video_call/t_group_call/t_group_call_view.dart';
 import '../service/model/therapist/activity/t_activity_model.dart';
 import '../service/service/_therapist/activity/i_t_activity_service.dart';
 import '../service/service/_therapist/activity/t_activity_service.dart';
@@ -71,7 +75,7 @@ class TherapistActivtyController extends GetxController with BaseController {
       isFinished: false,
       isStarted: false,
       recordUrl: '',
-      roomId: '',
+      meetingId: '',
     );
 
     final NavigatorState navigator = Navigator.of(context);
@@ -100,7 +104,7 @@ class TherapistActivtyController extends GetxController with BaseController {
       isFinished: false,
       isStarted: false,
       recordUrl: '',
-      roomId: '',
+      meetingId: '',
     );
     final NavigatorState navigator = Navigator.of(context);
 
@@ -148,5 +152,54 @@ class TherapistActivtyController extends GetxController with BaseController {
       return false;
     }
     return true;
+  }
+
+  Future<void> createMeeting({
+    required BuildContext context,
+    required TActivityModel? activity,
+  }) async {
+    bool isActive = false;
+    if (isActive == false) {
+      return;
+    }
+
+    try {
+      final IVideoSdkManager videoSdkManager = VideoSdkManager();
+
+      final NavigatorState navigator =
+          Navigator.of(context, rootNavigator: true);
+      final NavigationManager navigationManager = NavigationManager.instance;
+
+      if (activity?.id == null) {
+        throw Exception('activity?.id is null');
+      }
+
+      final String? meetingId = await videoSdkManager.createMeeting();
+      if (meetingId == null) {
+        throw Exception('Received meeting Id is null');
+      }
+      activity!.meetingId = meetingId;
+      activity.isStarted = true;
+
+      final String? isError = await activityService.updateActivity(activity);
+      if (isError != null) {
+        //TODO extract error string
+        flutterErrorToast("An error occurred");
+        return;
+      }
+
+      navigationManager.pushAndRemoveUntil(
+          navigator,
+          TGroupCallView(
+            meetingId: meetingId,
+            token: videoSdkManager.token,
+          ));
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+        error: e.toString(),
+        stackTrace: StackTrace.current,
+        reason: 'Error t_activity_controller/createMeeting',
+      );
+    }
   }
 }

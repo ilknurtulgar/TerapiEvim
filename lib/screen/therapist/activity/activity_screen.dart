@@ -110,7 +110,7 @@ class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
         buttonText: ActivityTextUtil.start,
         containerModel: AppContainers.containerButton(false),
         isactivity: true,
-        onTap: () {
+        onButtonTap: () {
           therapistActivtyController.createMeeting(
               context: context, activity: recentActivity);
         },

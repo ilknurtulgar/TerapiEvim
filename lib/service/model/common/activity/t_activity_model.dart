@@ -28,6 +28,7 @@ class TActivityModel extends INetworkModel<TActivityModel> {
   TActivityModel({
     this.id,
     this.therapistId,
+    this.therapistName,
     this.participantsId,
     this.title,
     this.description,

@@ -7,6 +7,7 @@ import '../core/constants/app_const.dart';
 import '../core/init/navigation/navigation_manager.dart';
 import '../core/managers/videosdk/i_video_sdk_manager.dart';
 import '../core/managers/videosdk/video_sdk_manager.dart';
+import '../product/enum/local_keys_enum.dart';
 import '../screen/therapist/t_video_call/t_group_call/t_group_call_view.dart';
 import '../service/model/common/activity/t_activity_model.dart';
 import '../service/service/_therapist/activity/i_t_activity_service.dart';
@@ -69,6 +70,7 @@ class TherapistActivtyController extends GetxController with BaseController {
       title: activitynamController.text.trim(),
       description: activitydescriptionController.text.trim(),
       dateTime: Timestamp.fromDate(DateTime.now()),
+      therapistName: localManager.getStringValue(LocalManagerKeys.name),
       participantsId: [],
       isFinished: false,
       isStarted: false,

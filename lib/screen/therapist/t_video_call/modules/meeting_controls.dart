@@ -18,16 +18,16 @@ class MeetingControls extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         ElevatedButton(
-          child: const Text("Leave"),
           onPressed: onLeaveButtonPressed,
+          child: const Text("Leave"),
         ),
         ElevatedButton(
-          child: const Text("Toggle Mic"),
           onPressed: onToggleMicButtonPressed,
+          child: const Text("Toggle Mic"),
         ),
         ElevatedButton(
-          child: const Text("Toggle Camera"),
           onPressed: onToggleCameraButtonPressed,
+          child: const Text("Toggle Camera"),
         )
       ],
     );

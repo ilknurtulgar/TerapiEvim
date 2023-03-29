@@ -39,7 +39,7 @@ class ProfilePageListView extends StatelessWidget {
 
   Padding groupContainer(int index) {
     return Padding(
-      padding: AppPaddings.smallPadding(3),
+      padding: AppPaddings.horizontalListViewPadding(3),
       child: GroupClass(
         width: SizeUtil.hugeValueWidth,
         isBorderPurple: true,

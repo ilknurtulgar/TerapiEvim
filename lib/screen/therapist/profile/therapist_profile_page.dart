@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/profile/custom_list_view.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import '../../../core/base/component/home/custom_container.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../participant/profile/profile_setting_page.dart';
@@ -21,18 +20,19 @@ class TherapistProfilePage extends StatelessWidget {
             children: [
               ProfilePageUtility.backgroundOfThePage(),
               ProfilePageUtility.profilePagePersonImage(
-                  DemoInformation.imagePath),
+                  DemoInformation.imagePath,false),
               ProfilePageUtility.positionedIconButton(
                   IconUtility.settingIcon.icon!,
                   () => context.push(ParticipantProfileSettingPage()),
-                  50,
-                  10),
+                  Responsive.height(40, context),
+                  Responsive.width(20, context)),
               Padding(
                 padding: AppPaddings.profilePageBigPadding(true),//left padding genel page padding zamanında kaldırılacak
                 child: Column(
                   children: [
                     therapistName(),
-                    smallSizedBox(),
+                    mediumSizedBox(),
+                    //smallSizedBox(),
                     aboutMeColumn(),
                     UiBaseModel.boldMainTitleRowView(
                         TherapistProfileTextUtil.myGroups, 'group', () {}),
@@ -43,6 +43,7 @@ class TherapistProfilePage extends StatelessWidget {
                       secondRowTextList: DemoInformation.dates,
                       groupNameList: DemoInformation.groupNameList,
                     ),
+                    mediumSizedBox(),
                     UiBaseModel.boldMainTitleRowView(
                         TherapistProfileTextUtil.methods, 'method', () {}),
                     ProfilePageListView(
@@ -50,6 +51,7 @@ class TherapistProfilePage extends StatelessWidget {
                         isForMethod: true,
                         firstRowTextList: DemoInformation.groupNameList,
                         secondRowTextList: DemoInformation.methodNames),
+                    mediumSizedBox(),
                     UiBaseModel.boldMainTitleRowView(
                         TherapistProfileTextUtil.seminars, 'seminar', () {}),
                     ProfilePageListView(
@@ -58,7 +60,7 @@ class TherapistProfilePage extends StatelessWidget {
                       firstRowTextList: DemoInformation.seminarNames,
                       secondRowTextList: DemoInformation.dates,
                     ),
-                    mediumSizedBox1()
+                    mediumSizedBox() 
                   ],
                 ),
               ),
@@ -73,9 +75,9 @@ class TherapistProfilePage extends StatelessWidget {
     return Padding(
       padding: AppPaddings.componentOnlyPadding(3),
       child: Center(
-        child: Text(
+        child: responsivenestext(
           DemoInformation.name,
-          style: AppTextStyles.aboutMeTextStyle(true),
+          AppTextStyles.aboutMeTextStyle(true),
         ),
       ),
     );
@@ -86,18 +88,19 @@ class TherapistProfilePage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+      responsivenestext(
           TherapistProfileTextUtil.aboutMe,
-          style: AppTextStyles.profileTextStyles(false, true),
+          AppTextStyles.profileTextStyles(false, true),
         ),
-        aboutMeContainer(),
+      mediumSizedBox(),
+      aboutMeContainer(),
       ],
     );
   }
 
   Widget aboutMeContainer() {
     return Padding(
-      padding: AppPaddings.customContainerInsidePadding(2),
+      padding: AppPaddings.componentOnlyPadding(3),
       child: Container(
         decoration: AppBoxDecoration.purpleBorder,
         child: Padding(

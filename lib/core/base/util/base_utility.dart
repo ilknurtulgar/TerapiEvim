@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:cloud_firestore_platform_interface/src/timestamp.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/participant_container.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
@@ -19,7 +19,6 @@ import '../../../screen/therapist/home/home.dart';
 import '../../../screen/therapist/message/message.dart';
 import '../../init/managers/responsiveness_manager.dart';
 import '../../managers/converter/date_time_manager.dart';
-import '../component/group/questions_button.dart';
 import '../component/group/row_view.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
 import '../models/card_model.dart';
@@ -229,7 +228,7 @@ class AppTextStyles {
       fontSize: 49,
       fontFamily: 'Roboto',
       fontWeight: FontWeight.w400,
-      color: AppColors.black);
+      color: AppColors.deepCove);
 
   static TextStyle groupTextStyle(bool isName) => TextStyle(
       fontFamily: 'Roboto',
@@ -297,9 +296,9 @@ class AppContainers {
   }
 
   static ContainerModel loginSignUpButtonContainer(
-          bool isInLoginPage, bool isLoginButton) =>
+          bool isInLoginPage, bool isLoginButton, BuildContext context) =>
       ContainerModel(
-          width: SizeUtil.generalWidth,
+          width: Responsive.width(SizeUtil.generalWidth, context),
           borderRadius: 8,
           backgroundColor: (isInLoginPage && isLoginButton) ||
                   (isInLoginPage == false && isLoginButton == false)
@@ -377,24 +376,16 @@ class AppPaddings {
   static const EdgeInsets rowViewProfilePadding =
       EdgeInsets.only(top: 15, left: 24, right: 24);
 
-  // gizem paddings(daha devamı gelecek)
-  static EdgeInsets smallPadding(int paddingNo) => EdgeInsets.only(
+  static EdgeInsets horizontalListViewPadding(int paddingNo) => EdgeInsets.only(
       bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
-
-  // 1 numara right
-  // 2 numara bottom
-  // 3 numara bottom ve right
+  // 1 numara right , 2 numara bottom , 3 numara bottom ve right
   static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
       EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
-
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
       EdgeInsets.symmetric(
           horizontal: paddingNo != 2 ? 16 : 0,
           vertical: paddingNo != 1 ? 16 : 0);
-
-  // 1 numara horizontal
-  // 2 numara vertical
-  // 3 numara horizontal ve vertical
+  // 1 numara horizontal, 2 numara vertical, 3 numara horizontal ve vertical
   static EdgeInsets componentOnlyPadding(int paddingNo) => EdgeInsets.only(
       top: paddingNo == 1 ? 8 : 0,
       bottom: paddingNo == 2 ? 0 : 8,
@@ -408,19 +399,9 @@ class AppPaddings {
       const EdgeInsets.symmetric(horizontal: 8);
 }
 
-// birinci grup önceden kullandıklarım ama artık ikinci grubu kullancağım
-// ikinci gruba geçiş süreci tamamlanınca birinci grubu sileceğim
-SizedBox smallSizedBox() => const SizedBox(height: 12);
-
-SizedBox mediumSizedBox() => const SizedBox(height: 24);
-
-SizedBox largeSizedBox() => const SizedBox(height: 36);
-
-SizedBox smallSizedBox1() => const SizedBox(width: 8);
-
-SizedBox mediumSizedBox1() => const SizedBox(height: 16);
-
-SizedBox largeSizedBox1() => const SizedBox(height: 32);
+SizedBox smallSizedBox() => const SizedBox(width: 8);
+SizedBox mediumSizedBox() => const SizedBox(height: 16);
+SizedBox largeSizedBox() => const SizedBox(height: 32);
 
 class AppBorderRadius {
   static const BorderRadius generalBorderRadius =
@@ -522,10 +503,6 @@ class DemoInformation {
     "panik atak",
   ];
 
-  //toggle
-  static const String question =
-      "1.Yasemini insanlar 100 üzerinden  ne kadar severlerse yasemin ne kadar mutlu olur( slm Yasemin aşko <3 )?(Cevap yok hehe)";
-
 //activity
   static const String aboutActivtyName = "Grup Terapilerinin Etkisi";
   static RowModel arowmodel = RowModel(
@@ -547,6 +524,14 @@ class DemoInformation {
       text: "Özlem Ulusan",
       textStyle: const TextStyle(),
       leadingIcon: IconUtility.personIcon);
+
+  static RowModel recentActivity(String therapistName){
+   return RowModel(
+    isAlignmentBetween: false,
+    text: therapistName,
+    textStyle: const TextStyle(),
+    leadingIcon: IconUtility.personIcon);
+  }
   static RowModel clockmodel = RowModel(
       isAlignmentBetween: false,
       text: "Ocak 15,2023,20:00",
@@ -678,18 +663,7 @@ class DemoInformation {
   static List<String> timelist = ["12.00", "15.00", "20.00"];
   static String userName = "Yasemin";
   static int tmpCount = 5;
-  static List<Widget> questions = [
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-    const ToggleQuestions(),
-  ];
+
   static String imagePath = "assets/images/doctorfotosu.jpeg";
   static RowModel row = RowModel(
     isAlignmentBetween: false,
@@ -783,7 +757,6 @@ class DemoInformation {
   static TextEditingController aboutMeController = TextEditingController(
       text:
           '''Klinik Psikologum. Genelde bilişsel davranışçı bir yaklaşımda çalışıyorum.Olumsuz duyguların ortadan kaldırılması (korku, endişe, depresyon, öfke, kızgınlık, suçluluk duyguları, aşk bağımlılığı, tembellik, erteleme, diğer içsel deneyimler) üzerine çalışmaktayım.''');
-  static bool isForParticipant = false;
 
   // therapist profile page
   static List<String> dates = [

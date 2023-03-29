@@ -6,7 +6,6 @@ import 'package:terapievim/core/base/util/base_model.dart';
 import '../../../../core/base/component/group/row_view.dart';
 import '../../../../core/base/component/home/custom_container.dart';
 import '../../../../core/base/models/card_model.dart';
-import '../../../../core/base/models/row_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 
 class PersonView extends StatelessWidget {

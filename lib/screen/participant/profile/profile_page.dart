@@ -25,10 +25,10 @@ class ParticipantProfilePage extends StatelessWidget {
             ProfilePageUtility.positionedIconButton(
                 IconUtility.settingIcon.icon!,
                 () => context.push(ParticipantProfileSettingPage()),
-                40,
-                20),
+                 Responsive.height(40, context),
+                 Responsive.width(20, context)),
             ProfilePageUtility.profilePagePersonImage(
-                DemoInformation.profileImagePath),
+                DemoInformation.profileImagePath,false),
             Padding(
               padding: AppPaddings.profilePageBigPadding(true),
               child: Column(
@@ -36,10 +36,8 @@ class ParticipantProfilePage extends StatelessWidget {
                   nameAndBirthDateColumn(),
                   smallSizedBox(),
                   participantGroupColumn(),
-                  smallSizedBox(),
-
+                  mediumSizedBox(),
                   UiBaseModel.boldMainTitleRowView(
-
                       ParticipantProfileTextUtil.lastRead, 'method', () {}),
                   ProfilePageListView(
                     isForParticipant: true,
@@ -49,7 +47,7 @@ class ParticipantProfilePage extends StatelessWidget {
                     secondRowTextList:
                         DemoInformation.groupInformation.methodTitles,
                   ),
-
+                  mediumSizedBox(),
                   UiBaseModel.boldMainTitleRowView(
 
                       ParticipantProfileTextUtil.joinedSeminars,
@@ -62,7 +60,7 @@ class ParticipantProfilePage extends StatelessWidget {
                           .getSeminarsTherapistName(),
                       secondRowTextList: DemoInformation.lastWatchedSeminars
                           .getSeminarTitles()),
-                  smallSizedBox(),
+                  mediumSizedBox(),
                 ],
               ),
             ),
@@ -78,14 +76,11 @@ class ParticipantProfilePage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         rowView(
-
             UiBaseModel.normalTextRow(
-
                 ParticipantProfileTextUtil.myActiveGroup,
                 IconUtility.navGroup,
                 AppTextStyles.profileTextStyles(true, true)),
             EdgeInsets.zero),
-        smallSizedBox(),
         participantGroupContainer(),
       ],
     );
@@ -102,7 +97,6 @@ class ParticipantProfilePage extends StatelessWidget {
       row2: UiBaseModel.doubleTextRow(ParticipantProfileTextUtil.advisor,
           DemoInformation.groupInformation.secondTherapistName, true),
       row3: UiBaseModel.normalTextRow(
-
           DemoInformation.groupInformation.therapyTime,
           IconUtility.clockIcon.icon!,
           AppTextStyles.normalTextStyle('medium', false)),
@@ -115,12 +109,11 @@ class ParticipantProfilePage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Text(
+          responsivenestext(
             DemoInformation.nameSurname,
-            style: AppTextStyles.normalTextStyle('big', false),
+            AppTextStyles.normalTextStyle('big', false),
           ),
-          Text(DemoInformation.birthOfDate,
-              style: AppTextStyles.normalTextStyle('medium', false)),
+          responsivenestext(DemoInformation.birthOfDate,AppTextStyles.normalTextStyle('medium', false)),
         ],
       ),
     );

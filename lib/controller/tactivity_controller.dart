@@ -4,9 +4,14 @@ import 'package:get/get.dart';
 
 import '../core/base/component/toast/toast.dart';
 import '../core/constants/app_const.dart';
-import '../service/model/therapist/activity/t_activity_model.dart';
-import '../service/service/_therapist/activity/activity_service.dart';
-import '../service/service/_therapist/activity/i_activity_service.dart';
+import '../core/init/navigation/navigation_manager.dart';
+import '../core/managers/videosdk/i_video_sdk_manager.dart';
+import '../core/managers/videosdk/video_sdk_manager.dart';
+import '../product/enum/local_keys_enum.dart';
+import '../screen/therapist/t_video_call/t_group_call/t_group_call_view.dart';
+import '../service/model/common/activity/t_activity_model.dart';
+import '../service/service/_therapist/activity/i_t_activity_service.dart';
+import '../service/service/_therapist/activity/t_activity_service.dart';
 import 'base/base_controller.dart';
 
 class TherapistActivtyController extends GetxController with BaseController {
@@ -21,19 +26,17 @@ class TherapistActivtyController extends GetxController with BaseController {
 
   final TextEditingController activitytimeController = TextEditingController();
 
-  late IActivityService activityService;
+  late ITActivityService activityService;
 
   RxList<TActivityModel?> recentActivities = <TActivityModel?>[].obs;
 
   @override
   Future<void> onInit() async {
-    activityService = ActivityService(vexaFireManager.networkManager);
+    activityService = TActivityService(vexaFireManager.networkManager);
 
     TActivityModel? recentActivity = await activityService.getRecentActivity();
 
-    recentActivities.add(await activityService.getRecentActivity());
-
-    print('recentActivity:${recentActivity?.toJson()}');
+    recentActivities.add(recentActivity);
 
     super.onInit();
   }
@@ -58,7 +61,7 @@ class TherapistActivtyController extends GetxController with BaseController {
     //s isUpdate.value = !isUpdate.value;
   }
 
-  Future<bool> createActivity() async {
+  Future<bool> createActivity(BuildContext context) async {
     final bool isValidated = _validateActivity();
 
     if (isValidated == false) return false;
@@ -67,12 +70,15 @@ class TherapistActivtyController extends GetxController with BaseController {
       title: activitynamController.text.trim(),
       description: activitydescriptionController.text.trim(),
       dateTime: Timestamp.fromDate(DateTime.now()),
+      therapistName: localManager.getStringValue(LocalManagerKeys.name),
       participantsId: [],
       isFinished: false,
       isStarted: false,
       recordUrl: '',
-      roomId: '',
+      meetingId: '',
     );
+
+    final NavigatorState navigator = Navigator.of(context);
 
     final result = await activityService.createActivity(activity);
 
@@ -80,23 +86,27 @@ class TherapistActivtyController extends GetxController with BaseController {
       ///TODO add error handler
       return false;
     }
+    navigationManager.maybePop(navigator);
     return true;
   }
 
-  Future<bool> updateActivity() async {
+  Future<bool> updateActivity(BuildContext context) async {
     final bool isValidated = _validateActivity();
 
-    if (isValidated) return false;
+    if (isValidated == false) return false;
+
     final TActivityModel activity = TActivityModel(
       title: activitynamController.text.trim(),
       description: activitydescriptionController.text.trim(),
       dateTime: Timestamp.fromDate(DateTime.now()),
+
       // participantsId: [],
       isFinished: false,
       isStarted: false,
       recordUrl: '',
-      roomId: '',
+      meetingId: '',
     );
+    final NavigatorState navigator = Navigator.of(context);
 
     final result = await activityService.updateActivity(activity);
 
@@ -104,6 +114,7 @@ class TherapistActivtyController extends GetxController with BaseController {
       ///TODO add error handler
       return false;
     }
+    navigationManager.maybePop(navigator);
     return true;
   }
 
@@ -141,5 +152,54 @@ class TherapistActivtyController extends GetxController with BaseController {
       return false;
     }
     return true;
+  }
+
+  Future<void> createMeeting({
+    required BuildContext context,
+    required TActivityModel? activity,
+  }) async {
+    // bool isActive = false;
+    // if (isActive == false) {
+    //   return;
+    // }
+
+    try {
+      final IVideoSdkManager videoSdkManager = VideoSdkManager();
+
+      final NavigatorState navigator =
+          Navigator.of(context, rootNavigator: true);
+      final NavigationManager navigationManager = NavigationManager.instance;
+
+      if (activity?.id == null) {
+        throw Exception('activity?.id is null');
+      }
+
+      final String? meetingId = await videoSdkManager.createMeeting();
+      if (meetingId == null) {
+        throw Exception('Received meeting Id is null');
+      }
+      activity!.meetingId = meetingId;
+      activity.isStarted = true;
+
+      final String? isError = await activityService.updateActivity(activity);
+      if (isError != null) {
+        //TODO extract error string
+        flutterErrorToast("An error occurred");
+        return;
+      }
+
+      navigationManager.pushAndRemoveUntil(
+          navigator,
+          TGroupCallView(
+            meetingId: meetingId,
+            token: videoSdkManager.token,
+          ));
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+        error: e.toString(),
+        stackTrace: StackTrace.current,
+        reason: 'Error t_activity_controller/createMeeting',
+      );
+    }
   }
 }

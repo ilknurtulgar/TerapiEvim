@@ -31,7 +31,7 @@ class AuthService extends IAuthService with BaseService {
       }
 
       final response =
-          await manager.read<LoginResponseModel, LoginResponseModel>(
+          await manager.readOne<LoginResponseModel, LoginResponseModel>(
         collectionPath: APIConst.users,
         docId: result.user!.uid,
         parseModel: LoginResponseModel(),

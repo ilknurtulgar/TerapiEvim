@@ -4,28 +4,30 @@ import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
 
 class LoginPageUtility {
-  static Row lineWithOrText() {
-    return Row(
-      children: [
-        myDivider(true),
-        Text(LoginSignUpTextUtil.orText),
-        myDivider(false),
-      ],
+  static Widget lineWithOrText(BuildContext context) {
+    return SizedBox(
+      width: Responsive.width(SizeUtil.generalWidth, context),
+      child: Row(
+        children: [
+          myDivider(true,context),
+          Text(LoginSignUpTextUtil.orText),
+          myDivider(false,context),
+        ],
+      ),
     );
   }
 
-  static SizedBox myDivider(bool isAtLeft) => SizedBox(
-        width: SizeUtil.normalValueWidth,
-        child: Divider(
-          color: AppColors.black,
-          endIndent: isAtLeft ? 10 : 0,
-          indent: isAtLeft ? 0 : 10,
-          thickness: 1,
-        ),
-      );
+  static Widget myDivider(bool isAtLeft,BuildContext context) => Expanded(
+    child: Divider(
+      color: AppColors.black,
+      endIndent: isAtLeft ? Responsive.width(10, context): 0,
+      indent: isAtLeft ? 0 : Responsive.width(10, context),
+      thickness: 1,
+    ),
+  );
 
   static CustomButton button(
-      bool isForLogin, bool isInLoginPage, Function() onTap) {
+      bool isForLogin, bool isInLoginPage, Function() onTap,BuildContext context) {
     return CustomButton(
       textColor: isInLoginPage
           ? isForLogin
@@ -34,7 +36,7 @@ class LoginPageUtility {
           : isForLogin
               ? AppColors.butterflyBush
               : AppColors.white,
-      container: AppContainers.loginSignUpButtonContainer(isInLoginPage, isForLogin),
+      container: AppContainers.loginSignUpButtonContainer(isInLoginPage, isForLogin,context),
       onTap: onTap,
       text: isForLogin ? LoginSignUpTextUtil.login : LoginSignUpTextUtil.signUp,
     );

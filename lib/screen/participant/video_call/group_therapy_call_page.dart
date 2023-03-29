@@ -1,18 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
-import 'util/utility.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
+
 import '../../../core/base/component/video_call/video_call_container/video_call_person_view.dart';
+import 'util/utility.dart';
 
 class GroupTherapyCallPage extends StatelessWidget {
   const GroupTherapyCallPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         body: Stack(
           children: [
-            VideoCallPersonView(videoCallViewModel: VideoCallUtility.personBigView(DemoInformation.therapist, true),isInShortCallPage: false,),
+            VideoCallPersonView(
+              videoCallViewModel: VideoCallUtility.personBigView(
+                  DemoInformation.therapist, true),
+              isInShortCallPage: false,
+            ),
             participantsRowWithButtonsContainer()
           ],
         ),
@@ -30,7 +36,11 @@ class GroupTherapyCallPage extends StatelessWidget {
           child: Column(
             children: [
               participantRow(),
-              const VideoCallButtonsRow(),
+              VideoCallButtonsRow(
+                onLeaveButtonPressed: () {},
+                onToggleCameraButtonPressed: () {},
+                onToggleMicButtonPressed: () {},
+              ),
             ],
           )),
     );
@@ -48,7 +58,8 @@ class GroupTherapyCallPage extends StatelessWidget {
                   padding: AppPaddings.smallPersonViewPadding,
                   child: VideoCallPersonView(
                       isInShortCallPage: false,
-                      videoCallViewModel: VideoCallUtility.personSmallView(DemoInformation.participants[index], true)));
+                      videoCallViewModel: VideoCallUtility.personSmallView(
+                          DemoInformation.participants[index], true)));
             })),
       ),
     );

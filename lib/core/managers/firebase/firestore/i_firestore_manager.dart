@@ -19,7 +19,7 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
     required Map<String, dynamic> value,
   });
 
-  Future<IResponseModel<R?, E?>> read<T extends INetworkModel<T>, R>({
+  Future<IResponseModel<R?, E?>> readOne<T extends INetworkModel<T>, R>({
     required T parseModel,
     required String collectionPath,
     required String docId,
@@ -27,13 +27,26 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
     String? docId2,
   });
 
-  Future<IResponseModel<R?, E?>>
-      readOrdered<T extends INetworkModel<T>, R>({
+  Future<IResponseModel<R?, E?>> readOrdered<T extends INetworkModel<T>, R>({
     required T parseModel,
     required String lastDocumentId,
     required String collectionPath,
-    required String docId,
-    required String field,
+    required String orderField,
+    String? docId,
+    int limit,
+    bool isDescending,
+    String? collectionPath2,
+  });
+
+  Future<IResponseModel<R?, E?>>
+      readOrderedById<T extends INetworkModel<T>, R>({
+    required T parseModel,
+    required String lastDocumentId,
+    required String collectionPath,
+    required String orderField,
+    required String whereIsEqualTo,
+    required String whereField,
+    String? docId,
     int limit,
     bool isDescending,
     String? collectionPath2,

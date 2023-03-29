@@ -8,7 +8,13 @@ part 't_activity_model.g.dart';
 
 @JsonSerializable()
 class TActivityModel extends INetworkModel<TActivityModel> {
-  String? id, therapistId, title, description, roomId, recordUrl;
+  String? id,
+      therapistId,
+      therapistName,
+      title,
+      description,
+      meetingId,
+      recordUrl;
   bool? isFinished, isStarted;
   List<String>? participantsId;
 
@@ -22,13 +28,14 @@ class TActivityModel extends INetworkModel<TActivityModel> {
   TActivityModel({
     this.id,
     this.therapistId,
+    this.therapistName,
     this.participantsId,
     this.title,
     this.description,
     this.dateTime,
     this.isFinished,
     this.isStarted,
-    this.roomId,
+    this.meetingId,
     this.recordUrl,
   });
 

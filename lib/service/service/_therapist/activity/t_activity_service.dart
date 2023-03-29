@@ -5,11 +5,12 @@ import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../../core/managers/firebase/firestore/models/empty_model.dart';
-import '../../../model/therapist/activity/t_activity_model.dart';
+import '../../../model/common/activity/t_activity_model.dart';
 import 'i_t_activity_service.dart';
 
 class TActivityService extends ITActivityService with BaseService {
-  TActivityService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
+  TActivityService(IFirestoreManager<ErrorModelCustom> manager)
+      : super(manager);
 
   @override
   Future<CreatedIdResponse?> createActivity(TActivityModel activity) async {
@@ -33,7 +34,10 @@ class TActivityService extends ITActivityService with BaseService {
   @override
   Future<String?> updateActivity(TActivityModel activity) async {
     try {
-      if (userId == null) return null;
+      if (userId == null) {
+        throw Exception(
+            "userId is null in TActivityModel. activity_service/updateActivity");
+      }
 
       if (activity.id == null) {
         throw Exception(
@@ -52,7 +56,7 @@ class TActivityService extends ITActivityService with BaseService {
     } catch (e) {
       await crashlyticsManager.sendACrash(
           error: e.toString(), stackTrace: StackTrace.current, reason: '');
-      return null;
+      return e.toString();
     }
   }
 

@@ -10,6 +10,7 @@ TActivityModel _$TActivityModelFromJson(Map<String, dynamic> json) =>
     TActivityModel(
       id: json['id'] as String?,
       therapistId: json['therapistId'] as String?,
+      therapistName: json['therapistName'] as String?,
       participantsId: (json['participantsId'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList(),
@@ -19,7 +20,7 @@ TActivityModel _$TActivityModelFromJson(Map<String, dynamic> json) =>
           TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?),
       isFinished: json['isFinished'] as bool?,
       isStarted: json['isStarted'] as bool?,
-      roomId: json['roomId'] as String?,
+      meetingId: json['meetingId'] as String?,
       recordUrl: json['recordUrl'] as String?,
     );
 
@@ -27,9 +28,10 @@ Map<String, dynamic> _$TActivityModelToJson(TActivityModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'therapistId': instance.therapistId,
+      'therapistName': instance.therapistName,
       'title': instance.title,
       'description': instance.description,
-      'roomId': instance.roomId,
+      'meetingId': instance.meetingId,
       'recordUrl': instance.recordUrl,
       'isFinished': instance.isFinished,
       'isStarted': instance.isStarted,

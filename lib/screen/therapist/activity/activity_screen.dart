@@ -1,17 +1,17 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/util/base_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/activity/activities.dart';
-import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
-import 'package:terapievim/service/model/therapist/activity/t_activity_model.dart';
 
 import '../../../controller/tactivity_controller.dart';
 import '../../../core/base/component/group/group_box.dart';
+import '../../../core/base/component/group/row_view.dart';
+import '../../../core/base/util/base_model.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/util/text_utility.dart';
+import '../../../core/extension/context_extension.dart';
+import '../../../service/model/common/activity/t_activity_model.dart';
+import '../../participant/activity/activities.dart';
+import 'new_activity_screen.dart';
 
 class TherapistActivityScreen extends StatefulWidget {
   const TherapistActivityScreen({super.key});
@@ -46,10 +46,11 @@ class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
                   MainAxisAlignment.spaceBetween, true, IconUtility.forward),
               Obx(
                 () => myupcomingactivities(
-                  therapistActivtyController.recentActivities.isEmpty
-                      ? null
-                      : therapistActivtyController.recentActivities[0],
-                ),
+                    context,
+                    therapistActivtyController,
+                    therapistActivtyController.recentActivities.isEmpty
+                        ? null
+                        : therapistActivtyController.recentActivities[0]),
               ),
               activityminto(ActivityTextUtil.activity, () {},
                   MainAxisAlignment.spaceBetween, true, IconUtility.forward),
@@ -100,12 +101,19 @@ class _TherapistActivityScreenState extends State<TherapistActivityScreen> {
         clockModel: DemoInformation.clockmodel);
   }
 
-  ActivityBox myupcomingactivities(TActivityModel? recentActivity) {
+  ActivityBox myupcomingactivities(
+      BuildContext context,
+      TherapistActivtyController therapistActivtyController,
+      TActivityModel? recentActivity) {
     return ActivityBox(
         istwobutton: true,
         buttonText: ActivityTextUtil.start,
         containerModel: AppContainers.containerButton(false),
         isactivity: true,
+        onButtonTap: () {
+          therapistActivtyController.createMeeting(
+              context: context, activity: recentActivity);
+        },
         arowModel: DemoInformation.recentActivityTitle(
             recentActivity?.title ?? 'Empty'),
         clockModel: DemoInformation.recentActivityTime(

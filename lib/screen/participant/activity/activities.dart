@@ -1,16 +1,41 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/login/custom_textfield.dart';
-import 'package:terapievim/core/base/component/group/group_box.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/activity/about_activity.dart';
-import 'package:terapievim/screen/participant/home/home.dart';
+import 'package:get/get.dart';
 
+import '../../../controller/participant/p_activity_controller.dart';
+import '../../../core/base/component/group/group_box.dart';
+import '../../../core/base/component/login/custom_textfield.dart';
 import '../../../core/base/models/row_model.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/util/text_utility.dart';
+import '../../../core/extension/context_extension.dart';
+import '../../../service/model/common/activity/t_activity_model.dart';
+import '../home/home.dart';
+import 'about_activity.dart';
 
-class ActivitiesScreen extends StatelessWidget {
+class ActivitiesScreen extends StatefulWidget {
   const ActivitiesScreen({super.key});
+
+  @override
+  State<ActivitiesScreen> createState() => _ActivitiesScreenState();
+}
+
+class _ActivitiesScreenState extends State<ActivitiesScreen> {
+  late final PActivityController _pActivityController;
+
+  @override
+  void initState() {
+    _pActivityController = Get.put(PActivityController());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _pActivityController.dispose();
+    Get.delete<PActivityController>();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -23,10 +48,10 @@ class ActivitiesScreen extends StatelessWidget {
                 titleText(ActivityTextUtil.activity),
                 activityminto(ActivityTextUtil.upcomingActivities, () {},
                     MainAxisAlignment.spaceBetween, true, IconUtility.forward),
-                activityLoadseminar(),
+                activityLoadSeminar(_pActivityController),
                 activityminto(ActivityTextUtil.pastActivities, () {},
                     MainAxisAlignment.spaceBetween, true, IconUtility.forward),
-                activityPastseminar()
+                activityPastSeminar()
               ],
             ),
           ),
@@ -36,38 +61,44 @@ class ActivitiesScreen extends StatelessWidget {
   }
 }
 
-ListView activityLoadseminar() {
-  return ListView.builder(
-    shrinkWrap: true,
-    physics: const NeverScrollableScrollPhysics(),
-    itemBuilder: (context, index) {
-      return ActivityBox(
-          onTap: () {
-            //  print("tıklıyorum ya");
-
-            context.push(const AboutActivityScreen());
-          },
-          istwobutton: false,
-          buttonText: ActivityTextUtil.join,
-          containerModel: AppContainers.containerButton(false),
-          isactivity: false,
-          arowModel: DemoInformation.arowmodel,
-          ayrowwModel: DemoInformation.ayrowmodel,
-          clockModel: DemoInformation.clockmodel);
-    },
-    itemCount: 2,
+Widget activityLoadSeminar(PActivityController pActivityController) {
+  return Obx(
+    () => ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: pActivityController.recentActivities.length,
+      itemBuilder: (context, index) {
+        final TActivityModel activity =
+            pActivityController.recentActivities[index]!;
+        return ActivityBox(
+            onTap: () {
+              context.push(const AboutActivityScreen());
+            },
+            onButtonTap: (){
+              pActivityController.joinActivity(context,activity);
+            },
+            istwobutton: false,
+            buttonText: ActivityTextUtil.join,
+            containerModel: AppContainers.containerButton(false),
+            isactivity: false,
+            arowModel:
+                DemoInformation.recentActivityTitle(activity.title ?? ''),
+            ayrowwModel:
+                DemoInformation.recentActivity(activity.therapistName ?? ''),
+            clockModel: DemoInformation.recentActivityTime(
+                activity.dateTime ?? Timestamp.now()));
+      },
+    ),
   );
 }
 
-ListView activityPastseminar() {
+ListView activityPastSeminar() {
   return ListView.builder(
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
     itemBuilder: (context, index) {
       return ActivityBox(
-          onTap: () {
-            //  print("tıklıyorum ya");
-
+          onButtonTap: () {
             context.push(const AboutActivityScreen());
           },
           istwobutton: false,
@@ -101,20 +132,20 @@ Widget activityminto(String text, Function()? onPressed,
   );
 }
 
+//TODO: it should not be initialized outside a class
+//TODO: it should not be used except for activityView
 final TextEditingController activityTextController = TextEditingController();
 
-Widget search(RowModel rowmodel) {
+Widget search(RowModel rowModel) {
   return CustomTextField(
     isPhoneNumber: false,
     isBig: true,
     isPassword: false,
     isRowModel: true,
-    rowModel: rowmodel,
+    rowModel: rowModel,
     textController: activityTextController,
   );
 }
-
-
 
 /*   search(UiBaseModel.searchModel(
                   ActivityTextUtil.searchText,

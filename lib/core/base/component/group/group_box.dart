@@ -11,16 +11,18 @@ import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
 
 class ActivityBox extends StatelessWidget {
-  ActivityBox(
-      {super.key,
-      required this.istwobutton,
-      this.ayrowwModel,
-      required this.buttonText,
-      required this.containerModel,
-      required this.arowModel,
-      this.onTap,
-      required this.isactivity,
-      required this.clockModel});
+  ActivityBox({
+    super.key,
+    required this.istwobutton,
+    this.ayrowwModel,
+    required this.buttonText,
+    required this.containerModel,
+    required this.arowModel,
+    required this.isactivity,
+    required this.clockModel,
+    this.onButtonTap,
+    this.onTap,
+  });
 
   final ContainerModel containerModel;
   final RowModel arowModel;
@@ -28,8 +30,11 @@ class ActivityBox extends StatelessWidget {
   final RowModel clockModel;
   final bool isactivity;
   final bool istwobutton;
-  final Function()? onTap;
+  final Function()? onButtonTap, onTap;
   final String buttonText;
+
+  /// TODO: therapistActivityController should not be  initialized here
+  /// TODO: because it also used by participant
   final TherapistActivtyController therapistActivtyController = Get.find();
 
   @override
@@ -62,8 +67,9 @@ class ActivityBox extends StatelessWidget {
                           }, ActivityTextUtil.updateMyInformation,
                             AppContainers.hugeContainerButton())
                         : const SizedBox.shrink(),
-                    rowbutton(() {}, buttonText,
-                        AppContainers.containerButton(false)),
+                    rowbutton(() {
+                      onButtonTap != null ? onButtonTap!() : null;
+                    }, buttonText, AppContainers.containerButton(false)),
                   ],
                 ),
               )

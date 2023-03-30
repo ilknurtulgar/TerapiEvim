@@ -71,4 +71,54 @@ class PActivityService extends IPActivityService with BaseService {
 
     return result.data;
   }
+
+  @override
+  Future<List<TActivityModel?>> getPastActivitiesOrdered({
+    String lastDocId = '',
+    String orderField = AppConst.dateTime,
+    bool isDescending = false,
+  }) async {
+    if (userId == null) return [];
+
+    final result =
+        await manager.readOrderedWhere<TActivityModel, List<TActivityModel>>(
+      collectionPath: APIConst.activities,
+      parseModel: TActivityModel(),
+      orderField: orderField,
+      whereField: AppConst.isFinished,
+      whereIsEqualTo: true,
+      isDescending: isDescending,
+      lastDocumentId: lastDocId,
+    );
+    if (result.error != null) {
+      return [];
+    }
+
+    return result.data ?? [];
+  }
+
+  @override
+  Future<List<TActivityModel?>> getRecentActivitiesOrdered({
+    String lastDocId = '',
+    String orderField = AppConst.dateTime,
+    bool isDescending = false,
+  }) async {
+    if (userId == null) return [];
+
+    final result =
+        await manager.readOrderedWhere<TActivityModel, List<TActivityModel>>(
+      collectionPath: APIConst.activities,
+      parseModel: TActivityModel(),
+      orderField: orderField,
+      whereField: AppConst.isFinished,
+      whereIsEqualTo: false,
+      isDescending: isDescending,
+      lastDocumentId: lastDocId,
+    );
+    if (result.error != null) {
+      return [];
+    }
+
+    return result.data ?? [];
+  }
 }

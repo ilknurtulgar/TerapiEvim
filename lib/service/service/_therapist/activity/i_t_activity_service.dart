@@ -17,8 +17,14 @@ abstract class ITActivityService {
 
   Future<TActivityModel?> getActivityById(String activityId);
 
-  Future<List<TActivityModel?>?> getMyActivitiesOrdered(
+  Future<List<TActivityModel?>?> getMyRecentActivitiesOrdered(
       {String lastDocId, String orderField, bool isDescending});
+
+  Future<List<TActivityModel?>?> getMyPastActivitiesOrdered(
+      {String lastDocId = '', String orderField, bool isDescending});
+
+  Future<List<TActivityModel?>?> getOtherRecentActivitiesOrdered(
+      {String lastDocId = '', String orderField, bool isDescending});
 
   Future<String?> deleteActivity(String activityId);
 }

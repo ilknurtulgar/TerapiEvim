@@ -79,14 +79,16 @@ class TActivityService extends ITActivityService with BaseService {
     if (userId == null) return null;
 
     final result =
-        await manager.readOrderedById<TActivityModel, List<TActivityModel>>(
+        await manager.readOrderedWhere2<TActivityModel, List<TActivityModel>>(
       parseModel: TActivityModel(),
       collectionPath: APIConst.activities,
       orderField: AppConst.dateTime,
       limit: AppConst.oneItemPerPage,
       lastDocumentId: AppConst.emptyString,
-      whereIsEqualTo: userId!,
       whereField: AppConst.therapistId,
+      whereIsEqualTo: userId!,
+      whereField2: AppConst.isFinished,
+      whereIsEqualTo2: false,
       isDescending: true,
     );
 
@@ -116,7 +118,7 @@ class TActivityService extends ITActivityService with BaseService {
   }
 
   @override
-  Future<List<TActivityModel?>?> getMyActivitiesOrdered({
+  Future<List<TActivityModel?>?> getMyRecentActivitiesOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
@@ -124,12 +126,66 @@ class TActivityService extends ITActivityService with BaseService {
     if (userId == null) return null;
 
     final result =
-        await manager.readOrderedById<TActivityModel, List<TActivityModel>>(
+        await manager.readOrderedWhere2<TActivityModel, List<TActivityModel>>(
       collectionPath: APIConst.activities,
       parseModel: TActivityModel(),
-      whereIsEqualTo: userId!,
-      whereField: AppConst.therapistId,
       orderField: orderField,
+      whereField: AppConst.therapistId,
+      whereIsEqualTo: userId!,
+      whereField2: AppConst.isFinished,
+      whereIsEqualTo2: false,
+      isDescending: isDescending,
+      lastDocumentId: lastDocId,
+    );
+    if (result.error != null) {
+      return [];
+    }
+
+    return result.data;
+  }
+
+  @override
+  Future<List<TActivityModel?>?> getMyPastActivitiesOrdered({
+    String lastDocId = '',
+    String orderField = AppConst.dateTime,
+    bool isDescending = false,
+  }) async {
+    if (userId == null) return null;
+
+    final result =
+        await manager.readOrderedWhere2<TActivityModel, List<TActivityModel>>(
+      collectionPath: APIConst.activities,
+      parseModel: TActivityModel(),
+      orderField: orderField,
+      whereField: AppConst.therapistId,
+      whereIsEqualTo: userId!,
+      whereField2: AppConst.isFinished,
+      whereIsEqualTo2: true,
+      isDescending: isDescending,
+      lastDocumentId: lastDocId,
+    );
+    if (result.error != null) {
+      return [];
+    }
+
+    return result.data;
+  }
+
+  @override
+  Future<List<TActivityModel?>?> getOtherRecentActivitiesOrdered({
+    String lastDocId = '',
+    String orderField = AppConst.dateTime,
+    bool isDescending = false,
+  }) async {
+    if (userId == null) return null;
+
+    final result =
+        await manager.readOrderedWhere<TActivityModel, List<TActivityModel>>(
+      collectionPath: APIConst.activities,
+      parseModel: TActivityModel(),
+      orderField: orderField,
+      whereField: AppConst.isFinished,
+      whereIsEqualTo: false,
       isDescending: isDescending,
       lastDocumentId: lastDocId,
     );

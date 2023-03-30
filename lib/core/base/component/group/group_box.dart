@@ -35,7 +35,10 @@ class ActivityBox extends StatelessWidget {
 
   /// TODO: therapistActivityController should not be  initialized here
   /// TODO: because it also used by participant
-  final TherapistActivtyController therapistActivtyController = Get.find();
+  /// WARNING it caused an issue "TherapistActivityController" not found. You need to call "Get.put(TherapistActivityController())" or "Get.lazyPut(()=>TherapistActivityController())"
+  /// any Functions such as onTap should be called outside a widget. Widget should not be able to control
+
+  final TherapistActivityController therapistActivtyController = Get.find();
 
   @override
   Widget build(BuildContext context) {

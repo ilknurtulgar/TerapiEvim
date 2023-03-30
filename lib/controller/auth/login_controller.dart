@@ -7,7 +7,7 @@ import '../../service/model/common/login/login_response_model.dart';
 import '../../service/service/auth/auth_service.dart';
 import '../../service/service/auth/i_auth_service.dart';
 import '../base/base_controller.dart';
-import '../main_controller.dart';
+import 'auth_controller.dart';
 
 class LoginController extends GetxController with BaseController {
   late final IAuthService authService;
@@ -60,11 +60,10 @@ class LoginController extends GetxController with BaseController {
 
     if (loginResponse == null) return;
 
-    print('loginResponse:${loginResponse.toJson()}');
     await saveToLocalData(loginResponse);
 
-    MainController maiController = Get.find();
-    maiController.isLogged.value = true;
+    AuthController authController = Get.find();
+    authController.isLogged.value = true;
   }
 
   Future<void> saveToLocalData(LoginResponseModel loginResponse) async {

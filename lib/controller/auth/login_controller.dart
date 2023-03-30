@@ -10,8 +10,12 @@ import '../base/base_controller.dart';
 import 'auth_controller.dart';
 
 class LoginController extends GetxController with BaseController {
-  late final IAuthService authService;
+  @override
+  void setContext(BuildContext context) {
+    // TODO: implement setContext
+  }
 
+  late final IAuthService authService;
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
   late final FocusNode emailFocusNode;
@@ -110,4 +114,5 @@ class LoginController extends GetxController with BaseController {
     }
     return true;
   }
+
 }

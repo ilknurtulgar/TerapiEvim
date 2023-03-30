@@ -12,6 +12,11 @@ import '../../service/service/_participant/activity/p_activity_service.dart';
 import '../base/base_controller.dart';
 
 class PActivityController extends GetxController with BaseController {
+  @override
+  void setContext(BuildContext context) {
+    // TODO: implement setContext
+  }
+
   late IPActivityService activityService;
 
   RxList<TActivityModel?> recentActivities = <TActivityModel?>[].obs;

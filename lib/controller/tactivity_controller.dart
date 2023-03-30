@@ -15,6 +15,11 @@ import '../service/service/_therapist/activity/t_activity_service.dart';
 import 'base/base_controller.dart';
 
 class TherapistActivtyController extends GetxController with BaseController {
+  @override
+  void setContext(BuildContext context) {
+    // TODO: implement setContext
+  }
+
   var isUpdate = false.obs;
 
   final TextEditingController activitynamController = TextEditingController();

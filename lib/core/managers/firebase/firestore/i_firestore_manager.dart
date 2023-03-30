@@ -39,13 +39,29 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
   });
 
   Future<IResponseModel<R?, E?>>
-      readOrderedById<T extends INetworkModel<T>, R>({
+      readOrderedWhere2<T extends INetworkModel<T>, R>({
     required T parseModel,
     required String lastDocumentId,
     required String collectionPath,
     required String orderField,
-    required String whereIsEqualTo,
     required String whereField,
+    required Object whereIsEqualTo,
+    required String whereField2,
+    required Object whereIsEqualTo2,
+    String? docId,
+    int limit,
+    bool isDescending,
+    String? collectionPath2,
+  });
+
+  Future<IResponseModel<R?, E?>>
+      readOrderedWhere<T extends INetworkModel<T>, R>({
+    required T parseModel,
+    required String lastDocumentId,
+    required String collectionPath,
+    required String orderField,
+    required String whereField,
+    required Object whereIsEqualTo,
     String? docId,
     int limit,
     bool isDescending,

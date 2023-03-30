@@ -6,5 +6,6 @@ class AppConst {
   static const String dateTime = 'dateTime';
   static const String id = 'id';
   static const String therapistId = 'therapistId';
+  static const String isFinished = 'isFinished';
   static const String emptyString = '';
 }

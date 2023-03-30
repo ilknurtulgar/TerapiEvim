@@ -11,6 +11,11 @@ import 'base/base_controller.dart';
 
 class ProfileController extends GetxController with BaseController {
   @override
+  void setContext(BuildContext context) {
+    // TODO: implement setContext
+  }
+
+  @override
   void onInit() {
 
     service = ProfileSettingsService(vexaFireManager.networkManager);

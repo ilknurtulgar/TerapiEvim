@@ -35,7 +35,7 @@ class ActivityBox extends StatelessWidget {
 
   /// TODO: therapistActivityController should not be  initialized here
   /// TODO: because it also used by participant
-  final TherapistActivtyController therapistActivtyController = Get.find();
+  final TherapistActivityController therapistActivtyController = Get.find();
 
   @override
   Widget build(BuildContext context) {

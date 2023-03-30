@@ -14,21 +14,12 @@ import '../service/service/_therapist/activity/i_t_activity_service.dart';
 import '../service/service/_therapist/activity/t_activity_service.dart';
 import 'base/base_controller.dart';
 
-class TherapistActivtyController extends GetxController with BaseController {
-  var isUpdate = false.obs;
+class TherapistActivityController extends GetxController with BaseController {
 
-  final TextEditingController activitynamController = TextEditingController();
-
-  final TextEditingController activitydescriptionController =
-      TextEditingController();
-
-  final TextEditingController activitydateController = TextEditingController();
-
-  final TextEditingController activitytimeController = TextEditingController();
-
-  late ITActivityService activityService;
-
-  RxList<TActivityModel?> recentActivities = <TActivityModel?>[].obs;
+  @override
+  void setContext(BuildContext context) {
+    // TODO: implement setContext
+  }
 
   @override
   Future<void> onInit() async {
@@ -43,13 +34,28 @@ class TherapistActivtyController extends GetxController with BaseController {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     activitynamController.dispose();
     activitydateController.dispose();
     activitydescriptionController.dispose();
     activitytimeController.dispose();
   }
+
+  var isUpdate = false.obs;
+
+  final TextEditingController activitynamController = TextEditingController();
+
+  final TextEditingController activitydescriptionController =
+  TextEditingController();
+
+  final TextEditingController activitydateController = TextEditingController();
+
+  final TextEditingController activitytimeController = TextEditingController();
+
+  late ITActivityService activityService;
+
+  RxList<TActivityModel?> recentActivities = <TActivityModel?>[].obs;
+
 
   void updatechnage(int index) {
     if (index == 0) {

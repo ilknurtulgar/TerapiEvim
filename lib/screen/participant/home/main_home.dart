@@ -2,12 +2,11 @@ import 'package:flutter/cupertino.dart'
     hide CupertinoTabBar, CupertinoTabScaffold, CupertinoTabController;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
 
 import '../../../controller/main_controller.dart';
-import '../../../controller/tactivity_controller.dart';
 import '../../../core/base/component/bottom_nav_bar/bottom_nav_bar_custom.dart';
 import '../../../core/base/component/bottom_nav_bar/custom_tab_scaffold.dart';
+import '../../../core/base/util/base_utility.dart';
 import '../../../core/init/managers/responsiveness_manager.dart';
 
 part 'modules/bottom_nav_bar_icon.dart';
@@ -29,14 +28,13 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
   @override
   void initState() {
     _controller = Get.put(MainController());
-    _controller.onInit();
     super.initState();
-    Get.put(TherapistActivtyController());
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    Get.delete<MainController>();
     super.dispose();
   }
 

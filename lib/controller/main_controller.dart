@@ -14,7 +14,7 @@ class MainController extends GetxController {
     isTestNotSolved.value = false;
   }
 
-  late CupertinoTabController tabController;
+  late final CupertinoTabController tabController;
 
   DateTime _oldTime = DateTime.now();
   DateTime _newTime = DateTime.now();
@@ -30,7 +30,7 @@ class MainController extends GetxController {
     currentScreenIndex.value = index;
   }
 
-  ///This functon makes a user to tap back twice to pop
+  ///This function makes a user to tap back twice to pop
   Future<bool> onWillPop() {
     _newTime = DateTime.now();
     if (_newTime.difference(_oldTime) > const Duration(seconds: 2)) {

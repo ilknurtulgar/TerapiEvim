@@ -9,14 +9,13 @@ class BaseView<T extends GetxController> extends StatefulWidget {
     required this.getController,
     required this.onPageBuilder,
     required this.onModelReady,
-    this.onDispose,
     this.isPopIncluded = true,
+    this.shouldDisposeAndDelete = true,
   }) : super(key: key);
   final T getController;
   final Widget Function(BuildContext context, T value) onPageBuilder;
   final Function(T model) onModelReady;
-  final Function(T model)? onDispose;
-  final bool isPopIncluded;
+  final bool isPopIncluded, shouldDisposeAndDelete;
 
   @override
   State<BaseView<T>> createState() => _BaseViewState<T>();
@@ -28,15 +27,17 @@ class _BaseViewState<T extends GetxController> extends BaseState<BaseView<T>> {
   @override
   void initState() {
     model = widget.getController;
-    model.onInit();
+    Get.put(model);
     widget.onModelReady(model);
     super.initState();
   }
 
   @override
   void dispose() {
-    if (widget.onDispose != null) widget.onDispose!(model);
-    model.dispose();
+    if (widget.shouldDisposeAndDelete) {
+      model.dispose();
+      Get.delete<T>();
+    }
     super.dispose();
   }
 

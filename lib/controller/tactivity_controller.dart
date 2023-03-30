@@ -129,10 +129,10 @@ class TherapistActivityController extends GetxController with BaseController {
     return result;
   }
 
-  Future<List<TActivityModel?>?> getMyActivities(
+  Future<List<TActivityModel?>?> getMyRecentActivities(
       {String lastDocId = ''}) async {
     final List<TActivityModel?>? result =
-        await activityService.getMyActivitiesOrdered(
+        await activityService.getMyRecentActivitiesOrdered(
       lastDocId: lastDocId,
       isDescending: true,
       orderField: AppConst.dateTime,

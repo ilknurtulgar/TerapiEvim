@@ -12,6 +12,12 @@ import '../../service/service/auth/i_auth_service.dart';
 import '../base/base_controller.dart';
 
 class SignUpController extends GetxController with BaseController {
+
+  @override
+  void setContext(BuildContext context) {
+    // TODO: implement setContext
+  }
+
   late final IAuthService authService;
 
   late final TextEditingController emailController;
@@ -188,4 +194,5 @@ class SignUpController extends GetxController with BaseController {
     }
     return true;
   }
+
 }

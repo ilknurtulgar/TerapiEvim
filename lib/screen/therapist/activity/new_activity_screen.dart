@@ -22,6 +22,8 @@ class NewActivityScreen extends StatefulWidget {
   State<NewActivityScreen> createState() => _NewActivityScreenState();
 }
 
+///TODO: bhz => İlknur : it is not recommended to use it outside a class
+///TODO: it needs to be removed
 TherapistActivityController therapistActivityController = Get.find();
 
 class _NewActivityScreenState extends State<NewActivityScreen> {

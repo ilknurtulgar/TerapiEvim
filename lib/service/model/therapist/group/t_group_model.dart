@@ -8,7 +8,7 @@ part 't_group_model.g.dart';
 
 @JsonSerializable()
 class TGroupModel extends INetworkModel<TGroupModel> {
-  String? groupId;
+  String? id;
   String? therapistId;
   String? name;
   String? therapistHelperId;
@@ -25,7 +25,7 @@ class TGroupModel extends INetworkModel<TGroupModel> {
   Timestamp? dateTime;
 
   TGroupModel({
-    this.groupId,
+    this.id,
     this.therapistId,
     this.name,
     this.therapistHelperId,

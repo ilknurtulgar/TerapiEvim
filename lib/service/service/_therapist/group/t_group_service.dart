@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import '../../../../core/base/service/base_service.dart';
 import '../../../../core/constants/api_const.dart';
 import '../../../../core/constants/app_const.dart';
@@ -34,18 +36,38 @@ class TActivityService extends ITGroupService with BaseService {
     if (userId == null) return null;
 
     final result = await manager.readWhere<UserModel, List<UserModel?>>(
-        collectionPath: APIConst.users,
-        parseModel: UserModel(),
-        limit: AppConst.twentyItemsPerPage,
-        whereField: AppConst.role,
-        whereIsEqualTo: AppConst.therapist);
+      collectionPath: APIConst.users,
+      parseModel: UserModel(),
+      limit: AppConst.twentyItemsPerPage,
+      whereField: AppConst.role,
+      whereIsEqualTo: AppConst.therapist,
+    );
 
     if (result.error != null) return null;
     if (result.data == null) return null;
 
-    ///TODO return a random therapist
+    int randomNumber = Random().nextInt(result.data!.length);
+    final List<UserModel?> therapists = result.data!;
 
-    return result.data![0];
+    /// It makes sure that a new number is generated every time
+    /// if current therapist is the same as the randomTherapist
+    while (therapists[randomNumber]!.id == userId) {
+      randomNumber = Random().nextInt(result.data!.length);
+    }
+
+    if (randomNumber > therapists.length) {
+      throw Exception("randomNumber > therapists.length in t_group_service");
+    }
+
+    if (therapists[randomNumber] == null) {
+      throw Exception(
+          "Null is retrieved from therapists[randomNumber] in t_group_service");
+    }
+
+    /// When while condition is quit. Last randomNumber is chosen as a random Therapist
+    UserModel randomTherapist = therapists[randomNumber]!;
+
+    return randomTherapist;
   }
 
   @override
@@ -55,7 +77,7 @@ class TActivityService extends ITGroupService with BaseService {
       collectionPath: APIConst.therapist,
       docId: userId!,
       collectionPath2: APIConst.groups,
-      docId2: group.groupId,
+      docId2: group.id,
       data: group,
     );
     if (result.error != null) {

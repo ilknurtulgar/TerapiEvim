@@ -37,7 +37,7 @@ class TherapistActivityScreen extends StatelessWidget {
                         ActivityTextUtil.activity,
                         IconButton(
                             onPressed: () {
-                              therapistActivityController.updatechnage(1);
+                              controller.updatechnage(1);
                               context.push(const NewActivityScreen());
                             },
                             icon: IconUtility.addIcon)),
@@ -47,10 +47,10 @@ class TherapistActivityScreen extends StatelessWidget {
                 Obx(
                   () => myUpcomingActivities(
                       context,
-                      therapistActivityController,
-                      therapistActivityController.myRecentActivities.isEmpty
+                      controller,
+                      controller.myRecentActivities.isEmpty
                           ? null
-                          : therapistActivityController.myRecentActivities[0]),
+                          : controller.myRecentActivities[0]),
                 ),
                 activityminto(ActivityTextUtil.activity, () {},
                     MainAxisAlignment.spaceBetween, true, IconUtility.forward),

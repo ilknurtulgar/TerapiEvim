@@ -11,9 +11,6 @@ abstract class IPActivityService {
 
   Future<TActivityModel?> getActivityById(String activityId);
 
-  Future<List<TActivityModel?>?> getMyActivitiesOrdered(
-      {String lastDocId, String orderField, bool isDescending});
-
   Future<List<TActivityModel?>?> getRecentActivitiesOrdered(
       {String lastDocId, String orderField, bool isDescending});
 

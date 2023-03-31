@@ -13,5 +13,4 @@ class TherapistProfileController extends GetxController {
       isNumberVisible.value = !isNumberVisible.value;
     }
   }
-  var isForParticipant = true.obs;
 }

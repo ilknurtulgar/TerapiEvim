@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/main_controller.dart';
 import '../../core/base/component/toast/toast.dart';
 import '../../product/enum/local_keys_enum.dart';
 import '../../service/model/common/login/login_model.dart';
@@ -36,7 +37,7 @@ class LoginController extends GetxController with BaseController {
 
   @override
   void dispose() {
-   // flutterErrorToast("ON DISPOSE");
+    // flutterErrorToast("ON DISPOSE");
     emailController.dispose();
     passwordController.dispose();
     emailFocusNode.dispose();
@@ -66,6 +67,8 @@ class LoginController extends GetxController with BaseController {
 
     await saveToLocalData(loginResponse);
 
+    MainController mainController = Get.find();
+    mainController.updateWhoItIs(loginResponse.role!);
     AuthController authController = Get.find();
     authController.isLogged.value = true;
   }
@@ -114,5 +117,4 @@ class LoginController extends GetxController with BaseController {
     }
     return true;
   }
-
 }

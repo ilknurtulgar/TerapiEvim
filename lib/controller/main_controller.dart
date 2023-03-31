@@ -31,8 +31,9 @@ class MainController extends GetxController with BaseController {
   @override
   void onInit() {
     tabController = CupertinoTabController();
-    final String currentRole =
-        localManager.getStringValue(LocalManagerKeys.role);
+    const String currentRole = "therapist";
+    // final String currentRole =
+    //     localManager.getStringValue(LocalManagerKeys.role);
     updateWhoItIs(currentRole);
     super.onInit();
   }

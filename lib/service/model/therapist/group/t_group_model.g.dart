@@ -13,7 +13,6 @@ TGroupModel _$TGroupModelFromJson(Map<String, dynamic> json) => TGroupModel(
       therapistHelperId: json['therapistHelperId'] as String?,
       therapistHelperName: json['therapistHelperName'] as String?,
       hasHelperTherapistAccepted: json['hasHelperTherapistAccepted'] as bool?,
-      maxAllowedParticipants: json['maxAllowedParticipants'] as int?,
       participantsId: (json['participantsId'] as List<dynamic>?)
           ?.map((e) => e as String?)
           .toList(),
@@ -29,7 +28,6 @@ Map<String, dynamic> _$TGroupModelToJson(TGroupModel instance) =>
       'therapistHelperId': instance.therapistHelperId,
       'therapistHelperName': instance.therapistHelperName,
       'hasHelperTherapistAccepted': instance.hasHelperTherapistAccepted,
-      'maxAllowedParticipants': instance.maxAllowedParticipants,
       'participantsId': instance.participantsId,
       'dateTime': TimeStampConverter.timestampToJson(instance.dateTime),
     };

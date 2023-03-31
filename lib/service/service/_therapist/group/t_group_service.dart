@@ -9,16 +9,16 @@ import '../../../model/common/user/user_model.dart';
 import '../../../model/therapist/group/t_group_model.dart';
 import 'i_t_group_service.dart';
 
-class TActivityService extends ITGroupService with BaseService {
-  TActivityService(IFirestoreManager<ErrorModelCustom> manager)
-      : super(manager);
+class TGroupService extends ITGroupService with BaseService {
+  TGroupService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
 
   @override
   Future<CreatedIdResponse?> createGroup(TGroupModel group) async {
     if (userId == null) return null;
+    group.therapistId = userId;
 
     final CreatedIdResponse? createdIdResponse = await manager.create(
-      collectionPath: APIConst.therapist,
+      collectionPath: APIConst.groups,
       data: group.toJson()!,
     );
 

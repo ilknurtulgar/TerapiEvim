@@ -14,7 +14,7 @@ class TGroupModel extends INetworkModel<TGroupModel> {
   String? therapistHelperId;
   String? therapistHelperName;
   bool? hasHelperTherapistAccepted;
-  int? maxAllowedParticipants;
+
   List<String?>? participantsId;
 
   /// Timestamp.fromDate(DateTime.now()) is an example of using timeStamp
@@ -31,7 +31,6 @@ class TGroupModel extends INetworkModel<TGroupModel> {
     this.therapistHelperId,
     this.therapistHelperName,
     this.hasHelperTherapistAccepted,
-    this.maxAllowedParticipants,
     this.participantsId,
     this.dateTime,
   });

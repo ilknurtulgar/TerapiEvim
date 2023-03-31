@@ -23,9 +23,11 @@ class TerapiEvimLogged extends StatefulWidget {
 }
 
 class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
-  late final MainController _controller;
+  late final MainController _controller=Get.find();
 
-  @override
+  // main controller burada kalınca hata verdi o yüzden mecburi olarak main dart içerisinde get put ettim
+
+  /*@override
   void initState() {
     _controller = Get.put(MainController());
     super.initState();
@@ -36,7 +38,7 @@ class _TerapiEvimLoggedState extends State<TerapiEvimLogged> {
     _controller.dispose();
     Get.delete<MainController>();
     super.dispose();
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {

@@ -12,7 +12,6 @@ import '../../service/service/auth/i_auth_service.dart';
 import '../base/base_controller.dart';
 
 class SignUpController extends GetxController with BaseController {
-
   @override
   void setContext(BuildContext context) {
     // TODO: implement setContext
@@ -86,13 +85,14 @@ class SignUpController extends GetxController with BaseController {
     super.dispose();
   }
 
-  Future<void> signUpWithEmail(BuildContext context) async {
+  Future<void> signUpWithEmail(BuildContext context, String userRole) async {
     final bool isValidated = _validateSignUp();
     if (isValidated == false) {
       return;
     }
 
     isLoading.value = true;
+    _userRole = userRole;
 
     final String? userId = await authService.signUpWithEmail(
         signUpModel: SignUpModel(
@@ -194,5 +194,4 @@ class SignUpController extends GetxController with BaseController {
     }
     return true;
   }
-
 }

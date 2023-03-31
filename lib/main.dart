@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/controller/group_controller.dart';
+import 'package:terapievim/controller/main_controller.dart';
 import 'controller/auth/auth_controller.dart';
 import 'controller/therapist_group_controller.dart';
 import 'controller/therapist_profile_controller.dart';
@@ -77,4 +78,5 @@ void _initializeControllers() {
   Get.put(TherapistProfileController());
   Get.put(TherapistGroupController());
   Get.put(GroupController());
+  Get.put(MainController());
 }

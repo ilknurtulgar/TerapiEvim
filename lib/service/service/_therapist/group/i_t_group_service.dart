@@ -1,6 +1,7 @@
 import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
+import '../../../model/common/user/user_model.dart';
 import '../../../model/therapist/group/t_group_model.dart';
 
 abstract class ITGroupService {
@@ -10,6 +11,8 @@ abstract class ITGroupService {
 
   /// if result is null, it means an activity was not added
   Future<CreatedIdResponse?> createGroup(TGroupModel group);
+
+  Future<UserModel?> findRandomTherapistHelper();
 
   Future<String?> updateGroup(TGroupModel group);
 

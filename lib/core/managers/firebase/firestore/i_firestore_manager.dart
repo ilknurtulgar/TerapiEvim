@@ -22,18 +22,65 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
   Future<IResponseModel<R?, E?>> read<T extends INetworkModel<T>, R>({
     required T parseModel,
     required String collectionPath,
+    String? docId,
+    int limit,
+    String? collectionPath2,
+  });
+
+  Future<IResponseModel<R?, E?>> readWhere<T extends INetworkModel<T>, R>({
+    required T parseModel,
+    required String collectionPath,
+    required String whereField,
+    required Object whereIsEqualTo,
+    String? docId,
+    int limit,
+    String? collectionPath2,
+  });
+
+  Future<IResponseModel<R?, E?>> readOne<T extends INetworkModel<T>, R>({
+    required T parseModel,
+    required String collectionPath,
     required String docId,
     String? collectionPath2,
     String? docId2,
   });
 
-  Future<IResponseModel<R?, E?>>
-      readOrdered<T extends INetworkModel<T>, R>({
+  Future<IResponseModel<R?, E?>> readOrdered<T extends INetworkModel<T>, R>({
     required T parseModel,
     required String lastDocumentId,
     required String collectionPath,
-    required String docId,
-    required String field,
+    required String orderField,
+    String? docId,
+    int limit,
+    bool isDescending,
+    String? collectionPath2,
+  });
+
+  Future<IResponseModel<R?, E?>>
+      readOrderedWhere2<T extends INetworkModel<T>, R>({
+    required T parseModel,
+    required String lastDocumentId,
+    required String collectionPath,
+    required String orderField,
+    required String whereField,
+    required Object whereIsEqualTo,
+    required String whereField2,
+    required Object whereIsEqualTo2,
+    String? docId,
+    int limit,
+    bool isDescending,
+    String? collectionPath2,
+  });
+
+  Future<IResponseModel<R?, E?>>
+      readOrderedWhere<T extends INetworkModel<T>, R>({
+    required T parseModel,
+    required String lastDocumentId,
+    required String collectionPath,
+    required String orderField,
+    required String whereField,
+    required Object whereIsEqualTo,
+    String? docId,
     int limit,
     bool isDescending,
     String? collectionPath2,

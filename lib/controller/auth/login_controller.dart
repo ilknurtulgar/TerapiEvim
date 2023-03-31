@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/main_controller.dart';
 import '../../core/base/component/toast/toast.dart';
 import '../../product/enum/local_keys_enum.dart';
 import '../../service/model/common/login/login_model.dart';
@@ -7,11 +8,15 @@ import '../../service/model/common/login/login_response_model.dart';
 import '../../service/service/auth/auth_service.dart';
 import '../../service/service/auth/i_auth_service.dart';
 import '../base/base_controller.dart';
-import '../main_controller.dart';
+import 'auth_controller.dart';
 
 class LoginController extends GetxController with BaseController {
-  late final IAuthService authService;
+  @override
+  void setContext(BuildContext context) {
+    // TODO: implement setContext
+  }
 
+  late final IAuthService authService;
   late final TextEditingController emailController;
   late final TextEditingController passwordController;
   late final FocusNode emailFocusNode;
@@ -32,7 +37,7 @@ class LoginController extends GetxController with BaseController {
 
   @override
   void dispose() {
-   // flutterErrorToast("ON DISPOSE");
+    // flutterErrorToast("ON DISPOSE");
     emailController.dispose();
     passwordController.dispose();
     emailFocusNode.dispose();
@@ -60,11 +65,12 @@ class LoginController extends GetxController with BaseController {
 
     if (loginResponse == null) return;
 
-    print('loginResponse:${loginResponse.toJson()}');
     await saveToLocalData(loginResponse);
 
-    MainController maiController = Get.find();
-    maiController.isLogged.value = true;
+    MainController mainController = Get.find();
+    mainController.updateWhoItIs(loginResponse.role!);
+    AuthController authController = Get.find();
+    authController.isLogged.value = true;
   }
 
   Future<void> saveToLocalData(LoginResponseModel loginResponse) async {

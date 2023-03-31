@@ -1,6 +1,6 @@
 import 'dart:ui';
 
-import 'package:cloud_firestore_platform_interface/src/timestamp.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/participant_container.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
@@ -524,6 +524,14 @@ class DemoInformation {
       text: "Özlem Ulusan",
       textStyle: const TextStyle(),
       leadingIcon: IconUtility.personIcon);
+
+  static RowModel recentActivity(String therapistName){
+   return RowModel(
+    isAlignmentBetween: false,
+    text: therapistName,
+    textStyle: const TextStyle(),
+    leadingIcon: IconUtility.personIcon);
+  }
   static RowModel clockmodel = RowModel(
       isAlignmentBetween: false,
       text: "Ocak 15,2023,20:00",

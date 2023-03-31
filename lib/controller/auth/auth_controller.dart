@@ -1,13 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
-import '../main_controller.dart';
-
 class AuthController extends GetxController {
   static AuthController instance = Get.find();
-  static MainController mainController = Get.find();
   late Rx<User?> firebaseUser;
   FirebaseAuth auth = FirebaseAuth.instance;
+  var isLogged = false.obs;
 
   @override
   void onReady() {
@@ -19,6 +17,6 @@ class AuthController extends GetxController {
   }
 
   isLoggedListener(User? user) {
-    mainController.isLogged.value = user == null ? false : true;
+    isLogged.value = user == null ? false : true;
   }
 }

@@ -11,16 +11,18 @@ import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
 
 class ActivityBox extends StatelessWidget {
-  ActivityBox(
-      {super.key,
-      required this.istwobutton,
-      this.ayrowwModel,
-      required this.buttonText,
-      required this.containerModel,
-      required this.arowModel,
-      this.onTap,
-      required this.isactivity,
-      required this.clockModel});
+  ActivityBox({
+    super.key,
+    required this.istwobutton,
+    this.ayrowwModel,
+    required this.buttonText,
+    required this.containerModel,
+    required this.arowModel,
+    required this.isactivity,
+    required this.clockModel,
+    this.onButtonTap,
+    this.onTap,
+  });
 
   final ContainerModel containerModel;
   final RowModel arowModel;
@@ -28,9 +30,15 @@ class ActivityBox extends StatelessWidget {
   final RowModel clockModel;
   final bool isactivity;
   final bool istwobutton;
-  final Function()? onTap;
+  final Function()? onButtonTap, onTap;
   final String buttonText;
-  final TherapistActivtyController therapistActivtyController = Get.find();
+
+  /// TODO: therapistActivityController should not be  initialized here
+  /// TODO: because it also used by participant
+  /// WARNING it caused an issue "TherapistActivityController" not found. You need to call "Get.put(TherapistActivityController())" or "Get.lazyPut(()=>TherapistActivityController())"
+  /// any Functions such as onTap should be called outside a widget. Widget should not be able to control
+
+  final TherapistActivityController therapistActivtyController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -58,12 +66,13 @@ class ActivityBox extends StatelessWidget {
 
                             context.push(NewActivityScreen(
                                 activity: therapistActivtyController
-                                    .recentActivities[0]));
+                                    .myRecentActivities[0]));
                           }, ActivityTextUtil.updateMyInformation,
                             AppContainers.hugeContainerButton())
                         : const SizedBox.shrink(),
-                    rowbutton(() {}, buttonText,
-                        AppContainers.containerButton(false)),
+                    rowbutton(() {
+                      onButtonTap != null ? onButtonTap!() : null;
+                    }, buttonText, AppContainers.containerButton(false)),
                   ],
                 ),
               )

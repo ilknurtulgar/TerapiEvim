@@ -38,19 +38,23 @@ class FirestoreManager<E extends INetworkModel<E>?>
   }) async {
     CreatedIdResponse? createdIdResponse;
     DocumentReference? documentReference;
+
     try {
       if (collectionPath2 != null) {
-        documentReference = await _database
+        documentReference = _database
             .collection(collectionPath)
             .doc(docId)
             .collection(collectionPath2)
-            .add(data);
+            .doc();
       } else {
-        documentReference =
-            await _database.collection(collectionPath).add(data);
+        documentReference = _database.collection(collectionPath).doc();
       }
+      data[AppConst.id] = documentReference.id;
+
+      await documentReference.set(data);
 
       createdIdResponse = CreatedIdResponse(id: documentReference.id);
+
       return createdIdResponse;
     } catch (e) {
       await crashlyticsManager.sendACrash(
@@ -79,7 +83,77 @@ class FirestoreManager<E extends INetworkModel<E>?>
   }
 
   @override
-  Future<IResponseModel<R?, E?>> read<T extends INetworkModel<T>, R>({
+  Future<IResponseModel<R?, E?>> read<T extends INetworkModel<T>, R>(
+      {required T parseModel,
+      required String collectionPath,
+      String? docId,
+      int limit = AppConst.tenItemsPerPage,
+      String? collectionPath2}) async {
+    QuerySnapshot? response;
+    try {
+      /// return paginated items
+      if (collectionPath2 != null) {
+        response = await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .limit(limit)
+            .get();
+      } else {
+        response =
+            await _database.collection(collectionPath).limit(limit).get();
+      }
+
+      final List<QueryDocumentSnapshot<Object?>> queryList = response.docs;
+
+      return _getResponseResult<T, R>(queryList, parseModel);
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(), stackTrace: StackTrace.current, reason: '');
+      return _onError(e);
+    }
+  }
+
+  @override
+  Future<IResponseModel<R?, E?>> readWhere<T extends INetworkModel<T>, R>(
+      {required T parseModel,
+      required String collectionPath,
+      required String whereField,
+      required Object whereIsEqualTo,
+      String? docId,
+      int limit = AppConst.tenItemsPerPage,
+      String? collectionPath2}) async {
+    QuerySnapshot? response;
+    try {
+      /// return paginated items
+      if (collectionPath2 != null) {
+        response = await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .where(whereField, isEqualTo: whereIsEqualTo)
+            .limit(limit)
+            .get();
+      } else {
+        response = await _database
+            .collection(collectionPath)
+            .where(whereField, isEqualTo: whereIsEqualTo)
+            .limit(limit)
+            .get();
+      }
+
+      final List<QueryDocumentSnapshot<Object?>> queryList = response.docs;
+
+      return _getResponseResult<T, R>(queryList, parseModel);
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(), stackTrace: StackTrace.current, reason: '');
+      return _onError(e);
+    }
+  }
+
+  @override
+  Future<IResponseModel<R?, E?>> readOne<T extends INetworkModel<T>, R>({
     required T parseModel,
     required String collectionPath,
     required String docId,
@@ -116,11 +190,11 @@ class FirestoreManager<E extends INetworkModel<E>?>
   Future<IResponseModel<R?, E?>> readOrdered<T extends INetworkModel<T>, R>({
     required String collectionPath,
     String? collectionPath2,
-    required String docId,
-    required String field,
+    String? docId,
+    required String orderField,
     required T parseModel,
     required String lastDocumentId,
-    int limit = AppConst.itemsPerPage,
+    int limit = AppConst.tenItemsPerPage,
     bool isDescending = false,
   }) async {
     QuerySnapshot? response;
@@ -141,14 +215,14 @@ class FirestoreManager<E extends INetworkModel<E>?>
             .collection(collectionPath)
             .doc(docId)
             .collection(collectionPath2)
-            .orderBy(field, descending: isDescending)
+            .orderBy(orderField, descending: isDescending)
             .startAfterDocument(docSnapshot!)
             .limit(limit)
             .get();
       } else if (lastDocumentId.isNotEmpty) {
         response = await _database
             .collection(collectionPath)
-            .orderBy(field, descending: isDescending)
+            .orderBy(orderField, descending: isDescending)
             .startAfterDocument(docSnapshot!)
             .limit(limit)
             .get();
@@ -160,19 +234,176 @@ class FirestoreManager<E extends INetworkModel<E>?>
             .collection(collectionPath)
             .doc(docId)
             .collection(collectionPath2)
-            .orderBy(field, descending: isDescending)
+            .orderBy(orderField, descending: isDescending)
             .limit(limit)
             .get();
       } else if (lastDocumentId.isEmpty) {
         response = await _database
             .collection(collectionPath)
-            .orderBy(field, descending: isDescending)
+            .orderBy(orderField, descending: isDescending)
             .limit(limit)
             .get();
       }
 
       final List<QueryDocumentSnapshot<Object?>>? queryList = response?.docs;
 
+      return _getResponseResult<T, R>(queryList, parseModel);
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(), stackTrace: StackTrace.current, reason: '');
+      return _onError(e);
+    }
+  }
+
+  @override
+  Future<IResponseModel<R?, E?>>
+      readOrderedWhere2<T extends INetworkModel<T>, R>({
+    required T parseModel,
+    required String lastDocumentId,
+    required String collectionPath,
+    required String orderField,
+    required String whereField,
+    required Object whereIsEqualTo,
+    required String whereField2,
+    required Object whereIsEqualTo2,
+    String? collectionPath2,
+    String? docId,
+    int limit = AppConst.tenItemsPerPage,
+    bool isDescending = false,
+  }) async {
+    QuerySnapshot? response;
+    DocumentSnapshot<Map<String, dynamic>>? docSnapshot;
+    try {
+      if (lastDocumentId.isNotEmpty) {
+        /// Creates a path which checks if it is nested
+        final String collectionPathString = collectionPath2 != null
+            ? '$collectionPath/${'$docId/$collectionPath2/'}$lastDocumentId'
+            : '$collectionPath/$lastDocumentId';
+
+        docSnapshot = await _database.doc(collectionPathString).get();
+      }
+
+      /// return paginated items
+      if (collectionPath2 != null && lastDocumentId.isNotEmpty) {
+        response = await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .where(whereField, isEqualTo: whereIsEqualTo)
+            .where(whereField2, isEqualTo: whereIsEqualTo2)
+            .orderBy(orderField, descending: isDescending)
+            .startAfterDocument(docSnapshot!)
+            .limit(limit)
+            .get();
+      } else if (lastDocumentId.isNotEmpty) {
+        response = await _database
+            .collection(collectionPath)
+            .where(whereField, isEqualTo: whereIsEqualTo)
+            .where(whereField2, isEqualTo: whereIsEqualTo2)
+            .orderBy(orderField, descending: isDescending)
+            .startAfterDocument(docSnapshot!)
+            .limit(limit)
+            .get();
+      }
+
+      ///This code is executed if lastDocumentId is not provided
+      if (collectionPath2 != null && lastDocumentId.isEmpty) {
+        response = await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .where(whereField, isEqualTo: whereIsEqualTo)
+            .where(whereField2, isEqualTo: whereIsEqualTo2)
+            .orderBy(orderField, descending: isDescending)
+            .limit(limit)
+            .get();
+      } else if (lastDocumentId.isEmpty) {
+        response = await _database
+            .collection(collectionPath)
+            .where(whereField, isEqualTo: whereIsEqualTo)
+            .where(whereField2, isEqualTo: whereIsEqualTo2)
+            .orderBy(orderField, descending: isDescending)
+            .limit(limit)
+            .get();
+      }
+
+      final List<QueryDocumentSnapshot<Object?>>? queryList = response?.docs;
+
+      return _getResponseResult<T, R>(queryList, parseModel);
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(), stackTrace: StackTrace.current, reason: '');
+      return _onError(e);
+    }
+  }
+
+  @override
+  Future<IResponseModel<R?, E?>>
+      readOrderedWhere<T extends INetworkModel<T>, R>({
+    required T parseModel,
+    required String lastDocumentId,
+    required String collectionPath,
+    required String orderField,
+    required String whereField,
+    required Object whereIsEqualTo,
+    String? collectionPath2,
+    String? docId,
+    int limit = AppConst.tenItemsPerPage,
+    bool isDescending = false,
+  }) async {
+    QuerySnapshot? response;
+    DocumentSnapshot<Map<String, dynamic>>? docSnapshot;
+    try {
+      if (lastDocumentId.isNotEmpty) {
+        /// Creates a path which checks if it is nested
+        final String collectionPathString = collectionPath2 != null
+            ? '$collectionPath/${'$docId/$collectionPath2/'}$lastDocumentId'
+            : '$collectionPath/$lastDocumentId';
+
+        docSnapshot = await _database.doc(collectionPathString).get();
+      }
+
+      /// return paginated items
+      if (collectionPath2 != null && lastDocumentId.isNotEmpty) {
+        response = await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .where(whereField, isEqualTo: whereIsEqualTo)
+            .orderBy(orderField, descending: isDescending)
+            .startAfterDocument(docSnapshot!)
+            .limit(limit)
+            .get();
+      } else if (lastDocumentId.isNotEmpty) {
+        response = await _database
+            .collection(collectionPath)
+            .where(whereField, isEqualTo: whereIsEqualTo)
+            .orderBy(orderField, descending: isDescending)
+            .startAfterDocument(docSnapshot!)
+            .limit(limit)
+            .get();
+      }
+
+      ///This code is executed if lastDocumentId is not provided
+      if (collectionPath2 != null && lastDocumentId.isEmpty) {
+        response = await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .where(whereField, isEqualTo: whereIsEqualTo)
+            .orderBy(orderField, descending: isDescending)
+            .limit(limit)
+            .get();
+      } else if (lastDocumentId.isEmpty) {
+        response = await _database
+            .collection(collectionPath)
+            .where(whereField, isEqualTo: whereIsEqualTo)
+            .orderBy(orderField, descending: isDescending)
+            .limit(limit)
+            .get();
+      }
+
+      final List<QueryDocumentSnapshot<Object?>>? queryList = response?.docs;
 
       return _getResponseResult<T, R>(queryList, parseModel);
     } catch (e) {

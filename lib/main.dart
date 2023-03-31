@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/controller/group_controller.dart';
+import 'package:terapievim/controller/main_controller.dart';
 import 'controller/auth/auth_controller.dart';
-import 'controller/main_controller.dart';
 import 'controller/therapist_group_controller.dart';
 import 'controller/therapist_profile_controller.dart';
 import 'core/base/util/base_utility.dart';
@@ -30,7 +30,7 @@ class TerapiEvim extends StatefulWidget {
 }
 
 class _TerapiEvimState extends State<TerapiEvim> {
-  final MainController _controller = Get.find();
+  final AuthController _authController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +46,7 @@ class _TerapiEvimState extends State<TerapiEvim> {
               unselectedItemColor: AppColors.dustyGray,
               elevation: 70)),
       home: Obx(
-        () => _controller.isLogged.isTrue
+        () => _authController.isLogged.isTrue
             ? const TerapiEvimLogged()
             : const ParticipantLoginPage(),
       ),
@@ -74,9 +74,9 @@ Future<void> initialize() async {
 
 void _initializeControllers() {
   Get.put(AuthController());
-  Get.put(MainController());
   Get.put(ActivityController());
   Get.put(TherapistProfileController());
   Get.put(TherapistGroupController());
   Get.put(GroupController());
+  Get.put(MainController());
 }

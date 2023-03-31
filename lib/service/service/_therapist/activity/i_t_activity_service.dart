@@ -1,10 +1,10 @@
 import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
-import '../../../model/therapist/activity/t_activity_model.dart';
+import '../../../model/common/activity/t_activity_model.dart';
 
-abstract class IActivityService {
-  IActivityService(this.manager);
+abstract class ITActivityService {
+  ITActivityService(this.manager);
 
   final IFirestoreManager<ErrorModelCustom> manager;
 
@@ -13,12 +13,20 @@ abstract class IActivityService {
 
   Future<String?> updateActivity(TActivityModel activity);
 
-  Future<TActivityModel?> getRecentActivity();
+  Future<TActivityModel?> getMyRecentActivity();
+
+  Future<TActivityModel?> getMyPastRecentActivity();
 
   Future<TActivityModel?> getActivityById(String activityId);
 
-  Future<List<TActivityModel?>?> getMyActivitiesOrdered(
+  Future<List<TActivityModel?>> getMyRecentActivitiesOrdered(
       {String lastDocId, String orderField, bool isDescending});
+
+  Future<List<TActivityModel?>> getMyPastActivitiesOrdered(
+      {String lastDocId = '', String orderField, bool isDescending});
+
+  Future<List<TActivityModel?>> getOtherRecentActivitiesOrdered(
+      {String lastDocId = '', String orderField, bool isDescending});
 
   Future<String?> deleteActivity(String activityId);
 }

@@ -11,7 +11,7 @@ import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart'
 
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/models/row_model.dart';
-import '../../../service/model/therapist/activity/t_activity_model.dart';
+import '../../../service/model/common/activity/t_activity_model.dart';
 
 class NewActivityScreen extends StatefulWidget {
   const NewActivityScreen({super.key, this.activity});
@@ -22,15 +22,15 @@ class NewActivityScreen extends StatefulWidget {
   State<NewActivityScreen> createState() => _NewActivityScreenState();
 }
 
-TherapistActivtyController therapistActivtyController = Get.find();
+TherapistActivityController therapistActivityController = Get.find();
 
 class _NewActivityScreenState extends State<NewActivityScreen> {
   @override
   void initState() {
     if (widget.activity != null) {
-      therapistActivtyController.activitynamController.text =
+      therapistActivityController.activitynamController.text =
           widget.activity?.title ?? '';
-      therapistActivtyController.activitydescriptionController.text =
+      therapistActivityController.activitydescriptionController.text =
           widget.activity?.description ?? '';
 
       ///TODO handle others controllers
@@ -47,7 +47,7 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
           child: Column(
             children: [
               Obx(
-                () => therapistActivtyController.isUpdate.value
+                () => therapistActivityController.isUpdate.value
                     ? secappview(UiBaseModel.secRowModel(closeIcon(() {
                         context.pop();
                       }), ActivityTextUtil.update))
@@ -62,12 +62,12 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
               dateclockrow(),
               dateclocktextfield(),
               Obx(
-                () => therapistActivtyController.isUpdate.value
+                () => therapistActivityController.isUpdate.value
                     ? butterFlyButton(ActivityTextUtil.update, () {
-                        therapistActivtyController.updateActivity();
+                        therapistActivityController.updateActivity(context);
                       })
                     : butterFlyButton(ActivityTextUtil.create, () {
-                        therapistActivtyController.createActivity();
+                        therapistActivityController.createActivity(context);
                       }),
               )
             ],
@@ -81,14 +81,14 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
     return CustomTextField(
         isPhoneNumber: false,
         isBig: true,
-        textController: therapistActivtyController.activitynamController,
+        textController: therapistActivityController.activitynamController,
         isPassword: false,
         isRowModel: false);
   }
 
   Widget eventabout() {
     return textfield(
-        342, 204, therapistActivtyController.activitydescriptionController);
+        342, 204, therapistActivityController.activitydescriptionController);
   }
 
   Row dateclocktextfield() {
@@ -96,10 +96,10 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
       children: [
         Expanded(
             child: textfield(
-                160, 60, therapistActivtyController.activitydateController)),
+                160, 60, therapistActivityController.activitydateController)),
         Expanded(
             child: textfield(
-                160, 60, therapistActivtyController.activitytimeController)),
+                160, 60, therapistActivityController.activitytimeController)),
       ],
     );
   }

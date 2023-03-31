@@ -48,9 +48,9 @@ class TherapistActivityScreen extends StatelessWidget {
                   () => myUpcomingActivities(
                       context,
                       therapistActivityController,
-                      therapistActivityController.recentActivities.isEmpty
+                      therapistActivityController.myRecentActivities.isEmpty
                           ? null
-                          : therapistActivityController.recentActivities[0]),
+                          : therapistActivityController.myRecentActivities[0]),
                 ),
                 activityminto(ActivityTextUtil.activity, () {},
                     MainAxisAlignment.spaceBetween, true, IconUtility.forward),

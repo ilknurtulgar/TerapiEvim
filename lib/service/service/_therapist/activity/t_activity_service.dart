@@ -75,7 +75,7 @@ class TActivityService extends ITActivityService with BaseService {
   }
 
   @override
-  Future<TActivityModel?> getRecentActivity() async {
+  Future<TActivityModel?> getMyRecentActivity() async {
     if (userId == null) return null;
 
     final result =
@@ -89,6 +89,33 @@ class TActivityService extends ITActivityService with BaseService {
       whereIsEqualTo: userId!,
       whereField2: AppConst.isFinished,
       whereIsEqualTo2: false,
+      isDescending: true,
+    );
+
+    if (result.error != null) {
+      return null;
+    }
+    if (result.data == null) return null;
+    if (result.data!.isEmpty) return null;
+
+    return result.data![0];
+  }
+
+  @override
+  Future<TActivityModel?> getMyPastRecentActivity() async {
+    if (userId == null) return null;
+
+    final result =
+        await manager.readOrderedWhere2<TActivityModel, List<TActivityModel>>(
+      parseModel: TActivityModel(),
+      collectionPath: APIConst.activities,
+      orderField: AppConst.dateTime,
+      limit: AppConst.oneItemPerPage,
+      lastDocumentId: AppConst.emptyString,
+      whereField: AppConst.therapistId,
+      whereIsEqualTo: userId!,
+      whereField2: AppConst.isFinished,
+      whereIsEqualTo2: true,
       isDescending: true,
     );
 
@@ -118,12 +145,12 @@ class TActivityService extends ITActivityService with BaseService {
   }
 
   @override
-  Future<List<TActivityModel?>?> getMyRecentActivitiesOrdered({
+  Future<List<TActivityModel?>> getMyRecentActivitiesOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
   }) async {
-    if (userId == null) return null;
+    if (userId == null) return [];
 
     final result =
         await manager.readOrderedWhere2<TActivityModel, List<TActivityModel>>(
@@ -141,16 +168,16 @@ class TActivityService extends ITActivityService with BaseService {
       return [];
     }
 
-    return result.data;
+    return result.data ?? [];
   }
 
   @override
-  Future<List<TActivityModel?>?> getMyPastActivitiesOrdered({
+  Future<List<TActivityModel?>> getMyPastActivitiesOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
   }) async {
-    if (userId == null) return null;
+    if (userId == null) return [];
 
     final result =
         await manager.readOrderedWhere2<TActivityModel, List<TActivityModel>>(
@@ -168,16 +195,16 @@ class TActivityService extends ITActivityService with BaseService {
       return [];
     }
 
-    return result.data;
+    return result.data ?? [];
   }
 
   @override
-  Future<List<TActivityModel?>?> getOtherRecentActivitiesOrdered({
+  Future<List<TActivityModel?>> getOtherRecentActivitiesOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
   }) async {
-    if (userId == null) return null;
+    if (userId == null) return [];
 
     final result =
         await manager.readOrderedWhere<TActivityModel, List<TActivityModel>>(
@@ -193,6 +220,6 @@ class TActivityService extends ITActivityService with BaseService {
       return [];
     }
 
-    return result.data;
+    return result.data ?? [];
   }
 }

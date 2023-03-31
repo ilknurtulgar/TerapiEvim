@@ -25,9 +25,9 @@ class TherapistActivityController extends GetxController with BaseController {
   Future<void> onInit() async {
     activityService = TActivityService(vexaFireManager.networkManager);
 
-    TActivityModel? recentActivity = await activityService.getRecentActivity();
+    TActivityModel? recentActivity = await activityService.getMyRecentActivity();
 
-    recentActivities.add(recentActivity);
+    myRecentActivities.add(recentActivity);
 
     super.onInit();
   }
@@ -54,7 +54,7 @@ class TherapistActivityController extends GetxController with BaseController {
 
   late ITActivityService activityService;
 
-  RxList<TActivityModel?> recentActivities = <TActivityModel?>[].obs;
+  RxList<TActivityModel?> myRecentActivities = <TActivityModel?>[].obs;
 
 
   void updatechnage(int index) {
@@ -125,7 +125,7 @@ class TherapistActivityController extends GetxController with BaseController {
   }
 
   Future<TActivityModel?> getRecentActivity() async {
-    final TActivityModel? result = await activityService.getRecentActivity();
+    final TActivityModel? result = await activityService.getMyRecentActivity();
     return result;
   }
 

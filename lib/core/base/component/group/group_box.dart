@@ -66,7 +66,7 @@ class ActivityBox extends StatelessWidget {
 
                             context.push(NewActivityScreen(
                                 activity: therapistActivtyController
-                                    .recentActivities[0]));
+                                    .myRecentActivities[0]));
                           }, ActivityTextUtil.updateMyInformation,
                             AppContainers.hugeContainerButton())
                         : const SizedBox.shrink(),

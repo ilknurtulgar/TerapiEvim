@@ -5,6 +5,7 @@ import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../../core/managers/firebase/firestore/models/empty_model.dart';
+import '../../../model/common/user/user_model.dart';
 import '../../../model/therapist/group/t_group_model.dart';
 import 'i_t_group_service.dart';
 
@@ -18,8 +19,6 @@ class TActivityService extends ITGroupService with BaseService {
 
     final CreatedIdResponse? createdIdResponse = await manager.create(
       collectionPath: APIConst.therapist,
-      docId: userId!,
-      collectionPath2: APIConst.groups,
       data: group.toJson()!,
     );
 
@@ -28,6 +27,25 @@ class TActivityService extends ITGroupService with BaseService {
     }
 
     return null;
+  }
+
+  @override
+  Future<UserModel?> findRandomTherapistHelper() async {
+    if (userId == null) return null;
+
+    final result = await manager.readWhere<UserModel, List<UserModel?>>(
+        collectionPath: APIConst.users,
+        parseModel: UserModel(),
+        limit: AppConst.twentyItemsPerPage,
+        whereField: AppConst.role,
+        whereIsEqualTo: AppConst.therapist);
+
+    if (result.error != null) return null;
+    if (result.data == null) return null;
+
+    ///TODO return a random therapist
+
+    return result.data![0];
   }
 
   @override
@@ -88,8 +106,7 @@ class TActivityService extends ITGroupService with BaseService {
   }) async {
     if (userId == null) return null;
 
-    final result =
-        await manager.readOrdered<TGroupModel, List<TGroupModel>>(
+    final result = await manager.readOrdered<TGroupModel, List<TGroupModel>>(
       collectionPath: APIConst.therapist,
       docId: userId!,
       collectionPath2: APIConst.activities,

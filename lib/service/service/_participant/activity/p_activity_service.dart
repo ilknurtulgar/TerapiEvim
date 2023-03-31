@@ -34,29 +34,6 @@ class PActivityService extends IPActivityService with BaseService {
   }
 
   @override
-  Future<List<TActivityModel?>?> getMyActivitiesOrdered({
-    String lastDocId = '',
-    String orderField = AppConst.dateTime,
-    bool isDescending = false,
-  }) async {
-    if (userId == null) return null;
-
-    final result =
-        await manager.readOrdered<TActivityModel, List<TActivityModel>>(
-      collectionPath: APIConst.activities,
-      parseModel: TActivityModel(),
-      orderField: orderField,
-      isDescending: isDescending,
-      lastDocumentId: lastDocId,
-    );
-    if (result.error != null) {
-      return [];
-    }
-
-    return result.data;
-  }
-
-  @override
   Future<TActivityModel?> getActivityById(String activityId) async {
     if (userId == null) return null;
 
@@ -70,5 +47,55 @@ class PActivityService extends IPActivityService with BaseService {
     }
 
     return result.data;
+  }
+
+  @override
+  Future<List<TActivityModel?>> getPastActivitiesOrdered({
+    String lastDocId = '',
+    String orderField = AppConst.dateTime,
+    bool isDescending = false,
+  }) async {
+    if (userId == null) return [];
+
+    final result =
+        await manager.readOrderedWhere<TActivityModel, List<TActivityModel>>(
+      collectionPath: APIConst.activities,
+      parseModel: TActivityModel(),
+      orderField: orderField,
+      whereField: AppConst.isFinished,
+      whereIsEqualTo: true,
+      isDescending: isDescending,
+      lastDocumentId: lastDocId,
+    );
+    if (result.error != null) {
+      return [];
+    }
+
+    return result.data ?? [];
+  }
+
+  @override
+  Future<List<TActivityModel?>> getRecentActivitiesOrdered({
+    String lastDocId = '',
+    String orderField = AppConst.dateTime,
+    bool isDescending = false,
+  }) async {
+    if (userId == null) return [];
+
+    final result =
+        await manager.readOrderedWhere<TActivityModel, List<TActivityModel>>(
+      collectionPath: APIConst.activities,
+      parseModel: TActivityModel(),
+      orderField: orderField,
+      whereField: AppConst.isFinished,
+      whereIsEqualTo: false,
+      isDescending: isDescending,
+      lastDocumentId: lastDocId,
+    );
+    if (result.error != null) {
+      return [];
+    }
+
+    return result.data ?? [];
   }
 }

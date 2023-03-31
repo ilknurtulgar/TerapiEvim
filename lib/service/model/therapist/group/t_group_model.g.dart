@@ -7,7 +7,7 @@ part of 't_group_model.dart';
 // **************************************************************************
 
 TGroupModel _$TGroupModelFromJson(Map<String, dynamic> json) => TGroupModel(
-      groupId: json['groupId'] as String?,
+      id: json['groupId'] as String?,
       therapistId: json['therapistId'] as String?,
       name: json['name'] as String?,
       therapistHelperId: json['therapistHelperId'] as String?,
@@ -23,7 +23,7 @@ TGroupModel _$TGroupModelFromJson(Map<String, dynamic> json) => TGroupModel(
 
 Map<String, dynamic> _$TGroupModelToJson(TGroupModel instance) =>
     <String, dynamic>{
-      'groupId': instance.groupId,
+      'groupId': instance.id,
       'therapistId': instance.therapistId,
       'name': instance.name,
       'therapistHelperId': instance.therapistHelperId,

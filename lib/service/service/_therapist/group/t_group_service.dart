@@ -77,7 +77,7 @@ class TActivityService extends ITGroupService with BaseService {
       collectionPath: APIConst.therapist,
       docId: userId!,
       collectionPath2: APIConst.groups,
-      docId2: group.groupId,
+      docId2: group.id,
       data: group,
     );
     if (result.error != null) {

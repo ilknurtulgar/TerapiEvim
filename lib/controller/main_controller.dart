@@ -2,11 +2,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/base/base_controller.dart';
-import 'package:terapievim/core/init/cache/local_manager.dart';
 
 import '../core/base/component/bottom_nav_bar/custom_tab_scaffold.dart';
 import '../core/base/component/toast/toast.dart';
-import '../product/enum/local_keys_enum.dart';
 
 class MainController extends GetxController with BaseController {
   var currentScreenIndex = 0.obs;
@@ -31,7 +29,7 @@ class MainController extends GetxController with BaseController {
   @override
   void onInit() {
     tabController = CupertinoTabController();
-    const String currentRole = "therapist";
+    const String currentRole = "participant";
     // final String currentRole =
     //     localManager.getStringValue(LocalManagerKeys.role);
     updateWhoItIs(currentRole);

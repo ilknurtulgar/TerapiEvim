@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 import 'package:terapievim/core/base/component/home/participant_with_sc_time.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 
-import '../message/message.dart';
 import 'available_hours.dart';
 
 class SessionScreen extends StatelessWidget {
@@ -55,9 +55,17 @@ class SessionScreen extends StatelessWidget {
 }
 
 Widget orderdropdown() {
-  return const CustomDropDown(
-    isGenderPurpose: false,
-    height: SizeUtil.smallValueHeight,
-    width: SizeUtil.normalValueWidth,
+  return Obx(
+    () => CustomDropDown(
+      ontap: () {
+        print("çalismiyorki");
+        activityController.func(DemoInformation.orderingList, 1);
+        activityController.changeBox();
+      },
+      textlist: DemoInformation.orderingList,
+      widget: textpurpose(activityController.order.value),
+      height: SizeUtil.smallValueHeight,
+      width: SizeUtil.normalValueWidth,
+    ),
   );
 }

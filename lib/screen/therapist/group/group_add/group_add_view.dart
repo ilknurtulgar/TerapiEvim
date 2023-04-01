@@ -53,10 +53,9 @@ class GroupAddView extends StatelessWidget {
               rowView(appRow(context), AppPaddings.appBarPadding),
               miniHeadings(GroupTextUtil.groupNameText, false),
               CustomTextField(
-                  isPhoneNumber: false,
+                  isOne: true,
                   isBig: true,
                   textController: groupNameController,
-                  isPassword: false,
                   isRowModel: false),
               miniHeadings(GroupTextUtil.secondTherapistText, false),
               Election(

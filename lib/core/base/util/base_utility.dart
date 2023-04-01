@@ -471,7 +471,7 @@ Padding colon(bool isInAlertDialog) {
 
 class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
-    const TherapistHome(),
+    TherapistHome(),
     const TherapistActivityScreen(),
     TherapistGroupPage(),
     const TherapistMessageScreen(),
@@ -525,13 +525,14 @@ class DemoInformation {
       textStyle: const TextStyle(),
       leadingIcon: IconUtility.personIcon);
 
-  static RowModel recentActivity(String therapistName){
-   return RowModel(
-    isAlignmentBetween: false,
-    text: therapistName,
-    textStyle: const TextStyle(),
-    leadingIcon: IconUtility.personIcon);
+  static RowModel recentActivity(String therapistName) {
+    return RowModel(
+        isAlignmentBetween: false,
+        text: therapistName,
+        textStyle: const TextStyle(),
+        leadingIcon: IconUtility.personIcon);
   }
+
   static RowModel clockmodel = RowModel(
       isAlignmentBetween: false,
       text: "Ocak 15,2023,20:00",
@@ -871,6 +872,7 @@ Widget responsivenestext(String text, TextStyle? style) {
   return Text(
     text,
     style: style,
+    textAlign: TextAlign.left,
     textScaleFactor: ResponsivenessManager.instance.widthFactorMax1,
   );
 }

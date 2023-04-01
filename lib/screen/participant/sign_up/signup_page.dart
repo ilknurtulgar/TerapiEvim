@@ -71,18 +71,14 @@ class _SignUpPageState extends State<SignUpPage> {
                       ? acceptMakingShortCallContainer()
                       : const SizedBox(),
                 ),
-                LoginPageUtility.button(
-                  false,
-                  false,
-                  () {
-                    _signUpController.signUpWithEmail(context);
-                  },context
-                ),
+                LoginPageUtility.button(false, false, () {
+                  _signUpController.signUpWithEmail(context);
+                }, context),
                 LoginPageUtility.lineWithOrText(context),
                 LoginPageUtility.button(true, false,
-                    () => context.push(const ParticipantLoginPage()),context),
+                    () => context.push(const ParticipantLoginPage()), context),
                 const SizedBox()
-                ],
+              ],
             ),
           ),
         ));
@@ -92,11 +88,13 @@ class _SignUpPageState extends State<SignUpPage> {
     return Container(
       decoration: AppBoxDecoration.noBorder,
       child: SizedBox(
-        width: Responsive.width(SizeUtil.generalWidth, context),
-        child: Padding(
-          padding: MediaQuery.of(context).size.width < 574 ? AppPaddings.componentPadding : EdgeInsets.zero,
-          child: AcceptionRow(isForMakingShortCall: true),
-        )),
+          width: Responsive.width(SizeUtil.generalWidth, context),
+          child: Padding(
+            padding: MediaQuery.of(context).size.width < 574
+                ? AppPaddings.componentPadding
+                : EdgeInsets.zero,
+            child: AcceptionRow(isForMakingShortCall: true),
+          )),
     );
   }
 /*  textfieldUtility.nameSurnameTextfield(_signUpController.nameController, true),

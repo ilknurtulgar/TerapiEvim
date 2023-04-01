@@ -79,10 +79,9 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
 
   CustomTextField eventname() {
     return CustomTextField(
-        isPhoneNumber: false,
+        isOne: true,
         isBig: true,
         textController: therapistActivityController.activitynamController,
-        isPassword: false,
         isRowModel: false);
   }
 
@@ -120,12 +119,11 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
   Widget textfield(double width, double height,
       TextEditingController textEditingController) {
     return CustomTextField(
+        isOne: true,
         height: height,
         width: width,
-        isPhoneNumber: false,
         isBig: true,
         textController: textEditingController,
-        isPassword: false,
         isRowModel: false);
   }
 

@@ -1,5 +1,4 @@
 // ignore: implementation_imports
-import 'package:flutter/src/widgets/editable_text.dart';
 import 'package:get/get.dart';
 
 class ActivityController extends GetxController {
@@ -9,23 +8,10 @@ class ActivityController extends GetxController {
     activityIcon[index] = !activityIcon[index];
   }
 
-  var gender = "Seçiniz".obs;
-
   var order = "Yeniden eskiye ".obs;
 
-  void func(
-    String value,
-    bool isGenderPurpose,
-    TextEditingController? textController,
-  ) {
-    if (textController == null) return;
-    if (isGenderPurpose) {
-      gender.value = value;
-      textController.text = value;
-    } else {
-      order.value = value;
-      textController.text = value;
-    }
+  void func(List<String> value, index) {
+    order.value = value[index];
   }
 
   var selectedBox = false.obs;

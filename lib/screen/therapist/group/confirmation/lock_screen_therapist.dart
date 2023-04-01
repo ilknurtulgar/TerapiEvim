@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/therapist/group/group_verification_controller.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/group/confirmation/uploading.dart';
-import '../../../../controller/therapist_group_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../groups_informations/my_groups_view.dart';
 
 class LockScreenTherapist extends StatelessWidget {
   const LockScreenTherapist({super.key});
-
+//conform edilme suresinde acilacak sayfa??
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +29,7 @@ class LockScreenTherapist extends StatelessWidget {
 }
 
 Widget popUp(BuildContext context) {
-  TherapistGroupController controller = Get.find();
+  GroupVerificationController controller = Get.find();
   Widget shown = controller.isTherapistUploaded.isFalse
       ? noUpload(context)
       : conformed(context);

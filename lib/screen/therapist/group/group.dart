@@ -18,22 +18,3 @@ class TherapistGroupPage extends StatelessWidget {
             : const LockScreenTherapist());
   }
 }
-
-
-
-
-
-
-
-// // ignore: must_be_immutable
-// class TherapistGroupPage extends StatelessWidget {
-//   TherapistGroupPage({super.key});
-//   TherapistGroupController controller = Get.put(TherapistGroupController());
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return controller.isLockedOpen.isTrue
-//         ? const MyGroups()
-//         : const LockScreenTherapist();
-//   }
-// }

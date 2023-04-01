@@ -21,8 +21,6 @@ class GroupAddView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //gecici
-
     return BaseView<GroupAddController>(
         getController: GroupAddController(),
         onModelReady: (model) {},
@@ -37,10 +35,9 @@ class GroupAddView extends StatelessWidget {
                     rowView(appRow(context), AppPaddings.appBarPadding),
                     miniHeadings(GroupTextUtil.groupNameText, false),
                     CustomTextField(
-                        isPhoneNumber: false,
+                          isOne: true,
                         isBig: true,
                         textController: controller.groupNameController,
-                        isPassword: false,
                         isRowModel: false),
                     miniHeadings(GroupTextUtil.secondTherapistText, false),
                     Election(

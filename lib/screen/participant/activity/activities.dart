@@ -74,8 +74,8 @@ Widget activityLoadSeminar(PActivityController pActivityController) {
             onTap: () {
               context.push(const AboutActivityScreen());
             },
-            onButtonTap: (){
-              pActivityController.joinActivity(context,activity);
+            onButtonTap: () {
+              pActivityController.joinActivity(context, activity);
             },
             istwobutton: false,
             buttonText: ActivityTextUtil.join,
@@ -138,9 +138,8 @@ final TextEditingController activityTextController = TextEditingController();
 
 Widget search(RowModel rowModel) {
   return CustomTextField(
-    isPhoneNumber: false,
+    isOne: true,
     isBig: true,
-    isPassword: false,
     isRowModel: true,
     rowModel: rowModel,
     textController: activityTextController,

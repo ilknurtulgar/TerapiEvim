@@ -9,8 +9,10 @@ import 'package:terapievim/screen/therapist/home/session_screen.dart';
 import '../../../core/base/component/home/notification_container.dart';
 
 class TherapistHome extends StatelessWidget {
-  const TherapistHome({super.key});
-
+  TherapistHome({
+    super.key,
+  });
+  TextEditingController textEditingController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(

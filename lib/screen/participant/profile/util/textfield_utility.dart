@@ -4,6 +4,7 @@ import '../../../../core/base/component/login/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/base/models/row_model.dart';
 import '../../../../core/base/util/base_utility.dart';
+
 ///TODO: TextFieldUtility should be independent from activityController
 ActivityController activityController = Get.find();
 
@@ -11,6 +12,8 @@ class TextfieldUtility {
   CustomTextField nameSurnameTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
+          isOne: false,
+          title: "Ad Soyad",
           textController: textController,
           rowModel: RowModel(
             text: isBig ? 'Adınız Soyadınız' : "",
@@ -20,14 +23,14 @@ class TextfieldUtility {
             isAlignmentBetween: false,
             leadingIcon: isBig ? IconUtility.personIcon : null,
           ),
-          isPhoneNumber: false,
           isBig: isBig,
-          isPassword: false,
           isRowModel: false);
 
   CustomTextField birthOfDateTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
+        isOne: false,
+        title: "Doğum Tarihi",
         textController: textController,
         rowModel: RowModel(
             text: isBig ? 'Doğum Tarihiniz' : "",
@@ -37,60 +40,60 @@ class TextfieldUtility {
             leadingIcon: IconButton(
                 icon: IconUtility.calendarIcon,
                 onPressed: () => choosingBirthday(textController))),
-        isPhoneNumber: false,
         isBig: isBig,
-        isPassword: false,
         isRowModel: true,
       );
   CustomTextField mailTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
+          isOne: false,
+          title: "Email",
           textController: textController,
           rowModel: RowModel(
+              text2: "abcde@gmail.com",
               text: isBig ? 'E Posta Adresiniz' : "",
               textStyle: const TextStyle(color: AppColors.black),
               isAlignmentBetween: false,
               leadingIcon: IconUtility.emailIcon),
-          isPhoneNumber: false,
           isBig: isBig,
-          isPassword: false,
+          obsecureText: false,
           isRowModel: true);
 
-  CustomTextField passwordTextfield(
-          TextEditingController textController, bool isBig) =>
-      CustomTextField(
-          textController: textController,
-          rowModel: RowModel(
-            text: isBig ? 'Şifre' : "",
-            textStyle: const TextStyle(color: AppColors.black),
-            isAlignmentBetween: false,
-            leadingIcon: IconUtility.lockSmall,
-            trailingIcon: Obx(
-              () => IconButton(
+  Widget passwordTextfield(TextEditingController textController, bool isBig) =>
+      Obx(
+        () => CustomTextField(
+            isOne: false,
+            obsecureText: activityController.isObsecure.value,
+            title: "Şifreee",
+            textController: textController,
+            rowModel: RowModel(
+              text: isBig ? 'Şifre' : "",
+              textStyle: const TextStyle(color: AppColors.black),
+              isAlignmentBetween: false,
+              leadingIcon: IconUtility.lockSmall,
+              trailingIcon: IconButton(
                 icon: Icon(activityController.isObsecure.value
                     ? IconUtility.visibilityoffIcon.icon
                     : IconUtility.visibilityIcon.icon),
                 onPressed: () => activityController.obsecureChange(),
               ),
             ),
-          ),
-          isPhoneNumber: false,
-          isBig: isBig,
-          isPassword: true,
-          isRowModel: true);
+            isBig: isBig,
+            isRowModel: true),
+      );
 
   CustomTextField phoneTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
+          isOne: false,
           textController: textController,
           rowModel: RowModel(
               text: isBig ? 'Telefon Numaranız' : "",
               textStyle: const TextStyle(color: AppColors.black),
               isAlignmentBetween: false,
               leadingIcon: isBig ? IconUtility.contactPhoneIcon : null),
-          isPhoneNumber: true,
+          prefixText: "+90",
           isBig: isBig,
-          isPassword: false,
           isRowModel: true);
 
   ActivityController activityController = Get.find();

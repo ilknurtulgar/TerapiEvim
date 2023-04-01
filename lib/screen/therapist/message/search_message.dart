@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/controller/t_message_controller.dart';
+import 'package:terapievim/core/base/component/buttons/election.dart';
+import 'package:terapievim/core/base/component/group/person.dart';
+import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/activity/activities.dart';
-import 'package:terapievim/screen/therapist/message/companent/person_view.dart';
+import 'package:terapievim/screen/participant/message/message.dart';
 
+import '../../../core/base/component/group/row_view.dart';
+import '../../../core/base/component/profile/image/custom_circle_avatar.dart';
 import '../../../core/base/util/text_utility.dart';
 
 class SearchMessage extends StatefulWidget {
@@ -15,6 +22,9 @@ class SearchMessage extends StatefulWidget {
 }
 
 class _SearchMessageState extends State<SearchMessage> {
+  TherapistyMessageController therapistyMessageController =
+      Get.put(TherapistyMessageController());
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,14 +34,26 @@ class _SearchMessageState extends State<SearchMessage> {
             children: [
               searchappbar(),
               ListView.builder(
+                shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
-                  return PersonView(
-                      groupName: DemoInformation.groupList[index],
-                      list: DemoInformation.personList);
+                  return Election(
+                      election: ControllerElection.therapistyMessageController,
+                      firstRow: Container(
+                        width: SizeUtil.generalWidth,
+                        height: SizeUtil.normalValueHeight,
+                        decoration: AppBoxDecoration.sendDecoration,
+                        child: InkWell(
+                            onTap: () {
+                              therapistyMessageController.personListchange();
+                            },
+                            child: rowView(
+                                UiBaseModel.personviewRowModel("oke"),
+                                AppPaddings.generalPadding)),
+                      ),
+                      rows: person(context));
                 },
                 itemCount: DemoInformation.groupList.length,
-                shrinkWrap: true,
               ),
             ],
           ),
@@ -51,4 +73,23 @@ class _SearchMessageState extends State<SearchMessage> {
       ],
     );
   }
+}
+
+List<PersonMin> person(BuildContext context) => [
+      chatperson("therapistName", context),
+      chatperson("therapistName", context)
+    ];
+
+PersonMin chatperson(String therapistName, BuildContext context) {
+  return PersonMin(
+      onTap: () {
+        context.push(MessageScreen());
+      },
+      row: RowModel(
+        text: therapistName,
+        leadingIcon: CustomCircleAvatar(
+            big: false, imagePath: DemoInformation.imagePath, shadow: false),
+        textStyle: AppTextStyles.groupTextStyle(true),
+        isAlignmentBetween: true,
+      ));
 }

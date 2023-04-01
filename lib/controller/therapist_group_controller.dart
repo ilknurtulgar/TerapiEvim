@@ -34,28 +34,6 @@ class TherapistGroupController extends GetxController {
   }
 
   //grup eklmee kismi icin controller
-  var isSecTherapistElectionOpen = false.obs;
-  void changeSecTherapistElection() {
-    isSecTherapistElectionOpen.value = !isSecTherapistElectionOpen.isTrue;
-  }
-
-  var isDayElectionOpen = false.obs;
-  void changeDayElection() {
-    isDayElectionOpen.value = !isDayElectionOpen.isTrue;
-  }
-
-  void changeChoosenDay(String day) {
-    choosenDay = RxString(day);
-  }
-
-  var choosenDay = "Gun Seciniz".obs;
-  var choosenSecTherapist = "Yok".obs;
-  var isSecTherapistChoosed = false.obs;
-
-  void changeChoosenSecTherapist(String name) {
-    isSecTherapistChoosed.value = true;
-    choosenSecTherapist.value = name;
-  }
 
   var isParticipantElectionOpen = false.obs;
   void changeParticipantElection() {
@@ -65,6 +43,7 @@ class TherapistGroupController extends GetxController {
   //lock screen controller
   var isTherapistUploaded = true.obs;
   var isLockedOpen = false.obs;
+
   void changeIsTherapistLoaded() {
     isTherapistUploaded.value = !isTherapistUploaded.value;
   }
@@ -75,17 +54,19 @@ class TherapistGroupController extends GetxController {
 
   var timeListsInController = [].obs;
 
-  // müsait olduğum saatler sayfasında saat ekle kısmında kaydet butonuyla timeListsInController'a saat listesi ekleneceği için bu fonksiyona gerek kalmıyor 
+  // müsait olduğum saatler sayfasında saat ekle kısmında kaydet butonuyla timeListsInController'a saat listesi ekleneceği için bu fonksiyona gerek kalmıyor
   /*void getTimeListToController(List<String> timeList) {
     timeListInControllerList.add(timeList.obs);
   }*/
 
   void deleteTimeInMainPage(int rowIndex, int listViewIndex) {
-    timeListsInController[listViewIndex].remove(timeListsInController[listViewIndex][rowIndex]);
+    timeListsInController[listViewIndex]
+        .remove(timeListsInController[listViewIndex][rowIndex]);
     // print(timeListInControllerList);
   }
 
-  var tempTimes = [].obs; // ilknur bu listeye saatleri teker teker ekleyecek ardından kaydet butonuna basınca bu liste timeListInControllerList e eklenecek sonra başka bir tarih için tempList temizlenecek
+  var tempTimes = []
+      .obs; // ilknur bu listeye saatleri teker teker ekleyecek ardından kaydet butonuna basınca bu liste timeListInControllerList e eklenecek sonra başka bir tarih için tempList temizlenecek
   void deleteTimeInAddingPage(int rowIndex) {
     tempTimes.remove(tempTimes[rowIndex]);
   }

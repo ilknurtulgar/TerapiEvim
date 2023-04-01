@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist_group_controller.dart';
+import 'package:terapievim/controller/therapist/group/group_add_controller.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/group/choosing_time_group_therapy.dart';
@@ -11,6 +11,7 @@ import 'package:terapievim/core/base/component/profile/image/custom_circle_avata
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/base/view/base_view.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/util/base_model.dart';
@@ -20,65 +21,47 @@ class GroupAddView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TherapistGroupController controller = Get.put(TherapistGroupController());
-    TextEditingController groupNameController = TextEditingController();
-
-    //gecici
-
-    List<PersonMin> days = [
-      day(GroupTextUtil.monday),
-      day(GroupTextUtil.tuesday),
-      day(GroupTextUtil.wednesday),
-      day(GroupTextUtil.thursday),
-      day(GroupTextUtil.friday),
-      day(GroupTextUtil.saturday),
-      day(GroupTextUtil.sunday),
-    ];
-
-    List<PersonMin> persons = [
-      //cikartamiyorum person widgeti kullanildi cunku
-      person("Nihat Turgutlu", context),
-      person("Mikasa Ackerman", context),
-      person("Eren Jeager", context),
-      person("Levi Ackerman", context)
-    ];
-
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-            child: Padding(
-          padding: AppPaddings.pagePadding,
-          child: Column(
-            children: [
-              rowView(appRow(context), AppPaddings.appBarPadding),
-              miniHeadings(GroupTextUtil.groupNameText, false),
-              CustomTextField(
-                  isPhoneNumber: false,
-                  isBig: true,
-                  textController: groupNameController,
-                  isPassword: false,
-                  isRowModel: false),
-              miniHeadings(GroupTextUtil.secondTherapistText, false),
-              Election(
-                  election:
-                      ControllerElection.therapistGroupControllerSecTherapist,
-                  firstRow: secTherapist(),
-                  rows: persons),
-              button(context, controller, false),
-              miniHeadings(GroupTextUtil.meetDayText, false),
-              miniHeadings(GroupTextUtil.dayText, true),
-              Election(
-                  election: ControllerElection.therapistGroupControllerDay,
-                  firstRow: dayRow(),
-                  rows: days),
-              miniHeadings(GroupTextUtil.timeText, true),
-              ChoosingTimeGroupTherapy(),
-              button(context, controller, true)
-            ],
-          ),
-        )),
-      ),
-    );
+    return BaseView<GroupAddController>(
+        getController: GroupAddController(),
+        onModelReady: (model) {},
+        onPageBuilder: (context, controller) {
+          return Scaffold(
+            body: SafeArea(
+              child: SingleChildScrollView(
+                  child: Padding(
+                padding: AppPaddings.pagePadding,
+                child: Column(
+                  children: [
+                    rowView(appRow(context), AppPaddings.appBarPadding),
+                    miniHeadings(GroupTextUtil.groupNameText, false),
+                    CustomTextField(
+                          isOne: true,
+                        isBig: true,
+                        textController: controller.groupNameController,
+                        isRowModel: false),
+                    miniHeadings(GroupTextUtil.secondTherapistText, false),
+                    Election(
+                        election: ControllerElection
+                            .therapistGroupControllerSecTherapist,
+                        firstRow: secTherapist(controller),
+                        rows: persons(controller, context)),
+                    button(context, controller, false),
+                    miniHeadings(GroupTextUtil.meetDayText, false),
+                    miniHeadings(GroupTextUtil.dayText, true),
+                    Election(
+                        election:
+                            ControllerElection.therapistGroupControllerDay,
+                        firstRow: dayRow(controller),
+                        rows: days(controller)),
+                    miniHeadings(GroupTextUtil.timeText, true),
+                    ChoosingTimeGroupTherapy(),
+                    button(context, controller, true)
+                  ],
+                ),
+              )),
+            ),
+          );
+        });
   }
 
   RowModel appRow(BuildContext context) {
@@ -94,8 +77,7 @@ class GroupAddView extends StatelessWidget {
         ));
   }
 
-  Obx dayRow() {
-    TherapistGroupController controller = Get.find();
+  Obx dayRow(GroupAddController controller) {
     return Obx(
       () => SizedBox(
           child: SeminarMin(
@@ -106,7 +88,7 @@ class GroupAddView extends StatelessWidget {
     );
   }
 
-  RowModel dayRowModel(TherapistGroupController controller) {
+  RowModel dayRowModel(GroupAddController controller) {
     return RowModel(
         text: controller.choosenDay.value,
         textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
@@ -116,8 +98,7 @@ class GroupAddView extends StatelessWidget {
             : IconUtility.arrowDown);
   }
 
-  Obx secTherapist() {
-    TherapistGroupController controller = Get.find();
+  Obx secTherapist(GroupAddController controller) {
     return Obx(
       () => SizedBox(
         child: SeminarMin(
@@ -129,7 +110,7 @@ class GroupAddView extends StatelessWidget {
     );
   }
 
-  RowModel secTherapistRowModel(TherapistGroupController controller) {
+  RowModel secTherapistRowModel(GroupAddController controller) {
     return RowModel(
       text: controller.choosenSecTherapist.value,
       textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
@@ -154,8 +135,9 @@ class GroupAddView extends StatelessWidget {
     );
   }
 
-  Padding button(BuildContext context, TherapistGroupController controller,
-      bool isLastButton) {
+//buttonlari ayristir
+  Padding button(
+      BuildContext context, GroupAddController controller, bool isLastButton) {
     return Padding(
       padding: AppPaddings.componentPadding,
       child: CustomButton(
@@ -164,12 +146,11 @@ class GroupAddView extends StatelessWidget {
               : AppContainers.lightPurpleButtonContainer(
                   SizeUtil.mediumValueWidth),
           textColor: isLastButton ? AppColors.white : AppColors.meteorite,
-          onTap: () {
-            if (isLastButton) {
-              //grup olusturma sureci
-              context.pop();
+          onTap: () async {
+            if (!isLastButton) {
+              await controller.setRandomUser();
             } else {
-              controller.changeChoosenSecTherapist("Eren Jaeger");
+              await controller.createNewGroup(context);
             }
           },
           text: isLastButton
@@ -178,10 +159,9 @@ class GroupAddView extends StatelessWidget {
     );
   }
 
-  PersonMin person(String therapistName, BuildContext context) {
-    TherapistGroupController controller = Get.find();
+  PersonMin person(String therapistName, BuildContext context,
+      GroupAddController controller) {
     Icon trailingIcon = IconUtility.emailIcon;
-
     return PersonMin(
         isBorderPurple: true,
         onTap: () {
@@ -199,8 +179,18 @@ class GroupAddView extends StatelessWidget {
             trailingIcon: trailingIcon));
   }
 
+  List<PersonMin> persons(GroupAddController controller, BuildContext context) {
+    return [
+      //cikartamiyorum person widgeti kullanildi cunku
+      person("Nihat Turgutlu", context, controller),
+      person("Mikasa Ackerman", context, controller),
+      person("Eren Jeager", context, controller),
+      person("Levi Ackerman", context, controller)
+    ];
+  }
+
   Future<String?> secTherapistChooseDialog(BuildContext context,
-      String therapistName, TherapistGroupController controller) {
+      String therapistName, GroupAddController controller) {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -224,8 +214,8 @@ class GroupAddView extends StatelessWidget {
     );
   }
 
-  PersonMin day(String dayName) {
-    TherapistGroupController controller = Get.find();
+  PersonMin day(String dayName, GroupAddController controller) {
+    // GroupAddController controller = Get.find();
     return PersonMin(
         onTap: () {
           controller.changeChoosenDay(dayName);
@@ -235,6 +225,19 @@ class GroupAddView extends StatelessWidget {
             isAlignmentBetween: false,
             text: dayName,
             textStyle: AppTextStyles.buttonTextStyle(AppColors.black)));
+  }
+
+  List<PersonMin> days(GroupAddController controller) {
+    return [
+      //fonksiyon
+      day(GroupTextUtil.monday, controller),
+      day(GroupTextUtil.tuesday, controller),
+      day(GroupTextUtil.wednesday, controller),
+      day(GroupTextUtil.thursday, controller),
+      day(GroupTextUtil.friday, controller),
+      day(GroupTextUtil.saturday, controller),
+      day(GroupTextUtil.sunday, controller),
+    ];
   }
 }
 

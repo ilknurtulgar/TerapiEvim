@@ -8,13 +8,13 @@ part 't_group_model.g.dart';
 
 @JsonSerializable()
 class TGroupModel extends INetworkModel<TGroupModel> {
-  String? groupId;
+  String? id;
   String? therapistId;
   String? name;
   String? therapistHelperId;
   String? therapistHelperName;
   bool? hasHelperTherapistAccepted;
-  int? maxAllowedParticipants;
+
   List<String?>? participantsId;
 
   /// Timestamp.fromDate(DateTime.now()) is an example of using timeStamp
@@ -25,13 +25,12 @@ class TGroupModel extends INetworkModel<TGroupModel> {
   Timestamp? dateTime;
 
   TGroupModel({
-    this.groupId,
+    this.id,
     this.therapistId,
     this.name,
     this.therapistHelperId,
     this.therapistHelperName,
     this.hasHelperTherapistAccepted,
-    this.maxAllowedParticipants,
     this.participantsId,
     this.dateTime,
   });

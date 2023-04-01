@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/t_message_controller.dart';
-import 'package:terapievim/controller/therapist_group_controller.dart';
+import '../../../../controller/therapist/group/group_add_controller.dart';
 import '../../util/base_utility.dart';
 import '../group/person.dart';
 
@@ -45,7 +45,7 @@ enum ControllerElection {
 }
 
 extension ControllerTypeExtension on ControllerElection {
-  static TherapistGroupController gController = Get.find();
+  static GroupAddController gController = Get.find();
   static TherapistyMessageController mController = Get.find();
   get value {
     switch (this) {

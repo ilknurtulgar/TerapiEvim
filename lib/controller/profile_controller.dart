@@ -17,7 +17,6 @@ class ProfileController extends GetxController with BaseController {
 
   @override
   void onInit() {
-
     service = ProfileSettingsService(vexaFireManager.networkManager);
 
     name = localManager.getStringValue(LocalManagerKeys.name);
@@ -40,9 +39,11 @@ class ProfileController extends GetxController with BaseController {
   late final IProfileSettingsService service;
   String name = '';
   String birthday = '';
-  String gender = ''; 
-  String email = ''; // updateEmail fonksiyonu yoktu fonksiyon gelince update edilecek
-  String password = ''; // şifre cache ile ilgili bir durumdan dolayı şimdilik update edilmedi
+  String gender = '';
+  String email =
+      ''; // updateEmail fonksiyonu yoktu fonksiyon gelince update edilecek
+  String password =
+      ''; // şifre cache ile ilgili bir durumdan dolayı şimdilik update edilmedi
   String phoneNumber = ''; // PhoneNumberModel parametresi gender olarak kalmış
 
   TextEditingController nameController = TextEditingController();
@@ -54,32 +55,46 @@ class ProfileController extends GetxController with BaseController {
 
   Future<void> save() async {
     if (name != nameController.text.trim()) {
-      final result = await service.updateName(NameModel(name: nameController.text.trim()));
+      final result =
+          await service.updateName(NameModel(name: nameController.text.trim()));
       if (result == null) {
-        await localManager.setStringValue(LocalManagerKeys.name, nameController.text.trim());
+        await localManager.setStringValue(
+            LocalManagerKeys.name, nameController.text.trim());
       }
     }
 
     if (birthday != birthdayController.text.trim()) {
-      final result = await service.updateBirthDate(BirthDateModel(birthdate: birthdayController.text.trim()));
+      final result = await service.updateBirthDate(
+          BirthDateModel(birthdate: birthdayController.text.trim()));
       if (result == null) {
-        await localManager.setStringValue(LocalManagerKeys.birthDate, birthdayController.text.trim());
+        await localManager.setStringValue(
+            LocalManagerKeys.birthDate, birthdayController.text.trim());
       }
     }
 
     if (gender != genderController.text.trim()) {
-      final result = await service.updateGender(GenderModel(gender: genderController.text.trim()));
+      final result = await service
+          .updateGender(GenderModel(gender: genderController.text.trim()));
       if (result == null) {
-        await localManager.setStringValue(LocalManagerKeys.gender, genderController.text.trim());
+        await localManager.setStringValue(
+            LocalManagerKeys.gender, genderController.text.trim());
       }
     }
 
     if (phoneNumber != phoneNumberController.text.trim()) {
-      final result = await service.updatePhoneNumber(PhoneNumberModel(gender: phoneNumberController.text.trim()));
+      final result = await service.updatePhoneNumber(
+          PhoneNumberModel(gender: phoneNumberController.text.trim()));
       if (result == null) {
-        await localManager.setStringValue(LocalManagerKeys.phone, phoneNumberController.text.trim());
+        await localManager.setStringValue(
+            LocalManagerKeys.phone, phoneNumberController.text.trim());
       }
     }
-    
+  }
+
+  var genders = "Seçiniz".obs;
+  void func(List<String> value, TextEditingController? textController) {
+    if (textController == null) return;
+
+    textController.text = value[1];
   }
 }

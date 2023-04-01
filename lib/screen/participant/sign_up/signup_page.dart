@@ -74,7 +74,9 @@ class _SignUpPageState extends State<SignUpPage> {
                       : const SizedBox(),
                 ),
                 LoginPageUtility.button(false, false, () {
+
                   _signUpController.signUpWithEmail(context,_userRole);
+
                 }, context),
                 LoginPageUtility.lineWithOrText(context),
                 LoginPageUtility.button(true, false,

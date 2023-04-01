@@ -1,37 +1,58 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 ///TODO: CustomTextField should be independent from activityController
-ActivityController activityController = Get.find();
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,
-    required this.isPhoneNumber,
     required this.isBig,
     this.rowModel,
     required this.textController,
-    required this.isPassword,
     required this.isRowModel,
     this.width,
     this.height,
+    required this.isOne,
+    this.title,
+    this.obsecureText,
+    this.prefixText,
   }) : super(key: key);
 
   final RowModel? rowModel;
   final bool isBig;
   final bool isRowModel;
-  final bool isPassword;
-  final bool isPhoneNumber;
+  final String? prefixText;
+  final String? title;
   final double? width;
   final double? height;
+  final bool isOne;
+  final bool? obsecureText;
   final TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {
-    //sizedboxdan da
+    /*  if (isBig == true && rowModel == null) {
+      throw Exception(
+          "cant help is big true and row model is null in customtextfield");
+    }*/
+    return isOne ? textField(context) : columnTextField(context);
+  }
+
+  Column columnTextField(
+    BuildContext context,
+  ) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        responsivenestext(
+            title ?? "", AppTextStyles.normalTextStyle("medium", false)),
+        textField(context),
+      ],
+    );
+  }
+
+  Widget textField(BuildContext context) {
     return SizedBox(
       width: width ?? Responsive.width(SizeUtil.generalWidth, context),
       height: height ?? SizeUtil.generalHeight,
@@ -39,24 +60,21 @@ class CustomTextField extends StatelessWidget {
         padding: AppPaddings.componentPadding,
         child: TextField(
           controller: textController,
-          obscureText: isPassword
-              ? activityController.isObsecure.value
-              : activityController.yasemin.value,
+          obscureText: obsecureText ?? false,
           textAlign: TextAlign.start,
-          // maxLines: isBig ? 100 : ,
           decoration: InputDecoration(
             contentPadding:
-                isBig ? const EdgeInsets.all(20) : AppPaddings.contentPadding,
+                isBig ? const EdgeInsets.all(12) : AppPaddings.contentPadding,
             filled: true,
             fillColor: AppColors.white,
-            labelText: rowModel?.text ?? "",
-            labelStyle: rowModel?.textStyle,
-            suffix: isBig ? rowModel?.trailingIcon : null,
+            suffix: isBig
+                ? (rowModel == null ? null : rowModel!.trailingIcon)
+                : null,
             prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
             hintText: rowModel?.text2,
             hintStyle: rowModel?.textStyle2 ??
                 AppTextStyles.normalTextStyle("small", false),
-            prefixText: isPhoneNumber ? '+90 ' : null,
+            prefixText: prefixText,
             enabledBorder: bordercolor(isBig),
             focusedBorder: bordercolor(isBig),
           ),

@@ -1,5 +1,7 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import '../../../../core/base/component/activtiy/drop_down.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
@@ -24,7 +26,8 @@ class ProfilePageUtility {
                 size: 25,
               )));
 
-  static Align profilePagePersonImage(String imagePath,bool isThereEditButton,{Function()? onPressed}) =>
+  static Align profilePagePersonImage(String imagePath, bool isThereEditButton,
+          {Function()? onPressed}) =>
       Align(
         alignment: Alignment.topCenter,
         child: Padding(
@@ -36,13 +39,15 @@ class ProfilePageUtility {
               children: [
                 CustomCircleAvatar(
                     imagePath: imagePath, big: true, shadow: true),
-                isThereEditButton ? Align(
-                  alignment: Alignment.bottomRight,
-                  child: IconButton(
-                    onPressed: onPressed,
-                    icon: IconUtility.editPencil,
-                  ),
-                ) : const SizedBox()
+                isThereEditButton
+                    ? Align(
+                        alignment: Alignment.bottomRight,
+                        child: IconButton(
+                          onPressed: onPressed,
+                          icon: IconUtility.editPencil,
+                        ),
+                      )
+                    : const SizedBox()
               ],
             ),
           ),
@@ -50,11 +55,15 @@ class ProfilePageUtility {
       );
 
   //TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-
+  static ProfileController profileController = Get.find();
   static CustomDropDown genderDropDown(bool isInProfilePage,
           [TextEditingController? textController]) =>
       CustomDropDown(
-        isGenderPurpose: true,
+        textlist: DemoInformation.genderList,
+        widget: textpurpose(profileController.genders.value),
+        ontap: () {
+          profileController.func(DemoInformation.genderList, textController);
+        },
         width:
             isInProfilePage ? SizeUtil.mediumValueWidth : SizeUtil.generalWidth,
         height:

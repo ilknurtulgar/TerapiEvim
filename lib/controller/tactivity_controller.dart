@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../core/base/component/toast/toast.dart';
 import '../core/constants/app_const.dart';
 import '../core/init/navigation/navigation_manager.dart';
@@ -15,7 +14,6 @@ import '../service/service/_therapist/activity/t_activity_service.dart';
 import 'base/base_controller.dart';
 
 class TherapistActivityController extends GetxController with BaseController {
-
   @override
   void setContext(BuildContext context) {
     // TODO: implement setContext
@@ -25,7 +23,8 @@ class TherapistActivityController extends GetxController with BaseController {
   Future<void> onInit() async {
     activityService = TActivityService(vexaFireManager.networkManager);
 
-    TActivityModel? recentActivity = await activityService.getMyRecentActivity();
+    TActivityModel? recentActivity =
+        await activityService.getMyRecentActivity();
 
     myRecentActivities.add(recentActivity);
 
@@ -46,7 +45,7 @@ class TherapistActivityController extends GetxController with BaseController {
   final TextEditingController activitynamController = TextEditingController();
 
   final TextEditingController activitydescriptionController =
-  TextEditingController();
+      TextEditingController();
 
   final TextEditingController activitydateController = TextEditingController();
 
@@ -55,7 +54,6 @@ class TherapistActivityController extends GetxController with BaseController {
   late ITActivityService activityService;
 
   RxList<TActivityModel?> myRecentActivities = <TActivityModel?>[].obs;
-
 
   void updatechnage(int index) {
     if (index == 0) {
@@ -131,7 +129,7 @@ class TherapistActivityController extends GetxController with BaseController {
 
   Future<List<TActivityModel?>?> getMyRecentActivities(
       {String lastDocId = ''}) async {
-    final List<TActivityModel?>? result =
+    final List<TActivityModel?> result =
         await activityService.getMyRecentActivitiesOrdered(
       lastDocId: lastDocId,
       isDescending: true,

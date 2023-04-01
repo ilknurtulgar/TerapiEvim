@@ -1,15 +1,19 @@
 import 'package:flutter/services.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/base/base_controller.dart';
+import 'package:terapievim/core/init/cache/local_manager.dart';
 
 import '../core/base/component/bottom_nav_bar/custom_tab_scaffold.dart';
 import '../core/base/component/toast/toast.dart';
+import '../product/enum/local_keys_enum.dart';
 
-class MainController extends GetxController {
+class MainController extends GetxController with BaseController {
   var currentScreenIndex = 0.obs;
   var isTestNotSolved = true.obs;
   var isTestResultReady = false.obs;
   var isGroupReady = true.obs;
-   var isTherapist = true.obs; //bunun degisimi yapilacak
+  var isTherapist = false.obs; //bunun degisimi yapilacak
   void testSolved() {
     isTestNotSolved.value = false;
   }
@@ -20,8 +24,17 @@ class MainController extends GetxController {
   DateTime _newTime = DateTime.now();
 
   @override
+  void setContext(BuildContext context) {
+    // TODO: implement setContext
+  }
+
+  @override
   void onInit() {
     tabController = CupertinoTabController();
+    const String currentRole = "therapist";
+    // final String currentRole =
+    //     localManager.getStringValue(LocalManagerKeys.role);
+    updateWhoItIs(currentRole);
     super.onInit();
   }
 
@@ -40,5 +53,9 @@ class MainController extends GetxController {
     }
     SystemNavigator.pop();
     return Future.value(true);
+  }
+
+  void updateWhoItIs(String userRole) {
+    isTherapist.value = (userRole == "therapist") ? true : false;
   }
 }

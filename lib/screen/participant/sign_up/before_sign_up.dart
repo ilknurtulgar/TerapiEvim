@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist_profile_controller.dart';
+import 'package:terapievim/controller/main_controller.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/sign_up/signup_page.dart';
@@ -9,7 +9,7 @@ import '../../../core/base/util/base_utility.dart';
 
 class BeforeSignUp extends StatelessWidget {
   BeforeSignUp({super.key});
-  final TherapistProfileController controller = Get.find();
+  final MainController controller = Get.find();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -29,8 +29,8 @@ class BeforeSignUp extends StatelessWidget {
                       text(1),
                       text(2),
                       text(3),
-                      button(true,context),
                       button(false,context),
+                      button(true,context),
                     ],
                   ),
                 ),
@@ -71,18 +71,18 @@ class BeforeSignUp extends StatelessWidget {
         child: Image(image: AssetImage(LoginSignUpTextUtil.homeImagePath)));
   }
 
-  Padding button(bool isForParticipant, BuildContext context) {
+  Padding button(bool isTherapist, BuildContext context) {
     return Padding(
       padding: AppPaddings.customContainerInsidePadding(2),
       child: CustomButton(
         container: AppContainers.beforeLoginButtonContainer,
         onTap: () {
-          controller.isForParticipant.value = isForParticipant;
+          controller.isTherapist.value = isTherapist;
           context.push(const SignUpPage());
         },
-        text: isForParticipant
-            ? LoginSignUpTextUtil.participant
-            : LoginSignUpTextUtil.therapist,
+        text: isTherapist
+            ? LoginSignUpTextUtil.therapist
+            : LoginSignUpTextUtil.participant,
         textColor: AppColors.white,
       ),
     );

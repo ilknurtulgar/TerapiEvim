@@ -7,53 +7,59 @@ import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/message/message.dart';
 import 'package:terapievim/screen/therapist/group/therapist_about.dart';
+import '../../../controller/group_controller.dart';
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/text_utility.dart';
+import '../../../core/base/view/base_view.dart';
 
 class MyGroup extends StatelessWidget {
   const MyGroup({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: AppPaddings.pagePadding,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                rowView(UiBaseModel.appBar(), AppPaddings.appBarPadding),
-                CustomHeading(
+    return BaseView<GroupController>(
+      getController: GroupController(),
+      onModelReady: (model) {},
+      onPageBuilder: (context, controller) => Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: AppPaddings.pagePadding,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  rowView(UiBaseModel.appBar(), AppPaddings.appBarPadding),
+                  CustomHeading(
+                      isalignmentstart: true,
+                      text: GroupTextUtil.upcomingMeetingText),
+                  ActivityBox(
+                      istwobutton: false,
+                      buttonText: GroupTextUtil.joinText,
+                      isactivity: false,
+                      containerModel: AppContainers.containerButton(false),
+                      arowModel: DemoInformation.row,
+                      ayrowwModel: DemoInformation.row,
+                      clockModel: DemoInformation.row),
+                  CustomHeading(
+                    text: GroupTextUtil.groupsInformationText,
                     isalignmentstart: true,
-                    text: GroupTextUtil.upcomingMeetingText),
-                ActivityBox(
-                    istwobutton: false,
-                    buttonText: GroupTextUtil.joinText,
-                    isactivity: false,
-                    containerModel: AppContainers.containerButton(false),
-                    arowModel: DemoInformation.row,
-                    ayrowwModel: DemoInformation.row,
-                    clockModel: DemoInformation.row),
-                CustomHeading(
-                  text: GroupTextUtil.groupsInformationText,
-                  isalignmentstart: true,
-                ),
-                therapist(DemoInformation.row, () {
-                  context.push(const TherapistProfile(isSecTherapist: false));
-                }),
-                therapist(UiBaseModel.messageToTherapist,
-                    () => context.push(MessageScreen())),
-                therapist(DemoInformation.row2, () {
-                  context.push(const TherapistProfile(isSecTherapist: true));
-                }),
-                CustomHeading(
-                  text: GroupTextUtil.participantsText,
-                  isalignmentstart: true,
-                ),
-                participants(DemoInformation.person),
-              ],
+                  ),
+                  therapist(DemoInformation.row, () {
+                    context.push(const TherapistProfile(isSecTherapist: false));
+                  }),
+                  therapist(UiBaseModel.messageToTherapist,
+                      () => context.push(MessageScreen())),
+                  therapist(DemoInformation.row2, () {
+                    context.push(const TherapistProfile(isSecTherapist: true));
+                  }),
+                  CustomHeading(
+                    text: GroupTextUtil.participantsText,
+                    isalignmentstart: true,
+                  ),
+                  participants(DemoInformation.person),
+                ],
+              ),
             ),
           ),
         ),
@@ -78,3 +84,78 @@ class MyGroup extends StatelessWidget {
     );
   }
 }
+
+
+
+
+
+
+
+
+// class MyGroup extends StatelessWidget {
+//   const MyGroup({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       body: SafeArea(
+//         child: SingleChildScrollView(
+//           child: Padding(
+//             padding: AppPaddings.pagePadding,
+//             child: Column(
+//               mainAxisAlignment: MainAxisAlignment.start,
+//               children: [
+//                 rowView(UiBaseModel.appBar(), AppPaddings.appBarPadding),
+//                 CustomHeading(
+//                     isalignmentstart: true,
+//                     text: GroupTextUtil.upcomingMeetingText),
+//                 ActivityBox(
+//                     istwobutton: false,
+//                     buttonText: GroupTextUtil.joinText,
+//                     isactivity: false,
+//                     containerModel: AppContainers.containerButton(false),
+//                     arowModel: DemoInformation.row,
+//                     ayrowwModel: DemoInformation.row,
+//                     clockModel: DemoInformation.row),
+//                 CustomHeading(
+//                   text: GroupTextUtil.groupsInformationText,
+//                   isalignmentstart: true,
+//                 ),
+//                 therapist(DemoInformation.row, () {
+//                   context.push(const TherapistProfile(isSecTherapist: false));
+//                 }),
+//                 therapist(UiBaseModel.messageToTherapist,
+//                     () => context.push(MessageScreen())),
+//                 therapist(DemoInformation.row2, () {
+//                   context.push(const TherapistProfile(isSecTherapist: true));
+//                 }),
+//                 CustomHeading(
+//                   text: GroupTextUtil.participantsText,
+//                   isalignmentstart: true,
+//                 ),
+//                 participants(DemoInformation.person),
+//               ],
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+//   PersonMin therapist(RowModel row, Function() fun) {
+//     return PersonMin(
+//       onTap: fun,
+//       row: row,
+//       isBorderPurple: true,
+//     );
+//   }
+
+//   ListView participants(RowModel person) {
+//     return ListView.builder(
+//       physics: const NeverScrollableScrollPhysics(),
+//       shrinkWrap: true,
+//       itemCount: DemoInformation.tmpParticipantNumber,
+//       itemBuilder: ((context, index) => DemoInformation.tmpParticipant),
+//     );
+//   }
+// }

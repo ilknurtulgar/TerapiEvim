@@ -23,7 +23,7 @@ class PersonView extends StatelessWidget {
           padding: AppPaddings.generalPadding,
           child: Container(
             width: SizeUtil.generalWidth,
-            height: SizeUtil.normalValueHeight, // eski değeri 60
+            height: SizeUtil.normalValueHeight,
             decoration: AppBoxDecoration.sendDecoration,
             child: InkWell(
                 onTap: () {

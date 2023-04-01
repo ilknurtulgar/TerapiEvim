@@ -3,7 +3,6 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../screen/participant/group/category_determination/short_call/determining_to_shortcall_time.dart';
-import '../../../screen/participant/group/group_out.dart';
 import '../component/group/row_view.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
 import '../models/row_model.dart';
@@ -127,7 +126,7 @@ class UiBaseModel {
           isAlignmentBetween: true);
 
   static RowModel appBar() => appBarModel(GroupTextUtil.myGroupText,
-      const GroupOut()); //GroupOut cikinca silinecek o buton
+      const SizedBox()); //GroupOut cikinca silinecek o buton
 
   static RowModel determiningappBar() =>
       appBarModel(GroupTextUtil.terapiEvim, saveButton());

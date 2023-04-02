@@ -21,6 +21,7 @@ import '../../../screen/therapist/message/message.dart';
 import '../../init/managers/responsiveness_manager.dart';
 import '../../managers/converter/date_time_manager.dart';
 import '../component/group/row_view.dart';
+import '../component/home/method_downloading_container.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
 import '../models/card_model.dart';
 import '../models/row_model.dart';
@@ -119,7 +120,8 @@ class IconUtility {
   static Icon micIcon(bool isInCircularContainer) => Icon(Icons.mic,
       color: isInCircularContainer ? AppColors.black : AppColors.white);
   static const Icon micoffIcon = Icon(Icons.mic_off, color: AppColors.red);
-  static const Icon videcamIcon = Icon(Icons.videocam_outlined, color: AppColors.black);
+  static const Icon videcamIcon =
+      Icon(Icons.videocam_outlined, color: AppColors.black);
   static const Icon videocamoffIcon =
       Icon(Icons.videocam_off_outlined, color: AppColors.black);
   static const Icon callendIcon = Icon(Icons.call_end, color: AppColors.white);
@@ -365,6 +367,8 @@ class AppPaddings {
   );
   static const EdgeInsets pagePadding =
       EdgeInsets.only(left: 24, right: 24, bottom: 80, top: 15);
+  static const EdgeInsets pagePaddingHorizontal =
+      EdgeInsets.symmetric(horizontal: 24);
   static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 8);
 
   static EdgeInsets miniHeadingPadding(bool isInMiddle) =>
@@ -499,6 +503,25 @@ class NavigateUtil {
 }
 
 class DemoInformation {
+  static MethodDownloadingContainer demoLAstReviewContainer =
+      MethodDownloadingContainer(
+          cardModel: CardModel(
+              imagePath: DemoInformation.imagePath,
+              title: DemoInformation.therapistName),
+          time: "04/01/2003",
+          explanation: "Kendini bil",
+          buttonOnTap: () {},
+          buttonText: "Oku");
+
+  static MethodDownloadingContainer demoAttendedSeminars =
+      MethodDownloadingContainer(
+          cardModel: CardModel(
+              imagePath: DemoInformation.imagePath,
+              title: DemoInformation.therapistName),
+          time: "04/01/2003",
+          explanation: "Kendini bil",
+          buttonOnTap: () {},
+          buttonText: "Tekrar Izle");
   //message
   static const List<String> personList = [
     "Canan Karatay",
@@ -716,11 +739,12 @@ class DemoInformation {
       isMicOn: true.obs,
       isCamOn: true.obs);
   static PersonInCallModel personNo1 = PersonInCallModel(
-      name: 'Kerem',
-      surname: 'Görkem',
-      imagePath: 'assets/images/f2.jpg',
-      isMicOn: false.obs,
-      isCamOn: true.obs,);
+    name: 'Kerem',
+    surname: 'Görkem',
+    imagePath: 'assets/images/f2.jpg',
+    isMicOn: false.obs,
+    isCamOn: true.obs,
+  );
   static PersonInCallModel personNo2 = PersonInCallModel(
       name: 'Ali',
       surname: 'Aydın',

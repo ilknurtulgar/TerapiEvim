@@ -473,7 +473,7 @@ class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
     TherapistHome(),
     const TherapistActivityScreen(),
-    TherapistGroupPage(),
+    const TherapistGroupPage(),
     const TherapistMessageScreen(),
     const TherapistProfilePage(),
   ];

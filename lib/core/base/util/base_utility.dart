@@ -574,8 +574,6 @@ class DemoInformation {
       "Flutter, Google tarafından oluşturulan açık kaynaklı bir UI yazılım geliştirme kitidir. Android, iOS, Windows, Mac, Linux ve web için uygulamalar geliştirmek için kullanılıyor. Flutter'ın ilk sürümü  olarak biliniyordu ve Android işletim sisteminde çalışıyordu.";
   static const List<String> home = [
     "fdvd deneme deneme deneme deneme ssssdsfsmbfdmösfbsfösbnöfmbsöbfnömsbfö deneme deneme deneme deneme denemeee deneme deneme deneme",
-    "fşdv",
-    "fgbng",
     "yasemin",
     "gizem",
     "ilknur",
@@ -819,7 +817,7 @@ class SizeUtil {
 
   // küçükten büyüğe sıralama
   static const double zeroSize = 0;
-
+  static const double specialSize = 160;
   // width
   static const double lowValueWidth =
       40; // profil sayfasındaki mini container ve listwheelscrollview için
@@ -838,7 +836,7 @@ class SizeUtil {
       350; //danışan sayfasındaki groupContainerWidth
   // height
   static const double lowValueHeight =
-      30; //animatedContainerHeight(listwheelscrollviewdaki),profil sayfasındaki genderDropDownHeight,miniContainerHeight,purpleButtonHeight
+      35; //animatedContainerHeight(listwheelscrollviewdaki),profil sayfasındaki genderDropDownHeight,miniContainerHeight,purpleButtonHeight
   static const double smallValueHeight =
       40; // lockScreenHeight(dropdownheight,filter aynı),loginSignUpButtonHeight,beforeLoginButtonHeight
   static const double normalValueHeight =
@@ -872,7 +870,6 @@ Widget responsivenestext(String text, TextStyle? style) {
   return Text(
     text,
     style: style,
-    textAlign: TextAlign.left,
     textScaleFactor: ResponsivenessManager.instance.widthFactorMax1,
   );
 }

@@ -5,6 +5,7 @@ import 'package:terapievim/controller/base/base_controller.dart';
 
 import '../core/base/component/bottom_nav_bar/custom_tab_scaffold.dart';
 import '../core/base/component/toast/toast.dart';
+import '../product/enum/local_keys_enum.dart';
 
 class MainController extends GetxController with BaseController {
   var currentScreenIndex = 0.obs;
@@ -29,9 +30,8 @@ class MainController extends GetxController with BaseController {
   @override
   void onInit() {
     tabController = CupertinoTabController();
-    const String currentRole = "participant";
-    // final String currentRole =
-    //     localManager.getStringValue(LocalManagerKeys.role);
+    //const String currentRole = "participant";
+    final String currentRole = localManager.getStringValue(LocalManagerKeys.role);
     updateWhoItIs(currentRole);
     super.onInit();
   }

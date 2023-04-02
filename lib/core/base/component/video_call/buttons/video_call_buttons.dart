@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/controller/main_controller.dart';
+import 'package:terapievim/controller/video_call_controller.dart';
 import 'package:terapievim/core/base/component/video_call/video_call_container/circular_container.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 
-class CustomVideoCallButton extends StatefulWidget {
+class CustomVideoCallButton extends StatelessWidget {
   const CustomVideoCallButton(
       {super.key,
       required this.onTap,
@@ -13,51 +16,66 @@ class CustomVideoCallButton extends StatefulWidget {
       required this.backgroundColor});
 
   final Function() onTap;
-  final bool isThisOn;
+  final RxBool isThisOn;
   final Icon icon;
   final Icon? offIcon;
   final Color backgroundColor;
 
   @override
-  State<CustomVideoCallButton> createState() => _CustomVideoCallButtonState();
-}
-
-class _CustomVideoCallButtonState extends State<CustomVideoCallButton> {
-  @override
   Widget build(BuildContext context) {
     return CircularContainer(
-      height: SizeUtil.normalValueHeight,
-      color: widget.backgroundColor,
+      height: Responsive.height(SizeUtil.normalValueHeight, context),
+      color: backgroundColor,
       widget: IconButton(
           iconSize: 30,
-          icon: widget.isThisOn ? widget.icon : widget.offIcon!,
-          onPressed: widget.onTap),
+          icon: Obx(() => isThisOn.value ? icon : offIcon!),
+          onPressed: onTap),
     );
   }
 }
 
 class VideoCallButtonsRow extends StatelessWidget {
-  const VideoCallButtonsRow({
+  VideoCallButtonsRow({
     super.key,
     required this.onToggleMicButtonPressed,
     required this.onToggleCameraButtonPressed,
     required this.onLeaveButtonPressed,
+    this.isGroupTherapyCall,
+    this.isHandsUp,
   });
-
+  MainController mainController = Get.find();
+  VideoCallController videoCallController = Get.find();
   final void Function() onToggleMicButtonPressed;
   final void Function() onToggleCameraButtonPressed;
   final void Function() onLeaveButtonPressed;
+  bool? isGroupTherapyCall;
+  RxBool? isHandsUp;
 
   @override
   Widget build(BuildContext context) {
+    isGroupTherapyCall ??= false;
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       mainAxisSize: MainAxisSize.min,
       children: [
-        VideoCallUtility.cameraIconButton(onToggleCameraButtonPressed, true),
+        isGroupTherapyCall!
+            ? Obx(
+                () => mainController.isTherapist.value
+                    ? VideoCallUtility.therapistSpecialButton(() =>
+                        videoCallController
+                            .openTherapistTab(DemoInformation.participants))
+                    : VideoCallUtility.putYourHandsUpButton(
+                        () => videoCallController.onOffFunction(isHandsUp!),
+                        isHandsUp!),
+              )
+            : const SizedBox(),
+        SizedBox(
+          width: isGroupTherapyCall! ? 16 : 0,
+        ),
+        VideoCallUtility.cameraIconButton(onToggleCameraButtonPressed, true.obs),
         Padding(
           padding: AppPaddings.customContainerInsidePadding(3),
-          child: VideoCallUtility.micIconButton(onToggleMicButtonPressed, true),
+          child: VideoCallUtility.micIconButton(onToggleMicButtonPressed, true.obs),
         ),
         VideoCallUtility.endingCallButton(onLeaveButtonPressed),
       ],

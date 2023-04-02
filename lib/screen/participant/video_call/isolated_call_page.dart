@@ -39,7 +39,8 @@ class IsolatedCallPage extends StatelessWidget {
                     ? DemoInformation.therapist
                     : DemoInformation.personNo1,
                 false),
-            isInShortCallPage: false,
+            whichPage: 2,
+            isLongPressActive: false,
           ),
         ));
   }
@@ -68,7 +69,8 @@ class IsolatedCallPage extends StatelessWidget {
                 ? DemoInformation.personNo1
                 : DemoInformation.therapist,
             false),
-        isInShortCallPage: false,
+        whichPage: 2,
+        isLongPressActive: false,
       ),
     );
   }

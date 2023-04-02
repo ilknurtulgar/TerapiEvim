@@ -5,13 +5,14 @@ import 'package:terapievim/controller/base/base_controller.dart';
 
 import '../core/base/component/bottom_nav_bar/custom_tab_scaffold.dart';
 import '../core/base/component/toast/toast.dart';
+import '../product/enum/local_keys_enum.dart';
 
 class MainController extends GetxController with BaseController {
   var currentScreenIndex = 0.obs;
   var isTestNotSolved = true.obs;
   var isTestResultReady = false.obs;
   var isGroupReady = true.obs;
-  var isTherapist = true.obs; //bunun degisimi yapilacak
+  var isTherapist = false.obs; //bunun degisimi yapilacak
   void testSolved() {
     isTestNotSolved.value = false;
   }
@@ -29,9 +30,8 @@ class MainController extends GetxController with BaseController {
   @override
   void onInit() {
     tabController = CupertinoTabController();
-    const String currentRole = "participant";
-    // final String currentRole =
-    //     localManager.getStringValue(LocalManagerKeys.role);
+    //const String currentRole = "participant";
+    final String currentRole = localManager.getStringValue(LocalManagerKeys.role);
     updateWhoItIs(currentRole);
     super.onInit();
   }

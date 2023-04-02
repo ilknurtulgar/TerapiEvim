@@ -64,8 +64,7 @@ class ProfilePageUtility {
         ontap: () {
           profileController.func(DemoInformation.genderList, textController);
         },
-        width:
-            isInProfilePage ? SizeUtil.mediumValueWidth : SizeUtil.generalWidth,
+        width: isInProfilePage ? SizeUtil.specialSize : SizeUtil.generalWidth,
         height:
             isInProfilePage ? SizeUtil.lowValueHeight : SizeUtil.generalHeight,
         textController: textController,

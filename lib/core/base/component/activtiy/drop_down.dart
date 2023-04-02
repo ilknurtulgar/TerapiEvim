@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
+import '../../../../controller/profile_controller.dart';
+
 class CustomDropDown extends StatefulWidget {
   const CustomDropDown({
     super.key,
@@ -117,4 +119,31 @@ class ChooseGender extends StatelessWidget {
             },
             
             */
-        
+ProfileController profileController = Get.find();
+Widget columnDropDown(String title, bool isInProfilePage,
+    [TextEditingController? textController]) {
+  return Column(
+    children: [
+      Align(
+        alignment: Alignment.centerLeft,
+        child: responsivenestext(
+          title,
+          AppTextStyles.normalTextStyle("medium", false),
+        ),
+      ),
+      CustomDropDown(
+        textlist: DemoInformation.genderList,
+        widget: textpurpose(profileController.genders.value),
+        ontap: () {
+          profileController.func(DemoInformation.genderList, textController);
+        },
+        width: isInProfilePage
+            ? SizeUtil.highestValueWidth
+            : SizeUtil.generalWidth,
+        height:
+            isInProfilePage ? SizeUtil.lowValueHeight : SizeUtil.generalHeight,
+        textController: textController,
+      )
+    ],
+  );
+}

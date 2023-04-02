@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/main_controller.dart';
 import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
+import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 import 'package:terapievim/core/base/component/group/custom_list_wheel_scroll_view.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
@@ -31,7 +32,8 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         profileController.nameController, false),
     textfieldUtility.birthOfDateTextfield(
         profileController.birthdayController, false),
-    ProfilePageUtility.genderDropDown(true, profileController.genderController),
+    // ProfilePageUtility.genderDropDown(true, profileController.genderController),
+    columnDropDown("ilknur", true),
     textfieldUtility.mailTextfield(profileController.emailController, false),
     textfieldUtility.passwordTextfield(
         profileController.passwordController, false),
@@ -74,7 +76,9 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         alignment: Alignment.topLeft,
         child: IconButton(
             onPressed: () {
-              mainController.isTherapist.isFalse ? context.push(const ParticipantProfilePage()): context.push(const TherapistProfilePage()) ;
+              mainController.isTherapist.isFalse
+                  ? context.push(const ParticipantProfilePage())
+                  : context.push(const TherapistProfilePage());
             },
             icon: IconUtility.back),
       ),
@@ -83,8 +87,7 @@ class ParticipantProfileSettingPage extends StatelessWidget {
 
   Padding bigColumn(BuildContext context) {
     return Padding(
-      padding: AppPaddings.profilePageBigPadding(
-          false), 
+      padding: AppPaddings.profilePageBigPadding(false),
       child: Center(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -98,9 +101,11 @@ class ParticipantProfileSettingPage extends StatelessWidget {
                 return textfieldColumn(index, textfieldList[index]);
               },
             ),
-            Obx(() => mainController.isTherapist.isFalse ? saveButton() : const SizedBox()),
+            Obx(() => mainController.isTherapist.isFalse
+                ? saveButton()
+                : const SizedBox()),
             Obx(
-             () => mainController.isTherapist.isTrue
+              () => mainController.isTherapist.isTrue
                   ? therapistSpecialColumn(context)
                   : const SizedBox(),
             ),

@@ -1,25 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/login/custom_textfield.dart';
+import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+
+import '../../../../controller/profile_controller.dart';
 
 class CustomDropDown extends StatefulWidget {
   const CustomDropDown({
-    required this.isGenderPurpose,
     super.key,
     required this.width,
     required this.height,
     this.textController,
+    required this.widget,
+    required this.textlist,
+    required this.ontap,
   });
 
   final double width;
   final double height;
-  final bool isGenderPurpose;
+
+  final List<String> textlist;
+  final Function()? ontap;
+
+  final Widget widget;
   final TextEditingController? textController;
 
   @override
   State<CustomDropDown> createState() => _CustomDropDownState();
 }
+
+ActivityController activityController = Get.find();
 
 class _CustomDropDownState extends State<CustomDropDown> {
   @override
@@ -32,17 +42,15 @@ class _CustomDropDownState extends State<CustomDropDown> {
           children: [
             InkWell(
               onTap: () {
+                print("heree");
                 activityController.changeBox();
               },
               child: Container(
-                alignment: Alignment.center,
-                decoration: AppBoxDecoration.purpleBorder,
-                height: widget.height,
-                width: Responsive.width(widget.width, context),
-                child: Obx(() => textpurpose(widget.isGenderPurpose
-                    ? activityController.gender.value
-                    : activityController.order.value)),
-              ),
+                  alignment: Alignment.center,
+                  decoration: AppBoxDecoration.purpleBorder,
+                  height: widget.height,
+                  width: Responsive.width(widget.width, context),
+                  child: widget.widget),
             ),
             Obx(
               () => activityController.selectedBox.value
@@ -57,12 +65,12 @@ class _CustomDropDownState extends State<CustomDropDown> {
       ),
     );
   }
+}
 
-  Widget textpurpose(property) {
-    return Text(
-      property,
-    );
-  }
+Widget textpurpose(property) {
+  return Text(
+    property,
+  );
 }
 
 class ChooseGender extends StatelessWidget {
@@ -80,11 +88,27 @@ class ChooseGender extends StatelessWidget {
     return Container(
       decoration: AppBoxDecoration.purpleBorder,
       child: ListView.builder(
+        reverse: true,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: () {
+            onTap: widget.ontap,
+            child: Padding(
+                padding: AppPaddings.componentPadding,
+                child: Text(
+                  widget.textlist[index],
+                  textAlign: TextAlign.center,
+                )),
+          );
+        },
+        itemCount: 2,
+      ),
+    );
+  }
+}
+
+/*() {
               activityController.func(
                   widget.isGenderPurpose
                       ? DemoInformation.genderList[index]
@@ -93,19 +117,33 @@ class ChooseGender extends StatelessWidget {
                   textController);
               activityController.changeBox();
             },
-            child: Padding(
-              padding: AppPaddings.componentPadding,
-              child: Text(
-                widget.isGenderPurpose
-                    ? DemoInformation.genderList[index]
-                    : DemoInformation.orderingList[index],
-                textAlign: TextAlign.center,
-              ),
-            ),
-          );
-        },
-        itemCount: 2,
+            
+            */
+ProfileController profileController = Get.find();
+Widget columnDropDown(String title, bool isInProfilePage,
+    [TextEditingController? textController]) {
+  return Column(
+    children: [
+      Align(
+        alignment: Alignment.centerLeft,
+        child: responsivenestext(
+          title,
+          AppTextStyles.normalTextStyle("medium", false),
+        ),
       ),
-    );
-  }
+      CustomDropDown(
+        textlist: DemoInformation.genderList,
+        widget: textpurpose(profileController.genders.value),
+        ontap: () {
+          profileController.func(DemoInformation.genderList, textController);
+        },
+        width: isInProfilePage
+            ? SizeUtil.highestValueWidth
+            : SizeUtil.generalWidth,
+        height:
+            isInProfilePage ? SizeUtil.lowValueHeight : SizeUtil.generalHeight,
+        textController: textController,
+      )
+    ],
+  );
 }

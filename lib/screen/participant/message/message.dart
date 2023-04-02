@@ -40,10 +40,9 @@ class MessageScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           CustomTextField(
+            isOne: true,
             textController: textEditingController,
-            isPhoneNumber: false,
             isBig: false,
-            isPassword: false,
             isRowModel: false,
           ),
           IconButton(onPressed: () {}, icon: IconUtility.sendIcon),
@@ -102,7 +101,7 @@ class MessageScreen extends StatelessWidget {
       children: [
         backButton(context, () => context.pop()),
         circleavatar(),
-        CustomHeading(
+        const CustomHeading(
             text: DemoInformation.headingabactivity, isalignmentstart: false),
       ],
     );

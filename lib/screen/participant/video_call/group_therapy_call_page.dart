@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
@@ -12,15 +13,20 @@ class GroupTherapyCallPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: Stack(
-          children: [
-            VideoCallPersonView(
-              videoCallViewModel: VideoCallUtility.personBigView(
-                  DemoInformation.therapist, true),
-              isInShortCallPage: false,
-            ),
-            participantsRowWithButtonsContainer()
-          ],
+        body: GestureDetector(
+          behavior: HitTestBehavior.translucent,
+          onTap: () => Get.closeCurrentSnackbar(),
+          child: Stack(
+            children: [
+              VideoCallPersonView(
+                videoCallViewModel: VideoCallUtility.personBigView(
+                    DemoInformation.therapist, true),
+                whichPage: 1,
+                isLongPressActive: false,
+              ),
+              participantsRowWithButtonsContainer()
+            ],
+          ),
         ),
       ),
     );
@@ -37,9 +43,11 @@ class GroupTherapyCallPage extends StatelessWidget {
             children: [
               participantRow(),
               VideoCallButtonsRow(
+                isGroupTherapyCall: true,
                 onLeaveButtonPressed: () {},
                 onToggleCameraButtonPressed: () {},
                 onToggleMicButtonPressed: () {},
+                isHandsUp: DemoInformation.participants[0].isHandsUp,
               ),
             ],
           )),
@@ -57,7 +65,7 @@ class GroupTherapyCallPage extends StatelessWidget {
               return Padding(
                   padding: AppPaddings.smallPersonViewPadding,
                   child: VideoCallPersonView(
-                      isInShortCallPage: false,
+                    whichPage: 1,
                       videoCallViewModel: VideoCallUtility.personSmallView(
                           DemoInformation.participants[index], true)));
             })),

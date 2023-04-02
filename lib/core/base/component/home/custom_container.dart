@@ -6,34 +6,41 @@ import 'package:terapievim/core/base/models/container_model.dart';
 import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 
 class CustomContainer extends StatelessWidget {
-  const CustomContainer(
+  CustomContainer(
       {super.key,
       required this.containerModel,
       required this.isThereCardModel,
       this.cardModel,
       this.time,
-      this.widget});
+      this.widget,
+      this.isThereShadow});
   final ContainerModel containerModel;
   final bool isThereCardModel;
   final CardModel? cardModel;
   final String? time;
   final Widget? widget;
+  bool? isThereShadow;
   @override
   Widget build(BuildContext context) {
+    isThereShadow ??= true;
     return Center(
       child: Padding(
         padding: AppPaddings.componentPadding,
         child: Card(
-          elevation: 5,
+          elevation: isThereShadow! ? 5 : 0,
           color: containerModel.backgroundColor,
           shadowColor: containerModel.shadowColor,
           shape: customContainerShape(),
           child: SizedBox(
-            height: widget==null ? containerModel.height : null,
-            width: (widget==null && containerModel.width!=null) ? containerModel.width : PixelScreen().logicalWidth,
+            height: widget == null ? containerModel.height : null,
+            width: (widget == null && containerModel.width != null)
+                ? containerModel.width
+                : PixelScreen().logicalWidth,
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: widget==null ? MainAxisAlignment.center : MainAxisAlignment.start,
+              mainAxisAlignment: widget == null
+                  ? MainAxisAlignment.center
+                  : MainAxisAlignment.start,
               children: [
                 isThereCardModel ? listTile() : const SizedBox(),
                 widget ?? const SizedBox(),

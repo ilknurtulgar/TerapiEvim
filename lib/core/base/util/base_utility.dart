@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/participant_container.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
@@ -118,9 +119,9 @@ class IconUtility {
   static Icon micIcon(bool isInCircularContainer) => Icon(Icons.mic,
       color: isInCircularContainer ? AppColors.black : AppColors.white);
   static const Icon micoffIcon = Icon(Icons.mic_off, color: AppColors.red);
-  static const Icon videcamIcon = Icon(Icons.videocam, color: AppColors.black);
+  static const Icon videcamIcon = Icon(Icons.videocam_outlined, color: AppColors.black);
   static const Icon videocamoffIcon =
-      Icon(Icons.videocam_off, color: AppColors.black);
+      Icon(Icons.videocam_off_outlined, color: AppColors.black);
   static const Icon callendIcon = Icon(Icons.call_end, color: AppColors.white);
   static const Icon sendIcon = Icon(Icons.send, color: AppColors.black);
 
@@ -164,6 +165,17 @@ class IconUtility {
   static const Icon forward =
       Icon(Icons.keyboard_arrow_right_outlined, size: 30);
   static const Icon editPencil = Icon(Icons.edit_outlined, size: 30);
+  static const Icon recordVoiceOver = Icon(
+    Icons.record_voice_over,
+    color: AppColors.white,
+  );
+  static const Icon personAddAlt = Icon(
+    Icons.person_add_alt,
+    color: AppColors.white,
+  );
+  static const Icon moreHorizontal = Icon(Icons.more_horiz);
+  static const Icon handsUp = Icon(Icons.pan_tool_outlined);
+  static const Icon handsDown = Icon(Icons.do_not_touch_outlined);
 }
 
 class AppTextStyles {
@@ -388,7 +400,7 @@ class AppPaddings {
   // 1 numara horizontal, 2 numara vertical, 3 numara horizontal ve vertical
   static EdgeInsets componentOnlyPadding(int paddingNo) => EdgeInsets.only(
       top: paddingNo == 1 ? 8 : 0,
-      bottom: paddingNo == 2 ? 0 : 8,
+      bottom: paddingNo == 2 ? 8 : 0,
       right: paddingNo == 3 ? 24 : 0,
       left: paddingNo == 4 ? 10 : 0);
 
@@ -471,9 +483,9 @@ Padding colon(bool isInAlertDialog) {
 
 class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
-    const TherapistHome(),
+    TherapistHome(),
     const TherapistActivityScreen(),
-    TherapistGroupPage(),
+    const TherapistGroupPage(),
     const TherapistMessageScreen(),
     const TherapistProfilePage(),
   ];
@@ -525,13 +537,14 @@ class DemoInformation {
       textStyle: const TextStyle(),
       leadingIcon: IconUtility.personIcon);
 
-  static RowModel recentActivity(String therapistName){
-   return RowModel(
-    isAlignmentBetween: false,
-    text: therapistName,
-    textStyle: const TextStyle(),
-    leadingIcon: IconUtility.personIcon);
+  static RowModel recentActivity(String therapistName) {
+    return RowModel(
+        isAlignmentBetween: false,
+        text: therapistName,
+        textStyle: const TextStyle(),
+        leadingIcon: IconUtility.personIcon);
   }
+
   static RowModel clockmodel = RowModel(
       isAlignmentBetween: false,
       text: "Ocak 15,2023,20:00",
@@ -573,8 +586,6 @@ class DemoInformation {
       "Flutter, Google tarafından oluşturulan açık kaynaklı bir UI yazılım geliştirme kitidir. Android, iOS, Windows, Mac, Linux ve web için uygulamalar geliştirmek için kullanılıyor. Flutter'ın ilk sürümü  olarak biliniyordu ve Android işletim sisteminde çalışıyordu.";
   static const List<String> home = [
     "fdvd deneme deneme deneme deneme ssssdsfsmbfdmösfbsfösbnöfmbsöbfnömsbfö deneme deneme deneme deneme denemeee deneme deneme deneme",
-    "fşdv",
-    "fgbng",
     "yasemin",
     "gizem",
     "ilknur",
@@ -702,20 +713,20 @@ class DemoInformation {
       name: 'Simay',
       surname: 'Selli',
       imagePath: 'assets/images/f1.jpg',
-      isMicOn: true,
-      isCamOn: true);
+      isMicOn: true.obs,
+      isCamOn: true.obs);
   static PersonInCallModel personNo1 = PersonInCallModel(
       name: 'Kerem',
       surname: 'Görkem',
       imagePath: 'assets/images/f2.jpg',
-      isMicOn: false,
-      isCamOn: true);
+      isMicOn: false.obs,
+      isCamOn: true.obs,);
   static PersonInCallModel personNo2 = PersonInCallModel(
       name: 'Ali',
       surname: 'Aydın',
       imagePath: 'assets/images/f3.jpg',
-      isMicOn: false,
-      isCamOn: true);
+      isMicOn: false.obs,
+      isCamOn: true.obs);
   static List<PersonInCallModel> participants = [
     personNo1,
     personNo2,
@@ -818,7 +829,7 @@ class SizeUtil {
 
   // küçükten büyüğe sıralama
   static const double zeroSize = 0;
-
+  static const double specialSize = 160;
   // width
   static const double lowValueWidth =
       40; // profil sayfasındaki mini container ve listwheelscrollview için
@@ -837,7 +848,7 @@ class SizeUtil {
       350; //danışan sayfasındaki groupContainerWidth
   // height
   static const double lowValueHeight =
-      30; //animatedContainerHeight(listwheelscrollviewdaki),profil sayfasındaki genderDropDownHeight,miniContainerHeight,purpleButtonHeight
+      35; //animatedContainerHeight(listwheelscrollviewdaki),profil sayfasındaki genderDropDownHeight,miniContainerHeight,purpleButtonHeight
   static const double smallValueHeight =
       40; // lockScreenHeight(dropdownheight,filter aynı),loginSignUpButtonHeight,beforeLoginButtonHeight
   static const double normalValueHeight =

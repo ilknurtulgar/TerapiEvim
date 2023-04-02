@@ -2,7 +2,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/base/base_controller.dart';
-import 'package:terapievim/core/init/cache/local_manager.dart';
 
 import '../core/base/component/bottom_nav_bar/custom_tab_scaffold.dart';
 import '../core/base/component/toast/toast.dart';
@@ -13,7 +12,7 @@ class MainController extends GetxController with BaseController {
   var isTestNotSolved = true.obs;
   var isTestResultReady = false.obs;
   var isGroupReady = true.obs;
-  var isTherapist = false.obs; //bunun degisimi yapilacak
+  var isTherapist = true.obs; //bunun degisimi yapilacak
   void testSolved() {
     isTestNotSolved.value = false;
   }
@@ -31,9 +30,8 @@ class MainController extends GetxController with BaseController {
   @override
   void onInit() {
     tabController = CupertinoTabController();
-    const String currentRole = "therapist";
-    // final String currentRole =
-    //     localManager.getStringValue(LocalManagerKeys.role);
+    //const String currentRole = "participant";
+    final String currentRole = localManager.getStringValue(LocalManagerKeys.role);
     updateWhoItIs(currentRole);
     super.onInit();
   }

@@ -23,7 +23,8 @@ class ShortCallPage extends StatelessWidget {
             VideoCallPersonView(
               videoCallViewModel: VideoCallUtility.personShortCallView(
                   DemoInformation.personNo1, context),
-              isInShortCallPage: true,
+              whichPage: 3,
+              isLongPressActive: false,
             ), // participantCallView
             VideoCallButtonsRow(
               onLeaveButtonPressed: () {},
@@ -42,7 +43,8 @@ class ShortCallPage extends StatelessWidget {
       child: VideoCallPersonView(
         videoCallViewModel: VideoCallUtility.personShortCallView(
             DemoInformation.therapist, context),
-        isInShortCallPage: true,
+        whichPage: 3,
+        isLongPressActive: false,
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
 import '../model/person_in_call_model.dart';
 import '../model/video_call_view_model.dart';
@@ -9,7 +10,7 @@ class VideoCallUtility {
   static VideoCallViewModel personBigView(
           PersonInCallModel person, bool isTherapistInGroupTherapy) =>
       VideoCallViewModel(
-          height: PixelScreen() .logicalHeight,           // SizeUtil.highestValueHeight,
+          height: PixelScreen().logicalHeight, // SizeUtil.highestValueHeight,
           width: PixelScreen().logicalWidth,
           borderRadius: 0,
           person: person,
@@ -24,17 +25,20 @@ class VideoCallUtility {
           person: person,
           isNameShown: isNameShown,
           isTherapistInGroupTherapy: false);
-  static VideoCallViewModel personShortCallView(PersonInCallModel person,BuildContext context) =>
+  static VideoCallViewModel personShortCallView(
+          PersonInCallModel person, BuildContext context) =>
       VideoCallViewModel(
-        height: Responsive.height(SizeUtil.hugeValueHeight, context),//SizeUtil.hugeValueHeight,
-        width: Responsive.width(SizeUtil.generalWidth, context),//SizeUtil.generalWidth,
+        height: Responsive.height(
+            SizeUtil.hugeValueHeight, context), //SizeUtil.hugeValueHeight,
+        width: Responsive.width(
+            SizeUtil.generalWidth, context), //SizeUtil.generalWidth,
         borderRadius: 12,
         isNameShown: false,
         isTherapistInGroupTherapy: false,
         person: person,
       );
   static CustomVideoCallButton cameraIconButton(
-          Function() onTap, bool isCamOn) =>
+          Function() onTap, RxBool isCamOn) =>
       CustomVideoCallButton(
         backgroundColor: AppColors.white,
         icon: IconUtility.videcamIcon,
@@ -42,7 +46,7 @@ class VideoCallUtility {
         onTap: onTap,
         isThisOn: isCamOn,
       );
-  static CustomVideoCallButton micIconButton(Function() onTap, bool isMicOn) =>
+  static CustomVideoCallButton micIconButton(Function() onTap, RxBool isMicOn) =>
       CustomVideoCallButton(
         backgroundColor: AppColors.white,
         icon: IconUtility.micIcon(true),
@@ -55,8 +59,21 @@ class VideoCallUtility {
         backgroundColor: AppColors.red,
         icon: IconUtility.callendIcon,
         onTap: onTap,
-        isThisOn: true,
+        isThisOn: true.obs,
       );
+  static CustomVideoCallButton therapistSpecialButton(Function() onTap) =>
+      CustomVideoCallButton(
+          onTap: onTap,
+          isThisOn: true.obs,
+          icon: IconUtility.moreHorizontal,
+          backgroundColor: AppColors.white);
+  static CustomVideoCallButton putYourHandsUpButton(Function() onTap,RxBool isThisOn) =>
+      CustomVideoCallButton(
+          onTap: onTap,
+          isThisOn: isThisOn,
+          icon: IconUtility.handsUp,
+          offIcon: IconUtility.handsDown,
+          backgroundColor: AppColors.white);
 }
 
 class PixelScreen {

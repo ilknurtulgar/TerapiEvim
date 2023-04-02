@@ -7,6 +7,11 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/controller/group_controller.dart';
 import 'package:terapievim/controller/main_controller.dart';
+import 'package:terapievim/controller/profile_controller.dart';
+import 'package:terapievim/controller/video_call_controller.dart';
+import 'package:terapievim/screen/participant/video_call/group_therapy_call_page.dart';
+import 'package:terapievim/screen/participant/video_call/isolated_call_page.dart';
+import 'package:terapievim/screen/participant/video_call/short_call_page.dart';
 import 'controller/auth/auth_controller.dart';
 import 'controller/therapist_group_controller.dart';
 import 'controller/therapist_profile_controller.dart';
@@ -79,4 +84,6 @@ void _initializeControllers() {
   Get.put(TherapistGroupController());
   Get.put(GroupController());
   Get.put(MainController());
+  Get.put(ProfileController());
+  Get.put(VideoCallController());
 }

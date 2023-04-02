@@ -318,3 +318,14 @@ class Scl90 {
     "Aklınızda bir bozukluğun olduğu düşüncesi ",
   ];
 }
+
+class VideoCallTextUtil {
+  static const String openAllMics = 'Herkesin mikrofonunu aç';
+  static const String shareAuthority = 'Yetkiyi yardımcı psikologla paylaş';
+  static const String participants = 'Katılımcılar';
+  static const String sendIsolatedCall =
+      'isimli kişiyi izole odasına göndermek istiyor musunuz?';
+  static const String yes = 'Evet';
+  static const String no = 'Hayır';
+
+}

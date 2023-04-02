@@ -1,66 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/controller/video_call_controller.dart';
 import 'package:terapievim/core/base/component/video_call/video_call_container/circular_container.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
+import '../../../../../controller/main_controller.dart';
 import '../../../../../screen/participant/video_call/model/video_call_view_model.dart';
 import '../../../../../screen/participant/video_call/util/utility.dart';
 
-class VideoCallPersonView extends StatefulWidget {
-  const VideoCallPersonView(
+class VideoCallPersonView extends StatelessWidget {
+  VideoCallPersonView(
       {super.key,
       required this.videoCallViewModel,
       this.onDoubleTap,
-      required this.isInShortCallPage});
+      this.isLongPressActive,
+      required this.whichPage});
 
   final VideoCallViewModel videoCallViewModel;
   final Function()? onDoubleTap;
-  final bool isInShortCallPage;
+  bool? isLongPressActive;
+  final int whichPage;
+  // 1.sayfa group therapy call 2.sayfa isolated call page 3.sayfa short call page
 
-  @override
-  State<VideoCallPersonView> createState() => _VideoCallPersonViewState();
-}
+  VideoCallController callController = Get.find();
 
-class _VideoCallPersonViewState extends State<VideoCallPersonView> {
-  void cameraOnOffFunc() {
-    setState(() {
-      widget.videoCallViewModel.person.isCamOn = !widget
-          .videoCallViewModel
-          .person
-          .isCamOn; // bu fonksiyonu kamera açılıp kapandığında görüntünün nasıl değişeceğini gözlemlemek için geçici olarak koydum
-    });
-  }
-
-  void micOnOffFunc() {
-    setState(() {
-      widget.videoCallViewModel.person.isMicOn = !widget
-          .videoCallViewModel
-          .person
-          .isMicOn; // bu fonksiyonu mikrofon açılıp kapandığında görüntünün nasıl değişeceğini gözlemlemek için geçici olarak koydum
-    });
-  }
+  MainController mainController = Get.find();
 
   @override
   Widget build(BuildContext context) {
+    isLongPressActive ??= true;
     return Center(
       child: SizedBox(
-        height: widget.videoCallViewModel.isNameShown
-            ? widget.videoCallViewModel.height + 40
-            : widget.videoCallViewModel.height,
-        width: widget.videoCallViewModel.width,
+        height: videoCallViewModel.isNameShown
+            ? videoCallViewModel.height + 40
+            : videoCallViewModel.height,
+        width: videoCallViewModel.width,
         child: Column(
           children: [
             Expanded(
-              child: InkWell(
-                onTap: () => cameraOnOffFunc(),
-                onDoubleTap: widget.onDoubleTap,
-                child: Stack(children: [personView(), micIconButton()]),
+              child: Obx(
+                () => InkWell(
+                  onTap: () => callController.onOffFunction(videoCallViewModel.person.isCamOn),
+                  onDoubleTap: onDoubleTap,
+                  onLongPress: mainController.isTherapist.value &&
+                          whichPage == 1 &&
+                          isLongPressActive!
+                      ? () => callController.sendIsolatedCall(
+                          "${videoCallViewModel.person.name} ${videoCallViewModel.person.surname}")
+                      : null,
+                  child: Stack(children: [personView(context), micIconButton()]),
+                ),
               ),
             ),
-            widget.videoCallViewModel.isNameShown
-                ? nameSurnameText(widget.videoCallViewModel.person.name)
+            videoCallViewModel.isNameShown
+                ? nameSurnameText(videoCallViewModel.person.name)
                 : const SizedBox(),
-            widget.videoCallViewModel.isNameShown
-                ? nameSurnameText(widget.videoCallViewModel.person.surname)
+            videoCallViewModel.isNameShown
+                ? nameSurnameText(videoCallViewModel.person.surname)
                 : const SizedBox(),
           ],
         ),
@@ -69,31 +65,51 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
   }
 
   Widget micIconButton() {
-    return Positioned(
-      top: Responsive.height(8, context),
-      right: Responsive.width(8, context),
-      child: IconButton(
-          onPressed: () => micOnOffFunc(),
-          icon: widget.videoCallViewModel.person.isMicOn == false
-              ? IconUtility.micoffIcon
-              : IconUtility.micIcon(false)),
+    return Align(
+      alignment: videoCallViewModel.height != PixelScreen().logicalHeight
+          ? Alignment.bottomRight
+          : Alignment.topRight,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Obx(
+            () => videoCallViewModel.person.isHandsUp!.value && whichPage == 1
+                ? IconUtility.handsUp
+                : const SizedBox(),
+          ),
+          Obx(
+            () => IconButton(
+                onPressed: () => callController.onOffFunction(videoCallViewModel.person.isMicOn),
+                icon: videoCallViewModel.person.isMicOn.value == false
+                    ? IconUtility.micoffIcon
+                    : IconUtility.micIcon(false)),
+          ),
+        ],
+      ),
     );
   }
 
-  Container personView() {
+  Container personView(BuildContext context) {
     return Container(
-        height: widget.videoCallViewModel.height,
-        width: widget.isInShortCallPage &&
+        height: videoCallViewModel.height,  /* height: widget.videoCallViewModel.height,
+                                                width: widget.isInShortCallPage &&
+                                            */
+        width: whichPage == 3 &&
                 PixelScreen().logicalWidth > PixelScreen().logicalHeight
             ? Responsive.width(SizeUtil.normalValueWidth, context)
-            : widget.videoCallViewModel.width,
+            : videoCallViewModel.width,
         decoration: BoxDecoration(
             color: AppColors.doveGray,
+            border: whichPage == 2 &&
+                    videoCallViewModel.height !=
+                        PixelScreen().logicalHeight
+                ? Border.all(color: AppColors.black, width: 1)
+                : null,
             borderRadius:
-                BorderRadius.circular(widget.videoCallViewModel.borderRadius)),
-        child: widget.videoCallViewModel.person.isCamOn
+                BorderRadius.circular(videoCallViewModel.borderRadius)),
+        child: videoCallViewModel.person.isCamOn.value
             ? cameraOnView()
-            : initialLetterContainer());
+            : initialLetterContainer(context));
   }
 
   Text nameSurnameText(String text) => Text(
@@ -101,27 +117,27 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
         style: const TextStyle(color: AppColors.white),
       );
 
-  Padding initialLetterContainer() {
+  Padding initialLetterContainer(BuildContext context) {
     return Padding(
-      padding: widget.videoCallViewModel.isTherapistInGroupTherapy
+      padding: videoCallViewModel.isTherapistInGroupTherapy
           ? const EdgeInsets.only(bottom: 125)
           : EdgeInsets.zero,
       child: Center(
         child: CircularContainer(
-          height: widget.isInShortCallPage &&
+          height: whichPage == 3 &&
                   PixelScreen().logicalWidth > PixelScreen().logicalHeight
               ? Responsive.width(SizeUtil.normalValueWidth, context) / 5
-              : widget.videoCallViewModel.width / 3,
+              : videoCallViewModel.width / 3,
           color: AppColors.orange,
           widget: Center(
             child: Text(
-              widget.videoCallViewModel.person.name.substring(0, 1),
+              videoCallViewModel.person.name.substring(0, 1),
               style: TextStyle(
-                  fontSize: widget.isInShortCallPage &&
+                  fontSize: whichPage == 3 &&
                           PixelScreen().logicalWidth >
                               PixelScreen().logicalHeight
                       ? Responsive.width(SizeUtil.normalValueWidth, context) / 8
-                      : widget.videoCallViewModel.width / 5,
+                      : videoCallViewModel.width / 5,
                   color: AppColors.white),
             ),
           ),
@@ -133,9 +149,9 @@ class _VideoCallPersonViewState extends State<VideoCallPersonView> {
   ClipRRect cameraOnView() {
     return ClipRRect(
         borderRadius:
-            BorderRadius.circular(widget.videoCallViewModel.borderRadius),
+            BorderRadius.circular(videoCallViewModel.borderRadius),
         child: Image(
-          image: AssetImage(widget.videoCallViewModel.person.imagePath),
+          image: AssetImage(videoCallViewModel.person.imagePath),
           fit: BoxFit.fitHeight,
         ));
   }

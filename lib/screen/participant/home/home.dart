@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/activtiy/seminers.dart';
+import 'package:terapievim/core/base/component/home/notification_container.dart';
 import 'package:terapievim/core/base/component/home/notification_from_ther_container.dart';
+import 'package:terapievim/core/base/component/home/reminder.dart';
 import 'package:terapievim/core/base/models/card_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
@@ -26,7 +28,15 @@ class HomeScreen extends StatelessWidget {
                 mindetailesbox(HomeTextUtil.copingMethods,
                     () => context.push(const CopingMethods()), context),
                 notification(DemoInformation.cardModelhome,
-                    DemoInformation.home, DemoInformation.home.length)
+                    DemoInformation.home, DemoInformation.home.length),
+                const Reminder(
+                    reminderType: ReminderType.activity,
+                    name: "Gizem Göksu",
+                    time: "10.12.13"),
+                const NotificationContainer(
+                    type: NotificationType.shortcallFail,
+                    name: "OKB",
+                    contentText: "hello ysasemin terapi vermeye geldi")
               ],
             ),
           ),

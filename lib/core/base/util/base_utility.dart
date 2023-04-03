@@ -22,6 +22,7 @@ import '../../init/managers/responsiveness_manager.dart';
 import '../../managers/converter/date_time_manager.dart';
 import '../component/group/row_view.dart';
 import '../component/home/method_downloading_container.dart';
+import '../component/profile/container/two_row_short_container.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
 import '../models/card_model.dart';
 import '../models/row_model.dart';
@@ -310,9 +311,8 @@ class AppContainers {
   }
 
   static ContainerModel loginSignUpButtonContainer(
-          bool isInLoginPage, bool isLoginButton, BuildContext context) =>
+          bool isInLoginPage, bool isLoginButton) =>
       ContainerModel(
-          width: Responsive.width(SizeUtil.generalWidth, context),
           borderRadius: 8,
           backgroundColor: (isInLoginPage && isLoginButton) ||
                   (isInLoginPage == false && isLoginButton == false)
@@ -414,7 +414,7 @@ class AppPaddings {
       const EdgeInsets.symmetric(horizontal: 8);
 }
 
-SizedBox smallSizedBox() => const SizedBox(width: 8);
+SizedBox smallSizedBox() => const SizedBox(height: 8);
 SizedBox mediumSizedBox() => const SizedBox(height: 16);
 SizedBox largeSizedBox() => const SizedBox(height: 32);
 
@@ -512,15 +512,15 @@ class DemoInformation {
           buttonOnTap: () {},
           buttonText: "Oku");
 
-  static MethodDownloadingContainer demoAttendedSeminars =
-      MethodDownloadingContainer(
-          cardModel: CardModel(
-              imagePath: DemoInformation.imagePath,
-              title: DemoInformation.therapistName),
-          time: "04/01/2003",
-          explanation: "Kendini bil",
-          buttonOnTap: () {},
-          buttonText: "Tekrar Izle");
+  static TwoRowShortContainer demoAttendedSeminars = TwoRowShortContainer(
+      row1Text: DemoInformation.therapistName,
+      row2Text: "Kendini Bil",
+      firstIconData: Icons.person,
+      secondIconData: Icons.laptop_windows_sharp,
+      purpose: "seminar",
+      isThereButton: true,
+      buttonText: "Tekrar Izle",
+      isInTherapist: false);
   //message
   static const List<String> personList = [
     "Canan Karatay",
@@ -848,6 +848,7 @@ class SizeUtil {
   static const double generalWidth =
       342; //lockScreenBigContainerWidth,purpleTextContainer,personShortCallViewWidth
   static const double bnbHeight = 60;
+  static const double appBarHeight = 70;
   static const double participantContainerWidth = 178;
 
   // küçükten büyüğe sıralama

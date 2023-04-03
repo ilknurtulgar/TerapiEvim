@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 
 import '../../../controller/participant/p_activity_controller.dart';
 import '../../../core/base/component/group/group_box.dart';
@@ -40,12 +41,13 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: MyAppBar(title: ActivityTextUtil.activity),
         body: SingleChildScrollView(
           child: Padding(
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-                titleText(ActivityTextUtil.activity),
+                // titleText(ActivityTextUtil.activity),
                 activityminto(ActivityTextUtil.upcomingActivities, () {},
                     MainAxisAlignment.spaceBetween, true, IconUtility.forward),
                 activityLoadSeminar(_pActivityController),

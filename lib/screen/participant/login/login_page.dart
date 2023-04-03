@@ -5,7 +5,6 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
 import 'package:terapievim/screen/participant/profile/util/textfield_utility.dart';
-
 import '../../../controller/auth/login_controller.dart';
 import '../sign_up/before_sign_up.dart';
 
@@ -24,7 +23,6 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
   @override
   void initState() {
     _loginController = Get.put(LoginController());
-
     super.initState();
   }
 
@@ -45,28 +43,20 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
             width: context.width1,
             height: context.height1,
             child: Padding(
-              padding:
-                  AppPaddings.pagePaddingHorizontal,
+              padding: AppPaddings.pagePaddingHorizontal,
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  // direction: Axis.vertical,
-                  // crossAxisAlignment: WrapCrossAlignment.center,
-                  // spacing: 32,
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    largeSizedBox(),
                     LoginPageUtility.title(true),
-                    Expanded(
-                      child: textfieldUtility.mailTextfield(
-                          _loginController.emailController, true),
-                    ),
-                    Expanded(child: passwordColumn()),
+                    mailTextfield(),
+                    passwordColumn(),
                     LoginPageUtility.button(true, true, () {
                       _loginController.loginWithEmail();
-                    }, context),
+                    },),
                     LoginPageUtility.lineWithOrText(context),
                     LoginPageUtility.button(false, true,
-                        () => context.push(BeforeSignUp()), context),
-                    largeSizedBox()
+                        () => context.push(BeforeSignUp()),),
                   ]),
             ),
           ),
@@ -75,14 +65,25 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
     );
   }
 
-  Column passwordColumn() {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.end,
-      children: [
-        textfieldUtility.passwordTextfield(
-            _loginController.passwordController, true),
-        forgotYourPasswordTextButton(),
-      ],
+  Padding mailTextfield() {
+    return Padding(
+                    padding: AppPaddings.componentPadding,
+                    child: textfieldUtility.mailTextfield(
+                        _loginController.emailController, true),
+                  );
+  }
+
+  Widget passwordColumn() {
+    return Padding(
+      padding: AppPaddings.componentPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: [
+          textfieldUtility.passwordTextfield(
+              _loginController.passwordController, true),
+          forgotYourPasswordTextButton(),
+        ],
+      ),
     );
   }
 
@@ -91,9 +92,7 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
         onPressed: () {
           /* Şifreyi unutma durumundaki fonksiyon gelecek*/
         },
-        child: // responsivenestext(LoginSignUpTextUtil.forgotYourPassword, const TextStyle(color: AppColors.meteorite,fontSize: 15,fontWeight: FontWeight.w700))
-
-            Text(
+        child: Text(
           LoginSignUpTextUtil.forgotYourPassword,
           style: const TextStyle(
               color: AppColors.meteorite,

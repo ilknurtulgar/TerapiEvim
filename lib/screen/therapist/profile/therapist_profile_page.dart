@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/profile/custom_list_view.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:terapievim/screen/therapist/profile/t_attended_seminar.dart';
+import 'package:terapievim/screen/therapist/profile/t_dealing_method.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../participant/profile/profile_setting_page.dart';
@@ -20,14 +22,15 @@ class TherapistProfilePage extends StatelessWidget {
             children: [
               ProfilePageUtility.backgroundOfThePage(),
               ProfilePageUtility.profilePagePersonImage(
-                  DemoInformation.imagePath,false),
+                  DemoInformation.imagePath, false),
               ProfilePageUtility.positionedIconButton(
                   IconUtility.settingIcon.icon!,
                   () => context.push(ParticipantProfileSettingPage()),
                   Responsive.height(40, context),
                   Responsive.width(20, context)),
               Padding(
-                padding: AppPaddings.profilePageBigPadding(true),//left padding genel page padding zamanında kaldırılacak
+                padding: AppPaddings.profilePageBigPadding(
+                    true), //left padding genel page padding zamanında kaldırılacak
                 child: Column(
                   children: [
                     therapistName(),
@@ -35,7 +38,9 @@ class TherapistProfilePage extends StatelessWidget {
                     //smallSizedBox(),
                     aboutMeColumn(),
                     UiBaseModel.boldMainTitleRowView(
-                        TherapistProfileTextUtil.myGroups, 'group', () {}),
+                        TherapistProfileTextUtil.myGroups, 'group', () {
+                      //nasil gidecek
+                    }),
                     ProfilePageListView(
                       isForParticipant: false,
                       isForMethod: false,
@@ -45,7 +50,9 @@ class TherapistProfilePage extends StatelessWidget {
                     ),
                     mediumSizedBox(),
                     UiBaseModel.boldMainTitleRowView(
-                        TherapistProfileTextUtil.methods, 'method', () {}),
+                        TherapistProfileTextUtil.methods, 'method', () {
+                      context.push(TDealingMethod());
+                    }),
                     ProfilePageListView(
                         isForParticipant: false,
                         isForMethod: true,
@@ -53,14 +60,16 @@ class TherapistProfilePage extends StatelessWidget {
                         secondRowTextList: DemoInformation.methodNames),
                     mediumSizedBox(),
                     UiBaseModel.boldMainTitleRowView(
-                        TherapistProfileTextUtil.seminars, 'seminar', () {}),
+                        TherapistProfileTextUtil.seminars, 'seminar', () {
+                      context.push(TAttendedSeminars());
+                    }),
                     ProfilePageListView(
                       isForParticipant: false,
                       isForMethod: false,
                       firstRowTextList: DemoInformation.seminarNames,
                       secondRowTextList: DemoInformation.dates,
                     ),
-                    mediumSizedBox() 
+                    mediumSizedBox()
                   ],
                 ),
               ),
@@ -88,12 +97,12 @@ class TherapistProfilePage extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-      responsivenestext(
+        responsivenestext(
           TherapistProfileTextUtil.aboutMe,
           AppTextStyles.profileTextStyles(false, true),
         ),
-      mediumSizedBox(),
-      aboutMeContainer(),
+        mediumSizedBox(),
+        aboutMeContainer(),
       ],
     );
   }

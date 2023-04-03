@@ -72,7 +72,7 @@ class ProfileController extends GetxController with BaseController {
       }
     }
 
-    if (gender != genderController.text.trim()) {
+    if (gender != genders.trim()) {
       final result = await service
           .updateGender(GenderModel(gender: genderController.text.trim()));
       if (result == null) {
@@ -91,10 +91,11 @@ class ProfileController extends GetxController with BaseController {
     }
   }
 
-  var genders = "Seçiniz".obs;
-  void func(List<String> value, TextEditingController? textController) {
-    if (textController == null) return;
+  var isBoxSelected = false.obs;
 
-    textController.text = value[1];
+  void setIsBoxSelected() {
+    isBoxSelected.value = !isBoxSelected.value;
   }
+
+  var genders = "Seçiniz".obs;
 }

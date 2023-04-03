@@ -10,6 +10,7 @@ class AttendedSeminars extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return BaseView<AttendedSeminarsController>(
       getController: AttendedSeminarsController(),
       onModelReady: (model) {},
@@ -19,6 +20,7 @@ class AttendedSeminars extends StatelessWidget {
           title: Text(
             ParticipantProfileTextUtil.attendedSeminar,
             style: AppTextStyles.heading(false),
+
           ),
         ),
         body: CustomScrollView(

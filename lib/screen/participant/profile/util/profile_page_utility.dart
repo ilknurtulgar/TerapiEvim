@@ -1,9 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import '../../../../core/base/component/activtiy/drop_down.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 
 class ProfilePageUtility {
@@ -55,7 +52,6 @@ class ProfilePageUtility {
       );
 
   //TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-  static ProfileController profileController = Get.find();
 
   ///TODO commeted temporarily
 // static CustomDropDown genderDropDown(bool isInProfilePage,

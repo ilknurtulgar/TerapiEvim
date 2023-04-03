@@ -3,8 +3,8 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/main_controller.dart';
 import 'package:terapievim/controller/profile_controller.dart';
 import 'package:terapievim/controller/therapist_group_controller.dart';
-import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 import 'package:terapievim/core/base/component/group/custom_list_wheel_scroll_view.dart';
+import 'package:terapievim/core/base/component/profile/column_drop_down.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart';
@@ -32,9 +32,12 @@ class ParticipantProfileSettingPage extends StatelessWidget {
         profileController.nameController, false),
     textfieldUtility.birthOfDateTextfield(
         profileController.birthdayController, false),
-    // ProfilePageUtility.genderDropDown(true, profileController.genderController),
+    //  ProfilePageUtility.genderDropDown(true, profileController.genderController),
     //TODO: commented temporarily. (03/04/23).
-    // columnDropDown("ilknur", true),
+    const ColumnDropDown(
+      isInProfilePage: true,
+      title: "Cinsiyet",
+    ),
     textfieldUtility.mailTextfield(profileController.emailController, false),
     textfieldUtility.passwordTextfield(
         profileController.passwordController, false),

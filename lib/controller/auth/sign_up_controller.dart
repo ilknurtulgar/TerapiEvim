@@ -115,7 +115,7 @@ class SignUpController extends GetxController with BaseController {
 
     isLoading.value = false;
 
-    context.pushAndRemoveUntil(TerapiEvimLogged());
+    context.pushAndRemoveUntil(const TerapiEvimLogged());
   }
 
   Future<void> saveToLocalData(String userId) async {
@@ -167,7 +167,7 @@ class SignUpController extends GetxController with BaseController {
       return false;
     }
 
-    if (genderController.text.trim().isEmpty) {
+    if (genders.value == "Seçiniz") {
       flutterErrorToast("Gender is empty");
       return false;
     }
@@ -194,4 +194,13 @@ class SignUpController extends GetxController with BaseController {
     }
     return true;
   }
+
+  var isBoxSelected = false.obs;
+
+  void setIsBoxSelected() {
+    isBoxSelected.value = !isBoxSelected.value;
+    genderController.text = genders.value;
+  }
+
+  RxString genders = "Seçiniz".obs;
 }

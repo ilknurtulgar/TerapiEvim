@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/participant/last_review_controller.dart';
+import 'package:terapievim/controller/participant/p_attended_seminars_controller.dart';
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/models/row_model.dart';
 import '../../../core/base/util/base_utility.dart';
 
 // ignore: must_be_immutable
-class LastReview extends StatelessWidget {
-  LastReview({super.key});
-  LastReviewController controller = Get.put(LastReviewController());
+class AttendedSeminars extends StatelessWidget {
+  AttendedSeminars({super.key});
+  AttendedSeminarsController controller = Get.put(AttendedSeminarsController());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +16,7 @@ class LastReview extends StatelessWidget {
         backgroundColor: AppColors.blueChalk,
         title: rowView(
             RowModel(
-                text: "Incelediklerim",
+                text: "Katildigim Seminarlar",
                 textStyle: AppTextStyles.heading(false),
                 isAlignmentBetween: true),
             AppPaddings.appBarPadding),
@@ -34,7 +34,7 @@ class LastReview extends StatelessWidget {
             delegate: SliverChildBuilderDelegate(
               (context, index) => Padding(
                 padding: AppPaddings.pagePaddingHorizontal,
-                child: DemoInformation.demoLAstReviewContainer,
+                child: DemoInformation.demoAttendedSeminars,
               ),
               childCount: 10,
             ),

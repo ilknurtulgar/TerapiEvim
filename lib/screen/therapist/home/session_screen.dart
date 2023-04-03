@@ -57,9 +57,9 @@ class SessionScreen extends StatelessWidget {
 Widget orderdropdown() {
   return Obx(
     () => CustomDropDown(
-      ontap: () {
+      ontap: (int index) {
         print("çalismiyorki");
-        activityController.func(DemoInformation.orderingList, 1);
+        activityController.func(DemoInformation.orderingList[index]);
         activityController.changeBox();
       },
       textlist: DemoInformation.orderingList,

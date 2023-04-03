@@ -5,6 +5,7 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/login/util/login_page_utility.dart';
 import 'package:terapievim/screen/participant/profile/util/textfield_utility.dart';
+
 import '../../../controller/auth/login_controller.dart';
 import '../sign_up/before_sign_up.dart';
 
@@ -40,24 +41,35 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
       backgroundColor: AppColors.blueChalk,
       body: SingleChildScrollView(
         child: Center(
-          child: Wrap(
-              direction: Axis.vertical,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              spacing: 32,
-              children: [
-                largeSizedBox(),
-                LoginPageUtility.title(true),
-                textfieldUtility.mailTextfield(
-                    _loginController.emailController, true),
-                SizedBox(width: 200, child: passwordColumn()),
-                LoginPageUtility.button(true, true, () {
-                  _loginController.loginWithEmail();
-                }, context),
-                LoginPageUtility.lineWithOrText(context),
-                LoginPageUtility.button(
-                    false, true, () => context.push(BeforeSignUp()), context),
-                largeSizedBox()
-              ]),
+          child: SizedBox(
+            width: context.width1,
+            height: context.height1,
+            child: Padding(
+              padding:
+                  AppPaddings.pagePaddingHorizontal,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  // direction: Axis.vertical,
+                  // crossAxisAlignment: WrapCrossAlignment.center,
+                  // spacing: 32,
+                  children: [
+                    largeSizedBox(),
+                    LoginPageUtility.title(true),
+                    Expanded(
+                      child: textfieldUtility.mailTextfield(
+                          _loginController.emailController, true),
+                    ),
+                    Expanded(child: passwordColumn()),
+                    LoginPageUtility.button(true, true, () {
+                      _loginController.loginWithEmail();
+                    }, context),
+                    LoginPageUtility.lineWithOrText(context),
+                    LoginPageUtility.button(false, true,
+                        () => context.push(BeforeSignUp()), context),
+                    largeSizedBox()
+                  ]),
+            ),
+          ),
         ),
       ),
     );
@@ -76,7 +88,9 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
 
   Widget forgotYourPasswordTextButton() {
     return TextButton(
-        onPressed: () {/* Şifreyi unutma durumundaki fonksiyon gelecek*/},
+        onPressed: () {
+          /* Şifreyi unutma durumundaki fonksiyon gelecek*/
+        },
         child: // responsivenestext(LoginSignUpTextUtil.forgotYourPassword, const TextStyle(color: AppColors.meteorite,fontSize: 15,fontWeight: FontWeight.w700))
 
             Text(

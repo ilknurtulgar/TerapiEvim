@@ -20,7 +20,7 @@ class CustomDropDown extends StatefulWidget {
   final double height;
 
   final List<String> textlist;
-  final Function()? ontap;
+  final Function(int) ontap;
 
   final Widget widget;
   final TextEditingController? textController;
@@ -93,7 +93,7 @@ class ChooseGender extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: widget.ontap,
+            onTap: widget.ontap(index),
             child: Padding(
                 padding: AppPaddings.componentPadding,
                 child: Text(
@@ -134,7 +134,7 @@ Widget columnDropDown(String title, bool isInProfilePage,
       CustomDropDown(
         textlist: DemoInformation.genderList,
         widget: textpurpose(profileController.genders.value),
-        ontap: () {
+        ontap: (int index) {
           profileController.func(DemoInformation.genderList, textController);
         },
         width: isInProfilePage

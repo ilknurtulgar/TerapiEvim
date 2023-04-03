@@ -61,7 +61,7 @@ class ProfilePageUtility {
       CustomDropDown(
         textlist: DemoInformation.genderList,
         widget: textpurpose(profileController.genders.value),
-        ontap: () {
+        ontap: (int index) {
           profileController.func(DemoInformation.genderList, textController);
         },
         width: isInProfilePage ? SizeUtil.specialSize : SizeUtil.generalWidth,

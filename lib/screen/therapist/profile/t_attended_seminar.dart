@@ -1,26 +1,25 @@
+// ignore: must_be_immutable
 import 'package:flutter/material.dart';
-import 'package:terapievim/controller/participant/profil/p_attended_seminars_controller.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
+
+import '../../../controller/therapist/profil/t_attended_seminar_controller.dart';
 import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/util/text_utility.dart';
 
 // ignore: must_be_immutable
-class AttendedSeminars extends StatelessWidget {
-  const AttendedSeminars({super.key});
+class TAttendedSeminars extends StatelessWidget {
+  const TAttendedSeminars({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<AttendedSeminarsController>(
-      getController: AttendedSeminarsController(),
-      onModelReady: (model) {},
+    return BaseView<TAttendedSeminarsController>(
+      getController: TAttendedSeminarsController(),
+      onModelReady: (mode) {},
       onPageBuilder: (context, controller) => Scaffold(
         appBar: AppBar(
-          backgroundColor: AppColors.blueChalk,
-          title: Text(
-            ParticipantProfileTextUtil.attendedSeminar,
-            style: AppTextStyles.heading(false),
-          ),
-        ),
+            backgroundColor: AppColors.blueChalk,
+            title: Text(ParticipantProfileTextUtil.attendedSeminar,
+                style: AppTextStyles.heading(false))),
         body: CustomScrollView(
           slivers: [
             // SliverPadding(

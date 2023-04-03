@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/controller/participant/profil/p_attended_seminars_controller.dart';
+import 'package:terapievim/controller/therapist/profil/t_dealing_method_controller.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 import '../../../core/base/util/base_utility.dart';
 
 // ignore: must_be_immutable
-class AttendedSeminars extends StatelessWidget {
-  const AttendedSeminars({super.key});
-
+class TDealingMethod extends StatelessWidget {
+  const TDealingMethod({super.key});
   @override
   Widget build(BuildContext context) {
-    return BaseView<AttendedSeminarsController>(
-      getController: AttendedSeminarsController(),
+    return BaseView<TDealingMethodController>(
+      getController: TDealingMethodController(),
       onModelReady: (model) {},
       onPageBuilder: (context, controller) => Scaffold(
         appBar: AppBar(
           backgroundColor: AppColors.blueChalk,
           title: Text(
-            ParticipantProfileTextUtil.attendedSeminar,
+            TherapistProfileTextUtil.dealingMetods,
             style: AppTextStyles.heading(false),
           ),
         ),
-        body: CustomScrollView(
+        body: SafeArea(
+            child: CustomScrollView(
           slivers: [
             // SliverPadding(
             //   padding: AppPaddings.pagePaddingHorizontal,
@@ -33,13 +33,13 @@ class AttendedSeminars extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (context, index) => Padding(
                   padding: AppPaddings.pagePaddingHorizontal,
-                  child: DemoInformation.demoAttendedSeminars,
+                  child: DemoInformation.demoLAstReviewContainer,
                 ),
                 childCount: 10,
               ),
             ),
           ],
-        ),
+        )),
       ),
     );
   }

@@ -29,10 +29,11 @@ class MainController extends GetxController with BaseController {
   @override
   void onInit() {
     tabController = CupertinoTabController();
-    //const String currentRole = "participant";
+
     /*  final String currentRole =
         localManager.getStringValue(LocalManagerKeys.role);
     updateWhoItIs(currentRole);*/
+
     super.onInit();
   }
 

@@ -6,6 +6,8 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 
+import '../../../controller/therapist/session/t_session_controller.dart';
+import '../../../core/base/view/base_view.dart';
 import 'available_hours.dart';
 
 class SessionScreen extends StatelessWidget {
@@ -13,35 +15,41 @@ class SessionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Stack(children: [
-          Padding(
-            padding: AppPaddings.pagePadding,
-            child: Column(
-              children: [
-                doubleappbar(
-                  HomeTextUtil.myMinuteSessions,
-                  backButton(context, () => context.pop()),
-                  IconButton(
-                      padding: EdgeInsets.zero,
-                      onPressed: () {
-                        context.push(const AvailableHours());
-                      },
-                      icon: IconUtility.clockIcon),
+    return BaseView<TSessionController>(
+        getController: TSessionController(),
+        onModelReady: (model) {},
+        onPageBuilder: (context, controller) {
+          return Scaffold(
+            body: SingleChildScrollView(
+              child: Stack(children: [
+                Padding(
+                  padding: AppPaddings.pagePadding,
+                  child: Column(
+                    children: [
+                      doubleappbar(
+                        HomeTextUtil.myMinuteSessions,
+                        backButton(context, () => context.pop()),
+                        IconButton(
+                            padding: EdgeInsets.zero,
+                            onPressed: () {
+                              context.push(const AvailableHours());
+                            },
+                            icon: IconUtility.clockIcon),
+                      ),
+                      sizedbox(),
+                      _aboutparticipant(),
+                    ],
+                  ),
                 ),
-                sizedbox(),
-                aboutparticipant(),
-              ],
+                Positioned(
+                    top: 90, right: 24, child: _orderdropdown(controller)),
+              ]),
             ),
-          ),
-          Positioned(top: 90, right: 24, child: orderdropdown()),
-        ]),
-      ),
-    );
+          );
+        });
   }
 
-  ListView aboutparticipant() {
+  ListView _aboutparticipant() {
     return ListView.builder(
       itemBuilder: (context, index) {
         return participantWihtShortCallTime(
@@ -54,16 +62,17 @@ class SessionScreen extends StatelessWidget {
   }
 }
 
-Widget orderdropdown() {
+Widget _orderdropdown(TSessionController controller) {
   return Obx(
     () => CustomDropDown(
-      ontap: () {
-        print("çalismiyorki");
-        activityController.func(DemoInformation.orderingList, 1);
-        activityController.changeBox();
+      orderText: controller.orderValue,
+      textList: DemoInformation.orderingList,
+      isBoxSelected: controller.isBoxSelected.value,
+      onDropDownTapped: () {
+        controller.setIsBoxSelected();
       },
-      textlist: DemoInformation.orderingList,
-      widget: textpurpose(activityController.order.value),
+      // widget: textpurpose(controller.order.value),
+      // widget: textpurpose(controller.sortController.text),
       height: SizeUtil.smallValueHeight,
       width: SizeUtil.normalValueWidth,
     ),

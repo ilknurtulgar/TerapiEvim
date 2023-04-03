@@ -47,7 +47,7 @@ class CustomTextField extends StatelessWidget {
       children: [
         responsivenestext(
             title ?? "", AppTextStyles.normalTextStyle("medium", false)),
-        SizedBox(width: 200, child: textField(context)),
+        textField(context),
       ],
     );
   }

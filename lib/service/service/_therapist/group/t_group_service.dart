@@ -73,6 +73,7 @@ class TGroupService extends ITGroupService with BaseService {
   @override
   Future<String?> updateGroup(TGroupModel group) async {
     if (userId == null) return null;
+    ///TODO there is an error in nested request, it shouldnt nested
     final result = await manager.update<TGroupModel, EmptyModel>(
       collectionPath: APIConst.therapist,
       docId: userId!,

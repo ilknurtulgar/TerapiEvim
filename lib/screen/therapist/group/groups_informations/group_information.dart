@@ -80,6 +80,7 @@ class GroupInformation extends StatelessWidget {
 
   ActivityBox meeting() {
     return ActivityBox(
+        onButtonTap: () {},
         istwobutton: false,
         containerModel: AppContainers.containerButton(false),
         buttonText: GroupTextUtil.startText,

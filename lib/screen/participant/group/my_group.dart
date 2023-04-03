@@ -34,6 +34,7 @@ class MyGroup extends StatelessWidget {
                       isalignmentstart: true,
                       text: GroupTextUtil.upcomingMeetingText),
                   ActivityBox(
+                      onButtonTap: () {},
                       istwobutton: false,
                       buttonText: GroupTextUtil.joinText,
                       isactivity: false,

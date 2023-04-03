@@ -1,19 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/participant/settings/p_setting_controller.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/profile/profile_setting_page.dart';
 import 'package:terapievim/screen/participant/profile/settings/settings_pop_up.dart';
 
+import '../../../../controller/therapist/settings/t_settings_controller.dart';
+import '../../../../core/base/util/text_utility.dart';
+import '../therapist_profile_page.dart';
+
 // ignore: must_be_immutable
-class PSettings extends StatelessWidget {
-  PSettings({super.key});
-  PSettingsController controller = Get.put(PSettingsController());
+class TSettings extends StatelessWidget {
+  TSettings({super.key});
+  TSettingsController controller = Get.put(TSettingsController());
 
   @override
   Widget build(BuildContext context) {
@@ -27,9 +28,6 @@ class PSettings extends StatelessWidget {
             appBar(),
             accountRow(context),
             notificationRow(),
-            textButton(ProfileSettingsTextUtil.exitGroup, () {
-              groupOut(context);
-            }),
             textButton(ProfileSettingsTextUtil.deleteAccount, () {
               deleteAccount(context);
             }),
@@ -54,7 +52,7 @@ class PSettings extends StatelessWidget {
   InkWell accountRow(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(ParticipantProfileSettingPage());
+        context.push(const TherapistProfilePage());
       },
       child: rowView(
           RowModel(

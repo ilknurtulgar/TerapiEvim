@@ -65,6 +65,7 @@ class TextfieldUtility {
             isOne: false,
             obsecureText: activityController.isObsecure.value,
             title: "Şifreee",
+            maxLines: 1,
             textController: textController,
             rowModel: RowModel(
               text: isBig ? 'Şifre' : "",

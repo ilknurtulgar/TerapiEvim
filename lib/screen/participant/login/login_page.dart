@@ -49,13 +49,13 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
                 LoginPageUtility.title(true),
                 textfieldUtility.mailTextfield(
                     _loginController.emailController, true),
-                passwordColumn(),
+                SizedBox(width: 200, child: passwordColumn()),
                 LoginPageUtility.button(true, true, () {
                   _loginController.loginWithEmail();
-                },context),
+                }, context),
                 LoginPageUtility.lineWithOrText(context),
                 LoginPageUtility.button(
-                    false, true, () => context.push(BeforeSignUp()),context),
+                    false, true, () => context.push(BeforeSignUp()), context),
                 largeSizedBox()
               ]),
         ),
@@ -77,13 +77,14 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
   Widget forgotYourPasswordTextButton() {
     return TextButton(
         onPressed: () {/* Şifreyi unutma durumundaki fonksiyon gelecek*/},
-        child:// responsivenestext(LoginSignUpTextUtil.forgotYourPassword, const TextStyle(color: AppColors.meteorite,fontSize: 15,fontWeight: FontWeight.w700))
-        
-        
-        
-         Text(
+        child: // responsivenestext(LoginSignUpTextUtil.forgotYourPassword, const TextStyle(color: AppColors.meteorite,fontSize: 15,fontWeight: FontWeight.w700))
+
+            Text(
           LoginSignUpTextUtil.forgotYourPassword,
-          style: const TextStyle(color: AppColors.meteorite,fontSize: 16,fontWeight: FontWeight.w700),
+          style: const TextStyle(
+              color: AppColors.meteorite,
+              fontSize: 16,
+              fontWeight: FontWeight.w700),
         ));
   }
 }

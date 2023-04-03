@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 
@@ -10,7 +9,7 @@ deleteAccount(BuildContext context) {
     builder: (BuildContext context) => AlertDialog(
       shape: const RoundedRectangleBorder(
           borderRadius: AppBorderRadius.generalBorderRadius),
-      content: const Text(ProfileSettingsTextUtil.deleteAccountLast),
+      content: const Text("Hesabi silmek istediginize emin misiniz?"),
       actions: <Widget>[
         TextButton(
           onPressed: () {
@@ -42,7 +41,7 @@ signOut(BuildContext context) {
     builder: (BuildContext context) => AlertDialog(
       shape: const RoundedRectangleBorder(
           borderRadius: AppBorderRadius.generalBorderRadius),
-      content: const Text(ProfileSettingsTextUtil.signOutLast),
+      content: const Text("Oturumu kapatmak istediginize emin misini?"),
       actions: <Widget>[
         TextButton(
           onPressed: () {

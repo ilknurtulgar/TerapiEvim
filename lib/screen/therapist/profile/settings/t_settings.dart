@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/view/base_view.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/profile/settings/settings_pop_up.dart';
 
@@ -13,30 +14,33 @@ import '../therapist_profile_page.dart';
 
 // ignore: must_be_immutable
 class TSettings extends StatelessWidget {
-  TSettings({super.key});
-  TSettingsController controller = Get.put(TSettingsController());
+  const TSettings({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Padding(
-        padding: AppPaddings.pagePadding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            appBar(),
-            accountRow(context),
-            notificationRow(),
-            textButton(ProfileSettingsTextUtil.deleteAccount, () {
-              deleteAccount(context);
-            }),
-            textButton(ProfileSettingsTextUtil.signOut, () {
-              signOut(context);
-            }),
-          ],
-        ),
-      )),
+    return BaseView<TSettingsController>(
+      getController: TSettingsController(),
+      onModelReady: (model) {},
+      onPageBuilder: (context, controller) => Scaffold(
+        body: SafeArea(
+            child: Padding(
+          padding: AppPaddings.pagePadding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              appBar(),
+              accountRow(context),
+              notificationRow(controller),
+              textButton(ProfileSettingsTextUtil.deleteAccount, () {
+                deleteAccount(context);
+              }),
+              textButton(ProfileSettingsTextUtil.signOut, () {
+                signOut(context);
+              }),
+            ],
+          ),
+        )),
+      ),
     );
   }
 
@@ -65,7 +69,7 @@ class TSettings extends StatelessWidget {
     );
   }
 
-  Widget notificationRow() {
+  Widget notificationRow(TSettingsController controller) {
     return rowView(
         RowModel(
             isAlignmentBetween: false,

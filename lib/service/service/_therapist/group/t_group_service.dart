@@ -73,13 +73,10 @@ class TGroupService extends ITGroupService with BaseService {
   @override
   Future<String?> updateGroup(TGroupModel group) async {
     if (userId == null) return null;
-
-    ///TODO there is an error in nested request, it shouldnt nested
+    if (group.id == null) return null;
     final result = await manager.update<TGroupModel, EmptyModel>(
-      collectionPath: APIConst.therapist,
-      docId: userId!,
-      collectionPath2: APIConst.groups,
-      docId2: group.id,
+      collectionPath: APIConst.groups,
+      docId: group.id!,
       data: group,
     );
     if (result.error != null) {
@@ -94,10 +91,8 @@ class TGroupService extends ITGroupService with BaseService {
     if (userId == null) return null;
 
     final result = await manager.delete(
-      collectionPath: APIConst.therapist,
-      docId: userId!,
-      collectionPath2: APIConst.groups,
-      docId2: groupId,
+      collectionPath: APIConst.groups,
+      docId: groupId,
     );
     if (result == false) {
       return "ERROR";
@@ -109,10 +104,8 @@ class TGroupService extends ITGroupService with BaseService {
   Future<TGroupModel?> getGroupById(String groupId) async {
     if (userId == null) return null;
     final result = await manager.readOne<TGroupModel, TGroupModel>(
-      collectionPath: APIConst.therapist,
-      docId: userId!,
-      collectionPath2: APIConst.groups,
-      docId2: groupId,
+      collectionPath: APIConst.groups,
+      docId: groupId,
       parseModel: TGroupModel(),
     );
     if (result.error != null) {
@@ -132,10 +125,10 @@ class TGroupService extends ITGroupService with BaseService {
 
     final result =
         await manager.readOrderedWhere<TGroupModel, List<TGroupModel>>(
+      collectionPath: APIConst.groups,
+      parseModel: TGroupModel(),
       whereField: AppConst.therapistId,
       whereIsEqualTo: userId!,
-      collectionPath: APIConst.therapist,
-      parseModel: TGroupModel(),
       isDescending: isDescending,
       orderField: orderField,
       lastDocumentId: lastDocId,

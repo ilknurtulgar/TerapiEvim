@@ -8,8 +8,10 @@ import 'package:terapievim/screen/participant/profile/attended_seminars.dart';
 import 'package:terapievim/screen/participant/profile/last_review.dart';
 import 'package:terapievim/screen/participant/profile/models/group_model.dart';
 import 'package:terapievim/screen/participant/profile/profile_setting_page.dart';
+import '../../../controller/profile_controller.dart';
 import '../../../core/base/component/group/group.dart';
 import '../../../core/base/component/group/row_view.dart';
+import '../../../core/base/view/base_view.dart';
 import 'util/profile_page_utility.dart';
 
 class ParticipantProfilePage extends StatelessWidget {
@@ -17,59 +19,65 @@ class ParticipantProfilePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.blueChalk,
-      body: SafeArea(
-        child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          child: Stack(children: [
-            ProfilePageUtility.backgroundOfThePage(),
-            ProfilePageUtility.positionedIconButton(
-                IconUtility.settingIcon.icon!,
-                () => context.push(ParticipantProfileSettingPage()),
-                Responsive.height(40, context),
-                Responsive.width(20, context)),
-            ProfilePageUtility.profilePagePersonImage(
-                DemoInformation.profileImagePath, false),
-            Padding(
-              padding: AppPaddings.profilePageBigPadding(true),
-              child: Column(
-                children: [
-                  nameAndBirthDateColumn(),
-                  smallSizedBox(),
-                  participantGroupColumn(),
-                  mediumSizedBox(),
-                  UiBaseModel.boldMainTitleRowView(
-                      ParticipantProfileTextUtil.lastRead, 'method', () {
-                    context.push(LastReview());
-                  }),
-                  ProfilePageListView(
-                    isForParticipant: true,
-                    isForMethod: true,
-                    mainTherapistName:
-                        DemoInformation.groupInformation.mainTherapistName,
-                    secondRowTextList:
-                        DemoInformation.groupInformation.methodTitles,
+    return BaseView<ProfileController>(
+      getController: ProfileController(),
+      onModelReady: (model){},
+      onPageBuilder: (context,controller) {
+        return Scaffold(
+          backgroundColor: AppColors.blueChalk,
+          body: SafeArea(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Stack(children: [
+                ProfilePageUtility.backgroundOfThePage(),
+                ProfilePageUtility.positionedIconButton(
+                    IconUtility.settingIcon.icon!,
+                    () => context.push(ParticipantProfileSettingPage()),
+                    Responsive.height(40, context),
+                    Responsive.width(20, context)),
+                ProfilePageUtility.profilePagePersonImage(
+                    DemoInformation.profileImagePath, false),
+                Padding(
+                  padding: AppPaddings.profilePageBigPadding(true),
+                  child: Column(
+                    children: [
+                      nameAndBirthDateColumn(),
+                      smallSizedBox(),
+                      participantGroupColumn(),
+                      mediumSizedBox(),
+                      UiBaseModel.boldMainTitleRowView(
+                          ParticipantProfileTextUtil.lastRead, 'method', () {
+                        context.push(LastReview());
+                      }),
+                      ProfilePageListView(
+                        isForParticipant: true,
+                        isForMethod: true,
+                        mainTherapistName:
+                            DemoInformation.groupInformation.mainTherapistName,
+                        secondRowTextList:
+                            DemoInformation.groupInformation.methodTitles,
+                      ),
+                      mediumSizedBox(),
+                      UiBaseModel.boldMainTitleRowView(
+                          ParticipantProfileTextUtil.joinedSeminars, 'seminar', () {
+                        context.push(AttendedSeminars());
+                      }),
+                      ProfilePageListView(
+                          isForParticipant: true,
+                          isForMethod: false,
+                          firstRowTextList: DemoInformation.lastWatchedSeminars
+                              .getSeminarsTherapistName(),
+                          secondRowTextList: DemoInformation.lastWatchedSeminars
+                              .getSeminarTitles()),
+                      mediumSizedBox(),
+                    ],
                   ),
-                  mediumSizedBox(),
-                  UiBaseModel.boldMainTitleRowView(
-                      ParticipantProfileTextUtil.joinedSeminars, 'seminar', () {
-                    context.push(AttendedSeminars());
-                  }),
-                  ProfilePageListView(
-                      isForParticipant: true,
-                      isForMethod: false,
-                      firstRowTextList: DemoInformation.lastWatchedSeminars
-                          .getSeminarsTherapistName(),
-                      secondRowTextList: DemoInformation.lastWatchedSeminars
-                          .getSeminarTitles()),
-                  mediumSizedBox(),
-                ],
-              ),
+                ),
+              ]),
             ),
-          ]),
-        ),
-      ),
+          ),
+        );
+      }
     );
   }
 

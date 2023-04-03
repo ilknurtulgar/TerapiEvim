@@ -79,28 +79,25 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
     );
   }
 
-  CustomTextField eventname() {
-    return CustomTextField(
-        isOne: true,
-        isBig: true,
-        textController: therapistActivityController.activitynamController,
-        isRowModel: false);
+  eventname() {
+    return textfield(therapistActivityController.activitynamController, 2);
   }
 
   Widget eventabout() {
     return textfield(
-        342, 204, therapistActivityController.activitydescriptionController);
+        therapistActivityController.activitydescriptionController, 10);
   }
 
-  Row dateclocktextfield() {
+  Widget dateclocktextfield() {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Expanded(
             child: textfield(
-                160, 60, therapistActivityController.activitydateController)),
+                therapistActivityController.activitydateController, 2)),
         Expanded(
             child: textfield(
-                160, 60, therapistActivityController.activitytimeController)),
+                therapistActivityController.activitytimeController, 2)),
       ],
     );
   }
@@ -118,15 +115,16 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
     );
   }
 
-  Widget textfield(double width, double height,
-      TextEditingController textEditingController) {
-    return CustomTextField(
-        isOne: true,
-        height: height,
-        width: width,
-        isBig: true,
-        textController: textEditingController,
-        isRowModel: false);
+  Widget textfield(TextEditingController textEditingController, int maxLines) {
+    return Padding(
+      padding: AppPaddings.generalPadding,
+      child: CustomTextField(
+          isOne: true,
+          maxLines: maxLines,
+          isBig: true,
+          textController: textEditingController,
+          isRowModel: false),
+    );
   }
 
   Padding activityname(String activityheading, EdgeInsets padding) {

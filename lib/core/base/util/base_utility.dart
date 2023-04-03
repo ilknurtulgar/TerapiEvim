@@ -119,7 +119,8 @@ class IconUtility {
   static Icon micIcon(bool isInCircularContainer) => Icon(Icons.mic,
       color: isInCircularContainer ? AppColors.black : AppColors.white);
   static const Icon micoffIcon = Icon(Icons.mic_off, color: AppColors.red);
-  static const Icon videcamIcon = Icon(Icons.videocam_outlined, color: AppColors.black);
+  static const Icon videcamIcon =
+      Icon(Icons.videocam_outlined, color: AppColors.black);
   static const Icon videocamoffIcon =
       Icon(Icons.videocam_off_outlined, color: AppColors.black);
   static const Icon callendIcon = Icon(Icons.call_end, color: AppColors.white);
@@ -376,7 +377,6 @@ class AppPaddings {
   static const EdgeInsets miniTopPadding = EdgeInsets.only(top: 10);
   static const EdgeInsets mediumxPadding = EdgeInsets.only(top: 25, bottom: 15);
 
-//yukardakiler kesinlestirildi ortak kullanim
   static const EdgeInsets generalPadding = EdgeInsets.all(5);
 
   static const EdgeInsets contentPadding = EdgeInsets.all(3);
@@ -716,11 +716,12 @@ class DemoInformation {
       isMicOn: true.obs,
       isCamOn: true.obs);
   static PersonInCallModel personNo1 = PersonInCallModel(
-      name: 'Kerem',
-      surname: 'Görkem',
-      imagePath: 'assets/images/f2.jpg',
-      isMicOn: false.obs,
-      isCamOn: true.obs,);
+    name: 'Kerem',
+    surname: 'Görkem',
+    imagePath: 'assets/images/f2.jpg',
+    isMicOn: false.obs,
+    isCamOn: true.obs,
+  );
   static PersonInCallModel personNo2 = PersonInCallModel(
       name: 'Ali',
       surname: 'Aydın',

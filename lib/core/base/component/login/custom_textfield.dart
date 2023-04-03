@@ -11,21 +11,20 @@ class CustomTextField extends StatelessWidget {
     this.rowModel,
     required this.textController,
     required this.isRowModel,
-    this.width,
-    this.height,
     required this.isOne,
     this.title,
     this.obsecureText,
     this.prefixText,
+    this.maxLines,
   }) : super(key: key);
 
   final RowModel? rowModel;
+  final int? maxLines;
   final bool isBig;
   final bool isRowModel;
   final String? prefixText;
   final String? title;
-  final double? width;
-  final double? height;
+
   final bool isOne;
   final bool? obsecureText;
   final TextEditingController textController;
@@ -36,6 +35,7 @@ class CustomTextField extends StatelessWidget {
       throw Exception(
           "cant help is big true and row model is null in customtextfield");
     }*/
+    print("maxlines");
     return isOne ? textField(context) : columnTextField(context);
   }
 
@@ -47,37 +47,33 @@ class CustomTextField extends StatelessWidget {
       children: [
         responsivenestext(
             title ?? "", AppTextStyles.normalTextStyle("medium", false)),
-        textField(context),
+        SizedBox(width: 200, child: textField(context)),
       ],
     );
   }
 
   Widget textField(BuildContext context) {
-    return SizedBox(
-      width: width ?? Responsive.width(SizeUtil.generalWidth, context),
-      height: height ?? SizeUtil.generalHeight,
-      child: Padding(
-        padding: AppPaddings.componentPadding,
-        child: TextField(
-          controller: textController,
-          obscureText: obsecureText ?? false,
-          textAlign: TextAlign.start,
-          decoration: InputDecoration(
-            contentPadding:
-                isBig ? const EdgeInsets.all(12) : AppPaddings.contentPadding,
-            filled: true,
-            fillColor: AppColors.white,
-            suffix: isBig
-                ? (rowModel == null ? null : rowModel!.trailingIcon)
-                : null,
-            prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
-            hintText: rowModel?.text2,
-            hintStyle: rowModel?.textStyle2 ??
-                AppTextStyles.normalTextStyle("small", false),
-            prefixText: prefixText,
-            enabledBorder: bordercolor(isBig),
-            focusedBorder: bordercolor(isBig),
-          ),
+    return Padding(
+      padding: AppPaddings.componentPadding,
+      child: TextField(
+        maxLines: maxLines ?? 2,
+        controller: textController,
+        obscureText: obsecureText ?? false,
+        textAlign: TextAlign.start,
+        decoration: InputDecoration(
+          contentPadding:
+              isBig ? const EdgeInsets.all(12) : AppPaddings.contentPadding,
+          filled: true,
+          fillColor: AppColors.white,
+          suffix:
+              isBig ? (rowModel == null ? null : rowModel!.trailingIcon) : null,
+          prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
+          hintText: rowModel?.text2,
+          hintStyle: rowModel?.textStyle2 ??
+              AppTextStyles.normalTextStyle("small", false),
+          prefixText: prefixText,
+          enabledBorder: bordercolor(isBig),
+          focusedBorder: bordercolor(isBig),
         ),
       ),
     );

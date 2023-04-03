@@ -380,7 +380,6 @@ class AppPaddings {
   static const EdgeInsets miniTopPadding = EdgeInsets.only(top: 10);
   static const EdgeInsets mediumxPadding = EdgeInsets.only(top: 25, bottom: 15);
 
-//yukardakiler kesinlestirildi ortak kullanim
   static const EdgeInsets generalPadding = EdgeInsets.all(5);
 
   static const EdgeInsets contentPadding = EdgeInsets.all(3);

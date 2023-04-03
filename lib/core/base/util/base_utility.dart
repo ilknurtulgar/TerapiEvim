@@ -849,6 +849,7 @@ class SizeUtil {
   static const double generalWidth =
       342; //lockScreenBigContainerWidth,purpleTextContainer,personShortCallViewWidth
   static const double bnbHeight = 60;
+  static const double appBarHeight = 70;
   static const double participantContainerWidth = 178;
 
   // küçükten büyüğe sıralama

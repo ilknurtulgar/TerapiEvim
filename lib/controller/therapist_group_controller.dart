@@ -1,8 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/base/base_controller.dart';
 import '../core/base/component/group/scrollable_time.dart';
+import '../service/model/therapist/group/t_group_model.dart';
+import '../service/service/_therapist/group/i_t_group_service.dart';
+import '../service/service/_therapist/group/t_group_service.dart';
 
-class TherapistGroupController extends GetxController {
+class TherapistGroupController extends GetxController with BaseController {
+  @override
+  Future<void> onInit() async {
+    tGroupService = TGroupService(vexaFireManager.networkManager);
+
+    List<TGroupModel?>? groups = await tGroupService.getGroupsOrdered();
+    fetchedGroups.addAll(groups ?? []);
+    super.onInit();
+  }
+
+  @override
+  void setContext(BuildContext context) {
+    // TODO: implement setContext
+  }
+  late ITGroupService tGroupService;
   List<bool> isButtonOn = List<bool>.filled(10, false).obs;
   void switchButtonFunction(int index, bool value) {
     isButtonOn[index] = value;
@@ -70,4 +88,6 @@ class TherapistGroupController extends GetxController {
   void deleteTimeInAddingPage(int rowIndex) {
     tempTimes.remove(tempTimes[rowIndex]);
   }
+
+  RxList<TGroupModel?> fetchedGroups = <TGroupModel?>[].obs;
 }

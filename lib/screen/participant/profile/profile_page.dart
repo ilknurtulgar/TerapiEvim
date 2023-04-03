@@ -38,7 +38,7 @@ class ParticipantProfilePage extends StatelessWidget {
                 ProfilePageUtility.profilePagePersonImage(
                     DemoInformation.profileImagePath, false),
                 Padding(
-                  padding: AppPaddings.profilePageBigPadding(true),
+                  padding: AppPaddings.profilePageBigPadding(true,false),
                   child: Column(
                     children: [
                       nameAndBirthDateColumn(),
@@ -71,6 +71,7 @@ class ParticipantProfilePage extends StatelessWidget {
                               .getSeminarTitles()),
                       mediumSizedBox(),
                     ],
+
                   ),
                 ),
               ]),

@@ -6,39 +6,43 @@ import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/base/view/base_view.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/profile/profile_setting_page.dart';
 import 'package:terapievim/screen/participant/profile/settings/settings_pop_up.dart';
 
 // ignore: must_be_immutable
 class PSettings extends StatelessWidget {
-  PSettings({super.key});
-  PSettingsController controller = Get.put(PSettingsController());
+  const PSettings({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-          child: Padding(
-        padding: AppPaddings.pagePadding,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            appBar(),
-            accountRow(context),
-            notificationRow(),
-            textButton(ProfileSettingsTextUtil.exitGroup, () {
-              groupOut(context);
-            }),
-            textButton(ProfileSettingsTextUtil.deleteAccount, () {
-              deleteAccount(context);
-            }),
-            textButton(ProfileSettingsTextUtil.signOut, () {
-              signOut(context);
-            }),
-          ],
-        ),
-      )),
+    return BaseView<PSettingsController>(
+      getController: PSettingsController(),
+      onModelReady: (model) {},
+      onPageBuilder: (context, controller) => Scaffold(
+        body: SafeArea(
+            child: Padding(
+          padding: AppPaddings.pagePadding,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              appBar(),
+              accountRow(context),
+              notificationRow(controller),
+              textButton(ProfileSettingsTextUtil.exitGroup, () {
+                groupOut(context);
+              }),
+              textButton(ProfileSettingsTextUtil.deleteAccount, () {
+                deleteAccount(context);
+              }),
+              textButton(ProfileSettingsTextUtil.signOut, () {
+                signOut(context);
+              }),
+            ],
+          ),
+        )),
+      ),
     );
   }
 
@@ -67,7 +71,7 @@ class PSettings extends StatelessWidget {
     );
   }
 
-  Widget notificationRow() {
+  Widget notificationRow(PSettingsController controller) {
     return rowView(
         RowModel(
             isAlignmentBetween: false,

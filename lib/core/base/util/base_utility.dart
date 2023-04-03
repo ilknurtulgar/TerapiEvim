@@ -21,6 +21,7 @@ import '../../../screen/therapist/message/message.dart';
 import '../../init/managers/responsiveness_manager.dart';
 import '../../managers/converter/date_time_manager.dart';
 import '../component/group/row_view.dart';
+import '../component/home/method_downloading_container.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
 import '../models/card_model.dart';
 import '../models/row_model.dart';
@@ -366,6 +367,8 @@ class AppPaddings {
   );
   static const EdgeInsets pagePadding =
       EdgeInsets.only(left: 24, right: 24, bottom: 80, top: 15);
+  static const EdgeInsets pagePaddingHorizontal =
+      EdgeInsets.symmetric(horizontal: 24);
   static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 8);
 
   static EdgeInsets miniHeadingPadding(bool isInMiddle) =>
@@ -499,6 +502,25 @@ class NavigateUtil {
 }
 
 class DemoInformation {
+  static MethodDownloadingContainer demoLAstReviewContainer =
+      MethodDownloadingContainer(
+          cardModel: CardModel(
+              imagePath: DemoInformation.imagePath,
+              title: DemoInformation.therapistName),
+          time: "04/01/2003",
+          explanation: "Kendini bil",
+          buttonOnTap: () {},
+          buttonText: "Oku");
+
+  static MethodDownloadingContainer demoAttendedSeminars =
+      MethodDownloadingContainer(
+          cardModel: CardModel(
+              imagePath: DemoInformation.imagePath,
+              title: DemoInformation.therapistName),
+          time: "04/01/2003",
+          explanation: "Kendini bil",
+          buttonOnTap: () {},
+          buttonText: "Tekrar Izle");
   //message
   static const List<String> personList = [
     "Canan Karatay",

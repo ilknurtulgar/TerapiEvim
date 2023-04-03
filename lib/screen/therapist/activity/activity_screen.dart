@@ -57,11 +57,7 @@ class TherapistActivityScreen extends StatelessWidget {
                 otherUpcomingActivities(),
                 activityminto(ActivityTextUtil.myActivty, () {},
                     MainAxisAlignment.spaceBetween, true, IconUtility.forward),
-                myPastActivities(),
-                /*
-              activityminto(ActivityTextUtil.otherPastActivities, () {},
-                  MainAxisAlignment.spaceAround, true, IconUtility.forward),
-              otherpastactivites(),*/
+                myPastActivities(context, controller),
               ],
             ),
           ),
@@ -72,6 +68,7 @@ class TherapistActivityScreen extends StatelessWidget {
 
   ActivityBox otherPastActivities() {
     return ActivityBox(
+        onButtonTap: () {},
         istwobutton: false,
         buttonText: ActivityTextUtil.join,
         containerModel: AppContainers.containerButton(true),
@@ -81,8 +78,15 @@ class TherapistActivityScreen extends StatelessWidget {
         clockModel: DemoInformation.clockmodel);
   }
 
-  ActivityBox myPastActivities() {
+  ActivityBox myPastActivities(
+      BuildContext context, TherapistActivityController controller) {
     return ActivityBox(
+        onButtonTap: () {
+          controller.updatechnage(0);
+
+          context.push(
+              NewActivityScreen(activity: controller.myRecentActivities[0]));
+        },
         istwobutton: false,
         buttonText: ActivityTextUtil.watchTheRecording,
         containerModel: AppContainers.containerButton(true),
@@ -91,15 +95,9 @@ class TherapistActivityScreen extends StatelessWidget {
         clockModel: DemoInformation.clockmodel);
   }
 
-  ActivityBox otherUpcomingActivities() {
-    return ActivityBox(
-        istwobutton: false,
-        buttonText: ActivityTextUtil.join,
-        containerModel: AppContainers.containerButton(false),
-        isactivity: false,
-        arowModel: DemoInformation.arowmodel,
-        ayrowwModel: DemoInformation.ayrowmodel,
-        clockModel: DemoInformation.clockmodel);
+  Widget otherUpcomingActivities() {
+    return activitythreerowbox(() {}, () => null, DemoInformation.arowmodel,
+        DemoInformation.clockmodel, ActivityTextUtil.join);
   }
 
   ActivityBox myUpcomingActivities(

@@ -1,4 +1,5 @@
 //buraya sadece uygulamada fix duracak olan textler konacaktir
+class SettingsTextUtil {}
 
 class GroupTextUtil {
   static const String messageToTherapist = "Grup Terapistine Mesaj Gonder";
@@ -139,6 +140,8 @@ class ParticipantProfileTextUtil {
   static String advisor = 'Yardımcı Psikolog: ';
   static String readAgain = 'Tekrar Oku';
   static String watchAgain = 'Tekrar izle';
+  static const String attendedSeminar = "Katıldığım Seminerlar";
+  static const String lastReview = "İncelediklerim";
 }
 
 class ProfileSettingsTextUtil {
@@ -155,6 +158,16 @@ class ProfileSettingsTextUtil {
       '''Random yardımcı psikolog listesinde bulunmak istiyorum.''';
   static String numberOfGroups =
       '''Yardımcı psikologluk yapabileceğim grup sayısı''';
+  static const String myAccount = "Hesabım";
+  static const String notifications = "Bildirimler";
+  static const String settings = "Ayarlar";
+  static const String exitGroup = "Gruptan Çık";
+  static const String deleteAccount = "Hesabımı Sil";
+  static const String signOut = "Oturumu Kapat";
+  static const String deleteAccountLast =
+      "Hesabı silmek istediğinize emin misiniz?";
+  static const String signOutLast =
+      "Oturumu kapatmak istediğinize emin misini?";
 }
 
 class TherapistProfileTextUtil {
@@ -166,6 +179,7 @@ class TherapistProfileTextUtil {
   static String watch = 'izle';
   static String advisor = 'Yardımcı Psikolog: ';
   static List<String> genderList = ['Kadın', 'Erkek'];
+  static String dealingMetods = "Başetme Metodları";
 }
 
 class ActivityTextUtil {
@@ -327,5 +341,4 @@ class VideoCallTextUtil {
       'isimli kişiyi izole odasına göndermek istiyor musunuz?';
   static const String yes = 'Evet';
   static const String no = 'Hayır';
-
 }

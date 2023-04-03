@@ -31,7 +31,9 @@ Widget rowView(
 
 Widget texts(RowModel rowModel) {
   return Row(
-    mainAxisAlignment:  rowModel.isAlignmentBetween == false ? MainAxisAlignment.start : MainAxisAlignment.center,
+    mainAxisAlignment: rowModel.isAlignmentBetween == false
+        ? MainAxisAlignment.start
+        : MainAxisAlignment.center,
     children: [
       responsivenestext(rowModel.text, rowModel.textStyle),
       responsivenestext(rowModel.text2!, rowModel.textStyle2),

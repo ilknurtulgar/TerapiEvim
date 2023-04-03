@@ -7,8 +7,6 @@ import 'package:terapievim/core/base/models/container_model.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
 
 class ActivityBox extends StatelessWidget {
   ActivityBox({
@@ -20,7 +18,7 @@ class ActivityBox extends StatelessWidget {
     required this.arowModel,
     required this.isactivity,
     required this.clockModel,
-    this.onButtonTap,
+    required this.onButtonTap,
     this.onTap,
   });
 
@@ -61,18 +59,13 @@ class ActivityBox extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     istwobutton
-                        ? rowbutton(() {
-                            therapistActivtyController.updatechnage(0);
-
-                            context.push(NewActivityScreen(
-                                activity: therapistActivtyController
-                                    .myRecentActivities[0]));
-                          }, ActivityTextUtil.updateMyInformation,
+                        ? rowbutton(
+                            onButtonTap!,
+                            ActivityTextUtil.updateMyInformation,
                             AppContainers.hugeContainerButton())
                         : const SizedBox.shrink(),
-                    rowbutton(() {
-                      onButtonTap != null ? onButtonTap!() : null;
-                    }, buttonText, AppContainers.containerButton(false)),
+                    rowbutton(onButtonTap!, buttonText,
+                        AppContainers.containerButton(false)),
                   ],
                 ),
               )

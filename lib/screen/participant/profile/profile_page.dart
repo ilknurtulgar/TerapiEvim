@@ -4,6 +4,8 @@ import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:terapievim/screen/participant/profile/attended_seminars.dart';
+import 'package:terapievim/screen/participant/profile/last_review.dart';
 import 'package:terapievim/screen/participant/profile/models/group_model.dart';
 import 'package:terapievim/screen/participant/profile/profile_setting_page.dart';
 import '../../../core/base/component/group/group.dart';
@@ -25,10 +27,10 @@ class ParticipantProfilePage extends StatelessWidget {
             ProfilePageUtility.positionedIconButton(
                 IconUtility.settingIcon.icon!,
                 () => context.push(ParticipantProfileSettingPage()),
-                 Responsive.height(40, context),
-                 Responsive.width(20, context)),
+                Responsive.height(40, context),
+                Responsive.width(20, context)),
             ProfilePageUtility.profilePagePersonImage(
-                DemoInformation.profileImagePath,false),
+                DemoInformation.profileImagePath, false),
             Padding(
               padding: AppPaddings.profilePageBigPadding(true),
               child: Column(
@@ -38,7 +40,9 @@ class ParticipantProfilePage extends StatelessWidget {
                   participantGroupColumn(),
                   mediumSizedBox(),
                   UiBaseModel.boldMainTitleRowView(
-                      ParticipantProfileTextUtil.lastRead, 'method', () {}),
+                      ParticipantProfileTextUtil.lastRead, 'method', () {
+                    context.push(LastReview());
+                  }),
                   ProfilePageListView(
                     isForParticipant: true,
                     isForMethod: true,
@@ -49,10 +53,9 @@ class ParticipantProfilePage extends StatelessWidget {
                   ),
                   mediumSizedBox(),
                   UiBaseModel.boldMainTitleRowView(
-
-                      ParticipantProfileTextUtil.joinedSeminars,
-                      'seminar',
-                      () {}),
+                      ParticipantProfileTextUtil.joinedSeminars, 'seminar', () {
+                    context.push(AttendedSeminars());
+                  }),
                   ProfilePageListView(
                       isForParticipant: true,
                       isForMethod: false,
@@ -113,7 +116,8 @@ class ParticipantProfilePage extends StatelessWidget {
             DemoInformation.nameSurname,
             AppTextStyles.normalTextStyle('big', false),
           ),
-          responsivenestext(DemoInformation.birthOfDate,AppTextStyles.normalTextStyle('medium', false)),
+          responsivenestext(DemoInformation.birthOfDate,
+              AppTextStyles.normalTextStyle('medium', false)),
         ],
       ),
     );

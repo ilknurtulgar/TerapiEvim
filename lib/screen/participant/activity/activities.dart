@@ -70,26 +70,31 @@ Widget activityLoadSeminar(PActivityController pActivityController) {
       itemBuilder: (context, index) {
         final TActivityModel activity =
             pActivityController.recentActivities[index]!;
-        return ActivityBox(
-            onTap: () {
-              context.push(const AboutActivityScreen());
-            },
-            onButtonTap: () {
-              pActivityController.joinActivity(context, activity);
-            },
-            istwobutton: false,
-            buttonText: ActivityTextUtil.join,
-            containerModel: AppContainers.containerButton(false),
-            isactivity: false,
-            arowModel:
-                DemoInformation.recentActivityTitle(activity.title ?? ''),
-            ayrowwModel:
-                DemoInformation.recentActivity(activity.therapistName ?? ''),
-            clockModel: DemoInformation.recentActivityTime(
-                activity.dateTime ?? Timestamp.now()));
+        return activitythreerowbox(() {
+          context.push(const AboutActivityScreen());
+        }, () {
+          pActivityController.joinActivity(context, activity);
+        },
+            DemoInformation.recentActivity(activity.therapistName ?? ''),
+            DemoInformation.recentActivityTime(
+                activity.dateTime ?? Timestamp.now()),
+            ActivityTextUtil.join);
       },
     ),
   );
+}
+
+Widget activitythreerowbox(Function()? onButtonTap, Function()? onTap,
+    RowModel arowModel, RowModel clockModel, String buttonText) {
+  return ActivityBox(
+      onTap: onTap,
+      istwobutton: false,
+      buttonText: buttonText,
+      containerModel: AppContainers.containerButton(false),
+      arowModel: arowModel,
+      isactivity: false,
+      clockModel: clockModel,
+      onButtonTap: onButtonTap);
 }
 
 ListView activityPastSeminar() {
@@ -97,17 +102,10 @@ ListView activityPastSeminar() {
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
     itemBuilder: (context, index) {
-      return ActivityBox(
-          onButtonTap: () {
-            context.push(const AboutActivityScreen());
-          },
-          istwobutton: false,
-          buttonText: ActivityTextUtil.watchTheRecording,
-          containerModel: AppContainers.containerButton(false),
-          isactivity: false,
-          arowModel: DemoInformation.arowmodel,
-          ayrowwModel: DemoInformation.ayrowmodel,
-          clockModel: DemoInformation.clockmodel);
+      return activitythreerowbox(() {
+        context.push(const AboutActivityScreen());
+      }, () {}, DemoInformation.arowmodel, DemoInformation.clockmodel,
+          ActivityTextUtil.watchTheRecording);
     },
     itemCount: 2,
   );

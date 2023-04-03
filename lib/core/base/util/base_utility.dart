@@ -310,9 +310,8 @@ class AppContainers {
   }
 
   static ContainerModel loginSignUpButtonContainer(
-          bool isInLoginPage, bool isLoginButton, BuildContext context) =>
+          bool isInLoginPage, bool isLoginButton) =>
       ContainerModel(
-          width: Responsive.width(SizeUtil.generalWidth, context),
           borderRadius: 8,
           backgroundColor: (isInLoginPage && isLoginButton) ||
                   (isInLoginPage == false && isLoginButton == false)
@@ -414,7 +413,7 @@ class AppPaddings {
       const EdgeInsets.symmetric(horizontal: 8);
 }
 
-SizedBox smallSizedBox() => const SizedBox(width: 8);
+SizedBox smallSizedBox() => const SizedBox(height: 8);
 SizedBox mediumSizedBox() => const SizedBox(height: 16);
 SizedBox largeSizedBox() => const SizedBox(height: 32);
 

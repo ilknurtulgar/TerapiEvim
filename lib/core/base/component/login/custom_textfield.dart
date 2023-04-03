@@ -54,12 +54,13 @@ class CustomTextField extends StatelessWidget {
 
   Widget textField(BuildContext context) {
     return Padding(
-      padding: AppPaddings.componentPadding,
+      padding: AppPaddings.componentOnlyPadding(1),
       child: TextField(
         maxLines: maxLines ?? 2,
         controller: textController,
         obscureText: obsecureText ?? false,
         textAlign: TextAlign.start,
+        textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           contentPadding:
               isBig ? const EdgeInsets.all(12) : AppPaddings.contentPadding,

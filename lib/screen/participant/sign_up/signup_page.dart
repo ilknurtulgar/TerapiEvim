@@ -8,13 +8,13 @@ import '../../../controller/auth/sign_up_controller.dart';
 import '../../../controller/main_controller.dart';
 import '../../../core/base/component/profile/acception_row.dart';
 import '../login/login_page.dart';
-import '../profile/util/profile_page_utility.dart';
 import '../profile/util/textfield_utility.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({
     super.key,
   });
+
   @override
   State<SignUpPage> createState() => _SignUpPageState();
 }
@@ -43,15 +43,18 @@ class _SignUpPageState extends State<SignUpPage> {
         _signUpController.nameController, true),
     textfieldUtility.birthOfDateTextfield(
         _signUpController.birthDateController, true),
-    ProfilePageUtility.genderDropDown(
-        false, _signUpController.genderController),
+
+    ///TODO: commented temporarily
+    // ProfilePageUtility.genderDropDown(
+    //     false, _signUpController.genderController),
     textfieldUtility.mailTextfield(_signUpController.emailController, true),
     textfieldUtility.passwordTextfield(
         _signUpController.passwordController, true),
     textfieldUtility.phoneTextfield(_signUpController.phoneController, true),
   ];
 
-  late final String _userRole = mainController.isTherapist.value ? "therapist" : "participant";
+  late final String _userRole =
+      mainController.isTherapist.value ? "therapist" : "participant";
 
   ///TODO: use gender controller
 
@@ -74,9 +77,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       : const SizedBox(),
                 ),
                 LoginPageUtility.button(false, false, () {
-
-                  _signUpController.signUpWithEmail(context,_userRole);
-
+                  _signUpController.signUpWithEmail(context, _userRole);
                 }, context),
                 LoginPageUtility.lineWithOrText(context),
                 LoginPageUtility.button(true, false,

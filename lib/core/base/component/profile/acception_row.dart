@@ -27,9 +27,9 @@ class AcceptionRow extends StatelessWidget {
                         ? IconUtility.checkCircleIcon.icon
                         : IconUtility.circleIcon.icon))),
             Expanded(
-              child: Text(isForMakingShortCall
+              child: responsivenestext(isForMakingShortCall
                   ? LoginSignUpTextUtil.therapistAcceptedMakingShortCall
-                  : ProfileSettingsTextUtil.therapistAcceptedRandomTherapistList),
+                  : ProfileSettingsTextUtil.therapistAcceptedRandomTherapistList,const TextStyle()),
             )
           ]);
   }

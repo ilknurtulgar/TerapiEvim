@@ -56,17 +56,21 @@ class ProfilePageUtility {
 
   //TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
   static ProfileController profileController = Get.find();
-  static CustomDropDown genderDropDown(bool isInProfilePage,
-          [TextEditingController? textController]) =>
-      CustomDropDown(
-        textlist: DemoInformation.genderList,
-        widget: textpurpose(profileController.genders.value),
-        ontap: (int index) {
-          profileController.func(DemoInformation.genderList, textController);
-        },
-        width: isInProfilePage ? SizeUtil.specialSize : SizeUtil.generalWidth,
-        height:
-            isInProfilePage ? SizeUtil.lowValueHeight : SizeUtil.generalHeight,
-        textController: textController,
-      );
+
+  ///TODO commeted temporarily
+// static CustomDropDown genderDropDown(bool isInProfilePage,
+//       TextEditingController textController) {
+//   return CustomDropDown(
+//     isBoxSelected: false,
+//     textList: DemoInformation.genderList,
+//     widget: textpurpose(profileController.genders.value),
+//     onDropDownTapped: () {
+//       profileController.func(DemoInformation.genderList, textController);
+//     },
+//     width: isInProfilePage ? SizeUtil.specialSize : SizeUtil.generalWidth,
+//     height:
+//     isInProfilePage ? SizeUtil.lowValueHeight : SizeUtil.generalHeight,
+//     textController: textController,
+//   );
+// }
 }

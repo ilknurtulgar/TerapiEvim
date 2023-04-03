@@ -33,7 +33,8 @@ class ParticipantProfileSettingPage extends StatelessWidget {
     textfieldUtility.birthOfDateTextfield(
         profileController.birthdayController, false),
     // ProfilePageUtility.genderDropDown(true, profileController.genderController),
-    columnDropDown("ilknur", true),
+    //TODO: commented temporarily. (03/04/23).
+    // columnDropDown("ilknur", true),
     textfieldUtility.mailTextfield(profileController.emailController, false),
     textfieldUtility.passwordTextfield(
         profileController.passwordController, false),

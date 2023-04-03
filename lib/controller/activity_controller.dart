@@ -8,11 +8,6 @@ class ActivityController extends GetxController {
     activityIcon[index] = !activityIcon[index];
   }
 
-  var order = "Yeniden eskiye ".obs;
-
-  void func(String value) {
-    order.value = value;
-  }
 
   var selectedBox = false.obs;
 

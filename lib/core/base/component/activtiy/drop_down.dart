@@ -1,65 +1,52 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/activity_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
-import '../../../../controller/profile_controller.dart';
-
-class CustomDropDown extends StatefulWidget {
+class CustomDropDown extends StatelessWidget {
   const CustomDropDown({
     super.key,
     required this.width,
     required this.height,
-    this.textController,
-    required this.widget,
-    required this.textlist,
-    required this.ontap,
+    required this.orderText,
+    // required this.widget,
+    required this.textList,
+    required this.isBoxSelected,
+    required this.onDropDownTapped,
   });
 
   final double width;
   final double height;
+  final bool isBoxSelected;
 
-  final List<String> textlist;
-  final Function(int) ontap;
+  final List<String> textList;
+  final Function() onDropDownTapped;
 
-  final Widget widget;
-  final TextEditingController? textController;
+  // final Widget widget;
+  final RxString orderText;
 
-  @override
-  State<CustomDropDown> createState() => _CustomDropDownState();
-}
-
-ActivityController activityController = Get.find();
-
-class _CustomDropDownState extends State<CustomDropDown> {
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: AppPaddings.componentPadding,
       child: SizedBox(
-        width: Responsive.width(widget.width, context),
+        width: Responsive.width(width, context),
         child: Column(
           children: [
             InkWell(
-              onTap: () {
-                print("heree");
-                activityController.changeBox();
-              },
+              onTap: onDropDownTapped,
               child: Container(
                   alignment: Alignment.center,
                   decoration: AppBoxDecoration.purpleBorder,
-                  height: widget.height,
-                  width: Responsive.width(widget.width, context),
-                  child: widget.widget),
+                  height: height,
+                  width: Responsive.width(width, context),
+                  child: Obx(() => Text(orderText.value))),
             ),
-            Obx(
-              () => activityController.selectedBox.value
-                  ? ChooseGender(
-                      widget: widget,
-                      textController: widget.textController,
-                    )
-                  : const SizedBox.shrink(),
-            )
+            isBoxSelected
+                ? _DropDownList(
+                    orderString: orderText,
+                    textList: textList,
+                  )
+                : const SizedBox.shrink(),
           ],
         ),
       ),
@@ -73,15 +60,14 @@ Widget textpurpose(property) {
   );
 }
 
-class ChooseGender extends StatelessWidget {
-  const ChooseGender({
-    super.key,
-    required this.widget,
-    this.textController,
+class _DropDownList extends StatelessWidget {
+  const _DropDownList({
+    required this.orderString,
+    required this.textList,
   });
 
-  final CustomDropDown widget;
-  final TextEditingController? textController;
+  final List<String> textList;
+  final RxString orderString;
 
   @override
   Widget build(BuildContext context) {
@@ -93,11 +79,13 @@ class ChooseGender extends StatelessWidget {
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return InkWell(
-            onTap: widget.ontap(index),
+            onTap: () {
+              orderString.value = textList[index];
+            },
             child: Padding(
                 padding: AppPaddings.componentPadding,
                 child: Text(
-                  widget.textlist[index],
+                  textList[index],
                   textAlign: TextAlign.center,
                 )),
           );
@@ -107,43 +95,32 @@ class ChooseGender extends StatelessWidget {
     );
   }
 }
-
-/*() {
-              activityController.func(
-                  widget.isGenderPurpose
-                      ? DemoInformation.genderList[index]
-                      : DemoInformation.orderingList[index],
-                  widget.isGenderPurpose,
-                  textController);
-              activityController.changeBox();
-            },
-            
-            */
-ProfileController profileController = Get.find();
-Widget columnDropDown(String title, bool isInProfilePage,
-    [TextEditingController? textController]) {
-  return Column(
-    children: [
-      Align(
-        alignment: Alignment.centerLeft,
-        child: responsivenestext(
-          title,
-          AppTextStyles.normalTextStyle("medium", false),
-        ),
-      ),
-      CustomDropDown(
-        textlist: DemoInformation.genderList,
-        widget: textpurpose(profileController.genders.value),
-        ontap: (int index) {
-          profileController.func(DemoInformation.genderList, textController);
-        },
-        width: isInProfilePage
-            ? SizeUtil.highestValueWidth
-            : SizeUtil.generalWidth,
-        height:
-            isInProfilePage ? SizeUtil.lowValueHeight : SizeUtil.generalHeight,
-        textController: textController,
-      )
-    ],
-  );
-}
+//
+// Widget columnDropDown(String title, bool isInProfilePage,
+//     [RxString? rxString]) {
+//   return Column(
+//     children: [
+//       Align(
+//         alignment: Alignment.centerLeft,
+//         child: responsivenestext(
+//           title,
+//           AppTextStyles.normalTextStyle("medium", false),
+//         ),
+//       ),
+//       CustomDropDown(
+//         textList: DemoInformation.genderList,
+//         isBoxSelected: false,
+//         widget: textpurpose(profileController.genders.value),
+//         onDropDownTapped: () {
+//           profileController.func(DemoInformation.genderList, rxString);
+//         },
+//         width: isInProfilePage
+//             ? SizeUtil.highestValueWidth
+//             : SizeUtil.generalWidth,
+//         height:
+//             isInProfilePage ? SizeUtil.lowValueHeight : SizeUtil.generalHeight,
+//         textController: rxString,
+//       )
+//     ],
+//   );
+// }

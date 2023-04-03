@@ -1,0 +1,36 @@
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../../base/base_controller.dart';
+
+class TSessionController extends GetxController with BaseController {
+  @override
+  void setContext(BuildContext context) {
+    // TODO: implement setContext
+  }
+
+  @override
+  void onInit() {
+    sortController.text = orderValue.value;
+    super.onInit();
+  }
+
+  @override
+  void dispose() {
+    sortController.dispose();
+    super.dispose();
+  }
+
+  final TextEditingController sortController = TextEditingController();
+  RxString orderValue = "Yeniden eskiye ".obs;
+
+  void setOrder(String value) {
+    orderValue.value = value;
+  }
+
+  var isBoxSelected = false.obs;
+
+  void setIsBoxSelected() {
+    isBoxSelected.value = !isBoxSelected.value;
+  }
+}

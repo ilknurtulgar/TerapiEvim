@@ -31,7 +31,11 @@ extension MediQueryExtension on BuildContext {
 
   double get height => mediaQuery.size.height;
 
+  double get height1 => mediaQuery.size.height;
+
   double get width => mediaQuery.size.width;
+
+  double get width1 => mediaQuery.size.width;
 
   double get lowValueHeight => height * 0.01;
 

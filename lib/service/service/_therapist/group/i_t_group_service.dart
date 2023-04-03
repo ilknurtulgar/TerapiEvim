@@ -14,6 +14,7 @@ abstract class ITGroupService {
 
   Future<UserModel?> findRandomTherapistHelper();
 
+  /// if result is null, it means is is successful
   Future<String?> updateGroup(TGroupModel group);
 
   Future<TGroupModel?> getGroupById(String groupId);

@@ -56,31 +56,32 @@ class PTextfieldUtility {
           isRowModel: true);
 
   ///TODO: getx controller kaldırıldı.getx olmadan kullanılması gerekiyor
-  Widget passwordTextfield(
-    TextEditingController textController,
-    bool isBig,
-  ) =>
-      Obx(
-        () => CustomTextField(
-            isOne: false,
-            obsecureText: true,
-            title: "Şifreee",
-            maxLines: 1,
-            textController: textController,
-            rowModel: RowModel(
-              text: isBig ? 'Şifre' : "",
-              textStyle: const TextStyle(color: AppColors.black),
-              isAlignmentBetween: false,
-              leadingIcon: IconUtility.lockSmall,
-              trailingIcon: IconButton(
-                  icon: Icon(true
-                      ? IconUtility.visibilityoffIcon.icon
-                      : IconUtility.visibilityIcon.icon),
-                  onPressed: () {}),
-            ),
-            isBig: isBig,
-            isRowModel: true),
-      );
+  Widget passwordTextfield(TextEditingController textController, bool isBig) {
+    var isObscured = true.obs;
+    return Obx(
+      () => CustomTextField(
+          isOne: false,
+          obsecureText: isObscured.value,
+          title: "Şifreee",
+          maxLines: 1,
+          textController: textController,
+          rowModel: RowModel(
+            text: isBig ? 'Şifre' : "",
+            textStyle: const TextStyle(color: AppColors.black),
+            isAlignmentBetween: false,
+            leadingIcon: IconUtility.lockSmall,
+            trailingIcon: IconButton(
+                icon: Icon(isObscured.value
+                    ? IconUtility.visibilityoffIcon.icon
+                    : IconUtility.visibilityIcon.icon),
+                onPressed: () {
+                  isObscured.value = !isObscured.value;
+                }),
+          ),
+          isBig: isBig,
+          isRowModel: true),
+    );
+  }
 
   CustomTextField phoneTextfield(
           TextEditingController textController, bool isBig) =>

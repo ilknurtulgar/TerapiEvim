@@ -19,6 +19,9 @@ class TNewCopingMethodView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<TCopingMethodsController>(
       getController: TCopingMethodsController(),
+      onModelReady: (model) {
+        model.setContext(context);
+      },
       onPageBuilder: (context, controller) => Scaffold(
         appBar: MyAppBar(
           title: GroupTextUtil.metotText,
@@ -35,7 +38,7 @@ class TNewCopingMethodView extends StatelessWidget {
                   onAddTapped: () async {
                     await controller.pickPdf();
                   },
-                  onShareTapped: () async{
+                  onShareTapped: () async {
                     await controller.shareCopingMethod();
                   },
                 ),

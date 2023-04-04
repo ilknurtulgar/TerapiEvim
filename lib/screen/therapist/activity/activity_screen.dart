@@ -1,8 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/screen/therapist/activity/tactivity_list_page.dart';
+import 'package:terapievim/screen/therapist/activity/tmy_activity_list_page.dart';
+import 'package:terapievim/screen/therapist/activity/tmy_up_coming_list_page.dart';
 
 import '../../../controller/tactivity_controller.dart';
+import '../../../core/base/component/app_bar/heading_minto.dart';
 import '../../../core/base/component/group/group_box.dart';
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/util/base_model.dart';
@@ -11,7 +15,7 @@ import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
 import '../../../service/model/common/activity/t_activity_model.dart';
-import '../../participant/activity/activities.dart';
+import '../../participant/activity/activity_boxes.dart';
 import 'new_activity_screen.dart';
 
 class TherapistActivityScreen extends StatelessWidget {
@@ -42,8 +46,15 @@ class TherapistActivityScreen extends StatelessWidget {
                             },
                             icon: IconUtility.addIcon)),
                     AppPaddings.mediumxPadding),
-                activityminto(ActivityTextUtil.myupcomingActivities, () {},
-                    MainAxisAlignment.spaceBetween, true, IconUtility.forward),
+                HeadingMinto(
+                  text: ActivityTextUtil.myupcomingActivities,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  isButterfly: true,
+                  icon: IconUtility.forward,
+                  onPressed: () {
+                    context.push(const TMyUpComingActivitiesListPage());
+                  },
+                ),
                 Obx(
                   () => myUpcomingActivities(
                       context,
@@ -52,11 +63,25 @@ class TherapistActivityScreen extends StatelessWidget {
                           ? null
                           : controller.myRecentActivities[0]),
                 ),
-                activityminto(ActivityTextUtil.activity, () {},
-                    MainAxisAlignment.spaceBetween, true, IconUtility.forward),
+                HeadingMinto(
+                  text: ActivityTextUtil.activity,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  isButterfly: true,
+                  icon: IconUtility.forward,
+                  onPressed: () {
+                    context.push(const TActivityListPage());
+                  },
+                ),
                 otherUpcomingActivities(),
-                activityminto(ActivityTextUtil.myActivty, () {},
-                    MainAxisAlignment.spaceBetween, true, IconUtility.forward),
+                HeadingMinto(
+                  text: ActivityTextUtil.myActivty,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  isButterfly: true,
+                  icon: IconUtility.forward,
+                  onPressed: () {
+                    context.push(const TMyActivityListPage());
+                  },
+                ),
                 myPastActivities(context, controller),
               ],
             ),
@@ -74,7 +99,7 @@ class TherapistActivityScreen extends StatelessWidget {
         containerModel: AppContainers.containerButton(true),
         isactivity: false,
         arowModel: DemoInformation.arowmodel,
-        ayrowwModel: DemoInformation.ayrowmodel,
+        //  ayrowwModel: DemoInformation.ayrowmodel,
         clockModel: DemoInformation.clockmodel);
   }
 
@@ -83,9 +108,6 @@ class TherapistActivityScreen extends StatelessWidget {
     return ActivityBox(
         onButtonTap: () {
           controller.updatechnage(0);
-
-          context.push(
-              NewActivityScreen(activity: controller.myRecentActivities[0]));
         },
         istwobutton: false,
         buttonText: ActivityTextUtil.watchTheRecording,
@@ -95,10 +117,13 @@ class TherapistActivityScreen extends StatelessWidget {
         clockModel: DemoInformation.clockmodel);
   }
 
-  Widget otherUpcomingActivities() {
-    return activitythreerowbox(() {}, () => null, DemoInformation.arowmodel,
-        DemoInformation.clockmodel, ActivityTextUtil.join);
-  }
+  Widget otherUpcomingActivities() => activitythreerowbox(
+      () {},
+      () {},
+      DemoInformation.arowmodel,
+      DemoInformation.clockmodel,
+      ActivityTextUtil.join,
+      DemoInformation.ayrowmodel);
 
   ActivityBox myUpcomingActivities(
       BuildContext context,

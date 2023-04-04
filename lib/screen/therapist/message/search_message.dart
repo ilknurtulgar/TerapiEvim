@@ -7,12 +7,10 @@ import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/activity/activities.dart';
 import 'package:terapievim/screen/participant/message/message.dart';
 
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/component/profile/image/custom_circle_avatar.dart';
-import '../../../core/base/util/text_utility.dart';
 
 class SearchMessage extends StatefulWidget {
   const SearchMessage({super.key});
@@ -65,10 +63,10 @@ class _SearchMessageState extends State<SearchMessage> {
   Widget searchappbar() {
     return Column(
       children: [
-        search(UiBaseModel.doubleappbarModel(
+        /*  search(UiBaseModel.doubleappbarModel(
             MessageTextUtil.searchtext,
             backButton(context, () => context.pop()),
-            closeIcon(() => context.pop()))),
+            closeIcon(() => context.pop()))),*/
         divider(true),
       ],
     );

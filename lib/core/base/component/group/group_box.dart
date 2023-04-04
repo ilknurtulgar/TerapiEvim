@@ -12,7 +12,6 @@ class ActivityBox extends StatelessWidget {
   ActivityBox({
     super.key,
     required this.istwobutton,
-    this.ayrowwModel,
     required this.buttonText,
     required this.containerModel,
     required this.arowModel,
@@ -20,6 +19,7 @@ class ActivityBox extends StatelessWidget {
     required this.clockModel,
     required this.onButtonTap,
     this.onTap,
+    this.ayrowwModel,
   });
 
   final ContainerModel containerModel;
@@ -52,7 +52,9 @@ class ActivityBox extends StatelessWidget {
               Expanded(child: rowView(arowModel, AppPaddings.rowViewPadding)),
               isactivity
                   ? const SizedBox.shrink()
-                  : rowView(ayrowwModel!, AppPaddings.rowViewPadding),
+                  : (ayrowwModel == null
+                      ? const SizedBox.shrink()
+                      : rowView(ayrowwModel!, AppPaddings.rowViewPadding)),
               rowView(clockModel, AppPaddings.rowViewPadding),
               Expanded(
                 child: Row(

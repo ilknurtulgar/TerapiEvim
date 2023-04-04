@@ -56,14 +56,14 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: AppPaddings.componentOnlyPadding(1),
       child: TextField(
-        maxLines: maxLines ?? 2,
+        maxLines: maxLines ?? 1,
         controller: textController,
         obscureText: obsecureText ?? false,
         textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.center,
         decoration: InputDecoration(
           contentPadding:
-              isBig ? const EdgeInsets.all(12) : AppPaddings.contentPadding,
+              isBig ? const EdgeInsets.all(17) : AppPaddings.contentPadding,
           filled: true,
           fillColor: AppColors.white,
           suffix:

@@ -5,17 +5,19 @@ import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../core/managers/firebase/firestore/models/empty_model.dart';
-
 import '../../../model/therapist/coping_method/t_coping_method_model.dart';
-import 'i_t_coping_service.dart';
+import 'i_t_coping_method_service.dart';
 
-class TCopingService extends ITCopingService with BaseService {
-  TCopingService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
+class TCopingMethodService extends ITCopingMethodService with BaseService {
+  TCopingMethodService(IFirestoreManager<ErrorModelCustom> manager)
+      : super(manager);
 
   @override
   Future<CreatedIdResponse?> createCopingMethod(
       TCopingMethodModel copingMethod) async {
     if (userId == null) return null;
+
+    copingMethod.therapistId = userId;
 
     final CreatedIdResponse? createdIdResponse = await manager.create(
       collectionPath: APIConst.therapist,

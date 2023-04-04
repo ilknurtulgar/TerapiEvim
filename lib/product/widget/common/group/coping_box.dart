@@ -1,14 +1,23 @@
-
 import 'package:flutter/material.dart';
+
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/component/group/custom_heading.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 
 class CopingBox extends StatelessWidget {
-  const CopingBox({super.key, required this.copingtext, required this.pdfname});
+  const CopingBox({
+    super.key,
+    required this.copingtext,
+    required this.pdfname,
+    required this.onAddTapped,
+    required this.onShareTapped,
+  });
+
   final String copingtext;
   final String pdfname;
+  final Function() onAddTapped, onShareTapped;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,17 +26,25 @@ class CopingBox extends StatelessWidget {
       //width: SizeUtil.generalWidth,
       height: SizeUtil.highValueHeight,
       child: Column(
-        children: [heading(), pdfcontainer(), rowbutton()],
+        children: [
+          heading(),
+          pdfcontainer(),
+          rowbutton(
+            onAddTapped: () {},
+            onShareTapped: () {},
+          )
+        ],
       ),
     );
   }
 
-  Row rowbutton() {
+  Row rowbutton(
+      {required Function() onAddTapped, required Function() onShareTapped}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        copingbutton(() => null, ActivityTextUtil.add, true),
-        copingbutton(() => null, ActivityTextUtil.share, false)
+        copingbutton(onAddTapped, ActivityTextUtil.add, true),
+        copingbutton(onShareTapped, ActivityTextUtil.share, false)
       ],
     );
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/product/widget/common/group/coping_box.dart';
 
+import '../../../../controller/therapist/group/coping_method/coping_method_controller.dart';
 import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/group/button_group_name_row.dart';
 import '../../../../core/base/component/group/custom_heading.dart';
@@ -8,6 +9,7 @@ import '../../../../core/base/component/group/row_view.dart';
 import '../../../../core/base/ui_models/row_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
+import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
 
 class TNewCopingMethodView extends StatelessWidget {
@@ -15,22 +17,35 @@ class TNewCopingMethodView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: MyAppBar(
-        title: GroupTextUtil.metotText,
-        actions: _popButton(context),
-      ),
-      body: SafeArea(
-        child: Padding(
-          padding: AppPaddings.pagePadding,
-          child: Column(
-            children: [
-              CopingBox(
+    return BaseView<TCopingMethodsController>(
+      getController: TCopingMethodsController(),
+      onModelReady: (model) {
+        model.setContext(context);
+      },
+      onPageBuilder: (context, controller) => Scaffold(
+        appBar: MyAppBar(
+          title: GroupTextUtil.metotText,
+          actions: _popButton(context),
+        ),
+        body: SafeArea(
+          child: Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              children: [
+                CopingBox(
                   copingtext: DemoInformation.tmpNewMetotText,
-                  pdfname: DemoInformation.tmppdfName),
-              // text(),
-              otherGroups(),
-            ],
+                  pdfname: DemoInformation.tmppdfName,
+                  onAddTapped: () async {
+                    await controller.pickPdf();
+                  },
+                  onShareTapped: () async {
+                    await controller.shareCopingMethod();
+                  },
+                ),
+                // text(),
+                otherGroups(),
+              ],
+            ),
           ),
         ),
       ),

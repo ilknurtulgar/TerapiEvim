@@ -4,7 +4,7 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 
 import '../core/base/component/video_call/tab/therapist_tab.dart';
 import '../core/base/util/base_utility.dart';
-import '../screen/participant/video_call/model/person_in_call_model.dart';
+import '../core/base/ui_models/video_call/person_in_call_model.dart';
 
 class VideoCallController extends GetxController {
   void onOffFunction(RxBool variable) {
@@ -42,8 +42,7 @@ class VideoCallController extends GetxController {
 
   void sendIsolatedCall(String name) {
     Get.dialog(AlertDialog(
-      content:
-          Text('$name ${VideoCallTextUtil.sendIsolatedCall}'),
+      content: Text('$name ${VideoCallTextUtil.sendIsolatedCall}'),
       actions: [
         TextButton(
             onPressed: () => Get.back(),

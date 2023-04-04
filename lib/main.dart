@@ -5,19 +5,18 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/screen/common/sign_in/sign_in_view.dart';
 
-import 'controller/activity_controller.dart';
 import 'controller/auth/auth_controller.dart';
-import 'controller/group_controller.dart';
+import 'controller/participant/group/p_group_controller.dart';
 import 'controller/main_controller.dart';
-import 'controller/profile_controller.dart';
-import 'controller/therapist_profile_controller.dart';
+import 'controller/participant/profil/p_profile_controller.dart';
+import 'controller/therapist/profil/t_profile_controller.dart';
 import 'controller/video_call_controller.dart';
 import 'core/base/util/base_utility.dart';
 import 'core/init/cache/local_manager.dart';
 import 'core/init/config/config.dart';
-import 'screen/participant/home/main_home.dart';
-import 'screen/participant/login/login_page.dart';
+import 'screen/common/home/main_home.dart';
 import 'service/firebase_options.dart';
 
 void main() async {
@@ -43,9 +42,12 @@ class _TerapiEvimState extends State<TerapiEvim> {
           //bu thema baska yere gitmesi lazijm
           splashColor: Colors.transparent,
           scaffoldBackgroundColor: AppColors.blueChalk,
-          appBarTheme: AppBarTheme(
-            iconTheme: IconThemeData(color: AppColors.deepCove)
-          ),
+          appBarTheme: const AppBarTheme(
+              iconTheme: IconThemeData(color: AppColors.deepCove)),
+          pageTransitionsTheme: const PageTransitionsTheme(builders: {
+            TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          }),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
               backgroundColor: AppColors.white,
               selectedItemColor: AppColors.black,
@@ -53,8 +55,8 @@ class _TerapiEvimState extends State<TerapiEvim> {
               elevation: 70)),
       home: Obx(
         () => _authController.isLogged.isTrue
-            ? const TerapiEvimLogged()
-            : const ParticipantLoginPage(),
+            ? const MainHome()
+            : const SignInView(),
       ),
     );
   }
@@ -80,11 +82,9 @@ Future<void> initialize() async {
 
 void _initializeControllers() {
   Get.put(AuthController());
-  Get.put(ActivityController());
-  Get.put(TherapistProfileController());
-  // Get.put(TherapistGroupController());
-  Get.put(GroupController());
+  Get.put(TProfileController());
+  Get.put(PGroupController());
   Get.put(MainController());
-  Get.put(ProfileController());
+  Get.put(PProfileController());
   Get.put(VideoCallController());
 }

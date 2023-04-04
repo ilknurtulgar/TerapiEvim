@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/row_model.dart';
+import '../../ui_models/row_model.dart';
 import '../../util/base_utility.dart';
 
 Widget rowView(
@@ -15,7 +15,7 @@ Widget rowView(
           : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        rowModel.leadingIcon!,
+        rowModel.leadingIcon ?? Container(),
         Expanded(
           child: Padding(
             padding: EdgeInsets.only(

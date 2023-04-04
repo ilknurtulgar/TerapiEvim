@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/home/custom_container.dart';
-import 'package:terapievim/core/base/models/card_model.dart';
-import 'package:terapievim/core/base/models/container_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/participant/message/message.dart';
+
+import '../../../../core/base/component/home/custom_container.dart';
+import '../../../../core/base/ui_models/card_model.dart';
+import '../../../../core/base/ui_models/container_model.dart';
+import '../../../../core/base/util/base_utility.dart';
+import '../../../participant/message/p_message_view.dart';
 
 class ChatInformation extends StatefulWidget {
   const ChatInformation({
     super.key,
     required this.cardModel,
   });
+
   final CardModel cardModel;
+
   @override
   State<ChatInformation> createState() => _ChatInformationState();
 }
@@ -22,7 +25,7 @@ class _ChatInformationState extends State<ChatInformation> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Get.to(MessageScreen()),
+      onTap: () => Get.to(PMessageView()),
       child: CustomContainer(
           time: DemoInformation.clock,
           containerModel: AppContainers.classicWhiteContainer,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/core/base/ui_models/row_model.dart';
 
 import '../../../../../core/base/util/base_utility.dart';
 import 'row_view.dart';

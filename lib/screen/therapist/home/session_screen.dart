@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
-import 'package:terapievim/core/base/component/home/participant_with_sc_time.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../controller/therapist/session/t_session_controller.dart';
+import '../../../core/base/component/activtiy/drop_down.dart';
+import '../../../core/base/component/home/participant_with_sc_time.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
+import '../../../core/extension/context_extension.dart';
 import 'available_hours.dart';
 
 class SessionScreen extends StatelessWidget {

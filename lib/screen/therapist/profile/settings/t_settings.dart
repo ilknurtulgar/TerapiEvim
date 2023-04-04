@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/view/base_view.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/profile/settings/settings_pop_up.dart';
 
 import '../../../../controller/therapist/settings/t_settings_controller.dart';
+import '../../../../core/base/component/group/row_view.dart';
+import '../../../../core/base/models/row_model.dart';
+import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
+import '../../../../core/base/view/base_view.dart';
+import '../../../../core/extension/context_extension.dart';
+import '../../../../screen/participant/profile/settings/settings_pop_up.dart';
 import '../therapist_profile_page.dart';
 
 // ignore: must_be_immutable

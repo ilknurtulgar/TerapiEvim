@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/group/custom_heading.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/therapist/group/confirmation/lock_screen_therapist.dart';
+
 import '../../../../controller/therapist_group_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
+import '../../../../core/base/component/group/custom_heading.dart';
+import '../../../../core/base/util/base_utility.dart';
+import '../../../../core/base/util/text_utility.dart';
+import '../../../../core/extension/context_extension.dart';
+import '../../../../screen/therapist/group/confirmation/lock_screen_therapist.dart';
 
 class TherapistUploadConfirm extends StatelessWidget {
   const TherapistUploadConfirm({super.key});

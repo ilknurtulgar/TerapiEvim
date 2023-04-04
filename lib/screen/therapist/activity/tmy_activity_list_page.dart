@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/participant/activity/search.dart';
+
+import '../../../core/base/models/row_model.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../screen/participant/activity/search.dart';
 
 class TMyActivityListPage extends StatelessWidget {
   const TMyActivityListPage({super.key});

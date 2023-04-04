@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist/group/group_add_controller.dart';
-import 'package:terapievim/core/base/component/activtiy/seminers.dart';
-import 'package:terapievim/core/base/component/buttons/custom_button.dart';
-import 'package:terapievim/core/base/component/group/choosing_time_group_therapy.dart';
-import 'package:terapievim/core/base/component/group/person.dart';
-import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/component/login/custom_textfield.dart';
-import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/base/view/base_view.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
+
+import '../../../../controller/therapist/group/group_add_controller.dart';
+import '../../../../core/base/component/activtiy/seminers.dart';
+import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/component/buttons/election.dart';
+import '../../../../core/base/component/group/choosing_time_group_therapy.dart';
+import '../../../../core/base/component/group/person.dart';
+import '../../../../core/base/component/group/row_view.dart';
+import '../../../../core/base/component/login/custom_textfield.dart';
+import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
+import '../../../../core/base/models/row_model.dart';
 import '../../../../core/base/util/base_model.dart';
+import '../../../../core/base/util/base_utility.dart';
+import '../../../../core/base/util/text_utility.dart';
+import '../../../../core/base/view/base_view.dart';
+import '../../../../core/extension/context_extension.dart';
 
 class GroupAddView extends StatelessWidget {
   const GroupAddView({super.key});
@@ -35,7 +36,7 @@ class GroupAddView extends StatelessWidget {
                     rowView(appRow(context), AppPaddings.appBarPadding),
                     miniHeadings(GroupTextUtil.groupNameText, false),
                     CustomTextField(
-                          isOne: true,
+                        isOne: true,
                         isBig: true,
                         textController: controller.groupNameController,
                         isRowModel: false),

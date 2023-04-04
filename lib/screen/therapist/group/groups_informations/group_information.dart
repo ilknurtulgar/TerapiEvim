@@ -1,23 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist_group_controller.dart';
-import 'package:terapievim/core/base/component/activtiy/seminers.dart';
-import 'package:terapievim/core/base/component/group/group_box.dart';
-import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
-import 'package:terapievim/core/base/util/base_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/therapist/group/metots/new_metot.dart';
-import 'package:terapievim/screen/therapist/group/therapist_about.dart';
+
+import '../../../../controller/therapist_group_controller.dart';
+import '../../../../core/base/component/activtiy/seminers.dart';
 import '../../../../core/base/component/buttons/election.dart';
+import '../../../../core/base/component/group/group_box.dart';
 import '../../../../core/base/component/group/person.dart';
+import '../../../../core/base/component/group/row_view.dart';
+import '../../../../core/base/models/row_model.dart';
+import '../../../../core/base/util/base_model.dart';
+import '../../../../core/base/util/base_utility.dart';
+import '../../../../core/base/util/text_utility.dart';
+import '../../../../core/extension/context_extension.dart';
+import '../../../../screen/therapist/group/metots/new_metot.dart';
+import '../../../../screen/therapist/group/therapist_about.dart';
 
 // ignore: must_be_immutable
 class GroupInformation extends StatelessWidget {
   GroupInformation({super.key});
+
   TherapistGroupController controller = Get.find();
+
   @override
   Widget build(BuildContext context) {
     List<PersonMin> participantRow = [

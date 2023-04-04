@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/activtiy/seminers.dart';
-import 'package:terapievim/core/base/component/group/custom_heading.dart';
-import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
 
+import '../../../core/base/component/activtiy/seminers.dart';
+import '../../../core/base/component/group/custom_heading.dart';
+import '../../../core/base/component/profile/image/custom_circle_avatar.dart';
+import '../../../core/base/models/row_model.dart';
 import '../../../core/base/util/base_model.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/util/text_utility.dart';
+import '../../../core/extension/context_extension.dart';
 import '../../participant/profile/util/profile_page_utility.dart';
 
 class TherapistProfile extends StatelessWidget {
   const TherapistProfile({super.key, required this.isSecTherapist});
+
   final bool isSecTherapist;
 
   @override

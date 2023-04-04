@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/util/base_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/therapist/activity/new_activity_screen.dart';
-import 'package:terapievim/screen/therapist/message/search_message.dart';
 
+import '../../../core/base/util/base_model.dart';
+import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
+import '../../../core/extension/context_extension.dart';
+import '../../../screen/therapist/activity/new_activity_screen.dart';
+import '../../../screen/therapist/message/search_message.dart';
 import 'companent/chat_information.dart';
 
 class TherapistMessageScreen extends StatefulWidget {

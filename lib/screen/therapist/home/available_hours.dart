@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/therapist/home/add_hours_screen.dart';
+
+import '../../../../core/base/util/base_utility.dart';
+import '../../../../core/base/util/text_utility.dart';
+import '../../../../core/extension/context_extension.dart';
+import '../../../../screen/therapist/home/add_hours_screen.dart';
 
 class AvailableHours extends StatelessWidget {
   const AvailableHours({super.key});

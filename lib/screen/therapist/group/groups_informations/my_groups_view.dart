@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist_group_controller.dart';
-import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/base/view/base_view.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/therapist/group/groups_informations/group_information.dart';
 
+import '../../../../controller/therapist_group_controller.dart';
+import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/group/group.dart';
+import '../../../../core/base/util/base_utility.dart';
+import '../../../../core/base/util/text_utility.dart';
+import '../../../../core/base/view/base_view.dart';
+import '../../../../core/extension/context_extension.dart';
+import '../../../../screen/therapist/group/groups_informations/group_information.dart';
 import '../../../../service/model/therapist/group/t_group_model.dart';
 import '../group_add/group_add_view.dart';
 

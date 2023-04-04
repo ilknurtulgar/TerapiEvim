@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/home/custom_container.dart';
-import 'package:terapievim/core/base/models/card_model.dart';
-import 'package:terapievim/core/base/models/container_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/participant/message/message.dart';
+
+import '../../../../core/base/component/home/custom_container.dart';
+import '../../../../core/base/models/card_model.dart';
+import '../../../../core/base/models/container_model.dart';
+import '../../../../core/base/util/base_utility.dart';
+import '../../../../screen/participant/message/message.dart';
 
 class ChatInformation extends StatefulWidget {
   const ChatInformation({
     super.key,
     required this.cardModel,
   });
+
   final CardModel cardModel;
+
   @override
   State<ChatInformation> createState() => _ChatInformationState();
 }

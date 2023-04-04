@@ -8,9 +8,9 @@ import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
-import '../../../../screen/therapist/group/groups_informations/group_information.dart';
+import '../../../../screen/therapist/group/groups_informations/t_group_information.dart';
 import '../../../../service/model/therapist/group/t_group_model.dart';
-import '../group_add/group_add_view.dart';
+import '../group_add/t_group_add_view.dart';
 
 class MyGroups extends StatelessWidget {
   const MyGroups({super.key}); //gecici modeller

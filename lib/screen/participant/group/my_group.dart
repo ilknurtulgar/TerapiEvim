@@ -6,7 +6,7 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/models/row_model.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/message/message.dart';
-import 'package:terapievim/screen/therapist/group/therapist_about.dart';
+import 'package:terapievim/screen/therapist/group/t_therapist_about.dart';
 import '../../../controller/group_controller.dart';
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/util/base_model.dart';

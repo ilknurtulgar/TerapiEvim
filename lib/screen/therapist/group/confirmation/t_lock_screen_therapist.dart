@@ -6,8 +6,8 @@ import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/extension/context_extension.dart';
-import '../../../../screen/therapist/group/confirmation/uploading.dart';
-import '../groups_informations/my_groups_view.dart';
+import '../../../../screen/therapist/group/confirmation/t_uploading.dart';
+import '../groups_informations/t_my_groups_view.dart';
 
 class LockScreenTherapist extends StatelessWidget {
   const LockScreenTherapist({super.key});

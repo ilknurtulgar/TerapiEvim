@@ -4,7 +4,7 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/profile/util/profile_page_utility.dart';
-import 'package:terapievim/screen/therapist/group/therapist_about.dart';
+import 'package:terapievim/screen/therapist/group/t_therapist_about.dart';
 
 import '../../../core/base/component/profile/image/custom_circle_avatar.dart';
 import '../../../core/base/util/base_model.dart';

@@ -10,29 +10,43 @@ import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/extension/context_extension.dart';
 import '../../../../screen/therapist/activity/companent/coping_box.dart';
 
-class NewMetot extends StatelessWidget {
-  const NewMetot({super.key});
+class TNewCopingMethod extends StatelessWidget {
+  const TNewCopingMethod({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBar(title: GroupTextUtil.metotText),
+      appBar: MyAppBar(
+        title: GroupTextUtil.metotText,
+        actions: _popButton(context),
+      ),
       body: SafeArea(
         child: Padding(
           padding: AppPaddings.pagePadding,
           child: Column(
             children: [
-              heading(context),
               CopingBox(
                   copingtext: DemoInformation.tmpNewMetotText,
                   pdfname: DemoInformation.tmppdfName),
-              text(),
+              // text(),
               otherGroups(),
             ],
           ),
         ),
       ),
     );
+  }
+
+  List<Widget> _popButton(BuildContext context) {
+    return [
+      IconButton(
+        icon: IconUtility.deleteIconOutlined,
+        onPressed: () {
+          deleteMetotDialog(context);
+          context.pop();
+        },
+      )
+    ];
   }
 
   Padding text() {

@@ -14,8 +14,8 @@ import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
-import '../../../../screen/therapist/group/metots/new_metot.dart';
-import '../../../../screen/therapist/group/therapist_about.dart';
+import '../../../../screen/therapist/group/t_therapist_about.dart';
+import '../coping_methods/t_new_comping_method.dart';
 
 // ignore: must_be_immutable
 class GroupInformation extends StatelessWidget {
@@ -36,22 +36,7 @@ class GroupInformation extends StatelessWidget {
           return Scaffold(
             appBar: MyAppBar(
               title: DemoInformation.tmpGroupName,
-              actions: [
-                IconButton(
-                  icon: const Icon(Icons.edit_document),
-                  onPressed: () {
-                    context.push(const NewMetot());
-
-                    //new Metot sayfasina godocek
-                  },
-                ),
-                IconButton(
-                  icon: IconUtility.deleteIcon,
-                  onPressed: () {
-                    deleteGroupDialog(context);
-                  },
-                )
-              ],
+              actions: _appBarActions(context),
             ),
             body: SafeArea(
               child: ListView(
@@ -78,6 +63,23 @@ class GroupInformation extends StatelessWidget {
             ),
           );
         });
+  }
+
+  List<Widget> _appBarActions(BuildContext context) {
+    return [
+      IconButton(
+        icon: const Icon(Icons.create_new_folder_outlined),
+        onPressed: () {
+          context.push(const TNewCopingMethod());
+        },
+      ),
+      IconButton(
+        icon: IconUtility.deleteIconOutlined,
+        onPressed: () {
+          deleteGroupDialog(context);
+        },
+      )
+    ];
   }
 
   SeminarMin participants(GroupInformationController controller) {
@@ -114,38 +116,6 @@ class GroupInformation extends StatelessWidget {
       padding: AppPaddings.componentPadding,
       child: SeminarMin(isBorderPurple: true, onTap: func, row: row),
     );
-  }
-
-  Widget heading(BuildContext context) {
-    return rowView(
-        RowModel(
-            leadingIcon: IconButton(
-                onPressed: () {
-                  context.pop();
-                },
-                icon: IconUtility.back),
-            text: DemoInformation.tmpGroupName,
-            textStyle: AppTextStyles.heading(false),
-            isAlignmentBetween: true,
-            trailingIcon: Row(
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.edit_document),
-                  onPressed: () {
-                    context.push(const NewMetot());
-
-                    //new Metot sayfasina godocek
-                  },
-                ),
-                IconButton(
-                  icon: IconUtility.deleteIcon,
-                  onPressed: () {
-                    deleteGroupDialog(context);
-                  },
-                )
-              ],
-            )),
-        AppPaddings.componentPadding);
   }
 
   Future<void> deleteGroupDialog(BuildContext context) {

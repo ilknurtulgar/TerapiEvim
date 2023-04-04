@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../controller/therapist/group/group_add_controller.dart';
 import '../../../../core/base/component/activtiy/seminers.dart';
+import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/component/group/choosing_time_group_therapy.dart';
@@ -27,39 +28,46 @@ class GroupAddView extends StatelessWidget {
         onModelReady: (model) {},
         onPageBuilder: (context, controller) {
           return Scaffold(
+            appBar: MyAppBar(
+              automaticallyImplyLeading: false,
+              title: GroupTextUtil.addGroupText,
+              actions: [
+                IconButton(
+                  icon: IconUtility.close,
+                  onPressed: () {
+                    context.pop();
+                  },
+                )
+              ],
+            ),
             body: SafeArea(
-              child: SingleChildScrollView(
-                  child: Padding(
+              child: ListView(
                 padding: AppPaddings.pagePadding,
-                child: Column(
-                  children: [
-                    rowView(appRow(context), AppPaddings.appBarPadding),
-                    miniHeadings(GroupTextUtil.groupNameText, false),
-                    CustomTextField(
-                        isOne: true,
-                        isBig: true,
-                        textController: controller.groupNameController,
-                        isRowModel: false),
-                    miniHeadings(GroupTextUtil.secondTherapistText, false),
-                    Election(
-                        election: ControllerElection
-                            .therapistGroupControllerSecTherapist,
-                        firstRow: secTherapist(controller),
-                        rows: persons(controller, context)),
-                    button(context, controller, false),
-                    miniHeadings(GroupTextUtil.meetDayText, false),
-                    miniHeadings(GroupTextUtil.dayText, true),
-                    Election(
-                        election:
-                            ControllerElection.therapistGroupControllerDay,
-                        firstRow: dayRow(controller),
-                        rows: days(controller)),
-                    miniHeadings(GroupTextUtil.timeText, true),
-                    ChoosingTimeGroupTherapy(),
-                    button(context, controller, true)
-                  ],
-                ),
-              )),
+                children: [
+                  miniHeadings(GroupTextUtil.groupNameText, false, false),
+                  CustomTextField(
+                      isOne: true,
+                      isBig: true,
+                      textController: controller.groupNameController,
+                      isRowModel: false),
+                  miniHeadings(GroupTextUtil.secondTherapistText, false, false),
+                  Election(
+                      election: ControllerElection
+                          .therapistGroupControllerSecTherapist,
+                      firstRow: secTherapist(controller),
+                      rows: persons(controller, context)),
+                  button(context, controller, false),
+                  miniHeadings(GroupTextUtil.meetDayText, false, false),
+                  miniHeadings(GroupTextUtil.dayText, true, false),
+                  Election(
+                      election: ControllerElection.therapistGroupControllerDay,
+                      firstRow: dayRow(controller),
+                      rows: days(controller)),
+                  miniHeadings(GroupTextUtil.timeText, true, false),
+                  ChoosingTimeGroupTherapy(),
+                  button(context, controller, true)
+                ],
+              ),
             ),
           );
         });
@@ -242,11 +250,11 @@ class GroupAddView extends StatelessWidget {
   }
 }
 
-Widget miniHeadings(String name, bool isInMiddle) {
+Widget miniHeadings(String name, bool isInMiddle, bool isAlignedInCenter) {
   return rowView(
       RowModel(
           text: name,
           textStyle: AppTextStyles.heading(false),
-          isAlignmentBetween: true),
+          isAlignmentBetween: isAlignedInCenter),
       AppPaddings.miniHeadingPadding(isInMiddle));
 }

@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/participant_container.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/screen/therapist/group/group.dart';
+import 'package:terapievim/screen/therapist/group/t_group.dart';
 import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart';
 
 import '../../../screen/participant/activity/activities.dart';
@@ -134,6 +134,7 @@ class IconUtility {
   static const Icon settingIcon = Icon(Icons.settings);
 
   static const Icon deleteIcon = Icon(Icons.delete);
+  static const Icon deleteIconOutlined = Icon(Icons.delete_outline_outlined);
 
   static const Icon calendarIcon =
       Icon(Icons.calendar_month_outlined, color: AppColors.black);
@@ -162,7 +163,7 @@ class IconUtility {
       color: AppColors.white, size: SizeUtil.lockIconSize);
 
   static const Icon close =
-      Icon(Icons.close, size: 30, color: AppColors.meteorite);
+      Icon(Icons.close, size: 24, color: AppColors.meteorite);
   static const Icon closeIcon = Icon(Icons.close);
   static const Icon arrowUp = Icon(Icons.keyboard_arrow_up, size: 30);
   static const Icon arrowDown =
@@ -667,6 +668,7 @@ class DemoInformation {
       textStyle: AppTextStyles.aboutMeTextStyle(false),
       trailingIcon: IconUtility.forward,
       leadingIcon: IconUtility.fileIcon);
+
   //TODO: deprecated. Should be removed
   static RowModel row_1 = RowModel(
       leadingIcon: IconUtility.activityIcon,

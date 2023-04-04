@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../core/base/util/base_utility.dart';
 import 'row_view.dart';
-import '../../models/row_model.dart';
+import '../../ui_models/row_model.dart';
 
 // ignore: must_be_immutable
 class GroupClass extends StatelessWidget {

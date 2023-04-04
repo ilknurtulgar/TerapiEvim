@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/models/container_model.dart';
-import 'package:terapievim/core/base/models/row_model.dart';
+import 'package:terapievim/core/base/ui_models/container_model.dart';
+import 'package:terapievim/core/base/ui_models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 

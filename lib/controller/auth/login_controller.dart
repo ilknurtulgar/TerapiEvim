@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/main_controller.dart';
 import '../../core/base/component/toast/toast.dart';
+import '../../model/common/login/login_model.dart';
+import '../../model/common/login/login_response_model.dart';
 import '../../product/enum/local_keys_enum.dart';
-import '../../service/model/common/login/login_model.dart';
-import '../../service/model/common/login/login_response_model.dart';
-import '../../service/service/auth/auth_service.dart';
-import '../../service/service/auth/i_auth_service.dart';
+
+import '../../service/auth/auth_service.dart';
+import '../../service/auth/i_auth_service.dart';
 import '../base/base_controller.dart';
 import 'auth_controller.dart';
 

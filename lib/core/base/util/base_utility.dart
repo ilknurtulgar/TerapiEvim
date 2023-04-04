@@ -4,28 +4,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/participant_container.dart';
-import 'package:terapievim/core/base/models/container_model.dart';
+import 'package:terapievim/core/base/ui_models/container_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/screen/therapist/group/t_group.dart';
-import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart';
+import 'package:terapievim/screen/therapist/group/t_group_view.dart';
+import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
 
-import '../../../screen/participant/activity/activities.dart';
-import '../../../screen/participant/group/group.dart';
-import '../../../screen/participant/home/home.dart';
-import '../../../screen/participant/profile/models/group_model.dart';
-import '../../../screen/participant/profile/profile_page.dart';
-import '../../../screen/participant/video_call/model/person_in_call_model.dart';
-import '../../../screen/therapist/activity/activity_screen.dart';
-import '../../../screen/therapist/home/home.dart';
-import '../../../screen/therapist/message/message.dart';
+import '../../../screen/participant/activity/p_activity_view.dart';
+import '../../../screen/participant/group/p_group_view.dart';
+import '../../../screen/participant/home/p_home_view.dart';
+import '../ui_models/group_model.dart';
+import '../../../screen/participant/profile/p_profile_view.dart';
+import '../ui_models/video_call/person_in_call_model.dart';
+import '../../../screen/therapist/activity/t_activity_view.dart';
+import '../../../screen/therapist/home/t_home_view.dart';
+import '../../../screen/therapist/message/t_message_view.dart';
 import '../../init/managers/responsiveness_manager.dart';
 import '../../managers/converter/date_time_manager.dart';
 import '../component/group/row_view.dart';
 import '../component/home/method_downloading_container.dart';
 import '../component/profile/container/two_row_short_container.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
-import '../models/card_model.dart';
-import '../models/row_model.dart';
+import '../ui_models/card_model.dart';
+import '../ui_models/row_model.dart';
 import 'base_model.dart';
 
 class AppColors {
@@ -502,18 +502,18 @@ Padding colon(bool isInAlertDialog) {
 
 class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
-    TherapistHome(),
-    const TherapistActivityScreen(),
-    const TherapistGroupPage(),
-    const TherapistMessageScreen(),
-    const TherapistProfilePage(),
+    THomeView(),
+    const TActivityView(),
+    const TGroupView(),
+    const TMessageView(),
+    const TProfileView(),
   ];
   static List<Widget> screen = <Widget>[
-    const HomeScreen(),
-    const ActivitiesScreen(),
-    GroupScreen(),
+    const PHomeView(),
+    const PActivityView(),
+    PGroupView(),
     // MessageScreen(),
-    const ParticipantProfilePage(),
+    const PProfileView(),
   ];
 }
 
@@ -806,12 +806,12 @@ class DemoInformation {
       methodTitles: ['Başlık 1', 'Başlık 2', 'Başlık 3', 'Başlık 4'],
       secondTherapistName: 'Simay Selli',
       therapyTime: 'Her salı, 20.00');
-  static List<SeminarModelInProfilePage> lastWatchedSeminars = [
-    SeminarModelInProfilePage(
+  static List<SeminarModelInProfileView> lastWatchedSeminars = [
+    SeminarModelInProfileView(
         therapistName: 'Kerem Engin', seminarTitle: 'Seminer 1'),
-    SeminarModelInProfilePage(
+    SeminarModelInProfileView(
         therapistName: 'Mustafa Engin', seminarTitle: 'Seminer 2'),
-    SeminarModelInProfilePage(
+    SeminarModelInProfileView(
         therapistName: 'Mert Engin', seminarTitle: 'Seminer 3')
   ];
 

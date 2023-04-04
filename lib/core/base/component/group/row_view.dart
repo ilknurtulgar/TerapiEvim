@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/row_model.dart';
+import '../../ui_models/row_model.dart';
 import '../../util/base_utility.dart';
 
 Widget rowView(

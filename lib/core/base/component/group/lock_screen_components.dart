@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/group/category_determination/group_categories/group_categories.dart';
+import 'package:terapievim/screen/participant/group/category_determination/group_categories/p_group_categories_view.dart';
 
-import '../../../../screen/participant/group/scl90/test_for_users.dart';
+import '../../../../screen/participant/group/scl90/p_test_for_users_view.dart';
 import '../../util/text_utility.dart';
 import '../buttons/custom_button.dart';
 import '../../util/base_utility.dart';
@@ -47,7 +47,7 @@ Column checkedTest(BuildContext context) {
           container:
               AppContainers.purpleButtonContainer(SizeUtil.largeValueWidth),
           onTap: () {
-            context.push(const GroupCategories());
+            context.push(const PGroupCategoriesView());
           },
           text: "Grup Kategori Sayfasi ")
     ],
@@ -77,7 +77,7 @@ Column noTest(BuildContext context) {
 GestureDetector testButton(BuildContext context) {
   return GestureDetector(
       onTap: () {
-        context.push(const Test());
+        context.push(const PTestView());
       },
       child: Container(
         margin: const EdgeInsets.symmetric(vertical: SizeUtil.smallValueHeight),

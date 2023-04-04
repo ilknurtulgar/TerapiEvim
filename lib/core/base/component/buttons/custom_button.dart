@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import '../../models/container_model.dart';
+import '../../ui_models/container_model.dart';
 
 class CustomButton extends StatefulWidget {
   const CustomButton(

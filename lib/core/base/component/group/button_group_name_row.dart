@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+
+import '../../../../controller/therapist/group/t_group_controller.dart';
+
 class ButtonWithGroupName extends StatelessWidget {
-  ButtonWithGroupName({super.key, required this.text,required this.index});
+  ButtonWithGroupName({super.key, required this.text, required this.index});
   final String text;
   final int index;
-  final TherapistGroupController controller = Get.put(TherapistGroupController());
+
+  ///TODO: getx companente bağlı olmaması gerekiyor. ayrılmalı.
+  final TGroupController controller = Get.put(TGroupController());
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,7 +18,13 @@ class ButtonWithGroupName extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(text,style: const TextStyle(fontSize: 21,fontWeight: FontWeight.w500,color: AppColors.black),),
+          Text(
+            text,
+            style: const TextStyle(
+                fontSize: 21,
+                fontWeight: FontWeight.w500,
+                color: AppColors.black),
+          ),
           switchButton(),
         ],
       ),
@@ -22,12 +32,13 @@ class ButtonWithGroupName extends StatelessWidget {
   }
 
   Obx switchButton() {
-    return Obx(() => CupertinoSwitch(
-                activeColor: AppColors.white,
-                trackColor: AppColors.white,
-                thumbColor:AppColors.butterflyBush ,
-                value: controller.isButtonOn[index],
-                onChanged: (value) => controller.switchButtonFunction(index, value)),
-          );
+    return Obx(
+      () => CupertinoSwitch(
+          activeColor: AppColors.white,
+          trackColor: AppColors.white,
+          thumbColor: AppColors.butterflyBush,
+          value: controller.isButtonOn[index],
+          onChanged: (value) => controller.switchButtonFunction(index, value)),
+    );
   }
 }

@@ -1,9 +1,9 @@
 part of 'picker_manager.dart';
 
 abstract class _IPicker {
-  Future<PlatformFile?> pickImage();
+  Future<String?> pickImage();
 
-  Future<PlatformFile?> pickPdf();
+  Future<String?> pickPdf();
 
   final CrashlyticsManager crashlyticsManager = CrashlyticsManager.instance;
 

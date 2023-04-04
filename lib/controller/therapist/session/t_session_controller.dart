@@ -24,10 +24,6 @@ class TSessionController extends GetxController with BaseController {
   final TextEditingController sortController = TextEditingController();
   RxString orderValue = "Yeniden eskiye ".obs;
 
-  void setOrder(String value) {
-    orderValue.value = value;
-  }
-
   var isBoxSelected = false.obs;
 
   void setIsBoxSelected() {

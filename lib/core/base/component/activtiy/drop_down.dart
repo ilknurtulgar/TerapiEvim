@@ -7,8 +7,7 @@ class CustomDropDown extends StatelessWidget {
     super.key,
     required this.width,
     required this.height,
-    required this.orderText,
-    // required this.widget,
+    required this.selectedText,
     required this.textList,
     required this.isBoxSelected,
     required this.onDropDownTapped,
@@ -16,13 +15,12 @@ class CustomDropDown extends StatelessWidget {
 
   final double width;
   final double height;
-  final bool isBoxSelected;
+  final RxBool isBoxSelected;
 
   final List<String> textList;
   final Function() onDropDownTapped;
 
-  // final Widget widget;
-  final RxString orderText;
+  final RxString selectedText;
 
   @override
   Widget build(BuildContext context) {
@@ -39,14 +37,19 @@ class CustomDropDown extends StatelessWidget {
                   decoration: AppBoxDecoration.purpleBorder,
                   height: height,
                   width: Responsive.width(width, context),
-                  child: Obx(() => Text(orderText.value))),
+                  child: Obx(() => Text(selectedText.value))),
             ),
-            isBoxSelected
-                ? _DropDownList(
-                    orderString: orderText,
-                    textList: textList,
-                  )
-                : const SizedBox.shrink(),
+            Obx(
+              () => isBoxSelected.value
+                  ? _DropDownList(
+                      onSelected: () {
+                        isBoxSelected.value = false;
+                      },
+                      setString: selectedText,
+                      textList: textList,
+                    )
+                  : const SizedBox.shrink(),
+            ),
           ],
         ),
       ),
@@ -62,25 +65,29 @@ Widget textpurpose(property) {
 
 class _DropDownList extends StatelessWidget {
   const _DropDownList({
-    required this.orderString,
+    required this.setString,
     required this.textList,
+    required this.onSelected,
   });
 
   final List<String> textList;
-  final RxString orderString;
+  final RxString setString;
+
+  final void Function() onSelected;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 75,
       decoration: AppBoxDecoration.purpleBorder,
       child: ListView.builder(
-        reverse: true,
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              orderString.value = textList[index];
+              setString.value = textList[index];
+              onSelected();
             },
             child: Padding(
                 padding: AppPaddings.componentPadding,
@@ -95,32 +102,3 @@ class _DropDownList extends StatelessWidget {
     );
   }
 }
-//
-// Widget columnDropDown(String title, bool isInProfilePage,
-//     [RxString? rxString]) {
-//   return Column(
-//     children: [
-//       Align(
-//         alignment: Alignment.centerLeft,
-//         child: responsivenestext(
-//           title,
-//           AppTextStyles.normalTextStyle("medium", false),
-//         ),
-//       ),
-//       CustomDropDown(
-//         textList: DemoInformation.genderList,
-//         isBoxSelected: false,
-//         widget: textpurpose(profileController.genders.value),
-//         onDropDownTapped: () {
-//           profileController.func(DemoInformation.genderList, rxString);
-//         },
-//         width: isInProfilePage
-//             ? SizeUtil.highestValueWidth
-//             : SizeUtil.generalWidth,
-//         height:
-//             isInProfilePage ? SizeUtil.lowValueHeight : SizeUtil.generalHeight,
-//         textController: rxString,
-//       )
-//     ],
-//   );
-// }

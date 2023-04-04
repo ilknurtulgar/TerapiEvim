@@ -64,42 +64,57 @@ class _SignUpPageState extends State<SignUpPage> {
         backgroundColor: AppColors.blueChalk,
         body: SingleChildScrollView(
           child: Center(
-            child: Wrap(
-              direction: Axis.vertical,
-              spacing: 32,
-              crossAxisAlignment: WrapCrossAlignment.center,
-              children: [
-                LoginPageUtility.title(false),
-                ...textfieldList,
-                Obx(
-                  () => mainController.isTherapist.value
-                      ? acceptMakingShortCallContainer()
-                      : const SizedBox(),
-                ),
-                LoginPageUtility.button(false, false, () {
-                  _signUpController.signUpWithEmail(context, _userRole);
-                }, context),
-                LoginPageUtility.lineWithOrText(context),
-                LoginPageUtility.button(true, false,
-                    () => context.push(const ParticipantLoginPage()), context),
-                const SizedBox()
-              ],
+            child: Padding(
+              padding: AppPaddings.pagePaddingHorizontal,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  LoginPageUtility.title(false),
+                  textfieldListView(),
+                  mediumSizedBox(),
+                  Obx(
+                    () => mainController.isTherapist.value
+                        ? acceptMakingShortCallContainer()
+                        : const SizedBox(),
+                  ),
+                  LoginPageUtility.button(false, false, () {
+                    _signUpController.signUpWithEmail(context, _userRole);
+                  },),
+                  LoginPageUtility.lineWithOrText(context),
+                  LoginPageUtility.button(true, false,
+                      () => context.push(const ParticipantLoginPage()),),
+                ],
+              ),
             ),
           ),
         ));
   }
 
-  Container acceptMakingShortCallContainer() {
-    return Container(
-      decoration: AppBoxDecoration.noBorder,
-      child: SizedBox(
-          width: Responsive.width(SizeUtil.generalWidth, context),
-          child: Padding(
-            padding: MediaQuery.of(context).size.width < 574
-                ? AppPaddings.componentPadding
-                : EdgeInsets.zero,
-            child: AcceptionRow(isForMakingShortCall: true),
-          )),
+  ListView textfieldListView() {
+    return ListView.builder(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: textfieldList.length,
+                  itemBuilder: ((context, index) => Padding(
+                    padding: AppPaddings.componentPadding,
+                    child: textfieldList[index],
+                  )),);
+  }
+
+  Widget acceptMakingShortCallContainer() {
+    return Padding(
+      padding: AppPaddings.componentOnlyPadding(2),
+      child: Container(
+        decoration: AppBoxDecoration.noBorder,
+        child: SizedBox(
+            width: context.width1,
+            child: Padding(
+              padding: context.width1 < 574
+                  ? AppPaddings.generalPadding
+                  : EdgeInsets.zero,
+              child: AcceptionRow(isForMakingShortCall: true),
+            )),
+      ),
     );
   }
 }

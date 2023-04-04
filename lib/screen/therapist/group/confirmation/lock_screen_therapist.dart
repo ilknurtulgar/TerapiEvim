@@ -17,7 +17,7 @@ class LockScreenTherapist extends StatelessWidget {
       body: Stack(
         alignment: AlignmentDirectional.center,
         children: [
-          const MyGroups(),
+          // const MyGroups(),
           Container(
             color: Colors.black.withOpacity(0.8),
           ),

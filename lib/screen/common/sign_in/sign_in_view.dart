@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/common/sign_in/util/login_page_utility.dart';
+import 'package:terapievim/screen/common/sign_in/util/sign_in_view_utility.dart';
 import '../../../controller/auth/login_controller.dart';
 import '../../participant/profile/util/p_textfield_utility.dart';
 import '../sign_up/before_sign_up_view.dart';
@@ -48,18 +48,18 @@ class _SignInViewState extends State<SignInView> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    LoginPageUtility.title(true),
+                    SignInViewUtility.title(true),
                     mailTextfield(),
                     passwordColumn(),
-                    LoginPageUtility.button(
+                    SignInViewUtility.button(
                       true,
                       true,
                       () {
                         _loginController.loginWithEmail();
                       },
                     ),
-                    LoginPageUtility.lineWithOrText(context),
-                    LoginPageUtility.button(
+                    SignInViewUtility.lineWithOrText(context),
+                    SignInViewUtility.button(
                       false,
                       true,
                       () => context.push(BeforeSignUpView()),

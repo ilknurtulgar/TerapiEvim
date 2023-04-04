@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:terapievim/screen/common/sign_in/sign_in_view.dart';
 import 'package:terapievim/screen/common/sign_in/util/sign_in_view_utility.dart';
 
 import '../../../controller/auth/sign_up_controller.dart';
 import '../../../controller/main_controller.dart';
 import '../../../core/base/component/profile/acception_row.dart';
-import '../sign_in/sign_in_viewdart';
 import '../../participant/profile/util/p_textfield_utility.dart';
 
 class SignUpView extends StatefulWidget {

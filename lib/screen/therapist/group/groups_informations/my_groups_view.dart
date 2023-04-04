@@ -9,6 +9,8 @@ import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/group/groups_informations/group_information.dart';
 
 import '../../../../core/base/component/group/group.dart';
+import '../../../../service/model/therapist/group/t_group_model.dart';
+import '../group_add/group_add_view.dart';
 
 class MyGroups extends StatelessWidget {
   const MyGroups({super.key}); //gecici modeller
@@ -17,21 +19,30 @@ class MyGroups extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<TherapistGroupController>(
         getController: TherapistGroupController(),
-        onModelReady: (model) {},
         onPageBuilder: (context, controller) {
           return Scaffold(
-            appBar: MyAppBar(title: GroupTextUtil.myGroupsText),
+            appBar: MyAppBar(
+              title: GroupTextUtil.myGroupsText,
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      context.push(const GroupAddView());
+                    },
+                    icon: IconUtility.addIcon),
+              ],
+            ),
             body: SafeArea(
               child: Obx(
                 () => ListView.builder(
                   padding: AppPaddings.pagePadding,
                   itemCount: controller.fetchedGroups.length,
                   itemBuilder: (context, index) {
+                    final TGroupModel? group = controller.fetchedGroups[index];
                     return GroupClass(
                       onTap: () {
                         context.push(GroupInformation());
                       },
-                      row1: DemoInformation.row_1,
+                      row1: DemoInformation.groupTitle(group?.name ?? ''),
                       row2: DemoInformation.row_2,
                       row3: DemoInformation.row_3,
                       isBorderPurple: true,
@@ -44,20 +55,3 @@ class MyGroups extends StatelessWidget {
         });
   }
 }
-
-
-
-
-
-
-                      // rowView(
-                      //     RowModel(
-                      //         text: GroupTextUtil.myGroupsText,
-                      //         textStyle: AppTextStyles.heading(true),
-                      //         isAlignmentBetween: true,
-                      //         trailingIcon: IconButton(
-                      //             onPressed: () {
-                      //               context.push(const GroupAddView());
-                      //             },
-                      //             icon: IconUtility.addIcon)),
-                      //     AppPaddings.appBarPadding),

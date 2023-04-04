@@ -12,7 +12,6 @@ class TCopingMethodModel extends INetworkModel<TCopingMethodModel> {
   String? therapistId;
   String? therapistName;
   String? therapistAvatarUrl;
-  String? date;
   String? description;
   String? docUrl;
 
@@ -28,9 +27,9 @@ class TCopingMethodModel extends INetworkModel<TCopingMethodModel> {
     this.therapistId,
     this.therapistName,
     this.therapistAvatarUrl,
-    this.date,
     this.description,
     this.docUrl,
+    this.dateTime,
   });
 
   @override

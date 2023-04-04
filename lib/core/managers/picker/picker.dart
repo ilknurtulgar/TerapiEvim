@@ -2,12 +2,12 @@ part of 'picker_manager.dart';
 
 class _Picker extends _IPicker {
   @override
-  Future<PlatformFile?> pickImage() async {
+  Future<String?> pickImage() async {
     FilePickerResult? result =
         await FilePicker.platform.pickFiles(type: FileType.image);
 
     if (result != null) {
-      return result.files.single;
+      return result.files.single.path;
     } else {
       // User canceled the picker
       return null;
@@ -15,7 +15,7 @@ class _Picker extends _IPicker {
   }
 
   @override
-  Future<PlatformFile?> pickPdf() async {
+  Future<String?> pickPdf() async {
     try {
       FilePickerResult? result = await FilePicker.platform.pickFiles(
         type: FileType.custom,
@@ -23,7 +23,7 @@ class _Picker extends _IPicker {
       );
 
       if (result != null) {
-        return result.files.single;
+        return result.files.single.path;
       } else {
         // User canceled the picker
         return null;

@@ -3,8 +3,8 @@ import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../model/therapist/coping_method/t_coping_method_model.dart';
 
-abstract class ITCopingService {
-  ITCopingService(this.manager);
+abstract class ITCopingMethodService {
+  ITCopingMethodService(this.manager);
 
   final IFirestoreManager<ErrorModelCustom> manager;
 

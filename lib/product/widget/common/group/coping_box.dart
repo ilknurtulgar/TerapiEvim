@@ -6,10 +6,17 @@ import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 
 class CopingBox extends StatelessWidget {
-  const CopingBox({super.key, required this.copingtext, required this.pdfname});
+  const CopingBox({
+    super.key,
+    required this.copingtext,
+    required this.pdfname,
+    required this.onAddTapped,
+    required this.onShareTapped,
+  });
 
   final String copingtext;
   final String pdfname;
+  final Function() onAddTapped, onShareTapped;
 
   @override
   Widget build(BuildContext context) {

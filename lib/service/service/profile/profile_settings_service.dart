@@ -132,7 +132,7 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
       FirebaseStorageManager storageManager = FirebaseStorageManager.instance;
 
       final String? imageUrl = await storageManager.storage
-          .uploadAvatarImage(userId: userId!, file: file);
+          .uploadImage(userId: userId!, file: file);
 
       return imageUrl;
     } catch (e) {

@@ -7,7 +7,7 @@ import '../../../../core/base/component/group/custom_heading.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/extension/context_extension.dart';
-import '../../../../screen/therapist/group/confirmation/lock_screen_therapist.dart';
+import '../../../../screen/therapist/group/confirmation/t_lock_screen_therapist.dart';
 
 class TherapistUploadConfirm extends StatelessWidget {
   const TherapistUploadConfirm({super.key});

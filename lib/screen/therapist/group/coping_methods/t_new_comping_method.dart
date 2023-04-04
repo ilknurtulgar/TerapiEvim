@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/group/button_group_name_row.dart';
 import '../../../../core/base/component/group/custom_heading.dart';
 import '../../../../core/base/component/group/row_view.dart';
@@ -9,30 +10,43 @@ import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/extension/context_extension.dart';
 import '../../../../screen/therapist/activity/companent/coping_box.dart';
 
-class NewMetot extends StatelessWidget {
-  const NewMetot({super.key});
+class TNewCopingMethod extends StatelessWidget {
+  const TNewCopingMethod({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppBar(
+        title: GroupTextUtil.metotText,
+        actions: _popButton(context),
+      ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: AppPaddings.pagePadding,
-            child: Column(
-              children: [
-                heading(context),
-                CopingBox(
-                    copingtext: DemoInformation.tmpNewMetotText,
-                    pdfname: DemoInformation.tmppdfName),
-                text(),
-                otherGroups(),
-              ],
-            ),
+        child: Padding(
+          padding: AppPaddings.pagePadding,
+          child: Column(
+            children: [
+              CopingBox(
+                  copingtext: DemoInformation.tmpNewMetotText,
+                  pdfname: DemoInformation.tmppdfName),
+              // text(),
+              otherGroups(),
+            ],
           ),
         ),
       ),
     );
+  }
+
+  List<Widget> _popButton(BuildContext context) {
+    return [
+      IconButton(
+        icon: IconUtility.deleteIconOutlined,
+        onPressed: () {
+          deleteMetotDialog(context);
+          context.pop();
+        },
+      )
+    ];
   }
 
   Padding text() {

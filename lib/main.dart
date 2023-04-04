@@ -43,9 +43,12 @@ class _TerapiEvimState extends State<TerapiEvim> {
           //bu thema baska yere gitmesi lazijm
           splashColor: Colors.transparent,
           scaffoldBackgroundColor: AppColors.blueChalk,
-          appBarTheme: AppBarTheme(
-            iconTheme: IconThemeData(color: AppColors.deepCove)
-          ),
+          appBarTheme:
+              AppBarTheme(iconTheme: IconThemeData(color: AppColors.deepCove)),
+          pageTransitionsTheme: PageTransitionsTheme(builders: {
+            TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          }),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
               backgroundColor: AppColors.white,
               selectedItemColor: AppColors.black,

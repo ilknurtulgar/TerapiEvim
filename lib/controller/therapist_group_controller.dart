@@ -51,12 +51,6 @@ class TherapistGroupController extends GetxController with BaseController {
     ));
   }
 
-  //grup eklmee kismi icin controller
-
-  var isParticipantElectionOpen = false.obs;
-  void changeParticipantElection() {
-    isParticipantElectionOpen.value = !isParticipantElectionOpen.value;
-  }
 
   //lock screen controller
   var isTherapistUploaded = true.obs;

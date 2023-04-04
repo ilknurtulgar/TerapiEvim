@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/therapist_group_controller.dart';
+import '../../../../controller/therapist/group/group_information_controller.dart';
 import '../../../../core/base/component/activtiy/seminers.dart';
+import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/component/group/group_box.dart';
 import '../../../../core/base/component/group/person.dart';
@@ -11,6 +12,7 @@ import '../../../../core/base/models/row_model.dart';
 import '../../../../core/base/util/base_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
+import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
 import '../../../../screen/therapist/group/metots/new_metot.dart';
 import '../../../../screen/therapist/group/therapist_about.dart';
@@ -18,8 +20,6 @@ import '../../../../screen/therapist/group/therapist_about.dart';
 // ignore: must_be_immutable
 class GroupInformation extends StatelessWidget {
   GroupInformation({super.key});
-
-  TherapistGroupController controller = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -30,40 +30,57 @@ class GroupInformation extends StatelessWidget {
       person("Osman Yigit", context),
       person("Ali Kiran", context)
     ];
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: AppPaddings.pagePadding,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                heading(context),
-                miniHeadings(GroupTextUtil.upcomingMeetingText, false),
-                meeting(),
-                miniHeadings(GroupTextUtil.groupsInformationText, false),
-                navMethod(DemoInformation.secTherapist, () {
-                  context.push(const TherapistProfile(isSecTherapist: true));
-                }),
-                Election(
-                    election:
-                        ControllerElection.therapistGroupControllerParticipant,
-                    firstRow: Obx(() => SizedBox(
-                          child: participants(),
-                        )),
-                    rows: participantRow),
-                navMethod(DemoInformation.methods, () {
-                  //method sayfasina gidecek
-                }),
+    return BaseView<GroupInformationController>(
+        getController: GroupInformationController(),
+        onPageBuilder: (context, controller) {
+          return Scaffold(
+            appBar: MyAppBar(
+              title: DemoInformation.tmpGroupName,
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.edit_document),
+                  onPressed: () {
+                    context.push(const NewMetot());
+
+                    //new Metot sayfasina godocek
+                  },
+                ),
+                IconButton(
+                  icon: IconUtility.deleteIcon,
+                  onPressed: () {
+                    deleteGroupDialog(context);
+                  },
+                )
               ],
             ),
-          ),
-        ),
-      ),
-    );
+            body: SafeArea(
+              child: ListView(
+                padding: AppPaddings.pagePaddingHorizontal,
+                children: [
+                  miniHeadings(GroupTextUtil.upcomingMeetingText, false),
+                  meeting(),
+                  miniHeadings(GroupTextUtil.groupsInformationText, false),
+                  navMethod(DemoInformation.secTherapist, () {
+                    context.push(const TherapistProfile(isSecTherapist: true));
+                  }),
+                  Election(
+                      election: ControllerElection
+                          .therapistGroupControllerParticipant,
+                      firstRow: Obx(() => SizedBox(
+                            child: participants(controller),
+                          )),
+                      rows: participantRow),
+                  navMethod(DemoInformation.methods, () {
+                    //method sayfasina gidecek
+                  }),
+                ],
+              ),
+            ),
+          );
+        });
   }
 
-  SeminarMin participants() {
+  SeminarMin participants(GroupInformationController controller) {
     return SeminarMin(
       isBorderPurple: true,
       onTap: () {
@@ -166,25 +183,25 @@ class GroupInformation extends StatelessWidget {
 
   Widget miniHeadings(String name, bool isInMiddle) {
     return rowView(
-        RowModel(
-            text: name,
-            textStyle: AppTextStyles.heading(false),
-            isAlignmentBetween: false),
-        AppPaddings.miniHeadingPadding(isInMiddle));
+      RowModel(
+          leadingIcon: Container(),
+          text: name,
+          textStyle: AppTextStyles.heading(false),
+          isAlignmentBetween: false),
+      AppPaddings.miniHeadingPadding(isInMiddle),
+    );
   }
 
   PersonMin person(String name, BuildContext context) {
-    TherapistGroupController controller = Get.find();
     return PersonMin(
         isBorderPurple: true,
         onTap: () {
-          deleteParticipantDialog(context, name, controller);
+          deleteParticipantDialog(context, name);
         },
         row: UiBaseModel.groupInfoPerson(name));
   }
 
-  Future<String?> deleteParticipantDialog(
-      BuildContext context, String name, TherapistGroupController controller) {
+  Future<String?> deleteParticipantDialog(BuildContext context, String name) {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(

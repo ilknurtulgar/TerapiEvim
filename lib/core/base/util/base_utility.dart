@@ -372,6 +372,7 @@ class AppPaddings {
   );
   static const EdgeInsets pagePadding =
       EdgeInsets.only(left: 24, right: 24, bottom: 80, top: 15);
+
   static const EdgeInsets pagePaddingHorizontal =
       EdgeInsets.symmetric(horizontal: 24);
   static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 8);

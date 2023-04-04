@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/group/button_group_name_row.dart';
 import '../../../../core/base/component/group/custom_heading.dart';
 import '../../../../core/base/component/group/row_view.dart';
@@ -15,20 +16,19 @@ class NewMetot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppBar(title: GroupTextUtil.metotText),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: AppPaddings.pagePadding,
-            child: Column(
-              children: [
-                heading(context),
-                CopingBox(
-                    copingtext: DemoInformation.tmpNewMetotText,
-                    pdfname: DemoInformation.tmppdfName),
-                text(),
-                otherGroups(),
-              ],
-            ),
+        child: Padding(
+          padding: AppPaddings.pagePadding,
+          child: Column(
+            children: [
+              heading(context),
+              CopingBox(
+                  copingtext: DemoInformation.tmpNewMetotText,
+                  pdfname: DemoInformation.tmppdfName),
+              text(),
+              otherGroups(),
+            ],
           ),
         ),
       ),

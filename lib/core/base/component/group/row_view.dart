@@ -15,7 +15,7 @@ Widget rowView(
           : MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        rowModel.leadingIcon!,
+        rowModel.leadingIcon ?? Container(),
         Expanded(
           child: Padding(
             padding: EdgeInsets.only(

@@ -6,17 +6,18 @@ import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/core/managers/firebase/firestore/models/created_id_response.dart';
 import 'package:terapievim/service/model/common/user/user_model.dart';
 import 'package:terapievim/service/model/therapist/group/t_group_model.dart';
+
 import '../../../service/service/_therapist/group/i_t_group_service.dart';
 import '../../../service/service/_therapist/group/t_group_service.dart';
 
 class GroupAddController extends GetxController with BaseController {
-  TextEditingController groupNameController = TextEditingController();
+
   late final ITGroupService tGroupService;
+
   @override
   void onInit() {
-    // TODO: implement onInit
-    super.onInit();
     tGroupService = TGroupService(vexaFireManager.networkManager);
+    super.onInit();
   }
 
   @override
@@ -29,6 +30,9 @@ class GroupAddController extends GetxController with BaseController {
   void setContext(BuildContext context) {
     // TODO: implement setContext
   }
+
+  TextEditingController groupNameController = TextEditingController();
+
 
   bool _validateNewGroup() {
     if (groupNameController.text.isEmpty) {
@@ -58,11 +62,13 @@ class GroupAddController extends GetxController with BaseController {
 
   //grup eklmee kismi icin controller
   var isSecTherapistElectionOpen = false.obs;
+
   void changeSecTherapistElection() {
     isSecTherapistElectionOpen.value = !isSecTherapistElectionOpen.isTrue;
   }
 
   var isDayElectionOpen = false.obs;
+
   void changeDayElection() {
     isDayElectionOpen.value = !isDayElectionOpen.isTrue;
   }
@@ -81,6 +87,7 @@ class GroupAddController extends GetxController with BaseController {
   }
 
   var isParticipantElectionOpen = false.obs;
+
   void changeParticipantElection() {
     isParticipantElectionOpen.value = !isParticipantElectionOpen.value;
   }

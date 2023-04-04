@@ -1,9 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/screen/therapist/activity/tactivity_list_page.dart';
-import 'package:terapievim/screen/therapist/activity/tmy_activity_list_page.dart';
-import 'package:terapievim/screen/therapist/activity/tmy_up_coming_list_page.dart';
 
 import '../../../controller/tactivity_controller.dart';
 import '../../../core/base/component/app_bar/heading_minto.dart';
@@ -17,6 +14,9 @@ import '../../../core/extension/context_extension.dart';
 import '../../../service/model/common/activity/t_activity_model.dart';
 import '../../participant/activity/activity_boxes.dart';
 import 'new_activity_screen.dart';
+import 'tactivity_list_page.dart';
+import 'tmy_activity_list_page.dart';
+import 'tmy_up_coming_list_page.dart';
 
 class TherapistActivityScreen extends StatelessWidget {
   const TherapistActivityScreen({Key? key}) : super(key: key);

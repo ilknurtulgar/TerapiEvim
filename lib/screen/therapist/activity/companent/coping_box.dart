@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/buttons/custom_button.dart';
-import 'package:terapievim/core/base/component/group/custom_heading.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
+import '../../../../core/base/component/buttons/custom_button.dart';
+import '../../../../core/base/component/group/custom_heading.dart';
+import '../../../../core/base/util/base_utility.dart';
+import '../../../../core/base/util/text_utility.dart';
 
 class CopingBox extends StatelessWidget {
   const CopingBox({super.key, required this.copingtext, required this.pdfname});

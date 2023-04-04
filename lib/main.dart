@@ -1,20 +1,18 @@
 import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/activity_controller.dart';
-import 'package:terapievim/controller/group_controller.dart';
-import 'package:terapievim/controller/main_controller.dart';
-import 'package:terapievim/controller/profile_controller.dart';
-import 'package:terapievim/controller/video_call_controller.dart';
-import 'package:terapievim/screen/participant/video_call/group_therapy_call_page.dart';
-import 'package:terapievim/screen/participant/video_call/isolated_call_page.dart';
-import 'package:terapievim/screen/participant/video_call/short_call_page.dart';
+
+import 'controller/activity_controller.dart';
 import 'controller/auth/auth_controller.dart';
-import 'controller/therapist_group_controller.dart';
+import 'controller/group_controller.dart';
+import 'controller/main_controller.dart';
+import 'controller/profile_controller.dart';
 import 'controller/therapist_profile_controller.dart';
+import 'controller/video_call_controller.dart';
 import 'core/base/util/base_utility.dart';
 import 'core/init/cache/local_manager.dart';
 import 'core/init/config/config.dart';
@@ -45,6 +43,12 @@ class _TerapiEvimState extends State<TerapiEvim> {
           //bu thema baska yere gitmesi lazijm
           splashColor: Colors.transparent,
           scaffoldBackgroundColor: AppColors.blueChalk,
+          appBarTheme:
+              AppBarTheme(iconTheme: IconThemeData(color: AppColors.deepCove)),
+          pageTransitionsTheme: PageTransitionsTheme(builders: {
+            TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          }),
           bottomNavigationBarTheme: const BottomNavigationBarThemeData(
               backgroundColor: AppColors.white,
               selectedItemColor: AppColors.black,
@@ -81,7 +85,7 @@ void _initializeControllers() {
   Get.put(AuthController());
   Get.put(ActivityController());
   Get.put(TherapistProfileController());
-  Get.put(TherapistGroupController());
+  // Get.put(TherapistGroupController());
   Get.put(GroupController());
   Get.put(MainController());
   Get.put(ProfileController());

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/profile/custom_list_view.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/therapist/profile/t_attended_seminar.dart';
-import 'package:terapievim/screen/therapist/profile/t_dealing_method.dart';
+
+import '../../../core/base/component/profile/custom_list_view.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/util/text_utility.dart';
+import '../../../core/extension/context_extension.dart';
+import '../../../screen/therapist/profile/t_attended_seminar.dart';
+import '../../../screen/therapist/profile/t_dealing_method.dart';
 import '../../participant/profile/profile_setting_page.dart';
 import '../../participant/profile/util/profile_page_utility.dart';
 
@@ -29,8 +30,8 @@ class TherapistProfilePage extends StatelessWidget {
                   Responsive.height(40, context),
                   Responsive.width(20, context)),
               Padding(
-                padding: AppPaddings.profilePageBigPadding(
-                    true,false), //left padding genel page padding zamanında kaldırılacak
+                padding: AppPaddings.profilePageBigPadding(true, false),
+                //left padding genel page padding zamanında kaldırılacak
                 child: Column(
                   children: [
                     therapistName(),

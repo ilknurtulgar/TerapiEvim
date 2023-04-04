@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/participant_container.dart';
 import 'package:terapievim/core/base/models/container_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/screen/therapist/group/group.dart';
+import 'package:terapievim/screen/therapist/group/t_group.dart';
 import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart';
 
 import '../../../screen/participant/activity/activities.dart';
@@ -134,6 +134,7 @@ class IconUtility {
   static const Icon settingIcon = Icon(Icons.settings);
 
   static const Icon deleteIcon = Icon(Icons.delete);
+  static const Icon deleteIconOutlined = Icon(Icons.delete_outline_outlined);
 
   static const Icon calendarIcon =
       Icon(Icons.calendar_month_outlined, color: AppColors.black);
@@ -162,7 +163,7 @@ class IconUtility {
       color: AppColors.white, size: SizeUtil.lockIconSize);
 
   static const Icon close =
-      Icon(Icons.close, size: 30, color: AppColors.meteorite);
+      Icon(Icons.close, size: 24, color: AppColors.meteorite);
   static const Icon closeIcon = Icon(Icons.close);
   static const Icon arrowUp = Icon(Icons.keyboard_arrow_up, size: 30);
   static const Icon arrowDown =
@@ -359,6 +360,8 @@ class BorderColorUtil {
 class AppPaddings {
   static const EdgeInsets appBarPadding =
       EdgeInsets.symmetric(vertical: 20, horizontal: 20);
+  static const EdgeInsets appBarPaddingNew =
+      EdgeInsets.only(top: 20, left: 12, right: 12);
 
   static const EdgeInsets bottomNavBarIcon = EdgeInsets.only(bottom: 5);
 
@@ -370,6 +373,7 @@ class AppPaddings {
   );
   static const EdgeInsets pagePadding =
       EdgeInsets.only(left: 24, right: 24, bottom: 80, top: 15);
+
   static const EdgeInsets pagePaddingHorizontal =
       EdgeInsets.symmetric(horizontal: 24);
   static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 8);
@@ -396,17 +400,20 @@ class AppPaddings {
 
   static EdgeInsets horizontalListViewPadding(int paddingNo) => EdgeInsets.only(
       bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
+
   // 1 numara right , 2 numara bottom , 3 numara bottom ve right
-  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding,
-          bool isThereRightPadding) =>
+  static EdgeInsets profilePageBigPadding(
+          bool isThereLeftPadding, bool isThereRightPadding) =>
       EdgeInsets.only(
           top: 320,
           left: isThereLeftPadding ? 24 : 0,
           right: isThereRightPadding ? 24 : 0);
+
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
       EdgeInsets.symmetric(
           horizontal: paddingNo != 2 ? 16 : 0,
           vertical: paddingNo != 1 ? 16 : 0);
+
   // 1 numara horizontal, 2 numara vertical, 3 numara horizontal ve vertical
   static EdgeInsets componentOnlyPadding(int paddingNo) => EdgeInsets.only(
       top: paddingNo == 1 ? 8 : 0,
@@ -422,7 +429,9 @@ class AppPaddings {
 }
 
 SizedBox smallSizedBox() => const SizedBox(height: 8);
+
 SizedBox mediumSizedBox() => const SizedBox(height: 16);
+
 SizedBox largeSizedBox() => const SizedBox(height: 32);
 
 class AppBorderRadius {
@@ -520,14 +529,15 @@ class DemoInformation {
           buttonText: "Oku");
 
   static TwoRowShortContainer demoAttendedSeminars = TwoRowShortContainer(
-      row1Text: DemoInformation.therapistName,
-      row2Text: "Kendini Bil",
-      firstIconData: Icons.person,
-      secondIconData: Icons.laptop_windows_sharp,
-      purpose: "seminar",
-      isThereButton: true,
-      buttonText: "Tekrar Izle",
+    row1Text: DemoInformation.therapistName,
+    row2Text: "Kendini Bil",
+    firstIconData: Icons.person,
+    secondIconData: Icons.laptop_windows_sharp,
+    purpose: "seminar",
+    isThereButton: true,
+    buttonText: "Tekrar Izle",
   );
+
   //message
   static const List<String> personList = [
     "Canan Karatay",
@@ -658,16 +668,37 @@ class DemoInformation {
       textStyle: AppTextStyles.aboutMeTextStyle(false),
       trailingIcon: IconUtility.forward,
       leadingIcon: IconUtility.fileIcon);
+
+  //TODO: deprecated. Should be removed
   static RowModel row_1 = RowModel(
       leadingIcon: IconUtility.activityIcon,
       text: "Yeme Bozukluğu Grubu 1",
       textStyle: AppTextStyles.groupTextStyle(false),
       isAlignmentBetween: false);
+
+  static RowModel groupTitle(String text) {
+    return RowModel(
+        leadingIcon: IconUtility.activityIcon,
+        text: text,
+        textStyle: AppTextStyles.groupTextStyle(false),
+        isAlignmentBetween: false);
+  }
+
+  //TODO: deprecated. Should be removed
   static RowModel row_2 = RowModel(
       leadingIcon: IconUtility.personIcon,
       text: "Yardımcı Psikolog  : Bekleniyor.. ",
       textStyle: AppTextStyles.groupTextStyle(true),
       isAlignmentBetween: false);
+
+  static RowModel groupTherapistHelper(String text) {
+    return RowModel(
+        leadingIcon: IconUtility.personIcon,
+        text: text,
+        textStyle: AppTextStyles.groupTextStyle(true),
+        isAlignmentBetween: false);
+  }
+
   static RowModel row_3 = RowModel(
       leadingIcon: IconUtility.groupsIcon,
       text: "Katılımcı Sayısı : 0/20",
@@ -861,6 +892,7 @@ class SizeUtil {
   // küçükten büyüğe sıralama
   static const double zeroSize = 0;
   static const double specialSize = 160;
+
   // width
   static const double lowValueWidth =
       40; // profil sayfasındaki mini container ve listwheelscrollview için

@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist/group/group_verification_controller.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/therapist/group/confirmation/uploading.dart';
+
+import '../../../../controller/therapist/group/group_verification_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
-import '../groups_informations/my_groups_view.dart';
+import '../../../../core/base/util/text_utility.dart';
+import '../../../../core/extension/context_extension.dart';
+import '../../../../screen/therapist/group/confirmation/t_uploading.dart';
+import '../groups_informations/t_my_groups_view.dart';
 
 class LockScreenTherapist extends StatelessWidget {
   const LockScreenTherapist({super.key});
+
 //conform edilme suresinde acilacak sayfa??
   @override
   Widget build(BuildContext context) {
@@ -17,7 +19,7 @@ class LockScreenTherapist extends StatelessWidget {
       body: Stack(
         alignment: AlignmentDirectional.center,
         children: [
-          const MyGroups(),
+          // const MyGroups(),
           Container(
             color: Colors.black.withOpacity(0.8),
           ),

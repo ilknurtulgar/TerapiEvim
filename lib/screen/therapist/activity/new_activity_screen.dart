@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/tactivity_controller.dart';
-import 'package:terapievim/core/base/component/buttons/custom_button.dart';
-import 'package:terapievim/core/base/component/login/custom_textfield.dart';
-import 'package:terapievim/core/base/util/base_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/therapist/group/group_add/group_add_view.dart';
 
+import '../../../controller/tactivity_controller.dart';
+import '../../../core/base/component/buttons/custom_button.dart';
 import '../../../core/base/component/group/row_view.dart';
+import '../../../core/base/component/login/custom_textfield.dart';
 import '../../../core/base/models/row_model.dart';
+import '../../../core/base/util/base_model.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/util/text_utility.dart';
+import '../../../core/extension/context_extension.dart';
+import '../../../screen/therapist/group/group_add/t_group_add_view.dart';
 import '../../../service/model/common/activity/t_activity_model.dart';
 
 class NewActivityScreen extends StatefulWidget {
@@ -57,9 +57,9 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
                         context.pop();
                       }), ActivityTextUtil.newActivity)),
               ),
-              miniHeadings(ActivityTextUtil.eventName, false),
+              miniHeadings(ActivityTextUtil.eventName, false, false),
               eventname(),
-              miniHeadings(ActivityTextUtil.eventAbout, false),
+              miniHeadings(ActivityTextUtil.eventAbout, false, false),
               eventabout(),
               dateclockrow(),
               dateclocktextfield(),
@@ -107,9 +107,9 @@ class _NewActivityScreenState extends State<NewActivityScreen> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(child: miniHeadings(ActivityTextUtil.date, false)),
+        Expanded(child: miniHeadings(ActivityTextUtil.date, false, false)),
         // activityname(ActivityTextUtil.date, AppPaddings.startpadding),
-        Expanded(child: miniHeadings(ActivityTextUtil.clock, true))
+        Expanded(child: miniHeadings(ActivityTextUtil.clock, true, false))
         // activityname(ActivityTextUtil.clock, AppPaddings.centerpadding),
       ],
     );

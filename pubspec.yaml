@@ -14,14 +14,13 @@ dependencies:
 
   cupertino_icons: ^1.0.5
   get: ^4.6.5
-  animated_bottom_navigation_bar: ^1.1.0+1
-  firebase_core: ^2.8.0
-  firebase_auth: ^4.3.0
-  cloud_firestore: ^4.4.5
-  firebase_storage: ^11.0.16
-  firebase_crashlytics: ^3.0.17
+  firebase_core: ^2.9.0
+  firebase_auth: ^4.4.0
+  cloud_firestore: ^4.5.0
+  firebase_storage: ^11.1.0
+  firebase_crashlytics: ^3.1.0
   connectivity_plus: ^2.3.5
-  shared_preferences: ^2.0.20
+  shared_preferences: ^2.1.0
   flutter_secure_storage: ^8.0.0
   equatable: ^2.0.5
   flutter_native_splash: ^2.2.19
@@ -30,11 +29,12 @@ dependencies:
   url_launcher: ^6.1.10
   vexana: ^3.4.1
   fluttertoast: ^8.2.1
-  image_picker: ^0.8.7
-  video_player: ^2.6.0
+  image_picker: ^0.8.7+1
+  video_player: ^2.6.1
   permission_handler: ^10.2.0
   intl: ^0.17.0
-  videosdk: ^1.0.12
+  videosdk: ^1.0.13
+  file_picker: ^5.2.6
 
 dev_dependencies:
   flutter_test:

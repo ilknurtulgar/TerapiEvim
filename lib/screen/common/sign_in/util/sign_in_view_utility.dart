@@ -4,7 +4,7 @@ import 'package:terapievim/core/extension/context_extension.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
 
-class LoginPageUtility {
+class SignInViewUtility {
   static Widget lineWithOrText(BuildContext context) {
     return Padding(
       padding: AppPaddings.customContainerInsidePadding(2),

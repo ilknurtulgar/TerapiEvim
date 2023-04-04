@@ -4,6 +4,8 @@ class GroupModelInProfilePage {
   List<String> methodTitles; // baş etme metot başlıkları
   String secondTherapistName;
   String therapyTime;
+
+  ///TODO: isim denedim denedim değişmedi isim değiştirilmesi gerekiyor
   GroupModelInProfilePage({
     required this.groupName,
     required this.mainTherapistName,

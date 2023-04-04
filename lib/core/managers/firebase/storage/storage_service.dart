@@ -14,7 +14,7 @@ class StorageService extends IStorageService with BaseService {
   final storageRef = FirebaseStorage.instance.ref();
 
   @override
-  Future<String?> uploadAvatarImage({
+  Future<String?> uploadImage({
     required String userId,
     required File file,
     String fileType = 'jpg',

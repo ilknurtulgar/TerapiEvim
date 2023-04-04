@@ -72,12 +72,16 @@ class TherapistActivityScreen extends StatelessWidget {
                     context.push(const TActivityListPage());
                   },
                 ),
-                headingminto(ActivityTextUtil.activity, () {},
-                    MainAxisAlignment.spaceBetween, true, IconUtility.forward),
                 otherUpcomingActivities(),
-                headingminto(ActivityTextUtil.myActivty, () {
-                  context.push(const TMyActivityListPage());
-                }, MainAxisAlignment.spaceBetween, true, IconUtility.forward),
+                HeadingMinto(
+                  text: ActivityTextUtil.myActivty,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  isButterfly: true,
+                  icon: IconUtility.forward,
+                  onPressed: () {
+                    context.push(const TMyActivityListPage());
+                  },
+                ),
                 myPastActivities(context, controller),
               ],
             ),

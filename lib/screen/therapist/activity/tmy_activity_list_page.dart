@@ -9,11 +9,15 @@ class TMyActivityListPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: Search(
-            rowModel: RowModel(
-                text: "Ara",
-                textStyle: const TextStyle(),
-                isAlignmentBetween: false,
-                leadingIcon: IconUtility.searchIcon)));
+      appBar: Search(
+          rowModel: RowModel(
+              text: "Ara",
+              textStyle: const TextStyle(),
+              isAlignmentBetween: false,
+              leadingIcon: IconUtility.searchIcon)),
+      body: Column(
+        children: const [],
+      ),
+    );
   }
 }

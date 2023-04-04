@@ -5,7 +5,6 @@ import 'package:terapievim/core/base/view/base_view.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/util/base_utility.dart';
 
-// ignore: must_be_immutable
 class PLastReviewView extends StatelessWidget {
   const PLastReviewView({super.key});
 

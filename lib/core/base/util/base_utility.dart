@@ -656,12 +656,23 @@ class DemoInformation {
     textStyle2: AppTextStyles.groupTextStyle(true),
     trailingIcon: IconUtility.forward,
   );
+
   static RowModel clockRow = RowModel(
     leadingIcon: IconUtility.clockIcon,
-    text: "Ocak 15, 2023,  20:00",
+    text: "Her Pazartesi, 20:00",
     textStyle: AppTextStyles.groupTextStyle(true),
     isAlignmentBetween: false,
   );
+
+  static RowModel clockRow1(String text) {
+    return RowModel(
+      leadingIcon: IconUtility.clockIcon,
+      text: text,
+      textStyle: AppTextStyles.groupTextStyle(true),
+      isAlignmentBetween: false,
+    );
+  }
+
   static RowModel methods = RowModel(
       isAlignmentBetween: true,
       text: "Basetme Metotlari ",

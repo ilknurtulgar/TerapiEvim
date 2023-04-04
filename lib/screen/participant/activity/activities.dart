@@ -1,18 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/app_bar/heading_minto.dart';
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 
 import '../../../controller/participant/p_activity_controller.dart';
-import '../../../core/base/component/group/group_box.dart';
-import '../../../core/base/component/login/custom_textfield.dart';
-import '../../../core/base/models/row_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/extension/context_extension.dart';
 import '../../../service/model/common/activity/t_activity_model.dart';
-import '../home/home.dart';
 import 'about_activity.dart';
+import 'activity_boxes.dart';
 
 class ActivitiesScreen extends StatefulWidget {
   const ActivitiesScreen({super.key});
@@ -47,12 +45,21 @@ class _ActivitiesScreenState extends State<ActivitiesScreen> {
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-                // titleText(ActivityTextUtil.activity),
-                activityminto(ActivityTextUtil.upcomingActivities, () {},
-                    MainAxisAlignment.spaceBetween, true, IconUtility.forward),
+                HeadingMinto(
+                  text: ActivityTextUtil.upcomingActivities,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  isButterfly: true,
+                  icon: IconUtility.forward,
+                  onPressed: () {},
+                ),
                 activityLoadSeminar(_pActivityController),
-                activityminto(ActivityTextUtil.pastActivities, () {},
-                    MainAxisAlignment.spaceBetween, true, IconUtility.forward),
+                HeadingMinto(
+                  text: ActivityTextUtil.pastActivities,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  isButterfly: true,
+                  icon: IconUtility.forward,
+                  onPressed: () {},
+                ),
                 activityPastSeminar()
               ],
             ),
@@ -80,23 +87,11 @@ Widget activityLoadSeminar(PActivityController pActivityController) {
             DemoInformation.recentActivity(activity.therapistName ?? ''),
             DemoInformation.recentActivityTime(
                 activity.dateTime ?? Timestamp.now()),
-            ActivityTextUtil.join);
+            ActivityTextUtil.join,
+            DemoInformation.ayrowmodel);
       },
     ),
   );
-}
-
-Widget activitythreerowbox(Function()? onButtonTap, Function()? onTap,
-    RowModel arowModel, RowModel clockModel, String buttonText) {
-  return ActivityBox(
-      onTap: onTap,
-      istwobutton: false,
-      buttonText: buttonText,
-      containerModel: AppContainers.containerButton(false),
-      arowModel: arowModel,
-      isactivity: false,
-      clockModel: clockModel,
-      onButtonTap: onButtonTap);
 }
 
 ListView activityPastSeminar() {
@@ -107,53 +102,8 @@ ListView activityPastSeminar() {
       return activitythreerowbox(() {
         context.push(const AboutActivityScreen());
       }, () {}, DemoInformation.arowmodel, DemoInformation.clockmodel,
-          ActivityTextUtil.watchTheRecording);
+          ActivityTextUtil.watchTheRecording, DemoInformation.ayrowmodel);
     },
     itemCount: 2,
   );
 }
-
-Widget activityminto(String text, Function()? onPressed,
-    MainAxisAlignment mainAxisAlignment, bool isButterfly, Icon icon) {
-  return Row(
-    mainAxisAlignment: mainAxisAlignment,
-    children: [
-      Text(
-        text,
-        style: isButterfly
-            ? AppTextStyles.groupTextStyle(false)
-            : AppTextStyles.normalTextStyle("medium", false),
-      ),
-      IconButton(
-        icon: icon,
-        onPressed: onPressed,
-      ),
-    ],
-  );
-}
-
-//TODO: it should not be initialized outside a class
-//TODO: it should not be used except for activityView
-final TextEditingController activityTextController = TextEditingController();
-
-Widget search(RowModel rowModel) {
-  return CustomTextField(
-    isOne: true,
-    isBig: true,
-    isRowModel: true,
-    rowModel: rowModel,
-    textController: activityTextController,
-  );
-}
-
-/*   search(UiBaseModel.searchModel(
-                  ActivityTextUtil.searchText,
-                  IconButton(
-                    onPressed: () {
-                      context.push(const FilterScreen());
-
-                      //trendyolfiltreicondüzenleme
-                    },
-                    icon: IconUtility.fiterIcon,
-                  ),
-                )),*/

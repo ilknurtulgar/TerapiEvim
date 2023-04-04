@@ -51,12 +51,19 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
                     LoginPageUtility.title(true),
                     mailTextfield(),
                     passwordColumn(),
-                    LoginPageUtility.button(true, true, () {
-                      _loginController.loginWithEmail();
-                    },),
+                    LoginPageUtility.button(
+                      true,
+                      true,
+                      () {
+                        _loginController.loginWithEmail();
+                      },
+                    ),
                     LoginPageUtility.lineWithOrText(context),
-                    LoginPageUtility.button(false, true,
-                        () => context.push(BeforeSignUp()),),
+                    LoginPageUtility.button(
+                      false,
+                      true,
+                      () => context.push(BeforeSignUp()),
+                    ),
                   ]),
             ),
           ),
@@ -67,10 +74,10 @@ class _ParticipantLoginPageState extends State<ParticipantLoginPage> {
 
   Padding mailTextfield() {
     return Padding(
-                    padding: AppPaddings.componentPadding,
-                    child: textfieldUtility.mailTextfield(
-                        _loginController.emailController, true),
-                  );
+      padding: AppPaddings.componentPadding,
+      child: textfieldUtility.mailTextfield(
+          _loginController.emailController, true),
+    );
   }
 
   Widget passwordColumn() {

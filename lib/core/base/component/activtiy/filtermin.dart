@@ -9,7 +9,7 @@ Widget filtermin(String heading, Function()? onTap, Icon icon) {
     child: Container(
       height: SizeUtil.normalValueHeight,
       decoration: AppBoxDecoration.sendDecoration,
-      child: activityminto(
+      child: headingminto(
           heading, onTap, MainAxisAlignment.spaceBetween, false, icon),
     ),
   );

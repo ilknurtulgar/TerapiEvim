@@ -110,7 +110,10 @@ class IconUtility {
 
   static const Icon notification = Icon(Icons.notifications);
   static const Icon logoutIcon = Icon(Icons.logout);
-  static const Icon searchIcon = Icon(Icons.search);
+  static const Icon searchIcon = Icon(
+    Icons.search,
+    color: AppColors.black,
+  );
   static const Icon fiterIcon = Icon(Icons.list);
 
   static const Icon fileIcon = Icon(

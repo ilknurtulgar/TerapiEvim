@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/toast/toast.dart';
+import 'package:terapievim/model/common/profile/password_model.dart';
 import 'package:terapievim/product/enum/local_keys_enum.dart';
 import 'package:terapievim/service/profile/profile_settings_service.dart';
 import '../../../model/common/profile/birth_date_model.dart';
@@ -87,6 +90,14 @@ class PProfileController extends GetxController with BaseController {
       if (result == null) {
         await localManager.setStringValue(
             LocalManagerKeys.phone, phoneNumberController.text.trim());
+      }
+    }
+
+    if (password != passwordController.text.trim()) {
+      final result = await service.updatePassword(
+          PasswordModel(password: passwordController.text.trim()));
+      if (result != null) {
+        flutterErrorToast('Hata oluştu');
       }
     }
   }

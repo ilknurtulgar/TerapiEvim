@@ -311,9 +311,8 @@ class AppContainers {
   }
 
   static ContainerModel loginSignUpButtonContainer(
-          bool isInLoginPage, bool isLoginButton, BuildContext context) =>
+          bool isInLoginPage, bool isLoginButton) =>
       ContainerModel(
-          width: Responsive.width(SizeUtil.generalWidth, context),
           borderRadius: 8,
           backgroundColor: (isInLoginPage && isLoginButton) ||
                   (isInLoginPage == false && isLoginButton == false)
@@ -395,8 +394,12 @@ class AppPaddings {
   static EdgeInsets horizontalListViewPadding(int paddingNo) => EdgeInsets.only(
       bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
   // 1 numara right , 2 numara bottom , 3 numara bottom ve right
-  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding) =>
-      EdgeInsets.only(top: 320, left: isThereLeftPadding ? 24 : 0);
+  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding,
+          bool isThereRightPadding) =>
+      EdgeInsets.only(
+          top: 320,
+          left: isThereLeftPadding ? 24 : 0,
+          right: isThereRightPadding ? 24 : 0);
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
       EdgeInsets.symmetric(
           horizontal: paddingNo != 2 ? 16 : 0,
@@ -415,7 +418,7 @@ class AppPaddings {
       const EdgeInsets.symmetric(horizontal: 8);
 }
 
-SizedBox smallSizedBox() => const SizedBox(width: 8);
+SizedBox smallSizedBox() => const SizedBox(height: 8);
 SizedBox mediumSizedBox() => const SizedBox(height: 16);
 SizedBox largeSizedBox() => const SizedBox(height: 32);
 
@@ -521,7 +524,7 @@ class DemoInformation {
       purpose: "seminar",
       isThereButton: true,
       buttonText: "Tekrar Izle",
-      isInTherapist: false);
+  );
   //message
   static const List<String> personList = [
     "Canan Karatay",

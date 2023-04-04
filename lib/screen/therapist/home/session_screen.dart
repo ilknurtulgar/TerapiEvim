@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 import 'package:terapievim/core/base/component/home/participant_with_sc_time.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
@@ -63,18 +62,14 @@ class SessionScreen extends StatelessWidget {
 }
 
 Widget _orderdropdown(TSessionController controller) {
-  return Obx(
-    () => CustomDropDown(
-      orderText: controller.orderValue,
-      textList: DemoInformation.orderingList,
-      isBoxSelected: controller.isBoxSelected.value,
-      onDropDownTapped: () {
-        controller.setIsBoxSelected();
-      },
-      // widget: textpurpose(controller.order.value),
-      // widget: textpurpose(controller.sortController.text),
-      height: SizeUtil.smallValueHeight,
-      width: SizeUtil.normalValueWidth,
-    ),
+  return CustomDropDown(
+    selectedText: controller.orderValue,
+    textList: DemoInformation.orderingList,
+    isBoxSelected: controller.isBoxSelected,
+    onDropDownTapped: () {
+      controller.setIsBoxSelected();
+    },
+    height: SizeUtil.smallValueHeight,
+    width: SizeUtil.normalValueWidth,
   );
 }

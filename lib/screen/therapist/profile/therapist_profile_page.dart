@@ -30,7 +30,7 @@ class TherapistProfilePage extends StatelessWidget {
                   Responsive.width(20, context)),
               Padding(
                 padding: AppPaddings.profilePageBigPadding(
-                    true), //left padding genel page padding zamanında kaldırılacak
+                    true,false), //left padding genel page padding zamanında kaldırılacak
                 child: Column(
                   children: [
                     therapistName(),

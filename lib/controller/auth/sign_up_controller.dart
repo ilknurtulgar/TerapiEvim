@@ -4,11 +4,11 @@ import 'package:get/get.dart';
 import '../../core/extension/context_extension.dart';
 import '../../core/base/component/toast/toast.dart';
 import '../../core/constants/utils/text_constants/error_text_const.dart';
+import '../../model/common/signup/sign_up_model.dart';
 import '../../product/enum/local_keys_enum.dart';
-import '../../screen/participant/home/main_home.dart';
-import '../../service/model/common/signup/sign_up_model.dart';
-import '../../service/service/auth/auth_service.dart';
-import '../../service/service/auth/i_auth_service.dart';
+import '../../screen/common/home/main_home.dart';
+import '../../service/auth/auth_service.dart';
+import '../../service/auth/i_auth_service.dart';
 import '../base/base_controller.dart';
 
 class SignUpController extends GetxController with BaseController {
@@ -115,7 +115,7 @@ class SignUpController extends GetxController with BaseController {
 
     isLoading.value = false;
 
-    context.pushAndRemoveUntil(const TerapiEvimLogged());
+    context.pushAndRemoveUntil(const MainHome());
   }
 
   Future<void> saveToLocalData(String userId) async {

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import '../../models/card_model.dart';
+import '../../ui_models/card_model.dart';
 import '../buttons/custom_button.dart';
 import 'custom_container.dart';
 

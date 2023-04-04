@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/models/card_model.dart';
-import 'package:terapievim/core/base/models/container_model.dart';
+import 'package:terapievim/core/base/ui_models/card_model.dart';
+import 'package:terapievim/core/base/ui_models/container_model.dart';
 import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 
 class CustomContainer extends StatelessWidget {

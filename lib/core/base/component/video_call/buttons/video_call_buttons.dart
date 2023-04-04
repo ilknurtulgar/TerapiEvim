@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/main_controller.dart';
 import 'package:terapievim/controller/video_call_controller.dart';
-import 'package:terapievim/core/base/component/video_call/video_call_container/circular_container.dart';
+import 'package:terapievim/core/base/component/video_call/container/circular_container.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 
@@ -72,10 +72,12 @@ class VideoCallButtonsRow extends StatelessWidget {
         SizedBox(
           width: isGroupTherapyCall! ? 16 : 0,
         ),
-        VideoCallUtility.cameraIconButton(onToggleCameraButtonPressed, true.obs),
+        VideoCallUtility.cameraIconButton(
+            onToggleCameraButtonPressed, true.obs),
         Padding(
           padding: AppPaddings.customContainerInsidePadding(3),
-          child: VideoCallUtility.micIconButton(onToggleMicButtonPressed, true.obs),
+          child: VideoCallUtility.micIconButton(
+              onToggleMicButtonPressed, true.obs),
         ),
         VideoCallUtility.endingCallButton(onLeaveButtonPressed),
       ],

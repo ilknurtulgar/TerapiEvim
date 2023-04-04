@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
-import '../../../../controller/group_controller.dart';
-import '../../../../controller/therapist_group_controller.dart';
-import '../../models/row_model.dart';
+import '../../../../controller/participant/group/p_group_controller.dart';
+import '../../../../controller/therapist/group/t_group_controller.dart';
+import '../../ui_models/row_model.dart';
 import '../../util/base_model.dart';
 import '../../util/base_utility.dart';
 import 'deleting_time_button.dart';
@@ -25,8 +25,8 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
   final List<String> timeList;
   final int listviewIndex;
   final bool isForParticipant;
-  GroupController groupController = Get.find();
-  TherapistGroupController therapistGroupController = Get.find();
+  PGroupController groupController = Get.find();
+  TGroupController therapistGroupController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,8 +41,16 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
             padding: AppPaddings.customContainerInsidePadding(3),
             child: Column(
               children: [
-                isForParticipant ? rowView(UiBaseModel.secDeterminationModel(therapistName!, IconUtility.personIcon),AppPaddings.componentOnlyPadding(4)) : const SizedBox(),
-                rowView(UiBaseModel.secDeterminationModel('Tarih: $date', IconUtility.calendarIcon),AppPaddings.componentOnlyPadding(4)),
+                isForParticipant
+                    ? rowView(
+                        UiBaseModel.secDeterminationModel(
+                            therapistName!, IconUtility.personIcon),
+                        AppPaddings.componentOnlyPadding(4))
+                    : const SizedBox(),
+                rowView(
+                    UiBaseModel.secDeterminationModel(
+                        'Tarih: $date', IconUtility.calendarIcon),
+                    AppPaddings.componentOnlyPadding(4)),
                 timeButtonList(),
               ],
             ),
@@ -58,11 +66,16 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
       shrinkWrap: true,
       itemCount: isForParticipant
           ? timeList.length
-          : therapistGroupController.timeListsInController[listviewIndex].length,
+          : therapistGroupController
+              .timeListsInController[listviewIndex].length,
       itemBuilder: ((context, index) {
         return isForParticipant
-          ? participantChoosingTimeButton(index)
-          : DeletingTimeButton(rowIndex: index, listViewIndex: listviewIndex,isInMainPage: true,);
+            ? participantChoosingTimeButton(index)
+            : DeletingTimeButton(
+                rowIndex: index,
+                listViewIndex: listviewIndex,
+                isInMainPage: true,
+              );
       }),
     );
   }
@@ -70,10 +83,11 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
   Padding participantChoosingTimeButton(int rowIndex) {
     return Padding(
       padding: rowIndex == timeList.length - 1
-            ? AppPaddings.componentOnlyPadding(1)
-            : AppPaddings.componentPadding,
+          ? AppPaddings.componentOnlyPadding(1)
+          : AppPaddings.componentPadding,
       child: PersonMin(
-        onTap: () => groupController.choosingTime(timeList.length, rowIndex, listviewIndex),
+        onTap: () => groupController.choosingTime(
+            timeList.length, rowIndex, listviewIndex),
         row: timeButtonInsideRow(rowIndex),
       ),
     );
@@ -82,15 +96,15 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
   RowModel timeButtonInsideRow(int rowIndex) {
     return RowModel(
       isAlignmentBetween: true,
-      text:  timeList[rowIndex],
+      text: timeList[rowIndex],
       textStyle: AppTextStyles.normalTextStyle('medium', false),
       leadingIcon: IconUtility.clockIcon,
       trailingIcon: Obx(() => Icon(Icons.check_circle_outline,
-              color: listviewIndex ==
-                          groupController.listviewIndexInController.value &&
-                      rowIndex == groupController.rowIndexInController.value
-                  ? AppColors.black
-                  : AppColors.transparent)),
+          color: listviewIndex ==
+                      groupController.listviewIndexInController.value &&
+                  rowIndex == groupController.rowIndexInController.value
+              ? AppColors.black
+              : AppColors.transparent)),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/group_controller.dart';
+import 'package:terapievim/controller/participant/group/p_group_controller.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
 
 import 'package:terapievim/core/base/util/base_utility.dart';
@@ -10,7 +10,7 @@ class ToggleQuestions extends StatelessWidget {
   ToggleQuestions({super.key, required this.question});
   final String question;
 
-  GroupController groupController = Get.find();
+  PGroupController groupController = Get.find();
 
   @override
   Widget build(BuildContext context) {

@@ -4,7 +4,7 @@ import '../../../../screen/participant/video_call/util/utility.dart';
 import '../buttons/custom_button.dart';
 import 'participant_container.dart';
 import '../../util/base_utility.dart';
-import '../../models/card_model.dart';
+import '../../ui_models/card_model.dart';
 
 class GroupInformationContainer extends StatelessWidget {
   const GroupInformationContainer(
@@ -42,7 +42,9 @@ class GroupInformationContainer extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(child: paddedText(AppPaddings.componentOnlyPadding(2),groupName, AppTextStyles.groupTextStyle(false))),
+        Center(
+            child: paddedText(AppPaddings.componentOnlyPadding(2), groupName,
+                AppTextStyles.groupTextStyle(false))),
         therapistColumn(mainTherapist, GroupTextUtil.gruopTherapist, () {
           /* ana psikolog sayfasına gitme fonksiyonu */
         }),
@@ -59,7 +61,8 @@ class GroupInformationContainer extends StatelessWidget {
             alignment: Alignment.centerRight,
             child: CustomButton(
               textColor: Colors.white,
-              container: AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
+              container:
+                  AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
               onTap: () {},
               text: GroupTextUtil.join,
             )),
@@ -78,7 +81,10 @@ class GroupInformationContainer extends StatelessWidget {
   }
 
   Column therapistColumn(
-      CardModel therapist, String text, Function() func,) {
+    CardModel therapist,
+    String text,
+    Function() func,
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -92,7 +98,9 @@ class GroupInformationContainer extends StatelessWidget {
                   child: participantContainer(
                     therapist,
                     SizeUtil.normalValueHeight,
-                    width: PixelScreen().logicalWidth<300 ? SizeUtil.mediumValueWidth : SizeUtil.largeValueWidth,
+                    width: PixelScreen().logicalWidth < 300
+                        ? SizeUtil.mediumValueWidth
+                        : SizeUtil.largeValueWidth,
                   )),
             ),
           ],

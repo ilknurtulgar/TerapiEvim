@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../util/base_utility.dart';
 import '../group/row_view.dart';
-import '../../models/row_model.dart';
+import '../../ui_models/row_model.dart';
 
 // ignore: must_be_immutable
 class SeminarMin extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/therapist/group/group_add_controller.dart';
+import '../../../../controller/therapist/group/t_group_add_controller.dart';
 import '../../../../core/base/component/activtiy/seminers.dart';
 import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
@@ -11,20 +11,20 @@ import '../../../../core/base/component/group/person.dart';
 import '../../../../core/base/component/group/row_view.dart';
 import '../../../../core/base/component/login/custom_textfield.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
-import '../../../../core/base/models/row_model.dart';
+import '../../../../core/base/ui_models/row_model.dart';
 import '../../../../core/base/util/base_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
 
-class GroupAddView extends StatelessWidget {
-  const GroupAddView({super.key});
+class TGroupAddView extends StatelessWidget {
+  const TGroupAddView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<GroupAddController>(
-        getController: GroupAddController(),
+    return BaseView<TGroupAddController>(
+        getController: TGroupAddController(),
         onModelReady: (model) {},
         onPageBuilder: (context, controller) {
           return Scaffold(
@@ -86,7 +86,7 @@ class GroupAddView extends StatelessWidget {
         ));
   }
 
-  Obx dayRow(GroupAddController controller) {
+  Obx dayRow(TGroupAddController controller) {
     return Obx(
       () => SizedBox(
           child: SeminarMin(
@@ -97,7 +97,7 @@ class GroupAddView extends StatelessWidget {
     );
   }
 
-  RowModel dayRowModel(GroupAddController controller) {
+  RowModel dayRowModel(TGroupAddController controller) {
     return RowModel(
         text: controller.choosenDay.value,
         textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
@@ -107,7 +107,7 @@ class GroupAddView extends StatelessWidget {
             : IconUtility.arrowDown);
   }
 
-  Obx secTherapist(GroupAddController controller) {
+  Obx secTherapist(TGroupAddController controller) {
     return Obx(
       () => SizedBox(
         child: SeminarMin(
@@ -119,7 +119,7 @@ class GroupAddView extends StatelessWidget {
     );
   }
 
-  RowModel secTherapistRowModel(GroupAddController controller) {
+  RowModel secTherapistRowModel(TGroupAddController controller) {
     return RowModel(
       text: controller.choosenSecTherapist.value,
       textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
@@ -146,7 +146,7 @@ class GroupAddView extends StatelessWidget {
 
 //buttonlari ayristir
   Padding button(
-      BuildContext context, GroupAddController controller, bool isLastButton) {
+      BuildContext context, TGroupAddController controller, bool isLastButton) {
     return Padding(
       padding: AppPaddings.componentPadding,
       child: CustomButton(
@@ -169,7 +169,7 @@ class GroupAddView extends StatelessWidget {
   }
 
   PersonMin person(String therapistName, BuildContext context,
-      GroupAddController controller) {
+      TGroupAddController controller) {
     Icon trailingIcon = IconUtility.emailIcon;
     return PersonMin(
         isBorderPurple: true,
@@ -188,7 +188,8 @@ class GroupAddView extends StatelessWidget {
             trailingIcon: trailingIcon));
   }
 
-  List<PersonMin> persons(GroupAddController controller, BuildContext context) {
+  List<PersonMin> persons(
+      TGroupAddController controller, BuildContext context) {
     return [
       //cikartamiyorum person widgeti kullanildi cunku
       person("Nihat Turgutlu", context, controller),
@@ -199,7 +200,7 @@ class GroupAddView extends StatelessWidget {
   }
 
   Future<String?> secTherapistChooseDialog(BuildContext context,
-      String therapistName, GroupAddController controller) {
+      String therapistName, TGroupAddController controller) {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -223,7 +224,7 @@ class GroupAddView extends StatelessWidget {
     );
   }
 
-  PersonMin day(String dayName, GroupAddController controller) {
+  PersonMin day(String dayName, TGroupAddController controller) {
     // GroupAddController controller = Get.find();
     return PersonMin(
         onTap: () {
@@ -236,7 +237,7 @@ class GroupAddView extends StatelessWidget {
             textStyle: AppTextStyles.buttonTextStyle(AppColors.black)));
   }
 
-  List<PersonMin> days(GroupAddController controller) {
+  List<PersonMin> days(TGroupAddController controller) {
     return [
       //fonksiyon
       day(GroupTextUtil.monday, controller),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import '../../models/card_model.dart';
+import '../../ui_models/card_model.dart';
 import '../buttons/custom_button.dart';
 import 'custom_container.dart';
 
@@ -24,8 +24,7 @@ class NotificationFromTherContainer extends StatelessWidget {
       cardModel: cardModel,
       widget: Padding(
         padding: AppPaddings.customContainerInsidePadding(1),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start, children: [
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             explanation,
             textAlign: TextAlign.left,
@@ -37,7 +36,8 @@ class NotificationFromTherContainer extends StatelessWidget {
                 alignment: Alignment.centerRight,
                 child: CustomButton(
                   textColor: Colors.white,
-                  container: AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
+                  container: AppContainers.purpleButtonContainer(
+                      SizeUtil.smallValueWidth),
                   onTap: buttonOnTap,
                   text: buttonText,
                 ),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/common/sign_in/util/login_page_utility.dart';
+import 'package:terapievim/screen/common/sign_in/util/sign_in_view_utility.dart';
 
 import '../../../controller/auth/sign_up_controller.dart';
 import '../../../controller/main_controller.dart';
@@ -69,7 +69,7 @@ class _SignUpViewState extends State<SignUpView> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  LoginPageUtility.title(false),
+                  SignInViewUtility.title(false),
                   textfieldListView(),
                   mediumSizedBox(),
                   Obx(
@@ -77,15 +77,15 @@ class _SignUpViewState extends State<SignUpView> {
                         ? acceptMakingShortCallContainer()
                         : const SizedBox(),
                   ),
-                  LoginPageUtility.button(
+                  SignInViewUtility.button(
                     false,
                     false,
                     () {
                       _signUpController.signUpWithEmail(context, _userRole);
                     },
                   ),
-                  LoginPageUtility.lineWithOrText(context),
-                  LoginPageUtility.button(
+                  SignInViewUtility.lineWithOrText(context),
+                  SignInViewUtility.button(
                     true,
                     false,
                     () => context.push(const SignInView()),

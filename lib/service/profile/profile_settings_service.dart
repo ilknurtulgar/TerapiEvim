@@ -9,7 +9,6 @@ import '../../core/init/network/model/error_model_custom.dart';
 import '../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../core/managers/firebase/firestore/models/empty_model.dart';
 import '../../core/managers/firebase/storage/storage_manager.dart';
-
 import '../../model/common/profile/about_me_model.dart';
 import '../../model/common/profile/birth_date_model.dart';
 import '../../model/common/profile/gender_model.dart';
@@ -132,8 +131,10 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
 
       FirebaseStorageManager storageManager = FirebaseStorageManager.instance;
 
-      final String? imageUrl = await storageManager.storage
-          .uploadFile(fileName: userId!, file: File(fileString));
+      final String? imageUrl = await storageManager.storage.uploadFile(
+          folder: APIConst.storageImages,
+          fileName: userId!,
+          file: File(fileString));
 
       return imageUrl;
     } catch (e) {

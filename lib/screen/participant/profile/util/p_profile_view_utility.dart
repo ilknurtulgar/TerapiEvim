@@ -27,7 +27,7 @@ class PProfileViewUtility {
                 size: 25,
               )));
 
-  static Widget profilePagePersonImage(String imagePath, bool isThereEditButton,
+  static Widget profilePagePersonImage(RxString imageUrl, bool isThereEditButton,
           {Function()? onPressed}) =>
       Align(
         alignment: Alignment.center,
@@ -38,8 +38,7 @@ class PProfileViewUtility {
           child: Stack(
             children: [
               Positioned.fill(
-                  child: CustomCircleAvatar(
-                      imagePath: imagePath, big: true, shadow: true)),
+                  child: Obx(() => CustomCircleAvatar(imagePath: imageUrl.value,big: true, shadow: true))),
               isThereEditButton
                   ? Align(
                       alignment: Alignment.bottomRight,

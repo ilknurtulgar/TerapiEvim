@@ -34,11 +34,11 @@ class PProfileSettingsView extends StatelessWidget {
             child: Stack(
               children: [
                 PProfileViewUtility.backgroundOfTheView(),
-                PProfileViewUtility.profilePagePersonImage(
+                /*PProfileViewUtility.profilePagePersonImage(
                   DemoInformation.profileImagePath,
                   true,
                   onPressed: () {},
-                ),
+                ),*/
                 ProfileBackIconButton(
                   onTap: () {
                     context.push(const PProfileView());

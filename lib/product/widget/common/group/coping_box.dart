@@ -30,8 +30,8 @@ class CopingBox extends StatelessWidget {
           heading(),
           pdfcontainer(),
           rowbutton(
-            onAddTapped: () {},
-            onShareTapped: () {},
+            onAddTapped: onAddTapped,
+            onShareTapped: onShareTapped,
           )
         ],
       ),

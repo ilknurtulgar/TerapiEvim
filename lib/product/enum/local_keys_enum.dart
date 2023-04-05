@@ -6,4 +6,5 @@ enum LocalManagerKeys {
   gender, // String
   email, // String
   phone, // String
+  imageUrl, // String
 }

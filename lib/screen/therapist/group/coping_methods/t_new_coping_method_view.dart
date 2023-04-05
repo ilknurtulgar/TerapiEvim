@@ -15,14 +15,19 @@ import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
 
 class TNewCopingMethodView extends StatelessWidget {
-  TNewCopingMethodView({super.key});
+  TNewCopingMethodView({super.key, required this.groupId});
+
+  final String groupId;
+
   TGroupController tGroupController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return BaseView<TCopingMethodsController>(
       getController: TCopingMethodsController(),
       onModelReady: (model) {
         model.setContext(context);
+        model.setCurrentGroupId(groupId);
       },
       onPageBuilder: (context, controller) => Scaffold(
         appBar: MyAppBar(
@@ -73,7 +78,6 @@ class TNewCopingMethodView extends StatelessWidget {
           text: GroupTextUtil.shareOtherGroupsText, isalignmentstart: false),
     );
   }
-
   Padding otherGroups() {
     return Padding(
       padding: AppPaddings.rowViewPadding,
@@ -81,7 +85,7 @@ class TNewCopingMethodView extends StatelessWidget {
         itemCount: DemoInformation.groupNames.length,
         shrinkWrap: true,
         itemBuilder: (context, index) => Obx(
-          () => ButtonWithGroupName(
+              () => ButtonWithGroupName(
             text: DemoInformation.groupNames[index],
             onTap: (value) => tGroupController.switchButtonFunction(index, value),
             switchButtonValue: tGroupController.isButtonOn[index],

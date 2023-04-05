@@ -10,17 +10,20 @@ TCopingMethodModel _$TCopingMethodModelFromJson(Map<String, dynamic> json) =>
     TCopingMethodModel(
       id: json['id'] as String?,
       therapistId: json['therapistId'] as String?,
+      groupId: json['groupId'] as String?,
       therapistName: json['therapistName'] as String?,
       therapistAvatarUrl: json['therapistAvatarUrl'] as String?,
       description: json['description'] as String?,
       docUrl: json['docUrl'] as String?,
-    )..dateTime =
-        TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?);
+      dateTime:
+          TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?),
+    );
 
 Map<String, dynamic> _$TCopingMethodModelToJson(TCopingMethodModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'therapistId': instance.therapistId,
+      'groupId': instance.groupId,
       'therapistName': instance.therapistName,
       'therapistAvatarUrl': instance.therapistAvatarUrl,
       'description': instance.description,

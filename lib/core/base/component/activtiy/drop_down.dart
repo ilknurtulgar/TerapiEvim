@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
+
+import '../../util/base_utility.dart';
 
 class CustomDropDown extends StatelessWidget {
   const CustomDropDown({
@@ -11,6 +12,7 @@ class CustomDropDown extends StatelessWidget {
     required this.textList,
     required this.isBoxSelected,
     required this.onDropDownTapped,
+    required this.onValueSelected,
   });
 
   final double width;
@@ -19,6 +21,7 @@ class CustomDropDown extends StatelessWidget {
 
   final List<String> textList;
   final Function() onDropDownTapped;
+  final Function(int) onValueSelected;
 
   final RxString selectedText;
 
@@ -42,8 +45,9 @@ class CustomDropDown extends StatelessWidget {
             Obx(
               () => isBoxSelected.value
                   ? _DropDownList(
-                      onSelected: () {
+                      onSelected: (int value) {
                         isBoxSelected.value = false;
+                        onValueSelected(value);
                       },
                       setString: selectedText,
                       textList: textList,
@@ -57,12 +61,6 @@ class CustomDropDown extends StatelessWidget {
   }
 }
 
-Widget textpurpose(property) {
-  return Text(
-    property,
-  );
-}
-
 class _DropDownList extends StatelessWidget {
   const _DropDownList({
     required this.setString,
@@ -73,7 +71,7 @@ class _DropDownList extends StatelessWidget {
   final List<String> textList;
   final RxString setString;
 
-  final void Function() onSelected;
+  final void Function(int) onSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +85,7 @@ class _DropDownList extends StatelessWidget {
           return InkWell(
             onTap: () {
               setString.value = textList[index];
-              onSelected();
+              onSelected(index);
             },
             child: Padding(
                 padding: AppPaddings.componentPadding,
@@ -97,7 +95,7 @@ class _DropDownList extends StatelessWidget {
                 )),
           );
         },
-        itemCount: 2,
+        itemCount: textList.length,
       ),
     );
   }

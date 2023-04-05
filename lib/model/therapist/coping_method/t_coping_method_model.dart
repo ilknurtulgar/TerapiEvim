@@ -8,12 +8,13 @@ part 't_coping_method_model.g.dart';
 
 @JsonSerializable()
 class TCopingMethodModel extends INetworkModel<TCopingMethodModel> {
-  String? id;
-  String? therapistId;
-  String? therapistName;
-  String? therapistAvatarUrl;
-  String? description;
-  String? docUrl;
+  String? id,
+      therapistId,
+      groupId,
+      therapistName,
+      therapistAvatarUrl,
+      description,
+      docUrl;
 
   /// Timestamp.fromDate(DateTime.now()) is an example of using timeStamp
   @JsonKey(
@@ -25,6 +26,7 @@ class TCopingMethodModel extends INetworkModel<TCopingMethodModel> {
   TCopingMethodModel({
     this.id,
     this.therapistId,
+    this.groupId,
     this.therapistName,
     this.therapistAvatarUrl,
     this.description,

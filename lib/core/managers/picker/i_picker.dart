@@ -6,5 +6,4 @@ abstract class _IPicker {
   Future<String?> pickPdf();
 
   final CrashlyticsManager crashlyticsManager = CrashlyticsManager.instance;
-
 }

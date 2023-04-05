@@ -124,7 +124,7 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
     return null;
   }
 
-  Future<String?> uploadAvatarImage(File file) async {
+  Future<String?> uploadAvatarImage(String fileString) async {
     try {
       if (userId == null) {
         return null;
@@ -133,7 +133,7 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
       FirebaseStorageManager storageManager = FirebaseStorageManager.instance;
 
       final String? imageUrl = await storageManager.storage
-          .uploadImage(userId: userId!, file: file);
+          .uploadFile(fileName: userId!, file: File(fileString));
 
       return imageUrl;
     } catch (e) {

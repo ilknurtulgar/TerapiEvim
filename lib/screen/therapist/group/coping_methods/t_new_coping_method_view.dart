@@ -13,7 +13,9 @@ import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
 
 class TNewCopingMethodView extends StatelessWidget {
-  const TNewCopingMethodView({super.key});
+  const TNewCopingMethodView({super.key, required this.groupId});
+
+  final String groupId;
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +23,7 @@ class TNewCopingMethodView extends StatelessWidget {
       getController: TCopingMethodsController(),
       onModelReady: (model) {
         model.setContext(context);
+        model.setCurrentGroupId(groupId);
       },
       onPageBuilder: (context, controller) => Scaffold(
         appBar: MyAppBar(

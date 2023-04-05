@@ -1,19 +1,12 @@
-import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
 import '../../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 
 part 'login_response_model.g.dart';
 
 @JsonSerializable()
-class LoginResponseModel extends INetworkModel<LoginResponseModel>
-    with EquatableMixin {
-  String? userId;
-  String? name;
-  String? birthDate;
-  String? gender;
-  String? email;
-  String? phone;
-  String? role;
+class LoginResponseModel extends INetworkModel<LoginResponseModel> {
+  String? userId, name, birthDate, gender, email, phone, role, aboutMe;
 
   LoginResponseModel({
     this.name,
@@ -22,6 +15,7 @@ class LoginResponseModel extends INetworkModel<LoginResponseModel>
     this.email,
     this.phone,
     this.role,
+    this.aboutMe,
   });
 
   @override
@@ -33,7 +27,4 @@ class LoginResponseModel extends INetworkModel<LoginResponseModel>
 
   @override
   Map<String, dynamic>? toJson() => _$LoginResponseModelToJson(this);
-
-  @override
-  List<Object?> get props => [userId, name, birthDate, gender, email, phone];
 }

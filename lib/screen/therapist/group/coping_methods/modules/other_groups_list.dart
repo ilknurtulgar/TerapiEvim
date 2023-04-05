@@ -16,10 +16,12 @@ class _OtherGroupsList extends StatelessWidget {
           itemBuilder: (context, index) {
             final TGroupModel? otherGroup = controller.otherGroups[index];
 
-            return ButtonWithGroupName(
-              text: otherGroup?.name ?? '',
-              onTap: (value) => controller.switchButtonFunction(index, value),
-              switchButtonValue: controller.isButtonOn[index],
+            return Obx(
+              () => ButtonWithGroupName(
+                text: otherGroup?.name ?? '',
+                onTap: (value) => controller.switchButtonFunction(index, value),
+                switchButtonValue: controller.isButtonOn[index],
+              ),
             );
           },
         ),

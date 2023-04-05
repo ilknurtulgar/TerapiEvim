@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -55,7 +56,8 @@ signOut(BuildContext context) {
         ),
         TextButton(
           onPressed: () {
-            //burada gruptan cikmasi lazim
+            ///TODO: bhz: I added it temporarily. But it should be called from AuthService
+            FirebaseAuth.instance.signOut();
             Get.back();
           },
           child: Text(

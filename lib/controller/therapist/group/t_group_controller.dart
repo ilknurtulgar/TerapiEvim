@@ -80,7 +80,6 @@ class TGroupController extends GetxController with BaseController {
     // print(timeListInControllerList);
   }
 
-  /// TODO: it should be added programmatically not by hand, PLEASE DONT ADD teker teker :)
   var tempTimes = []
       .obs; // ilknur bu listeye saatleri teker teker ekleyecek ardından kaydet butonuna basınca bu liste timeListInControllerList e eklenecek sonra başka bir tarih için tempList temizlenecek
 

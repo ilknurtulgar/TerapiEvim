@@ -70,7 +70,7 @@ class TGroupInformationView extends StatelessWidget {
       IconButton(
         icon: const Icon(Icons.create_new_folder_outlined),
         onPressed: () {
-          context.push(const TNewCopingMethodView());
+          context.push(TNewCopingMethodView());
         },
       ),
       IconButton(

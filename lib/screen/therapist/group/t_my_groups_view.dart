@@ -27,7 +27,7 @@ class TMyGroupsView extends StatelessWidget {
               actions: [
                 IconButton(
                     onPressed: () {
-                      context.push(const TGroupAddView());
+                      context.push(TGroupAddView());
                     },
                     icon: IconUtility.addIcon),
               ],

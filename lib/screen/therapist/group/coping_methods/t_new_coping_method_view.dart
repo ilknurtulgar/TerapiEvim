@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/product/widget/common/group/coping_box.dart';
 
 import '../../../../controller/therapist/group/coping_method/coping_method_controller.dart';
+import '../../../../controller/therapist/group/t_group_controller.dart';
 import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/group/button_group_name_row.dart';
 import '../../../../core/base/component/group/custom_heading.dart';
@@ -13,8 +15,8 @@ import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
 
 class TNewCopingMethodView extends StatelessWidget {
-  const TNewCopingMethodView({super.key});
-
+  TNewCopingMethodView({super.key});
+  TGroupController tGroupController = Get.find();
   @override
   Widget build(BuildContext context) {
     return BaseView<TCopingMethodsController>(
@@ -78,8 +80,13 @@ class TNewCopingMethodView extends StatelessWidget {
       child: ListView.builder(
         itemCount: DemoInformation.groupNames.length,
         shrinkWrap: true,
-        itemBuilder: (context, index) => ButtonWithGroupName(
-            text: DemoInformation.groupNames[index], index: index),
+        itemBuilder: (context, index) => Obx(
+          () => ButtonWithGroupName(
+            text: DemoInformation.groupNames[index],
+            onTap: (value) => tGroupController.switchButtonFunction(index, value),
+            switchButtonValue: tGroupController.isButtonOn[index],
+          ),
+        ),
       ),
     );
   }

@@ -21,8 +21,8 @@ class TSearchMessageView extends StatefulWidget {
 }
 
 class _TSearchMessageViewState extends State<TSearchMessageView> {
-  TherapistyMessageController therapistyMessageController =
-      Get.put(TherapistyMessageController());
+  TMessageController therapistMessageController =
+      Get.put(TMessageController());
 
   @override
   Widget build(BuildContext context) {
@@ -44,7 +44,7 @@ class _TSearchMessageViewState extends State<TSearchMessageView> {
                         decoration: AppBoxDecoration.sendDecoration,
                         child: InkWell(
                             onTap: () {
-                              therapistyMessageController.personListchange();
+                              therapistMessageController.onPersonListChange();
                             },
                             child: rowView(
                                 UiBaseModel.personviewRowModel("oke"),

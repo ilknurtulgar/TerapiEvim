@@ -42,8 +42,9 @@ class TGroupInformationView extends StatelessWidget {
         onPageBuilder: (context, controller) {
           return Scaffold(
             appBar: MyAppBar(
-              title: DemoInformation.tmpGroupName,
-              actions: _appBarActions(context, controller.currentGroupModel?.id),
+              title: controller.currentGroupModel?.name ?? '',
+              actions:
+                  _appBarActions(context, controller.currentGroupModel?.id),
             ),
             body: SafeArea(
               child: ListView(

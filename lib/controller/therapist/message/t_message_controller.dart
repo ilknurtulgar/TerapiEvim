@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 
-class TherapistyMessageController extends GetxController {
-  var personvalue = false.obs;
-  void personListchange() {
-    personvalue.value = !personvalue.value;
+class TMessageController extends GetxController {
+  var personValue = false.obs;
+  void onPersonListChange() {
+    personValue.value = !personValue.value;
   }
 }

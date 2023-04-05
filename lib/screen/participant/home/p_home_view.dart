@@ -23,9 +23,9 @@ class PHomeView extends StatelessWidget {
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-                headingtext(true, true, GroupTextUtil.terapiEvim),
-                headingtext(false, false, HomeTextUtil.welcome),
-                mindetailesbox(HomeTextUtil.copingMethods,
+                headingText(true, true, GroupTextUtil.terapiEvim),
+                headingText(false, false, HomeTextUtil.welcome),
+                minDetailsBox(HomeTextUtil.copingMethods,
                     () => context.push(const PCopingMethodsView()), context),
                 notification(DemoInformation.cardModelhome,
                     DemoInformation.home, DemoInformation.home.length),
@@ -47,31 +47,31 @@ class PHomeView extends StatelessWidget {
 }
 
 ListView notification(
-    CardModel cardmodel, List<String> explanation, int itemlenght) {
+    CardModel cardModel, List<String> explanation, int itemLength) {
   return ListView.builder(
     shrinkWrap: true,
     physics: const NeverScrollableScrollPhysics(),
     itemBuilder: (context, index) {
       return NotificationFromTherContainer(
-          cardModel: cardmodel,
+          cardModel: cardModel,
           explanation: explanation[index],
           buttonOnTap: () {},
           buttonText: HomeTextUtil.detail);
     },
-    itemCount: itemlenght,
+    itemCount: itemLength,
   );
 }
 
-Widget mindetailesbox(
-    String rowmodeltext, Function()? onTap, BuildContext context) {
+Widget minDetailsBox(
+    String rowModelText, Function()? onTap, BuildContext context) {
   return SeminarMin(
     onTap: onTap,
-    row: UiBaseModel.rowModel(rowmodeltext),
+    row: UiBaseModel.rowModel(rowModelText),
     isBorderPurple: true,
   );
 }
 
-Widget headingtext(bool isHeading, bool isPadding, String heading) {
+Widget headingText(bool isHeading, bool isPadding, String heading) {
   return Padding(
       padding: isPadding ? AppPaddings.headingTopPadding : EdgeInsets.zero,
       child: Align(

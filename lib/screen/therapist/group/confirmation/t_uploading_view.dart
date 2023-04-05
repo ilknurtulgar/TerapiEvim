@@ -46,7 +46,7 @@ class TUploadConfirmView extends StatelessWidget {
                     GroupTextUtil.pdfUploadingText,
                     style: AppTextStyles.aboutMeTextStyle(false),
                   ),
-                  sizedbox(),
+                  sizedBox(),
                   CustomButton(
                       textColor: AppColors.white,
                       container: AppContainers.purpleButtonContainer(

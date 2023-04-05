@@ -14,26 +14,28 @@ class StorageService extends IStorageService with BaseService {
   final storageRef = FirebaseStorage.instance.ref();
 
   @override
-  Future<String?> uploadAvatarImage({
-    required String userId,
+  Future<String?> uploadFile({
+    required String fileName,
     required File file,
     String fileType = 'jpg',
   }) async {
     try {
       /// Set a reference
-      final userAvatarRef =
-          storageRef.child("${APIConst.storageImages}/$userId.$fileType");
+      final filePathRef =
+          storageRef.child("${APIConst.storageImages}/$fileName.$fileType");
 
       /// Upload file
-      await userAvatarRef.putFile(file);
+      filePathRef.putFile(file);
 
       /// Get url of uploaded image
-      final String urlPath = await userAvatarRef.getDownloadURL();
+      final String urlPath = await filePathRef.getDownloadURL();
 
       return urlPath;
     } on FirebaseException catch (e) {
       await crashlyticsManager.sendACrash(
-          error: e.toString(), stackTrace: StackTrace.current, reason: '');
+          error: e.toString(),
+          stackTrace: StackTrace.current,
+          reason: 'uploadFile from storage_service');
       return null;
     }
   }

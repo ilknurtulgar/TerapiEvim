@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import '../../models/card_model.dart';
+import '../../ui_models/card_model.dart';
 import '../buttons/custom_button.dart';
 import 'custom_container.dart';
 
@@ -24,32 +24,27 @@ class MethodDownloadingContainer extends StatelessWidget {
       containerModel: AppContainers.classicWhiteContainer,
       isThereCardModel: true,
       cardModel: cardModel,
-      time: time,
+      time: time, //
       widget: Padding(
         padding: AppPaddings.customContainerInsidePadding(1),
-        child: Align(
-          alignment: Alignment.centerLeft,
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              explanation,
-              style: AppTextStyles.normalTextStyle('medium', false),
-            ),
-            Align(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text(
+            explanation,
+            style: AppTextStyles.normalTextStyle('medium', false),
+          ),
+          Padding(
+            padding: AppPaddings.customContainerInsidePadding(2),
+            child: Align(
               alignment: Alignment.centerRight,
-              child: Padding(
-                padding: AppPaddings.customContainerInsidePadding(2),
-                child: CustomButton(
-                    textColor: AppColors.white,
-                    container: AppContainers.purpleButtonContainer(
-                        SizeUtil.normalValueWidth),
-                    onTap: buttonOnTap,
-                    text: buttonText,
-                    icon: IconUtility.fileIcon),
-              ),
-            )
-          ]),
-        ),
+              child: CustomButton(
+                  textColor: AppColors.white,
+                  container: AppContainers.purpleButtonContainer(
+                      SizeUtil.normalValueWidth),//
+                  onTap: buttonOnTap,
+                  text: buttonText,),
+            ),
+          )
+        ]),
       ),
     );
   }

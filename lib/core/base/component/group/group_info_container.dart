@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
-import '../../../../screen/participant/video_call/util/utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import '../buttons/custom_button.dart';
 import 'participant_container.dart';
 import '../../util/base_utility.dart';
-import '../../models/card_model.dart';
+import '../../ui_models/card_model.dart';
 
 class GroupInformationContainer extends StatelessWidget {
   const GroupInformationContainer(
@@ -30,55 +30,52 @@ class GroupInformationContainer extends StatelessWidget {
           decoration: AppBoxDecoration.shadow,
           child: Padding(
             padding: AppPaddings.customContainerInsidePadding(3),
-            child: insideTheContainer(),
+            child: insideTheContainer(context),
           ),
         ),
       ),
     );
   }
 
-  Column insideTheContainer() {
+  Column insideTheContainer(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(child: paddedText(AppPaddings.componentOnlyPadding(2),groupName, AppTextStyles.groupTextStyle(false))),
-        therapistColumn(mainTherapist, GroupTextUtil.gruopTherapist, () {
-          /* ana psikolog sayfasına gitme fonksiyonu */
-        }),
-        therapistColumn(secondTherapist, GroupTextUtil.groupsecTherapist, () {
-          /* yardımcı psikolog sayfasına gitme fonksiyonu */
-        }),
-        Text(GroupTextUtil.participantNumber + numberOfParticipant.toString(),
-            style: AppTextStyles.groupTextStyle(true)),
-        paddedText(
-            AppPaddings.componentPadding,
-            GroupTextUtil.sessionNumber + numberOfSession.toString(),
-            AppTextStyles.groupTextStyle(true)),
-        Align(
-            alignment: Alignment.centerRight,
-            child: CustomButton(
-              textColor: Colors.white,
-              container: AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
-              onTap: () {},
-              text: GroupTextUtil.join,
-            )),
+        Center(child: paddedText(groupName,AppPaddings.componentOnlyPadding(2),AppTextStyles.groupTextStyle(false))),
+        therapistColumn(mainTherapist, GroupTextUtil.gruopTherapist, () {/* ana psikolog sayfasına gitme fonksiyonu */},context),
+        therapistColumn(secondTherapist, GroupTextUtil.groupsecTherapist, () {/* yardımcı psikolog sayfasına gitme fonksiyonu */},context),
+        Text(GroupTextUtil.participantNumber + numberOfParticipant.toString(),style: AppTextStyles.groupTextStyle(true)),
+        paddedText(GroupTextUtil.sessionNumber + numberOfSession.toString(),AppPaddings.componentPadding,AppTextStyles.groupTextStyle(true)),
+        joinButton(),
       ],
     );
   }
 
-  Padding paddedText(EdgeInsets padding, String text, TextStyle textStyle) {
+  Align joinButton() {
+    return Align(
+          alignment: Alignment.centerRight,
+          child: CustomButton(
+            textColor: Colors.white,
+            container: AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
+            onTap: () {},
+            text: GroupTextUtil.join,
+          ));
+  }
+
+  Padding paddedText(String text,EdgeInsets padding,TextStyle textStyle) {
     return Padding(
       padding: padding,
-      child: Text(
-        text,
-        style: textStyle,
-      ),
+      child: Text(text,style: textStyle,),
     );
   }
 
   Column therapistColumn(
-      CardModel therapist, String text, Function() func,) {
+    CardModel therapist,
+    String text,
+    Function() func,
+    BuildContext context
+  ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -92,7 +89,9 @@ class GroupInformationContainer extends StatelessWidget {
                   child: participantContainer(
                     therapist,
                     SizeUtil.normalValueHeight,
-                    width: PixelScreen().logicalWidth<300 ? SizeUtil.mediumValueWidth : SizeUtil.largeValueWidth,
+                    width: context.width1 < 338
+                        ? SizeUtil.mediumValueWidth-5
+                        : SizeUtil.largeValueWidth,
                   )),
             ),
           ],

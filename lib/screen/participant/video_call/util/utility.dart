@@ -2,8 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
-import '../model/person_in_call_model.dart';
-import '../model/video_call_view_model.dart';
+import '../../../../core/base/ui_models/video_call/person_in_call_model.dart';
+import '../../../../core/base/ui_models/video_call/video_call_view_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 
 class VideoCallUtility {
@@ -46,7 +46,8 @@ class VideoCallUtility {
         onTap: onTap,
         isThisOn: isCamOn,
       );
-  static CustomVideoCallButton micIconButton(Function() onTap, RxBool isMicOn) =>
+  static CustomVideoCallButton micIconButton(
+          Function() onTap, RxBool isMicOn) =>
       CustomVideoCallButton(
         backgroundColor: AppColors.white,
         icon: IconUtility.micIcon(true),
@@ -67,7 +68,8 @@ class VideoCallUtility {
           isThisOn: true.obs,
           icon: IconUtility.moreHorizontal,
           backgroundColor: AppColors.white);
-  static CustomVideoCallButton putYourHandsUpButton(Function() onTap,RxBool isThisOn) =>
+  static CustomVideoCallButton putYourHandsUpButton(
+          Function() onTap, RxBool isThisOn) =>
       CustomVideoCallButton(
           onTap: onTap,
           isThisOn: isThisOn,

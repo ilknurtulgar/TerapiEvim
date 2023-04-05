@@ -5,8 +5,8 @@ import '../../util/text_utility.dart';
 import '../group/group.dart';
 import 'container/two_row_short_container.dart';
 
-class ProfilePageListView extends StatelessWidget {
-  const ProfilePageListView(
+class ProfileViewListView extends StatelessWidget {
+  const ProfileViewListView(
       {super.key,
       required this.isForParticipant,
       required this.isForMethod,
@@ -71,7 +71,7 @@ class ProfilePageListView extends StatelessWidget {
           : isForParticipant
               ? IconUtility.windowsIcon.icon!
               : IconUtility.clockIcon.icon!,
-      purpose: isForMethod ? 'method' : 'seminar',
+      purpose: isForMethod ? ContainerPurpose.method : ContainerPurpose.seminar,
       isThereButton: true,
       buttonText: isForParticipant
           ? isForMethod

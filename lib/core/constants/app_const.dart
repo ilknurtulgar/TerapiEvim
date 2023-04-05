@@ -4,6 +4,9 @@ class AppConst {
   static const int oneItemPerPage = 1;
   static const int twoItemsPerPage = 1;
 
+  static const String pdf = 'pdf';
+  static const String jpg = 'jpg';
+
   static const String dateTime = 'dateTime';
   static const String id = 'id';
   static const String role = 'role';

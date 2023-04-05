@@ -4,28 +4,28 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/participant_container.dart';
-import 'package:terapievim/core/base/models/container_model.dart';
+import 'package:terapievim/core/base/ui_models/container_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/screen/therapist/group/group.dart';
-import 'package:terapievim/screen/therapist/profile/therapist_profile_page.dart';
+import 'package:terapievim/screen/therapist/group/t_group_view.dart';
+import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
 
-import '../../../screen/participant/activity/activities.dart';
-import '../../../screen/participant/group/group.dart';
-import '../../../screen/participant/home/home.dart';
-import '../../../screen/participant/profile/models/group_model.dart';
-import '../../../screen/participant/profile/profile_page.dart';
-import '../../../screen/participant/video_call/model/person_in_call_model.dart';
-import '../../../screen/therapist/activity/activity_screen.dart';
-import '../../../screen/therapist/home/home.dart';
-import '../../../screen/therapist/message/message.dart';
+import '../../../screen/participant/activity/p_activity_view.dart';
+import '../../../screen/participant/group/p_group_view.dart';
+import '../../../screen/participant/home/p_home_view.dart';
+import '../../../screen/participant/profile/p_profile_view.dart';
+import '../../../screen/therapist/activity/t_activity_view.dart';
+import '../../../screen/therapist/home/t_home_view.dart';
+import '../../../screen/therapist/message/t_message_view.dart';
 import '../../init/managers/responsiveness_manager.dart';
 import '../../managers/converter/date_time_manager.dart';
 import '../component/group/row_view.dart';
 import '../component/home/method_downloading_container.dart';
 import '../component/profile/container/two_row_short_container.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
-import '../models/card_model.dart';
-import '../models/row_model.dart';
+import '../ui_models/card_model.dart';
+import '../ui_models/group_model.dart';
+import '../ui_models/row_model.dart';
+import '../ui_models/video_call/person_in_call_model.dart';
 import 'base_model.dart';
 
 class AppColors {
@@ -110,7 +110,10 @@ class IconUtility {
 
   static const Icon notification = Icon(Icons.notifications);
   static const Icon logoutIcon = Icon(Icons.logout);
-  static const Icon searchIcon = Icon(Icons.search);
+  static const Icon searchIcon = Icon(
+    Icons.search,
+    color: AppColors.black,
+  );
   static const Icon fiterIcon = Icon(Icons.list);
 
   static const Icon fileIcon = Icon(
@@ -131,6 +134,7 @@ class IconUtility {
   static const Icon settingIcon = Icon(Icons.settings);
 
   static const Icon deleteIcon = Icon(Icons.delete);
+  static const Icon deleteIconOutlined = Icon(Icons.delete_outline_outlined);
 
   static const Icon calendarIcon =
       Icon(Icons.calendar_month_outlined, color: AppColors.black);
@@ -159,7 +163,7 @@ class IconUtility {
       color: AppColors.white, size: SizeUtil.lockIconSize);
 
   static const Icon close =
-      Icon(Icons.close, size: 30, color: AppColors.meteorite);
+      Icon(Icons.close, size: 24, color: AppColors.meteorite);
   static const Icon closeIcon = Icon(Icons.close);
   static const Icon arrowUp = Icon(Icons.keyboard_arrow_up, size: 30);
   static const Icon arrowDown =
@@ -356,6 +360,8 @@ class BorderColorUtil {
 class AppPaddings {
   static const EdgeInsets appBarPadding =
       EdgeInsets.symmetric(vertical: 20, horizontal: 20);
+  static const EdgeInsets appBarPaddingNew =
+      EdgeInsets.only(top: 20, left: 12, right: 12);
 
   static const EdgeInsets bottomNavBarIcon = EdgeInsets.only(bottom: 5);
 
@@ -367,6 +373,7 @@ class AppPaddings {
   );
   static const EdgeInsets pagePadding =
       EdgeInsets.only(left: 24, right: 24, bottom: 80, top: 15);
+
   static const EdgeInsets pagePaddingHorizontal =
       EdgeInsets.symmetric(horizontal: 24);
   static const EdgeInsets componentPadding = EdgeInsets.symmetric(vertical: 8);
@@ -393,17 +400,20 @@ class AppPaddings {
 
   static EdgeInsets horizontalListViewPadding(int paddingNo) => EdgeInsets.only(
       bottom: paddingNo != 1 ? 12 : 0, right: paddingNo != 2 ? 12 : 0);
+
   // 1 numara right , 2 numara bottom , 3 numara bottom ve right
-  static EdgeInsets profilePageBigPadding(bool isThereLeftPadding,
-          bool isThereRightPadding) =>
+  static EdgeInsets profilePageBigPadding(
+          bool isThereLeftPadding, bool isThereRightPadding) =>
       EdgeInsets.only(
           top: 320,
           left: isThereLeftPadding ? 24 : 0,
           right: isThereRightPadding ? 24 : 0);
+
   static EdgeInsets customContainerInsidePadding(int paddingNo) =>
       EdgeInsets.symmetric(
           horizontal: paddingNo != 2 ? 16 : 0,
           vertical: paddingNo != 1 ? 16 : 0);
+
   // 1 numara horizontal, 2 numara vertical, 3 numara horizontal ve vertical
   static EdgeInsets componentOnlyPadding(int paddingNo) => EdgeInsets.only(
       top: paddingNo == 1 ? 8 : 0,
@@ -419,7 +429,9 @@ class AppPaddings {
 }
 
 SizedBox smallSizedBox() => const SizedBox(height: 8);
+
 SizedBox mediumSizedBox() => const SizedBox(height: 16);
+
 SizedBox largeSizedBox() => const SizedBox(height: 32);
 
 class AppBorderRadius {
@@ -490,18 +502,18 @@ Padding colon(bool isInAlertDialog) {
 
 class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
-    TherapistHome(),
-    const TherapistActivityScreen(),
-    const TherapistGroupPage(),
-    const TherapistMessageScreen(),
-    const TherapistProfilePage(),
+    THomeView(),
+    const TActivityView(),
+    const TGroupView(),
+    const TMessageView(),
+    const TProfileView(),
   ];
   static List<Widget> screen = <Widget>[
-    const HomeScreen(),
-    const ActivitiesScreen(),
-    GroupScreen(),
+    const PHomeView(),
+    const PActivityView(),
+    PGroupView(),
     // MessageScreen(),
-    const ParticipantProfilePage(),
+    const PProfileView(),
   ];
 }
 
@@ -517,14 +529,15 @@ class DemoInformation {
           buttonText: "Oku");
 
   static TwoRowShortContainer demoAttendedSeminars = TwoRowShortContainer(
-      row1Text: DemoInformation.therapistName,
-      row2Text: "Kendini Bil",
-      firstIconData: Icons.person,
-      secondIconData: Icons.laptop_windows_sharp,
-      purpose: "seminar",
-      isThereButton: true,
-      buttonText: "Tekrar Izle",
+    row1Text: DemoInformation.therapistName,
+    row2Text: "Kendini Bil",
+    firstIconData: Icons.person,
+    secondIconData: Icons.laptop_windows_sharp,
+    purpose: ContainerPurpose.seminar,
+    isThereButton: true,
+    buttonText: "Tekrar Izle",
   );
+
   //message
   static const List<String> personList = [
     "Canan Karatay",
@@ -643,28 +656,60 @@ class DemoInformation {
     textStyle2: AppTextStyles.groupTextStyle(true),
     trailingIcon: IconUtility.forward,
   );
+
   static RowModel clockRow = RowModel(
     leadingIcon: IconUtility.clockIcon,
-    text: "Ocak 15, 2023,  20:00",
+    text: "Her Pazartesi, 20:00",
     textStyle: AppTextStyles.groupTextStyle(true),
     isAlignmentBetween: false,
   );
+
+  static RowModel clockRow1(String text) {
+    return RowModel(
+      leadingIcon: IconUtility.clockIcon,
+      text: text,
+      textStyle: AppTextStyles.groupTextStyle(true),
+      isAlignmentBetween: false,
+    );
+  }
+
   static RowModel methods = RowModel(
       isAlignmentBetween: true,
       text: "Basetme Metotlari ",
       textStyle: AppTextStyles.aboutMeTextStyle(false),
       trailingIcon: IconUtility.forward,
       leadingIcon: IconUtility.fileIcon);
+
+  //TODO: deprecated. Should be removed
   static RowModel row_1 = RowModel(
       leadingIcon: IconUtility.activityIcon,
       text: "Yeme Bozukluğu Grubu 1",
       textStyle: AppTextStyles.groupTextStyle(false),
       isAlignmentBetween: false);
+
+  static RowModel groupTitle(String text) {
+    return RowModel(
+        leadingIcon: IconUtility.activityIcon,
+        text: text,
+        textStyle: AppTextStyles.groupTextStyle(false),
+        isAlignmentBetween: false);
+  }
+
+  //TODO: deprecated. Should be removed
   static RowModel row_2 = RowModel(
       leadingIcon: IconUtility.personIcon,
       text: "Yardımcı Psikolog  : Bekleniyor.. ",
       textStyle: AppTextStyles.groupTextStyle(true),
       isAlignmentBetween: false);
+
+  static RowModel groupTherapistHelper(String text) {
+    return RowModel(
+        leadingIcon: IconUtility.personIcon,
+        text: text,
+        textStyle: AppTextStyles.groupTextStyle(true),
+        isAlignmentBetween: false);
+  }
+
   static RowModel row_3 = RowModel(
       leadingIcon: IconUtility.groupsIcon,
       text: "Katılımcı Sayısı : 0/20",
@@ -772,12 +817,12 @@ class DemoInformation {
       methodTitles: ['Başlık 1', 'Başlık 2', 'Başlık 3', 'Başlık 4'],
       secondTherapistName: 'Simay Selli',
       therapyTime: 'Her salı, 20.00');
-  static List<SeminarModelInProfilePage> lastWatchedSeminars = [
-    SeminarModelInProfilePage(
+  static List<SeminarModelInProfileView> lastWatchedSeminars = [
+    SeminarModelInProfileView(
         therapistName: 'Kerem Engin', seminarTitle: 'Seminer 1'),
-    SeminarModelInProfilePage(
+    SeminarModelInProfileView(
         therapistName: 'Mustafa Engin', seminarTitle: 'Seminer 2'),
-    SeminarModelInProfilePage(
+    SeminarModelInProfileView(
         therapistName: 'Mert Engin', seminarTitle: 'Seminer 3')
   ];
 
@@ -823,7 +868,7 @@ Divider divider(bool issearch) {
   );
 }
 
-SizedBox sizedbox() {
+SizedBox sizedBox() {
   return const SizedBox(
     height: 50,
   );
@@ -858,6 +903,7 @@ class SizeUtil {
   // küçükten büyüğe sıralama
   static const double zeroSize = 0;
   static const double specialSize = 160;
+
   // width
   static const double lowValueWidth =
       40; // profil sayfasındaki mini container ve listwheelscrollview için

@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist_group_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 class ChoosingTimeGroupTherapy extends StatelessWidget {
-  ChoosingTimeGroupTherapy({super.key});
-  final TherapistGroupController controller = Get.find();
+  const ChoosingTimeGroupTherapy({
+    super.key,
+    required this.onTap,
+    required this.hour,
+    required this.minutes,
+  });
+  final Function() onTap;
+  final String hour;
+  final String minutes;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -13,18 +18,18 @@ class ChoosingTimeGroupTherapy extends StatelessWidget {
       children: [
         Row(
           children: [
-            timeContainer(true), // saat 
+            timeContainer(hour),
             colon(false),
-            timeContainer(false) // dakika
+            timeContainer(minutes)
           ],
         ),
       ],
     );
   }
 
-  InkWell timeContainer(bool isHour) {
+  InkWell timeContainer(String time) {
     return InkWell(
-      onTap: () => controller.showChoosingTimeDialog(),
+      onTap: onTap,
       child: Container(
         height: AppContainers.smallTimeContainer.height,
         width: AppContainers.smallTimeContainer.width,
@@ -32,9 +37,9 @@ class ChoosingTimeGroupTherapy extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppContainers.smallTimeContainer.borderRadius),
             color: AppContainers.smallTimeContainer.backgroundColor),
         child: Center(
-            child: Obx(() => Text(isHour
-                ? controller.chosenHour.value
-                : controller.chosenMinutes.value,style: AppTextStyles.normalTextStyle('medium',false),))),
+          child: Text(time,style: AppTextStyles.normalTextStyle('medium', false),
+          ),
+        ),
       ),
     );
   }

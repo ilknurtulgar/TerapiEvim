@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist_group_controller.dart';
+import 'package:terapievim/core/base/component/buttons/switch_button.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+
 class ButtonWithGroupName extends StatelessWidget {
-  ButtonWithGroupName({super.key, required this.text,required this.index});
+  const ButtonWithGroupName({super.key,
+  required this.text,
+  required this.onTap,
+  required this.switchButtonValue,
+  });
   final String text;
-  final int index;
-  final TherapistGroupController controller = Get.put(TherapistGroupController());
+  final void Function(bool) onTap;
+  final bool switchButtonValue;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -14,20 +18,10 @@ class ButtonWithGroupName extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text(text,style: const TextStyle(fontSize: 21,fontWeight: FontWeight.w500,color: AppColors.black),),
-          switchButton(),
+          Text(text,style: AppTextStyles.buttonTextStyle(AppColors.black)),
+          SwitchButton(onTap: onTap, value: switchButtonValue),
         ],
       ),
     );
-  }
-
-  Obx switchButton() {
-    return Obx(() => CupertinoSwitch(
-                activeColor: AppColors.white,
-                trackColor: AppColors.white,
-                thumbColor:AppColors.butterflyBush ,
-                value: controller.isButtonOn[index],
-                onChanged: (value) => controller.switchButtonFunction(index, value)),
-          );
   }
 }

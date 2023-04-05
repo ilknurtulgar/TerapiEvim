@@ -5,6 +5,7 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/therapist/group/t_group_controller.dart';
 import 'package:terapievim/screen/common/sign_in/sign_in_view.dart';
 
 import 'controller/auth/auth_controller.dart';
@@ -83,6 +84,7 @@ Future<void> initialize() async {
 void _initializeControllers() {
   Get.put(AuthController());
   Get.put(TProfileController());
+  Get.put(TGroupController()); // yeri değişebilir şimdilik buraya koydum
   Get.put(PGroupController());
   Get.put(MainController());
   Get.put(PProfileController());

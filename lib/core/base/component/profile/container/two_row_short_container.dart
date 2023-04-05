@@ -20,7 +20,7 @@ class TwoRowShortContainer extends StatelessWidget {
   final IconData firstIconData;
   final IconData secondIconData;
   final String? buttonText;
-  final String purpose;
+  final ContainerPurpose purpose;
   final bool isThereButton;
   
   @override
@@ -42,8 +42,7 @@ class TwoRowShortContainer extends StatelessWidget {
             height: isThereButton
                 ? SizeUtil.doubleNormalValueHeight
                 : SizeUtil.doubleSmallValueHeight,
-            width:
-                isThereButton ? SizeUtil.hugeValueWidth : SizeUtil.generalWidth,
+            width: isThereButton ? SizeUtil.hugeValueWidth : SizeUtil.generalWidth,
             decoration: containerDecoration(), //
             child: Padding(
               padding: AppPaddings.customContainerInsidePadding(1),
@@ -87,13 +86,13 @@ class TwoRowShortContainer extends StatelessWidget {
             row2Text,
             secondIconData,
             AppTextStyles.profileTextStyles(
-                false, purpose != 'date' ? true : false)),
+                false, purpose != ContainerPurpose.date ? true : false)),
         AppPaddings.componentPadding);
   }
 
   Widget firstRow() {
     return rowView(
-        purpose != 'date'
+        purpose != ContainerPurpose.date
             ? UiBaseModel.normalTextRow(row1Text, firstIconData,
                 AppTextStyles.profileTextStyles(false, true))
             : UiBaseModel.doubleTextRow('Danışan: ', row1Text, false),
@@ -109,4 +108,10 @@ class TwoRowShortContainer extends StatelessWidget {
         onTap: () {}, // izle ya da dosyayı oku fonksiyonu
         text: buttonText ?? "");
   }
+}
+
+enum ContainerPurpose{
+  method,
+  seminar,
+  date,
 }

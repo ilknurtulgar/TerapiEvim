@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import '../../../../../controller/video_call_controller.dart';
 import '../../../ui_models/video_call/person_in_call_model.dart';
 import '../../../ui_models/container_model.dart';
@@ -108,16 +109,20 @@ class TherapistTab extends StatelessWidget {
     );
   }
 
-  IconButton videoCallButton(int index, bool isMicButton) {
-    return IconButton(
-        onPressed: () {},
-        icon: isMicButton
-            ? participants[index].isMicOn.value
-                ? IconUtility.micIcon(false)
-                : IconUtility.micoffIcon
-            : participants[index].isCamOn.value
-                ? IconUtility.videcamIcon
-                : IconUtility.videocamoffIcon);
+  Widget videoCallButton(int index, bool isMicButton) {
+    return Obx(
+      () => IconButton(
+          onPressed: isMicButton 
+           ? () => controller.onOffFunction(participants[index].isMicOn)
+          :() {},
+          icon: isMicButton
+              ? participants[index].isMicOn.value
+                  ? IconUtility.micIcon(false)
+                  : IconUtility.micoffIcon
+              : participants[index].isCamOn.value
+                  ? IconUtility.videcamIcon
+                  : IconUtility.videocamoffIcon),
+    );
   }
 
   Widget therapistSpecialRow(bool isToOpenMics, BuildContext context) {
@@ -131,7 +136,7 @@ class TherapistTab extends StatelessWidget {
                 : VideoCallTextUtil.shareAuthority,
             textStyle: TextStyle(
                 color: AppColors.white,
-                fontSize: MediaQuery.of(context).size.width <= 360
+                fontSize: context.width1 <= 360
                     ? isToOpenMics
                         ? 11
                         : 8

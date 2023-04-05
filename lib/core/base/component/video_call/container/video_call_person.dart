@@ -3,10 +3,10 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/video_call_controller.dart';
 import 'package:terapievim/core/base/component/video_call/container/circular_container.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../../../controller/main_controller.dart';
 import '../../../ui_models/video_call/video_call_view_model.dart';
-import '../../../../../screen/participant/video_call/util/utility.dart';
 
 class VideoCallPerson extends StatelessWidget {
   VideoCallPerson(
@@ -18,8 +18,11 @@ class VideoCallPerson extends StatelessWidget {
 
   final VideoCallViewModel videoCallViewModel;
   final Function()? onDoubleTap;
+
+  /// TODO: bhz-> gizem: it should be final
   bool? isLongPressActive;
   final int whichPage;
+
   // 1.sayfa group therapy call 2.sayfa isolated call page 3.sayfa short call page
 
   VideoCallController callController = Get.find();
@@ -28,6 +31,7 @@ class VideoCallPerson extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    /// TODO: bhz-> gizem: default value should be set from constructor
     isLongPressActive ??= true;
     return Center(
       child: SizedBox(
@@ -49,8 +53,8 @@ class VideoCallPerson extends StatelessWidget {
                       ? () => callController.sendIsolatedCall(
                           "${videoCallViewModel.person.name} ${videoCallViewModel.person.surname}")
                       : null,
-                  child:
-                      Stack(children: [personView(context), micIconButton()]),
+                  child: Stack(
+                      children: [personView(context), micIconButton(context)]),
                 ),
               ),
             ),
@@ -66,9 +70,9 @@ class VideoCallPerson extends StatelessWidget {
     );
   }
 
-  Widget micIconButton() {
+  Widget micIconButton(BuildContext context) {
     return Align(
-      alignment: videoCallViewModel.height != PixelScreen().logicalHeight
+      alignment: videoCallViewModel.height != context.height1
           ? Alignment.bottomRight
           : Alignment.topRight,
       child: Row(
@@ -98,16 +102,15 @@ class VideoCallPerson extends StatelessWidget {
         /* height: widget.videoCallViewModel.height,
                                                 width: widget.isInShortCallPage &&
                                             */
-        width: whichPage == 3 &&
-                PixelScreen().logicalWidth > PixelScreen().logicalHeight
+        width: whichPage == 3 && context.width1 > context.height1
             ? Responsive.width(SizeUtil.normalValueWidth, context)
             : videoCallViewModel.width,
         decoration: BoxDecoration(
             color: AppColors.doveGray,
-            border: whichPage == 2 &&
-                    videoCallViewModel.height != PixelScreen().logicalHeight
-                ? Border.all(color: AppColors.black, width: 1)
-                : null,
+            border:
+                whichPage == 2 && videoCallViewModel.height != context.height1
+                    ? Border.all(color: AppColors.black, width: 1)
+                    : null,
             borderRadius:
                 BorderRadius.circular(videoCallViewModel.borderRadius)),
         child: videoCallViewModel.person.isCamOn.value
@@ -127,8 +130,7 @@ class VideoCallPerson extends StatelessWidget {
           : EdgeInsets.zero,
       child: Center(
         child: CircularContainer(
-          height: whichPage == 3 &&
-                  PixelScreen().logicalWidth > PixelScreen().logicalHeight
+          height: whichPage == 3 && context.width1 > context.height1
               ? Responsive.width(SizeUtil.normalValueWidth, context) / 5
               : videoCallViewModel.width / 3,
           color: AppColors.orange,
@@ -136,9 +138,7 @@ class VideoCallPerson extends StatelessWidget {
             child: Text(
               videoCallViewModel.person.name.substring(0, 1),
               style: TextStyle(
-                  fontSize: whichPage == 3 &&
-                          PixelScreen().logicalWidth >
-                              PixelScreen().logicalHeight
+                  fontSize: whichPage == 3 && context.width1 > context.height1
                       ? Responsive.width(SizeUtil.normalValueWidth, context) / 8
                       : videoCallViewModel.width / 5,
                   color: AppColors.white),

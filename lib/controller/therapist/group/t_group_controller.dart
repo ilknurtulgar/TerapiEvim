@@ -1,35 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/base/base_controller.dart';
-import '../../../core/base/component/group/scrollable_time.dart';
 
+import '../../../core/base/component/group/scrollable_time.dart';
 import '../../../model/therapist/group/t_group_model.dart';
 import '../../../service/_therapist/group/i_t_group_service.dart';
 import '../../../service/_therapist/group/t_group_service.dart';
 
 class TGroupController extends GetxController with BaseController {
   @override
+  void setContext(BuildContext context) {}
+
+  @override
   Future<void> onInit() async {
     tGroupService = TGroupService(vexaFireManager.networkManager);
 
-    List<TGroupModel?>? groups = await tGroupService.getGroupsOrdered();
-    fetchedGroups.addAll(groups ?? []);
+    List<TGroupModel?> groups = await tGroupService.getGroupsOrdered();
+    fetchedGroups.addAll(groups);
     super.onInit();
   }
 
   @override
-  void setContext(BuildContext context) {
-    // TODO: implement setContext
-  }
-  late ITGroupService tGroupService;
-  List<bool> isButtonOn = List<bool>.filled(10, false).obs;
-  void switchButtonFunction(int index, bool value) {
-    isButtonOn[index] = value;
+  void dispose() {
+    super.dispose();
   }
 
+  late ITGroupService tGroupService;
+
   RxString chosenHour = '12'.obs;
+
   RxString chosenMinutes = '00'.obs;
+
   RxInt numberOfGroupsTherapistIsAdvisor = 0.obs;
+
   void scrollableWidgetFunction(String whichOne, int value) {
     String valueAsString = value.toString();
     if (whichOne != 'number of groups' && valueAsString.length < 2) {
@@ -60,7 +63,7 @@ class TGroupController extends GetxController with BaseController {
     isTherapistUploaded.value = !isTherapistUploaded.value;
   }
 
-  void changeisLockedOpen() {
+  void changeIsLockOpen() {
     isLockedOpen.value = !isLockedOpen.value;
   }
 
@@ -77,8 +80,10 @@ class TGroupController extends GetxController with BaseController {
     // print(timeListInControllerList);
   }
 
+  /// TODO: it should be added programmatically not by hand, PLEASE DONT ADD teker teker :)
   var tempTimes = []
       .obs; // ilknur bu listeye saatleri teker teker ekleyecek ardından kaydet butonuna basınca bu liste timeListInControllerList e eklenecek sonra başka bir tarih için tempList temizlenecek
+
   void deleteTimeInAddingPage(int rowIndex) {
     tempTimes.remove(tempTimes[rowIndex]);
   }

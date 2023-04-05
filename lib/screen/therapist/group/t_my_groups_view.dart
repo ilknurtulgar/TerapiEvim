@@ -10,7 +10,6 @@ import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
 import '../../../model/therapist/group/t_group_model.dart';
-
 import 'group_add/t_group_add_view.dart';
 
 class TMyGroupsView extends StatelessWidget {
@@ -27,7 +26,7 @@ class TMyGroupsView extends StatelessWidget {
               actions: [
                 IconButton(
                     onPressed: () {
-                      context.push(const TGroupAddView());
+                      context.push(TGroupAddView());
                     },
                     icon: IconUtility.addIcon),
               ],
@@ -41,7 +40,8 @@ class TMyGroupsView extends StatelessWidget {
                     final TGroupModel? group = controller.fetchedGroups[index];
                     return GroupClass(
                       onTap: () {
-                        context.push(const TGroupInformationView());
+                        context
+                            .push(TGroupInformationView(currentGroup: group));
                       },
                       row1: DemoInformation.groupTitle(group?.name ?? ''),
                       row2: DemoInformation.row_2,

@@ -13,8 +13,8 @@ class PersonView extends StatelessWidget {
 
   final String groupName;
   final List<String> list;
-  final TherapistyMessageController therapistyMessageController =
-      Get.put(TherapistyMessageController());
+  final TMessageController therapistyMessageController =
+      Get.put(TMessageController());
 
   @override
   Widget build(BuildContext context) {
@@ -28,14 +28,14 @@ class PersonView extends StatelessWidget {
             decoration: AppBoxDecoration.sendDecoration,
             child: InkWell(
                 onTap: () {
-                  therapistyMessageController.personListchange();
+                  therapistyMessageController.onPersonListChange();
                 },
                 child: rowView(UiBaseModel.personviewRowModel(groupName),
                     AppPaddings.generalPadding)),
           ),
         ),
         Obx(
-          () => therapistyMessageController.personvalue.value
+          () => therapistyMessageController.personValue.value
               ? personlistview()
               : const SizedBox.shrink(),
         )

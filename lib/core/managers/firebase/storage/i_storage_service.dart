@@ -1,8 +1,9 @@
 import 'dart:io';
 
 abstract class IStorageService {
-  Future<String?> uploadImage({
-    required String userId,
+  Future<String?> uploadFile({
+    required String fileName,
+    required String folder,
     required File file,
     String fileType,
   });

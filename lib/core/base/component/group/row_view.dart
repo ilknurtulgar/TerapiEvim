@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../ui_models/row_model.dart';
 import '../../util/base_utility.dart';
 
+///TODO: it should be a class
 Widget rowView(
   RowModel rowModel,
   EdgeInsets padding,

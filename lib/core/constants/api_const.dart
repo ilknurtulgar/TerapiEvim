@@ -8,5 +8,6 @@ class APIConst {
 
 
   static const String storageImages = 'images';
+  static const String storageCopingMethods = 'copingMethods';
 
 }

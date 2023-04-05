@@ -12,6 +12,8 @@ abstract class ITCopingMethodService {
   Future<CreatedIdResponse?> createCopingMethod(
       TCopingMethodModel copingMethod);
 
+  Future<String?> uploadPdf(String pdfPath);
+
   Future<String?> updateCopingMethod(TCopingMethodModel copingMethod);
 
   Future<TCopingMethodModel?> getCopingMethodById(String copingMethodId);

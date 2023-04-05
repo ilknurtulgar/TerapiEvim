@@ -45,7 +45,7 @@ class AboutActivityView extends StatelessWidget {
                             DemoInformation.clockabomeactivty,
                             IconUtility.clockIcon),
                         () {}),
-                    sizedbox()
+                    sizedBox()
                   ],
                 ),
               ),

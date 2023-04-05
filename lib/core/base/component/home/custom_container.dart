@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/profile/image/custom_circle_avatar.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/ui_models/card_model.dart';
 import 'package:terapievim/core/base/ui_models/container_model.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 
 class CustomContainer extends StatelessWidget {
@@ -19,9 +19,13 @@ class CustomContainer extends StatelessWidget {
   final CardModel? cardModel;
   final String? time;
   final Widget? widget;
+
+  /// TODO: bhz-> gizem: it should be final
   bool? isThereShadow;
+
   @override
   Widget build(BuildContext context) {
+    /// TODO: bhz-> gizem: default value should be set from constructor
     isThereShadow ??= true;
     return Center(
       child: Padding(

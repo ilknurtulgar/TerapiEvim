@@ -8,14 +8,14 @@ import '../../../../core/base/util/text_utility.dart';
 class CopingBox extends StatelessWidget {
   const CopingBox({
     super.key,
-    required this.copingtext,
-    required this.pdfname,
+    required this.copingText,
+    required this.pdfName,
     required this.onAddTapped,
     required this.onShareTapped,
   });
 
-  final String copingtext;
-  final String pdfname;
+  final String copingText;
+  final String pdfName;
   final Function() onAddTapped, onShareTapped;
 
   @override
@@ -28,46 +28,46 @@ class CopingBox extends StatelessWidget {
       child: Column(
         children: [
           heading(),
-          pdfcontainer(),
-          rowbutton(
-            onAddTapped: () {},
-            onShareTapped: () {},
+          pdfContainer(),
+          rowButton(
+            onAddTapped: onAddTapped,
+            onShareTapped: onShareTapped,
           )
         ],
       ),
     );
   }
 
-  Row rowbutton(
+  Row rowButton(
       {required Function() onAddTapped, required Function() onShareTapped}) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        copingbutton(onAddTapped, ActivityTextUtil.add, true),
-        copingbutton(onShareTapped, ActivityTextUtil.share, false)
+        copingButton(onAddTapped, ActivityTextUtil.add, true),
+        copingButton(onShareTapped, ActivityTextUtil.share, false)
       ],
     );
   }
 
-  Widget copingbutton(Function() onTap, String copingtext, bool isAdd) {
+  Widget copingButton(Function() onTap, String copingText, bool isAdd) {
     return CustomButton(
         icon: isAdd ? IconUtility.fileIcon : null,
         container: AppContainers.copingbutton,
         textColor: AppColors.black,
         onTap: onTap,
-        text: copingtext);
+        text: copingText);
   }
 
   CustomHeading heading() {
     return CustomHeading(
       padding: AppPaddings.rowViewPadding,
-      text: copingtext,
+      text: copingText,
       isalignmentstart: true,
       isToggle: true,
     );
   }
 
-  Widget pdfcontainer() {
+  Widget pdfContainer() {
     return Padding(
       padding: AppPaddings.rowViewPadding,
       child: Container(
@@ -77,7 +77,7 @@ class CopingBox extends StatelessWidget {
         height: SizeUtil.generalHeight,
         child: Align(
           alignment: Alignment.center,
-          child: Text(pdfname,
+          child: Text(pdfName,
               style: AppTextStyles.normalTextStyle("medium", false)),
         ),
       ),

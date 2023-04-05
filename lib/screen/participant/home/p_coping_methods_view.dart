@@ -1,37 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/home/method_downloading_container.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
 
-import '../../../core/base/component/group/row_view.dart';
-import '../../../core/base/util/base_model.dart';
+import '../../../controller/participant/coping_method/p_coping_method_controller.dart';
+import '../../../core/base/component/app_bar/my_app_bar.dart';
+import '../../../core/base/component/home/method_downloading_container.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/util/text_utility.dart';
+import '../../../core/base/view/base_view.dart';
 
 class PCopingMethodsView extends StatelessWidget {
   const PCopingMethodsView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Stack(
-            children: [
-              Padding(
-                padding: AppPaddings.pagePadding,
-                child: Column(
-                  children: [approw(context), sizedbox(), methodbuilder()],
+    return BaseView<PCopingMethodsController>(
+        getController: PCopingMethodsController(),
+        onPageBuilder: (context, controller) {
+          return Scaffold(
+            appBar: MyAppBar(title: HomeTextUtil.copingMethods),
+            body: SafeArea(
+              child: SingleChildScrollView(
+                child: Stack(
+                  children: [
+                    Padding(
+                      padding: AppPaddings.pagePadding,
+                      child: Column(
+                        children: [sizedBox(), CopingListView()],
+                      ),
+                    ),
+                    // Positioned(top: 80, right: 24, child: orderdropdown()),
+                  ],
                 ),
               ),
-              // Positioned(top: 80, right: 24, child: orderdropdown()),
-            ],
-          ),
-        ),
-      ),
-    );
+            ),
+          );
+        });
   }
+}
 
-  ListView methodbuilder() {
+class CopingListView extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -46,13 +54,4 @@ class PCopingMethodsView extends StatelessWidget {
       itemCount: DemoInformation.home.length,
     );
   }
-}
-
-Widget approw(
-  BuildContext context,
-) {
-  return rowView(
-      UiBaseModel.leadinfRowModel(backButton(context, () => context.pop()),
-          HomeTextUtil.copingMethods, false),
-      AppPaddings.mediumxPadding);
 }

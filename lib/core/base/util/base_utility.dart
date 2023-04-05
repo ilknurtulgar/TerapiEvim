@@ -533,7 +533,7 @@ class DemoInformation {
     row2Text: "Kendini Bil",
     firstIconData: Icons.person,
     secondIconData: Icons.laptop_windows_sharp,
-    purpose: "seminar",
+    purpose: ContainerPurpose.seminar,
     isThereButton: true,
     buttonText: "Tekrar Izle",
   );

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/video_call_controller.dart';
 import 'package:terapievim/core/base/component/video_call/container/circular_container.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../../../controller/main_controller.dart';
 import '../../../ui_models/video_call/video_call_view_model.dart';
@@ -50,7 +51,7 @@ class VideoCallPerson extends StatelessWidget {
                           "${videoCallViewModel.person.name} ${videoCallViewModel.person.surname}")
                       : null,
                   child:
-                      Stack(children: [personView(context), micIconButton()]),
+                      Stack(children: [personView(context), micIconButton(context)]),
                 ),
               ),
             ),
@@ -66,9 +67,9 @@ class VideoCallPerson extends StatelessWidget {
     );
   }
 
-  Widget micIconButton() {
+  Widget micIconButton(BuildContext context) {
     return Align(
-      alignment: videoCallViewModel.height != PixelScreen().logicalHeight
+      alignment: videoCallViewModel.height != context.height1
           ? Alignment.bottomRight
           : Alignment.topRight,
       child: Row(
@@ -99,13 +100,13 @@ class VideoCallPerson extends StatelessWidget {
                                                 width: widget.isInShortCallPage &&
                                             */
         width: whichPage == 3 &&
-                PixelScreen().logicalWidth > PixelScreen().logicalHeight
+                context.width1 > context.height1
             ? Responsive.width(SizeUtil.normalValueWidth, context)
             : videoCallViewModel.width,
         decoration: BoxDecoration(
             color: AppColors.doveGray,
             border: whichPage == 2 &&
-                    videoCallViewModel.height != PixelScreen().logicalHeight
+                    videoCallViewModel.height != context.height1
                 ? Border.all(color: AppColors.black, width: 1)
                 : null,
             borderRadius:
@@ -128,7 +129,7 @@ class VideoCallPerson extends StatelessWidget {
       child: Center(
         child: CircularContainer(
           height: whichPage == 3 &&
-                  PixelScreen().logicalWidth > PixelScreen().logicalHeight
+                  context.width1 > context.height1
               ? Responsive.width(SizeUtil.normalValueWidth, context) / 5
               : videoCallViewModel.width / 3,
           color: AppColors.orange,
@@ -137,8 +138,7 @@ class VideoCallPerson extends StatelessWidget {
               videoCallViewModel.person.name.substring(0, 1),
               style: TextStyle(
                   fontSize: whichPage == 3 &&
-                          PixelScreen().logicalWidth >
-                              PixelScreen().logicalHeight
+                         context.width1 > context.height1
                       ? Responsive.width(SizeUtil.normalValueWidth, context) / 8
                       : videoCallViewModel.width / 5,
                   color: AppColors.white),

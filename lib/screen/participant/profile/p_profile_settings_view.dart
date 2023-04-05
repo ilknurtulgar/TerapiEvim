@@ -131,7 +131,13 @@ class PProfileSettingsView extends StatelessWidget {
       width: context.width1,
       child: Column(
         children: [
-          AcceptionRow(isForMakingShortCall: false),
+          Obx(
+            () => AcceptionRow(
+              isForMakingShortCall: false,
+              acceptionFunction: () => therapistProfileController.acceptionFunction(false),
+              value: therapistProfileController.isBeingAdvisorAccepted.value,
+              ),
+          ),
           animatedNumberOfGroupsRow(context),
           Align(
             alignment: Alignment.centerLeft,

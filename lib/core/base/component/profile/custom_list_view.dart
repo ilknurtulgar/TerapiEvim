@@ -71,7 +71,7 @@ class ProfileViewListView extends StatelessWidget {
           : isForParticipant
               ? IconUtility.windowsIcon.icon!
               : IconUtility.clockIcon.icon!,
-      purpose: isForMethod ? 'method' : 'seminar',
+      purpose: isForMethod ? ContainerPurpose.method : ContainerPurpose.seminar,
       isThereButton: true,
       buttonText: isForParticipant
           ? isForMethod

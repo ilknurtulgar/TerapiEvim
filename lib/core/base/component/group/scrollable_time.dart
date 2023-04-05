@@ -3,11 +3,8 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/custom_list_wheel_scroll_view.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
-import '../../../../controller/therapist/group/t_group_controller.dart';
-
 class ScrollableTime extends StatelessWidget {
-  ScrollableTime({super.key});
-  final TGroupController controller = Get.find();
+  const ScrollableTime({super.key});
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -16,9 +13,9 @@ class ScrollableTime extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              CustomListWheelScrollView(whatIsFor: 'hour'), // saat
+              CustomListWheelScrollView(whatIsFor: 'hour'),
               colon(true),
-              CustomListWheelScrollView(whatIsFor: 'minutes'), // dakika
+              CustomListWheelScrollView(whatIsFor: 'minutes'),
             ]),
         okayTextButton(),
       ],

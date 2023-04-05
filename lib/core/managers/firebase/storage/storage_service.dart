@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 
 import '../../../base/service/base_service.dart';
-import '../../../constants/api_const.dart';
 import 'i_storage_service.dart';
 
 class StorageService extends IStorageService with BaseService {
@@ -16,16 +15,16 @@ class StorageService extends IStorageService with BaseService {
   @override
   Future<String?> uploadFile({
     required String fileName,
+    required String folder,
     required File file,
     String fileType = 'jpg',
   }) async {
     try {
       /// Set a reference
-      final filePathRef =
-          storageRef.child("${APIConst.storageImages}/$fileName.$fileType");
+      final filePathRef = storageRef.child("$folder/$fileName.$fileType");
 
       /// Upload file
-      filePathRef.putFile(file);
+      await filePathRef.putFile(file);
 
       /// Get url of uploaded image
       final String urlPath = await filePathRef.getDownloadURL();

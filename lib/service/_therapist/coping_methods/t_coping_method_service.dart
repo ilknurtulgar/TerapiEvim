@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import '../../../core/base/service/base_service.dart';
 import '../../../core/constants/api_const.dart';
 import '../../../core/constants/app_const.dart';
@@ -5,6 +7,7 @@ import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../core/managers/firebase/firestore/models/empty_model.dart';
+import '../../../core/managers/firebase/storage/storage_manager.dart';
 import '../../../model/therapist/coping_method/t_coping_method_model.dart';
 import 'i_t_coping_method_service.dart';
 
@@ -20,9 +23,7 @@ class TCopingMethodService extends ITCopingMethodService with BaseService {
     copingMethod.therapistId = userId;
 
     final CreatedIdResponse? createdIdResponse = await manager.create(
-      collectionPath: APIConst.therapist,
-      docId: userId!,
-      collectionPath2: APIConst.copingMethods,
+      collectionPath: APIConst.copingMethods,
       data: copingMethod.toJson()!,
     );
 
@@ -31,6 +32,30 @@ class TCopingMethodService extends ITCopingMethodService with BaseService {
     }
 
     return null;
+  }
+
+  @override
+  Future<String?> uploadPdf(String pdfPath) async {
+    try {
+      if (userId == null) return null;
+
+      FirebaseStorageManager storageManager = FirebaseStorageManager.instance;
+
+      final String? fileUrl = await storageManager.storage.uploadFile(
+        folder: APIConst.storageCopingMethods,
+        fileName: "${userId!}_${DateTime.now().millisecondsSinceEpoch}",
+        file: File(pdfPath),
+        fileType: AppConst.pdf,
+      );
+
+      return fileUrl;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(),
+          stackTrace: StackTrace.current,
+          reason: 'uploadPdf at t_coping_method');
+      rethrow;
+    }
   }
 
   @override

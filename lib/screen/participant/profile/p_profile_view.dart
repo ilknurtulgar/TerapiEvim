@@ -33,7 +33,7 @@ class PProfileView extends StatelessWidget {
                   PProfileViewUtility.positionedIconButton(
                       IconUtility.settingIcon.icon!,
                       () => context.push(PProfileSettingsView()),
-                      Responsive.height(40, context),
+                      Responsive.height(25, context),
                       Responsive.width(20, context)),
                   PProfileViewUtility.profilePagePersonImage(
                       DemoInformation.profileImagePath, false),

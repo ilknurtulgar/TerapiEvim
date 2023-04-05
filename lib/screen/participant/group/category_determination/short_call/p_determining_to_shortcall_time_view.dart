@@ -55,7 +55,7 @@ class PShortCallTimeView extends StatelessWidget {
       itemBuilder: (context, index) => Padding(
         padding: AppPaddings.timeChossingBetweenPadding,
         child:
-            sizedbox(), /* ChoosingTimeForSCContainer(
+            sizedBox(), /* ChoosingTimeForSCContainer(
           therapistName: DemoInformation.therapistName,
           date: DemoInformation.datetime,
           timeList: DemoInformation.timelist,

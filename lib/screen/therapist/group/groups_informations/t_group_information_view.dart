@@ -14,15 +14,19 @@ import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
+import '../../../../model/therapist/group/t_group_model.dart';
 import '../coping_methods/t_new_coping_method_view.dart';
 import 't_profile_about_view.dart';
 
 // ignore: must_be_immutable
 class TGroupInformationView extends StatelessWidget {
-  const TGroupInformationView({super.key});
+  const TGroupInformationView({super.key, this.currentGroup});
+
+  final TGroupModel? currentGroup;
 
   @override
   Widget build(BuildContext context) {
+    /// TODO: it should be deleted
     List<PersonMin> participantRow = [
       person("Ali Kiran", context),
       person("Yasemin Atmaca", context),
@@ -32,11 +36,15 @@ class TGroupInformationView extends StatelessWidget {
     ];
     return BaseView<TGroupInformationController>(
         getController: TGroupInformationController(),
+        onModelReady: (controller) {
+          controller.setCurrentGroup(currentGroup);
+        },
         onPageBuilder: (context, controller) {
           return Scaffold(
             appBar: MyAppBar(
-              title: DemoInformation.tmpGroupName,
-              actions: _appBarActions(context),
+              title: controller.currentGroupModel?.name ?? '',
+              actions:
+                  _appBarActions(context, controller.currentGroupModel?.id),
             ),
             body: SafeArea(
               child: ListView(
@@ -65,18 +73,26 @@ class TGroupInformationView extends StatelessWidget {
         });
   }
 
-  List<Widget> _appBarActions(BuildContext context) {
+  List<Widget> _appBarActions(BuildContext context, String? currentGroupId) {
     return [
       IconButton(
         icon: const Icon(Icons.create_new_folder_outlined),
         onPressed: () {
-          context.push(TNewCopingMethodView());
+          if (currentGroup == null) {
+            ///TODO : show a message that there is an error
+            return;
+          }
+          context.push(TNewCopingMethodView(groupId: currentGroupId!));
         },
       ),
       IconButton(
         icon: IconUtility.deleteIconOutlined,
         onPressed: () {
-          deleteGroupDialog(context);
+          if (currentGroup == null) {
+            ///TODO : show a message that there is an error
+            return;
+          }
+          deleteGroupDialog(context, currentGroupId!);
         },
       )
     ];
@@ -118,7 +134,7 @@ class TGroupInformationView extends StatelessWidget {
     );
   }
 
-  Future<void> deleteGroupDialog(BuildContext context) {
+  Future<void> deleteGroupDialog(BuildContext context, String currentGroupId) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -142,6 +158,8 @@ class TGroupInformationView extends StatelessWidget {
             TextButton(
               child: Text(GroupTextUtil.deleteText),
               onPressed: () {
+                ///TODO: user can delete with currentGroupId from controller
+                ///Note: using get.find is Ok, while it is only used in this view
                 Get.back();
               },
             ),

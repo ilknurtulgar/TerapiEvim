@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/ui_models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
-///TODO: CustomTextField should be independent from activityController
-
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,

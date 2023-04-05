@@ -24,9 +24,9 @@ class THomeView extends StatelessWidget {
           padding: AppPaddings.pagePadding,
           child: Column(
             children: [
-              headingtext(true, true, GroupTextUtil.terapiEvim),
-              headingtext(false, false, HomeTextUtil.welcome),
-              mindetailesbox(HomeTextUtil.myMinuteSessions,
+              headingText(true, true, GroupTextUtil.terapiEvim),
+              headingText(false, false, HomeTextUtil.welcome),
+              minDetailsBox(HomeTextUtil.myMinuteSessions,
                   () => context.push(const TSessionView()), context),
               reminderactivity(),
               notificationcontainer()

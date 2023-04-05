@@ -42,7 +42,7 @@ class TAvailableHoursView extends StatelessWidget {
         return Padding(
             padding: AppPaddings.timeChossingBetweenPadding,
             child:
-                sizedbox() /*ChoosingTimeForSCContainer(
+                sizedBox() /*ChoosingTimeForSCContainer(
               therapistName: DemoInformation.nameSurname,
               date: DemoInformation.date,
               timeList: DemoInformation.timelist,

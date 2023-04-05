@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import '../../../../core/base/component/login/custom_textfield.dart';
+import '../../../../../core/base/component/login/custom_textfield.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/base/ui_models/row_model.dart';
-import '../../../../core/base/util/base_utility.dart';
+import '../../../../../core/base/ui_models/row_model.dart';
+import '../../../../../core/base/util/base_utility.dart';
 
-class PTextfieldUtility {
+class TextFieldUtility {
   CustomTextField nameSurnameTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(

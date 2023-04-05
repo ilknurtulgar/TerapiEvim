@@ -1,7 +1,7 @@
 import 'package:terapievim/core/base/component/profile/container/two_row_short_container.dart';
 import '../../util/base_utility.dart';
 
-TwoRowShortContainer participantWihtShortCallTime(
+TwoRowShortContainer participantWithShortCallTime(
         String participantName, String time) =>
     TwoRowShortContainer(
       row1Text: participantName,

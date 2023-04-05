@@ -125,9 +125,6 @@ class UiBaseModel {
           leadingIcon: leadingIcon,
           isAlignmentBetween: true);
 
-  static RowModel appBar() => appBarModel(GroupTextUtil.myGroupText,
-      const SizedBox()); //GroupOut cikinca silinecek o buton
-
   static RowModel determiningappBar() =>
       appBarModel(GroupTextUtil.terapiEvim, saveButton());
 

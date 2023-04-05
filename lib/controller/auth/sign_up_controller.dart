@@ -1,9 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../../core/extension/context_extension.dart';
+
 import '../../core/base/component/toast/toast.dart';
 import '../../core/constants/utils/text_constants/error_text_const.dart';
+import '../../core/extension/context_extension.dart';
 import '../../model/common/signup/sign_up_model.dart';
 import '../../product/enum/local_keys_enum.dart';
 import '../../screen/common/home/main_home.dart';
@@ -200,6 +201,13 @@ class SignUpController extends GetxController with BaseController {
   void setIsBoxSelected() {
     isBoxSelected.value = !isBoxSelected.value;
     genderController.text = genders.value;
+  }
+
+  RxInt selectedGenderIndex = (-1).obs;
+
+  void setSelectedValue(int value) {
+    selectedGenderIndex.value = value;
+    print('selectedGenderIndex.value:${selectedGenderIndex.value}');
   }
 
   RxString genders = "Seçiniz".obs;

@@ -35,7 +35,7 @@ class TSessionView extends StatelessWidget {
                             },
                             icon: IconUtility.clockIcon),
                       ),
-                      sizedbox(),
+                      sizedBox(),
                       _aboutparticipant(),
                     ],
                   ),
@@ -51,7 +51,7 @@ class TSessionView extends StatelessWidget {
   ListView _aboutparticipant() {
     return ListView.builder(
       itemBuilder: (context, index) {
-        return participantWihtShortCallTime(
+        return participantWithShortCallTime(
             DemoInformation.copingList[index], DemoInformation.date);
       },
       itemCount: DemoInformation.copingList.length,

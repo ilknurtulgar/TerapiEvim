@@ -1,72 +1,54 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/app_bar/heading_minto.dart';
-import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
-
 import '../../../controller/participant/activity/p_activity_controller.dart';
+import '../../../core/base/component/app_bar/heading_minto.dart';
+import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
+import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
 import '../../../model/common/activity/t_activity_model.dart';
-import '../../common/activity/about_activity.dart';
 import '../../../product/widget/common/activity/activity_boxes.dart';
+import '../../common/activity/about_activity.dart';
 
-class PActivityView extends StatefulWidget {
+class PActivityView extends StatelessWidget {
   const PActivityView({super.key});
 
   @override
-  State<PActivityView> createState() => _PActivityViewState();
-}
-
-class _PActivityViewState extends State<PActivityView> {
-  late final PActivityController _pActivityController;
-
-  @override
-  void initState() {
-    _pActivityController = Get.put(PActivityController());
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _pActivityController.dispose();
-    Get.delete<PActivityController>();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: MyAppBar(title: ActivityTextUtil.activity),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: AppPaddings.pagePadding,
-            child: Column(
-              children: [
-                HeadingMinto(
-                  text: ActivityTextUtil.upcomingActivities,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  isButterfly: true,
-                  icon: IconUtility.forward,
-                  onPressed: () {},
+    return BaseView<PActivityController>(
+        getController: PActivityController(),
+        onPageBuilder: (context, controller) {
+          return Scaffold(
+            appBar: MyAppBar(title: ActivityTextUtil.activity),
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: AppPaddings.pagePadding,
+                child: Column(
+                  children: [
+                    HeadingMinto(
+                      text: ActivityTextUtil.upcomingActivities,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      isButterfly: true,
+                      icon: IconUtility.forward,
+                      onPressed: () {},
+                    ),
+                    activityLoadSeminar(controller),
+                    HeadingMinto(
+                      text: ActivityTextUtil.pastActivities,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      isButterfly: true,
+                      icon: IconUtility.forward,
+                      onPressed: () {},
+                    ),
+                    activityPastSeminar()
+                  ],
                 ),
-                activityLoadSeminar(_pActivityController),
-                HeadingMinto(
-                  text: ActivityTextUtil.pastActivities,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  isButterfly: true,
-                  icon: IconUtility.forward,
-                  onPressed: () {},
-                ),
-                activityPastSeminar()
-              ],
+              ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
+        });
   }
 }
 

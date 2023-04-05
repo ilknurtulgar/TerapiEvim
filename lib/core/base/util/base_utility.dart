@@ -12,9 +12,7 @@ import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
 import '../../../screen/participant/activity/p_activity_view.dart';
 import '../../../screen/participant/group/p_group_view.dart';
 import '../../../screen/participant/home/p_home_view.dart';
-import '../ui_models/group_model.dart';
 import '../../../screen/participant/profile/p_profile_view.dart';
-import '../ui_models/video_call/person_in_call_model.dart';
 import '../../../screen/therapist/activity/t_activity_view.dart';
 import '../../../screen/therapist/home/t_home_view.dart';
 import '../../../screen/therapist/message/t_message_view.dart';
@@ -25,7 +23,9 @@ import '../component/home/method_downloading_container.dart';
 import '../component/profile/container/two_row_short_container.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
 import '../ui_models/card_model.dart';
+import '../ui_models/group_model.dart';
 import '../ui_models/row_model.dart';
+import '../ui_models/video_call/person_in_call_model.dart';
 import 'base_model.dart';
 
 class AppColors {
@@ -868,7 +868,7 @@ Divider divider(bool issearch) {
   );
 }
 
-SizedBox sizedbox() {
+SizedBox sizedBox() {
   return const SizedBox(
     height: 50,
   );

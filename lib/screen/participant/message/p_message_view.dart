@@ -10,9 +10,13 @@ import '../../../core/base/ui_models/row_model.dart';
 import '../../../core/base/util/base_utility.dart';
 
 class PMessageView extends StatelessWidget {
-  PMessageView({super.key, this.rowmodel});
-  final RowModel? rowmodel;
+  PMessageView({super.key, this.rowModel});
+
+  final RowModel? rowModel;
+
+  ///TODO it should be in controller
   final TextEditingController textEditingController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

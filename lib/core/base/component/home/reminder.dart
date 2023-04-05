@@ -66,7 +66,7 @@ class Reminder extends StatelessWidget {
   }
 }
 
-enum ReminderType { shortcall, therapy, activity }
+enum ReminderType { shortCall, therapy, activity }
 
 String textSet(
   ReminderType type,
@@ -75,7 +75,7 @@ String textSet(
     case ReminderType.activity:
       return HomeTextUtil.event;
 
-    case ReminderType.shortcall:
+    case ReminderType.shortCall:
       return HomeTextUtil.shortCall;
 
     case ReminderType.therapy:
@@ -88,7 +88,7 @@ String nameSet(ReminderType type) {
     case ReminderType.activity:
       return HomeTextUtil.activityName;
 
-    case ReminderType.shortcall:
+    case ReminderType.shortCall:
       return HomeTextUtil.clientTwoDots;
 
     case ReminderType.therapy:

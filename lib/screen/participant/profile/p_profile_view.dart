@@ -36,7 +36,7 @@ class PProfileView extends StatelessWidget {
                       Responsive.height(25, context),
                       Responsive.width(20, context)),
                   PProfileViewUtility.profilePagePersonImage(
-                      DemoInformation.profileImagePath, false),
+                      controller.imageUrl, false),
                   Padding(
                     padding: AppPaddings.profilePageBigPadding(true, false),
                     child: Column(

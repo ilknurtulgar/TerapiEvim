@@ -23,8 +23,8 @@ class TProfileView extends StatelessWidget {
           child: Stack(
             children: [
               PProfileViewUtility.backgroundOfTheView(),
-              PProfileViewUtility.profilePagePersonImage(
-                  DemoInformation.imagePath, false),
+             /* PProfileViewUtility.profilePagePersonImage(
+                  DemoInformation.imagePath, false),*/
               PProfileViewUtility.positionedIconButton(
                   IconUtility.settingIcon.icon!,
                   () => context.push(const TSettingsView()),

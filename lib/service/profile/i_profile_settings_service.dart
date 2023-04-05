@@ -27,4 +27,7 @@ abstract class IProfileSettingsService {
   Future<String?> updatePassword(PasswordModel password);
 
   Future<String?> updateAboutMe(AboutMeModel aboutMe);
+
+  Future<String?> uploadAvatarImage(String fileString);
+
 }

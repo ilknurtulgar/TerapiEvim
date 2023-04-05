@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../core/base/component/toast/toast.dart';
+import '../core/managers/picker/picker_manager.dart';
 import '../model/common/profile/birth_date_model.dart';
 import '../model/common/profile/gender_model.dart';
 import '../model/common/profile/name_model.dart';
@@ -13,6 +14,8 @@ import '../service/profile/profile_settings_service.dart';
 import 'base/base_controller.dart';
 
 abstract class IProfileController extends GetxController with BaseController {
+  final PickerManager pickerManager = PickerManager.instance;
+
   @override
   void onInit() {
     service = ProfileSettingsService(vexaFireManager.networkManager);
@@ -31,12 +34,17 @@ abstract class IProfileController extends GetxController with BaseController {
 
     phoneNumber = localManager.getStringValue(LocalManagerKeys.phone);
     phoneNumberController.text = phoneNumber;
+
+    imageUrl.value = localManager.getStringValue(LocalManagerKeys.imageUrl);
+
     super.onInit();
   }
 
   late final IProfileSettingsService service;
 
   RxString genders = "Seçiniz".obs;
+  RxString pickedImagePath = "".obs;
+  RxString imageUrl = "".obs;
 
   String name = '';
   String birthday = '';
@@ -97,6 +105,46 @@ abstract class IProfileController extends GetxController with BaseController {
       if (result != null) {
         flutterErrorToast('Hata oluştu');
       }
+    }
+  }
+
+  Future<void> pickImage() async {
+    try {
+      String? _pickedImage = await pickerManager.filePicker.pickImage();
+      if (_pickedImage == null) {
+        flutterErrorToast("Image is not picked");
+      } else {
+        pickedImagePath.value = _pickedImage;
+        uploadImage();
+      }
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+        error: e.toString(),
+        stackTrace: StackTrace.current,
+        reason: 'Error pickImage',
+      );
+      rethrow;
+    }
+  }
+
+  Future<void> uploadImage() async {
+    try {
+      if (pickedImagePath.isEmpty) return;
+      final String? result =
+          await service.uploadAvatarImage(pickedImagePath.value);
+      if (result == null) {
+        flutterErrorToast('Could not upload');
+        throw Exception('Could not upload');
+      }
+      localManager.setStringValue(LocalManagerKeys.imageUrl, result);
+      imageUrl.value = result;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+        error: e.toString(),
+        stackTrace: StackTrace.current,
+        reason: 'Error uploadImage',
+      );
+      rethrow;
     }
   }
 }

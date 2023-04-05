@@ -3,6 +3,7 @@ import 'package:terapievim/core/base/component/profile/image/custom_circle_avata
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/ui_models/card_model.dart';
 import 'package:terapievim/core/base/ui_models/container_model.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 
 class CustomContainer extends StatelessWidget {
@@ -35,7 +36,7 @@ class CustomContainer extends StatelessWidget {
             height: widget == null ? containerModel.height : null,
             width: (widget == null && containerModel.width != null)
                 ? containerModel.width
-                : PixelScreen().logicalWidth,
+                : context.width1,
             child: Column(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: widget == null
@@ -54,14 +55,12 @@ class CustomContainer extends StatelessWidget {
 
   ListTile listTile() {
     return ListTile(
-      leading: CustomCircleAvatar(
-          imagePath: cardModel!.imagePath, big: false, shadow: false),
+      leading: CustomCircleAvatar(imagePath: cardModel!.imagePath, big: false, shadow: false),
       title: Text(
         cardModel!.title,
         style: AppTextStyles.normalTextStyle('medium', false),
       ),
-      subtitle:
-          cardModel!.subtitle != null ? Text(cardModel!.subtitle ?? "") : null,
+      subtitle: cardModel!.subtitle != null ? Text(cardModel!.subtitle ?? "") : null,
       trailing: Text(time ?? ""),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/therapist/group/t_group_add_controller.dart';
+import '../../../../controller/therapist/group/t_group_controller.dart';
 import '../../../../core/base/component/activtiy/seminers.dart';
 import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
@@ -19,8 +20,8 @@ import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
 
 class TGroupAddView extends StatelessWidget {
-  const TGroupAddView({super.key});
-
+   TGroupAddView({super.key});
+  final TGroupController tGroupController = Get.find();
   @override
   Widget build(BuildContext context) {
     return BaseView<TGroupAddController>(
@@ -64,7 +65,13 @@ class TGroupAddView extends StatelessWidget {
                       firstRow: dayRow(controller),
                       rows: days(controller)),
                   miniHeadings(GroupTextUtil.timeText, true, false),
-                  ChoosingTimeGroupTherapy(),
+                  Obx(
+                    () => ChoosingTimeGroupTherapy(
+                      onTap: () => tGroupController.showChoosingTimeDialog(),
+                      hour: tGroupController.chosenHour.value,
+                      minutes:  tGroupController.chosenMinutes.value,
+                    ),
+                  ),
                   button(context, controller, true)
                 ],
               ),

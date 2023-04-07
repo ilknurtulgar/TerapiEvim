@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/extension/context_extension.dart';
+import '../../../core/base/component/group/choosing_time_sc_cont.dart';
 import 't_add_hours_view.dart';
 
 class TAvailableHoursView extends StatelessWidget {
@@ -36,19 +37,17 @@ class TAvailableHoursView extends StatelessWidget {
 
   ListView choosingtime() {
     return ListView.builder(
+      padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return Padding(
-            padding: AppPaddings.timeChossingBetweenPadding,
-            child:
-                sizedBox() /*ChoosingTimeForSCContainer(
-              therapistName: DemoInformation.nameSurname,
-              date: DemoInformation.date,
-              timeList: DemoInformation.timelist,
-              listviewIndex: 3),
-        */
-            );
+          padding: AppPaddings.timeChossingBetweenPadding,
+          child: ChoosingTimeForSCContainer(
+            date: DemoInformation.dateList[index],
+            timeList: DemoInformation.timelist,
+            isForParticipant: false)
+        );
       },
       itemCount: 5,
     );

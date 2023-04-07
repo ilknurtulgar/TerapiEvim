@@ -8,7 +8,7 @@ abstract class ITCopingMethodService {
 
   final IFirestoreManager<ErrorModelCustom> manager;
 
-  /// if result is null, it means an copingMethod was not added
+  /// if result is null, it means a copingMethod was not added
   Future<CreatedIdResponse?> createCopingMethod(
       TCopingMethodModel copingMethod);
 

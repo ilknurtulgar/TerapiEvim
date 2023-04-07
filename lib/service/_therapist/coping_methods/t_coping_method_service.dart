@@ -18,20 +18,28 @@ class TCopingMethodService extends ITCopingMethodService with BaseService {
   @override
   Future<CreatedIdResponse?> createCopingMethod(
       TCopingMethodModel copingMethod) async {
-    if (userId == null) return null;
+    try {
+      if (userId == null) return null;
 
-    copingMethod.therapistId = userId;
+      copingMethod.therapistId = userId;
 
-    final CreatedIdResponse? createdIdResponse = await manager.create(
-      collectionPath: APIConst.copingMethods,
-      data: copingMethod.toJson()!,
-    );
+      final CreatedIdResponse? createdIdResponse = await manager.create(
+        collectionPath: APIConst.copingMethods,
+        data: copingMethod.toJson()!,
+      );
 
-    if (createdIdResponse != null) {
-      return createdIdResponse;
+      if (createdIdResponse != null) {
+        return createdIdResponse;
+      }
+
+      return null;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(),
+          stackTrace: StackTrace.current,
+          reason: 'createCopingMethod');
+      rethrow;
     }
-
-    return null;
   }
 
   @override
@@ -60,38 +68,53 @@ class TCopingMethodService extends ITCopingMethodService with BaseService {
 
   @override
   Future<String?> updateCopingMethod(TCopingMethodModel copingMethod) async {
-    if (userId == null) return null;
-    final result = await manager.update<TCopingMethodModel, EmptyModel>(
-      collectionPath: APIConst.therapist,
-      docId: userId!,
-      collectionPath2: APIConst.copingMethods,
-      docId2: copingMethod.id,
-      data: copingMethod,
-    );
-    if (result.error != null) {
-      return result.error?.description;
-    }
+    try {
+      if (userId == null) return null;
+      if (copingMethod.id == null) {
+        throw Exception('copingMethod.id  is null');
+      }
+      final result = await manager.update<TCopingMethodModel, EmptyModel>(
+        collectionPath: APIConst.copingMethods,
+        docId: copingMethod.id!,
+        data: copingMethod,
+      );
+      if (result.error != null) {
+        return result.error?.description;
+      }
 
-    return null;
+      return null;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(),
+          stackTrace: StackTrace.current,
+          reason: 'updateCopingMethod');
+      rethrow;
+    }
   }
 
   @override
   Future<TCopingMethodModel?> getCopingMethodById(String copingMethodId) async {
-    if (userId == null) return null;
+    try {
+      if (userId == null) return null;
 
-    final result =
-        await manager.readOne<TCopingMethodModel, TCopingMethodModel>(
-      collectionPath: APIConst.therapist,
-      docId: userId!,
-      collectionPath2: APIConst.copingMethods,
-      docId2: copingMethodId,
-      parseModel: TCopingMethodModel(),
-    );
-    if (result.error != null) {
-      return null;
+      final result =
+          await manager.readOne<TCopingMethodModel, TCopingMethodModel>(
+        collectionPath: APIConst.copingMethods,
+        docId: copingMethodId,
+        parseModel: TCopingMethodModel(),
+      );
+      if (result.error != null) {
+        return null;
+      }
+
+      return result.data;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(),
+          stackTrace: StackTrace.current,
+          reason: 'getCopingMethodById');
+      rethrow;
     }
-
-    return result.data;
   }
 
   @override
@@ -104,9 +127,8 @@ class TCopingMethodService extends ITCopingMethodService with BaseService {
 
     final result =
         await manager.readOrdered<TCopingMethodModel, List<TCopingMethodModel>>(
-      collectionPath: APIConst.therapist,
+      collectionPath: APIConst.copingMethods,
       docId: userId!,
-      collectionPath2: APIConst.copingMethods,
       parseModel: TCopingMethodModel(),
       isDescending: isDescending,
       orderField: orderField,
@@ -124,10 +146,8 @@ class TCopingMethodService extends ITCopingMethodService with BaseService {
     if (userId == null) return null;
 
     final result = await manager.delete(
-      collectionPath: APIConst.therapist,
-      docId: userId!,
-      collectionPath2: APIConst.copingMethods,
-      docId2: copingMethodId,
+      collectionPath: APIConst.copingMethods,
+      docId: copingMethodId,
     );
     if (result == false) {
       return "ERROR";

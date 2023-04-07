@@ -38,7 +38,7 @@ Widget popUp(BuildContext context) {
           ? conformed(context)
           : unconfermed();
 
-  Icon lockicon = controller.isTherapistUploaded.isTrue
+  Icon lockicon = controller.isLockedOpen.isTrue
       ? IconUtility.lockopen
       : IconUtility.lock(true);
   return BackdropFilter(

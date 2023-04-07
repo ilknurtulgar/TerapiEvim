@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/base/base_controller.dart';
+import 'package:terapievim/core/base/component/group/custom_list_wheel_scroll_view.dart';
 
 import '../../../core/base/component/group/scrollable_time.dart';
 import '../../../model/therapist/group/t_group_model.dart';
@@ -33,23 +34,21 @@ class TGroupController extends GetxController with BaseController {
 
   RxInt numberOfGroupsTherapistIsAdvisor = 0.obs;
 
-  void scrollableWidgetFunction(String whichOne, int value) {
+  void chooseGroupTherapyTime(bool isHour, int value) {
     String valueAsString = value.toString();
-    if (whichOne != 'number of groups' && valueAsString.length < 2) {
+    if (valueAsString.length < 2) {
       valueAsString = '0${value.toString()}';
     }
-    if (whichOne == 'hour') {
-      chosenHour.value = valueAsString;
-    } else if (whichOne == 'minutes') {
-      chosenMinutes.value = valueAsString;
-    } else {
-      numberOfGroupsTherapistIsAdvisor.value = value;
-    }
+    if (isHour) chosenHour.value = valueAsString;
+    else chosenMinutes.value = valueAsString;
   }
 
   void showChoosingTimeDialog() {
     Get.dialog(AlertDialog(
-      title: ScrollableTime(),
+      title: ScrollableTime(
+        chooseHourFunction: (value) => chooseGroupTherapyTime(true, value),
+        chooseMinuteFunction: (value) => chooseGroupTherapyTime(false, value),
+      ),
       titlePadding: const EdgeInsets.symmetric(vertical: 15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ));

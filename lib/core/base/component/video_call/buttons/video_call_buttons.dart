@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/video_call/container/circular_container.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 
 class CustomVideoCallButton extends StatelessWidget {
@@ -24,17 +25,17 @@ class CustomVideoCallButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return isInsideContainer==false
-      ? iconButton(isInsideContainer)
+      ? iconButton(isInsideContainer,context)
       : CircularContainer(
           height: Responsive.height(SizeUtil.normalValueHeight, context),
           color: backgroundColor!,
-          widget: iconButton(isInsideContainer),
+          widget: iconButton(isInsideContainer,context),
         );
   }
 
-  IconButton iconButton(isInsideContainer) {
+  IconButton iconButton(isInsideContainer,context) {
     return IconButton(
-        iconSize: isInsideContainer ? 30 : 22,
+        iconSize: isInsideContainer ? Responsive.height(30, context) : Responsive.height(24, context),
         icon: Obx(() => isThisOn.value ? icon : offIcon!),
         onPressed: onTap);
   }
@@ -54,25 +55,28 @@ class VideoCallButtonsRow extends StatelessWidget {
   final void Function() onLeaveButtonPressed;
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Padding(
-          padding: firstButton != null
-              ? EdgeInsets.only(right: 16)
-              : EdgeInsets.zero,
-          child: firstButton ?? const SizedBox(),
-        ),
-        VideoCallUtility.cameraIconButton(
-            onToggleCameraButtonPressed,true,true.obs),
-        Padding(
-          padding: AppPaddings.customContainerInsidePadding(3),
-          child: VideoCallUtility.micIconButton(
-              onToggleMicButtonPressed,true,true.obs),
-        ),
-        VideoCallUtility.endingCallButton(onLeaveButtonPressed),
-      ],
+    return Padding(
+      padding: context.height1<750 && firstButton!=null ? EdgeInsets.only(bottom: 16,top: 8) :  AppPaddings.customContainerInsidePadding(2),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: firstButton != null
+                ? EdgeInsets.only(right: 16)
+                : EdgeInsets.zero,
+            child: firstButton ?? const SizedBox(),
+          ),
+          VideoCallUtility.cameraIconButton(
+              onToggleCameraButtonPressed,true,true.obs),
+          Padding(
+            padding: AppPaddings.customContainerInsidePadding(1),
+            child: VideoCallUtility.micIconButton(
+                onToggleMicButtonPressed,true,true.obs),
+          ),
+          VideoCallUtility.endingCallButton(onLeaveButtonPressed),
+        ],
+      ),
     );
   }
 }

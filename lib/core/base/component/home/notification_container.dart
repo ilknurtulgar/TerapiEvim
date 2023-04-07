@@ -10,7 +10,9 @@ class NotificationContainer extends StatelessWidget {
       {super.key,
       required this.type,
       required this.name,
-      required this.contentText});
+      required this.contentText,
+      required this.onTap});
+  final Function() onTap;
   final NotificationType type;
   final String name;
   final String contentText;
@@ -25,29 +27,34 @@ class NotificationContainer extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          notificationConst(),
+          notificationConst(context),
           notificationContent(notificationText, name, contentText),
-          notificationButton()
+          notificationButton(onTap)
         ],
       ),
     );
   }
 
-  Padding notificationButton() {
-    return Padding(
-      padding: AppPaddings.rowViewPadding,
-      child: CustomButton(
-          textColor: Colors.white,
-          container: AppContainers.notificationButton,
-          onTap: () {},
-          text: GroupTextUtil.findAnotherTherapist),
+  Widget notificationButton(Function() onTap) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.end,
+      children: [
+        Padding(
+          padding: AppPaddings.rowViewPadding,
+          child: CustomButton(
+              textColor: Colors.white,
+              container: AppContainers.notificationButton,
+              onTap: onTap,
+              text: GroupTextUtil.findAnotherTherapist),
+        ),
+      ],
     );
   }
 }
 
-Widget notificationConst() {
-  return rowView(
-      UiBaseModel.rowcontainer(false), AppPaddings.miniHeadingPadding(true));
+Widget notificationConst(BuildContext context) {
+  return rowView(UiBaseModel.rowcontainer(false, context),
+      AppPaddings.miniHeadingPadding(true));
 }
 
 Padding notificationContent(

@@ -15,6 +15,7 @@ import '../../model/common/profile/gender_model.dart';
 import '../../model/common/profile/name_model.dart';
 import '../../model/common/profile/password_model.dart';
 import '../../model/common/profile/phone_number_model.dart';
+import '../../model/common/profile/user_avatar_model.dart';
 import 'i_profile_settings_service.dart';
 
 class ProfileSettingsService extends IProfileSettingsService with BaseService {
@@ -135,6 +136,13 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
           folder: APIConst.storageImages,
           fileName: userId!,
           file: File(fileString));
+      if (imageUrl == null) return null;
+
+      await manager.update<UserAvatarModel, EmptyModel>(
+        collectionPath: APIConst.users,
+        docId: userId!,
+        data: UserAvatarModel(imageUrl: imageUrl),
+      );
 
       return imageUrl;
     } catch (e) {

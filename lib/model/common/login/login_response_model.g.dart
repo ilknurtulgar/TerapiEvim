@@ -15,6 +15,7 @@ LoginResponseModel _$LoginResponseModelFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] as String?,
       role: json['role'] as String?,
       aboutMe: json['aboutMe'] as String?,
+      imageUrl: json['imageUrl'] as String?,
     )..userId = json['userId'] as String?;
 
 Map<String, dynamic> _$LoginResponseModelToJson(LoginResponseModel instance) =>
@@ -27,4 +28,5 @@ Map<String, dynamic> _$LoginResponseModelToJson(LoginResponseModel instance) =>
       'phone': instance.phone,
       'role': instance.role,
       'aboutMe': instance.aboutMe,
+      'imageUrl': instance.imageUrl,
     };

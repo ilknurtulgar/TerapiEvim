@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/screen/therapist/profile/settings/t_settings_view.dart';
-import 'package:terapievim/screen/therapist/profile/t_dealing_method_view.dart';
 
 import '../../../core/base/component/profile/custom_list_view.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/extension/context_extension.dart';
-import 't_attended_seminar_view.dart';
-
 import '../../participant/profile/util/p_profile_view_utility.dart';
+import 'settings/t_settings_view.dart';
+import 't_attended_seminar_view.dart';
+import 't_dealing_method_view.dart';
 
 class TProfileView extends StatelessWidget {
   const TProfileView({super.key});

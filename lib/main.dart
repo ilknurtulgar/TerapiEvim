@@ -83,10 +83,8 @@ Future<void> initialize() async {
 
 void _initializeControllers() {
   Get.put(AuthController());
-  Get.put(TProfileController());
   Get.put(TGroupController()); // yeri değişebilir şimdilik buraya koydum
   Get.put(PGroupController());
   Get.put(MainController());
-  Get.put(PProfileController());
   Get.put(VideoCallController());
 }

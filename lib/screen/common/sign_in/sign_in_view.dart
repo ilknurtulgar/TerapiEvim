@@ -5,7 +5,7 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/common/sign_in/util/sign_in_view_utility.dart';
 import '../../../controller/auth/login_controller.dart';
-import '../../participant/profile/util/p_textfield_utility.dart';
+import '../../../product/widget/common/profile/utility/textfield_utility.dart';
 import '../sign_up/before_sign_up_view.dart';
 
 class SignInView extends StatefulWidget {
@@ -18,7 +18,7 @@ class SignInView extends StatefulWidget {
 class _SignInViewState extends State<SignInView> {
   late final LoginController _loginController;
 
-  final PTextfieldUtility textfieldUtility = PTextfieldUtility();
+  final TextFieldUtility textfieldUtility = TextFieldUtility();
 
   @override
   void initState() {

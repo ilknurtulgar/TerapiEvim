@@ -32,11 +32,13 @@ class PProfileView extends StatelessWidget {
                   PProfileViewUtility.backgroundOfTheView(),
                   PProfileViewUtility.positionedIconButton(
                       IconUtility.settingIcon.icon!,
+
                       () => context.push(PSettingsView()),
                       Responsive.height(40, context),
+
                       Responsive.width(20, context)),
                   PProfileViewUtility.profilePagePersonImage(
-                      DemoInformation.profileImagePath, false),
+                      controller.imageUrl, false),
                   Padding(
                     padding: AppPaddings.profilePageBigPadding(true, false),
                     child: Column(

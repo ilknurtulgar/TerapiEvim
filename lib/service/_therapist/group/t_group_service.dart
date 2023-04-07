@@ -7,7 +7,6 @@ import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../core/managers/firebase/firestore/models/empty_model.dart';
-
 import '../../../model/common/user/user_model.dart';
 import '../../../model/therapist/group/t_group_model.dart';
 import 'i_t_group_service.dart';
@@ -117,12 +116,12 @@ class TGroupService extends ITGroupService with BaseService {
   }
 
   @override
-  Future<List<TGroupModel?>?> getGroupsOrdered({
+  Future<List<TGroupModel?>> getGroupsOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
   }) async {
-    if (userId == null) return null;
+    if (userId == null) return [];
 
     final result =
         await manager.readOrderedWhere<TGroupModel, List<TGroupModel>>(
@@ -138,6 +137,6 @@ class TGroupService extends ITGroupService with BaseService {
       return [];
     }
 
-    return result.data;
+    return result.data ?? [];
   }
 }

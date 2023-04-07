@@ -42,6 +42,7 @@ class TCopingMethodService extends ITCopingMethodService with BaseService {
       FirebaseStorageManager storageManager = FirebaseStorageManager.instance;
 
       final String? fileUrl = await storageManager.storage.uploadFile(
+        folder: APIConst.storageCopingMethods,
         fileName: "${userId!}_${DateTime.now().millisecondsSinceEpoch}",
         file: File(pdfPath),
         fileType: AppConst.pdf,

@@ -19,7 +19,7 @@ abstract class ITGroupService {
 
   Future<TGroupModel?> getGroupById(String groupId);
 
-  Future<List<TGroupModel?>?> getGroupsOrdered(
+  Future<List<TGroupModel?>> getGroupsOrdered(
       {String lastDocId, String orderField, bool isDescending});
 
   Future<String?> deleteGroup(String groupId);

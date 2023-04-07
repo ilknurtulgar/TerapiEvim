@@ -10,9 +10,8 @@ import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
 import '../../../participant/profile/settings/p_settings_pop_up.dart';
-import '../t_profile_view.dart';
+import '../profile_settings/t_profile_settings_view.dart';
 
-// ignore: must_be_immutable
 class TSettingsView extends StatelessWidget {
   const TSettingsView({super.key});
 
@@ -56,7 +55,7 @@ class TSettingsView extends StatelessWidget {
   InkWell accountRow(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(const TProfileView());
+        context.push(const TProfileSettingsView());
       },
       child: rowView(
           RowModel(

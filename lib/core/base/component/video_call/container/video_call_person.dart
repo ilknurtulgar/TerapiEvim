@@ -1,35 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/video_call_controller.dart';
 import 'package:terapievim/core/base/component/video_call/container/circular_container.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-
-import '../../../../../controller/main_controller.dart';
+import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 import '../../../ui_models/video_call/video_call_view_model.dart';
-import '../../../../../screen/participant/video_call/util/utility.dart';
 
 class VideoCallPerson extends StatelessWidget {
   VideoCallPerson(
       {super.key,
       required this.videoCallViewModel,
+      required this.whichPage,
       this.onDoubleTap,
-      this.isLongPressActive,
-      required this.whichPage});
+      this.onLongPressed,
+      required this.micOnOffFunction,
+      required this.cameraOnOffFunction});
 
   final VideoCallViewModel videoCallViewModel;
   final Function()? onDoubleTap;
-  bool? isLongPressActive;
   final int whichPage;
+  final Function()? onLongPressed;
+  final Function()? micOnOffFunction;
+  final Function()? cameraOnOffFunction;
+
   // 1.sayfa group therapy call 2.sayfa isolated call page 3.sayfa short call page
-
-  VideoCallController callController = Get.find();
-
-  MainController mainController = Get.find();
 
   @override
   Widget build(BuildContext context) {
-    isLongPressActive ??= true;
     return Center(
       child: SizedBox(
         height: videoCallViewModel.isNameShown
@@ -39,20 +36,12 @@ class VideoCallPerson extends StatelessWidget {
         child: Column(
           children: [
             Expanded(
-              child: Obx(
-                () => InkWell(
-                  onTap: () => callController
-                      .onOffFunction(videoCallViewModel.person.isCamOn),
-                  onDoubleTap: onDoubleTap,
-                  onLongPress: mainController.isTherapist.value &&
-                          whichPage == 1 &&
-                          isLongPressActive!
-                      ? () => callController.sendIsolatedCall(
-                          "${videoCallViewModel.person.name} ${videoCallViewModel.person.surname}")
-                      : null,
-                  child:
-                      Stack(children: [personView(context), micIconButton(context)]),
-                ),
+              child: InkWell(
+                onTap: cameraOnOffFunction,
+                onDoubleTap: onDoubleTap,
+                onLongPress: onLongPressed,
+                child: Stack(
+                    children: [personView(context), micIconButton(context)]),
               ),
             ),
             videoCallViewModel.isNameShown
@@ -80,14 +69,7 @@ class VideoCallPerson extends StatelessWidget {
                 ? IconUtility.handsUp
                 : const SizedBox(),
           ),
-          Obx(
-            () => IconButton(
-                onPressed: () => callController
-                    .onOffFunction(videoCallViewModel.person.isMicOn),
-                icon: videoCallViewModel.person.isMicOn.value == false
-                    ? IconUtility.micoffIcon
-                    : IconUtility.micIcon(false)),
-          ),
+          VideoCallUtility.micIconButton(micOnOffFunction!,false,videoCallViewModel.person.isMicOn)
         ],
       ),
     );
@@ -99,21 +81,22 @@ class VideoCallPerson extends StatelessWidget {
         /* height: widget.videoCallViewModel.height,
                                                 width: widget.isInShortCallPage &&
                                             */
-        width: whichPage == 3 &&
-                context.width1 > context.height1
+        width: whichPage == 3 && context.width1 > context.height1
             ? Responsive.width(SizeUtil.normalValueWidth, context)
             : videoCallViewModel.width,
         decoration: BoxDecoration(
             color: AppColors.doveGray,
-            border: whichPage == 2 &&
-                    videoCallViewModel.height != context.height1
-                ? Border.all(color: AppColors.black, width: 1)
-                : null,
+            border:
+                whichPage == 2 && videoCallViewModel.height != context.height1
+                    ? Border.all(color: AppColors.black, width: 1)
+                    : null,
             borderRadius:
                 BorderRadius.circular(videoCallViewModel.borderRadius)),
-        child: videoCallViewModel.person.isCamOn.value
-            ? cameraOnView()
-            : initialLetterContainer(context));
+        child: Obx(
+          () => videoCallViewModel.person.isCamOn.value
+              ? cameraOnView()
+              : initialLetterContainer(context),
+        ));
   }
 
   Text nameSurnameText(String text) => Text(
@@ -128,8 +111,7 @@ class VideoCallPerson extends StatelessWidget {
           : EdgeInsets.zero,
       child: Center(
         child: CircularContainer(
-          height: whichPage == 3 &&
-                  context.width1 > context.height1
+          height: whichPage == 3 && context.width1 > context.height1
               ? Responsive.width(SizeUtil.normalValueWidth, context) / 5
               : videoCallViewModel.width / 3,
           color: AppColors.orange,
@@ -137,8 +119,7 @@ class VideoCallPerson extends StatelessWidget {
             child: Text(
               videoCallViewModel.person.name.substring(0, 1),
               style: TextStyle(
-                  fontSize: whichPage == 3 &&
-                         context.width1 > context.height1
+                  fontSize: whichPage == 3 && context.width1 > context.height1
                       ? Responsive.width(SizeUtil.normalValueWidth, context) / 8
                       : videoCallViewModel.width / 5,
                   color: AppColors.white),

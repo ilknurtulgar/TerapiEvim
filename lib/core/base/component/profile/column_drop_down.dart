@@ -9,10 +9,19 @@ class ColumnDropDown extends StatelessWidget {
   const ColumnDropDown({
     super.key,
     required this.title,
+    required this.textList,
     required this.isInProfilePage,
+    required this.selectedText,
+    required this.onDropDownTapped,
+    required this.onValueSelected,
   });
-  final String title;
+
+  final String title, selectedText;
+  final List<String> textList;
   final bool isInProfilePage;
+  final Function() onDropDownTapped;
+  final Function(int) onValueSelected;
+
   @override
   Widget build(BuildContext context) {
     return BaseView<SignUpController>(
@@ -34,6 +43,9 @@ class ColumnDropDown extends StatelessWidget {
               isBoxSelected: controller.isBoxSelected,
               onDropDownTapped: () {
                 controller.setIsBoxSelected();
+              },
+              onValueSelected: (int value) {
+                controller.setSelectedValue(value);
               },
               width: isInProfilePage
                   ? SizeUtil.highestValueWidth

@@ -68,7 +68,7 @@ class TUploadConfirmView extends StatelessWidget {
                     SizeUtil.smallValueWidth),
                 onTap: () {
                   controller.changeIsTherapistLoaded();
-                  controller.changeisLockedOpen();
+                  controller.changeIsLockOpen();
                   context
                       .pop(); //iki kere yapmam gerekiyor cunku lock screeenin tekrar build edilmesi gerekiyor
                   context.pop();

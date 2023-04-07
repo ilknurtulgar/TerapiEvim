@@ -29,7 +29,10 @@ Widget _animatedNumberOfGroupsRow(
           ),
           Align(
               alignment: Alignment.centerRight,
-              child: CustomListWheelScrollView(whatIsFor: 'number of groups'))
+              child: CustomListWheelScrollView(
+                whatIsFor: ScrollPurpose.groupNumber,
+                onSelectedItemChanged: (value) => therapistProfileController.chooseGroupNumber(value),
+                isNumberVisible: therapistProfileController.isNumberVisible,))
         ]),
       ),
     ),

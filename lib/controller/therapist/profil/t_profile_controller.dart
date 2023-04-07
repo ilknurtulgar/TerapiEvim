@@ -20,7 +20,11 @@ class TProfileController extends IProfileController {
       isBeingAdvisorAccepted.value = !isBeingAdvisorAccepted.value;
       isNumberVisible.value = !isNumberVisible.value;
       ///TODO save to cache
-
     }
+  }
+
+  RxInt numberOfGroupsTherapistIsAdvisor = 0.obs;
+  void chooseGroupNumber(int value) {
+    if(isBeingAdvisorAccepted.value) numberOfGroupsTherapistIsAdvisor.value = value;
   }
 }

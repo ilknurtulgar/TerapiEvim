@@ -5,7 +5,10 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 
 class ScrollableTime extends StatelessWidget {
-  const ScrollableTime({super.key});
+  const ScrollableTime({super.key, required this.chooseHourFunction,required this.chooseMinuteFunction});
+  final Function(int)? chooseHourFunction;
+  final Function(int)? chooseMinuteFunction;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -14,9 +17,9 @@ class ScrollableTime extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              CustomListWheelScrollView(whatIsFor: 'hour'),
+              CustomListWheelScrollView(whatIsFor: ScrollPurpose.hour,onSelectedItemChanged: chooseHourFunction,),
               colon(true),
-              CustomListWheelScrollView(whatIsFor: 'minutes'),
+              CustomListWheelScrollView(whatIsFor: ScrollPurpose.minute,onSelectedItemChanged: chooseMinuteFunction,),
             ]),
         okayTextButton(),
       ],

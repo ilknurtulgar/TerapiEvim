@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
 import '../../../../controller/therapist/group/t_group_add_controller.dart';
 import '../../../../controller/therapist/group/t_group_controller.dart';
 import '../../../../core/base/component/activtiy/seminers.dart';
@@ -20,7 +19,7 @@ import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
 
 class TGroupAddView extends StatelessWidget {
-   TGroupAddView({super.key});
+  TGroupAddView({super.key});
   final TGroupController tGroupController = Get.find();
   @override
   Widget build(BuildContext context) {
@@ -69,9 +68,10 @@ class TGroupAddView extends StatelessWidget {
                     () => ChoosingTimeGroupTherapy(
                       onTap: () => tGroupController.showChoosingTimeDialog(),
                       hour: tGroupController.chosenHour.value,
-                      minutes:  tGroupController.chosenMinutes.value,
+                      minutes: tGroupController.chosenMinutes.value,
                     ),
                   ),
+                  miniHeadings(" ", false, false),
                   button(context, controller, true)
                 ],
               ),

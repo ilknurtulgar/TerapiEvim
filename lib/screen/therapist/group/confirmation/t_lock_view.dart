@@ -34,7 +34,9 @@ Widget popUp(BuildContext context) {
   TGroupVerificationController controller = Get.find();
   Widget shown = controller.isTherapistUploaded.isFalse
       ? noUpload(context)
-      : conformed(context);
+      : controller.isLockedOpen.isTrue
+          ? conformed(context)
+          : unconfermed();
 
   Icon lockicon = controller.isTherapistUploaded.isTrue
       ? IconUtility.lockopen
@@ -45,6 +47,16 @@ Widget popUp(BuildContext context) {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [lockicon, shown]),
+  );
+}
+
+Column unconfermed() {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: [
+      lockedTextContainer(GroupTextUtil.tlockScreenUnconformed),
+    ],
   );
 }
 
@@ -110,4 +122,19 @@ Column noUpload(BuildContext context) {
           ))
     ],
   );
+}
+
+Widget lockedTextContainer(String text) {
+  return Container(
+      margin: const EdgeInsets.symmetric(vertical: SizeUtil.smallValueHeight),
+      width: SizeUtil.largeValueWidth,
+      height: SizeUtil.mediumValueHeight,
+      color: AppColors.transparent,
+      child: Text(
+        text,
+        style: AppTextStyles.heading(false).copyWith(
+          color: AppColors.white,
+        ),
+        textAlign: TextAlign.center,
+      ));
 }

@@ -33,10 +33,12 @@ class PHomeView extends StatelessWidget {
                     reminderType: ReminderType.activity,
                     name: "Gizem Göksu",
                     time: "10.12.13"),
-                const NotificationContainer(
-                    type: NotificationType.shortcallFail,
-                    name: "OKB",
-                    contentText: "hello ysasemin terapi vermeye geldi")
+                NotificationContainer(
+                  type: NotificationType.shortcallFail,
+                  name: "OKB",
+                  contentText: "hello ysasemin terapi vermeye geldi",
+                  onTap: () {},
+                )
               ],
             ),
           ),

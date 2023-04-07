@@ -35,13 +35,18 @@ class IsolatedCallView extends StatelessWidget {
         child: Obx(
           () => VideoCallPerson(
             onDoubleTap: () => videoCallController.changeViewPlaces(),
+            micOnOffFunction: () => videoCallController.onOffFunction(videoCallController.isViewPlaceChanged.value
+                    ? DemoInformation.therapist.isMicOn
+                    : DemoInformation.personNo1.isMicOn),
+            cameraOnOffFunction: () => videoCallController.onOffFunction(videoCallController.isViewPlaceChanged.value
+                    ? DemoInformation.therapist.isCamOn
+                    : DemoInformation.personNo1.isCamOn),
             videoCallViewModel: VideoCallUtility.personSmallView(
                 videoCallController.isViewPlaceChanged.value
                     ? DemoInformation.therapist
                     : DemoInformation.personNo1,
                 false),
             whichPage: 2,
-            isLongPressActive: false,
           ),
         ));
   }
@@ -64,6 +69,12 @@ class IsolatedCallView extends StatelessWidget {
   Obx personBigViewInCall() {
     return Obx(
       () => VideoCallPerson(
+         micOnOffFunction: () => videoCallController.onOffFunction(videoCallController.isViewPlaceChanged.value
+                    ? DemoInformation.personNo1.isMicOn
+                    : DemoInformation.therapist.isMicOn),
+            cameraOnOffFunction: () => videoCallController.onOffFunction(videoCallController.isViewPlaceChanged.value
+                    ? DemoInformation.personNo1.isCamOn
+                    : DemoInformation.therapist.isCamOn),
         onDoubleTap: () => videoCallController.changeViewPlaces(),
         videoCallViewModel: VideoCallUtility.personBigView(
             videoCallController.isViewPlaceChanged.value
@@ -71,7 +82,6 @@ class IsolatedCallView extends StatelessWidget {
                 : DemoInformation.therapist,
             false),
         whichPage: 2,
-        isLongPressActive: false,
       ),
     );
   }

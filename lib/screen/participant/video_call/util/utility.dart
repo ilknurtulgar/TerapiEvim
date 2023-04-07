@@ -38,22 +38,24 @@ class VideoCallUtility {
         person: person,
       );
   static CustomVideoCallButton cameraIconButton(
-          Function() onTap, RxBool isCamOn) =>
+          Function() onTap,bool isInsideContainer,RxBool isCamOn,) =>
       CustomVideoCallButton(
         backgroundColor: AppColors.white,
         icon: IconUtility.videcamIcon,
         offIcon: IconUtility.videocamoffIcon,
         onTap: onTap,
         isThisOn: isCamOn,
+        isInsideContainer: isInsideContainer,
       );
   static CustomVideoCallButton micIconButton(
-          Function() onTap, RxBool isMicOn) =>
+          Function() onTap,bool isInsideContainer,RxBool isMicOn,) =>
       CustomVideoCallButton(
         backgroundColor: AppColors.white,
-        icon: IconUtility.micIcon(true),
+        icon: IconUtility.micIcon(isInsideContainer),
         offIcon: IconUtility.micoffIcon,
         onTap: onTap,
         isThisOn: isMicOn,
+        isInsideContainer: isInsideContainer
       );
   static CustomVideoCallButton endingCallButton(Function() onTap) =>
       CustomVideoCallButton(
@@ -61,13 +63,15 @@ class VideoCallUtility {
         icon: IconUtility.callendIcon,
         onTap: onTap,
         isThisOn: true.obs,
+        isInsideContainer: true,
       );
   static CustomVideoCallButton therapistSpecialButton(Function() onTap) =>
       CustomVideoCallButton(
           onTap: onTap,
           isThisOn: true.obs,
           icon: IconUtility.moreHorizontal,
-          backgroundColor: AppColors.white);
+          backgroundColor: AppColors.white,
+          isInsideContainer: true,);
   static CustomVideoCallButton putYourHandsUpButton(
           Function() onTap, RxBool isThisOn) =>
       CustomVideoCallButton(
@@ -75,7 +79,8 @@ class VideoCallUtility {
           isThisOn: isThisOn,
           icon: IconUtility.handsUp,
           offIcon: IconUtility.handsDown,
-          backgroundColor: AppColors.white);
+          backgroundColor: AppColors.white,
+          isInsideContainer: true,);
 }
 
 class PixelScreen {

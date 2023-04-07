@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/custom_list_wheel_scroll_view.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 
 class ScrollableTime extends StatelessWidget {
   const ScrollableTime({super.key});
@@ -29,8 +30,8 @@ class ScrollableTime extends StatelessWidget {
         alignment: Alignment.topRight,
         child: TextButton(
             onPressed: () => Get.back(),
-            child: const Text(
-              'Tamam',
+            child: Text(
+              ActivityTextUtil.okey,
               style: TextStyle(color: AppColors.butterflyBush),
             )),
       ),

@@ -67,25 +67,5 @@ class TGroupController extends GetxController with BaseController {
     isLockedOpen.value = !isLockedOpen.value;
   }
 
-  var timeListsInController = [].obs;
-
-  // müsait olduğum saatler sayfasında saat ekle kısmında kaydet butonuyla timeListsInController'a saat listesi ekleneceği için bu fonksiyona gerek kalmıyor
-  /*void getTimeListToController(List<String> timeList) {
-    timeListInControllerList.add(timeList.obs);
-  }*/
-
-  void deleteTimeInMainPage(int rowIndex, int listViewIndex) {
-    timeListsInController[listViewIndex]
-        .remove(timeListsInController[listViewIndex][rowIndex]);
-    // print(timeListInControllerList);
-  }
-
-  var tempTimes = []
-      .obs; // ilknur bu listeye saatleri teker teker ekleyecek ardından kaydet butonuna basınca bu liste timeListInControllerList e eklenecek sonra başka bir tarih için tempList temizlenecek
-
-  void deleteTimeInAddingPage(int rowIndex) {
-    tempTimes.remove(tempTimes[rowIndex]);
-  }
-
   RxList<TGroupModel?> fetchedGroups = <TGroupModel?>[].obs;
 }

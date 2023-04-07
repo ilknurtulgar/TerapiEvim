@@ -6,11 +6,11 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/core/base/ui_models/group_model.dart';
 import 'package:terapievim/screen/participant/profile/p_last_review_view.dart';
+import 'package:terapievim/screen/participant/profile/settings/p_settings_view.dart';
 import '../../../controller/participant/profil/p_profile_controller.dart';
 import '../../../core/base/component/group/group.dart';
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/view/base_view.dart';
-import 'p_profile_settings_view.dart';
 import 'util/p_profile_view_utility.dart';
 import 'p_attended_seminars_view.dart';
 
@@ -32,11 +32,13 @@ class PProfileView extends StatelessWidget {
                   PProfileViewUtility.backgroundOfTheView(),
                   PProfileViewUtility.positionedIconButton(
                       IconUtility.settingIcon.icon!,
-                      () => context.push(PProfileSettingsView()),
-                      Responsive.height(25, context),
+
+                      () => context.push(PSettingsView()),
+                      Responsive.height(40, context),
+
                       Responsive.width(20, context)),
                   PProfileViewUtility.profilePagePersonImage(
-                      DemoInformation.profileImagePath, false),
+                      controller.imageUrl, false),
                   Padding(
                     padding: AppPaddings.profilePageBigPadding(true, false),
                     child: Column(

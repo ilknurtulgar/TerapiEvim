@@ -38,10 +38,13 @@ class THomeView extends StatelessWidget {
   }
 
   Widget notificationcontainer() {
-    return const NotificationContainer(
+    return NotificationContainer(
       type: NotificationType.shortcallFail,
       contentText: DemoInformation.notificationcontenttext,
       name: DemoInformation.groupname,
+      onTap: () {
+        print("ooo");
+      },
     );
   }
 

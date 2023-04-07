@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/controller/video_call_controller.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
+import 'package:terapievim/core/base/ui_models/video_call/person_in_call_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 import '../../../core/base/component/video_call/container/video_call_person.dart';
 import 'util/utility.dart';
 
+// ignore: must_be_immutable
 class ShortCallView extends StatelessWidget {
-  const ShortCallView({
+   ShortCallView({
     super.key,
   });
+  VideoCallController videoCallController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -19,13 +24,9 @@ class ShortCallView extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
-            therapistCallView(context),
-            VideoCallPerson(
-              videoCallViewModel: VideoCallUtility.personShortCallView(
-                  DemoInformation.personNo1, context),
-              whichPage: 3,
-              isLongPressActive: false,
-            ), // participantCallView
+            personCallView(DemoInformation.therapist,context),
+            mediumSizedBox(),
+            personCallView(DemoInformation.personNo1, context), // participantCallView
             VideoCallButtonsRow(
               onLeaveButtonPressed: () {},
               onToggleCameraButtonPressed: () {},
@@ -37,15 +38,12 @@ class ShortCallView extends StatelessWidget {
     );
   }
 
-  Padding therapistCallView(BuildContext context) {
-    return Padding(
-      padding: AppPaddings.customContainerInsidePadding(2),
-      child: VideoCallPerson(
-        videoCallViewModel: VideoCallUtility.personShortCallView(
-            DemoInformation.therapist, context),
-        whichPage: 3,
-        isLongPressActive: false,
-      ),
+  Widget personCallView(PersonInCallModel person,BuildContext context,) {
+    return VideoCallPerson(
+      micOnOffFunction: () => videoCallController.onOffFunction(person.isMicOn),
+      cameraOnOffFunction: () => videoCallController.onOffFunction(person.isCamOn),
+      videoCallViewModel: VideoCallUtility.personShortCallView(person, context),
+      whichPage: 3,
     );
   }
 }

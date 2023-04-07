@@ -37,14 +37,15 @@ class TProfileSettingsView extends StatelessWidget {
               children: [
                 PProfileViewUtility.backgroundOfTheView(),
                 PProfileViewUtility.profilePagePersonImage(
-                    DemoInformation.profileImagePath, true,
-                    onPressed: () {}),
+                    controller.imageUrl, true, onPressed: () {
+                  controller.pickImage();
+                }),
                 ProfileBackIconButton(
                   onTap: () {
                     context.push(TProfileView(isSecTherapist: true));
                   },
                 ),
-                _bigColumn(context,controller),
+                _bigColumn(context, controller),
                 /*DemoInformation.isForParticipant == false
                   ? Positioned(
                       top: 940,

@@ -1,16 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
+import '../../../../../core/base/component/group/choosing_time_sc_cont.dart';
 import '../../../../../core/base/component/group/custom_heading.dart';
 import '../../../../../core/base/util/base_model.dart';
 import '../../../../../core/base/util/text_utility.dart';
 
+// ignore: must_be_immutable
 class PShortCallTimeView extends StatelessWidget {
-  const PShortCallTimeView({super.key});
+   PShortCallTimeView({super.key});
 
   // gecici
+
+  var isChosen = List.filled(DemoInformation.tmpCount,false).obs;
+  String chosenDate = '';
+  String chosenTime = '';
+
+  void callBack(String chosenDateInContainer, String chosenTimeInContainer) {
+    chosenDate = chosenDateInContainer;
+    chosenTime = chosenTimeInContainer;
+    print('$chosenDate $chosenTime');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +67,15 @@ class PShortCallTimeView extends StatelessWidget {
       itemCount: DemoInformation.tmpCount,
       itemBuilder: (context, index) => Padding(
         padding: AppPaddings.timeChossingBetweenPadding,
-        child:
-            sizedBox(), /* ChoosingTimeForSCContainer(
-          therapistName: DemoInformation.therapistName,
-          date: DemoInformation.datetime,
-          timeList: DemoInformation.timelist,
-          listviewIndex: index,
-        ),
-    */
+        child: ChoosingTimeForSCContainer( //sizedBox vardı gerek kalmamıştır diye tahmin edip sildim
+            therapistName: DemoInformation.therapistName,
+            isForParticipant: true,
+            date: DemoInformation.dateList[index],
+            timeList: DemoInformation.timelist,
+            callBack: callBack,
+            listViewChosenList: isChosen,
+            listViewIndex: index,
+          ),
       ),
     );
   }

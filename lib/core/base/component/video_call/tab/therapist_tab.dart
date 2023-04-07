@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 import '../../../../../controller/video_call_controller.dart';
 import '../../../ui_models/video_call/person_in_call_model.dart';
 import '../../../ui_models/container_model.dart';
@@ -110,19 +111,13 @@ class TherapistTab extends StatelessWidget {
   }
 
   Widget videoCallButton(int index, bool isMicButton) {
-    return Obx(
-      () => IconButton(
-          onPressed: isMicButton 
-           ? () => controller.onOffFunction(participants[index].isMicOn)
-          :() {},
-          icon: isMicButton
-              ? participants[index].isMicOn.value
-                  ? IconUtility.micIcon(false)
-                  : IconUtility.micoffIcon
-              : participants[index].isCamOn.value
-                  ? IconUtility.videcamIcon
-                  : IconUtility.videocamoffIcon),
-    );
+    return isMicButton
+        ? VideoCallUtility.micIconButton(
+            () => controller.onOffFunction(participants[index].isMicOn),
+            false,
+            participants[index].isMicOn)
+        : VideoCallUtility.cameraIconButton(
+            () {}, false, participants[index].isCamOn);
   }
 
   Widget therapistSpecialRow(bool isToOpenMics, BuildContext context) {

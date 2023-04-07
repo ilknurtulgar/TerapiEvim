@@ -156,22 +156,25 @@ class TGroupAddView extends StatelessWidget {
       BuildContext context, TGroupAddController controller, bool isLastButton) {
     return Padding(
       padding: AppPaddings.componentPadding,
-      child: CustomButton(
-          container: isLastButton
-              ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)
-              : AppContainers.lightPurpleButtonContainer(
-                  SizeUtil.mediumValueWidth),
-          textColor: isLastButton ? AppColors.white : AppColors.meteorite,
-          onTap: () async {
-            if (!isLastButton) {
-              await controller.setRandomUser();
-            } else {
-              await controller.createNewGroup(context);
-            }
-          },
-          text: isLastButton
-              ? GroupTextUtil.createGroupText
-              : GroupTextUtil.newSecTherapistText),
+      child: Align(
+        alignment: Alignment.center,
+        child: CustomButton(
+            container: isLastButton
+                ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)
+                : AppContainers.lightPurpleButtonContainer(
+                    SizeUtil.mediumValueWidth),
+            textColor: isLastButton ? AppColors.white : AppColors.meteorite,
+            onTap: () async {
+              if (!isLastButton) {
+                await controller.setRandomUser();
+              } else {
+                await controller.createNewGroup(context);
+              }
+            },
+            text: isLastButton
+                ? GroupTextUtil.createGroupText
+                : GroupTextUtil.newSecTherapistText),
+      ),
     );
   }
 

@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/video_call_controller.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
+import '../../../controller/main_controller.dart';
 import '../../../core/base/component/video_call/container/video_call_person.dart';
 import 'util/utility.dart';
 
+// ignore: must_be_immutable
 class GroupTherapyCallView extends StatelessWidget {
-  const GroupTherapyCallView({super.key});
+  GroupTherapyCallView({super.key});
+  MainController mainController = Get.find();
+  VideoCallController videoCallController = Get.find();
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +27,8 @@ class GroupTherapyCallView extends StatelessWidget {
                 videoCallViewModel: VideoCallUtility.personBigView(
                     DemoInformation.therapist, true),
                 whichPage: 1,
-                isLongPressActive: false,
+                 micOnOffFunction: () => videoCallController.onOffFunction(DemoInformation.therapist.isMicOn),
+                 cameraOnOffFunction: () => videoCallController.onOffFunction(DemoInformation.therapist.isCamOn),
               ),
               participantsRowWithButtonsContainer()
             ],
@@ -43,11 +49,19 @@ class GroupTherapyCallView extends StatelessWidget {
             children: [
               participantRow(),
               VideoCallButtonsRow(
-                isGroupTherapyCall: true,
+                firstButton: Obx(
+                  () => mainController.isTherapist.value
+                      ? VideoCallUtility.therapistSpecialButton(() =>
+                          videoCallController
+                              .openTherapistTab(DemoInformation.participants))
+                      : VideoCallUtility.putYourHandsUpButton(
+                          () => videoCallController.onOffFunction(DemoInformation.participants[0].isHandsUp!),
+                          DemoInformation.participants[0].isHandsUp!,
+                        ),
+                ),
                 onLeaveButtonPressed: () {},
                 onToggleCameraButtonPressed: () {},
                 onToggleMicButtonPressed: () {},
-                isHandsUp: DemoInformation.participants[0].isHandsUp,
               ),
             ],
           )),
@@ -66,8 +80,13 @@ class GroupTherapyCallView extends StatelessWidget {
                   padding: AppPaddings.smallPersonViewPadding,
                   child: VideoCallPerson(
                       whichPage: 1,
-                      videoCallViewModel: VideoCallUtility.personSmallView(
-                          DemoInformation.participants[index], true)));
+                      videoCallViewModel: VideoCallUtility.personSmallView(DemoInformation.participants[index],true),
+                      onLongPressed: mainController.isTherapist.value ? () => videoCallController.sendIsolatedCall("${DemoInformation.participants[index].name} ${DemoInformation.participants[index].surname}") : null,
+                      micOnOffFunction: () => videoCallController.onOffFunction(DemoInformation.participants[index].isMicOn),
+                      cameraOnOffFunction: () => videoCallController.onOffFunction(DemoInformation.participants[index].isCamOn
+                        ),
+                       ),
+                      );
             })),
       ),
     );

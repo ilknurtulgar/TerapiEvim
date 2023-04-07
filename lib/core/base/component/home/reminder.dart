@@ -18,27 +18,26 @@ class Reminder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     late String reminderTypeText = textSet(reminderType);
-    late String reminderName = nameSet(reminderType);
 
     return InkWell(
       onTap: () {},
       child: Container(
         margin: AppPaddings.componentPadding,
         decoration: AppBoxDecoration.shadow,
-        width: Responsive.width(SizeUtil.generalWidth, context),
+        // width: Responsive.width(SizeUtil.generalWidth, context),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            rowView(UiBaseModel.rowcontainer(true),
+            rowView(UiBaseModel.rowcontainer(true, context),
                 AppPaddings.miniHeadingPadding(true)),
-            reminderContent(reminderTypeText, reminderName)
+            reminderContent(reminderTypeText)
           ],
         ),
       ),
     );
   }
 
-  Padding reminderContent(String reminderTypeText, String reminderName) {
+  Padding reminderContent(String reminderTypeText) {
     return Padding(
       padding: AppPaddings.miniHeadingPadding(true),
       child: Column(
@@ -48,7 +47,7 @@ class Reminder extends StatelessWidget {
             reminderTypeText,
             style: AppTextStyles.groupTextStyle(false),
           ),
-          customText("$reminderName $name"),
+          customText(name),
           customText("${HomeTextUtil.timeTwoDots} $time"),
         ],
       ),
@@ -66,7 +65,7 @@ class Reminder extends StatelessWidget {
   }
 }
 
-enum ReminderType { shortCall, therapy, activity }
+enum ReminderType { therapy, activity }
 
 String textSet(
   ReminderType type,
@@ -74,22 +73,6 @@ String textSet(
   switch (type) {
     case ReminderType.activity:
       return HomeTextUtil.event;
-
-    case ReminderType.shortCall:
-      return HomeTextUtil.shortCall;
-
-    case ReminderType.therapy:
-      return HomeTextUtil.therapyNameTwoDots;
-  }
-}
-
-String nameSet(ReminderType type) {
-  switch (type) {
-    case ReminderType.activity:
-      return HomeTextUtil.activityName;
-
-    case ReminderType.shortCall:
-      return HomeTextUtil.clientTwoDots;
 
     case ReminderType.therapy:
       return HomeTextUtil.therapyNameTwoDots;

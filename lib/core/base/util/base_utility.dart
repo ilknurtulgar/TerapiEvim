@@ -777,6 +777,14 @@ class DemoInformation {
 
   static int tmpSessionNumber = 2;
 
+  static List<String> dateList = [
+    '07/05/2023',
+    '08/05/2023',
+    '09/05/2023',
+    '10/05/2023',
+    '11/05/2023'
+  ];
+
   // video call
   // group therapy call page,isolated call page,short call page
 

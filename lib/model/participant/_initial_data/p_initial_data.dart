@@ -9,6 +9,13 @@ class PInitialData extends INetworkModel<PInitialData> {
   String? joinedGroupId;
   String? isJoinedGroupLocked;
 
+  /// The category is defined by a therapist in a session
+  String? groupCategory;
+  bool? isTessPassed;
+
+  /// It will be completed after participant has a session with therapist
+  bool? isSessionComplete;
+
   PInitialData({
     this.joinedGroupId,
     this.isJoinedGroupLocked,

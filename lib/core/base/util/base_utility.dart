@@ -405,7 +405,7 @@ class AppPaddings {
   static EdgeInsets profilePageBigPadding(
           bool isThereLeftPadding, bool isThereRightPadding) =>
       EdgeInsets.only(
-          top: 320,
+          top: 260,
           left: isThereLeftPadding ? 24 : 0,
           right: isThereRightPadding ? 24 : 0);
 
@@ -506,7 +506,7 @@ class NavigateUtil {
     const TActivityView(),
     const TGroupView(),
     const TMessageView(),
-    const TProfileView(),
+    TProfileView(),
   ];
   static List<Widget> screen = <Widget>[
     const PHomeView(),

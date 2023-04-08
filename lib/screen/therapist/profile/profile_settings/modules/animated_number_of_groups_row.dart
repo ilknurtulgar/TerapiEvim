@@ -8,7 +8,7 @@ Widget _animatedNumberOfGroupsRow(
       () => AnimatedContainer(
         duration: const Duration(milliseconds: 400),
         color: AppColors.transparent,
-        height: therapistProfileController.isNumberVisible.value ? 37 : 0,
+        height: therapistProfileController.isNumberVisible.value ? 37 : 0.00001,
         child: Stack(clipBehavior: Clip.none, children: [
           SizedBox(
             width: context.width1,

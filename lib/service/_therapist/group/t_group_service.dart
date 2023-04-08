@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:terapievim/model/common/profile/p_public_profile_model.dart';
+
 import '../../../core/base/service/base_service.dart';
 import '../../../core/constants/api_const.dart';
 import '../../../core/constants/app_const.dart';
@@ -7,7 +9,9 @@ import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../core/managers/firebase/firestore/models/empty_model.dart';
+import '../../../model/common/profile/t_public_profile_model.dart';
 import '../../../model/common/user/user_model.dart';
+import '../../../model/therapist/group/t_about_group_model.dart';
 import '../../../model/therapist/group/t_group_model.dart';
 import 'i_t_group_service.dart';
 
@@ -101,18 +105,78 @@ class TGroupService extends ITGroupService with BaseService {
   }
 
   @override
-  Future<TGroupModel?> getGroupById(String groupId) async {
+  Future<TAboutGroupModel?> getAboutGroup(String groupId) async {
     if (userId == null) return null;
+
+    final TGroupModel? group = await _getGroup(groupId);
+
+    if (group == null) return null;
+
+    final TPublicProfile? therapistProfile =
+        await _getTherapistProfile(group.therapistId!);
+
+    if (therapistProfile == null) return null;
+
+    final List<TGroupModel> helpingGroups =
+        await _getHelpingGroups(group.participantsId);
+
+    TAboutGroupModel tAboutGroup = TAboutGroupModel(
+      id: group.id,
+      therapistId: group.therapistId,
+      groupName: group.name,
+      aboutTherapist: therapistProfile.aboutMe,
+      therapistName: therapistProfile.name,
+      therapistImageUrl: therapistProfile.imageUrl,
+      listOfHelpingGroups: helpingGroups,
+    );
+
+    return tAboutGroup;
+  }
+
+  Future<TGroupModel?> _getGroup(String groupId) async {
     final result = await manager.readOne<TGroupModel, TGroupModel>(
       collectionPath: APIConst.groups,
       docId: groupId,
       parseModel: TGroupModel(),
     );
-    if (result.error != null) {
+    if (result.error != null || result.data == null) {
+      return null;
+    }
+    return result.data;
+  }
+
+  Future<TPublicProfile?> _getTherapistProfile(String therapistId) async {
+    final result = await manager.readOne<TPublicProfile, TPublicProfile>(
+      collectionPath: APIConst.users,
+      docId: therapistId,
+      parseModel: TPublicProfile(),
+    );
+
+    if (result.error != null || result.data == null) {
       return null;
     }
 
     return result.data;
+  }
+
+  Future<List<TGroupModel>> _getHelpingGroups(List<String>? groupsId) async {
+    final List<TGroupModel> helpingGroupsList = [];
+
+    if (groupsId == null) return [];
+
+    for (String groupId in groupsId) {
+      final result = await manager.readOne<TGroupModel, TGroupModel>(
+        collectionPath: APIConst.groups,
+        docId: groupId,
+        parseModel: TGroupModel(),
+      );
+
+      if (result.data != null) {
+        helpingGroupsList.add(result.data!);
+      }
+    }
+
+    return helpingGroupsList;
   }
 
   @override
@@ -138,5 +202,25 @@ class TGroupService extends ITGroupService with BaseService {
     }
 
     return result.data ?? [];
+  }
+
+  @override
+  Future<List<PPublicProfile>> getParticipantsList(
+      {required List<String> participantsId}) async {
+    final List<PPublicProfile> publicProfileList = [];
+
+    for (String participantId in participantsId) {
+      final result = await manager.readWhere<PPublicProfile, PPublicProfile>(
+        collectionPath: APIConst.groups,
+        whereField: AppConst.id,
+        whereIsEqualTo: participantId,
+        parseModel: PPublicProfile(),
+      );
+
+      if (result.data != null) {
+        publicProfileList.add(result.data!);
+      }
+    }
+    return publicProfileList;
   }
 }

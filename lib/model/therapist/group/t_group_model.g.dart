@@ -14,7 +14,7 @@ TGroupModel _$TGroupModelFromJson(Map<String, dynamic> json) => TGroupModel(
       therapistHelperName: json['therapistHelperName'] as String?,
       hasHelperTherapistAccepted: json['hasHelperTherapistAccepted'] as bool?,
       participantsId: (json['participantsId'] as List<dynamic>?)
-          ?.map((e) => e as String?)
+          ?.map((e) => e as String)
           .toList(),
       dateTime:
           TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?),

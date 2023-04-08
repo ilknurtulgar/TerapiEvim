@@ -6,6 +6,8 @@ class AppConst {
 
   static const String pdf = 'pdf';
   static const String jpg = 'jpg';
+  static const String temporaryImage = 'https://picsum.photos/200/300';
+
 
   static const String dateTime = 'dateTime';
   static const String id = 'id';

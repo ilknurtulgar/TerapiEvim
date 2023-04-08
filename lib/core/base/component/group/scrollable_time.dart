@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/custom_list_wheel_scroll_view.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
 
 class ScrollableTime extends StatelessWidget {
-  const ScrollableTime({super.key});
+  const ScrollableTime({super.key, required this.chooseHourFunction,required this.chooseMinuteFunction});
+  final Function(int)? chooseHourFunction;
+  final Function(int)? chooseMinuteFunction;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -13,9 +17,9 @@ class ScrollableTime extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             mainAxisSize: MainAxisSize.min,
             children: [
-              CustomListWheelScrollView(whatIsFor: 'hour'),
+              CustomListWheelScrollView(whatIsFor: ScrollPurpose.hour,onSelectedItemChanged: chooseHourFunction,),
               colon(true),
-              CustomListWheelScrollView(whatIsFor: 'minutes'),
+              CustomListWheelScrollView(whatIsFor: ScrollPurpose.minute,onSelectedItemChanged: chooseMinuteFunction,),
             ]),
         okayTextButton(),
       ],
@@ -29,8 +33,8 @@ class ScrollableTime extends StatelessWidget {
         alignment: Alignment.topRight,
         child: TextButton(
             onPressed: () => Get.back(),
-            child: const Text(
-              'Tamam',
+            child: Text(
+              ActivityTextUtil.okey,
               style: TextStyle(color: AppColors.butterflyBush),
             )),
       ),

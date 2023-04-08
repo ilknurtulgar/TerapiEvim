@@ -2,25 +2,26 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import '../../../../core/base/ui_models/video_call/person_in_call_model.dart';
 import '../../../../core/base/ui_models/video_call/video_call_view_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 
 class VideoCallUtility {
   static VideoCallViewModel personBigView(
-          PersonInCallModel person, bool isTherapistInGroupTherapy) =>
+          PersonInCallModel person, bool isTherapistInGroupTherapy,BuildContext context) =>
       VideoCallViewModel(
-          height: PixelScreen().logicalHeight, // SizeUtil.highestValueHeight,
-          width: PixelScreen().logicalWidth,
+          height: context.height1,
+          width: context.width1,
           borderRadius: 0,
           person: person,
           isNameShown: false,
           isTherapistInGroupTherapy: isTherapistInGroupTherapy);
   static VideoCallViewModel personSmallView(
-          PersonInCallModel person, bool isNameShown) =>
+          PersonInCallModel person, bool isNameShown,BuildContext context) =>
       VideoCallViewModel(
-          height: SizeUtil.doubleNormalValueHeight,
-          width: SizeUtil.smallValueWidth,
+          height: Responsive.height(SizeUtil.doubleNormalValueHeight,context),
+          width:Responsive.width(SizeUtil.smallValueWidth,context),
           borderRadius: 8,
           person: person,
           isNameShown: isNameShown,
@@ -28,32 +29,32 @@ class VideoCallUtility {
   static VideoCallViewModel personShortCallView(
           PersonInCallModel person, BuildContext context) =>
       VideoCallViewModel(
-        height: Responsive.height(
-            SizeUtil.hugeValueHeight, context), //SizeUtil.hugeValueHeight,
-        width: Responsive.width(
-            SizeUtil.generalWidth, context), //SizeUtil.generalWidth,
+        height: Responsive.height(320, context), //SizeUtil.hugeValueHeight,
+        width: Responsive.width(SizeUtil.generalWidth, context), //SizeUtil.generalWidth,
         borderRadius: 12,
         isNameShown: false,
         isTherapistInGroupTherapy: false,
         person: person,
       );
   static CustomVideoCallButton cameraIconButton(
-          Function() onTap, RxBool isCamOn) =>
+          Function() onTap,bool isInsideContainer,RxBool isCamOn,) =>
       CustomVideoCallButton(
         backgroundColor: AppColors.white,
         icon: IconUtility.videcamIcon,
         offIcon: IconUtility.videocamoffIcon,
         onTap: onTap,
         isThisOn: isCamOn,
+        isInsideContainer: isInsideContainer,
       );
   static CustomVideoCallButton micIconButton(
-          Function() onTap, RxBool isMicOn) =>
+          Function() onTap,bool isInsideContainer,RxBool isMicOn,) =>
       CustomVideoCallButton(
         backgroundColor: AppColors.white,
-        icon: IconUtility.micIcon(true),
+        icon: IconUtility.micIcon(isInsideContainer),
         offIcon: IconUtility.micoffIcon,
         onTap: onTap,
         isThisOn: isMicOn,
+        isInsideContainer: isInsideContainer
       );
   static CustomVideoCallButton endingCallButton(Function() onTap) =>
       CustomVideoCallButton(
@@ -61,13 +62,15 @@ class VideoCallUtility {
         icon: IconUtility.callendIcon,
         onTap: onTap,
         isThisOn: true.obs,
+        isInsideContainer: true,
       );
   static CustomVideoCallButton therapistSpecialButton(Function() onTap) =>
       CustomVideoCallButton(
           onTap: onTap,
           isThisOn: true.obs,
           icon: IconUtility.moreHorizontal,
-          backgroundColor: AppColors.white);
+          backgroundColor: AppColors.white,
+          isInsideContainer: true,);
   static CustomVideoCallButton putYourHandsUpButton(
           Function() onTap, RxBool isThisOn) =>
       CustomVideoCallButton(
@@ -75,7 +78,8 @@ class VideoCallUtility {
           isThisOn: isThisOn,
           icon: IconUtility.handsUp,
           offIcon: IconUtility.handsDown,
-          backgroundColor: AppColors.white);
+          backgroundColor: AppColors.white,
+          isInsideContainer: true,);
 }
 
 class PixelScreen {

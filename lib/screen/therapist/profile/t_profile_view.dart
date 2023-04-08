@@ -1,92 +1,98 @@
 import 'package:flutter/material.dart';
-
+import 'package:get/get.dart';
+import 'package:terapievim/controller/therapist/profil/t_profile_controller.dart';
+import 'package:terapievim/core/base/view/base_view.dart';
+import 'package:terapievim/screen/therapist/profile/settings/t_settings_view.dart';
+import 'package:terapievim/screen/therapist/profile/t_dealing_method_view.dart';
+import '../../../controller/main_controller.dart';
 import '../../../core/base/component/profile/custom_list_view.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/extension/context_extension.dart';
-import '../../participant/profile/util/p_profile_view_utility.dart';
-import 'settings/t_settings_view.dart';
 import 't_attended_seminar_view.dart';
-import 't_dealing_method_view.dart';
+import '../../participant/profile/util/p_profile_view_utility.dart';
 
+// ignore: must_be_immutable
 class TProfileView extends StatelessWidget {
-  const TProfileView({super.key});
+  TProfileView({super.key});
+  MainController mainController=Get.find();
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.blueChalk,
-        body: SingleChildScrollView(
-          child: Stack(
-            children: [
-              PProfileViewUtility.backgroundOfTheView(),
-              PProfileViewUtility.profilePagePersonImage(
-                  DemoInformation.imagePath, false),
-              PProfileViewUtility.positionedIconButton(
-                  IconUtility.settingIcon.icon!,
-                  () => context.push(const TSettingsView()),
-                  Responsive.height(40, context),
-                  Responsive.width(20, context)),
-              Padding(
-                padding: AppPaddings.profilePageBigPadding(true, false),
-                //left padding genel page padding zamanında kaldırılacak
-                child: Column(
-                  children: [
-                    therapistName(),
-                    mediumSizedBox(),
-                    //smallSizedBox(),
-                    aboutMeColumn(),
-                    UiBaseModel.boldMainTitleRowView(
-                        TherapistProfileTextUtil.myGroups, 'group', () {
-                      //nasil gidecek
-                    }),
-                    ProfileViewListView(
-                      isForParticipant: false,
-                      isForMethod: false,
-                      firstRowTextList: DemoInformation.advisorNames,
-                      secondRowTextList: DemoInformation.dates,
-                      groupNameList: DemoInformation.groupNameList,
+    return BaseView<TProfileController>(
+      getController: TProfileController(),
+      onModelReady: (model){},
+      onPageBuilder: (context,controller) {
+        return Scaffold(
+          backgroundColor: AppColors.blueChalk,
+          body: SafeArea(
+            child: SingleChildScrollView(
+              child: Stack(
+                children: [
+                  PProfileViewUtility.backgroundOfTheView(),
+                  PProfileViewUtility.profilePagePersonImage(controller.imageUrl,false),
+                  PProfileViewUtility.positionedIconButton(
+                      IconUtility.settingIcon.icon!,
+                      () => context.push(const TSettingsView()),
+                      Responsive.height(40, context),
+                      Responsive.width(20, context)),
+                  Padding(
+                    padding: AppPaddings.profilePageBigPadding(true, false),
+                    child: Column(
+                      children: [
+                        therapistName(controller),
+                        mediumSizedBox(),
+                        aboutMeColumn(),
+                        UiBaseModel.boldMainTitleRowView(
+                            TherapistProfileTextUtil.myGroups,MainTitles.groups, () => mainController.onPageChanged(2)),
+                        ProfileViewListView(
+                          isForParticipant: false,
+                          isForMethod: false,
+                          firstRowTextList: DemoInformation.advisorNames,
+                          secondRowTextList: DemoInformation.dates,
+                          groupNameList: DemoInformation.groupNameList,
+                        ),
+                        mediumSizedBox(),
+                        UiBaseModel.boldMainTitleRowView(
+                            TherapistProfileTextUtil.methods,MainTitles.methods, () {
+                          context.push(const TDealingMethodView());
+                        }),
+                        ProfileViewListView(
+                            isForParticipant: false,
+                            isForMethod: true,
+                            firstRowTextList: DemoInformation.groupNameList,
+                            secondRowTextList: DemoInformation.methodNames),
+                        mediumSizedBox(),
+                        UiBaseModel.boldMainTitleRowView(
+                            TherapistProfileTextUtil.seminars,MainTitles.seminars, () {
+                          context.push(const TAttendedSeminarsView());
+                        }),
+                        ProfileViewListView(
+                          isForParticipant: false,
+                          isForMethod: false,
+                          firstRowTextList: DemoInformation.seminarNames,
+                          secondRowTextList: DemoInformation.dates,
+                        ),
+                        mediumSizedBox()
+                      ],
                     ),
-                    mediumSizedBox(),
-                    UiBaseModel.boldMainTitleRowView(
-                        TherapistProfileTextUtil.methods, 'method', () {
-                      context.push(const TDealingMethodView());
-                    }),
-                    ProfileViewListView(
-                        isForParticipant: false,
-                        isForMethod: true,
-                        firstRowTextList: DemoInformation.groupNameList,
-                        secondRowTextList: DemoInformation.methodNames),
-                    mediumSizedBox(),
-                    UiBaseModel.boldMainTitleRowView(
-                        TherapistProfileTextUtil.seminars, 'seminar', () {
-                      context.push(const TAttendedSeminarsView());
-                    }),
-                    ProfileViewListView(
-                      isForParticipant: false,
-                      isForMethod: false,
-                      firstRowTextList: DemoInformation.seminarNames,
-                      secondRowTextList: DemoInformation.dates,
-                    ),
-                    mediumSizedBox()
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
+        );
+      }
     );
   }
 
-  Padding therapistName() {
+  Padding therapistName(TProfileController controller) {
     return Padding(
       padding: AppPaddings.componentOnlyPadding(3),
       child: Center(
         child: responsivenestext(
-          DemoInformation.name,
+          controller.name,
           AppTextStyles.aboutMeTextStyle(true),
         ),
       ),
@@ -123,4 +129,10 @@ class TProfileView extends StatelessWidget {
       ),
     );
   }
+}
+
+enum MainTitles{
+  groups,
+  methods,
+  seminars
 }

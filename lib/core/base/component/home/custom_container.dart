@@ -3,7 +3,7 @@ import 'package:terapievim/core/base/component/profile/image/custom_circle_avata
 import 'package:terapievim/core/base/ui_models/card_model.dart';
 import 'package:terapievim/core/base/ui_models/container_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/screen/participant/video_call/util/utility.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 
 class CustomContainer extends StatelessWidget {
   CustomContainer(
@@ -13,43 +13,37 @@ class CustomContainer extends StatelessWidget {
       this.cardModel,
       this.time,
       this.widget,
-      this.isThereShadow});
+      this.isThereShadow=true});
   final ContainerModel containerModel;
   final bool isThereCardModel;
   final CardModel? cardModel;
   final String? time;
   final Widget? widget;
-
-  /// TODO: bhz-> gizem: it should be final
-  bool? isThereShadow;
+  final bool isThereShadow;
 
   @override
   Widget build(BuildContext context) {
-    /// TODO: bhz-> gizem: default value should be set from constructor
-    isThereShadow ??= true;
-    return Center(
-      child: Padding(
-        padding: AppPaddings.componentPadding,
-        child: Card(
-          elevation: isThereShadow! ? 5 : 0,
-          color: containerModel.backgroundColor,
-          shadowColor: containerModel.shadowColor,
-          shape: customContainerShape(),
-          child: SizedBox(
-            height: widget == null ? containerModel.height : null,
-            width: (widget == null && containerModel.width != null)
-                ? containerModel.width
-                : PixelScreen().logicalWidth,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              mainAxisAlignment: widget == null
-                  ? MainAxisAlignment.center
-                  : MainAxisAlignment.start,
-              children: [
-                isThereCardModel ? listTile() : const SizedBox(),
-                widget ?? const SizedBox(),
-              ],
-            ),
+    return Padding(
+      padding: AppPaddings.componentPadding,
+      child: Card(
+        elevation: isThereShadow ? 5 : 0,
+        color: containerModel.backgroundColor,
+        shadowColor: containerModel.shadowColor,
+        shape: customContainerShape(),
+        child: SizedBox(
+          height: widget == null ? containerModel.height : null,
+          width: (widget == null && containerModel.width != null)
+              ? containerModel.width
+              : context.width1,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            mainAxisAlignment: widget == null
+                ? MainAxisAlignment.center
+                : MainAxisAlignment.start,
+            children: [
+              isThereCardModel ? listTile() : const SizedBox(),
+              widget ?? const SizedBox(),
+            ],
           ),
         ),
       ),
@@ -58,14 +52,9 @@ class CustomContainer extends StatelessWidget {
 
   ListTile listTile() {
     return ListTile(
-      leading: CustomCircleAvatar(
-          imagePath: cardModel!.imagePath, big: false, shadow: false),
-      title: Text(
-        cardModel!.title,
-        style: AppTextStyles.normalTextStyle('medium', false),
-      ),
-      subtitle:
-          cardModel!.subtitle != null ? Text(cardModel!.subtitle ?? "") : null,
+      leading: CustomCircleAvatar(imagePath: cardModel!.imagePath, big: false, shadow: false),
+      title: Text(cardModel!.title,style: AppTextStyles.normalTextStyle('medium', false),),
+      subtitle: cardModel!.subtitle != null ? Text(cardModel!.subtitle ?? "") : null,
       trailing: Text(time ?? ""),
     );
   }

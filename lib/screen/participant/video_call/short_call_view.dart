@@ -1,51 +1,51 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/controller/video_call_controller.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
+import 'package:terapievim/core/base/ui_models/video_call/person_in_call_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-
+import 'package:terapievim/core/base/view/base_view.dart';
 import '../../../core/base/component/video_call/container/video_call_person.dart';
 import 'util/utility.dart';
 
+// ignore: must_be_immutable
 class ShortCallView extends StatelessWidget {
-  const ShortCallView({
-    super.key,
-  });
-
+   ShortCallView({super.key});
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.mineShaft,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            therapistCallView(context),
-            VideoCallPerson(
-              videoCallViewModel: VideoCallUtility.personShortCallView(
-                  DemoInformation.personNo1, context),
-              whichPage: 3,
-              isLongPressActive: false,
-            ), // participantCallView
-            VideoCallButtonsRow(
-              onLeaveButtonPressed: () {},
-              onToggleCameraButtonPressed: () {},
-              onToggleMicButtonPressed: () {},
+    return BaseView<VideoCallController>(
+      getController: VideoCallController(),
+      onModelReady: (model) {},
+      onPageBuilder: (context,controller) {
+        return Scaffold(
+          backgroundColor: AppColors.mineShaft,
+          body: SafeArea(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                personCallView(controller,DemoInformation.therapist,context), // therapistCallView
+                mediumSizedBox(),
+                personCallView(controller,DemoInformation.personNo1,context), // participantCallView
+                mediumSizedBox(),
+                VideoCallButtonsRow(
+                  onLeaveButtonPressed: () {},
+                  onToggleCameraButtonPressed: () {},
+                  onToggleMicButtonPressed: () {},
+                ),
+              ],
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      }
     );
   }
 
-  Padding therapistCallView(BuildContext context) {
-    return Padding(
-      padding: AppPaddings.customContainerInsidePadding(2),
-      child: VideoCallPerson(
-        videoCallViewModel: VideoCallUtility.personShortCallView(
-            DemoInformation.therapist, context),
-        whichPage: 3,
-        isLongPressActive: false,
-      ),
+  Widget personCallView(VideoCallController videoCallController,PersonInCallModel person,BuildContext context) {
+    return VideoCallPerson(
+      micOnOffFunction: () => videoCallController.onOffFunction(person.isMicOn),
+      cameraOnOffFunction: () => videoCallController.onOffFunction(person.isCamOn),
+      videoCallViewModel: VideoCallUtility.personShortCallView(person, context),
+      whichPage: VideoCallPages.shortCall,
     );
   }
 }

@@ -13,7 +13,6 @@ class LoginResponseModel extends INetworkModel<LoginResponseModel> {
       email,
       phone,
       role,
-      aboutMe,
       imageUrl;
 
   LoginResponseModel({
@@ -23,7 +22,6 @@ class LoginResponseModel extends INetworkModel<LoginResponseModel> {
     this.email,
     this.phone,
     this.role,
-    this.aboutMe,
     this.imageUrl,
   });
 

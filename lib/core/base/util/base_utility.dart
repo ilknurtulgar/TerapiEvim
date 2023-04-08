@@ -114,7 +114,7 @@ class IconUtility {
     Icons.search,
     color: AppColors.black,
   );
-  static const Icon fiterIcon = Icon(Icons.list);
+  static const Icon filterIcon = Icon(Icons.list);
 
   static const Icon fileIcon = Icon(
     Icons.description_outlined,
@@ -261,6 +261,12 @@ class AppTextStyles {
         fontSize: isBig ? 20 : 17,
         fontWeight: isBold ? FontWeight.bold : FontWeight.w400,
         color: AppColors.black,
+      );
+  static TextStyle activityTextStyles() => TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        color: AppColors.deepCove,
+        fontSize: 22,
       );
 }
 
@@ -503,7 +509,7 @@ Padding colon(bool isInAlertDialog) {
 class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
     THomeView(),
-    const TActivityView(),
+    TActivityView(),
     const TGroupView(),
     const TMessageView(),
     TProfileView(),

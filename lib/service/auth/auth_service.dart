@@ -7,7 +7,8 @@ import '../../core/constants/utils/text_constants/error_text_const.dart';
 import '../../core/init/network/model/error_model_custom.dart';
 import '../../core/init/print_dev.dart';
 import '../../core/managers/firebase/firestore/i_firestore_manager.dart';
-
+import '../../model/participant/_initial_data/p_initial_data.dart';
+import '../../model/therapist/_initial_data/t_initial_data.dart';
 import '../../model/common/login/login_model.dart';
 import '../../model/common/login/login_response_model.dart';
 import '../../model/common/signup/sign_up_model.dart';
@@ -111,6 +112,58 @@ class AuthService extends IAuthService with BaseService {
       await crashlyticsManager.sendACrash(
           error: e.toString(), stackTrace: StackTrace.current, reason: '');
       return;
+    }
+  }
+
+  @override
+  Future<PInitialData?> fetchInitialDataOfParticipant() async {
+    try {
+      if (userId == null) return null;
+
+      final result = await manager.readOne<PInitialData,
+          PInitialData>(
+        collectionPath: APIConst.participant,
+        docId: userId!,
+        parseModel: PInitialData(),
+      );
+      if (result.error != null) {
+        return null;
+      }
+
+      return result.data;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+        error: e.toString(),
+        stackTrace: StackTrace.current,
+        reason: 'fetchInitialDataOfParticipant',
+      );
+      return null;
+    }
+  }
+
+  @override
+  Future<TInitialData?> fetchInitialDataOfTherapist() async {
+    try {
+      if (userId == null) return null;
+
+      final result = await manager
+          .readOne<TInitialData, TInitialData>(
+        collectionPath: APIConst.therapist,
+        docId: userId!,
+        parseModel: TInitialData(),
+      );
+      if (result.error != null) {
+        return null;
+      }
+
+      return result.data;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+        error: e.toString(),
+        stackTrace: StackTrace.current,
+        reason: 'fetchInitialDataOfTherapist',
+      );
+      return null;
     }
   }
 }

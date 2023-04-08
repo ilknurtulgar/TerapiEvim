@@ -128,7 +128,31 @@ class TCopingMethodService extends ITCopingMethodService with BaseService {
     final result =
         await manager.readOrdered<TCopingMethodModel, List<TCopingMethodModel>>(
       collectionPath: APIConst.copingMethods,
-      docId: userId!,
+      parseModel: TCopingMethodModel(),
+      isDescending: isDescending,
+      orderField: orderField,
+      lastDocumentId: lastDocId,
+    );
+    if (result.error != null) {
+      return [];
+    }
+
+    return result.data;
+  }
+
+  @override
+  Future<List<TCopingMethodModel?>?> getMyCopingMethodsOrdered({
+    String lastDocId = '',
+    String orderField = AppConst.dateTime,
+    bool isDescending = false,
+  }) async {
+    if (userId == null) return null;
+
+    final result = await manager
+        .readOrderedWhere<TCopingMethodModel, List<TCopingMethodModel>>(
+      collectionPath: APIConst.copingMethods,
+      whereField: AppConst.therapist,
+      whereIsEqualTo: userId!,
       parseModel: TCopingMethodModel(),
       isDescending: isDescending,
       orderField: orderField,

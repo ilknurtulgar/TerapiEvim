@@ -15,7 +15,7 @@ class TGroupModel extends INetworkModel<TGroupModel> {
   String? therapistHelperName;
   bool? hasHelperTherapistAccepted;
 
-  List<String?>? participantsId;
+  List<String>? participantsId;
 
   /// Timestamp.fromDate(DateTime.now()) is an example of using timeStamp
   @JsonKey(

@@ -21,5 +21,8 @@ abstract class ITCopingMethodService {
   Future<List<TCopingMethodModel?>?> getCopingMethodsOrdered(
       {String lastDocId, String orderField, bool isDescending});
 
+  Future<List<TCopingMethodModel?>?> getMyCopingMethodsOrdered(
+      {String lastDocId, String orderField, bool isDescending});
+
   Future<String?> deleteCopingMethod(String copingMethodId);
 }

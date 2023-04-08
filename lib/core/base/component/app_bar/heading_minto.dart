@@ -23,7 +23,7 @@ class HeadingMinto extends StatelessWidget {
         Text(
           text,
           style: isButterfly
-              ? AppTextStyles.groupTextStyle(false)
+              ? AppTextStyles.activityTextStyles()
               : AppTextStyles.normalTextStyle("medium", false),
         ),
         IconButton(

@@ -69,6 +69,9 @@ Widget _orderdropdown(TSessionController controller) {
     onDropDownTapped: () {
       controller.setIsBoxSelected();
     },
+    onValueSelected: (int index){
+      print('index:${index}');
+    },
     height: SizeUtil.smallValueHeight,
     width: SizeUtil.normalValueWidth,
   );

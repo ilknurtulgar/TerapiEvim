@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/base/base_controller.dart';
-
 import '../../../core/base/component/group/scrollable_time.dart';
 import '../../../model/therapist/group/t_group_model.dart';
 import '../../../service/_therapist/group/i_t_group_service.dart';
@@ -33,23 +32,21 @@ class TGroupController extends GetxController with BaseController {
 
   RxInt numberOfGroupsTherapistIsAdvisor = 0.obs;
 
-  void scrollableWidgetFunction(String whichOne, int value) {
+  void chooseGroupTherapyTime(bool isHour, int value) {
     String valueAsString = value.toString();
-    if (whichOne != 'number of groups' && valueAsString.length < 2) {
+    if (valueAsString.length < 2) {
       valueAsString = '0${value.toString()}';
     }
-    if (whichOne == 'hour') {
-      chosenHour.value = valueAsString;
-    } else if (whichOne == 'minutes') {
-      chosenMinutes.value = valueAsString;
-    } else {
-      numberOfGroupsTherapistIsAdvisor.value = value;
-    }
+    if (isHour) chosenHour.value = valueAsString;
+    else chosenMinutes.value = valueAsString;
   }
 
   void showChoosingTimeDialog() {
     Get.dialog(AlertDialog(
-      title: ScrollableTime(),
+      title: ScrollableTime(
+        chooseHourFunction: (value) => chooseGroupTherapyTime(true, value),
+        chooseMinuteFunction: (value) => chooseGroupTherapyTime(false, value),
+      ),
       titlePadding: const EdgeInsets.symmetric(vertical: 15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ));
@@ -65,27 +62,6 @@ class TGroupController extends GetxController with BaseController {
 
   void changeIsLockOpen() {
     isLockedOpen.value = !isLockedOpen.value;
-  }
-
-  var timeListsInController = [].obs;
-
-  // müsait olduğum saatler sayfasında saat ekle kısmında kaydet butonuyla timeListsInController'a saat listesi ekleneceği için bu fonksiyona gerek kalmıyor
-  /*void getTimeListToController(List<String> timeList) {
-    timeListInControllerList.add(timeList.obs);
-  }*/
-
-  void deleteTimeInMainPage(int rowIndex, int listViewIndex) {
-    timeListsInController[listViewIndex]
-        .remove(timeListsInController[listViewIndex][rowIndex]);
-    // print(timeListInControllerList);
-  }
-
-  /// TODO: it should be added programmatically not by hand, PLEASE DONT ADD teker teker :)
-  var tempTimes = []
-      .obs; // ilknur bu listeye saatleri teker teker ekleyecek ardından kaydet butonuna basınca bu liste timeListInControllerList e eklenecek sonra başka bir tarih için tempList temizlenecek
-
-  void deleteTimeInAddingPage(int rowIndex) {
-    tempTimes.remove(tempTimes[rowIndex]);
   }
 
   RxList<TGroupModel?> fetchedGroups = <TGroupModel?>[].obs;

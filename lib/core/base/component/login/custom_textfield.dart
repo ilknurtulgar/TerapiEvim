@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/ui_models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
-///TODO: CustomTextField should be independent from activityController
-
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     Key? key,
@@ -39,16 +37,19 @@ class CustomTextField extends StatelessWidget {
     return isOne ? textField(context) : columnTextField(context);
   }
 
-  Column columnTextField(
+  Padding columnTextField(
     BuildContext context,
   ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        responsivenestext(
-            title ?? "", AppTextStyles.normalTextStyle("medium", false)),
-        textField(context),
-      ],
+    return Padding(
+      padding: AppPaddings.componentPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          responsivenestext(
+              title ?? "", AppTextStyles.normalTextStyle("medium", false)),
+          textField(context),
+        ],
+      ),
     );
   }
 

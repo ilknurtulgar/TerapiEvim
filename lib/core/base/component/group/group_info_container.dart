@@ -43,8 +43,8 @@ class GroupInformationContainer extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Center(child: paddedText(groupName,AppPaddings.componentOnlyPadding(2),AppTextStyles.groupTextStyle(false))),
-        therapistColumn(mainTherapist, GroupTextUtil.gruopTherapist, () {/* ana psikolog sayfasına gitme fonksiyonu */},context),
-        therapistColumn(secondTherapist, GroupTextUtil.groupsecTherapist, () {/* yardımcı psikolog sayfasına gitme fonksiyonu */},context),
+        therapistColumn(GroupTextUtil.gruopTherapist,mainTherapist,() {/* ana psikolog sayfasına gitme fonksiyonu */},context),
+        therapistColumn(GroupTextUtil.groupsecTherapist,secondTherapist,() {/* yardımcı psikolog sayfasına gitme fonksiyonu */},context),
         Text(GroupTextUtil.participantNumber + numberOfParticipant.toString(),style: AppTextStyles.groupTextStyle(true)),
         paddedText(GroupTextUtil.sessionNumber + numberOfSession.toString(),AppPaddings.componentPadding,AppTextStyles.groupTextStyle(true)),
         joinButton(),
@@ -71,31 +71,19 @@ class GroupInformationContainer extends StatelessWidget {
   }
 
   Column therapistColumn(
-    CardModel therapist,
     String text,
+    CardModel therapist,
     Function() func,
     BuildContext context
   ) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(text, style: AppTextStyles.groupTextStyle(true)),
-        Row(
-          children: [
-            Align(
-              alignment: Alignment.centerLeft,
-              child: InkWell(
-                  onTap: func,
-                  child: participantContainer(
-                    therapist,
-                    SizeUtil.normalValueHeight,
-                    width: context.width1 < 338
-                        ? SizeUtil.mediumValueWidth-5
-                        : SizeUtil.largeValueWidth,
-                  )),
-            ),
-          ],
-        ),
+        Text(text,style: AppTextStyles.groupTextStyle(true)),
+        InkWell(
+            onTap: func,
+            child: participantContainer(therapist,SizeUtil.normalValueHeight,width: context.width1 < 338 ? SizeUtil.mediumValueWidth-5: SizeUtil.largeValueWidth,
+        )),
       ],
     );
   }

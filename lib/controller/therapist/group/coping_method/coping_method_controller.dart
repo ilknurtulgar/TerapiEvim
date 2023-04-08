@@ -69,7 +69,7 @@ class TCopingMethodsController extends GetxController with BaseController {
 
   ///TODO: there is an issue: length of 10 shouldn't be const. Yes it was for demo purpose
   ///TODO Now it should be updated to handle real groups
-  List<bool> isButtonOn = List<bool>.filled(10, false).obs;
+  late List<bool> isButtonOn = List<bool>.filled(otherGroups.length, false).obs;
 
   void switchButtonFunction(int index, bool value) {
     isButtonOn[index] = value;

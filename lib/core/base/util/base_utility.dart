@@ -411,7 +411,7 @@ class AppPaddings {
   static EdgeInsets profilePageBigPadding(
           bool isThereLeftPadding, bool isThereRightPadding) =>
       EdgeInsets.only(
-          top: 320,
+          top: 260,
           left: isThereLeftPadding ? 24 : 0,
           right: isThereRightPadding ? 24 : 0);
 
@@ -512,7 +512,7 @@ class NavigateUtil {
     TActivityView(),
     const TGroupView(),
     const TMessageView(),
-    const TProfileView(),
+    TProfileView(),
   ];
   static List<Widget> screen = <Widget>[
     const PHomeView(),
@@ -782,6 +782,14 @@ class DemoInformation {
   static int geciciKategoriSayisi = 5;
 
   static int tmpSessionNumber = 2;
+
+  static List<String> dateList = [
+    '07/05/2023',
+    '08/05/2023',
+    '09/05/2023',
+    '10/05/2023',
+    '11/05/2023'
+  ];
 
   // video call
   // group therapy call page,isolated call page,short call page

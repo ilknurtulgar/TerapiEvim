@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
-import '../../../../core/base/component/login/custom_textfield.dart';
+import '../../../../../core/base/component/login/custom_textfield.dart';
 import 'package:flutter/material.dart';
-import '../../../../core/base/ui_models/row_model.dart';
-import '../../../../core/base/util/base_utility.dart';
+import '../../../../../core/base/ui_models/row_model.dart';
+import '../../../../../core/base/util/base_utility.dart';
 
-class PTextfieldUtility {
+class TextFieldUtility {
   CustomTextField nameSurnameTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
@@ -43,7 +43,7 @@ class PTextfieldUtility {
           TextEditingController textController, bool isBig) =>
       CustomTextField(
           isOne: false,
-          title: "Email",
+          title: "E Posta",
           textController: textController,
           rowModel: RowModel(
               text2: "abcde@gmail.com",
@@ -62,7 +62,7 @@ class PTextfieldUtility {
       () => CustomTextField(
           isOne: false,
           obsecureText: isObscured.value,
-          title: "Şifreee",
+          title: "Şifre",
           maxLines: 1,
           textController: textController,
           rowModel: RowModel(
@@ -71,9 +71,12 @@ class PTextfieldUtility {
             isAlignmentBetween: false,
             leadingIcon: IconUtility.lockSmall,
             trailingIcon: IconButton(
-                icon: Icon(isObscured.value
-                    ? IconUtility.visibilityoffIcon.icon
-                    : IconUtility.visibilityIcon.icon),
+                icon: Obx(
+                  () => Icon(isObscured.value
+                      ? IconUtility.visibilityoffIcon.icon
+                      : IconUtility.visibilityIcon.icon,
+                     color: AppColors.black,),
+                ),
                 onPressed: () {
                   isObscured.value = !isObscured.value;
                 }),
@@ -87,6 +90,7 @@ class PTextfieldUtility {
           TextEditingController textController, bool isBig) =>
       CustomTextField(
           isOne: false,
+          title: 'Telefon Numarası',
           textController: textController,
           rowModel: RowModel(
               text: isBig ? 'Telefon Numaranız' : "",

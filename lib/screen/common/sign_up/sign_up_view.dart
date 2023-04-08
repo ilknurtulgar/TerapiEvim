@@ -9,7 +9,7 @@ import '../../../controller/auth/sign_up_controller.dart';
 import '../../../controller/main_controller.dart';
 import '../../../controller/therapist/profil/t_profile_controller.dart';
 import '../../../core/base/component/profile/acception_row.dart';
-import '../../participant/profile/util/p_textfield_utility.dart';
+import '../../../product/widget/common/profile/utility/textfield_utility.dart';
 
 class SignUpView extends StatefulWidget {
   const SignUpView({
@@ -38,7 +38,7 @@ class _SignUpViewState extends State<SignUpView> {
     super.dispose();
   }
 
-  PTextfieldUtility textfieldUtility = PTextfieldUtility();
+  TextFieldUtility textfieldUtility = TextFieldUtility();
 
   late List<Widget> textfieldList = [
     textfieldUtility.nameSurnameTextfield(

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/base/base_controller.dart';
-import 'package:terapievim/core/base/component/group/custom_list_wheel_scroll_view.dart';
-
 import '../../../core/base/component/group/scrollable_time.dart';
 import '../../../model/therapist/group/t_group_model.dart';
 import '../../../service/_therapist/group/i_t_group_service.dart';

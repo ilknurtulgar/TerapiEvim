@@ -13,12 +13,8 @@ import '../../../../core/extension/context_extension.dart';
 import '../../../../product/widget/common/profile/profile_back_button.dart';
 import '../../../../product/widget/common/profile/profile_settings_list.dart';
 import '../../../participant/profile/util/p_profile_view_utility.dart';
-import '../../group/groups_informations/t_profile_about_view.dart';
-
 part 'modules/animated_number_of_groups_row.dart';
-
 part 'modules/big_column.dart';
-
 part 'modules/special_column.dart';
 
 class TProfileSettingsView extends StatelessWidget {
@@ -36,15 +32,8 @@ class TProfileSettingsView extends StatelessWidget {
             child: Stack(
               children: [
                 PProfileViewUtility.backgroundOfTheView(),
-                PProfileViewUtility.profilePagePersonImage(
-                    controller.imageUrl, true, onPressed: () {
-                  controller.pickImage();
-                }),
-                ProfileBackIconButton(
-                  onTap: () {
-                    context.push(TProfileView(isSecTherapist: true));
-                  },
-                ),
+                PProfileViewUtility.profilePagePersonImage(controller.imageUrl, true, onPressed: () {controller.pickImage();}),
+                ProfileBackIconButton(onTap: () => Get.back(),),
                 _bigColumn(context, controller),
                 /*DemoInformation.isForParticipant == false
                   ? Positioned(

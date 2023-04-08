@@ -30,6 +30,21 @@ class FirestoreManager<E extends INetworkModel<E>?>
   final FirebaseFirestore _database = FirebaseFirestore.instance;
 
   @override
+  Future<String> createAUniqueId({required String collectionPath}) async {
+    try {
+      DocumentReference? documentReference =
+          _database.collection(collectionPath).doc();
+      return documentReference.id;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(),
+          stackTrace: StackTrace.current,
+          reason: 'createAUniqueId at firestoreManager');
+      rethrow;
+    }
+  }
+
+  @override
   Future<CreatedIdResponse?> create({
     required String collectionPath,
     required Map<String, dynamic> data,

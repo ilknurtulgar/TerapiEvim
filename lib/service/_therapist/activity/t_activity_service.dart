@@ -5,7 +5,6 @@ import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../core/managers/firebase/firestore/models/empty_model.dart';
-
 import '../../../model/common/activity/t_activity_model.dart';
 import 'i_t_activity_service.dart';
 
@@ -165,11 +164,11 @@ class TActivityService extends ITActivityService with BaseService {
       isDescending: isDescending,
       lastDocumentId: lastDocId,
     );
-    if (result.error != null) {
+    if (result.error != null || result.data == null) {
       return [];
     }
 
-    return result.data ?? [];
+    return result.data!;
   }
 
   @override

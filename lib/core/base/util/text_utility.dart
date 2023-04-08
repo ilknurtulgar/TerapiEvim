@@ -8,6 +8,8 @@ class GroupTextUtil {
   //lockscreen
   static const String lockScreenText =
       "Henüz Grubunuz Belli Olmadığı İçin Burası Kilitli";
+  static const String tlockScreenUnconformed =
+      "Belgenizin onaylanmasi icin beklemeniz gerekmektedir.";
 
   static const String lockScreenbuttonText = "Testi Cozmek Icin Tiklayiniz";
   static const String lockScreencheckedTestString =
@@ -223,11 +225,8 @@ class HomeTextUtil {
   static const myAvailableHours = "Müsaait Olduğum Saatler";
   static const String notification = "Bildirim";
   static const String reminder = "Hatirlatma";
-  static const String shortCall = "15 Dakikalik Seans";
-  static const String event = "Etkinlik";
+  static const String event = "Aktivite";
   static const String therapy = "Grup Terapisi";
-  static const String clientTwoDots = "Danisan: ";
-  static const String activityName = "Etkinlik Ismi:";
   static const String therapyNameTwoDots = "Grup:";
   static const String timeTwoDots = "Saat:";
   static const String welcome = "Hoşgeldiniz";

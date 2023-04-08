@@ -24,9 +24,10 @@ class UiBaseModel {
       textStyle: AppTextStyles.groupTextStyle(true));
 
 //AppTextStyles.normalTextStyle("medium", true),
-  static RowModel rowcontainer(bool isreminder) {
-    const trailing = Padding(
-      padding: EdgeInsets.only(left: 170.0),
+  static RowModel rowcontainer(bool isreminder, BuildContext context) {
+    double width = Responsive.width(150, context);
+    final trailing = Padding(
+      padding: EdgeInsets.only(left: width),
       child: IconUtility.forward,
     );
     return RowModel(

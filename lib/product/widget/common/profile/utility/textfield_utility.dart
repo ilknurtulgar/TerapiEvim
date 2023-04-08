@@ -43,7 +43,7 @@ class TextFieldUtility {
           TextEditingController textController, bool isBig) =>
       CustomTextField(
           isOne: false,
-          title: "Email",
+          title: "E Posta",
           textController: textController,
           rowModel: RowModel(
               text2: "abcde@gmail.com",
@@ -62,7 +62,7 @@ class TextFieldUtility {
       () => CustomTextField(
           isOne: false,
           obsecureText: isObscured.value,
-          title: "Şifreee",
+          title: "Şifre",
           maxLines: 1,
           textController: textController,
           rowModel: RowModel(
@@ -71,9 +71,12 @@ class TextFieldUtility {
             isAlignmentBetween: false,
             leadingIcon: IconUtility.lockSmall,
             trailingIcon: IconButton(
-                icon: Icon(isObscured.value
-                    ? IconUtility.visibilityoffIcon.icon
-                    : IconUtility.visibilityIcon.icon),
+                icon: Obx(
+                  () => Icon(isObscured.value
+                      ? IconUtility.visibilityoffIcon.icon
+                      : IconUtility.visibilityIcon.icon,
+                     color: AppColors.black,),
+                ),
                 onPressed: () {
                   isObscured.value = !isObscured.value;
                 }),
@@ -87,6 +90,7 @@ class TextFieldUtility {
           TextEditingController textController, bool isBig) =>
       CustomTextField(
           isOne: false,
+          title: 'Telefon Numarası',
           textController: textController,
           rowModel: RowModel(
               text: isBig ? 'Telefon Numaranız' : "",

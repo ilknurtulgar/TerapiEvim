@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
 
 import '../../../../controller/profile_settings_controller.dart';
 import '../../../../core/base/component/profile/column_drop_down.dart';
@@ -22,14 +23,7 @@ class ProfileSettingsList extends StatelessWidget {
         textFieldUtility.birthOfDateTextfield(
             profileController.birthdayController, false),
         //  ProfilePageUtility.genderDropDown(true, profileController.genderController),
-        ColumnDropDown(
-          isInProfilePage: true,
-          title: "Cinsiyet",
-          onValueSelected: (int index) {},
-          onDropDownTapped: () {},
-          selectedText: '',
-          textList: [],
-        ),
+        genderChoosing(),
         textFieldUtility.mailTextfield(
             profileController.emailController, false),
         textFieldUtility.passwordTextfield(
@@ -38,5 +32,19 @@ class ProfileSettingsList extends StatelessWidget {
             profileController.phoneNumberController, false),
       ],
     );
+  }
+
+  Padding genderChoosing() {
+    return Padding(
+        padding: AppPaddings.componentPadding,
+        child: ColumnDropDown(
+          isInProfilePage: true,
+          title: "Cinsiyet",
+          onValueSelected: (int index) {},
+          onDropDownTapped: () {},
+          selectedText: '',
+          textList: [],
+        ),
+      );
   }
 }

@@ -37,16 +37,19 @@ class CustomTextField extends StatelessWidget {
     return isOne ? textField(context) : columnTextField(context);
   }
 
-  Column columnTextField(
+  Padding columnTextField(
     BuildContext context,
   ) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        responsivenestext(
-            title ?? "", AppTextStyles.normalTextStyle("medium", false)),
-        textField(context),
-      ],
+    return Padding(
+      padding: AppPaddings.componentPadding,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          responsivenestext(
+              title ?? "", AppTextStyles.normalTextStyle("medium", false)),
+          textField(context),
+        ],
+      ),
     );
   }
 

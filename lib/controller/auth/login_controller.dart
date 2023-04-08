@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/main_controller.dart';
+
 import '../../core/base/component/toast/toast.dart';
+import '../../core/constants/app_const.dart';
+import '../../model/participant/_initial_data/p_initial_data.dart';
 import '../../model/common/login/login_model.dart';
 import '../../model/common/login/login_response_model.dart';
 import '../../product/enum/local_keys_enum.dart';
-
 import '../../service/auth/auth_service.dart';
 import '../../service/auth/i_auth_service.dart';
 import '../base/base_controller.dart';
@@ -47,31 +49,68 @@ class LoginController extends GetxController with BaseController {
   }
 
   Future<void> loginWithEmail() async {
-    final isValidated = _validateLogin();
+    try {
+      final isValidated = _validateLogin();
 
-    if (isValidated == false) {
-      return;
+      if (isValidated == false) {
+        return;
+      }
+
+      isLoading.value = true;
+
+      final LoginResponseModel? loginResponse =
+          await authService.signInWithEmail(
+        LoginModel(
+          email: emailController.text.trim(),
+          password: passwordController.text.trim(),
+        ),
+      );
+
+      isLoading.value = false;
+
+      if (loginResponse == null) return;
+
+      if (loginResponse.role == null) {
+        throw Exception('loginResponse.role == null');
+      }
+
+      /// Fetch initial data of a particular user and save to cache
+      /// Roles: therapist and participant
+      if (loginResponse.role == AppConst.therapist) {
+        await _initialDataOfTherapist();
+      } else if (loginResponse.role == AppConst.participant) {
+        await _fetchInitialDataOfParticipant();
+      }
+
+      await saveToLocalData(loginResponse);
+
+      MainController mainController = Get.find();
+      mainController.updateWhoItIs(loginResponse.role!);
+      AuthController authController = Get.find();
+      authController.isLogged.value = true;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(), stackTrace: StackTrace.current, reason: '');
+      rethrow;
     }
+  }
 
-    isLoading.value = true;
+  Future<void> _initialDataOfTherapist() async {
+    // final InitialDataOfTherapistModel? initialDataOfTherapist =
+    //     await authService.fetchInitialDataOfTherapist();
 
-    final LoginResponseModel? loginResponse = await authService.signInWithEmail(
-      LoginModel(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim(),
-      ),
-    );
+    ///TODO: save initial Data to cache
+  }
 
-    isLoading.value = false;
+  Future<void> _fetchInitialDataOfParticipant() async {
+    final PInitialData? initialDataOfParticipantModel =
+        await authService.fetchInitialDataOfParticipant();
 
-    if (loginResponse == null) return;
+    /// Save joinedGroupId of a participant
+    localManager.setStringValue(LocalManagerKeys.role,
+        initialDataOfParticipantModel?.joinedGroupId ?? '');
 
-    await saveToLocalData(loginResponse);
-
-    MainController mainController = Get.find();
-    mainController.updateWhoItIs(loginResponse.role!);
-    AuthController authController = Get.find();
-    authController.isLogged.value = true;
+    ///TODO: save initial Data to cache
   }
 
   Future<void> saveToLocalData(LoginResponseModel loginResponse) async {

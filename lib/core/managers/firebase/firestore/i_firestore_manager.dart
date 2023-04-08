@@ -6,6 +6,8 @@ import 'models/created_id_response.dart';
 abstract class IFirestoreManager<E extends INetworkModel<E>?> {
   final CrashlyticsManager crashlyticsManager = CrashlyticsManager.instance;
 
+  Future<String> createAUniqueId({required String collectionPath});
+
   Future<CreatedIdResponse?> create({
     required String collectionPath,
     required Map<String, dynamic> data,

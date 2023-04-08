@@ -6,10 +6,10 @@ part 't_initial_data.g.dart';
 
 @JsonSerializable()
 class TInitialData extends INetworkModel<TInitialData> {
-  String? aboutMe;
+  bool? isTherapistConfirmed;
 
   TInitialData({
-    this.aboutMe,
+    this.isTherapistConfirmed,
   });
 
   @override

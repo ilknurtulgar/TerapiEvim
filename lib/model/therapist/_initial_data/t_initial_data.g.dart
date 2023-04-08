@@ -7,10 +7,10 @@ part of 't_initial_data.dart';
 // **************************************************************************
 
 TInitialData _$TInitialDataFromJson(Map<String, dynamic> json) => TInitialData(
-      aboutMe: json['aboutMe'] as String?,
+      isTherapistConfirmed: json['isTherapistConfirmed'] as bool?,
     );
 
 Map<String, dynamic> _$TInitialDataToJson(TInitialData instance) =>
     <String, dynamic>{
-      'aboutMe': instance.aboutMe,
+      'isTherapistConfirmed': instance.isTherapistConfirmed,
     };

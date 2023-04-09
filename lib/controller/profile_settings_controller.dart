@@ -13,7 +13,7 @@ import '../service/profile/i_profile_settings_service.dart';
 import '../service/profile/profile_settings_service.dart';
 import 'base/base_controller.dart';
 
-abstract class IProfileController extends GetxController with BaseController {
+abstract class IProfileSettingsController extends GetxController with BaseController {
   final PickerManager pickerManager = PickerManager.instance;
 
   @override

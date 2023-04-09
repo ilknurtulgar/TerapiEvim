@@ -11,7 +11,7 @@ class PInitialData extends INetworkModel<PInitialData> {
 
   /// The category is defined by a therapist in a session
   String? groupCategory;
-  bool? isTessPassed;
+  bool? isScl90Submitted;
 
   /// It will be completed after participant has a session with therapist
   bool? isSessionComplete;
@@ -19,6 +19,9 @@ class PInitialData extends INetworkModel<PInitialData> {
   PInitialData({
     this.joinedGroupId,
     this.isJoinedGroupLocked,
+    this.groupCategory,
+    this.isScl90Submitted,
+    this.isSessionComplete,
   });
 
   @override

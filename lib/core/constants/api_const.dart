@@ -2,6 +2,7 @@ class APIConst {
   static const String baseUrl = '';
   static const String users = 'users';
   static const String activities = 'activities';
+  static const String scl90 = 'scl90';
   static const String freeDates = 'freeDates';
   static const String sessions = 'sessions';
   static const String tConfirmation = 'tConfirmation';

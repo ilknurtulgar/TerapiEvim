@@ -72,7 +72,6 @@ class ProfileViewListView extends StatelessWidget {
               ? IconUtility.windowsIcon.icon!
               : IconUtility.clockIcon.icon!,
       purpose: isForMethod ? ContainerPurpose.method : ContainerPurpose.seminar,
-      isThereButton: true,
       buttonText: isForParticipant
           ? isForMethod
               ? ParticipantProfileTextUtil.readAgain
@@ -80,6 +79,7 @@ class ProfileViewListView extends StatelessWidget {
           : isForMethod
               ? TherapistProfileTextUtil.view
               : TherapistProfileTextUtil.watch,
+      firstOnTap: (){},
     );
   }
 }

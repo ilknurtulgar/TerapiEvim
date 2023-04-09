@@ -13,7 +13,7 @@ import '../service/profile/i_profile_settings_service.dart';
 import '../service/profile/profile_settings_service.dart';
 import 'base/base_controller.dart';
 
-abstract class IProfileController extends GetxController with BaseController {
+abstract class IProfileSettingsController extends GetxController with BaseController {
   final PickerManager pickerManager = PickerManager.instance;
 
   @override
@@ -51,9 +51,8 @@ abstract class IProfileController extends GetxController with BaseController {
   String gender = '';
   String email =
       ''; // updateEmail fonksiyonu yoktu fonksiyon gelince update edilecek
-  String password =
-      ''; // şifre cache ile ilgili bir durumdan dolayı şimdilik update edilmedi
-  String phoneNumber = ''; // PhoneNumberModel parametresi gender olarak kalmış
+  String password = '';
+  String phoneNumber = '';
 
   TextEditingController nameController = TextEditingController();
   TextEditingController birthdayController = TextEditingController();

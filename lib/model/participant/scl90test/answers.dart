@@ -1,10 +1,11 @@
-import 'package:vexana/vexana.dart';
-import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../core/managers/firebase/firestore/interface/i_network_model.dart';
+
 part 'answers.g.dart';
 
 @JsonSerializable()
-class Answers extends INetworkModel<Answers> with EquatableMixin {
+class Answers extends INetworkModel<Answers> {
   int? id;
   int? response;
 
@@ -21,17 +22,4 @@ class Answers extends INetworkModel<Answers> with EquatableMixin {
 
   @override
   Map<String, dynamic>? toJson() => _$AnswersToJson(this);
-
-  @override
-  List<Object?> get props => [id, response];
-
-  Answers copyWith({
-    int? id,
-    int? response,
-  }) {
-    return Answers(
-      id: id ?? this.id,
-      response: response ?? this.response,
-    );
-  }
 }

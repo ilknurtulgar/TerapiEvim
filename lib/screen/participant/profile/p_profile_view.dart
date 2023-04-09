@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/profile/custom_list_view.dart';
-import 'package:terapievim/core/base/util/base_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/core/base/ui_models/group_model.dart';
-import 'package:terapievim/screen/participant/profile/p_last_review_view.dart';
+
 import '../../../controller/participant/profil/p_profile_controller.dart';
 import '../../../core/base/component/group/group.dart';
 import '../../../core/base/component/group/row_view.dart';
+import '../../../core/base/component/profile/custom_list_view.dart';
+import '../../../core/base/ui_models/group_model.dart';
+import '../../../core/base/util/base_model.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
+import '../../../core/extension/context_extension.dart';
 import '../../therapist/profile/t_profile_view.dart';
-import 'util/p_profile_view_utility.dart';
 import 'p_attended_seminars_view.dart';
+import 'p_last_review_view.dart';
+import 'util/p_profile_view_utility.dart';
 
 class PProfileView extends StatelessWidget {
   const PProfileView({super.key});
@@ -47,7 +48,8 @@ class PProfileView extends StatelessWidget {
                         participantGroupColumn(),
                         mediumSizedBox(),
                         UiBaseModel.boldMainTitleRowView(
-                            ParticipantProfileTextUtil.lastRead,MainTitles.methods,() {
+                            ParticipantProfileTextUtil.lastRead,
+                            MainTitles.methods, () {
                           context.push(const PLastReviewView());
                         }),
                         ProfileViewListView(
@@ -105,7 +107,8 @@ class PProfileView extends StatelessWidget {
       width: SizeUtil.highestValueWidth,
       isBorderPurple: true,
       heading: DemoInformation.groupInformation.groupName,
-      onTap: () {}, // navigate to group page
+      onTap: () {},
+      // navigate to group page
       row1: UiBaseModel.doubleTextRow(ParticipantProfileTextUtil.mainTherpist,
           DemoInformation.groupInformation.mainTherapistName, true),
       row2: UiBaseModel.doubleTextRow(ParticipantProfileTextUtil.advisor,
@@ -123,8 +126,12 @@ class PProfileView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          responsivenestext(controller.name,AppTextStyles.normalTextStyle('big', false),),
-          responsivenestext(controller.birthday,AppTextStyles.normalTextStyle('medium', false)),
+          responsivenestext(
+            controller.name,
+            AppTextStyles.normalTextStyle('big', false),
+          ),
+          responsivenestext(controller.birthday,
+              AppTextStyles.normalTextStyle('medium', false)),
         ],
       ),
     );

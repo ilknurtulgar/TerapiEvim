@@ -7,7 +7,6 @@ import 'package:terapievim/screen/common/sign_in/util/sign_in_view_utility.dart'
 
 import '../../../controller/auth/sign_up_controller.dart';
 import '../../../controller/main_controller.dart';
-import '../../../controller/therapist/profil/t_profile_controller.dart';
 import '../../../core/base/component/profile/acception_row.dart';
 import '../../../product/widget/common/profile/utility/textfield_utility.dart';
 
@@ -22,7 +21,6 @@ class SignUpView extends StatefulWidget {
 
 class _SignUpViewState extends State<SignUpView> {
   late final SignUpController _signUpController;
-  final TProfileController profileController = Get.find();
   MainController mainController = Get.find();
 
   @override
@@ -58,6 +56,11 @@ class _SignUpViewState extends State<SignUpView> {
   late final String _userRole =
       mainController.isTherapist.value ? "therapist" : "participant";
 
+  void acceptTermOfUse(SignUpController controller) {
+    controller.isTermsOfUseAccepted.value =
+        !controller.isTermsOfUseAccepted.value;
+  }
+
   ///TODO: use gender controller
 
   @override
@@ -76,7 +79,7 @@ class _SignUpViewState extends State<SignUpView> {
                   mediumSizedBox(),
                   Obx(
                     () => mainController.isTherapist.value
-                        ? acceptMakingShortCallContainer()
+                        ? acceptMakingShortCallContainer(_signUpController)
                         : const SizedBox(),
                   ),
                   SignInViewUtility.button(
@@ -111,7 +114,7 @@ class _SignUpViewState extends State<SignUpView> {
     );
   }
 
-  Widget acceptMakingShortCallContainer() {
+  Widget acceptMakingShortCallContainer(SignUpController controller) {
     return Padding(
       padding: AppPaddings.componentOnlyPadding(2),
       child: Container(
@@ -125,9 +128,9 @@ class _SignUpViewState extends State<SignUpView> {
               child: Obx(
                 () => AcceptionRow(
                   isForMakingShortCall: true,
-                  acceptionFunction: () => profileController.acceptionFunction(true),
-                  value: profileController.isMakingShortCallAccepted.value,
-                  ),
+                  acceptionFunction: () => acceptTermOfUse(controller),
+                  value: controller.isTermsOfUseAccepted.value,
+                ),
               ),
             )),
       ),

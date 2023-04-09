@@ -11,6 +11,7 @@ class TGroupModel extends INetworkModel<TGroupModel> {
   String? id;
   String? therapistId;
   String? name;
+  String? groupCategory;
   String? therapistHelperId;
   String? therapistHelperName;
   bool? hasHelperTherapistAccepted;
@@ -26,6 +27,7 @@ class TGroupModel extends INetworkModel<TGroupModel> {
 
   TGroupModel({
     this.id,
+    this.groupCategory,
     this.therapistId,
     this.name,
     this.therapistHelperId,

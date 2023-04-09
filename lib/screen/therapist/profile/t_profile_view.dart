@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist/profil/t_profile_controller.dart';
-import 'package:terapievim/core/base/view/base_view.dart';
-import 'package:terapievim/screen/therapist/profile/settings/t_settings_view.dart';
-import 'package:terapievim/screen/therapist/profile/t_dealing_method_view.dart';
 import '../../../controller/main_controller.dart';
+import '../../../controller/therapist/profil/t_profile_controller.dart';
 import '../../../core/base/component/profile/custom_list_view.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
+import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
+import 'settings/t_settings_view.dart';
 import 't_attended_seminar_view.dart';
 import '../../participant/profile/util/p_profile_view_utility.dart';
+import 't_dealing_method_view.dart';
 
 // ignore: must_be_immutable
 class TProfileView extends StatelessWidget {
@@ -40,10 +40,11 @@ class TProfileView extends StatelessWidget {
                   Padding(
                     padding: AppPaddings.profilePageBigPadding(true, false),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         therapistName(controller),
                         mediumSizedBox(),
-                        aboutMeColumn(),
+                        aboutMeColumn(controller),
                         UiBaseModel.boldMainTitleRowView(
                             TherapistProfileTextUtil.myGroups,MainTitles.groups, () => mainController.onPageChanged(2)),
                         ProfileViewListView(
@@ -99,7 +100,7 @@ class TProfileView extends StatelessWidget {
     );
   }
 
-  Widget aboutMeColumn() {
+  Widget aboutMeColumn(TProfileController controller) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,12 +110,12 @@ class TProfileView extends StatelessWidget {
           AppTextStyles.profileTextStyles(false, true),
         ),
         mediumSizedBox(),
-        aboutMeContainer(),
+        aboutMeContainer(controller),
       ],
     );
   }
 
-  Widget aboutMeContainer() {
+  Widget aboutMeContainer(TProfileController controller) {
     return Padding(
       padding: AppPaddings.componentOnlyPadding(3),
       child: Container(
@@ -122,7 +123,7 @@ class TProfileView extends StatelessWidget {
         child: Padding(
           padding: AppPaddings.customContainerInsidePadding(3),
           child: Text(
-            DemoInformation.aboutMeController.text,
+            controller.aboutMe.value,
             style: AppTextStyles.normalTextStyle('medium', false),
           ),
         ),

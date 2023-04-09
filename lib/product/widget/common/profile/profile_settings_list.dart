@@ -7,7 +7,7 @@ import 'utility/textfield_utility.dart';
 
 class ProfileSettingsList extends StatelessWidget {
   ProfileSettingsList({Key? key, required this.profileController}) : super(key: key);
-  final IProfileController profileController;
+  final IProfileSettingsController profileController;
 
   @override
   Widget build(BuildContext context) {

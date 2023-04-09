@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../controller/participant/profil/p_profile_controller.dart';
+import '../../../controller/participant/profil/p_profile_settings_controller.dart';
 import '../../../core/base/component/buttons/save_button.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/view/base_view.dart';
@@ -18,8 +18,8 @@ class PProfileSettingsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<PProfileController>(
-      getController: PProfileController(),
+    return BaseView<PProfileSettingsController>(
+      getController: PProfileSettingsController(),
       onPageBuilder: (context, controller) => Scaffold(
         backgroundColor: AppColors.blueChalk,
         body: SingleChildScrollView(

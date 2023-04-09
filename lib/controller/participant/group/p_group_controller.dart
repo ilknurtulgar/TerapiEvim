@@ -5,6 +5,7 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 
 class PGroupController extends GetxController {
   var isTrue = true.obs;
+  //TODO: extract choice from controller
   late List<Widget> choice = <Widget>[
     Column(
       children: [

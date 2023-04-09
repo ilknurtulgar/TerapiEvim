@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../controller/therapist/settings/t_settings_controller.dart';
+import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/group/row_view.dart';
 import '../../../../core/base/ui_models/row_model.dart';
 import '../../../../core/base/util/base_utility.dart';
@@ -21,13 +22,15 @@ class TSettingsView extends StatelessWidget {
       getController: TSettingsController(),
       onModelReady: (model) {},
       onPageBuilder: (context, controller) => Scaffold(
+        appBar: MyAppBar(
+          title: ProfileSettingsTextUtil.settings,
+        ),
         body: SafeArea(
             child: Padding(
           padding: AppPaddings.pagePadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              appBar(),
               accountRow(context),
               notificationRow(controller),
               textButton(ProfileSettingsTextUtil.deleteAccount, () {
@@ -41,15 +44,6 @@ class TSettingsView extends StatelessWidget {
         )),
       ),
     );
-  }
-
-  Widget appBar() {
-    return rowView(
-        RowModel(
-            text: ProfileSettingsTextUtil.settings,
-            textStyle: AppTextStyles.heading(false),
-            isAlignmentBetween: true),
-        AppPaddings.appBarPadding);
   }
 
   InkWell accountRow(BuildContext context) {

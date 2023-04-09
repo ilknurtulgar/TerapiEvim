@@ -265,7 +265,7 @@ class AppTextStyles {
   static TextStyle activityTextStyles() => TextStyle(
         fontFamily: 'Roboto',
         fontWeight: FontWeight.w400,
-        color: AppColors.deepCove,
+        color: AppColors.meteorite,
         fontSize: 22,
       );
 }

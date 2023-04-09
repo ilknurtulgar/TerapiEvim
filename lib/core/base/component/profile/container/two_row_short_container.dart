@@ -12,37 +12,39 @@ class TwoRowShortContainer extends StatelessWidget {
     required this.firstIconData,
     required this.secondIconData,
     this.buttonText,
+    this.firstOnTap,
+    this.secondOnTap,
     required this.purpose,
-    required this.isThereButton,
   });
   final String row1Text;
   final String row2Text;
   final IconData firstIconData;
   final IconData secondIconData;
   final String? buttonText;
+  final Function()? firstOnTap;
+  final Function()? secondOnTap;
   final ContainerPurpose purpose;
-  final bool isThereButton;
-  
+
   @override
   Widget build(BuildContext context) {
     return Padding(
         //left right 24 verince oluyor
-        padding: isThereButton
+        padding: purpose != ContainerPurpose.date
             ? AppPaddings.horizontalListViewPadding(3)
             : AppPaddings.componentPadding,
         child: Material(
           elevation: 5,
-          shadowColor: isThereButton == true
+          shadowColor: purpose != ContainerPurpose.date
               ? AppColors.cornFlowerBlue
               : AppColors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
           ),
           child: Container(
-            height: isThereButton
-                ? SizeUtil.doubleNormalValueHeight
-                : SizeUtil.doubleSmallValueHeight,
-            width: isThereButton ? SizeUtil.hugeValueWidth : SizeUtil.generalWidth,
+            height: SizeUtil.doubleNormalValueHeight,
+            width: purpose != ContainerPurpose.date
+                ? SizeUtil.hugeValueWidth
+                : SizeUtil.generalWidth,
             decoration: containerDecoration(), //
             child: Padding(
               padding: AppPaddings.customContainerInsidePadding(1),
@@ -52,7 +54,18 @@ class TwoRowShortContainer extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
                     rowViewColumn(),
-                    isThereButton ? button() : const SizedBox()
+                    purpose != ContainerPurpose.date
+                        ? button(buttonText!,true,firstOnTap!)
+                        : const SizedBox(),
+                    purpose == ContainerPurpose.date
+                        ? Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              button('Test Sonucu',false,firstOnTap!),
+                              button('Katıl', true,secondOnTap!),
+                            ],
+                          )
+                        : const SizedBox()
                   ]),
             ),
           ),
@@ -74,7 +87,7 @@ class TwoRowShortContainer extends StatelessWidget {
         borderRadius: AppBorderRadius.generalBorderRadius,
         color: AppColors.white,
         border: Border.all(
-            color: isThereButton == true 
+            color: purpose != ContainerPurpose.date
                 ? AppColors.cornFlowerBlue
                 : Colors.grey.withOpacity(0.50),
             width: 1));
@@ -96,21 +109,24 @@ class TwoRowShortContainer extends StatelessWidget {
             ? UiBaseModel.normalTextRow(row1Text, firstIconData,
                 AppTextStyles.profileTextStyles(false, true))
             : UiBaseModel.doubleTextRow('Danışan: ', row1Text, false),
-        isThereButton
+        purpose != ContainerPurpose.date
             ? EdgeInsets.zero
             : AppPaddings.componentOnlyPadding(1));
   }
 
-  Widget button() {
+  Widget button(String buttonText,bool isDarkPurpleColor,Function() onTap) {
     return CustomButton(
         textColor: AppColors.white,
-        container: AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
-        onTap: () {}, // izle ya da dosyayı oku fonksiyonu
-        text: buttonText ?? "");
+        container: isDarkPurpleColor
+            ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)
+            : AppContainers.lightPurpleButtonContainer(
+                SizeUtil.normalValueWidth,false),
+        onTap: onTap, // izle ya da dosyayı oku fonksiyonu
+        text: buttonText);
   }
 }
 
-enum ContainerPurpose{
+enum ContainerPurpose {
   method,
   seminar,
   date,

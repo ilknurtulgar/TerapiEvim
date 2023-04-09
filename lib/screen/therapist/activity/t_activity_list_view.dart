@@ -5,6 +5,8 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 import 'package:terapievim/product/widget/common/activity/search.dart';
 
+import '../../../core/base/util/text_utility.dart';
+import '../../../product/widget/common/activity/activity_boxes.dart';
 import '../../../product/widget/t_activity/t_sliver_type_widget.dart';
 
 class TActivityListView extends StatelessWidget {
@@ -20,6 +22,16 @@ class TActivityListView extends StatelessWidget {
           body: Padding(
             padding: AppPaddings.pagePadding,
             child: SliverType(
+              childCount: 5,
+              arrowOnTap: () {},
+              sLiverListWidget: activitythreerowbox(
+                () {},
+                () {},
+                DemoInformation.arowmodel,
+                DemoInformation.clockmodel,
+                ActivityTextUtil.join,
+                DemoInformation.ayrowmodel,
+              ),
               activityType: ActivityType.activity,
             ),
           ),

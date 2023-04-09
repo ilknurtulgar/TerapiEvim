@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 
 import '../../../../controller/therapist/group/t_group_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
-import '../../../../core/base/component/group/custom_heading.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/extension/context_extension.dart';
@@ -16,17 +16,13 @@ class TUploadConfirmView extends StatelessWidget {
   Widget build(BuildContext context) {
     TGroupController controller = Get.find();
     return Scaffold(
+      appBar: MyAppBar(title: GroupTextUtil.confirmingText),
       body: SafeArea(
           child: Padding(
         padding: AppPaddings.pagePadding,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            CustomHeading(
-              text: GroupTextUtil.confirmingText,
-              isalignmentstart: false,
-              padding: AppPaddings.appBarPadding,
-            ),
             Container(
               padding: AppPaddings.appBarPadding,
               width: SizeUtil.generalWidth,

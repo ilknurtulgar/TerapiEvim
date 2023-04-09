@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
-import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/controller/participant/group/p_test_questions_controller.dart';
 import 'package:terapievim/core/base/component/group/questions_button.dart';
@@ -34,6 +34,9 @@ class ViewsForSCL extends StatelessWidget {
       getController: PTestQuestionsController(),
       onModelReady: (model) => model.setContext(context),
       onPageBuilder: (context, controller) => Scaffold(
+        appBar: MyAppBar(
+          title: GroupTextUtil.testHeading,
+        ),
         body: SingleChildScrollView(
           padding: AppPaddings.appBarPadding,
           child: Obx(
@@ -41,10 +44,6 @@ class ViewsForSCL extends StatelessWidget {
               padding: AppPaddings.pagePadding,
               child: Column(
                 children: [
-                  const CustomHeading(
-                    text: GroupTextUtil.testHeading,
-                    isalignmentstart: false,
-                  ),
                   controller.testPageIndex.value == 0
                       ? const PurpleTextContainer(
                           text: GroupTextUtil.testDefinition)

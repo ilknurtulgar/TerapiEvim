@@ -7,11 +7,11 @@ import '../../core/constants/utils/text_constants/error_text_const.dart';
 import '../../core/init/network/model/error_model_custom.dart';
 import '../../core/init/print_dev.dart';
 import '../../core/managers/firebase/firestore/i_firestore_manager.dart';
-import '../../model/participant/_initial_data/p_initial_data.dart';
-import '../../model/therapist/_initial_data/t_initial_data.dart';
 import '../../model/common/login/login_model.dart';
 import '../../model/common/login/login_response_model.dart';
 import '../../model/common/signup/sign_up_model.dart';
+import '../../model/participant/_initial_data/p_initial_data.dart';
+import '../../model/therapist/_initial_data/t_initial_data.dart';
 import 'i_auth_service.dart';
 
 class AuthService extends IAuthService with BaseService {
@@ -76,6 +76,8 @@ class AuthService extends IAuthService with BaseService {
         throw Exception('result.user is null in auth_service/signUpWithEmail');
       }
 
+      signUpModel.id = result.user!.uid;
+
       final bool isSuccess = await manager.createWithDocId(
           collectionPath: APIConst.users,
           docId: result.user!.uid,
@@ -120,8 +122,7 @@ class AuthService extends IAuthService with BaseService {
     try {
       if (userId == null) return null;
 
-      final result = await manager.readOne<PInitialData,
-          PInitialData>(
+      final result = await manager.readOne<PInitialData, PInitialData>(
         collectionPath: APIConst.participant,
         docId: userId!,
         parseModel: PInitialData(),
@@ -146,8 +147,7 @@ class AuthService extends IAuthService with BaseService {
     try {
       if (userId == null) return null;
 
-      final result = await manager
-          .readOne<TInitialData, TInitialData>(
+      final result = await manager.readOne<TInitialData, TInitialData>(
         collectionPath: APIConst.therapist,
         docId: userId!,
         parseModel: TInitialData(),

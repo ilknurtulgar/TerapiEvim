@@ -7,7 +7,7 @@ import 'package:terapievim/screen/common/sign_in/util/sign_in_view_utility.dart'
 
 import '../../../controller/auth/sign_up_controller.dart';
 import '../../../controller/main_controller.dart';
-import '../../../controller/therapist/profil/t_profile_controller.dart';
+import '../../../controller/therapist/profil/t_profile_settings_controller.dart';
 import '../../../core/base/component/profile/acception_row.dart';
 import '../../../product/widget/common/profile/utility/textfield_utility.dart';
 
@@ -22,7 +22,7 @@ class SignUpView extends StatefulWidget {
 
 class _SignUpViewState extends State<SignUpView> {
   late final SignUpController _signUpController;
-  final TProfileController profileController = Get.find();
+  final TProfileSettingsController profileController = Get.find();
   MainController mainController = Get.find();
 
   @override

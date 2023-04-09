@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 
 import '../../../controller/participant/coping_method/p_coping_method_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
@@ -27,13 +28,27 @@ class PCopingMethodsView extends StatelessWidget {
                         children: [sizedBox(), CopingListView()],
                       ),
                     ),
-                    // Positioned(top: 80, right: 24, child: orderdropdown()),
+                    Positioned(right: 24, child: _orderdrop(controller)),
                   ],
                 ),
               ),
             ),
           );
         });
+  }
+
+  CustomDropDown _orderdrop(PCopingMethodsController controller) {
+    return CustomDropDown(
+      width: SizeUtil.normalValueWidth,
+      height: SizeUtil.smallValueHeight,
+      selectedText: controller.orderValue,
+      textList: DemoInformation.orderingList,
+      isBoxSelected: controller.isBoxSelected,
+      onDropDownTapped: () {
+        controller.setIsBoxSelected();
+      },
+      onValueSelected: (p0) {},
+    );
   }
 }
 

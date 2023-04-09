@@ -89,6 +89,6 @@ OutlineInputBorder bordercolor(bool isBig) {
         color: isBig
             ? BorderColorUtil.textfieldBorderColor
             : BorderColorUtil.generalBorderColor,
-        width: 1,
+        width: 2,
       ));
 }

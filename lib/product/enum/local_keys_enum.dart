@@ -8,4 +8,5 @@ enum LocalManagerKeys {
   email, // String
   phone, // String
   imageUrl, // String
+  isTermsOfUseAccepted // bool
 }

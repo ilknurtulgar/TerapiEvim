@@ -14,6 +14,7 @@ class CustomTextField extends StatelessWidget {
     this.obsecureText,
     this.prefixText,
     this.maxLines,
+    this.onTap,
   }) : super(key: key);
 
   final RowModel? rowModel;
@@ -22,6 +23,7 @@ class CustomTextField extends StatelessWidget {
   final bool isRowModel;
   final String? prefixText;
   final String? title;
+  final Function()? onTap;
 
   final bool isOne;
   final bool? obsecureText;
@@ -62,6 +64,8 @@ class CustomTextField extends StatelessWidget {
         obscureText: obsecureText ?? false,
         textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.center,
+        readOnly: onTap != null ? true : false,
+        onTap: onTap,
         decoration: InputDecoration(
           contentPadding:
               isBig ? const EdgeInsets.all(17) : AppPaddings.contentPadding,

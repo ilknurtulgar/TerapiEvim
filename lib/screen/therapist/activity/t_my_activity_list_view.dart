@@ -4,6 +4,9 @@ import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 import 'package:terapievim/product/widget/t_activity/t_sliver_type_widget.dart';
 
+import '../../../core/base/component/group/group_box.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/util/text_utility.dart';
 import '../../../product/widget/common/activity/search.dart';
 
 class TMyActivityListView extends StatelessWidget {
@@ -15,10 +18,23 @@ class TMyActivityListView extends StatelessWidget {
       getController: TMyActivityListViewController(),
       onPageBuilder: (context, value) {
         return Scaffold(
-            appBar: Search(
-              rowModel: UiBaseModel.searchRow(),
-            ),
-            body: SliverType(activityType: ActivityType.myactivity));
+          appBar: Search(
+            rowModel: UiBaseModel.searchRow(),
+          ),
+          body: SliverType(
+            childCount: 5,
+            activityType: ActivityType.myactivity,
+            sLiverListWidget: ActivityBox(
+                onButtonTap: () {},
+                istwobutton: false,
+                buttonText: ActivityTextUtil.watchTheRecording,
+                containerModel: AppContainers.containerButton(true),
+                isactivity: true,
+                arowModel: DemoInformation.arowmodel,
+                clockModel: DemoInformation.clockmodel),
+            arrowOnTap: () {},
+          ),
+        );
       },
     );
   }

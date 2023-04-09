@@ -2,6 +2,7 @@ enum LocalManagerKeys {
   userId, // String
   role, // String
   name, // String
+  aboutMe, // String
   birthDate, // String
   gender, // String
   email, // String

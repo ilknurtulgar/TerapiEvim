@@ -6,19 +6,17 @@ import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist/group/t_group_controller.dart';
-import 'package:terapievim/screen/common/sign_in/sign_in_view.dart';
 
 import 'controller/auth/auth_controller.dart';
 import 'controller/participant/group/p_group_controller.dart';
 import 'controller/main_controller.dart';
-import 'controller/participant/profil/p_profile_controller.dart';
-import 'controller/therapist/profil/t_profile_controller.dart';
+import 'controller/therapist/group/t_group_controller.dart';
 import 'controller/video_call_controller.dart';
 import 'core/base/util/base_utility.dart';
 import 'core/init/cache/local_manager.dart';
 import 'core/init/config/config.dart';
 import 'screen/common/home/main_home.dart';
+import 'screen/common/sign_in/sign_in_view.dart';
 import 'service/firebase_options.dart';
 
 void main() async {

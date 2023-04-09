@@ -3,7 +3,7 @@ part of '../t_profile_settings_view.dart';
 Widget specialColumn(
   BuildContext context,
 ) {
-  TProfileController therapistProfileController = Get.find();
+  TProfileSettingsController therapistProfileController = Get.find();
   return SizedBox(
     width: context.width1,
     child: Column(

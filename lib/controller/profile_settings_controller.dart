@@ -51,9 +51,8 @@ abstract class IProfileSettingsController extends GetxController with BaseContro
   String gender = '';
   String email =
       ''; // updateEmail fonksiyonu yoktu fonksiyon gelince update edilecek
-  String password =
-      ''; // şifre cache ile ilgili bir durumdan dolayı şimdilik update edilmedi
-  String phoneNumber = ''; // PhoneNumberModel parametresi gender olarak kalmış
+  String password = '';
+  String phoneNumber = '';
 
   TextEditingController nameController = TextEditingController();
   TextEditingController birthdayController = TextEditingController();

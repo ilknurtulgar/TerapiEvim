@@ -87,13 +87,15 @@ class SignUpController extends GetxController with BaseController {
   }
 
   Future<void> signUpWithEmail(BuildContext context, String userRole) async {
+
+    _userRole = userRole;
+
     final bool isValidated = _validateSignUp();
     if (isValidated == false) {
       return;
     }
 
     isLoading.value = true;
-    _userRole = userRole;
 
     final String? userId = await authService.signUpWithEmail(
         signUpModel: SignUpModel(
@@ -139,6 +141,9 @@ class SignUpController extends GetxController with BaseController {
       await localManager.setStringValue(
           LocalManagerKeys.phone, phoneController.text.trim());
 
+      await localManager.setBoolValue(
+          LocalManagerKeys.isTermsOfUseAccepted, isTermsOfUseAccepted.value);
+
       await localManager.setStringValue(LocalManagerKeys.role, _userRole);
     } catch (e) {
       await crashlyticsManager.sendACrash(
@@ -179,10 +184,10 @@ class SignUpController extends GetxController with BaseController {
 
     if (isTermsOfUseAccepted.value == false) {
       ///TODO this condition should be deleted in production
-      if (kDebugMode) {
+     /* if (kDebugMode) {
         flutterInfoToast("Setting isTermsOfUseAccepted to true in debug ");
         return true;
-      }
+      }*/
 
       flutterInfoToast(ErrorConst.acceptTermsOfUse);
       return false;

@@ -40,10 +40,11 @@ class TProfileView extends StatelessWidget {
                   Padding(
                     padding: AppPaddings.profilePageBigPadding(true, false),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         therapistName(controller),
                         mediumSizedBox(),
-                        aboutMeColumn(),
+                        aboutMeColumn(controller),
                         UiBaseModel.boldMainTitleRowView(
                             TherapistProfileTextUtil.myGroups,MainTitles.groups, () => mainController.onPageChanged(2)),
                         ProfileViewListView(
@@ -99,7 +100,7 @@ class TProfileView extends StatelessWidget {
     );
   }
 
-  Widget aboutMeColumn() {
+  Widget aboutMeColumn(TProfileController controller) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -109,12 +110,12 @@ class TProfileView extends StatelessWidget {
           AppTextStyles.profileTextStyles(false, true),
         ),
         mediumSizedBox(),
-        aboutMeContainer(),
+        aboutMeContainer(controller),
       ],
     );
   }
 
-  Widget aboutMeContainer() {
+  Widget aboutMeContainer(TProfileController controller) {
     return Padding(
       padding: AppPaddings.componentOnlyPadding(3),
       child: Container(
@@ -122,7 +123,7 @@ class TProfileView extends StatelessWidget {
         child: Padding(
           padding: AppPaddings.customContainerInsidePadding(3),
           child: Text(
-            DemoInformation.aboutMeController.text,
+            controller.aboutMe.value,
             style: AppTextStyles.normalTextStyle('medium', false),
           ),
         ),

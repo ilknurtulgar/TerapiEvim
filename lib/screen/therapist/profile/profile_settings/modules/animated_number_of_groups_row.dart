@@ -1,7 +1,7 @@
 part of '../t_profile_settings_view.dart';
 
 Widget _animatedNumberOfGroupsRow(
-    BuildContext context, TProfileController therapistProfileController) {
+    BuildContext context, TProfileSettingsController therapistProfileController) {
   return Padding(
     padding: AppPaddings.componentPadding,
     child: Obx(

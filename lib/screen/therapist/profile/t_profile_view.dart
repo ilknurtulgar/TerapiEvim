@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist/profil/t_profile_controller.dart';
-import 'package:terapievim/core/base/view/base_view.dart';
-import 'package:terapievim/screen/therapist/profile/settings/t_settings_view.dart';
-import 'package:terapievim/screen/therapist/profile/t_dealing_method_view.dart';
 import '../../../controller/main_controller.dart';
+import '../../../controller/therapist/profil/t_profile_controller.dart';
 import '../../../core/base/component/profile/custom_list_view.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
+import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
+import 'settings/t_settings_view.dart';
 import 't_attended_seminar_view.dart';
 import '../../participant/profile/util/p_profile_view_utility.dart';
+import 't_dealing_method_view.dart';
 
 // ignore: must_be_immutable
 class TProfileView extends StatelessWidget {

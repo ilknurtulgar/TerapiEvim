@@ -1,30 +1,74 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
-import '../../profile_settings_controller.dart';
+import '../../../model/common/activity/t_activity_model.dart';
+import '../../../model/therapist/coping_method/t_coping_method_model.dart';
+import '../../../model/therapist/group/t_group_model.dart';
+import '../../../product/enum/local_keys_enum.dart';
+import '../../../service/_therapist/profile/i_t_profile_service.dart';
+import '../../../service/_therapist/profile/t_profile_serice.dart';
+import '../../base/base_controller.dart';
 
-class TProfileController extends IProfileController {
+class TProfileController extends GetxController with BaseController {
   @override
   void setContext(BuildContext context) {}
 
-  var isMakingShortCallAccepted = false.obs;
-  var isBeingAdvisorAccepted = false.obs;
-  var isNumberVisible = false
-      .obs; // yardımcı psikologluk yapılabilecek grup sayısının belli olması
+  @override
+  Future<void> onInit() async {
 
-  void acceptionFunction(bool isAcceptionForMakingShortCall) {
-    if (isAcceptionForMakingShortCall) {
-      isMakingShortCallAccepted.value = !isMakingShortCallAccepted.value;
-      ///TODO save to cache
-    } else {
-      isBeingAdvisorAccepted.value = !isBeingAdvisorAccepted.value;
-      isNumberVisible.value = !isNumberVisible.value;
-      ///TODO save to cache
+    tProfileService = TProfileService(vexaFireManager.networkManager);
+
+    name = localManager.getStringValue(LocalManagerKeys.name);
+
+    name = localManager.getStringValue(LocalManagerKeys.aboutMe);
+
+    birthday = localManager.getStringValue(LocalManagerKeys.birthDate);
+
+    imageUrl.value = localManager.getStringValue(LocalManagerKeys.imageUrl);
+
+    final List<TCopingMethodModel?>? fetchedCopingMethods =
+        await tProfileService.getCopingMethodsOrdered();
+
+    if (fetchedCopingMethods != null) {
+      listOfCopingMethods.addAll(fetchedCopingMethods);
     }
+
+    final List<TActivityModel?>? fetchedActivities =
+        await tProfileService.getMyPastActivitiesOrdered();
+
+    if (fetchedActivities != null) {
+      listOfActivities.addAll(fetchedActivities);
+    }
+
+    final List<TGroupModel?>? fetchedGroups =
+        await tProfileService.getGroupsOrdered();
+
+    if (fetchedGroups != null) {
+      listOfGroups.addAll(fetchedGroups);
+    }
+
+    super.onInit();
   }
 
-  RxInt numberOfGroupsTherapistIsAdvisor = 0.obs;
-  void chooseGroupNumber(int value) {
-    if(isBeingAdvisorAccepted.value) numberOfGroupsTherapistIsAdvisor.value = value;
+  @override
+  void dispose() {
+    super.dispose();
   }
+
+  RxList<TCopingMethodModel?> listOfCopingMethods = <TCopingMethodModel?>[].obs;
+
+  RxList<TGroupModel?> listOfGroups = <TGroupModel?>[].obs;
+
+  RxList<TActivityModel?> listOfActivities = <TActivityModel?>[].obs;
+
+  late ITProfileService tProfileService;
+
+  RxString imageUrl = "".obs;
+
+  RxString aboutMe = "".obs;
+
+  String name = '';
+
+  String birthday = '';
+
 }

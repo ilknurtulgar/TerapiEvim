@@ -162,7 +162,7 @@ class TGroupAddView extends StatelessWidget {
             container: isLastButton
                 ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)
                 : AppContainers.lightPurpleButtonContainer(
-                    SizeUtil.mediumValueWidth),
+                    SizeUtil.mediumValueWidth,true),
             textColor: isLastButton ? AppColors.white : AppColors.meteorite,
             onTap: () async {
               if (!isLastButton) {

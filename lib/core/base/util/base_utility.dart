@@ -343,9 +343,9 @@ class AppContainers {
         borderRadius: 65,
         backgroundColor: AppColors.butterflyBush,
       ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
-  static ContainerModel lightPurpleButtonContainer(double? width) =>
+  static ContainerModel lightPurpleButtonContainer(double? width,bool isLonger) =>
       ContainerModel(
-        height: SizeUtil.smallValueHeight,
+        height: isLonger ? SizeUtil.smallValueHeight : SizeUtil.lowValueHeight,
         width: width,
         borderRadius: 65,
         backgroundColor: AppColors.melrose,
@@ -540,8 +540,8 @@ class DemoInformation {
     firstIconData: Icons.person,
     secondIconData: Icons.laptop_windows_sharp,
     purpose: ContainerPurpose.seminar,
-    isThereButton: true,
     buttonText: "Tekrar Izle",
+    firstOnTap: (){},
   );
 
   //message

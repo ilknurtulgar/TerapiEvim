@@ -8,7 +8,7 @@ abstract class ITCopingMethodService {
 
   final IFirestoreManager<ErrorModelCustom> manager;
 
-  /// if result is null, it means an copingMethod was not added
+  /// if result is null, it means a copingMethod was not added
   Future<CreatedIdResponse?> createCopingMethod(
       TCopingMethodModel copingMethod);
 
@@ -19,6 +19,9 @@ abstract class ITCopingMethodService {
   Future<TCopingMethodModel?> getCopingMethodById(String copingMethodId);
 
   Future<List<TCopingMethodModel?>?> getCopingMethodsOrdered(
+      {String lastDocId, String orderField, bool isDescending});
+
+  Future<List<TCopingMethodModel?>?> getMyCopingMethodsOrdered(
       {String lastDocId, String orderField, bool isDescending});
 
   Future<String?> deleteCopingMethod(String copingMethodId);

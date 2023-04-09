@@ -1,43 +1,43 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist/profil/t_profile_controller.dart';
-import '../../../../controller/therapist/group/t_group_controller.dart';
 import '../../util/base_utility.dart';
 
 class CustomListWheelScrollView extends StatelessWidget {
-  CustomListWheelScrollView({super.key, required this.whatIsFor});
-  final String whatIsFor;
+  CustomListWheelScrollView({
+    super.key,
+    required this.whatIsFor,
+    required this.onSelectedItemChanged,
+    this.isNumberVisible,
+  });
+  final ScrollPurpose whatIsFor;
+  final Function(int)? onSelectedItemChanged;
+  final RxBool? isNumberVisible;
 
-  ///TODO: getxcontroller olmaması gerekiyor
-  ///controller sadece ekrana özel olur
-  final TGroupController groupController = Get.find();
-  final TProfileController profileController = Get.find();
   @override
   Widget build(BuildContext context) {
     return Transform.rotate(
-      angle: whatIsFor == 'number of groups' ? -pi / 2 : 0,
+      angle: whatIsFor == ScrollPurpose.groupNumber ? -pi / 2 : 0,
       child: SizedBox(
         width: SizeUtil.lowValueWidth,
-        height: whatIsFor == 'number of groups'
+        height: whatIsFor == ScrollPurpose.groupNumber
             ? SizeUtil.mediumValueHeight
             : SizeUtil.largeValueHeight,
         child: ListWheelScrollView.useDelegate(
-          onSelectedItemChanged: (value) =>
-              groupController.scrollableWidgetFunction(whatIsFor, value),
+          onSelectedItemChanged: onSelectedItemChanged,
           overAndUnderCenterOpacity: 0.75,
           itemExtent: 40,
           perspective: 0.002,
           diameterRatio: 0.9,
           physics: const FixedExtentScrollPhysics(),
           childDelegate: ListWheelChildBuilderDelegate(
-              childCount: whatIsFor == 'hour'
+              childCount: whatIsFor == ScrollPurpose.hour
                   ? 24
-                  : whatIsFor == 'minutes'
+                  : whatIsFor == ScrollPurpose.minute
                       ? 60
                       : 21, // grup sayısına maksimum 20 sınırı koydum (0 dan 20'ye kadar)
               builder: (context, index) {
-                return whatIsFor == 'number of groups'
+                return whatIsFor == ScrollPurpose.groupNumber
                     ? animatedText(index)
                     : hourMinuteNumberText(index);
               }),
@@ -59,7 +59,7 @@ class CustomListWheelScrollView extends StatelessWidget {
         () => AnimatedContainer(
           duration: const Duration(milliseconds: 200),
           color: AppColors.transparent,
-          height: profileController.isNumberVisible.value
+          height: isNumberVisible!.value
               ? SizeUtil.lowValueHeight
               : SizeUtil.zeroSize,
           child: Transform.rotate(
@@ -73,4 +73,10 @@ class CustomListWheelScrollView extends StatelessWidget {
       ),
     );
   }
+}
+
+enum ScrollPurpose {
+  groupNumber,
+  hour,
+  minute,
 }

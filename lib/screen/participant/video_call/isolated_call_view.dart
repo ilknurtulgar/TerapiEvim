@@ -1,37 +1,39 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/video_call_controller.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
 import 'package:terapievim/core/base/component/video_call/container/video_call_person.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/view/base_view.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 
 // ignore: must_be_immutable
 class IsolatedCallView extends StatelessWidget {
   IsolatedCallView({super.key});
-
-  ///TODO: videocallcontroller baseview çevirmen gerekiyor
-  VideoCallController videoCallController = Get.put(
-      VideoCallController()); // daha önce başka bir sayfa için kullanılmadığı için uygulama şu anlık hata vermesin diye get.put kullandım ileriki süreçte get.find'a çeviririz
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Stack(children: [
-          personBigViewInCall(),
-          buttonsRowContainer(),
-          personSmallViewInCall()
-        ]),
-      ),
+    return BaseView<VideoCallController>(
+      getController: VideoCallController(),
+      onModelReady: (model){},
+      onPageBuilder: (context,controller) {
+        return Scaffold(
+          body: SafeArea(
+            child: Stack(children: [
+              personBigViewInCall(controller,context),
+              buttonsRowContainer(context),
+              personSmallViewInCall(controller,context)
+            ]),
+          ),
+        );
+      }
     );
   }
 
-  Positioned personSmallViewInCall() {
+  Positioned personSmallViewInCall(VideoCallController videoCallController,BuildContext context) {
     return Positioned(
-        right: 20,
-        bottom: 120,
+        right: Responsive.height(20,context), // eşit oranda değişsinler diye responsive height kullandım burada da(responsive width ile güzel durmadı)
+        bottom: Responsive.height(120, context),
         child: Obx(
           () => VideoCallPerson(
             onDoubleTap: () => videoCallController.changeViewPlaces(),
@@ -45,19 +47,19 @@ class IsolatedCallView extends StatelessWidget {
                 videoCallController.isViewPlaceChanged.value
                     ? DemoInformation.therapist
                     : DemoInformation.personNo1,
-                false),
-            whichPage: 2,
+                false,context),
+            whichPage: VideoCallPages.isolatedCall,
           ),
         ));
   }
 
-  Align buttonsRowContainer() {
+  Align buttonsRowContainer(BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
           color: AppColors.lightBlack,
-          height: SizeUtil.mediumValueHeight,
-          width: window.physicalSize.width,
+          height: Responsive.height(SizeUtil.mediumValueHeight, context),
+          width: context.width1,
           child: VideoCallButtonsRow(
             onLeaveButtonPressed: () {},
             onToggleCameraButtonPressed: () {},
@@ -66,13 +68,13 @@ class IsolatedCallView extends StatelessWidget {
     );
   }
 
-  Obx personBigViewInCall() {
+  Obx personBigViewInCall(VideoCallController videoCallController,BuildContext context) {
     return Obx(
       () => VideoCallPerson(
-         micOnOffFunction: () => videoCallController.onOffFunction(videoCallController.isViewPlaceChanged.value
+        micOnOffFunction: () => videoCallController.onOffFunction(videoCallController.isViewPlaceChanged.value
                     ? DemoInformation.personNo1.isMicOn
                     : DemoInformation.therapist.isMicOn),
-            cameraOnOffFunction: () => videoCallController.onOffFunction(videoCallController.isViewPlaceChanged.value
+        cameraOnOffFunction: () => videoCallController.onOffFunction(videoCallController.isViewPlaceChanged.value
                     ? DemoInformation.personNo1.isCamOn
                     : DemoInformation.therapist.isCamOn),
         onDoubleTap: () => videoCallController.changeViewPlaces(),
@@ -80,8 +82,8 @@ class IsolatedCallView extends StatelessWidget {
             videoCallController.isViewPlaceChanged.value
                 ? DemoInformation.personNo1
                 : DemoInformation.therapist,
-            false),
-        whichPage: 2,
+            false,context),
+        whichPage: VideoCallPages.isolatedCall,
       ),
     );
   }

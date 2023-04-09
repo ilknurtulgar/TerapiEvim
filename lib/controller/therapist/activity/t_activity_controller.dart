@@ -207,4 +207,15 @@ class TActivityController extends GetxController with BaseController {
       );
     }
   }
+
+  RxBool isMine = false.obs;
+  void chnangeMine(int index) {
+    if (index == 1) {
+      isMine.value = false;
+    }
+    if (index == 0) {
+      //evet aktivitelerim
+      isMine.value = true;
+    }
+  }
 }

@@ -14,12 +14,11 @@ import '../../../core/extension/context_extension.dart';
 import '../../../model/common/activity/t_activity_model.dart';
 import '../../../product/widget/common/activity/activity_boxes.dart';
 import 't_activity_list_view.dart';
-import 't_my_activity_list_view.dart';
 import 't_my_up_coming_list_view.dart';
 import 't_new_activity_view.dart';
 
 class TActivityView extends StatelessWidget {
-  const TActivityView({Key? key}) : super(key: key);
+  TActivityView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +77,7 @@ class TActivityView extends StatelessWidget {
                   isButterfly: true,
                   icon: IconUtility.forward,
                   onPressed: () {
-                    context.push(const TMyActivityListView());
+                    context.push(const TActivityListView());
                   },
                 ),
                 myPastActivities(context, controller),
@@ -105,9 +104,7 @@ class TActivityView extends StatelessWidget {
   ActivityBox myPastActivities(
       BuildContext context, TActivityController controller) {
     return ActivityBox(
-        onButtonTap: () {
-          controller.updatechnage(0);
-        },
+        onButtonTap: () {},
         istwobutton: false,
         buttonText: ActivityTextUtil.watchTheRecording,
         containerModel: AppContainers.containerButton(true),

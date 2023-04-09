@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/ui_models/row_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
 
 import '../../../screen/participant/group/category_determination/short_call/p_determining_to_shortcall_time_view.dart';
 import '../component/group/row_view.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
-import '../ui_models/row_model.dart';
 import 'base_utility.dart';
 
 class UiBaseModel {
@@ -53,14 +54,14 @@ class UiBaseModel {
             color: Colors.black,
           ),
           isAlignmentBetween: false);
-  static boldMainTitleRowView(String text, String purpose, Function() onTap) =>
+  static boldMainTitleRowView(String text, MainTitles whichMainTitle, Function() onTap) =>
       rowView(
           RowModel(
               text: text,
               leadingIcon: Icon(
-                purpose == 'group'
+                whichMainTitle == MainTitles.groups//'group'
                     ? IconUtility.navGroup
-                    : purpose == 'method'
+                    : whichMainTitle == MainTitles.methods//'method'
                         ? IconUtility.fileIcon.icon
                         : IconUtility.windowsIcon.icon,
                 color: AppColors.black,
@@ -184,4 +185,10 @@ class UiBaseModel {
           textStyle: AppTextStyles.heading(isHeading),
           leadingIcon: leadingIcon,
           isAlignmentBetween: true);
+
+  static searchRow() => RowModel(
+      text: "Ara",
+      textStyle: const TextStyle(),
+      isAlignmentBetween: false,
+      leadingIcon: IconUtility.searchIcon);
 }

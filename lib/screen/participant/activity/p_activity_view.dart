@@ -11,6 +11,8 @@ import '../../../core/extension/context_extension.dart';
 import '../../../model/common/activity/t_activity_model.dart';
 import '../../../product/widget/common/activity/activity_boxes.dart';
 import '../../common/activity/about_activity.dart';
+import 'p_past_activities_list_view.dart';
+import 'p_upcoming_activities_list_view.dart';
 
 class PActivityView extends StatelessWidget {
   const PActivityView({super.key});
@@ -22,29 +24,35 @@ class PActivityView extends StatelessWidget {
         onPageBuilder: (context, controller) {
           return Scaffold(
             appBar: MyAppBar(title: ActivityTextUtil.activity),
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: AppPaddings.pagePadding,
-                child: Column(
-                  children: [
-                    HeadingMinto(
+            body: Padding(
+              padding: AppPaddings.pagePadding,
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: HeadingMinto(
                       text: ActivityTextUtil.upcomingActivities,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       isButterfly: true,
                       icon: IconUtility.forward,
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push(PUpComingActivitiesListView());
+                      },
                     ),
-                    activityLoadSeminar(controller),
-                    HeadingMinto(
+                  ),
+                  activityLoadSeminar(controller),
+                  SliverToBoxAdapter(
+                    child: HeadingMinto(
                       text: ActivityTextUtil.pastActivities,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       isButterfly: true,
                       icon: IconUtility.forward,
-                      onPressed: () {},
+                      onPressed: () {
+                        context.push(PPastActivitiesListView());
+                      },
                     ),
-                    activityPastSeminar()
-                  ],
-                ),
+                  ),
+                  activityPastSeminar()
+                ],
               ),
             ),
           );
@@ -53,39 +61,37 @@ class PActivityView extends StatelessWidget {
 }
 
 Widget activityLoadSeminar(PActivityController pActivityController) {
-  return Obx(
-    () => ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: pActivityController.recentActivities.length,
-      itemBuilder: (context, index) {
-        final TActivityModel activity =
-            pActivityController.recentActivities[index]!;
-        return activitythreerowbox(() {
-          context.push(const AboutActivityView());
-        }, () {
-          pActivityController.joinActivity(context, activity);
-        },
-            DemoInformation.recentActivity(activity.therapistName ?? ''),
-            DemoInformation.recentActivityTime(
-                activity.dateTime ?? Timestamp.now()),
-            ActivityTextUtil.join,
-            DemoInformation.ayrowmodel);
-      },
-    ),
-  );
+  return Obx(() => SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            final TActivityModel activity =
+                pActivityController.recentActivities[index]!;
+            return activitythreerowbox(() {
+              context.push(const AboutActivityView());
+            }, () {
+              pActivityController.joinActivity(context, activity);
+            },
+                DemoInformation.recentActivity(activity.therapistName ?? ''),
+                DemoInformation.recentActivityTime(
+                    activity.dateTime ?? Timestamp.now()),
+                ActivityTextUtil.join,
+                DemoInformation.ayrowmodel);
+          },
+          childCount: pActivityController.recentActivities.length,
+        ),
+      ));
 }
 
-ListView activityPastSeminar() {
-  return ListView.builder(
-    shrinkWrap: true,
-    physics: const NeverScrollableScrollPhysics(),
-    itemBuilder: (context, index) {
-      return activitythreerowbox(() {
-        context.push(const AboutActivityView());
-      }, () {}, DemoInformation.arowmodel, DemoInformation.clockmodel,
-          ActivityTextUtil.watchTheRecording, DemoInformation.ayrowmodel);
-    },
-    itemCount: 2,
+SliverList activityPastSeminar() {
+  return SliverList(
+    delegate: SliverChildBuilderDelegate(
+      (context, index) {
+        return activitythreerowbox(() {
+          context.push(const AboutActivityView());
+        }, () {}, DemoInformation.arowmodel, DemoInformation.clockmodel,
+            ActivityTextUtil.watchTheRecording, DemoInformation.ayrowmodel);
+      },
+      childCount: 2,
+    ),
   );
 }

@@ -114,7 +114,7 @@ class IconUtility {
     Icons.search,
     color: AppColors.black,
   );
-  static const Icon fiterIcon = Icon(Icons.list);
+  static const Icon filterIcon = Icon(Icons.list);
 
   static const Icon fileIcon = Icon(
     Icons.description_outlined,
@@ -262,6 +262,12 @@ class AppTextStyles {
         fontWeight: isBold ? FontWeight.bold : FontWeight.w400,
         color: AppColors.black,
       );
+  static TextStyle activityTextStyles() => TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        color: AppColors.meteorite,
+        fontSize: 22,
+      );
 }
 
 class AppContainers {
@@ -405,7 +411,7 @@ class AppPaddings {
   static EdgeInsets profilePageBigPadding(
           bool isThereLeftPadding, bool isThereRightPadding) =>
       EdgeInsets.only(
-          top: 320,
+          top: 260,
           left: isThereLeftPadding ? 24 : 0,
           right: isThereRightPadding ? 24 : 0);
 
@@ -503,10 +509,10 @@ Padding colon(bool isInAlertDialog) {
 class NavigateUtil {
   static List<Widget> therapisty = <Widget>[
     THomeView(),
-    const TActivityView(),
+    TActivityView(),
     const TGroupView(),
     const TMessageView(),
-    const TProfileView(),
+    TProfileView(),
   ];
   static List<Widget> screen = <Widget>[
     const PHomeView(),

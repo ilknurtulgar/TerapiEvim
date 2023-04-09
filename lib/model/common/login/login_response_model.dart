@@ -6,7 +6,14 @@ part 'login_response_model.g.dart';
 
 @JsonSerializable()
 class LoginResponseModel extends INetworkModel<LoginResponseModel> {
-  String? userId, name, birthDate, gender, email, phone, role, aboutMe;
+  String? userId,
+      name,
+      birthDate,
+      gender,
+      email,
+      phone,
+      role,
+      imageUrl;
 
   LoginResponseModel({
     this.name,
@@ -15,7 +22,7 @@ class LoginResponseModel extends INetworkModel<LoginResponseModel> {
     this.email,
     this.phone,
     this.role,
-    this.aboutMe,
+    this.imageUrl,
   });
 
   @override

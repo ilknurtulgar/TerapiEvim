@@ -2,19 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 
-import '../core/base/component/video_call/tab/therapist_tab.dart';
-import '../core/base/util/base_utility.dart';
-import '../core/base/ui_models/video_call/person_in_call_model.dart';
+import '../../core/base/component/video_call/tab/therapist_tab.dart';
+import '../../core/base/util/base_utility.dart';
+import '../../core/base/ui_models/video_call/person_in_call_model.dart';
 
-class VideoCallController extends GetxController {
+class GroupTherapyCallController extends GetxController {
   void onOffFunction(RxBool variable) {
     variable.value = !variable.value;
-  }
-
-  var isViewPlaceChanged = false.obs;
-  changeViewPlaces() {
-    // isolated call'da çift tıklayınca terapist ile danışanın görüntü olarak yerlerinin değişmesi fonksiyonu
-    isViewPlaceChanged.value = !isViewPlaceChanged.value;
   }
 
   var shareAuthority = false.obs;

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/video_call/util/utility.dart';
-import '../../../../../controller/video_call_controller.dart';
+import '../../../../../controller/video_call/group_therapy_call_controller.dart';
 import '../../../ui_models/video_call/person_in_call_model.dart';
 import '../../../ui_models/container_model.dart';
 import '../../../ui_models/row_model.dart';
@@ -16,7 +16,7 @@ import '../../profile/image/custom_circle_avatar.dart';
 // ignore: must_be_immutable
 class TherapistTab extends StatelessWidget {
   TherapistTab({super.key, required this.participants});
-  VideoCallController controller = Get.find();
+  GroupTherapyCallController controller = Get.find();
   final List<PersonInCallModel> participants;
   @override
   Widget build(BuildContext context) {

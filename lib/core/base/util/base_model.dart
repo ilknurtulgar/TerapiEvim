@@ -54,14 +54,15 @@ class UiBaseModel {
             color: Colors.black,
           ),
           isAlignmentBetween: false);
-  static boldMainTitleRowView(String text, MainTitles whichMainTitle, Function() onTap) =>
+  static boldMainTitleRowView(
+          String text, MainTitles whichMainTitle, Function() onTap) =>
       rowView(
           RowModel(
               text: text,
               leadingIcon: Icon(
-                whichMainTitle == MainTitles.groups//'group'
+                whichMainTitle == MainTitles.groups //'group'
                     ? IconUtility.navGroup
-                    : whichMainTitle == MainTitles.methods//'method'
+                    : whichMainTitle == MainTitles.methods //'method'
                         ? IconUtility.fileIcon.icon
                         : IconUtility.windowsIcon.icon,
                 color: AppColors.black,
@@ -110,25 +111,9 @@ class UiBaseModel {
       isAlignmentBetween: true);
 
   ///
-  static RowModel appBarModel(String text, Widget trailingIcon) => RowModel(
-      text: text,
-      textStyle: AppTextStyles.heading(false),
-      trailingIcon: trailingIcon,
-      isAlignmentBetween: true);
+ 
 
-  //appRow
 
-  static doubleappbarModel(
-          String apptext, Widget leadingIcon, Widget trailingIcon) =>
-      RowModel(
-          trailingIcon: trailingIcon,
-          text: apptext,
-          textStyle: AppTextStyles.heading(false),
-          leadingIcon: leadingIcon,
-          isAlignmentBetween: true);
-
-  static RowModel determiningappBar() =>
-      appBarModel(GroupTextUtil.terapiEvim, saveButton());
 
   static RowModel secDeterminationModel(String text, Widget leadingIcon) =>
       RowModel(
@@ -145,7 +130,13 @@ class UiBaseModel {
         trailingIcon: IconUtility.forward);
   }
 
-  ///
+   static RowModel appBarModel(String text, Widget trailingIcon) => RowModel(
+      text: text,
+      textStyle: AppTextStyles.heading(false),
+      trailingIcon: trailingIcon,
+      isAlignmentBetween: true);
+    static RowModel determiningappBar() =>
+      appBarModel(GroupTextUtil.terapiEvim, saveButton());
   static RowModel roleModel(String text, Widget leadingIcon) => RowModel(
         text: text,
         textStyle: AppTextStyles.groupTextStyle(false),

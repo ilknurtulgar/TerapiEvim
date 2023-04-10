@@ -12,7 +12,7 @@ Widget specialColumn(
           () => AcceptionRow(
             isForMakingShortCall: false,
             acceptionFunction: () =>
-                therapistProfileController.acceptionFunction(false),
+                therapistProfileController.acceptionFunction(),
             value: therapistProfileController.isBeingAdvisorAccepted.value,
           ),
         ),
@@ -29,7 +29,7 @@ Widget specialColumn(
           child: SizedBox(
               child: CustomTextField(
             isBig: true,
-            textController: DemoInformation.aboutMeController,
+            textController: therapistProfileController.aboutMeController,
             isRowModel: false,
             isOne: true,
             maxLines: 5,

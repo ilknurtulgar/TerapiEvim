@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/video_call_controller.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../controller/main_controller.dart';
+import '../../../controller/video_call/group_therapy_call_controller.dart';
 import '../../../core/base/component/video_call/container/video_call_person.dart';
 import 'util/utility.dart';
 
@@ -17,38 +17,42 @@ class GroupTherapyCallView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<VideoCallController>(
-      getController: VideoCallController(),
-      onModelReady: (model) {},
-      onPageBuilder: (context,controller) {
-        return Scaffold(
-          body: SafeArea(
-            child: GestureDetector(
-              behavior: HitTestBehavior.translucent,
-              onTap: () => Get.closeCurrentSnackbar(),
-              child: Stack(
-                children: [
-                  therapistView(controller,context),
-                  participantsRowWithButtonsContainer(controller,context)
-                ],
+    return BaseView<GroupTherapyCallController>(
+        getController: GroupTherapyCallController(),
+        onModelReady: (model) {},
+        onPageBuilder: (context, controller) {
+          return Scaffold(
+            body: SafeArea(
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () => Get.closeCurrentSnackbar(),
+                child: Stack(
+                  children: [
+                    therapistView(controller, context),
+                    participantsRowWithButtonsContainer(controller, context)
+                  ],
+                ),
               ),
             ),
-          ),
-        );
-      }
-    );
+          );
+        });
   }
 
-  VideoCallPerson therapistView(VideoCallController videoCallController,BuildContext context) {
+  VideoCallPerson therapistView(
+      GroupTherapyCallController videoCallController, BuildContext context) {
     return VideoCallPerson(
-              videoCallViewModel: VideoCallUtility.personBigView(DemoInformation.therapist,true,context),
-              whichPage: VideoCallPages.groupCall,
-              micOnOffFunction: () => videoCallController.onOffFunction(DemoInformation.therapist.isMicOn),
-              cameraOnOffFunction: () => videoCallController.onOffFunction(DemoInformation.therapist.isCamOn),
-            ); // kamera ve mikrofon fonksiyonları şu an görsellerle çalıştığım için gerekli, servis bağlandıktan sonra kalkacak
+      videoCallViewModel: VideoCallUtility.personBigView(
+          DemoInformation.therapist, true, context),
+      whichPage: VideoCallPages.groupCall,
+      micOnOffFunction: () =>
+          videoCallController.onOffFunction(DemoInformation.therapist.isMicOn),
+      cameraOnOffFunction: () =>
+          videoCallController.onOffFunction(DemoInformation.therapist.isCamOn),
+    ); // kamera ve mikrofon fonksiyonları şu an görsellerle çalıştığım için gerekli, servis bağlandıktan sonra kalkacak
   }
 
-  Align participantsRowWithButtonsContainer(VideoCallController videoCallController,BuildContext context) {
+  Align participantsRowWithButtonsContainer(
+      GroupTherapyCallController videoCallController, BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -61,8 +65,14 @@ class GroupTherapyCallView extends StatelessWidget {
               VideoCallButtonsRow(
                 firstButton: Obx(
                   () => mainController.isTherapist.value
-                      ? VideoCallUtility.therapistSpecialButton(() => videoCallController.openTherapistTab(DemoInformation.participants))
-                      : VideoCallUtility.putYourHandsUpButton(() => videoCallController.onOffFunction(DemoInformation.participants[0].isHandsUp!),DemoInformation.participants[0].isHandsUp!,),
+                      ? VideoCallUtility.therapistSpecialButton(() =>
+                          videoCallController
+                              .openTherapistTab(DemoInformation.participants))
+                      : VideoCallUtility.putYourHandsUpButton(
+                          () => videoCallController.onOffFunction(
+                              DemoInformation.participants[0].isHandsUp!),
+                          DemoInformation.participants[0].isHandsUp!,
+                        ),
                 ),
                 onLeaveButtonPressed: () {},
                 onToggleCameraButtonPressed: () {},
@@ -73,7 +83,7 @@ class GroupTherapyCallView extends StatelessWidget {
     );
   }
 
-  Widget participantRow(VideoCallController videoCallController) {
+  Widget participantRow(GroupTherapyCallController videoCallController) {
     return Expanded(
       child: Padding(
         padding: AppPaddings.smallHorizontalPadding,
@@ -85,12 +95,18 @@ class GroupTherapyCallView extends StatelessWidget {
               return Padding(
                 padding: AppPaddings.smallPersonViewPadding,
                 child: VideoCallPerson(
-                    whichPage: VideoCallPages.groupCall,
-                    videoCallViewModel: VideoCallUtility.personSmallView(DemoInformation.participants[index],true,context),
-                    onLongPressed: mainController.isTherapist.value ? () => videoCallController.sendIsolatedCall("${DemoInformation.participants[index].name} ${DemoInformation.participants[index].surname}") : null,
-                    micOnOffFunction: () => videoCallController.onOffFunction(DemoInformation.participants[index].isMicOn),
-                    cameraOnOffFunction: () => videoCallController.onOffFunction(DemoInformation.participants[index].isCamOn),
-                   ),
+                  whichPage: VideoCallPages.groupCall,
+                  videoCallViewModel: VideoCallUtility.personSmallView(
+                      DemoInformation.participants[index], true, context),
+                  onLongPressed: mainController.isTherapist.value
+                      ? () => videoCallController.sendIsolatedCall(
+                          "${DemoInformation.participants[index].name} ${DemoInformation.participants[index].surname}")
+                      : null,
+                  micOnOffFunction: () => videoCallController.onOffFunction(
+                      DemoInformation.participants[index].isMicOn),
+                  cameraOnOffFunction: () => videoCallController.onOffFunction(
+                      DemoInformation.participants[index].isCamOn),
+                ),
               );
             })),
       ),

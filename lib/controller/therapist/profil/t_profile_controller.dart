@@ -20,7 +20,7 @@ class TProfileController extends GetxController with BaseController {
 
     name = localManager.getStringValue(LocalManagerKeys.name);
 
-    name = localManager.getStringValue(LocalManagerKeys.aboutMe);
+    aboutMe.value = localManager.getStringValue(LocalManagerKeys.aboutMe);
 
     birthday = localManager.getStringValue(LocalManagerKeys.birthDate);
 

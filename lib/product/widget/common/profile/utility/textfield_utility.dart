@@ -28,14 +28,14 @@ class TextFieldUtility {
         isOne: false,
         title: "Doğum Tarihi",
         textController: textController,
+        onTap: () => choosingBirthday(textController),
         rowModel: RowModel(
             text: isBig ? 'Doğum Tarihiniz' : "",
             textStyle: const TextStyle(color: AppColors.black),
             text2: 'gg/aa/yyyy',
             isAlignmentBetween: false,
-            leadingIcon: IconButton(
-                icon: IconUtility.calendarIcon,
-                onPressed: () => choosingBirthday(textController))),
+            leadingIcon: IconUtility.calendarIcon
+            ),
         isBig: isBig,
         isRowModel: true,
       );
@@ -55,7 +55,6 @@ class TextFieldUtility {
           obsecureText: false,
           isRowModel: true);
 
-  ///TODO: getx controller kaldırıldı.getx olmadan kullanılması gerekiyor
   Widget passwordTextfield(TextEditingController textController, bool isBig) {
     var isObscured = true.obs;
     return Obx(

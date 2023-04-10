@@ -1,12 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 
 import '../../../controller/therapist/activity/t_activity_controller.dart';
 import '../../../core/base/component/app_bar/heading_minto.dart';
 import '../../../core/base/component/group/group_box.dart';
-import '../../../core/base/component/group/row_view.dart';
-import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
@@ -29,21 +28,22 @@ class TActivityView extends StatelessWidget {
       },
       onPageBuilder: (BuildContext context, TActivityController controller) =>
           Scaffold(
+        appBar: MyAppBar(
+          title: ActivityTextUtil.activity,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  controller.updatechnage(1);
+                  context.push(const TNewActivityView());
+                },
+                icon: IconUtility.addIcon),
+          ],
+        ),
         body: SingleChildScrollView(
           child: Padding(
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-                rowView(
-                    UiBaseModel.appBarModel(
-                        ActivityTextUtil.activity,
-                        IconButton(
-                            onPressed: () {
-                              controller.updatechnage(1);
-                              context.push(const TNewActivityView());
-                            },
-                            icon: IconUtility.addIcon)),
-                    AppPaddings.mediumxPadding),
                 HeadingMinto(
                   text: ActivityTextUtil.myupcomingActivities,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

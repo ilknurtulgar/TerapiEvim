@@ -9,5 +9,6 @@ TwoRowShortContainer participantWithShortCallTime(
       firstIconData: IconUtility.navProfile,
       secondIconData: IconUtility.clockIcon.icon!,
       purpose: ContainerPurpose.date,
-      isThereButton: false,
+      firstOnTap: (){},
+      secondOnTap: (){},
     ); // birinci satırda danışan ismi ikinci satırda 15 dakikalık seansın tarihinin ve zamanının yazdığı container

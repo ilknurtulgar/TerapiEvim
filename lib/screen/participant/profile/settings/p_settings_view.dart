@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/participant/settings/p_setting_controller.dart';
+import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/ui_models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
@@ -22,13 +23,13 @@ class PSettingsView extends StatelessWidget {
       getController: PSettingsController(),
       onModelReady: (model) {},
       onPageBuilder: (context, controller) => Scaffold(
+        appBar: MyAppBar(title: ProfileSettingsTextUtil.settings),
         body: SafeArea(
             child: Padding(
           padding: AppPaddings.pagePadding,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              appBar(),
               accountRow(context),
               notificationRow(controller),
               textButton(ProfileSettingsTextUtil.exitGroup, () {
@@ -45,15 +46,6 @@ class PSettingsView extends StatelessWidget {
         )),
       ),
     );
-  }
-
-  Widget appBar() {
-    return rowView(
-        RowModel(
-            text: ProfileSettingsTextUtil.settings,
-            textStyle: AppTextStyles.heading(false),
-            isAlignmentBetween: true),
-        AppPaddings.appBarPadding);
   }
 
   InkWell accountRow(BuildContext context) {

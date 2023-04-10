@@ -18,7 +18,6 @@ import '../../../screen/therapist/home/t_home_view.dart';
 import '../../../screen/therapist/message/t_message_view.dart';
 import '../../init/managers/responsiveness_manager.dart';
 import '../../managers/converter/date_time_manager.dart';
-import '../component/group/row_view.dart';
 import '../component/home/method_downloading_container.dart';
 import '../component/profile/container/two_row_short_container.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
@@ -26,7 +25,6 @@ import '../ui_models/card_model.dart';
 import '../ui_models/group_model.dart';
 import '../ui_models/row_model.dart';
 import '../ui_models/video_call/person_in_call_model.dart';
-import 'base_model.dart';
 
 class AppColors {
   static const Color blueChalk = Color.fromRGBO(238, 227, 255, 1);
@@ -343,9 +341,10 @@ class AppContainers {
         borderRadius: 65,
         backgroundColor: AppColors.butterflyBush,
       ); // bunun width'i içindeki text'in uzunluğuna göre değişiyor
-  static ContainerModel lightPurpleButtonContainer(double? width) =>
+  static ContainerModel lightPurpleButtonContainer(
+          double? width, bool isLonger) =>
       ContainerModel(
-        height: SizeUtil.smallValueHeight,
+        height: isLonger ? SizeUtil.smallValueHeight : SizeUtil.lowValueHeight,
         width: width,
         borderRadius: 65,
         backgroundColor: AppColors.melrose,
@@ -540,8 +539,8 @@ class DemoInformation {
     firstIconData: Icons.person,
     secondIconData: Icons.laptop_windows_sharp,
     purpose: ContainerPurpose.seminar,
-    isThereButton: true,
     buttonText: "Tekrar Izle",
+    firstOnTap: () {},
   );
 
   //message
@@ -995,9 +994,3 @@ IconButton backButton(BuildContext context, Function()? onPressed) {
 
 IconButton closeIcon(Function()? onPressed) =>
     IconButton(onPressed: onPressed, icon: IconUtility.close);
-
-Widget doubleappbar(String apptext, Widget leadingIcon, Widget trailingIcon) {
-  return rowView(
-      UiBaseModel.doubleappbarModel(apptext, leadingIcon, trailingIcon),
-      AppPaddings.mediumxPadding);
-}

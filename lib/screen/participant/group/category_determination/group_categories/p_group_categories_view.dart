@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/group/group_info_container.dart';
-import '../../../../../core/base/component/group/custom_heading.dart';
+import '../../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../../core/base/util/base_utility.dart';
 import '../../../../../core/base/util/text_utility.dart';
 
@@ -15,20 +15,11 @@ class _PGroupCategoriesViewState extends State<PGroupCategoriesView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: MyAppBar(title: GroupTextUtil.groupCategoriesHeading),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: AppPaddings.pagePadding,
-            child: Column(
-              children: [
-                const CustomHeading(
-                  text: GroupTextUtil.groupCategoriesHeading,
-                  isalignmentstart: false,
-                ),
-                listOfGroupCategories(),
-              ],
-            ),
-          ),
+        child: Padding(
+          padding: AppPaddings.pagePadding,
+          child: listOfGroupCategories(),
         ),
       ),
     );

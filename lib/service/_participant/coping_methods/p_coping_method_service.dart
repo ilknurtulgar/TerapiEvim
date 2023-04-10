@@ -37,7 +37,9 @@ class PCopingMethodService extends IPCopingMethodService with BaseService {
     if (userId == null) return null;
 
     final result = await manager.readOrderedWhere(
-      collectionPath: APIConst.copingMethods,
+      collectionPath: APIConst.users,
+      docId: userId,
+      collectionPath2: APIConst.users,
       parseModel: TCopingMethodModel(),
       isDescending: isDescending,
       orderField: orderField,

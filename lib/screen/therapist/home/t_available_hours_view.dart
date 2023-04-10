@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/controller/therapist/home/session/t_available_hours_view_controller.dart';
+import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/extension/context_extension.dart';
 import '../../../core/base/component/group/choosing_time_sc_cont.dart';
+import '../../../core/base/view/base_view.dart';
 import 't_add_hours_view.dart';
 
 class TAvailableHoursView extends StatelessWidget {
@@ -11,25 +14,23 @@ class TAvailableHoursView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
+    return BaseView<TAvailableHoursViewController>(
+      getController: TAvailableHoursViewController(),
+      onPageBuilder: (context, TAvailableHoursViewController controller) =>
+          Scaffold(
+        appBar: MyAppBar(
+          title: HomeTextUtil.myAvailableHours,
+          actions: [
+            IconButton(
+                onPressed: () {
+                  context.push(const TAddHoursView());
+                },
+                icon: IconUtility.addIcon)
+          ],
+        ),
+        body: Padding(
           padding: AppPaddings.pagePadding,
-          child: Column(
-            children: [
-              doubleappbar(
-                  HomeTextUtil.myAvailableHours,
-                  backButton(context, () {
-                    context.pop();
-                  }),
-                  IconButton(
-                      onPressed: () {
-                        context.push(const TAddHoursView());
-                      },
-                      icon: IconUtility.addIcon)),
-              choosingtime(),
-            ],
-          ),
+          child: choosingtime(),
         ),
       ),
     );
@@ -38,16 +39,13 @@ class TAvailableHoursView extends StatelessWidget {
   ListView choosingtime() {
     return ListView.builder(
       padding: EdgeInsets.zero,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         return Padding(
-          padding: AppPaddings.timeChossingBetweenPadding,
-          child: ChoosingTimeForSCContainer(
-            date: DemoInformation.dateList[index],
-            timeList: DemoInformation.timelist,
-            isForParticipant: false)
-        );
+            padding: AppPaddings.timeChossingBetweenPadding,
+            child: ChoosingTimeForSCContainer(
+                date: DemoInformation.dateList[index],
+                timeList: DemoInformation.timelist,
+                isForParticipant: false));
       },
       itemCount: 5,
     );

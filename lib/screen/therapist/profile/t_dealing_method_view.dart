@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../controller/therapist/profil/t_dealing_method_controller.dart';
+import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
@@ -15,12 +16,8 @@ class TDealingMethodView extends StatelessWidget {
       getController: TDealingMethodController(),
       onModelReady: (model) {},
       onPageBuilder: (context, controller) => Scaffold(
-        appBar: AppBar(
-          backgroundColor: AppColors.blueChalk,
-          title: Text(
-            TherapistProfileTextUtil.dealingMetods,
-            style: AppTextStyles.heading(false),
-          ),
+        appBar: MyAppBar(
+          title: TherapistProfileTextUtil.dealingMetods,
         ),
         body: SafeArea(
             child: CustomScrollView(

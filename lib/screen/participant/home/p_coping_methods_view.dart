@@ -18,21 +18,21 @@ class PCopingMethodsView extends StatelessWidget {
         onPageBuilder: (context, controller) {
           return Scaffold(
             appBar: MyAppBar(title: HomeTextUtil.copingMethods),
-            body: SafeArea(
-              child: SingleChildScrollView(
+            body: CustomScrollView(slivers: [
+              SliverToBoxAdapter(
                 child: Stack(
                   children: [
-                    Padding(
-                      padding: AppPaddings.pagePadding,
-                      child: Column(
-                        children: [sizedBox(), CopingListView()],
-                      ),
+                    Column(
+                      children: [
+                        sizedBox(),
+                      ],
                     ),
-                    Positioned(right: 24, child: _orderdrop(controller)),
+                    Positioned(right: 20, child: _orderdrop(controller)),
                   ],
                 ),
               ),
-            ),
+              CopingListView(),
+            ]),
           );
         });
   }
@@ -55,18 +55,21 @@ class PCopingMethodsView extends StatelessWidget {
 class CopingListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) {
-        return MethodDownloadingContainer(
-            cardModel: DemoInformation.cardModelhome,
-            time: DemoInformation.clockabomeactivty,
-            explanation: DemoInformation.home[index],
-            buttonOnTap: () {},
-            buttonText: HomeTextUtil.readMethod);
-      },
-      itemCount: DemoInformation.home.length,
+    return SliverPadding(
+      padding: AppPaddings.pagePadding,
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate(
+          (context, index) {
+            return MethodDownloadingContainer(
+                cardModel: DemoInformation.cardModelhome,
+                time: DemoInformation.clockabomeactivty,
+                explanation: DemoInformation.home[index],
+                buttonOnTap: () {},
+                buttonText: HomeTextUtil.readMethod);
+          },
+          childCount: DemoInformation.home.length,
+        ),
+      ),
     );
   }
 }

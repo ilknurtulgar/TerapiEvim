@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 
 import '../../../controller/therapist/home/session/t_session_controller.dart';
 import '../../../core/base/component/activtiy/drop_down.dart';
@@ -19,60 +20,55 @@ class TSessionView extends StatelessWidget {
         onModelReady: (model) {},
         onPageBuilder: (context, controller) {
           return Scaffold(
-            body: SingleChildScrollView(
-              child: Stack(children: [
-                Padding(
-                  padding: AppPaddings.pagePadding,
-                  child: Column(
+            appBar: MyAppBar(title: HomeTextUtil.myMinuteSessions, actions: [
+              IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    context.push(const TAvailableHoursView());
+                  },
+                  icon: IconUtility.clockIcon),
+            ]),
+            body: CustomScrollView(slivers: [
+              SliverToBoxAdapter(
+                child: Stack(children: [
+                  Column(
                     children: [
-                      doubleappbar(
-                        HomeTextUtil.myMinuteSessions,
-                        backButton(context, () => context.pop()),
-                        IconButton(
-                            padding: EdgeInsets.zero,
-                            onPressed: () {
-                              context.push(const TAvailableHoursView());
-                            },
-                            icon: IconUtility.clockIcon),
-                      ),
                       sizedBox(),
-                      _aboutparticipant(),
                     ],
                   ),
-                ),
-                Positioned(
-                    top: 90, right: 24, child: _orderdropdown(controller)),
-              ]),
-            ),
+                  Positioned(right: 24, child: _orderdropdown(controller)),
+                ]),
+              ),
+              _aboutparticipant(),
+            ]),
           );
         });
   }
 
-  ListView _aboutparticipant() {
-    return ListView.builder(
-      itemBuilder: (context, index) {
-        return participantWithShortCallTime(
-            DemoInformation.copingList[index], DemoInformation.date);
-      },
-      itemCount: DemoInformation.copingList.length,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+  Widget _aboutparticipant() {
+    return SliverPadding(
+      padding: AppPaddings.pagePadding,
+      sliver: SliverList(
+          delegate: SliverChildBuilderDelegate(
+              childCount: DemoInformation.copingList.length,
+              (context, index) => participantWithShortCallTime(
+                  DemoInformation.copingList[index], DemoInformation.date))),
     );
   }
-}
 
-Widget _orderdropdown(TSessionController controller) {
-  return CustomDropDown(
-    selectedText: controller.orderValue,
-    textList: DemoInformation.orderingList,
-    isBoxSelected: controller.isBoxSelected,
-    onDropDownTapped: () {
-      controller.setIsBoxSelected();
-    },
-    onValueSelected: (int index){
-      print('index:${index}');
-    },
-    height: SizeUtil.smallValueHeight,
-    width: SizeUtil.normalValueWidth,
-  );
+  Widget _orderdropdown(TSessionController controller) {
+    return CustomDropDown(
+      selectedText: controller.orderValue,
+      textList: DemoInformation.orderingList,
+      isBoxSelected: controller.isBoxSelected,
+      onDropDownTapped: () {
+        controller.setIsBoxSelected();
+      },
+      onValueSelected: (int index) {
+        print('index:${index}');
+      },
+      height: SizeUtil.smallValueHeight,
+      width: SizeUtil.normalValueWidth,
+    );
+  }
 }

@@ -6,7 +6,9 @@ part 't_initial_data.g.dart';
 
 @JsonSerializable()
 class TInitialData extends INetworkModel<TInitialData> {
+
   bool? isTherapistConfirmed;
+  bool? isTherapistBeingReviewed;
 
   TInitialData({
     this.isTherapistConfirmed,

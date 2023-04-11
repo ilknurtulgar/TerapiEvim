@@ -62,8 +62,18 @@ class ViewsForSCL extends StatelessWidget {
   ListView questionsWidget(PTestQuestionsController controller) {
     const List<String> questions = Scl90.questions;
     return ListView.builder(
-      itemBuilder: (context, index) => ToggleQuestions(
-          question: questions[index + controller.getQuestionIndex()]),
+      itemBuilder: (context, index) => Obx(
+        () => ToggleQuestions(
+            children: choice,
+            isSelected: controller.list[index],
+            onPressed: (val) {
+              controller.selecttooggle(index, val!);
+
+              controller.button(index, val);
+            },
+            question: questions[index + controller.getQuestionIndex()]),
+      ),
+
       itemCount: 9, //sayfada kac soru olacak sor
       shrinkWrap: true,
       padding: AppPaddings.componentPadding,
@@ -111,4 +121,24 @@ class ViewsForSCL extends StatelessWidget {
     }
     return shown;
   }
+}
+
+final List<Widget> choice = [
+  IconUtility.checkCircleIcon,
+  IconUtility.checkCircleIcon,
+  IconUtility.checkCircleIcon,
+  IconUtility.checkCircleIcon,
+  IconUtility.checkCircleIcon
+];
+
+class QuestionsModel {
+  final int index;
+  final int point;
+  final String text;
+
+  QuestionsModel({
+    required this.index,
+    required this.point,
+    required this.text,
+  });
 }

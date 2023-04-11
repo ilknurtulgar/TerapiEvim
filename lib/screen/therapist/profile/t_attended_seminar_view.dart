@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 
 import '../../../controller/therapist/profil/t_attended_seminar_controller.dart';
+import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 
@@ -16,10 +17,9 @@ class TAttendedSeminarsView extends StatelessWidget {
       getController: TAttendedSeminarsController(),
       onModelReady: (mode) {},
       onPageBuilder: (context, controller) => Scaffold(
-        appBar: AppBar(
-            backgroundColor: AppColors.blueChalk,
-            title: Text(ParticipantProfileTextUtil.attendedSeminar,
-                style: AppTextStyles.heading(false))),
+        appBar: MyAppBar(
+          title: ParticipantProfileTextUtil.attendedSeminar,
+        ),
         body: CustomScrollView(
           slivers: [
             // SliverPadding(

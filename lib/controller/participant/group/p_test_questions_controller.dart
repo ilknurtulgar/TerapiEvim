@@ -106,6 +106,7 @@ class PTestQuestionsController extends GetxController with BaseController {
   }
 
   int getTestPageIndex() {
+
     return testPageIndex.value;
   }
 
@@ -121,8 +122,11 @@ class PTestQuestionsController extends GetxController with BaseController {
   }
 
   void selecttooggle(int index, int val) {
+    print('BEFORE list[index]:${ list[index]}');
+    list[index] = List.generate(5, (index) => false);
+    print('AFTER list[index]:${ list[index]}');
     list[index][val] = true;
-
+    print('SET AFTER list[index]:${ list[index]}');
     // print(index);
     // print(val);
   }

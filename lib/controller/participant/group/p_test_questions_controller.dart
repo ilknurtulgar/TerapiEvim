@@ -57,7 +57,7 @@ class PTestQuestionsController extends GetxController with BaseController {
   List<int> additionalScalesIndex = [18, 43, 58, 59, 63, 65, 88];
 
   Future<void> submit() async {
-    final NavigatorState navigator = Navigator.of(context);
+    final NavigatorState navigator = Navigator.of(controllerContext);
 
     Scl90ResultModel scl90Result = Scl90ResultModel();
 

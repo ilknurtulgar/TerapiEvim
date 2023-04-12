@@ -91,12 +91,12 @@ class PProfileView extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        rowView(
-            UiBaseModel.normalTextRow(
+        RowView(
+            rowModel: UiBaseModel.normalTextRow(
                 ParticipantProfileTextUtil.myActiveGroup,
                 IconUtility.navGroup,
                 AppTextStyles.profileTextStyles(true, true)),
-            EdgeInsets.zero),
+            padding: EdgeInsets.zero),
         participantGroupContainer(),
       ],
     );

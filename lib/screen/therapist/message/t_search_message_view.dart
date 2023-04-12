@@ -44,9 +44,9 @@ class _TSearchMessageViewState extends State<TSearchMessageView> {
                             onTap: () {
                               therapistMessageController.onPersonListChange();
                             },
-                            child: rowView(
-                                UiBaseModel.personviewRowModel("oke"),
-                                AppPaddings.generalPadding)),
+                            child: RowView(
+                                rowModel: UiBaseModel.personviewRowModel("oke"),
+                                padding: AppPaddings.generalPadding)),
                       ),
                       rows: person(context));
                 },

@@ -33,8 +33,8 @@ class FilterScreen extends StatelessWidget {
   }
 
   Widget filterappbar(BuildContext context) {
-    return rowView(
-        UiBaseModel.secRowModel(
+    return RowView(
+        rowModel: UiBaseModel.secRowModel(
             Row(
               children: [
                 TextButton(
@@ -51,7 +51,7 @@ class FilterScreen extends StatelessWidget {
               ],
             ),
             ActivityTextUtil.filtering),
-        AppPaddings.componentPadding);
+        padding: AppPaddings.componentPadding);
     /* Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [

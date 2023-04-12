@@ -142,5 +142,5 @@ Align butterFlyButton(String buttonname, Function() onTap) {
 }
 
 Widget secappview(RowModel rowModel) {
-  return rowView(rowModel, AppPaddings.mediumxPadding);
+  return RowView(rowModel: rowModel, padding: AppPaddings.mediumxPadding);
 }

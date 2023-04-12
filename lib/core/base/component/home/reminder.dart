@@ -28,8 +28,9 @@ class Reminder extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            rowView(UiBaseModel.rowcontainer(true, context),
-                AppPaddings.miniHeadingPadding(true)),
+            RowView(
+                rowModel: UiBaseModel.rowcontainer(true, context),
+                padding: AppPaddings.miniHeadingPadding(true)),
             reminderContent(reminderTypeText)
           ],
         ),

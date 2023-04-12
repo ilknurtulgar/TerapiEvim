@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/participant/activity/p_activity_controller.dart';
-import 'package:terapievim/core/base/component/group/row_view.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
 
+import '../../../controller/participant/activity/p_activity_controller.dart';
 import '../../../core/base/component/activtiy/filtermin.dart';
+import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/util/base_model.dart';
+import '../../../core/base/util/base_utility.dart';
 
 class FilterDetailsView extends StatelessWidget {
   FilterDetailsView({super.key});

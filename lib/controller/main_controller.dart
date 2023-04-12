@@ -11,7 +11,7 @@ class MainController extends GetxController with BaseController {
   var isTestNotSolved = true.obs;
   var isTestResultReady = true.obs;
   var isGroupReady = true.obs;
-  var isTherapist = true.obs; //bunun degisimi yapilacak
+  var isTherapist = false.obs; //bunun degisimi yapilacak
   void testSolved() {
     isTestNotSolved.value = false;
   }

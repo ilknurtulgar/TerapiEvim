@@ -5,13 +5,10 @@ import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/core/base/component/group/questions_button.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
 
-import '../../../../controller/main_controller.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
-import 'p_lock_view.dart';
 
 class PTestView extends StatelessWidget {
   const PTestView({super.key});
@@ -92,12 +89,7 @@ class ViewsForSCL extends StatelessWidget {
               AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
           textColor: AppColors.white,
           onTap: () {
-            MainController controller = Get.find();
-            controller.testSolved();
-            //burasi ni boyle yapmayinca duzgun calismiyor
-            context.pop();
-            context.pop();
-            context.push(const PLockView());
+            controller.nextPage();
           },
           text: Scl90.finish);
     } else {

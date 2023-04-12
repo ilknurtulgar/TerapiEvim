@@ -12,6 +12,7 @@ class AppConst {
   static const String dateTime = 'dateTime';
   static const String id = 'id';
   static const String groupId = 'groupId';
+  static const String groupCategory = 'groupCategory';
   static const String role = 'role';
   static const String therapist = 'therapist';
   static const String participant = 'participant';

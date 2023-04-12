@@ -26,38 +26,41 @@ class PGroupService extends IPGroupService with BaseService {
   }
 
   @override
-  Future<List<TGroupModel?>> getGroupsOrdered({
+  Future<List<TGroupModel>> getGroupsByCategory({
+    required String categoryName,
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
   }) async {
     if (userId == null) return [];
-
-    final result = await manager.readOrdered<TGroupModel, List<TGroupModel>>(
+    final result =
+        await manager.readOrderedWhere<TGroupModel, List<TGroupModel>>(
       collectionPath: APIConst.groups,
+      whereField: AppConst.groupCategory,
+      whereIsEqualTo: categoryName,
       parseModel: TGroupModel(),
       isDescending: isDescending,
       orderField: orderField,
       lastDocumentId: lastDocId,
     );
-    if (result.error != null) {
+    if (result.error != null || result.data == null) {
       return [];
     }
 
-    return result.data ?? [];
+    return result.data!;
   }
 
   @override
-  Future<bool?> joinGroup(JoinGroupIdModel joinGroupId) async {
+  Future<bool?> joinGroup(JoinGroupIdModel joinGroup) async {
     try {
-      if (joinGroupId.joinedGroupId == null) {
+      if (joinGroup.joinedGroupId == null) {
         throw Exception('groupId.joinedGroupId == null');
       }
       if (userId == null) return false;
       final result = await manager.createWithDocId(
         collectionPath: APIConst.participant,
         docId: userId!,
-        value: joinGroupId.toJson()!,
+        value: joinGroup.toJson()!,
       );
 
       return result;

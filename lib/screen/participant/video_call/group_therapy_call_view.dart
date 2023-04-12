@@ -17,8 +17,8 @@ class GroupTherapyCallView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<GroupTherapyCallController>(
-        getController: GroupTherapyCallController(),
+    return BaseView<PGroupCallController>(
+        getController: PGroupCallController(),
         onModelReady: (model) {},
         onPageBuilder: (context, controller) {
           return Scaffold(
@@ -39,7 +39,7 @@ class GroupTherapyCallView extends StatelessWidget {
   }
 
   VideoCallPerson therapistView(
-      GroupTherapyCallController videoCallController, BuildContext context) {
+      PGroupCallController videoCallController, BuildContext context) {
     return VideoCallPerson(
       videoCallViewModel: VideoCallUtility.personBigView(
           DemoInformation.therapist, true, context),
@@ -52,7 +52,7 @@ class GroupTherapyCallView extends StatelessWidget {
   }
 
   Align participantsRowWithButtonsContainer(
-      GroupTherapyCallController videoCallController, BuildContext context) {
+      PGroupCallController videoCallController, BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -83,7 +83,7 @@ class GroupTherapyCallView extends StatelessWidget {
     );
   }
 
-  Widget participantRow(GroupTherapyCallController videoCallController) {
+  Widget participantRow(PGroupCallController videoCallController) {
     return Expanded(
       child: Padding(
         padding: AppPaddings.smallHorizontalPadding,

@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:videosdk/videosdk.dart';
 
 import '../../../../../core/extension/context_extension.dart';
+import '../../../../controller/therapist/video_call/t_group_call_controller.dart';
 import '../../../../core/base/component/video_call/buttons/video_call_buttons.dart';
 import '../../../../core/base/util/base_utility.dart';
+import '../../../../core/base/view/base_view.dart';
 import '../../../../product/widget/common/video_call/participant_tile.dart';
 import '../../../common/home/main_home.dart';
 
@@ -86,68 +88,71 @@ class _TGroupCallViewState extends State<TGroupCallView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.doveGray,
-      body: SizedBox(
-        height: double.infinity,
-        width: double.infinity,
-        child: Stack(
-          children: [
-            if (participantVideoStreams.values.isNotEmpty)
-              if (participantVideoStreams.values.first!.renderer != null)
-                Positioned.fill(
-                  child: ParticipantTile(
-                    stream: participantVideoStreams.values.first!,
-                    hasPadding: false,
+    return BaseView<TGroupCallController>(
+      getController: TGroupCallController(),
+      onPageBuilder: (context, controller) => Scaffold(
+        backgroundColor: AppColors.doveGray,
+        body: SizedBox(
+          height: double.infinity,
+          width: double.infinity,
+          child: Stack(
+            children: [
+              if (participantVideoStreams.values.isNotEmpty)
+                if (participantVideoStreams.values.first!.renderer != null)
+                  Positioned.fill(
+                    child: ParticipantTile(
+                      stream: participantVideoStreams.values.first!,
+                      hasPadding: false,
+                    ),
                   ),
-                ),
-            Positioned(
-                bottom: 0,
-                right: 0,
+              Positioned(
+                  bottom: 0,
+                  right: 0,
+                  left: 0,
+                  child: Container(
+                    height: 305,
+                    color: Colors.black.withOpacity(0.75),
+                  )),
+              Positioned(
+                bottom: 80,
                 left: 0,
-                child: Container(
-                  height: 305,
-                  color: Colors.black.withOpacity(0.75),
-                )),
-            Positioned(
-              bottom: 80,
-              left: 0,
-              right: 0,
-              child: SizedBox(
-                width: context.width,
-                child: SingleChildScrollView(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      ...participantVideoStreams.values
-                          .map(
-                            (e) => ParticipantTile2(
-                              stream: e!,
-                            ),
-                          )
-                          .toList(),
-                    ],
+                right: 0,
+                child: SizedBox(
+                  width: context.width,
+                  child: SingleChildScrollView(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        ...participantVideoStreams.values
+                            .map(
+                              (e) => ParticipantTile2(
+                                stream: e!,
+                              ),
+                            )
+                            .toList(),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              bottom: 4,
-              left: 0,
-              right: 0,
-              child: VideoCallButtonsRow(
-                onToggleMicButtonPressed: () {
-                  micEnabled ? room.muteMic() : room.unmuteMic();
-                  micEnabled = !micEnabled;
-                },
-                onToggleCameraButtonPressed: () {
-                  camEnabled ? room.disableCam() : room.enableCam();
-                  camEnabled = !camEnabled;
-                },
-                onLeaveButtonPressed: () => room.leave(),
+              Positioned(
+                bottom: 4,
+                left: 0,
+                right: 0,
+                child: VideoCallButtonsRow(
+                  onToggleMicButtonPressed: () {
+                    micEnabled ? room.muteMic() : room.unmuteMic();
+                    micEnabled = !micEnabled;
+                  },
+                  onToggleCameraButtonPressed: () {
+                    camEnabled ? room.disableCam() : room.enableCam();
+                    camEnabled = !camEnabled;
+                  },
+                  onLeaveButtonPressed: () => room.leave(),
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

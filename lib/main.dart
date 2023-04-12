@@ -88,5 +88,5 @@ void _initializeControllers() {
   Get.put(TGroupController()); // yeri değişebilir şimdilik buraya koydum
   Get.put(PGroupController());
   Get.put(MainController());
-  Get.put(GroupTherapyCallController());
+  Get.put(PGroupCallController());
 }

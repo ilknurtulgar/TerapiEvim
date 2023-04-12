@@ -7,4 +7,12 @@ class PAttendedSeminarsController extends GetxController {
     dropdownValue.value = value;
     notifyChildrens();
   }
+
+  RxString orderValue = "Yeniden eskiye ".obs;
+
+  var isBoxSelected = false.obs;
+
+  void setIsBoxSelected() {
+    isBoxSelected.value = !isBoxSelected.value;
+  }
 }

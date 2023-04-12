@@ -52,15 +52,14 @@ class TGroupAddView extends StatelessWidget {
                       isRowModel: false),
                   miniHeadings(GroupTextUtil.secondTherapistText, false, false),
                   Election(
-                      election: ControllerElection
-                          .therapistGroupControllerSecTherapist,
+                      isSelectedValue: controller.isSecTherapistElectionOpen,
                       firstRow: secTherapist(controller),
                       rows: persons(controller, context)),
                   button(context, controller, false),
                   miniHeadings(GroupTextUtil.meetDayText, false, false),
                   miniHeadings(GroupTextUtil.dayText, true, false),
                   Election(
-                      election: ControllerElection.therapistGroupControllerDay,
+                      isSelectedValue: controller.isDayElectionOpen,
                       firstRow: dayRow(controller),
                       rows: days(controller)),
                   miniHeadings(GroupTextUtil.timeText, true, false),
@@ -162,7 +161,7 @@ class TGroupAddView extends StatelessWidget {
             container: isLastButton
                 ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)
                 : AppContainers.lightPurpleButtonContainer(
-                    SizeUtil.mediumValueWidth,true),
+                    SizeUtil.mediumValueWidth, true),
             textColor: isLastButton ? AppColors.white : AppColors.meteorite,
             onTap: () async {
               if (!isLastButton) {

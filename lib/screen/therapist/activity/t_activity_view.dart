@@ -36,7 +36,7 @@ class TActivityView extends StatelessWidget {
                   controller.updatechnage(1);
                   context.push(const TNewActivityView());
                 },
-                icon: IconUtility.addIcon),
+                icon: IconUtility.addcircleIcon),
           ],
         ),
         body: SingleChildScrollView(

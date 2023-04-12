@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/therapist/activity/t_new_activity_view_controller.dart';
+import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 
 import '../../../controller/therapist/activity/t_activity_controller.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/component/login/custom_textfield.dart';
 import '../../../core/base/ui_models/row_model.dart';
-import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
-import '../../../core/extension/context_extension.dart';
+import '../../../core/base/view/base_view.dart';
 import '../../../model/common/activity/t_activity_model.dart';
 import '../../../screen/therapist/group/group_add/t_group_add_view.dart';
 
@@ -22,8 +23,6 @@ class TNewActivityView extends StatefulWidget {
   State<TNewActivityView> createState() => _TNewActivityViewState();
 }
 
-///TODO: bhz => İlknur : it is not recommended to use it outside a class
-///TODO: it needs to be removed
 TActivityController therapistActivityController = Get.find();
 
 class _TNewActivityViewState extends State<TNewActivityView> {
@@ -42,37 +41,27 @@ class _TNewActivityViewState extends State<TNewActivityView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: AppPaddings.pagePadding,
-          child: Column(
-            children: [
-              Obx(
-                () => therapistActivityController.isUpdate.value
-                    ? secappview(UiBaseModel.secRowModel(closeIcon(() {
-                        context.pop();
-                      }), ActivityTextUtil.update))
-                    : secappview(UiBaseModel.secRowModel(closeIcon(() {
-                        context.pop();
-                      }), ActivityTextUtil.newActivity)),
-              ),
-              miniHeadings(ActivityTextUtil.eventName, false, false),
-              eventname(),
-              miniHeadings(ActivityTextUtil.eventAbout, false, false),
-              eventabout(),
-              dateclockrow(),
-              dateclocktextfield(),
-              Obx(
-                () => therapistActivityController.isUpdate.value
-                    ? butterFlyButton(ActivityTextUtil.update, () {
-                        therapistActivityController.updateActivity(context);
-                      })
-                    : butterFlyButton(ActivityTextUtil.create, () {
-                        therapistActivityController.createActivity(context);
-                      }),
-              )
-            ],
+    return BaseView<TNewActivityViewController>(
+      getController: TNewActivityViewController(),
+      onPageBuilder: (context, TNewActivityViewController controller) =>
+          Scaffold(
+        appBar: MyAppBar(title: ActivityTextUtil.newActivity),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              children: [
+                miniHeadings(ActivityTextUtil.eventName, false, false),
+                eventname(),
+                miniHeadings(ActivityTextUtil.eventAbout, false, false),
+                eventabout(),
+                dateclockrow(),
+                dateclocktextfield(),
+                butterFlyButton(ActivityTextUtil.create, () {
+                  therapistActivityController.createActivity(context);
+                }),
+              ],
+            ),
           ),
         ),
       ),
@@ -141,7 +130,7 @@ class _TNewActivityViewState extends State<TNewActivityView> {
   }
 }
 
-Widget butterFlyButton(String buttonname, Function() onTap) {
+Align butterFlyButton(String buttonname, Function() onTap) {
   return Align(
     alignment: Alignment.bottomRight,
     child: CustomButton(

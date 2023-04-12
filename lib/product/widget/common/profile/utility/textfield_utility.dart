@@ -34,8 +34,7 @@ class TextFieldUtility {
             textStyle: const TextStyle(color: AppColors.black),
             text2: 'gg/aa/yyyy',
             isAlignmentBetween: false,
-            leadingIcon: IconUtility.calendarIcon
-            ),
+            leadingIcon: IconUtility.calendarIcon),
         isBig: isBig,
         isRowModel: true,
       );
@@ -71,10 +70,12 @@ class TextFieldUtility {
             leadingIcon: IconUtility.lockSmall,
             trailingIcon: IconButton(
                 icon: Obx(
-                  () => Icon(isObscured.value
-                      ? IconUtility.visibilityoffIcon.icon
-                      : IconUtility.visibilityIcon.icon,
-                     color: AppColors.black,),
+                  () => Icon(
+                    isObscured.value
+                        ? IconUtility.visibilityoffIcon.icon
+                        : IconUtility.visibilityIcon.icon,
+                    color: AppColors.black,
+                  ),
                 ),
                 onPressed: () {
                   isObscured.value = !isObscured.value;
@@ -99,24 +100,24 @@ class TextFieldUtility {
           prefixText: "+90",
           isBig: isBig,
           isRowModel: true);
+}
 
-  Future<void> choosingBirthday(TextEditingController controller) async {
-    DateTime? pickedDate = await Get.dialog(DatePickerDialog(
-        initialDate: DateTime(1990),
-        firstDate: DateTime(1923),
-        lastDate: DateTime(2004)));
-    String? day;
-    String? month;
-    String? year;
-    if (pickedDate != null) {
-      day = pickedDate.day.toInt() < 10
-          ? '0${pickedDate.day.toString()}'
-          : pickedDate.day.toString();
-      month = pickedDate.month.toInt() < 10
-          ? '0${pickedDate.month.toString()}'
-          : pickedDate.month.toString();
-      year = pickedDate.year.toString();
-      controller.text = '$day/$month/$year';
-    }
+Future<void> choosingBirthday(TextEditingController controller) async {
+  DateTime? pickedDate = await Get.dialog(DatePickerDialog(
+      initialDate: DateTime(1990),
+      firstDate: DateTime(1923),
+      lastDate: DateTime(2004)));
+  String? day;
+  String? month;
+  String? year;
+  if (pickedDate != null) {
+    day = pickedDate.day.toInt() < 10
+        ? '0${pickedDate.day.toString()}'
+        : pickedDate.day.toString();
+    month = pickedDate.month.toInt() < 10
+        ? '0${pickedDate.month.toString()}'
+        : pickedDate.month.toString();
+    year = pickedDate.year.toString();
+    controller.text = '$day/$month/$year';
   }
 }

@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../../base/base_controller.dart';
 
 class TGroupVerificationController extends GetxController with BaseController {
-  RxBool isLockedOpen = false.obs;
+  RxBool isLockedOpen = true.obs;
   RxBool isTherapistUploaded = true.obs;
   void changeIsTherapistLoaded() {
     isTherapistUploaded.value = !isTherapistUploaded.value;

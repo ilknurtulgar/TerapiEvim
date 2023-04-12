@@ -11,6 +11,7 @@ import '../../../core/managers/firebase/firestore/models/created_id_response.dar
 import '../../../core/managers/firebase/firestore/models/empty_model.dart';
 import '../../../model/common/profile/t_public_profile_model.dart';
 import '../../../model/common/user/user_model.dart';
+import '../../../model/therapist/coping_method/t_coping_method_model.dart';
 import '../../../model/therapist/group/t_about_group_model.dart';
 import '../../../model/therapist/group/t_group_model.dart';
 import 'i_t_group_service.dart';
@@ -225,5 +226,32 @@ class TGroupService extends ITGroupService with BaseService {
       }
     }
     return publicProfileList;
+  }
+
+  @override
+  Future<List<TCopingMethodModel?>> getCopingMethods(
+      {required String groupId,
+        String lastDocId = '',
+        String orderField = AppConst.dateTime,
+        bool isDescending = false,}) async {
+
+    if (userId == null) return [];
+
+    final result = await manager.readOrderedWhere(
+      collectionPath: APIConst.users,
+      docId: userId,
+      collectionPath2: APIConst.users,
+      parseModel: TCopingMethodModel(),
+      isDescending: isDescending,
+      orderField: orderField,
+      lastDocumentId: lastDocId,
+      whereField: AppConst.groupId,
+      whereIsEqualTo: groupId,
+    );
+    if (result.error != null) {
+      return [];
+    }
+
+    return result.data;
   }
 }

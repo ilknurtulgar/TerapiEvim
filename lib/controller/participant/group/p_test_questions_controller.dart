@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/toast/toast.dart';
-import 'package:terapievim/model/participant/scl90test/test_scl_90_model.dart';
 import 'package:terapievim/screen/participant/group/scl90/p_lock_view.dart';
 
+import '../../../model/common/scl_90/scl_90_result_model.dart';
 import '../../../model/participant/scl90test/answers.dart';
 import '../../../service/_participant/scl_90/i_p_scl_90_service.dart';
 import '../../../service/_participant/scl_90/p_scl_90_service.dart';
@@ -13,15 +13,12 @@ import '../../base/base_controller.dart';
 class PTestQuestionsController extends GetxController with BaseController {
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
     pScl90Service = PScl90Service(vexaFireManager.networkManager);
   }
 
   @override
-  void setContext(BuildContext context) {
-    // TODO: implement setContext
-  }
+  void setContext(BuildContext context) {}
 
   late final IPScl90Service pScl90Service;
 
@@ -62,8 +59,10 @@ class PTestQuestionsController extends GetxController with BaseController {
   Future<void> submit() async {
     final NavigatorState navigator = Navigator.of(context);
 
-    TestSCL90Model scl90 = TestSCL90Model(answers: answers);
-    final idResponse = await pScl90Service.submitTest(scl90);
+    Scl90ResultModel scl90Result = Scl90ResultModel();
+
+    final idResponse = await pScl90Service.submitTest(scl90Result);
+
     if (idResponse != null) {
       navigationManager.pushAndRemoveUntil(navigator, PLockView());
     } else {
@@ -106,7 +105,6 @@ class PTestQuestionsController extends GetxController with BaseController {
   }
 
   int getTestPageIndex() {
-
     return testPageIndex.value;
   }
 
@@ -122,11 +120,11 @@ class PTestQuestionsController extends GetxController with BaseController {
   }
 
   void selecttooggle(int index, int val) {
-    print('BEFORE list[index]:${ list[index]}');
+    print('BEFORE list[index]:${list[index]}');
     list[index] = List.generate(5, (index) => false);
-    print('AFTER list[index]:${ list[index]}');
+    print('AFTER list[index]:${list[index]}');
     list[index][val] = true;
-    print('SET AFTER list[index]:${ list[index]}');
+    print('SET AFTER list[index]:${list[index]}');
     // print(index);
     // print(val);
   }

@@ -21,6 +21,7 @@ class TGroupService extends ITGroupService with BaseService {
   @override
   Future<CreatedIdResponse?> createGroup(TGroupModel group) async {
     if (userId == null) return null;
+
     if (group.groupCategory == null) return null;
 
     group.therapistId = userId;

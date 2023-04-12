@@ -51,20 +51,20 @@ class TSettingsView extends StatelessWidget {
       onTap: () {
         context.push(const TProfileSettingsView());
       },
-      child: rowView(
-          RowModel(
+      child: RowView(
+          rowModel: RowModel(
               text: ProfileSettingsTextUtil.myAccount,
               textStyle: AppTextStyles.aboutMeTextStyle(false),
               isAlignmentBetween: false,
               leadingIcon: IconUtility.personIcon,
               trailingIcon: IconUtility.forward),
-          AppPaddings.componentPadding),
+          padding: AppPaddings.componentPadding),
     );
   }
 
   Widget notificationRow(TSettingsController controller) {
-    return rowView(
-        RowModel(
+    return RowView(
+        rowModel: RowModel(
             isAlignmentBetween: false,
             text: ProfileSettingsTextUtil.notifications,
             textStyle: AppTextStyles.aboutMeTextStyle(false),
@@ -79,7 +79,7 @@ class TSettingsView extends StatelessWidget {
                     controller.changeNotificationButton(value);
                   }),
             )),
-        AppPaddings.componentPadding);
+        padding: AppPaddings.componentPadding);
   }
 
   Padding textButton(String text, Function func) {

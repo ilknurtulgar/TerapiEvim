@@ -169,12 +169,12 @@ class TGroupInformationView extends StatelessWidget {
   }
 
   Widget miniHeadings(String name, bool isInMiddle) {
-    return rowView(
-      RowModel(
+    return RowView(
+      rowModel: RowModel(
           text: name,
           textStyle: AppTextStyles.heading(false),
           isAlignmentBetween: false),
-      AppPaddings.miniHeadingPadding(isInMiddle),
+      padding: AppPaddings.miniHeadingPadding(isInMiddle),
     );
   }
 

@@ -53,8 +53,9 @@ class NotificationContainer extends StatelessWidget {
 }
 
 Widget notificationConst(BuildContext context) {
-  return rowView(UiBaseModel.rowcontainer(false, context),
-      AppPaddings.miniHeadingPadding(true));
+  return RowView(
+      rowModel: UiBaseModel.rowcontainer(false, context),
+      padding: AppPaddings.miniHeadingPadding(true));
 }
 
 Padding notificationContent(

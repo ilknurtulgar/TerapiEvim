@@ -13,15 +13,18 @@ class TUpdateActivityView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<TUpdateActivityViewController>(
+      onModelReady: (model) {
+        model.setContext(context);
+      },
       getController: TUpdateActivityViewController(),
-      onPageBuilder: (context, value) => Scaffold(
+      onPageBuilder: (context, controller) => Scaffold(
         appBar: MyAppBar(title: ActivityTextUtil.update),
         body: Column(
           children: [
             miniHeadings(ActivityTextUtil.eventName, false, false),
             miniHeadings(ActivityTextUtil.eventAbout, false, false),
             butterFlyButton(ActivityTextUtil.update, () {
-              therapistActivityController.updateActivity(context);
+              controller.updateActivity();
             })
           ],
         ),

@@ -55,10 +55,11 @@ class GroupClass extends StatelessWidget {
                   heading == null
                       ? const SizedBox.shrink()
                       : groupHeading(heading!),
-                  rowView(row1, AppPaddings.rowViewPadding),
-                  rowView(row2, AppPaddings.rowViewPadding),
+                  RowView(rowModel: row1, padding: AppPaddings.rowViewPadding),
+                  RowView(rowModel: row2, padding: AppPaddings.rowViewPadding),
                   row3 != null
-                      ? rowView(row3!, AppPaddings.rowViewPadding)
+                      ? RowView(
+                          rowModel: row3!, padding: AppPaddings.rowViewPadding)
                       : const SizedBox()
                 ],
               ),

@@ -70,10 +70,10 @@ class TNewActivityView extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        DateTextField(
-            textController: controller.activityDateController,
-            isBig: false,
-            dateTapped: () => (controller.activityDateController)),
+        // DateTextField(
+        //     textController: controller.activityDateController,
+        //     isBig: false,
+        //     dateTapped: () => (controller.activityDateController)),
         Expanded(
             child: TextsField(
                 textEditingController: activityDateController, maxLines: 2)),

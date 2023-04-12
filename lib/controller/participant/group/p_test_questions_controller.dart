@@ -18,7 +18,7 @@ class PTestQuestionsController extends GetxController with BaseController {
   }
 
   @override
-  void setContext(BuildContext context) {}
+  void setContext(BuildContext context) => controllerContext = context;
 
   late final IPScl90Service pScl90Service;
 
@@ -53,15 +53,15 @@ class PTestQuestionsController extends GetxController with BaseController {
   List<int> angerEnmityIndex = [10, 23, 62, 66, 73, 80];
   List<int> phobicAnxietyIndex = [12, 24, 46, 49, 69, 74, 81];
   List<int> paranoidThoughtsIndex = [7, 17, 42, 67, 75, 82];
-  List<int> pbimochismIndex = [6, 15, 34, 61, 76, 83, 84, 86, 87, 89];
+  List<int> psychoticismIndex = [6, 15, 34, 61, 76, 83, 84, 86, 87, 89];
   List<int> additionalScalesIndex = [18, 43, 58, 59, 63, 65, 88];
 
-  Future<void> submit() async {
+  Future<void> submit(Scl90ResultModel model) async {
     final NavigatorState navigator = Navigator.of(controllerContext);
 
-    Scl90ResultModel scl90Result = Scl90ResultModel();
+    //  Scl90ResultModel scl90Result = Scl90ResultModel();
 
-    final idResponse = await pScl90Service.submitTest(scl90Result);
+    final idResponse = await pScl90Service.submitTest(model);
 
     if (idResponse != null) {
       navigationManager.pushAndRemoveUntil(navigator, PLockView());
@@ -81,8 +81,30 @@ class PTestQuestionsController extends GetxController with BaseController {
     double angerEnmityResult = transactions(angerEnmityIndex);
     double phobicAnxietyResult = transactions(phobicAnxietyIndex);
     double paranoidThoughtResult = transactions(paranoidThoughtsIndex);
-    double pbimochismResult = transactions(pbimochismIndex);
-    double additioanlScalesResult = transactions(additionalScalesIndex);
+    double psychoticismResult = transactions(psychoticismIndex);
+    double additionalScalesResult = transactions(additionalScalesIndex);
+    print("soma ${somatizationResult}");
+    print("okb $oKBResult");
+    print("inter $interpersonalSensitivityResult");
+    print("dep $depressionResult");
+    print("anx ${anxietyResult}");
+    print("anger $angerEnmityResult");
+    print("phobic ${phobicAnxietyResult}");
+    print("para $paranoidThoughtResult");
+    print("psycho ${psychoticismResult}");
+    print("add $additionalScalesResult");
+
+    submit(Scl90ResultModel(
+        somatization: somatizationResult,
+        oKB: oKBResult,
+        interpersonalSensitivity: interpersonalSensitivityResult,
+        depression: depressionResult,
+        anxiety: anxietyResult,
+        angerEnmity: angerEnmityResult,
+        phobicAnxiety: phobicAnxietyResult,
+        paranoidThought: paranoidThoughtResult,
+        psychoticism: psychoticismResult,
+        additionalScales: additionalScalesResult));
   }
 
   double transactions(List<int> indexs) {
@@ -92,15 +114,31 @@ class PTestQuestionsController extends GetxController with BaseController {
       mentalIllnes += answer[index];
     }
     mentalIllnes /= somatizationIndex.length;
-    mentalIllnes *= 100; //yuzdelik deger dondurur
+    mentalIllnes *= 25; //yuzdelik deger dondurur
     return mentalIllnes;
   }
 
   void nextPage() {
-    if (testPageIndex.value != 10) {
-      testPageIndex.value++;
+    int i;
+    bool canChangePage = true;
 
+    // for (i = 0; i < 9; i++) {
+    //   print(
+    //       "i = $i testPageIndex = ${testPageIndex.value} cevap: ${answer[i + testPageIndex.value * 9]}");
+    //   if (answer[i + testPageIndex.value * 9] == -1) {
+    //     canChangePage = false;
+    //   }
+    // }
+
+    if (canChangePage && testPageIndex.value != 9) {
+      testPageIndex.value++;
       questionIndex += 9;
+    } else if (testPageIndex.value == 9 && canChangePage) {
+      symptomIdentification();
+    } else {
+      //sayfalardaki sorular isaretlenmemeis
+      flutterErrorToast(
+          "Bir dahaki sayfaya gecmek icin tum sorulari cevaplandirmalisiniz");
     }
   }
 

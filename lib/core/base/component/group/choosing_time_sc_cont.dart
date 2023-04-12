@@ -33,14 +33,13 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
 
   late RxList<bool> isChosen = RxList.filled(timeList.length, false);
 
-  void choose(int index, RxList<bool> list,bool isInsideComponent) {
+  void choose(int index, RxList<bool> list, bool isInsideComponent) {
     int i = 0;
     for (i = 0; i < list.length; i++) {
-      if (i == index){
+      if (i == index) {
         list[i] = true;
-        if(isInsideComponent) callBack!(date, timeList[i]);
-      }
-      else {
+        if (isInsideComponent) callBack!(date, timeList[i]);
+      } else {
         list[i] = false;
       }
     }
@@ -65,15 +64,15 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
                 child: Column(
                   children: [
                     isForParticipant
-                        ? rowView(
-                            UiBaseModel.secDeterminationModel(
+                        ? RowView(
+                            rowModel: UiBaseModel.secDeterminationModel(
                                 therapistName!, IconUtility.personIcon),
-                            AppPaddings.componentOnlyPadding(4))
+                            padding: AppPaddings.componentOnlyPadding(4))
                         : const SizedBox(),
-                    rowView(
-                        UiBaseModel.secDeterminationModel(
+                    RowView(
+                        rowModel: UiBaseModel.secDeterminationModel(
                             'Tarih: $date', IconUtility.calendarIcon),
-                        AppPaddings.componentOnlyPadding(4)),
+                        padding: AppPaddings.componentOnlyPadding(4)),
                     isForParticipant
                         ? timeButtonList()
                         : Obx(() => timeButtonList()),
@@ -114,8 +113,9 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
           : AppPaddings.componentPadding,
       child: PersonMin(
         onTap: () {
-          choose(listViewIndex!, listViewChosenList!,false);
-          if (listViewChosenList![listViewIndex!]) choose(rowIndex, isChosen,true);
+          choose(listViewIndex!, listViewChosenList!, false);
+          if (listViewChosenList![listViewIndex!])
+            choose(rowIndex, isChosen, true);
         },
         row: timeButtonInsideRow(rowIndex),
       ),
@@ -129,7 +129,8 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
       textStyle: AppTextStyles.normalTextStyle('medium', false),
       leadingIcon: IconUtility.clockIcon,
       trailingIcon: Obx(() => Icon(Icons.check_circle_outline,
-          color: isChosen[rowIndex] == true && listViewChosenList![listViewIndex!]
+          color:
+              isChosen[rowIndex] == true && listViewChosenList![listViewIndex!]
                   ? AppColors.black
                   : AppColors.transparent)),
     );

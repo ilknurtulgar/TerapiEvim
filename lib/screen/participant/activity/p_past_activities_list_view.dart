@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/controller/participant/activity/p_past_acitivities_list_view_controller.dart';
-import 'package:terapievim/core/base/util/base_model.dart';
 
+import '../../../controller/participant/activity/p_past_acitivities_list_view_controller.dart';
+import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';

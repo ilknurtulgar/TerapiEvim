@@ -1,157 +1,111 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../controller/therapist/activity/t_activity_controller.dart';
-import '../../../core/base/component/buttons/custom_button.dart';
-import '../../../core/base/component/group/row_view.dart';
-import '../../../core/base/component/login/custom_textfield.dart';
-import '../../../core/base/ui_models/row_model.dart';
-import '../../../core/base/util/base_model.dart';
+import '../../../controller/therapist/activity/t_new_activity_view_controller.dart';
+import '../../../core/base/component/app_bar/my_app_bar.dart';
+import '../../../core/base/component/group/choosing_time_group_therapy.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
-import '../../../core/extension/context_extension.dart';
+import '../../../core/base/view/base_view.dart';
 import '../../../model/common/activity/t_activity_model.dart';
-import '../../../screen/therapist/group/group_add/t_group_add_view.dart';
 
-class TNewActivityView extends StatefulWidget {
+import '../../../product/widget/common/button/butterfly_button.dart';
+import '../../../product/widget/common/textfield/text_field.dart';
+
+import '../../../product/widget/common/group/mini_headings.dart';
+
+class TNewActivityView extends StatelessWidget {
   const TNewActivityView({super.key, this.activity});
 
   final TActivityModel? activity;
 
   @override
-  State<TNewActivityView> createState() => _TNewActivityViewState();
-}
-
-///TODO: bhz => İlknur : it is not recommended to use it outside a class
-///TODO: it needs to be removed
-TActivityController therapistActivityController = Get.find();
-
-class _TNewActivityViewState extends State<TNewActivityView> {
-  @override
-  void initState() {
-    if (widget.activity != null) {
-      therapistActivityController.activitynamController.text =
-          widget.activity?.title ?? '';
-      therapistActivityController.activitydescriptionController.text =
-          widget.activity?.description ?? '';
-
-      ///TODO handle others controllers
-    }
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: AppPaddings.pagePadding,
-          child: Column(
-            children: [
-              Obx(
-                () => therapistActivityController.isUpdate.value
-                    ? secappview(UiBaseModel.secRowModel(closeIcon(() {
-                        context.pop();
-                      }), ActivityTextUtil.update))
-                    : secappview(UiBaseModel.secRowModel(closeIcon(() {
-                        context.pop();
-                      }), ActivityTextUtil.newActivity)),
-              ),
-              miniHeadings(ActivityTextUtil.eventName, false, false),
-              eventname(),
-              miniHeadings(ActivityTextUtil.eventAbout, false, false),
-              eventabout(),
-              dateclockrow(),
-              dateclocktextfield(),
-              Obx(
-                () => therapistActivityController.isUpdate.value
-                    ? butterFlyButton(ActivityTextUtil.update, () {
-                        therapistActivityController.updateActivity(context);
-                      })
-                    : butterFlyButton(ActivityTextUtil.create, () {
-                        therapistActivityController.createActivity(context);
-                      }),
-              )
-            ],
+    return BaseView<TNewActivityViewController>(
+      getController: TNewActivityViewController(),
+      onModelReady: (model) {
+        model.setContext(context);
+      },
+      onPageBuilder: (context, TNewActivityViewController controller) =>
+          Scaffold(
+        appBar: MyAppBar(title: ActivityTextUtil.newActivity),
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              children: [
+                MiniHeading(
+                    name: ActivityTextUtil.eventName,
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
+                EventName(
+                    activityNameController: controller.activityNameController),
+                MiniHeading(
+                    name: ActivityTextUtil.eventAbout,
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
+                EventAbout(
+                    activityDescriptionController:
+                        controller.activityDescriptionController),
+                dateClockTextField(
+                    controller.activityDateController, controller),
+                ButterFlyButton(
+                    buttonOnTap: () {
+                      controller.createActivity();
+                    },
+                    buttonName: ActivityTextUtil.create),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
-  eventname() {
-    return textfield(therapistActivityController.activitynamController, 2);
-  }
-
-  Widget eventabout() {
-    return textfield(
-        therapistActivityController.activitydescriptionController, 10);
-  }
-
-  Widget dateclocktextfield() {
+  Widget dateClockTextField(
+    TextEditingController activityDateController,
+    TNewActivityViewController controller,
+  ) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
+        // DateTextField(
+        //     textController: controller.activityDateController,
+        //     isBig: false,
+        //     dateTapped: () => (controller.activityDateController)),
         Expanded(
-            child: textfield(
-                therapistActivityController.activitydateController, 2)),
-        Expanded(
-            child: textfield(
-                therapistActivityController.activitytimeController, 2)),
+            child: TextsField(
+                textEditingController: activityDateController, maxLines: 2)),
+        Obx(
+          () => ChoosingTimeGroupTherapy(
+              onTap: () {
+                controller.showChoosingTimeDialog();
+              },
+              hour: controller.chosenHour.value,
+              minutes: controller.chosenMinutes.value),
+        ),
       ],
     );
   }
 
-  Row dateclockrow() {
+  Row dateClockRow() {
     // miniHeading ve container ikisi beraber bir column olarak extract edilecek 2 tanesi yan yana kullanılacak
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(child: miniHeadings(ActivityTextUtil.date, false, false)),
+        Expanded(
+            child: MiniHeading(
+                name: ActivityTextUtil.date,
+                isInMiddle: false,
+                isAlignedInCenter: false)),
         // activityname(ActivityTextUtil.date, AppPaddings.startpadding),
-        Expanded(child: miniHeadings(ActivityTextUtil.clock, true, false))
+        Expanded(
+            child: MiniHeading(
+                name: ActivityTextUtil.clock,
+                isInMiddle: true,
+                isAlignedInCenter: false))
         // activityname(ActivityTextUtil.clock, AppPaddings.centerpadding),
       ],
     );
   }
-
-  Widget textfield(TextEditingController textEditingController, int maxLines) {
-    return Padding(
-      padding: AppPaddings.generalPadding,
-      child: CustomTextField(
-          isOne: true,
-          maxLines: maxLines,
-          isBig: true,
-          textController: textEditingController,
-          isRowModel: false),
-    );
-  }
-
-  Padding activityname(String activityheading, EdgeInsets padding) {
-    return Padding(
-      padding: padding,
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Text(
-          activityheading,
-          style: AppTextStyles.groupTextStyle(false),
-        ),
-      ),
-    );
-  }
-}
-
-Widget butterFlyButton(String buttonname, Function() onTap) {
-  return Align(
-    alignment: Alignment.bottomRight,
-    child: CustomButton(
-        container: AppContainers.containerButton(true),
-        textColor: AppColors.white,
-        onTap: onTap,
-        text: buttonname),
-  );
-}
-
-Widget secappview(RowModel rowModel) {
-  return rowView(rowModel, AppPaddings.mediumxPadding);
 }

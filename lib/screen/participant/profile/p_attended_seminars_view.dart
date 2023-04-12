@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/product/widget/common/order_drop_down.dart';
 import '../../../controller/participant/profil/p_attended_seminars_controller.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
@@ -18,12 +19,10 @@ class PAttendedSeminarsView extends StatelessWidget {
         appBar: MyAppBar(title: ParticipantProfileTextUtil.attendedSeminar),
         body: CustomScrollView(
           slivers: [
-            // SliverPadding(
-            //   padding: AppPaddings.pagePaddingHorizontal,
-            //   sliver: SliverToBoxAdapter(
-            //     child: orderdropdown(),
-            //   ),
-            // ),
+            SliverPadding(
+              padding: AppPaddings.pagePaddingHorizontal,
+              sliver: SliverToBoxAdapter(child: _orderdropdown(controller)),
+            ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) => Padding(
@@ -38,4 +37,17 @@ class PAttendedSeminarsView extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _orderdropdown(PAttendedSeminarsController controller) {
+  return OrderDropDown(
+    selectedText: controller.orderValue,
+    isBoxSelected: controller.isBoxSelected,
+    onDropDownTapped: () {
+      controller.setIsBoxSelected();
+    },
+    onValueSelected: (int index) {
+      print('index:${index}');
+    },
+  );
 }

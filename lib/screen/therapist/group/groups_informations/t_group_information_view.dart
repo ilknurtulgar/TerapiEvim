@@ -57,8 +57,7 @@ class TGroupInformationView extends StatelessWidget {
                     context.push(const TProfileView(isSecTherapist: true));
                   }),
                   Election(
-                      election: ControllerElection
-                          .therapistGroupControllerParticipant,
+                      isSelectedValue: controller.isParticipantElectionOpen,
                       firstRow: Obx(() => SizedBox(
                             child: participants(controller),
                           )),
@@ -170,13 +169,12 @@ class TGroupInformationView extends StatelessWidget {
   }
 
   Widget miniHeadings(String name, bool isInMiddle) {
-    return rowView(
-      RowModel(
-          leadingIcon: Container(),
+    return RowView(
+      rowModel: RowModel(
           text: name,
           textStyle: AppTextStyles.heading(false),
           isAlignmentBetween: false),
-      AppPaddings.miniHeadingPadding(isInMiddle),
+      padding: AppPaddings.miniHeadingPadding(isInMiddle),
     );
   }
 

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/controller/therapist/home/session/t_available_hours_view_controller.dart';
-import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/extension/context_extension.dart';
+import '../../../controller/therapist/home/session/t_available_hours_view_controller.dart';
+import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/component/group/choosing_time_sc_cont.dart';
 import '../../../core/base/view/base_view.dart';
 import 't_add_hours_view.dart';
@@ -25,7 +25,7 @@ class TAvailableHoursView extends StatelessWidget {
                 onPressed: () {
                   context.push(const TAddHoursView());
                 },
-                icon: IconUtility.addIcon)
+                icon: IconUtility.addcircleIcon)
           ],
         ),
         body: Padding(

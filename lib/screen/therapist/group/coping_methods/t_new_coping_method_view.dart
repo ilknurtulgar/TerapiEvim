@@ -86,8 +86,8 @@ class TNewCopingMethodView extends StatelessWidget {
   }
 
   Widget heading(BuildContext context) {
-    return rowView(
-        RowModel(
+    return RowView(
+        rowModel: RowModel(
             text: GroupTextUtil.metotText,
             textStyle: AppTextStyles.heading(false),
             trailingIcon: IconButton(
@@ -98,7 +98,7 @@ class TNewCopingMethodView extends StatelessWidget {
               },
             ),
             isAlignmentBetween: true),
-        AppPaddings.appBarPadding);
+        padding: AppPaddings.appBarPadding);
   }
 
   Future<void> deleteMethodDialog(BuildContext context) {

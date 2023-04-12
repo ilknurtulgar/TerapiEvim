@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../controller/therapist/group/t_group_add_controller.dart';
-import '../../../../controller/therapist/group/t_group_controller.dart';
 import '../../../../core/base/component/activtiy/seminers.dart';
 import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/component/group/choosing_time_group_therapy.dart';
 import '../../../../core/base/component/group/person.dart';
-import '../../../../core/base/component/group/row_view.dart';
 import '../../../../core/base/component/login/custom_textfield.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 import '../../../../core/base/ui_models/row_model.dart';
@@ -17,10 +15,11 @@ import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
+import '../../../../product/widget/common/group/mini_headings.dart';
 
 class TGroupAddView extends StatelessWidget {
   TGroupAddView({super.key});
-  final TGroupController tGroupController = Get.find();
+
   @override
   Widget build(BuildContext context) {
     return BaseView<TGroupAddController>(
@@ -44,34 +43,47 @@ class TGroupAddView extends StatelessWidget {
               child: ListView(
                 padding: AppPaddings.pagePadding,
                 children: [
-                  miniHeadings(GroupTextUtil.groupNameText, false, false),
+                  MiniHeading(
+                      name: GroupTextUtil.groupNameText,
+                      isInMiddle: false,
+                      isAlignedInCenter: false),
                   CustomTextField(
                       isOne: true,
                       isBig: true,
                       textController: controller.groupNameController,
                       isRowModel: false),
-                  miniHeadings(GroupTextUtil.secondTherapistText, false, false),
+                  MiniHeading(
+                      name: GroupTextUtil.secondTherapistText,
+                      isInMiddle: false,
+                      isAlignedInCenter: false),
                   Election(
-                      election: ControllerElection
-                          .therapistGroupControllerSecTherapist,
+                      isSelectedValue: controller.isSecTherapistElectionOpen,
                       firstRow: secTherapist(controller),
                       rows: persons(controller, context)),
                   button(context, controller, false),
-                  miniHeadings(GroupTextUtil.meetDayText, false, false),
-                  miniHeadings(GroupTextUtil.dayText, true, false),
+                  MiniHeading(
+                      name: GroupTextUtil.meetDayText,
+                      isAlignedInCenter: false,
+                      isInMiddle: false),
+                  MiniHeading(
+                      name: GroupTextUtil.dayText,
+                      isInMiddle: true,
+                      isAlignedInCenter: false),
                   Election(
-                      election: ControllerElection.therapistGroupControllerDay,
+                      isSelectedValue: controller.isDayElectionOpen,
                       firstRow: dayRow(controller),
                       rows: days(controller)),
-                  miniHeadings(GroupTextUtil.timeText, true, false),
+                  MiniHeading(
+                      name: GroupTextUtil.timeText,
+                      isInMiddle: true,
+                      isAlignedInCenter: false),
                   Obx(
                     () => ChoosingTimeGroupTherapy(
-                      onTap: () => tGroupController.showChoosingTimeDialog(),
-                      hour: tGroupController.chosenHour.value,
-                      minutes: tGroupController.chosenMinutes.value,
+                      onTap: () => controller.showChoosingTimeDialog(),
+                      hour: controller.chosenHour.value,
+                      minutes: controller.chosenMinutes.value,
                     ),
                   ),
-                  miniHeadings(" ", false, false),
                   button(context, controller, true)
                 ],
               ),
@@ -162,7 +174,7 @@ class TGroupAddView extends StatelessWidget {
             container: isLastButton
                 ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)
                 : AppContainers.lightPurpleButtonContainer(
-                    SizeUtil.mediumValueWidth,true),
+                    SizeUtil.mediumValueWidth, true),
             textColor: isLastButton ? AppColors.white : AppColors.meteorite,
             onTap: () async {
               if (!isLastButton) {
@@ -259,13 +271,4 @@ class TGroupAddView extends StatelessWidget {
       day(GroupTextUtil.sunday, controller),
     ];
   }
-}
-
-Widget miniHeadings(String name, bool isInMiddle, bool isAlignedInCenter) {
-  return rowView(
-      RowModel(
-          text: name,
-          textStyle: AppTextStyles.heading(false),
-          isAlignmentBetween: isAlignedInCenter),
-      AppPaddings.miniHeadingPadding(isInMiddle));
 }

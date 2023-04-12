@@ -75,7 +75,10 @@ class AppColors {
 class IconUtility {
   static const Icon circleIcon = Icon(Icons.circle_outlined);
   static const Icon visibilityIcon = Icon(Icons.visibility);
-
+  static const Icon addIcon = Icon(
+    Icons.add,
+    color: AppColors.white,
+  );
   static const List<IconData> bottomnavigateIcons = <IconData>[
     IconUtility.navHome,
     IconUtility.navActivities,
@@ -104,7 +107,7 @@ class IconUtility {
   static const Icon clockIcon =
       Icon(Icons.alarm_outlined, color: AppColors.black);
 
-  static const Icon addIcon = Icon(Icons.add_circle_outline);
+  static const Icon addcircleIcon = Icon(Icons.add_circle_outline);
 
   static const Icon notification = Icon(Icons.notifications);
   static const Icon logoutIcon = Icon(Icons.logout);

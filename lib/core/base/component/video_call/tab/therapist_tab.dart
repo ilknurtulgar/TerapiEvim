@@ -16,7 +16,7 @@ import '../../profile/image/custom_circle_avatar.dart';
 // ignore: must_be_immutable
 class TherapistTab extends StatelessWidget {
   TherapistTab({super.key, required this.participants});
-  GroupTherapyCallController controller = Get.find();
+  PGroupCallController controller = Get.find();
   final List<PersonInCallModel> participants;
   @override
   Widget build(BuildContext context) {
@@ -75,8 +75,8 @@ class TherapistTab extends StatelessWidget {
   }
 
   Widget personRow(int index) {
-    return rowView(
-        RowModel(
+    return RowView(
+        rowModel: RowModel(
             leadingIcon: CustomCircleAvatar(
                 imagePath: participants[index].imagePath,
                 big: false,
@@ -90,7 +90,7 @@ class TherapistTab extends StatelessWidget {
                 videoCallButton(index, false)
               ],
             )),
-        const EdgeInsets.symmetric(vertical: 8, horizontal: 16));
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16));
   }
 
   Padding closeTabButton() {
@@ -121,8 +121,8 @@ class TherapistTab extends StatelessWidget {
   }
 
   Widget therapistSpecialRow(bool isToOpenMics, BuildContext context) {
-    return rowView(
-        RowModel(
+    return RowView(
+        rowModel: RowModel(
             leadingIcon: isToOpenMics
                 ? IconUtility.recordVoiceOver
                 : IconUtility.personAddAlt,
@@ -145,6 +145,6 @@ class TherapistTab extends StatelessWidget {
                       ? controller.openAllMics.value
                       : controller.shareAuthority.value),
             )),
-        const EdgeInsets.only(left: 16, bottom: 8));
+        padding: const EdgeInsets.only(left: 16, bottom: 8));
   }
 }

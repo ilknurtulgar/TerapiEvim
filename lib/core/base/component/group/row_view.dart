@@ -4,31 +4,62 @@ import '../../ui_models/row_model.dart';
 import '../../util/base_utility.dart';
 
 ///TODO: it should be a class
-Widget rowView(
-  RowModel rowModel,
-  EdgeInsets padding,
-) {
-  return Padding(
-    padding: padding,
-    child: Row(
-      mainAxisAlignment: rowModel.isAlignmentBetween
-          ? MainAxisAlignment.spaceBetween
-          : MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        rowModel.leadingIcon ?? Container(),
-        Expanded(
-          child: Padding(
-            padding: EdgeInsets.only(
-                left: rowModel.isAlignmentBetween == false ? 15 : 0),
-            child: texts(rowModel),
+class RowView extends StatelessWidget {
+  RowView(
+      {super.key,
+      required this.padding,
+      required this.rowModel,
+      this.innerPadding});
+  final EdgeInsets padding;
+  final RowModel rowModel;
+  final EdgeInsets? innerPadding;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: padding,
+      child: Row(
+        mainAxisAlignment: rowModel.isAlignmentBetween
+            ? MainAxisAlignment.spaceBetween
+            : MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          rowModel.leadingIcon ?? Container(),
+          Expanded(
+            child: Padding(
+              padding: innerPadding ?? EdgeInsets.zero,
+              child: texts(rowModel),
+            ),
           ),
-        ),
-        rowModel.trailingIcon!
-      ],
-    ),
-  );
+          rowModel.trailingIcon!
+        ],
+      ),
+    );
+  }
 }
+
+// Widget rowView(RowModel rowModel, EdgeInsets padding,
+//     [EdgeInsets? innerPadding]) {
+//   return Padding(
+//     padding: padding,
+//     child: Row(
+//       mainAxisAlignment: rowModel.isAlignmentBetween
+//           ? MainAxisAlignment.spaceBetween
+//           : MainAxisAlignment.start,
+//       crossAxisAlignment: CrossAxisAlignment.center,
+//       children: [
+//         rowModel.leadingIcon ?? Container(),
+//         Expanded(
+//           child: Padding(
+//             padding: innerPadding ?? EdgeInsets.zero,
+//             child: texts(rowModel),
+//           ),
+//         ),
+//         rowModel.trailingIcon!
+//       ],
+//     ),
+//   );
+// }
 
 Widget texts(RowModel rowModel) {
   return Row(

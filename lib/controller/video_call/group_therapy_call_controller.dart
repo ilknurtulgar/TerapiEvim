@@ -6,7 +6,7 @@ import '../../core/base/component/video_call/tab/therapist_tab.dart';
 import '../../core/base/util/base_utility.dart';
 import '../../core/base/ui_models/video_call/person_in_call_model.dart';
 
-class GroupTherapyCallController extends GetxController {
+class PGroupCallController extends GetxController {
   void onOffFunction(RxBool variable) {
     variable.value = !variable.value;
   }

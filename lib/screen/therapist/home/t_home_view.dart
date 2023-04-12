@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/controller/therapist/home/t_home_view_controller.dart';
 
+import '../../../controller/therapist/home/t_home_view_controller.dart';
 import '../../../core/base/component/home/notification_container.dart';
 import '../../../core/base/component/home/reminder.dart';
 import '../../../core/base/util/base_utility.dart';

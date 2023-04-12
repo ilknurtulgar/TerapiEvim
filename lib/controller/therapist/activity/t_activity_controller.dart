@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../core/base/component/toast/toast.dart';
@@ -7,7 +6,6 @@ import '../../../core/init/navigation/navigation_manager.dart';
 import '../../../core/managers/videosdk/i_video_sdk_manager.dart';
 import '../../../core/managers/videosdk/video_sdk_manager.dart';
 import '../../../model/common/activity/t_activity_model.dart';
-import '../../../product/enum/local_keys_enum.dart';
 import '../../../screen/therapist/video_call/t_group_call/t_group_call_view.dart';
 
 import '../../../service/_therapist/activity/i_t_activity_service.dart';
@@ -56,7 +54,7 @@ class TActivityController extends GetxController with BaseController {
 
   RxList<TActivityModel?> myRecentActivities = <TActivityModel?>[].obs;
 
-  void updatechnage(int index) {
+  void isActivityUpdate(int index) {
     if (index == 0) {
       isUpdate.value = true;
     }
@@ -64,63 +62,6 @@ class TActivityController extends GetxController with BaseController {
       isUpdate.value = false;
     }
     //s isUpdate.value = !isUpdate.value;
-  }
-
-  Future<bool> createActivity(BuildContext context) async {
-    final bool isValidated = _validateActivity();
-
-    if (isValidated == false) return false;
-
-    final TActivityModel activity = TActivityModel(
-      title: activitynamController.text.trim(),
-      description: activitydescriptionController.text.trim(),
-      dateTime: Timestamp.fromDate(DateTime.now()),
-      therapistName: localManager.getStringValue(LocalManagerKeys.name),
-      participantsId: [],
-      isFinished: false,
-      isStarted: false,
-      recordUrl: '',
-      meetingId: '',
-    );
-
-    final NavigatorState navigator = Navigator.of(context);
-
-    final result = await activityService.createActivity(activity);
-
-    if (result == null) {
-      ///TODO add error handler
-      return false;
-    }
-    navigationManager.maybePop(navigator);
-    return true;
-  }
-
-  Future<bool> updateActivity(BuildContext context) async {
-    final bool isValidated = _validateActivity();
-
-    if (isValidated == false) return false;
-
-    final TActivityModel activity = TActivityModel(
-      title: activitynamController.text.trim(),
-      description: activitydescriptionController.text.trim(),
-      dateTime: Timestamp.fromDate(DateTime.now()),
-
-      // participantsId: [],
-      isFinished: false,
-      isStarted: false,
-      recordUrl: '',
-      meetingId: '',
-    );
-    final NavigatorState navigator = Navigator.of(context);
-
-    final result = await activityService.updateActivity(activity);
-
-    if (result == null) {
-      ///TODO add error handler
-      return false;
-    }
-    navigationManager.maybePop(navigator);
-    return true;
   }
 
   Future<TActivityModel?> getRecentActivity() async {
@@ -137,26 +78,6 @@ class TActivityController extends GetxController with BaseController {
       orderField: AppConst.dateTime,
     );
     return result;
-  }
-
-  bool _validateActivity() {
-    if (activitynamController.text.trim().isEmpty) {
-      flutterErrorToast("Event Name  is empty");
-      return false;
-    }
-    if (activitydescriptionController.text.trim().isEmpty) {
-      flutterErrorToast("Description is empty");
-      return false;
-    }
-    if (activitydateController.text.trim().isEmpty) {
-      flutterErrorToast("Date is empty");
-      return false;
-    }
-    if (activitytimeController.text.trim().isEmpty) {
-      flutterErrorToast("Time is empty");
-      return false;
-    }
-    return true;
   }
 
   Future<void> createMeeting({

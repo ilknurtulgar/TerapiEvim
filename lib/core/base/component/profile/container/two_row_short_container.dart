@@ -55,14 +55,14 @@ class TwoRowShortContainer extends StatelessWidget {
                   children: [
                     rowViewColumn(),
                     purpose != ContainerPurpose.date
-                        ? button(buttonText!,true,firstOnTap!)
+                        ? button(buttonText!, true, firstOnTap!)
                         : const SizedBox(),
                     purpose == ContainerPurpose.date
                         ? Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              button('Test Sonucu',false,firstOnTap!),
-                              button('Katıl', true,secondOnTap!),
+                              button('Test Sonucu', false, firstOnTap!),
+                              button('Katıl', true, secondOnTap!),
                             ],
                           )
                         : const SizedBox()
@@ -94,33 +94,33 @@ class TwoRowShortContainer extends StatelessWidget {
   }
 
   Widget secondRow() {
-    return rowView(
-        UiBaseModel.normalTextRow(
+    return RowView(
+        rowModel: UiBaseModel.normalTextRow(
             row2Text,
             secondIconData,
             AppTextStyles.profileTextStyles(
                 false, purpose != ContainerPurpose.date ? true : false)),
-        AppPaddings.componentPadding);
+        padding: AppPaddings.componentPadding);
   }
 
   Widget firstRow() {
-    return rowView(
-        purpose != ContainerPurpose.date
+    return RowView(
+        rowModel: purpose != ContainerPurpose.date
             ? UiBaseModel.normalTextRow(row1Text, firstIconData,
                 AppTextStyles.profileTextStyles(false, true))
             : UiBaseModel.doubleTextRow('Danışan: ', row1Text, false),
-        purpose != ContainerPurpose.date
+        padding: purpose != ContainerPurpose.date
             ? EdgeInsets.zero
             : AppPaddings.componentOnlyPadding(1));
   }
 
-  Widget button(String buttonText,bool isDarkPurpleColor,Function() onTap) {
+  Widget button(String buttonText, bool isDarkPurpleColor, Function() onTap) {
     return CustomButton(
         textColor: AppColors.white,
         container: isDarkPurpleColor
             ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)
             : AppContainers.lightPurpleButtonContainer(
-                SizeUtil.normalValueWidth,false),
+                SizeUtil.normalValueWidth, false),
         onTap: onTap, // izle ya da dosyayı oku fonksiyonu
         text: buttonText);
   }

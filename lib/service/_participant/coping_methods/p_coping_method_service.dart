@@ -28,13 +28,13 @@ class PCopingMethodService extends IPCopingMethodService with BaseService {
   }
 
   @override
-  Future<List<TCopingMethodModel?>?> getCopingMethods({
+  Future<List<TCopingMethodModel?>> getCopingMethods({
     required String groupId,
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
   }) async {
-    if (userId == null) return null;
+    if (userId == null) return [];
 
     final result = await manager.readOrderedWhere(
       collectionPath: APIConst.users,

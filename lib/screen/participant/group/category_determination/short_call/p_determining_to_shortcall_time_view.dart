@@ -11,11 +11,11 @@ import '../../../../../core/base/util/text_utility.dart';
 
 // ignore: must_be_immutable
 class PShortCallTimeView extends StatelessWidget {
-   PShortCallTimeView({super.key});
+  PShortCallTimeView({super.key});
 
   // gecici
 
-  var isChosen = List.filled(DemoInformation.tmpCount,false).obs;
+  var isChosen = List.filled(DemoInformation.tmpCount, false).obs;
   String chosenDate = '';
   String chosenTime = '';
 
@@ -34,8 +34,9 @@ class PShortCallTimeView extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              rowView(
-                  UiBaseModel.determiningappBar(), AppPaddings.appBarPadding),
+              RowView(
+                  rowModel: UiBaseModel.determiningappBar(),
+                  padding: AppPaddings.appBarPadding),
               line(),
               CustomHeading(
                 text: hiUser,
@@ -67,15 +68,16 @@ class PShortCallTimeView extends StatelessWidget {
       itemCount: DemoInformation.tmpCount,
       itemBuilder: (context, index) => Padding(
         padding: AppPaddings.timeChossingBetweenPadding,
-        child: ChoosingTimeForSCContainer( //sizedBox vardı gerek kalmamıştır diye tahmin edip sildim
-            therapistName: DemoInformation.therapistName,
-            isForParticipant: true,
-            date: DemoInformation.dateList[index],
-            timeList: DemoInformation.timelist,
-            callBack: callBack,
-            listViewChosenList: isChosen,
-            listViewIndex: index,
-          ),
+        child: ChoosingTimeForSCContainer(
+          //sizedBox vardı gerek kalmamıştır diye tahmin edip sildim
+          therapistName: DemoInformation.therapistName,
+          isForParticipant: true,
+          date: DemoInformation.dateList[index],
+          timeList: DemoInformation.timelist,
+          callBack: callBack,
+          listViewChosenList: isChosen,
+          listViewIndex: index,
+        ),
       ),
     );
   }

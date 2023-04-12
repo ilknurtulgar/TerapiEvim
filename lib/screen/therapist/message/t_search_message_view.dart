@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -21,8 +20,7 @@ class TSearchMessageView extends StatefulWidget {
 }
 
 class _TSearchMessageViewState extends State<TSearchMessageView> {
-  TMessageController therapistMessageController =
-      Get.put(TMessageController());
+  TMessageController therapistMessageController = Get.put(TMessageController());
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +35,7 @@ class _TSearchMessageViewState extends State<TSearchMessageView> {
                 physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return Election(
-                      election: ControllerElection.therapistyMessageController,
+                      isSelectedValue: therapistMessageController.personValue,
                       firstRow: Container(
                         width: SizeUtil.generalWidth,
                         height: SizeUtil.normalValueHeight,
@@ -46,9 +44,9 @@ class _TSearchMessageViewState extends State<TSearchMessageView> {
                             onTap: () {
                               therapistMessageController.onPersonListChange();
                             },
-                            child: rowView(
-                                UiBaseModel.personviewRowModel("oke"),
-                                AppPaddings.generalPadding)),
+                            child: RowView(
+                                rowModel: UiBaseModel.personviewRowModel("oke"),
+                                padding: AppPaddings.generalPadding)),
                       ),
                       rows: person(context));
                 },

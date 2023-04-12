@@ -27,7 +27,10 @@ class PTestQuestionsController extends GetxController with BaseController {
 
   RxInt testPageIndex = 0.obs;
   RxInt questionIndex = 0.obs;
-  List<double> answer = []; //sonuclari almam gerekiyor nasil
+  List<List<bool>> list =
+      List.generate(90, ((index) => [false, false, false, false, false])).obs;
+  List<int> answer =
+      List.generate(90, (index) => (-1)); //sonuclari almam gerekiyor nasil
   List<Answers> answers = [];
 
   //test sonucunun cikmasi icin indeks dizileri
@@ -98,11 +101,12 @@ class PTestQuestionsController extends GetxController with BaseController {
     if (testPageIndex.value != 10) {
       testPageIndex.value++;
 
-      questionIndex += 3;
+      questionIndex += 9;
     }
   }
 
   int getTestPageIndex() {
+
     return testPageIndex.value;
   }
 
@@ -113,7 +117,22 @@ class PTestQuestionsController extends GetxController with BaseController {
   void previousPage() {
     if (testPageIndex.value != 0) {
       testPageIndex.value--;
-      questionIndex -= 3;
+      questionIndex -= 9;
     }
+  }
+
+  void selecttooggle(int index, int val) {
+    print('BEFORE list[index]:${ list[index]}');
+    list[index] = List.generate(5, (index) => false);
+    print('AFTER list[index]:${ list[index]}');
+    list[index][val] = true;
+    print('SET AFTER list[index]:${ list[index]}');
+    // print(index);
+    // print(val);
+  }
+
+  void button(int index, int val) {
+    answer[index] = val;
+    print(answer.toList());
   }
 }

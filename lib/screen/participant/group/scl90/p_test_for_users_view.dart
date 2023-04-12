@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/participant/group/p_test_questions_controller.dart';
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
-import 'package:terapievim/controller/participant/group/p_test_questions_controller.dart';
 import 'package:terapievim/core/base/component/group/questions_button.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 
@@ -62,8 +62,21 @@ class ViewsForSCL extends StatelessWidget {
   ListView questionsWidget(PTestQuestionsController controller) {
     const List<String> questions = Scl90.questions;
     return ListView.builder(
-      itemBuilder: (context, index) => ToggleQuestions(
-          question: questions[index + controller.getQuestionIndex()]),
+      itemBuilder: (context, index) {
+        final questionIndex = index + controller.getTestPageIndex() * 9;
+        print('questionIndex:${questionIndex}');
+        return Obx(
+          () => ToggleQuestions(
+            children: choice,
+            question: questions[questionIndex],
+            isSelected: controller.list[questionIndex],
+            onPressed: (val) {
+              controller.selecttooggle(questionIndex, val!);
+              controller.button(questionIndex, val);
+            },
+          ),
+        );
+      },
       itemCount: 9, //sayfada kac soru olacak sor
       shrinkWrap: true,
       padding: AppPaddings.componentPadding,
@@ -111,4 +124,24 @@ class ViewsForSCL extends StatelessWidget {
     }
     return shown;
   }
+}
+
+final List<Widget> choice = [
+  IconUtility.checkCircleIcon,
+  IconUtility.checkCircleIcon,
+  IconUtility.checkCircleIcon,
+  IconUtility.checkCircleIcon,
+  IconUtility.checkCircleIcon
+];
+
+class QuestionsModel {
+  final int index;
+  final int point;
+  final String text;
+
+  QuestionsModel({
+    required this.index,
+    required this.point,
+    required this.text,
+  });
 }

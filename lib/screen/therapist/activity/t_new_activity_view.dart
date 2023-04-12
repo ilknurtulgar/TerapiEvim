@@ -11,10 +11,8 @@ import '../../../model/common/activity/t_activity_model.dart';
 
 import '../../../product/widget/common/button/butterfly_button.dart';
 import '../../../product/widget/common/textfield/text_field.dart';
-import '../../../screen/therapist/group/group_add/t_group_add_view.dart';
 
 import '../../../product/widget/common/group/mini_headings.dart';
-
 
 class TNewActivityView extends StatelessWidget {
   const TNewActivityView({super.key, this.activity});
@@ -36,22 +34,19 @@ class TNewActivityView extends StatelessWidget {
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-
-                  MiniHeading(
+                MiniHeading(
                     name: ActivityTextUtil.eventName,
                     isInMiddle: false,
                     isAlignedInCenter: false),
                 EventName(
                     activityNameController: controller.activityNameController),
-         MiniHeading(
+                MiniHeading(
                     name: ActivityTextUtil.eventAbout,
                     isInMiddle: false,
                     isAlignedInCenter: false),
                 EventAbout(
                     activityDescriptionController:
                         controller.activityDescriptionController),
-             
-
                 dateClockTextField(
                     controller.activityDateController, controller),
                 ButterFlyButton(
@@ -74,10 +69,10 @@ class TNewActivityView extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        DateTextField(
-            textController: controller.activityDateController,
-            isBig: false,
-            dateTapped: () => (controller.activityDateController)),
+        // DateTextField(
+        //     textController: controller.activityDateController,
+        //     isBig: false,
+        //     dateTapped: () => (controller.activityDateController)),
         Expanded(
             child: TextsField(
                 textEditingController: activityDateController, maxLines: 2)),

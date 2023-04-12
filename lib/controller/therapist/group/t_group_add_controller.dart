@@ -5,6 +5,7 @@ import 'package:terapievim/controller/base/base_controller.dart';
 import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/core/managers/firebase/firestore/models/created_id_response.dart';
 
+import '../../../core/base/component/group/scrollable_time.dart';
 import '../../../model/common/user/user_model.dart';
 import '../../../model/therapist/group/t_group_model.dart';
 import '../../../service/_therapist/group/i_t_group_service.dart';
@@ -94,5 +95,31 @@ class TGroupAddController extends GetxController with BaseController {
     final UserModel? randomTherapist =
         await tGroupService.findRandomTherapistHelper();
     print(randomTherapist?.toJson());
+  }
+
+  //tgroup controllerdan gelenler
+  RxString chosenHour = '12'.obs;
+
+  RxString chosenMinutes = '00'.obs;
+  void chooseGroupTherapyTime(bool isHour, int value) {
+    String valueAsString = value.toString();
+    if (valueAsString.length < 2) {
+      valueAsString = '0${value.toString()}';
+    }
+    if (isHour)
+      chosenHour.value = valueAsString;
+    else
+      chosenMinutes.value = valueAsString;
+  }
+
+  void showChoosingTimeDialog() {
+    Get.dialog(AlertDialog(
+      title: ScrollableTime(
+        chooseHourFunction: (value) => chooseGroupTherapyTime(true, value),
+        chooseMinuteFunction: (value) => chooseGroupTherapyTime(false, value),
+      ),
+      titlePadding: const EdgeInsets.symmetric(vertical: 15),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    ));
   }
 }

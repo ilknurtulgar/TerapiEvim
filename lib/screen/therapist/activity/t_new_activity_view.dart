@@ -8,7 +8,7 @@ import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
 import '../../../model/common/activity/t_activity_model.dart';
-import '../../../screen/therapist/group/group_add/t_group_add_view.dart';
+import '../../../product/widget/common/group/mini_headings.dart';
 
 class TNewActivityView extends StatelessWidget {
   const TNewActivityView({super.key, this.activity});
@@ -30,9 +30,15 @@ class TNewActivityView extends StatelessWidget {
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-                miniHeadings(ActivityTextUtil.eventName, false, false),
+                MiniHeading(
+                    name: ActivityTextUtil.eventName,
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
                 eventName(controller.activityNameController),
-                miniHeadings(ActivityTextUtil.eventAbout, false, false),
+                MiniHeading(
+                    name: ActivityTextUtil.eventAbout,
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
                 eventAbout(controller.activityDescriptionController),
                 // dateClockRow(),
                 dateClockTextField(
@@ -74,9 +80,17 @@ class TNewActivityView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(child: miniHeadings(ActivityTextUtil.date, false, false)),
+        Expanded(
+            child: MiniHeading(
+                name: ActivityTextUtil.date,
+                isInMiddle: false,
+                isAlignedInCenter: false)),
         // activityname(ActivityTextUtil.date, AppPaddings.startpadding),
-        Expanded(child: miniHeadings(ActivityTextUtil.clock, true, false))
+        Expanded(
+            child: MiniHeading(
+                name: ActivityTextUtil.clock,
+                isInMiddle: true,
+                isAlignedInCenter: false))
         // activityname(ActivityTextUtil.clock, AppPaddings.centerpadding),
       ],
     );

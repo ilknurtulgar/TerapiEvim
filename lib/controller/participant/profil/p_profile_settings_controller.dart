@@ -8,6 +8,7 @@ class PProfileSettingsController extends IProfileSettingsController {
 
   @override
   void onInit() {
+
     super.onInit();
   }
 

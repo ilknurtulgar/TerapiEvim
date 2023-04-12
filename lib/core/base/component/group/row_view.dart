@@ -7,6 +7,7 @@ import '../../util/base_utility.dart';
 Widget rowView(
   RowModel rowModel,
   EdgeInsets padding,
+  EdgeInsets? innerPadding,
 ) {
   return Padding(
     padding: padding,
@@ -19,8 +20,7 @@ Widget rowView(
         rowModel.leadingIcon ?? Container(),
         Expanded(
           child: Padding(
-            padding: EdgeInsets.only(
-                left: rowModel.isAlignmentBetween == false ? 15 : 0),
+            padding: innerPadding ?? EdgeInsets.zero,
             child: texts(rowModel),
           ),
         ),

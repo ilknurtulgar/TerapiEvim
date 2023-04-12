@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
+import 'package:terapievim/screen/therapist/activity/t_update_activity_view.dart';
 
 import '../../../controller/therapist/activity/t_activity_controller.dart';
 import '../../../core/base/component/app_bar/heading_minto.dart';
+import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/component/group/group_box.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
@@ -14,7 +15,6 @@ import '../../../model/common/activity/t_activity_model.dart';
 import '../../../product/widget/common/activity/activity_boxes.dart';
 import 't_activity_list_view.dart';
 import 't_my_up_coming_list_view.dart';
-import 't_new_activity_view.dart';
 
 class TActivityView extends StatelessWidget {
   TActivityView({Key? key}) : super(key: key);
@@ -33,8 +33,7 @@ class TActivityView extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  controller.isActivityUpdate(1);
-                  context.push(const TNewActivityView());
+                  context.push(const TUpdateActivityView());
                 },
                 icon: IconUtility.addcircleIcon),
           ],
@@ -54,7 +53,7 @@ class TActivityView extends StatelessWidget {
                   },
                 ),
                 Obx(
-                  () => myUpcomingActivities(
+                  () => _myUpcomingActivities(
                       context,
                       controller,
                       controller.myRecentActivities.isEmpty
@@ -70,7 +69,7 @@ class TActivityView extends StatelessWidget {
                     context.push(const TActivityListView());
                   },
                 ),
-                otherUpcomingActivities(),
+                _otherUpcomingActivities(),
                 HeadingMinto(
                   text: ActivityTextUtil.myActivty,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,7 +79,7 @@ class TActivityView extends StatelessWidget {
                     context.push(const TActivityListView());
                   },
                 ),
-                myPastActivities(context, controller),
+                _myPastActivities(context, controller),
               ],
             ),
           ),
@@ -89,19 +88,7 @@ class TActivityView extends StatelessWidget {
     );
   }
 
-  ActivityBox otherPastActivities() {
-    return ActivityBox(
-        onButtonTap: () {},
-        istwobutton: false,
-        buttonText: ActivityTextUtil.join,
-        containerModel: AppContainers.containerButton(true),
-        isactivity: false,
-        arowModel: DemoInformation.arowmodel,
-        //  ayrowwModel: DemoInformation.ayrowmodel,
-        clockModel: DemoInformation.clockmodel);
-  }
-
-  ActivityBox myPastActivities(
+  ActivityBox _myPastActivities(
       BuildContext context, TActivityController controller) {
     return ActivityBox(
         onButtonTap: () {},
@@ -113,7 +100,7 @@ class TActivityView extends StatelessWidget {
         clockModel: DemoInformation.clockmodel);
   }
 
-  Widget otherUpcomingActivities() => activitythreerowbox(
+  Widget _otherUpcomingActivities() => activitythreerowbox(
       () {},
       () {},
       DemoInformation.arowmodel,
@@ -121,7 +108,7 @@ class TActivityView extends StatelessWidget {
       ActivityTextUtil.join,
       DemoInformation.ayrowmodel);
 
-  ActivityBox myUpcomingActivities(
+  ActivityBox _myUpcomingActivities(
       BuildContext context,
       TActivityController therapistActivityController,
       TActivityModel? recentActivity) {

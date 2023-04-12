@@ -1,6 +1,9 @@
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
-class PAttendedSeminarsController extends GetxController {
+import '../../drop_down_controller.dart';
+
+class PAttendedSeminarsController extends DropDownController {
   List<String> list = <String>['Eskiden Yeniye', 'Yeniden Eskiye'];
   RxString dropdownValue = "Eskiden Yeniye".obs;
   changeDropDown(String value) {
@@ -8,11 +11,8 @@ class PAttendedSeminarsController extends GetxController {
     notifyChildrens();
   }
 
-  RxString orderValue = "Yeniden eskiye ".obs;
-
-  var isBoxSelected = false.obs;
-
-  void setIsBoxSelected() {
-    isBoxSelected.value = !isBoxSelected.value;
+  @override
+  void setContext(BuildContext context) {
+    // TODO: implement setContext
   }
 }

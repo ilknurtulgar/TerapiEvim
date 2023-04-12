@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/activtiy/drop_down.dart';
 
 import '../../../controller/participant/coping_method/p_coping_method_controller.dart';
+import '../../../core/base/component/activtiy/drop_down.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/component/home/method_downloading_container.dart';
 import '../../../core/base/util/base_utility.dart';

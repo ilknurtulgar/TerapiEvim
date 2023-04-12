@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/controller/therapist/activity/t_update_activity_view_controller.dart';
-import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/core/base/view/base_view.dart';
+import 'package:terapievim/product/widget/common/button/butterfly_button.dart';
+import 'package:terapievim/product/widget/common/textfield/text_field.dart';
 
+import '../../../controller/therapist/activity/t_update_activity_view_controller.dart';
+import '../../../core/base/component/app_bar/my_app_bar.dart';
+import '../../../core/base/util/text_utility.dart';
+import '../../../core/base/view/base_view.dart';
 import '../group/group_add/t_group_add_view.dart';
-import 't_new_activity_view.dart';
 
 class TUpdateActivityView extends StatelessWidget {
   const TUpdateActivityView({super.key});
@@ -22,10 +23,17 @@ class TUpdateActivityView extends StatelessWidget {
         body: Column(
           children: [
             miniHeadings(ActivityTextUtil.eventName, false, false),
+            EventName(
+                activityNameController: controller.activityNameController),
             miniHeadings(ActivityTextUtil.eventAbout, false, false),
-            butterFlyButton(ActivityTextUtil.update, () {
-              controller.updateActivity();
-            })
+            EventAbout(
+                activityDescriptionController:
+                    controller.activityDescriptionController),
+            ButterFlyButton(
+                buttonName: ActivityTextUtil.update,
+                buttonOnTap: () {
+                  controller.updateActivity();
+                })
           ],
         ),
       ),

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist/home/session/t_add_hours_view_controller.dart';
-import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
-import 'package:terapievim/core/base/component/group/choosing_time_group_therapy.dart';
-import 'package:terapievim/core/base/view/base_view.dart';
-import 'package:terapievim/product/widget/common/profile/utility/textfield_utility.dart';
 
+import '../../../controller/therapist/home/session/t_add_hours_view_controller.dart';
+import '../../../core/base/component/app_bar/my_app_bar.dart';
+import '../../../core/base/component/group/choosing_time_group_therapy.dart';
 import '../../../core/base/component/group/custom_heading.dart';
-import '../../../core/base/component/login/custom_textfield.dart';
-import '../../../core/base/ui_models/row_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
-import '../activity/t_new_activity_view.dart';
+import '../../../core/base/view/base_view.dart';
+import '../../../product/widget/common/button/butterfly_button.dart';
+import '../../../product/widget/common/profile/utility/textfield_utility.dart';
+import '../../../product/widget/common/textfield/date_text_field.dart';
 
 class TAddHoursView extends StatelessWidget {
   const TAddHoursView({super.key});
@@ -28,12 +27,13 @@ class TAddHoursView extends StatelessWidget {
           padding: AppPaddings.pagePadding,
           child: Column(
             children: [
-              minheading(ActivityTextUtil.date),
-              dateAdd(controller),
-              minheading(ActivityTextUtil.addClock),
+              _minHeading(ActivityTextUtil.date),
+              _dateAdd(controller),
+              _minHeading(ActivityTextUtil.addClock),
               clockAddTime(controller),
-              minheading(ActivityTextUtil.clocks),
-              butterFlyButton(ActivityTextUtil.save, () {})
+              _minHeading(ActivityTextUtil.clocks),
+              ButterFlyButton(
+                  buttonOnTap: () {}, buttonName: ActivityTextUtil.save)
             ],
           ),
         ),
@@ -64,7 +64,7 @@ class TAddHoursView extends StatelessWidget {
     );
   }
 
-  CustomHeading minheading(String text) {
+  CustomHeading _minHeading(String text) {
     return CustomHeading(
       text: text,
       isalignmentstart: true,
@@ -74,21 +74,10 @@ class TAddHoursView extends StatelessWidget {
   }
 }
 
-Padding dateAdd(TAddHoursViewController controller) {
-  return Padding(
-    padding: AppPaddings.componentPadding,
-    child: CustomTextField(
-      isOne: true,
-      textController: controller.dateAddController,
-      onTap: () => choosingBirthday(controller.dateAddController),
-      rowModel: RowModel(
-          text: "",
-          textStyle: const TextStyle(color: AppColors.black),
-          text2: 'gg/aa/yyyy',
-          isAlignmentBetween: false,
-          leadingIcon: IconUtility.calendarIcon),
-      isBig: true,
-      isRowModel: true,
-    ),
+DateTextField _dateAdd(TAddHoursViewController controller) {
+  return DateTextField(
+    textController: controller.dateAddController,
+    isBig: true,
+    dateTapped: () => choosingBirthday(controller.dateAddController),
   );
 }

@@ -21,8 +21,9 @@ class FilterDetailsView extends StatelessWidget {
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-                rowView(UiBaseModel.filterdetails(context),
-                    AppPaddings.generalPadding),
+                RowView(
+                    rowModel: UiBaseModel.filterdetails(context),
+                    padding: AppPaddings.generalPadding),
                 //divider(false),
                 filterchoice(),
                 //  butterFlyButton(ActivityTextUtil.okey, () {})

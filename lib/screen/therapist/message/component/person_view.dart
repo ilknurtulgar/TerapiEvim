@@ -30,8 +30,9 @@ class PersonView extends StatelessWidget {
                 onTap: () {
                   therapistyMessageController.onPersonListChange();
                 },
-                child: rowView(UiBaseModel.personviewRowModel(groupName),
-                    AppPaddings.generalPadding)),
+                child: RowView(
+                    rowModel: UiBaseModel.personviewRowModel(groupName),
+                    padding: AppPaddings.generalPadding)),
           ),
         ),
         Obx(

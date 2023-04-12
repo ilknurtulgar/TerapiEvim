@@ -40,13 +40,19 @@ class ActivityBox extends StatelessWidget {
           decoration: AppBoxDecoration.purpleBorder,
           child: Column(
             children: [
-              Expanded(child: rowView(arowModel, AppPaddings.rowViewPadding)),
+              Expanded(
+                  child: RowView(
+                      rowModel: arowModel,
+                      padding: AppPaddings.rowViewPadding)),
               isactivity
                   ? const SizedBox.shrink()
                   : (ayrowwModel == null
                       ? const SizedBox.shrink()
-                      : rowView(ayrowwModel!, AppPaddings.rowViewPadding)),
-              rowView(clockModel, AppPaddings.rowViewPadding),
+                      : RowView(
+                          rowModel: ayrowwModel!,
+                          padding: AppPaddings.rowViewPadding)),
+              RowView(
+                  rowModel: clockModel, padding: AppPaddings.rowViewPadding),
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

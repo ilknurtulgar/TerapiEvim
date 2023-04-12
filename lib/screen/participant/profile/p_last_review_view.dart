@@ -4,6 +4,7 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/util/base_utility.dart';
+import '../../../product/widget/common/order_drop_down.dart';
 
 class PLastReviewView extends StatelessWidget {
   const PLastReviewView({super.key});
@@ -19,6 +20,11 @@ class PLastReviewView extends StatelessWidget {
                   const MyAppBar(title: ParticipantProfileTextUtil.lastReview),
               body: CustomScrollView(
                 slivers: [
+                  SliverPadding(
+                    padding: AppPaddings.pagePaddingHorizontal,
+                    sliver:
+                        SliverToBoxAdapter(child: _orderdropdown(controller)),
+                  ),
                   // SliverPadding(
                   //   padding: AppPaddings.pagePaddingHorizontal,
                   //   sliver: SliverToBoxAdapter(
@@ -38,4 +44,17 @@ class PLastReviewView extends StatelessWidget {
               ));
         });
   }
+}
+
+Widget _orderdropdown(PLastReviewController controller) {
+  return OrderDropDown(
+    selectedText: controller.orderValue,
+    isBoxSelected: controller.isBoxSelected,
+    onDropDownTapped: () {
+      controller.setIsBoxSelected();
+    },
+    onValueSelected: (int index) {
+      print('index:${index}');
+    },
+  );
 }

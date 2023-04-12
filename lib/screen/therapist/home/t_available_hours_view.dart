@@ -25,7 +25,7 @@ class TAvailableHoursView extends StatelessWidget {
                 onPressed: () {
                   context.push(const TAddHoursView());
                 },
-                icon: IconUtility.addIcon)
+                icon: IconUtility.addcircleIcon)
           ],
         ),
         body: Padding(

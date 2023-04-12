@@ -28,7 +28,7 @@ class TMyGroupsView extends StatelessWidget {
                     onPressed: () {
                       context.push(TGroupAddView());
                     },
-                    icon: IconUtility.addIcon),
+                    icon: IconUtility.addcircleIcon),
               ],
             ),
             body: SafeArea(

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
+import 'package:terapievim/screen/participant/video_call/short_call_view.dart';
+import 'package:terapievim/screen/therapist/home/session/test_result_view.dart';
 
 import '../../../controller/therapist/home/session/t_session_controller.dart';
 import '../../../core/base/component/activtiy/drop_down.dart';
@@ -52,7 +54,11 @@ class TSessionView extends StatelessWidget {
           delegate: SliverChildBuilderDelegate(
               childCount: DemoInformation.copingList.length,
               (context, index) => participantWithShortCallTime(
-                  DemoInformation.copingList[index], DemoInformation.date))),
+                    DemoInformation.copingList[index],
+                    DemoInformation.date,
+                    () => context.push(TestResultView()),
+                    () => context.push(ShortCallView()),
+                  ))),
     );
   }
 

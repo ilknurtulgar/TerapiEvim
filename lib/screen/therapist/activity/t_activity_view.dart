@@ -33,7 +33,7 @@ class TActivityView extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  controller.updatechnage(1);
+                  controller.isActivityUpdate(1);
                   context.push(const TNewActivityView());
                 },
                 icon: IconUtility.addcircleIcon),

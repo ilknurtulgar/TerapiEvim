@@ -1,48 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist/activity/t_new_activity_view_controller.dart';
-import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 
-import '../../../controller/therapist/activity/t_activity_controller.dart';
+import '../../../controller/therapist/activity/t_new_activity_view_controller.dart';
+import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/component/buttons/custom_button.dart';
-import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/component/login/custom_textfield.dart';
-import '../../../core/base/ui_models/row_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
 import '../../../model/common/activity/t_activity_model.dart';
 import '../../../screen/therapist/group/group_add/t_group_add_view.dart';
 
-class TNewActivityView extends StatefulWidget {
+class TNewActivityView extends StatelessWidget {
   const TNewActivityView({super.key, this.activity});
 
   final TActivityModel? activity;
 
   @override
-  State<TNewActivityView> createState() => _TNewActivityViewState();
-}
-
-TActivityController therapistActivityController = Get.find();
-
-class _TNewActivityViewState extends State<TNewActivityView> {
-  @override
-  void initState() {
-    if (widget.activity != null) {
-      therapistActivityController.activitynamController.text =
-          widget.activity?.title ?? '';
-      therapistActivityController.activitydescriptionController.text =
-          widget.activity?.description ?? '';
-
-      ///TODO handle others controllers
-    }
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return BaseView<TNewActivityViewController>(
       getController: TNewActivityViewController(),
+      onModelReady: (model) {
+        model.setContext(context);
+      },
       onPageBuilder: (context, TNewActivityViewController controller) =>
           Scaffold(
         appBar: MyAppBar(title: ActivityTextUtil.newActivity),
@@ -52,13 +31,16 @@ class _TNewActivityViewState extends State<TNewActivityView> {
             child: Column(
               children: [
                 miniHeadings(ActivityTextUtil.eventName, false, false),
-                eventname(),
+                eventName(controller.activityNameController),
                 miniHeadings(ActivityTextUtil.eventAbout, false, false),
-                eventabout(),
-                dateclockrow(),
-                dateclocktextfield(),
+                eventAbout(controller.activityDescriptionController),
+                // dateClockRow(),
+                dateClockTextField(
+                  controller.activityDateController,
+                  controller.activityTimeController,
+                ),
                 butterFlyButton(ActivityTextUtil.create, () {
-                  therapistActivityController.createActivity(context);
+                  controller.createActivity();
                 }),
               ],
             ),
@@ -68,30 +50,26 @@ class _TNewActivityViewState extends State<TNewActivityView> {
     );
   }
 
-  eventname() {
-    return textfield(therapistActivityController.activitynamController, 2);
+  Widget eventName(TextEditingController activityNameController) {
+    return textField(activityNameController, 2);
   }
 
-  Widget eventabout() {
-    return textfield(
-        therapistActivityController.activitydescriptionController, 10);
+  Widget eventAbout(TextEditingController activityDescriptionController) {
+    return textField(activityDescriptionController, 10);
   }
 
-  Widget dateclocktextfield() {
+  Widget dateClockTextField(TextEditingController activityDateController,
+      TextEditingController activityTimeController) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(
-            child: textfield(
-                therapistActivityController.activitydateController, 2)),
-        Expanded(
-            child: textfield(
-                therapistActivityController.activitytimeController, 2)),
+        Expanded(child: textField(activityDateController, 2)),
+        Expanded(child: textField(activityTimeController, 2)),
       ],
     );
   }
 
-  Row dateclockrow() {
+  Row dateClockRow() {
     // miniHeading ve container ikisi beraber bir column olarak extract edilecek 2 tanesi yan yana kullanılacak
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -104,7 +82,7 @@ class _TNewActivityViewState extends State<TNewActivityView> {
     );
   }
 
-  Widget textfield(TextEditingController textEditingController, int maxLines) {
+  Widget textField(TextEditingController textEditingController, int maxLines) {
     return Padding(
       padding: AppPaddings.generalPadding,
       child: CustomTextField(
@@ -116,13 +94,13 @@ class _TNewActivityViewState extends State<TNewActivityView> {
     );
   }
 
-  Padding activityname(String activityheading, EdgeInsets padding) {
+  Padding activityName(String activityHeading, EdgeInsets padding) {
     return Padding(
       padding: padding,
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(
-          activityheading,
+          activityHeading,
           style: AppTextStyles.groupTextStyle(false),
         ),
       ),
@@ -130,17 +108,13 @@ class _TNewActivityViewState extends State<TNewActivityView> {
   }
 }
 
-Align butterFlyButton(String buttonname, Function() onTap) {
+Align butterFlyButton(String buttonName, Function() onTap) {
   return Align(
     alignment: Alignment.bottomRight,
     child: CustomButton(
         container: AppContainers.containerButton(true),
         textColor: AppColors.white,
         onTap: onTap,
-        text: buttonname),
+        text: buttonName),
   );
-}
-
-Widget secappview(RowModel rowModel) {
-  return rowView(rowModel, AppPaddings.mediumxPadding);
 }

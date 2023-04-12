@@ -7,7 +7,7 @@ import '../../core/init/print_dev.dart';
 import '../../core/managers/firebase/crashlytics_manager.dart';
 abstract class BaseController {
 
-  late BuildContext context;
+  late BuildContext controllerContext;
 
   void setContext(BuildContext context);
 

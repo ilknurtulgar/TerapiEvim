@@ -3,6 +3,7 @@ import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../model/common/profile/p_public_profile_model.dart';
 import '../../../model/common/user/user_model.dart';
+import '../../../model/therapist/coping_method/t_coping_method_model.dart';
 import '../../../model/therapist/group/t_about_group_model.dart';
 import '../../../model/therapist/group/t_group_model.dart';
 
@@ -30,4 +31,11 @@ abstract class ITGroupService {
       {required List<String> participantsId});
 
   Future<String?> deleteGroup(String groupId);
+
+  Future<List<TCopingMethodModel?>?> getCopingMethods({
+    required String groupId,
+    String lastDocId,
+    String orderField,
+    bool isDescending,
+  });
 }

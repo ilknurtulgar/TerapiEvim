@@ -9,7 +9,7 @@ abstract class IPCopingMethodService {
 
   Future<TCopingMethodModel?> getCopingMethodById(String copingMethodId);
 
-  Future<List<TCopingMethodModel?>?> getCopingMethods({
+  Future<List<TCopingMethodModel?>> getCopingMethods({
     required String groupId,
     String lastDocId,
     String orderField,

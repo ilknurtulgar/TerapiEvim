@@ -8,6 +8,7 @@ part of 'login_response_model.dart';
 
 LoginResponseModel _$LoginResponseModelFromJson(Map<String, dynamic> json) =>
     LoginResponseModel(
+      userId: json['userId'] as String?,
       name: json['name'] as String?,
       birthDate: json['birthDate'] as String?,
       gender: json['gender'] as String?,
@@ -15,7 +16,8 @@ LoginResponseModel _$LoginResponseModelFromJson(Map<String, dynamic> json) =>
       phone: json['phone'] as String?,
       role: json['role'] as String?,
       imageUrl: json['imageUrl'] as String?,
-    )..userId = json['userId'] as String?;
+      aboutMe: json['aboutMe'] as String?,
+    );
 
 Map<String, dynamic> _$LoginResponseModelToJson(LoginResponseModel instance) =>
     <String, dynamic>{
@@ -27,4 +29,5 @@ Map<String, dynamic> _$LoginResponseModelToJson(LoginResponseModel instance) =>
       'phone': instance.phone,
       'role': instance.role,
       'imageUrl': instance.imageUrl,
+      'aboutMe': instance.aboutMe,
     };

@@ -5,6 +5,7 @@ import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
+import '../../../product/widget/common/order_drop_down.dart';
 
 // ignore: must_be_immutable
 class TDealingMethodView extends StatelessWidget {
@@ -22,12 +23,12 @@ class TDealingMethodView extends StatelessWidget {
         body: SafeArea(
             child: CustomScrollView(
           slivers: [
-            // SliverPadding(
-            //   padding: AppPaddings.pagePaddingHorizontal,
-            //   sliver: SliverToBoxAdapter(
-            //     child: orderdropdown(),
-            //   ),
-            // ),
+            SliverPadding(
+              padding: AppPaddings.pagePaddingHorizontal,
+              sliver: SliverToBoxAdapter(
+                child: _orderdropdown(controller),
+              ),
+            ),
             SliverList(
               delegate: SliverChildBuilderDelegate(
                 (context, index) => Padding(
@@ -42,4 +43,17 @@ class TDealingMethodView extends StatelessWidget {
       ),
     );
   }
+}
+
+Widget _orderdropdown(TDealingMethodController controller) {
+  return OrderDropDown(
+    selectedText: controller.orderValue,
+    isBoxSelected: controller.isBoxSelected,
+    onDropDownTapped: () {
+      controller.setIsBoxSelected();
+    },
+    onValueSelected: (int index) {
+      print('index:${index}');
+    },
+  );
 }

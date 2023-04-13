@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/product/widget/common/order_drop_down.dart';
 import '../../../controller/participant/profil/p_attended_seminars_controller.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
-import '../../../core/base/component/activtiy/drop_down.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/util/base_utility.dart';
 
@@ -40,9 +40,8 @@ class PAttendedSeminarsView extends StatelessWidget {
 }
 
 Widget _orderdropdown(PAttendedSeminarsController controller) {
-  return CustomDropDown(
+  return OrderDropDown(
     selectedText: controller.orderValue,
-    textList: DemoInformation.orderingList,
     isBoxSelected: controller.isBoxSelected,
     onDropDownTapped: () {
       controller.setIsBoxSelected();
@@ -50,7 +49,5 @@ Widget _orderdropdown(PAttendedSeminarsController controller) {
     onValueSelected: (int index) {
       print('index:${index}');
     },
-    height: SizeUtil.smallValueHeight,
-    width: SizeUtil.normalValueWidth,
   );
 }

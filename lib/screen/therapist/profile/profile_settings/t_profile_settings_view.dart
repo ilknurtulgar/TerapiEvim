@@ -33,7 +33,7 @@ class TProfileSettingsView extends StatelessWidget {
               children: [
                 PProfileViewUtility.backgroundOfTheView(),
                 PProfileViewUtility.profilePagePersonImage(controller.imageUrl, true, onPressed: () {controller.pickImage();}),
-                ProfileBackIconButton(onTap: () => Get.back(),),
+                ProfileBackIconButton(onTap: () => context.pop(),),
                 _bigColumn(context, controller),
                 /*DemoInformation.isForParticipant == false
                   ? Positioned(

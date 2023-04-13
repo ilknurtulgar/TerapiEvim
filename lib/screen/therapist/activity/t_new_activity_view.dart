@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../controller/therapist/activity/t_new_activity_view_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
-import '../../../core/base/component/buttons/custom_button.dart';
-import '../../../core/base/component/login/custom_textfield.dart';
+import '../../../core/base/component/group/choosing_time_group_therapy.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
 import '../../../model/common/activity/t_activity_model.dart';
-import '../../../screen/therapist/group/group_add/t_group_add_view.dart';
+
+import '../../../product/widget/common/button/butterfly_button.dart';
+import '../../../product/widget/common/textfield/date_text_field.dart';
+import '../../../product/widget/common/textfield/text_field.dart';
+
+import '../../../product/widget/common/group/mini_headings.dart';
 
 class TNewActivityView extends StatelessWidget {
   const TNewActivityView({super.key, this.activity});
@@ -30,18 +35,26 @@ class TNewActivityView extends StatelessWidget {
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-                miniHeadings(ActivityTextUtil.eventName, false, false),
-                eventName(controller.activityNameController),
-                miniHeadings(ActivityTextUtil.eventAbout, false, false),
-                eventAbout(controller.activityDescriptionController),
-                // dateClockRow(),
+                MiniHeading(
+                    name: ActivityTextUtil.eventName,
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
+                EventName(
+                    activityNameController: controller.activityNameController),
+                MiniHeading(
+                    name: ActivityTextUtil.eventAbout,
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
+                EventAbout(
+                    activityDescriptionController:
+                        controller.activityDescriptionController),
                 dateClockTextField(
-                  controller.activityDateController,
-                  controller.activityTimeController,
-                ),
-                butterFlyButton(ActivityTextUtil.create, () {
-                  controller.createActivity();
-                }),
+                    controller.activityDateController, controller),
+                ButterFlyButton(
+                    buttonOnTap: () {
+                      controller.createActivity();
+                    },
+                    buttonName: ActivityTextUtil.create),
               ],
             ),
           ),
@@ -50,21 +63,28 @@ class TNewActivityView extends StatelessWidget {
     );
   }
 
-  Widget eventName(TextEditingController activityNameController) {
-    return textField(activityNameController, 2);
-  }
-
-  Widget eventAbout(TextEditingController activityDescriptionController) {
-    return textField(activityDescriptionController, 10);
-  }
-
-  Widget dateClockTextField(TextEditingController activityDateController,
-      TextEditingController activityTimeController) {
+  Widget dateClockTextField(
+    TextEditingController activityDateController,
+    TNewActivityViewController controller,
+  ) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Expanded(child: textField(activityDateController, 2)),
-        Expanded(child: textField(activityTimeController, 2)),
+        // DateTextField(
+        //     textController: controller.activityDateController,
+        //     isBig: false,
+        //     dateTapped: () => (controller.activityDateController)),
+        Expanded(
+            child: TextsField(
+                textEditingController: activityDateController, maxLines: 2)),
+        Obx(
+          () => ChoosingTimeGroupTherapy(
+              onTap: () {
+                controller.showChoosingTimeDialog();
+              },
+              hour: controller.chosenHour.value,
+              minutes: controller.chosenMinutes.value),
+        ),
       ],
     );
   }
@@ -74,47 +94,19 @@ class TNewActivityView extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Expanded(child: miniHeadings(ActivityTextUtil.date, false, false)),
+        Expanded(
+            child: MiniHeading(
+                name: ActivityTextUtil.date,
+                isInMiddle: false,
+                isAlignedInCenter: false)),
         // activityname(ActivityTextUtil.date, AppPaddings.startpadding),
-        Expanded(child: miniHeadings(ActivityTextUtil.clock, true, false))
+        Expanded(
+            child: MiniHeading(
+                name: ActivityTextUtil.clock,
+                isInMiddle: true,
+                isAlignedInCenter: false))
         // activityname(ActivityTextUtil.clock, AppPaddings.centerpadding),
       ],
     );
   }
-
-  Widget textField(TextEditingController textEditingController, int maxLines) {
-    return Padding(
-      padding: AppPaddings.generalPadding,
-      child: CustomTextField(
-          isOne: true,
-          maxLines: maxLines,
-          isBig: true,
-          textController: textEditingController,
-          isRowModel: false),
-    );
-  }
-
-  Padding activityName(String activityHeading, EdgeInsets padding) {
-    return Padding(
-      padding: padding,
-      child: Align(
-        alignment: Alignment.centerLeft,
-        child: Text(
-          activityHeading,
-          style: AppTextStyles.groupTextStyle(false),
-        ),
-      ),
-    );
-  }
-}
-
-Align butterFlyButton(String buttonName, Function() onTap) {
-  return Align(
-    alignment: Alignment.bottomRight,
-    child: CustomButton(
-        container: AppContainers.containerButton(true),
-        textColor: AppColors.white,
-        onTap: onTap,
-        text: buttonName),
-  );
 }

@@ -49,21 +49,12 @@ class _SignInViewState extends State<SignInView> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SignInViewUtility.title(true),
-                    mailTextfield(),
+                    textfieldUtility.mailTextfield(_loginController.emailController, true),
                     passwordColumn(),
-                    SignInViewUtility.button(
-                      true,
-                      true,
-                      () {
-                        _loginController.loginWithEmail();
-                      },
-                    ),
+                    smallSizedBox(),
+                    SignInViewUtility.button(true,true,() { _loginController.loginWithEmail();},),
                     SignInViewUtility.lineWithOrText(context),
-                    SignInViewUtility.button(
-                      false,
-                      true,
-                      () => context.push(BeforeSignUpView()),
-                    ),
+                    SignInViewUtility.button(false,true,() => context.push(BeforeSignUpView()),),
                   ]),
             ),
           ),
@@ -72,25 +63,14 @@ class _SignInViewState extends State<SignInView> {
     );
   }
 
-  Padding mailTextfield() {
-    return Padding(
-      padding: AppPaddings.componentPadding,
-      child: textfieldUtility.mailTextfield(
-          _loginController.emailController, true),
-    );
-  }
-
   Widget passwordColumn() {
-    return Padding(
-      padding: AppPaddings.componentPadding,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          textfieldUtility.passwordTextfield(
-              _loginController.passwordController, true),
-          forgotYourPasswordTextButton(),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        textfieldUtility.passwordTextfield(
+            _loginController.passwordController, true),
+        forgotYourPasswordTextButton(),
+      ],
     );
   }
 

@@ -77,6 +77,7 @@ class GroupTextUtil {
   static String groupsecTherapist = 'Yardımcı Psikolog: ';
   static String participantNumber = 'Katılımcı Sayısı: ';
   static String sessionNumber = 'Seans Sayısı: ';
+  static String weekNumber = 'Hafta Sayısı: ';
   static String join = 'Katıl';
 
   //new metot
@@ -174,6 +175,7 @@ class ProfileSettingsTextUtil {
 
 class TherapistProfileTextUtil {
   static String aboutMe = 'Hakkımda';
+  static String aboutMeEmpty = 'Hakkımda kısmı boş...';
   static String myGroups = 'Gruplarım';
   static String methods = 'Metotlar';
   static String seminars = 'Seminerler';

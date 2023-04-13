@@ -9,6 +9,12 @@ import 'i_t_modify_activity_controller.dart';
 
 class TNewActivityViewController extends ITModifyActivityController {
   @override
+  void onInit() {
+    // TODO: implement onInit
+    super.onInit();
+  }
+
+  @override
   void setContext(BuildContext context) => controllerContext = context;
 
   Future<bool> createActivity() async {

@@ -31,7 +31,7 @@ class PMyGroupView extends StatelessWidget {
                   isalignmentstart: true,
                   text: GroupTextUtil.upcomingMeetingText),
               ActivityBox(
-                  onButtonTap: () {},
+                  rightButtonTap: () {},
                   istwobutton: false,
                   buttonText: GroupTextUtil.joinText,
                   isactivity: false,

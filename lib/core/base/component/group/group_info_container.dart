@@ -13,11 +13,13 @@ class GroupInformationContainer extends StatelessWidget {
       required this.mainTherapist,
       required this.secondTherapist,
       required this.numberOfParticipant,
+      required this.numberOfWeek,
       required this.numberOfSession});
   final String groupName;
   final CardModel mainTherapist;
   final CardModel secondTherapist;
   final int numberOfParticipant;
+  final int numberOfWeek;
   final int numberOfSession;
   @override
   Widget build(BuildContext context) {
@@ -46,6 +48,7 @@ class GroupInformationContainer extends StatelessWidget {
         therapistColumn(GroupTextUtil.gruopTherapist,mainTherapist,() {/* ana psikolog sayfasına gitme fonksiyonu */},context),
         therapistColumn(GroupTextUtil.groupsecTherapist,secondTherapist,() {/* yardımcı psikolog sayfasına gitme fonksiyonu */},context),
         Text(GroupTextUtil.participantNumber + numberOfParticipant.toString(),style: AppTextStyles.groupTextStyle(true)),
+        paddedText(GroupTextUtil.weekNumber + numberOfWeek.toString(),AppPaddings.componentOnlyPadding(1),AppTextStyles.groupTextStyle(true)),
         paddedText(GroupTextUtil.sessionNumber + numberOfSession.toString(),AppPaddings.componentPadding,AppTextStyles.groupTextStyle(true)),
         joinButton(),
       ],

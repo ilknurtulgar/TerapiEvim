@@ -1,3 +1,7 @@
 import 'package:get/get.dart';
 
-class TAvailableHoursViewController extends GetxController {}
+import '../../../../screen/therapist/home/t_add_hours_view.dart';
+
+class TAvailableHoursViewController extends GetxController {
+  RxList<SessionTime> sessionTimeList = RxList<SessionTime>.empty();
+}

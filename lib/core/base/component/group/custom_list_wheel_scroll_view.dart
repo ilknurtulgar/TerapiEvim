@@ -9,10 +9,12 @@ class CustomListWheelScrollView extends StatelessWidget {
     required this.whatIsFor,
     required this.onSelectedItemChanged,
     this.isNumberVisible,
+    this.initialValue,
   });
   final ScrollPurpose whatIsFor;
   final Function(int)? onSelectedItemChanged;
   final RxBool? isNumberVisible;
+  final int? initialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class CustomListWheelScrollView extends StatelessWidget {
             ? SizeUtil.mediumValueHeight
             : SizeUtil.largeValueHeight,
         child: ListWheelScrollView.useDelegate(
+          controller:  initialValue!=null ?  FixedExtentScrollController(initialItem: initialValue!) : null,
           onSelectedItemChanged: onSelectedItemChanged,
           overAndUnderCenterOpacity: 0.75,
           itemExtent: 40,

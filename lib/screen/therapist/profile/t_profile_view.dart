@@ -45,6 +45,7 @@ class TProfileView extends StatelessWidget {
                         therapistName(controller),
                         mediumSizedBox(),
                         aboutMeColumn(controller),
+                        mediumSizedBox(),
                         UiBaseModel.boldMainTitleRowView(
                             TherapistProfileTextUtil.myGroups,MainTitles.groups, () => mainController.onPageChanged(2)),
                         ProfileViewListView(
@@ -123,7 +124,7 @@ class TProfileView extends StatelessWidget {
         child: Padding(
           padding: AppPaddings.customContainerInsidePadding(3),
           child: Text(
-            controller.aboutMe.value,
+            controller.aboutMe.value != '' ? controller.aboutMe.value : TherapistProfileTextUtil.aboutMeEmpty,
             style: AppTextStyles.normalTextStyle('medium', false),
           ),
         ),

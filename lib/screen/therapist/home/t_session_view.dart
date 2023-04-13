@@ -26,7 +26,7 @@ class TSessionView extends StatelessWidget {
               IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: () {
-                    context.push(const TAvailableHoursView());
+                    context.push( TAvailableHoursView());
                   },
                   icon: IconUtility.clockIcon),
             ]),

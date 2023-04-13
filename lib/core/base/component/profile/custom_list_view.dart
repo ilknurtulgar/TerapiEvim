@@ -27,7 +27,6 @@ class ProfileViewListView extends StatelessWidget {
           .largeValueHeight, //eski değeri SizeUtil.doubleNormalValueHeight,
       child: ListView.builder(
           scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
           itemCount: secondRowTextList.length,
           itemBuilder: ((context, index) {
             return groupNameList == null

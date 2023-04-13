@@ -36,6 +36,7 @@ class _PGroupCategoriesViewState extends State<PGroupCategoriesView> {
             mainTherapist: DemoInformation.tmpMainTherapist,
             secondTherapist: DemoInformation.tmpMainTherapist,
             numberOfParticipant: DemoInformation.tmpParticipantNumber,
+            numberOfWeek: DemoInformation.tmpCount,
             numberOfSession: DemoInformation.tmpSessionNumber),
       ),
     );

@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../core/base/component/toast/toast.dart';
 import '../../../core/constants/app_const.dart';
 import '../../../core/init/navigation/navigation_manager.dart';
 import '../../../core/managers/videosdk/i_video_sdk_manager.dart';
 import '../../../core/managers/videosdk/video_sdk_manager.dart';
 import '../../../model/common/activity/t_activity_model.dart';
+import '../../../model/common/video_call/video_call_token_model.dart';
 import '../../../screen/therapist/video_call/t_group_call/t_group_call_view.dart';
-
 import '../../../service/_therapist/activity/i_t_activity_service.dart';
 import '../../../service/_therapist/activity/t_activity_service.dart';
 import '../../base/base_controller.dart';
@@ -115,11 +116,14 @@ class TActivityController extends GetxController with BaseController {
       }
 
       navigationManager.pushAndRemoveUntil(
-          navigator,
-          TGroupCallView(
-            meetingId: meetingId,
+        navigator,
+        TGroupCallView(
+          videoCallToken: VideoCallTokenModel(
+            meetingId: activity.meetingId!,
             token: videoSdkManager.token,
-          ));
+          ),
+        ),
+      );
     } catch (e) {
       await crashlyticsManager.sendACrash(
         error: e.toString(),
@@ -130,6 +134,7 @@ class TActivityController extends GetxController with BaseController {
   }
 
   RxBool isMine = false.obs;
+
   void chnangeMine(int index) {
     if (index == 1) {
       isMine.value = false;

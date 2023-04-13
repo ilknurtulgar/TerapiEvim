@@ -7,6 +7,7 @@ import '../../core/constants/app_const.dart';
 import '../../model/participant/_initial_data/p_initial_data.dart';
 import '../../model/common/login/login_model.dart';
 import '../../model/common/login/login_response_model.dart';
+import '../../model/therapist/_initial_data/t_initial_data.dart';
 import '../../product/enum/local_keys_enum.dart';
 import '../../service/auth/auth_service.dart';
 import '../../service/auth/i_auth_service.dart';
@@ -77,7 +78,7 @@ class LoginController extends GetxController with BaseController {
       /// Fetch initial data of a particular user and save to cache
       /// Roles: therapist and participant
       if (loginResponse.role == AppConst.therapist) {
-        await _initialDataOfTherapist();
+        await _initialDataOfTherapist(loginResponse);
       } else if (loginResponse.role == AppConst.participant) {
         await _fetchInitialDataOfParticipant();
       }
@@ -95,10 +96,10 @@ class LoginController extends GetxController with BaseController {
     }
   }
 
-  Future<void> _initialDataOfTherapist() async {
-    // final InitialDataOfTherapistModel? initialDataOfTherapist =
-    //     await authService.fetchInitialDataOfTherapist();
-
+  Future<void> _initialDataOfTherapist(LoginResponseModel loginResponse) async {
+    final TInitialData? initialDataOfTherapist =
+        await authService.fetchInitialDataOfTherapist();
+    await localManager.setStringValue(LocalManagerKeys.aboutMe, loginResponse.aboutMe ?? "");
     ///TODO: save initial Data to cache
   }
 
@@ -107,7 +108,7 @@ class LoginController extends GetxController with BaseController {
         await authService.fetchInitialDataOfParticipant();
 
     /// Save joinedGroupId of a participant
-    localManager.setStringValue(LocalManagerKeys.role,
+    localManager.setStringValue(LocalManagerKeys.joinedGroupId,
         initialDataOfParticipantModel?.joinedGroupId ?? '');
 
     ///TODO: save initial Data to cache

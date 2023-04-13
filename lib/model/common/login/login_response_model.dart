@@ -13,9 +13,11 @@ class LoginResponseModel extends INetworkModel<LoginResponseModel> {
       email,
       phone,
       role,
-      imageUrl;
+      imageUrl,
+      aboutMe;
 
   LoginResponseModel({
+    this.userId,
     this.name,
     this.birthDate,
     this.gender,
@@ -23,6 +25,7 @@ class LoginResponseModel extends INetworkModel<LoginResponseModel> {
     this.phone,
     this.role,
     this.imageUrl,
+    this.aboutMe,
   });
 
   @override

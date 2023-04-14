@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/home/home_component.dart';
 
 import '../../../controller/participant/coping_method/p_coping_method_controller.dart';
 import '../../../core/base/component/activtiy/drop_down.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
-import '../../../core/base/component/home/method_downloading_container.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
@@ -60,9 +60,11 @@ class CopingListView extends StatelessWidget {
       sliver: SliverList(
         delegate: SliverChildBuilderDelegate(
           (context, index) {
-            return MethodDownloadingContainer(
+            return HomeComponent(
+                isForMethodReading: true,
                 cardModel: DemoInformation.cardModelhome,
                 time: DemoInformation.clockabomeactivty,
+                title: 'başlık $index',
                 explanation: DemoInformation.home[index],
                 buttonOnTap: () {},
                 buttonText: HomeTextUtil.readMethod);

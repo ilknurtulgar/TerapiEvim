@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:videosdk/videosdk.dart';
 
 import '../../../../../core/extension/context_extension.dart';
-import '../../../../controller/therapist/video_call/t_group_call_controller.dart';
+import '../../../../controller/video_call/group_therapy_call_controller.dart';
 import '../../../../core/base/component/video_call/buttons/video_call_buttons.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/view/base_view.dart';
@@ -88,8 +88,8 @@ class _TGroupCallViewState extends State<TGroupCallView> {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<TGroupCallController>(
-      getController: TGroupCallController(),
+    return BaseView<PGroupCallController>(
+      getController: PGroupCallController(),
       onPageBuilder: (context, controller) => Scaffold(
         backgroundColor: AppColors.doveGray,
         body: SizedBox(

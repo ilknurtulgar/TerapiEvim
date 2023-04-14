@@ -342,4 +342,6 @@ class VideoCallTextUtil {
       'isimli kişiyi izole odasına göndermek istiyor musunuz?';
   static const String yes = 'Evet';
   static const String no = 'Hayır';
+  static const therapistTabInformation =
+      'Herhangi bir katılımcıyı yardımcı terapist ile birlikte acil izole odasına göndermek için katılımcının kutucuğunun üzerine basılı tutun.';
 }

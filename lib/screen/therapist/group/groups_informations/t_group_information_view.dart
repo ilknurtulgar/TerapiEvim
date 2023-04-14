@@ -117,7 +117,7 @@ class TGroupInformationView extends StatelessWidget {
 
   ActivityBox meeting() {
     return ActivityBox(
-        onButtonTap: () {},
+        rightButtonTap: () {},
         istwobutton: false,
         containerModel: AppContainers.containerButton(false),
         buttonText: GroupTextUtil.startText,

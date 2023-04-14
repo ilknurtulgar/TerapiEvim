@@ -60,9 +60,11 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
               width: SizeUtil.generalWidth,
               decoration: AppBoxDecoration.noBorder,
               child: Padding(
-                padding: AppPaddings.customContainerInsidePadding(3),
+                padding: AppPaddings.customContainerInsidePadding(1),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
+                    mediumSizedBox(),
                     isForParticipant
                         ? RowView(
                             rowModel: UiBaseModel.secDeterminationModel(
@@ -76,6 +78,7 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
                     isForParticipant
                         ? timeButtonList()
                         : Obx(() => timeButtonList()),
+                    smallSizedBox(),
                   ],
                 ),
               ),
@@ -106,19 +109,14 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
     );
   }
 
-  Padding participantChoosingTimeButton(int rowIndex) {
-    return Padding(
-      padding: rowIndex == timeList.length - 1
-          ? AppPaddings.componentOnlyPadding(1)
-          : AppPaddings.componentPadding,
-      child: PersonMin(
-        onTap: () {
-          choose(listViewIndex!, listViewChosenList!, false);
-          if (listViewChosenList![listViewIndex!])
-            choose(rowIndex, isChosen, true);
-        },
-        row: timeButtonInsideRow(rowIndex),
-      ),
+  Widget participantChoosingTimeButton(int rowIndex) {
+    return PersonMin(
+      onTap: () {
+        choose(listViewIndex!, listViewChosenList!, false);
+        if (listViewChosenList![listViewIndex!])
+          choose(rowIndex, isChosen, true);
+      },
+      row: timeButtonInsideRow(rowIndex),
     );
   }
 

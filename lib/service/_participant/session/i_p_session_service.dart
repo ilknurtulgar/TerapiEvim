@@ -1,15 +1,16 @@
 import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
+import '../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../model/therapist/session/t_join_video_call_result_model.dart';
 import '../../../model/therapist/session/t_session_model.dart';
 
-abstract class ITSessionService {
-  ITSessionService(this.manager);
+abstract class IPSessionService {
+  IPSessionService(this.manager);
 
   final IFirestoreManager<ErrorModelCustom> manager;
 
   /// If you need to get sessions that are finished, set isFinished true
-  Future<List<TSessionModel?>> getSessionsOrdered(
+  Future<List<TSessionModel?>> getAvailableSessionsOrdered(
       {String lastDocId,
       String orderField,
       bool isDescending,
@@ -17,4 +18,6 @@ abstract class ITSessionService {
 
   /// If result is null, there is something wrong
   Future<TJoinVideoCallResultModel?> joinAVideoCall(TSessionModel session);
+
+  Future<CreatedIdResponse?> selectASession(String sessionId);
 }

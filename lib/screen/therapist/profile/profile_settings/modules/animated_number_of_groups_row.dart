@@ -35,6 +35,7 @@ Widget _animatedNumberOfGroupsRow(
               child: CustomListWheelScrollView(
                 whatIsFor: ScrollPurpose.groupNumber,
                 onSelectedItemChanged: (value) => therapistProfileController.chooseGroupNumber(value),
+                initialValue: 5, // kaydedilen grup sayısı gelecek
                 isNumberVisible: therapistProfileController.isNumberVisible,))
         ]),
       ),

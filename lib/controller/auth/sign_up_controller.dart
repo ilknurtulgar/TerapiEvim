@@ -183,12 +183,6 @@ class SignUpController extends GetxController with BaseController {
     }
 
     if (isTermsOfUseAccepted.value == false) {
-      ///TODO this condition should be deleted in production
-     /* if (kDebugMode) {
-        flutterInfoToast("Setting isTermsOfUseAccepted to true in debug ");
-        return true;
-      }*/
-
       flutterInfoToast(ErrorConst.acceptTermsOfUse);
       return false;
     }

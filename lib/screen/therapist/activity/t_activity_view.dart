@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/screen/therapist/activity/t_new_activity_view.dart';
 import 'package:terapievim/screen/therapist/activity/t_update_activity_view.dart';
 
 import '../../../controller/therapist/activity/t_activity_controller.dart';
@@ -33,7 +34,7 @@ class TActivityView extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () {
-                  context.push(const TUpdateActivityView());
+                  context.push(TNewActivityView());
                 },
                 icon: IconUtility.addcircleIcon),
           ],
@@ -91,7 +92,7 @@ class TActivityView extends StatelessWidget {
   ActivityBox _myPastActivities(
       BuildContext context, TActivityController controller) {
     return ActivityBox(
-        onButtonTap: () {},
+        rightButtonTap: () {},
         istwobutton: false,
         buttonText: ActivityTextUtil.watchTheRecording,
         containerModel: AppContainers.containerButton(true),
@@ -117,9 +118,16 @@ class TActivityView extends StatelessWidget {
         buttonText: ActivityTextUtil.start,
         containerModel: AppContainers.containerButton(false),
         isactivity: true,
-        onButtonTap: () {
+        rightButtonTap: () {
           therapistActivityController.createMeeting(
               context: context, activity: recentActivity);
+        },
+        leftButtonTapped: () {
+          print("here");
+
+          context.push(TUpdateActivityView(
+            activity: recentActivity!,
+          ));
         },
         arowModel: DemoInformation.recentActivityTitle(
             recentActivity?.title ?? 'Empty'),

@@ -55,14 +55,14 @@ class TwoRowShortContainer extends StatelessWidget {
                   children: [
                     rowViewColumn(),
                     purpose != ContainerPurpose.date
-                        ? button(buttonText!, true, firstOnTap!)
+                        ? button(buttonText!, true,AppColors.white,firstOnTap!)
                         : const SizedBox(),
                     purpose == ContainerPurpose.date
                         ? Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              button('Test Sonucu', false, firstOnTap!),
-                              button('Katıl', true, secondOnTap!),
+                              button('Test Sonucu', false,AppColors.black,firstOnTap!),
+                              button('Katıl', true,AppColors.white,secondOnTap!),
                             ],
                           )
                         : const SizedBox()
@@ -114,9 +114,9 @@ class TwoRowShortContainer extends StatelessWidget {
             : AppPaddings.componentOnlyPadding(1));
   }
 
-  Widget button(String buttonText, bool isDarkPurpleColor, Function() onTap) {
+  Widget button(String buttonText, bool isDarkPurpleColor,Color textColor,Function() onTap) {
     return CustomButton(
-        textColor: AppColors.white,
+        textColor: textColor,//AppColors.white,
         container: isDarkPurpleColor
             ? AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth)
             : AppContainers.lightPurpleButtonContainer(

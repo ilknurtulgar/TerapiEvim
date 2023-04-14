@@ -23,16 +23,17 @@ class TMyUpComingActivitiesListView extends StatelessWidget {
               child: ListView.builder(
                 itemBuilder: (context, index) {
                   return ActivityBox(
+                      leftButtonTapped: () {},
                       istwobutton: true,
                       buttonText: ActivityTextUtil.start,
                       containerModel: AppContainers.containerButton(false),
                       isactivity: true,
-                      onButtonTap: () {},
+                      rightButtonTap: () {},
                       arowModel: DemoInformation.recentActivityTitle('Empty'),
                       clockModel:
                           DemoInformation.recentActivityTime(Timestamp.now()));
                 },
-                itemCount: 5,
+                itemCount: 2,
               ),
             ));
       },

@@ -5,7 +5,7 @@ import '../../../../core/base/ui_models/row_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 
 Widget activitythreerowbox(
-    Function()? onButtonTap,
+    Function() onButtonTap,
     Function()? onTap,
     RowModel arowModel,
     RowModel clockModel,
@@ -20,5 +20,5 @@ Widget activitythreerowbox(
       arowModel: arowModel,
       isactivity: false,
       clockModel: clockModel,
-      onButtonTap: onButtonTap);
+      rightButtonTap: onButtonTap);
 }

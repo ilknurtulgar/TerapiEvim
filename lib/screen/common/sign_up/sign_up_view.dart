@@ -67,51 +67,44 @@ class _SignUpViewState extends State<SignUpView> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: AppColors.blueChalk,
-        body: SingleChildScrollView(
-          child: Center(
-            child: Padding(
-              padding: AppPaddings.pagePaddingHorizontal,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SignInViewUtility.title(false),
-                  textfieldListView(),
-                  mediumSizedBox(),
-                  Obx(
-                    () => mainController.isTherapist.value
-                        ? acceptMakingShortCallContainer(_signUpController)
-                        : const SizedBox(),
-                  ),
-                  SignInViewUtility.button(
-                    false,
-                    false,
-                    () {
-                      _signUpController.signUpWithEmail(context, _userRole);
-                    },
-                  ),
-                  SignInViewUtility.lineWithOrText(context),
-                  SignInViewUtility.button(
-                    true,
-                    false,
-                    () => context.push(const SignInView()),
-                  ),
-                ],
+        body: Padding(
+          padding: AppPaddings.pagePaddingHorizontal,
+          child: CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(child: Center(child: SignInViewUtility.title(false))),
+              textfieldListView(),
+              SliverToBoxAdapter(child: mediumSizedBox()),
+              SliverToBoxAdapter(
+                child: Obx(
+                  () => mainController.isTherapist.value
+                      ? acceptMakingShortCallContainer(_signUpController)
+                      : const SizedBox(),
+                ),
               ),
-            ),
+              buttonColumn(context)
+            ],
           ),
         ));
   }
 
-  ListView textfieldListView() {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: textfieldList.length,
-      itemBuilder: ((context, index) => Padding(
-            padding: AppPaddings.componentPadding,
-            child: textfieldList[index],
-          )),
-    );
+  SliverToBoxAdapter buttonColumn(BuildContext context) {
+    return SliverToBoxAdapter(
+              child: Column(
+                children: [
+                  SignInViewUtility.button(false,false,() {_signUpController.signUpWithEmail(context, _userRole);},),
+                  SignInViewUtility.lineWithOrText(context),
+                  SignInViewUtility.button(true,false,() => context.push(const SignInView()),),
+                ],
+              ),
+            );
+  }
+
+  Widget textfieldListView() {
+    return SliverList(
+      delegate: SliverChildBuilderDelegate( 
+        (context, index) => textfieldList[index],
+        childCount: textfieldList.length
+    ));
   }
 
   Widget acceptMakingShortCallContainer(SignUpController controller) {

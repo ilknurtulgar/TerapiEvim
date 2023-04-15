@@ -1,95 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:videosdk/videosdk.dart';
-
+import 'package:get/get.dart';
 import '../../../../../core/extension/context_extension.dart';
 import '../../../../controller/video_call/group_therapy_call_controller.dart';
 import '../../../../core/base/component/video_call/buttons/video_call_buttons.dart';
+import '../../../../core/base/component/video_call/tab/therapist_tab.dart';
+import '../../../../core/base/ui_models/video_call/person_in_call_model.dart';
 import '../../../../core/base/util/base_utility.dart';
+import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
+import '../../../../model/common/video_call/video_call_token_model.dart';
 import '../../../../product/widget/common/video_call/participant_tile.dart';
-import '../../../common/home/main_home.dart';
 
-class TGroupCallView extends StatefulWidget {
-  final String meetingId;
-  final String token;
+class TGroupCallView extends StatelessWidget {
+  final VideoCallTokenModel videoCallToken;
 
   const TGroupCallView({
     Key? key,
-    required this.meetingId,
-    required this.token,
+    required this.videoCallToken,
   }) : super(key: key);
-
-  @override
-  State<TGroupCallView> createState() => _TGroupCallViewState();
-}
-
-class _TGroupCallViewState extends State<TGroupCallView> {
-  Map<String, Stream?> participantVideoStreams = {};
-
-  bool micEnabled = true;
-  bool camEnabled = true;
-  late Room room;
-
-  void setParticipantStreamEvents(Participant participant) {
-    participant.on(Events.streamEnabled, (Stream stream) {
-      if (stream.kind == 'video') {
-        setState(() => participantVideoStreams[participant.id] = stream);
-      }
-    });
-
-    participant.on(Events.streamDisabled, (Stream stream) {
-      if (stream.kind == 'video') {
-        setState(() => participantVideoStreams.remove(participant.id));
-      }
-    });
-  }
-
-  void setMeetingEventListener(Room room, BuildContext context) {
-    setParticipantStreamEvents(room.localParticipant);
-    room.on(
-      Events.participantJoined,
-      (Participant participant) => setParticipantStreamEvents(participant),
-    );
-    room.on(Events.participantLeft, (String participantId) {
-      if (participantVideoStreams.containsKey(participantId)) {
-        setState(() => participantVideoStreams.remove(participantId));
-      }
-    });
-    room.on(Events.roomLeft, () {
-      participantVideoStreams.clear();
-      context.pushAndRemoveUntil(const MainHome());
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    // Create instance of Room (Meeting)
-    room = VideoSDK.createRoom(
-      roomId: widget.meetingId,
-      token: widget.token,
-      displayName: "Hello World",
-      micEnabled: micEnabled,
-      camEnabled: camEnabled,
-      maxResolution: 'hd',
-      defaultCameraIndex: 1,
-      notification: const NotificationInfo(
-        title: "Video SDK",
-        message: "Video SDK is sharing screen in the meeting",
-        icon: "notification_share", // drawable icon name
-      ),
-    );
-
-    setMeetingEventListener(room, context);
-
-    // Join meeting
-    room.join();
-  }
 
   @override
   Widget build(BuildContext context) {
     return BaseView<PGroupCallController>(
       getController: PGroupCallController(),
+      onModelReady: (controller) {
+        controller.setToken(videoCallToken);
+      },
       onPageBuilder: (context, controller) => Scaffold(
         backgroundColor: AppColors.doveGray,
         body: SizedBox(
@@ -97,11 +33,12 @@ class _TGroupCallViewState extends State<TGroupCallView> {
           width: double.infinity,
           child: Stack(
             children: [
-              if (participantVideoStreams.values.isNotEmpty)
-                if (participantVideoStreams.values.first!.renderer != null)
+              if (controller.participantVideoStreams.values.isNotEmpty)
+                if (controller.participantVideoStreams.values.first!.renderer !=
+                    null)
                   Positioned.fill(
                     child: ParticipantTile(
-                      stream: participantVideoStreams.values.first!,
+                      stream: controller.participantVideoStreams.values.first!,
                       hasPadding: false,
                     ),
                   ),
@@ -118,12 +55,12 @@ class _TGroupCallViewState extends State<TGroupCallView> {
                 left: 0,
                 right: 0,
                 child: SizedBox(
-                  width: context.width,
+                  width: context.width1,
                   child: SingleChildScrollView(
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        ...participantVideoStreams.values
+                        ...controller.participantVideoStreams.values
                             .map(
                               (e) => ParticipantTile2(
                                 stream: e!,
@@ -141,14 +78,14 @@ class _TGroupCallViewState extends State<TGroupCallView> {
                 right: 0,
                 child: VideoCallButtonsRow(
                   onToggleMicButtonPressed: () {
-                    micEnabled ? room.muteMic() : room.unmuteMic();
-                    micEnabled = !micEnabled;
+                    controller.micEnabled ? controller.room.muteMic() : controller.room.unmuteMic();
+                    controller.micEnabled = !controller.micEnabled;
                   },
                   onToggleCameraButtonPressed: () {
-                    camEnabled ? room.disableCam() : room.enableCam();
-                    camEnabled = !camEnabled;
+                    controller.camEnabled ? controller.room.disableCam() : controller.room.enableCam();
+                    controller.camEnabled = !controller.camEnabled;
                   },
-                  onLeaveButtonPressed: () => room.leave(),
+                  onLeaveButtonPressed: () => controller.room.leave(),
                 ),
               ),
             ],
@@ -156,5 +93,37 @@ class _TGroupCallViewState extends State<TGroupCallView> {
         ),
       ),
     );
+  }
+
+  void openTherapistTab(List<PersonInCallModel> participants) {
+    Get.snackbar('', '',
+        padding: EdgeInsets.zero,
+        borderRadius: 0,
+        margin: EdgeInsets.zero,
+        backgroundColor: AppColors.mineShaft,
+        titleText: TherapistTab(participants: participants),
+        messageText: const SizedBox.shrink(),
+        snackPosition: SnackPosition.BOTTOM,
+        duration: const Duration(minutes: 1));
+  }
+
+  void sendIsolatedCall(String name) {
+    Get.dialog(AlertDialog(
+      content: Text('$name ${VideoCallTextUtil.sendIsolatedCall}'),
+      actions: [
+        TextButton(
+            onPressed: () => Get.back(),
+            child: Text(
+              VideoCallTextUtil.no,
+              style: AppTextStyles.groupTextStyle(false),
+            )),
+        TextButton(
+            onPressed: () => Get.back(),
+            child: Text(
+              VideoCallTextUtil.yes,
+              style: AppTextStyles.groupTextStyle(false),
+            )),
+      ],
+    ));
   }
 }

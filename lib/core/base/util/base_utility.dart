@@ -184,6 +184,7 @@ class IconUtility {
   static const Icon moreHorizontal = Icon(Icons.more_horiz);
   static const Icon handsUp = Icon(Icons.pan_tool_outlined);
   static const Icon handsDown = Icon(Icons.do_not_touch_outlined);
+  static const Icon filledCircle = Icon(Icons.radio_button_checked);
 }
 
 class AppTextStyles {
@@ -526,17 +527,16 @@ class NavigateUtil {
 }
 
 class DemoInformation {
-  static HomeComponent demoLAstReviewContainer =
-      HomeComponent(
-        isForMethodReading: true,
-          cardModel: CardModel(
-              imagePath: DemoInformation.imagePath,
-              title: DemoInformation.therapistName),
-          time: "04/01/2003",
-          title: 'başlık',
-          explanation: "Kendini bil",
-          buttonOnTap: () {},
-          buttonText: "Oku");
+  static HomeComponent demoLAstReviewContainer = HomeComponent(
+      isForMethodReading: true,
+      cardModel: CardModel(
+          imagePath: DemoInformation.imagePath,
+          title: DemoInformation.therapistName),
+      time: "04/01/2003",
+      title: 'başlık',
+      explanation: "Kendini bil",
+      buttonOnTap: () {},
+      buttonText: "Oku");
 
   static TwoRowShortContainer demoAttendedSeminars = TwoRowShortContainer(
     row1Text: DemoInformation.therapistName,

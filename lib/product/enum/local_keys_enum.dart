@@ -9,5 +9,6 @@ enum LocalManagerKeys {
   phone, // String
   imageUrl, // String
   isTermsOfUseAccepted, // bool
-  joinedGroupId // bool
+  joinedGroupId,// bool
+  isTherapistConfirmed // bool
 }

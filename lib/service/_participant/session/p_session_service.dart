@@ -57,4 +57,10 @@ class PSessionService extends IPSessionService with BaseService {
 
     return result.data!;
   }
+
+  @override
+  Future<CreatedIdResponse?> createSession(String freeTimeId) {
+    // TODO: implement createSession
+    throw UnimplementedError();
+  }
 }

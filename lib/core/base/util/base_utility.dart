@@ -722,7 +722,7 @@ class DemoInformation {
 
   static RowModel row_3 = RowModel(
       leadingIcon: IconUtility.groupsIcon,
-      text: "Katılımcı Sayısı : 0/20",
+      text: "Yeme Bozuklugu",
       textStyle: AppTextStyles.normalTextStyle('small', false),
       isAlignmentBetween: false);
   static var tmpParticipant = participantContainer(

@@ -13,11 +13,14 @@ class ButterFlyButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomRight,
-      child: CustomButton(
-          container: AppContainers.containerButton(true),
-          textColor: AppColors.white,
-          onTap: buttonOnTap,
-          text: buttonName),
+      child: Padding(
+        padding: AppPaddings.componentPadding,
+        child: CustomButton(
+            container: AppContainers.containerButton(true),
+            textColor: AppColors.white,
+            onTap: buttonOnTap,
+            text: buttonName),
+      ),
     );
   }
 }

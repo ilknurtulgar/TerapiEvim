@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:terapievim/model/therapist/session/t_session_model.dart';
 
 import '../../../controller/therapist/home/session/t_session_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
@@ -26,7 +28,7 @@ class TSessionView extends StatelessWidget {
               IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: () {
-                    context.push( TAvailableHoursView());
+                    context.push(TAvailableHoursView());
                   },
                   icon: IconUtility.clockIcon),
             ]),
@@ -41,25 +43,25 @@ class TSessionView extends StatelessWidget {
                   Positioned(right: 24, child: _orderdropdown(controller)),
                 ]),
               ),
-              _aboutparticipant(),
+              _aboutparticipant(controller),
             ]),
           );
         });
   }
 
-  Widget _aboutparticipant() {
+  Widget _aboutparticipant(TSessionController controller) {
     return SliverPadding(
-      padding: AppPaddings.pagePadding,
-      sliver: SliverList(
-          delegate: SliverChildBuilderDelegate(
-              childCount: DemoInformation.copingList.length,
-              (context, index) => participantWithShortCallTime(
-                    DemoInformation.copingList[index],
-                    DemoInformation.date,
-                    () => context.push(TestResultView()),
-                    () => context.push(ShortCallView()),
-                  ))),
-    );
+        padding: AppPaddings.pagePadding,
+        sliver: SliverList(
+            delegate: SliverChildBuilderDelegate(
+                childCount: controller.fetchedSession.length, (context, index) {
+          final TSessionModel? sessionModel = controller.fetchedSession[index];
+          return participantWithShortCallTime(
+              sessionModel?.participantName ?? "",
+              (sessionModel?.dateTime ?? Timestamp.now()) as String,
+              () => context.push(TestResultView()),
+              () => context.push(ShortCallView()));
+        })));
   }
 
   Widget _orderdropdown(TSessionController controller) {

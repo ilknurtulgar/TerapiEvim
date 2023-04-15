@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/base/component/group/scrollable_time.dart';
 import '../../../core/base/component/toast/toast.dart';
 import '../../../service/_therapist/activity/i_t_activity_service.dart';
 import '../../../service/_therapist/activity/t_activity_service.dart';
@@ -55,10 +57,36 @@ abstract class ITModifyActivityController extends GetxController
       flutterErrorToast("Date is empty");
       return false;
     }
-    if (activityTimeController.text.trim().isEmpty) {
+    if (activityTimeController.text.trim() ==
+        Timestamp.fromDate(DateTime.now())) {
       flutterErrorToast("Time is empty");
       return false;
     }
     return true;
+  }
+
+  RxString chosenHour = '12'.obs;
+
+  RxString chosenMinutes = '00'.obs;
+  void chooseGroupTherapyTime(bool isHour, int value) {
+    String valueAsString = value.toString();
+    if (valueAsString.length < 2) {
+      valueAsString = '0${value.toString()}';
+    }
+    if (isHour)
+      chosenHour.value = valueAsString;
+    else
+      chosenMinutes.value = valueAsString;
+  }
+
+  void showChoosingTimeDialog() {
+    Get.dialog(AlertDialog(
+      title: ScrollableTime(
+        chooseHourFunction: (value) => chooseGroupTherapyTime(true, value),
+        chooseMinuteFunction: (value) => chooseGroupTherapyTime(false, value),
+      ),
+      titlePadding: const EdgeInsets.symmetric(vertical: 15),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+    ));
   }
 }

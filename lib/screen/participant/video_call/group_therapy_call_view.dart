@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
+import 'package:terapievim/core/base/component/video_call/tab/therapist_tab.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
@@ -14,7 +15,7 @@ import 'util/utility.dart';
 class GroupTherapyCallView extends StatelessWidget {
   GroupTherapyCallView({super.key});
   MainController mainController = Get.find();
-
+  bool isMainTherapist = false;
   @override
   Widget build(BuildContext context) {
     return BaseView<PGroupCallController>(
@@ -67,7 +68,7 @@ class GroupTherapyCallView extends StatelessWidget {
                   () => mainController.isTherapist.value
                       ? VideoCallUtility.therapistSpecialButton(() =>
                           videoCallController
-                              .openTherapistTab(DemoInformation.participants))
+                              .openTherapistTab(DemoInformation.participants,isMainTherapist ? TherapistTabControle.MainTherapistHasControl.obs : videoCallController.hasSecondTherapistControl))
                       : VideoCallUtility.putYourHandsUpButton(
                           () => videoCallController.onOffFunction(
                               DemoInformation.participants[0].isHandsUp!),
@@ -98,7 +99,7 @@ class GroupTherapyCallView extends StatelessWidget {
                   whichPage: VideoCallPages.groupCall,
                   videoCallViewModel: VideoCallUtility.personSmallView(
                       DemoInformation.participants[index], true, context),
-                  onLongPressed: mainController.isTherapist.value
+                  onLongPressed: isMainTherapist
                       ? () => videoCallController.sendIsolatedCall(
                           "${DemoInformation.participants[index].name} ${DemoInformation.participants[index].surname}")
                       : null,

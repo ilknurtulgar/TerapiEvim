@@ -18,7 +18,6 @@ import '../../../../model/therapist/group/t_group_model.dart';
 import '../coping_methods/t_new_coping_method_view.dart';
 import 't_profile_about_view.dart';
 
-// ignore: must_be_immutable
 class TGroupInformationView extends StatelessWidget {
   const TGroupInformationView({super.key, this.currentGroup});
 
@@ -46,27 +45,25 @@ class TGroupInformationView extends StatelessWidget {
               actions:
                   _appBarActions(context, controller.currentGroupModel?.id),
             ),
-            body: SafeArea(
-              child: ListView(
-                padding: AppPaddings.pagePaddingHorizontal,
-                children: [
-                  miniHeadings(GroupTextUtil.upcomingMeetingText, false),
-                  meeting(),
-                  miniHeadings(GroupTextUtil.groupsInformationText, false),
-                  navMethod(DemoInformation.secTherapist, () {
-                    context.push(const TProfileView(isSecTherapist: true));
-                  }),
-                  Election(
-                      isSelectedValue: controller.isParticipantElectionOpen,
-                      firstRow: Obx(() => SizedBox(
-                            child: participants(controller),
-                          )),
-                      rows: participantRow),
-                  navMethod(DemoInformation.methods, () {
-                    //method sayfasina gidecek
-                  }),
-                ],
-              ),
+            body: ListView(
+              padding: AppPaddings.pagePaddingHorizontal,
+              children: [
+                miniHeadings(GroupTextUtil.upcomingMeetingText, false),
+                meeting(),
+                miniHeadings(GroupTextUtil.groupsInformationText, false),
+                navMethod(DemoInformation.secTherapist, () {
+                  context.push(const TProfileView(isSecTherapist: true));
+                }),
+                Election(
+                    isSelectedValue: controller.isParticipantElectionOpen,
+                    firstRow: Obx(() => SizedBox(
+                          child: participants(controller),
+                        )),
+                    rows: participantRow),
+                navMethod(DemoInformation.methods, () {
+                  //method sayfasina gidecek
+                }),
+              ],
             ),
           );
         });

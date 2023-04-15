@@ -13,7 +13,7 @@ import '../../../model/therapist/group/t_group_model.dart';
 import 'group_add/t_group_add_view.dart';
 
 class TMyGroupsView extends StatelessWidget {
-  const TMyGroupsView({super.key}); //gecici modeller
+  const TMyGroupsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,25 +31,22 @@ class TMyGroupsView extends StatelessWidget {
                     icon: IconUtility.addcircleIcon),
               ],
             ),
-            body: SafeArea(
-              child: Obx(
-                () => ListView.builder(
-                  padding: AppPaddings.pagePadding,
-                  itemCount: controller.fetchedGroups.length,
-                  itemBuilder: (context, index) {
-                    final TGroupModel? group = controller.fetchedGroups[index];
-                    return GroupClass(
-                      onTap: () {
-                        context
-                            .push(TGroupInformationView(currentGroup: group));
-                      },
-                      row1: DemoInformation.groupTitle(group?.name ?? ''),
-                      row2: DemoInformation.row_2,
-                      row3: DemoInformation.row_3,
-                      isBorderPurple: true,
-                    );
-                  },
-                ),
+            body: Obx(
+              () => ListView.builder(
+                padding: AppPaddings.pagePadding,
+                itemCount: controller.fetchedGroups.length,
+                itemBuilder: (context, index) {
+                  final TGroupModel? group = controller.fetchedGroups[index];
+                  return GroupClass(
+                    onTap: () {
+                      context.push(TGroupInformationView(currentGroup: group));
+                    },
+                    row1: DemoInformation.groupTitle(group?.name ?? ''),
+                    row2: DemoInformation.row_2,
+                    row3: DemoInformation.row_3,
+                    isBorderPurple: true,
+                  );
+                },
               ),
             ),
           );

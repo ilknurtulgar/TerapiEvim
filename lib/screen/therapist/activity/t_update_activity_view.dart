@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/product/widget/common/activity/date_clock_textfield.dart';
 
 import '../../../controller/therapist/activity/t_update_activity_view_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
@@ -24,27 +27,43 @@ class TUpdateActivityView extends StatelessWidget {
       getController: TUpdateActivityViewController(),
       onPageBuilder: (context, controller) => Scaffold(
         appBar: MyAppBar(title: ActivityTextUtil.update),
-        body: Column(
-          children: [
-            MiniHeading(
-                name: ActivityTextUtil.eventName,
-                isInMiddle: false,
-                isAlignedInCenter: false),
-            EventName(
-                activityNameController: controller.activityNameController),
-            MiniHeading(
-                name: ActivityTextUtil.eventAbout,
-                isInMiddle: false,
-                isAlignedInCenter: false),
-            EventAbout(
-                activityDescriptionController:
-                    controller.activityDescriptionController),
-            ButterFlyButton(
-                buttonName: ActivityTextUtil.update,
-                buttonOnTap: () {
-                  controller.updateActivity();
-                })
-          ],
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: AppPaddings.pagePadding,
+            child: Column(
+              children: [
+                MiniHeading(
+                    name: ActivityTextUtil.eventName,
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
+                EventName(
+                    activityNameController: controller.activityNameController),
+                MiniHeading(
+                    name: ActivityTextUtil.eventAbout,
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
+                EventAbout(
+                    activityDescriptionController:
+                        controller.activityDescriptionController),
+                Obx(
+                  () => DateClockTextField(
+                    textController: controller.activityDateController,
+                    hour: controller.chosenHour.value,
+                    minutes: controller.chosenMinutes.value,
+                    choosingTimeTapped: () {
+                      controller.showChoosingTimeDialog();
+                    },
+                  ),
+                ),
+                ButterFlyButton(
+                    buttonName: ActivityTextUtil.update,
+                    buttonOnTap: () {
+                      controller.validateActivity();
+                      controller.updateActivity();
+                    })
+              ],
+            ),
+          ),
         ),
       ),
     );

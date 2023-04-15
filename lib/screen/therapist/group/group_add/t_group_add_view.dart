@@ -10,7 +10,6 @@ import '../../../../core/base/component/group/person.dart';
 import '../../../../core/base/component/login/custom_textfield.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 import '../../../../core/base/ui_models/row_model.dart';
-import '../../../../core/base/util/base_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
@@ -39,70 +38,55 @@ class TGroupAddView extends StatelessWidget {
                 )
               ],
             ),
-            body: SafeArea(
-              child: ListView(
-                padding: AppPaddings.pagePadding,
-                children: [
-                  MiniHeading(
-                      name: GroupTextUtil.groupNameText,
-                      isInMiddle: false,
-                      isAlignedInCenter: false),
-                  CustomTextField(
-                      isOne: true,
-                      isBig: true,
-                      textController: controller.groupNameController,
-                      isRowModel: false),
-                  MiniHeading(
-                      name: GroupTextUtil.secondTherapistText,
-                      isInMiddle: false,
-                      isAlignedInCenter: false),
-                  Election(
-                      isSelectedValue: controller.isSecTherapistElectionOpen,
-                      firstRow: secTherapist(controller),
-                      rows: persons(controller, context)),
-                  button(context, controller, false),
-                  MiniHeading(
-                      name: GroupTextUtil.meetDayText,
-                      isAlignedInCenter: false,
-                      isInMiddle: false),
-                  MiniHeading(
-                      name: GroupTextUtil.dayText,
-                      isInMiddle: true,
-                      isAlignedInCenter: false),
-                  Election(
-                      isSelectedValue: controller.isDayElectionOpen,
-                      firstRow: dayRow(controller),
-                      rows: days(controller)),
-                  MiniHeading(
-                      name: GroupTextUtil.timeText,
-                      isInMiddle: true,
-                      isAlignedInCenter: false),
-                  Obx(
-                    () => ChoosingTimeGroupTherapy(
-                      onTap: () => controller.showChoosingTimeDialog(),
-                      hour: controller.chosenHour.value,
-                      minutes: controller.chosenMinutes.value,
-                    ),
+            body: ListView(
+              padding: AppPaddings.pagePadding,
+              children: [
+                MiniHeading(
+                    name: GroupTextUtil.groupNameText,
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
+                CustomTextField(
+                    isOne: true,
+                    isBig: true,
+                    textController: controller.groupNameController,
+                    isRowModel: false),
+                MiniHeading(
+                    name: GroupTextUtil.secondTherapistText,
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
+                Election(
+                    isSelectedValue: controller.isSecTherapistElectionOpen,
+                    firstRow: secTherapist(controller),
+                    rows: persons(controller, context)),
+                button(context, controller, false),
+                MiniHeading(
+                    name: GroupTextUtil.meetDayText,
+                    isAlignedInCenter: false,
+                    isInMiddle: false),
+                MiniHeading(
+                    name: GroupTextUtil.dayText,
+                    isInMiddle: true,
+                    isAlignedInCenter: false),
+                Election(
+                    isSelectedValue: controller.isDayElectionOpen,
+                    firstRow: dayRow(controller),
+                    rows: days(controller)),
+                MiniHeading(
+                    name: GroupTextUtil.timeText,
+                    isInMiddle: true,
+                    isAlignedInCenter: false),
+                Obx(
+                  () => ChoosingTimeGroupTherapy(
+                    onTap: () => controller.showChoosingTimeDialog(),
+                    hour: controller.chosenHour.value,
+                    minutes: controller.chosenMinutes.value,
                   ),
-                  button(context, controller, true)
-                ],
-              ),
+                ),
+                button(context, controller, true)
+              ],
             ),
           );
         });
-  }
-
-  RowModel appRow(BuildContext context) {
-    return UiBaseModel.appBarModel(
-        GroupTextUtil.addGroupText,
-        IconButton(
-          icon: IconUtility.close,
-          onPressed: () {
-            context.pop();
-
-            //geri donus yapmasi lazim
-          },
-        ));
   }
 
   Obx dayRow(TGroupAddController controller) {
@@ -247,7 +231,6 @@ class TGroupAddView extends StatelessWidget {
   }
 
   PersonMin day(String dayName, TGroupAddController controller) {
-    // GroupAddController controller = Get.find();
     return PersonMin(
         onTap: () {
           controller.changeChoosenDay(dayName);

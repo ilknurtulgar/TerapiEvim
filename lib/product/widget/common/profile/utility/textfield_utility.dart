@@ -61,7 +61,6 @@ class TextFieldUtility {
           isOne: false,
           obsecureText: isObscured.value,
           title: "Şifre",
-          maxLines: 1,
           textController: textController,
           rowModel: RowModel(
             text: isBig ? 'Şifre' : "",

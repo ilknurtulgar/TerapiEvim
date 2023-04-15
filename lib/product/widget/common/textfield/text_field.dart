@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/base/component/login/custom_textfield.dart';
-import '../../../../core/base/util/base_utility.dart';
 
 class TextsField extends StatelessWidget {
   const TextsField(
@@ -10,15 +9,12 @@ class TextsField extends StatelessWidget {
   final TextEditingController textEditingController;
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: AppPaddings.generalPadding,
-      child: CustomTextField(
-          isOne: true,
-          maxLines: maxLines,
-          isBig: true,
-          textController: textEditingController,
-          isRowModel: false),
-    );
+    return CustomTextField(
+        isOne: true,
+        maxLines: maxLines,
+        isBig: true,
+        textController: textEditingController,
+        isRowModel: false);
   }
 }
 

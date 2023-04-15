@@ -29,32 +29,35 @@ class CustomDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: AppPaddings.componentPadding,
-      child: SizedBox(
-        width: Responsive.width(width, context),
-        child: Column(
-          children: [
-            InkWell(
-              onTap: onDropDownTapped,
-              child: Container(
-                  alignment: Alignment.center,
-                  decoration: AppBoxDecoration.purpleBorder,
-                  height: height,
-                  width: Responsive.width(width, context),
-                  child: Obx(() => Text(selectedText.value))),
-            ),
-            Obx(
-              () => isBoxSelected.value
-                  ? _DropDownList(
-                      onSelected: (int value) {
-                        isBoxSelected.value = false;
-                        onValueSelected(value);
-                      },
-                      setString: selectedText,
-                      textList: textList,
-                    )
-                  : const SizedBox.shrink(),
-            ),
-          ],
+      child: Align(
+        alignment: Alignment.centerRight,
+        child: SizedBox(
+          width: Responsive.width(width, context),
+          child: Column(
+            children: [
+              InkWell(
+                onTap: onDropDownTapped,
+                child: Container(
+                    alignment: Alignment.center,
+                    decoration: AppBoxDecoration.purpleBorder,
+                    height: height,
+                    width: Responsive.width(width, context),
+                    child: Obx(() => Text(selectedText.value))),
+              ),
+              Obx(
+                () => isBoxSelected.value
+                    ? _DropDownList(
+                        onSelected: (int value) {
+                          isBoxSelected.value = false;
+                          onValueSelected(value);
+                        },
+                        setString: selectedText,
+                        textList: textList,
+                      )
+                    : const SizedBox.shrink(),
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -61,7 +61,6 @@ class TextFieldUtility {
           isOne: false,
           obsecureText: isObscured.value,
           title: "Şifre",
-          maxLines: 1,
           textController: textController,
           rowModel: RowModel(
             text: isBig ? 'Şifre' : "",
@@ -107,6 +106,7 @@ Future<void> choosingBirthday(TextEditingController controller) async {
       initialDate: DateTime(1990),
       firstDate: DateTime(1923),
       lastDate: DateTime(2004)));
+  Date date = Date(text: '', dateValue: DateTime.now());
   String? day;
   String? month;
   String? year;
@@ -118,6 +118,17 @@ Future<void> choosingBirthday(TextEditingController controller) async {
         ? '0${pickedDate.month.toString()}'
         : pickedDate.month.toString();
     year = pickedDate.year.toString();
-    controller.text = '$day/$month/$year';
+    date.text = '$day/$month/$year';
+    date.dateValue = pickedDate;
+    controller.text = date.text;
   }
+}
+
+class Date {
+  String text;
+  DateTime dateValue;
+  Date({
+    required this.text,
+    required this.dateValue,
+  });
 }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../../core/extension/context_extension.dart';
-import '../../../../controller/therapist/video_call/t_group_call_controller.dart';
+import '../../../../controller/video_call/group_therapy_call_controller.dart';
 import '../../../../core/base/component/video_call/buttons/video_call_buttons.dart';
 import '../../../../core/base/component/video_call/tab/therapist_tab.dart';
 import '../../../../core/base/ui_models/video_call/person_in_call_model.dart';
@@ -21,8 +21,8 @@ class TGroupCallView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<TGroupCallController>(
-      getController: TGroupCallController(),
+    return BaseView<PGroupCallController>(
+      getController: PGroupCallController(),
       onModelReady: (controller) {
         controller.setToken(videoCallToken);
       },

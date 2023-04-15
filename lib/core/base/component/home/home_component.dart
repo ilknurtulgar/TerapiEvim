@@ -35,7 +35,7 @@ class HomeComponent extends StatelessWidget {
         child: Column(
          crossAxisAlignment: CrossAxisAlignment.start,
          children: [
-          title != null ? text(true,title!) : const SizedBox(),
+          title != null ? Padding(padding: AppPaddings.componentOnlyPadding(2),child: text(true,title!)) : const SizedBox(),
           text(false,explanation),
           Padding(
             padding: AppPaddings.customContainerInsidePadding(2),

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/home/home_component.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../controller/participant/home/p_home_view_controller.dart';
 import '../../../core/base/component/activtiy/seminers.dart';
-import '../../../core/base/component/home/notification_from_ther_container.dart';
 import '../../../core/base/component/home/reminder.dart';
 import '../../../core/base/ui_models/card_model.dart';
 import '../../../core/base/util/base_model.dart';
@@ -54,7 +54,8 @@ SliverList notification(
     CardModel cardModel, List<String> explanation, int itemLength) {
   return SliverList(
     delegate: SliverChildBuilderDelegate((context, index) {
-      return NotificationFromTherContainer(
+      return HomeComponent(
+          isForMethodReading: false,
           cardModel: cardModel,
           explanation: explanation[index],
           buttonOnTap: () {},

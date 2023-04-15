@@ -15,9 +15,11 @@ import '../../profile/image/custom_circle_avatar.dart';
 
 // ignore: must_be_immutable
 class TherapistTab extends StatelessWidget {
-  TherapistTab({super.key, required this.participants});
+  TherapistTab(
+      {super.key, required this.participants, required this.whoHasControl});
   PGroupCallController controller = Get.find();
   final List<PersonInCallModel> participants;
+  Rx<TherapistTabControle> whoHasControl;
   @override
   Widget build(BuildContext context) {
     return CustomContainer(
@@ -31,9 +33,24 @@ class TherapistTab extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             closeTabButton(),
-            therapistSpecialRow(true, context),
-            therapistSpecialRow(false, context),
-            expansionTile()
+            Obx(() => whoHasControl.value == TherapistTabControle.MainTherapistHasControl || whoHasControl.value == TherapistTabControle.SecondTherapistHasControl
+                ? therapistSpecialRow(true, context)
+                : const SizedBox.shrink()),
+            Obx(() => whoHasControl.value == TherapistTabControle.MainTherapistHasControl
+                ? therapistSpecialRow(false, context)
+                : const SizedBox.shrink()),
+            expansionTile(),
+            Obx(
+              () => whoHasControl.value == TherapistTabControle.MainTherapistHasControl || whoHasControl.value == TherapistTabControle.SecondTherapistHasControl
+                  ? Padding(
+                      padding: AppPaddings.componentOnlyPadding(1),
+                      child: responsivenestext(
+                        VideoCallTextUtil.therapistTabInformation,
+                        TextStyle(color: AppColors.white),
+                      ),
+                    )
+                  : const SizedBox.shrink(),
+            ),
           ],
         ),
       ),
@@ -112,12 +129,29 @@ class TherapistTab extends StatelessWidget {
 
   Widget videoCallButton(int index, bool isMicButton) {
     return isMicButton
-        ? VideoCallUtility.micIconButton(
-            () => controller.onOffFunction(participants[index].isMicOn),
-            false,
-            participants[index].isMicOn)
-        : VideoCallUtility.cameraIconButton(
-            () {}, false, participants[index].isCamOn);
+        ? Obx(
+          () => whoHasControl.value ==
+                  TherapistTabControle.SecondTherapistHasNotControl
+              ? Obx(
+                () => participants[index].isMicOn.value
+                    ? IconUtility.micIcon(false)
+                    : IconUtility.micoffIcon,
+                )
+              : VideoCallUtility.micIconButton(
+                  () => controller.onOffFunction(participants[index].isMicOn),
+                  false,
+                  participants[index].isMicOn),
+        )
+        : Padding(
+          padding:  AppPaddings.componentOnlyPadding(4),
+          child: Obx(
+            () => participants[index].isCamOn.value
+                ? IconUtility.videcamIcon
+                : IconUtility.videocamoffIcon,
+          ),
+        );
+    /* VideoCallUtility.cameraIconButton(
+            () {}, false, participants[index].isCamOn);*/
   }
 
   Widget therapistSpecialRow(bool isToOpenMics, BuildContext context) {
@@ -140,11 +174,18 @@ class TherapistTab extends StatelessWidget {
             trailingIcon: Obx(
               () => SwitchButton(
                   onTap: (value) => controller.therapistSwitchButtonFunction(
-                      isToOpenMics, value),
+                      isToOpenMics, value,
+                      participants: isToOpenMics ? participants : null),
                   value: isToOpenMics
                       ? controller.openAllMics.value
                       : controller.shareAuthority.value),
             )),
         padding: const EdgeInsets.only(left: 16, bottom: 8));
   }
+}
+
+enum TherapistTabControle {
+  MainTherapistHasControl,
+  SecondTherapistHasControl,
+  SecondTherapistHasNotControl,
 }

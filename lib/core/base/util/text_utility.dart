@@ -7,7 +7,7 @@ class GroupTextUtil {
   static const String notificationSecThe = "Yardimci Psikolog Bulunmasi";
   //lockscreen
   static const String lockScreenText =
-      "Henüz Grubunuz Belli Olmadığı İçin Burası Kilitli";
+      "15 dakikalık seansınızı gerçekleştirdikten sonra grubunuz belli olacaktır.Seans bilgileriniz aşağıdaki gibidir.";
   static const String tlockScreenUnconformed =
       "Belgenizin onaylanmasi icin beklemeniz gerekmektedir.";
 
@@ -45,6 +45,7 @@ class GroupTextUtil {
   static String sunday = "Pazar";
   static String addGroupText = "Grup Ekle";
   static String groupNameText = "Grup İsmi";
+  static String groupCategory = "Grup Kategorisi";
   static String secondTherapistText = "Yardımcı Psikolog  ";
   static String meetDayText = "Görüşme Tarihi";
   static String dayText = "Gün";
@@ -62,7 +63,7 @@ class GroupTextUtil {
 
   static String upcomingMeetingText = "Yaklaşan Toplantı";
   static String groupsInformationText = "Grubun Bilgileri";
-  static String participantsText = "Katılımcılar";
+  static String participantsText = "Katılımcılar:  20/";
   static String startText = "Başlat";
   static String deleteGroupConfirmText =
       "Grubu Silmek İstediğinize Emin Misiniz? ";
@@ -79,6 +80,7 @@ class GroupTextUtil {
   static String sessionNumber = 'Seans Sayısı: ';
   static String weekNumber = 'Hafta Sayısı: ';
   static String join = 'Katıl';
+  static String therapistTwoDot = "Psikolog: ";
 
   //new metot
 
@@ -342,4 +344,6 @@ class VideoCallTextUtil {
       'isimli kişiyi izole odasına göndermek istiyor musunuz?';
   static const String yes = 'Evet';
   static const String no = 'Hayır';
+  static const therapistTabInformation =
+      'Herhangi bir katılımcıyı yardımcı terapist ile birlikte acil izole odasına göndermek için katılımcının kutucuğunun üzerine basılı tutun.';
 }

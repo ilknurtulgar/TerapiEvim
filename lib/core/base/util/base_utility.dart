@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/participant_container.dart';
+import 'package:terapievim/core/base/component/home/home_component.dart';
 import 'package:terapievim/core/base/ui_models/container_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/screen/therapist/group/t_group_view.dart';
@@ -18,7 +19,6 @@ import '../../../screen/therapist/home/t_home_view.dart';
 import '../../../screen/therapist/message/t_message_view.dart';
 import '../../init/managers/responsiveness_manager.dart';
 import '../../managers/converter/date_time_manager.dart';
-import '../component/home/method_downloading_container.dart';
 import '../component/profile/container/two_row_short_container.dart';
 import '../component/profile/image/custom_circle_avatar.dart';
 import '../ui_models/card_model.dart';
@@ -184,6 +184,7 @@ class IconUtility {
   static const Icon moreHorizontal = Icon(Icons.more_horiz);
   static const Icon handsUp = Icon(Icons.pan_tool_outlined);
   static const Icon handsDown = Icon(Icons.do_not_touch_outlined);
+  static const Icon filledCircle = Icon(Icons.radio_button_checked);
 }
 
 class AppTextStyles {
@@ -526,15 +527,16 @@ class NavigateUtil {
 }
 
 class DemoInformation {
-  static MethodDownloadingContainer demoLAstReviewContainer =
-      MethodDownloadingContainer(
-          cardModel: CardModel(
-              imagePath: DemoInformation.imagePath,
-              title: DemoInformation.therapistName),
-          time: "04/01/2003",
-          explanation: "Kendini bil",
-          buttonOnTap: () {},
-          buttonText: "Oku");
+  static HomeComponent demoLAstReviewContainer = HomeComponent(
+      isForMethodReading: true,
+      cardModel: CardModel(
+          imagePath: DemoInformation.imagePath,
+          title: DemoInformation.therapistName),
+      time: "04/01/2003",
+      title: 'başlık',
+      explanation: "Kendini bil",
+      buttonOnTap: () {},
+      buttonText: "Oku");
 
   static TwoRowShortContainer demoAttendedSeminars = TwoRowShortContainer(
     row1Text: DemoInformation.therapistName,
@@ -720,7 +722,7 @@ class DemoInformation {
 
   static RowModel row_3 = RowModel(
       leadingIcon: IconUtility.groupsIcon,
-      text: "Katılımcı Sayısı : 0/20",
+      text: "Yeme Bozuklugu",
       textStyle: AppTextStyles.normalTextStyle('small', false),
       isAlignmentBetween: false);
   static var tmpParticipant = participantContainer(

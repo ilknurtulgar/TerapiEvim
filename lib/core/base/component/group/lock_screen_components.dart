@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/participant/group/p_lock_screen_controller.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/group/category_determination/group_categories/p_group_categories_view.dart';
@@ -8,7 +9,7 @@ import '../../../../screen/participant/group/scl90/p_test_for_users_view.dart';
 import '../../util/text_utility.dart';
 import '../buttons/custom_button.dart';
 import '../../util/base_utility.dart';
-import '../../../../controller/main_controller.dart';
+import '../profile/container/two_row_short_container.dart';
 
 class PopUp extends StatelessWidget {
   const PopUp({
@@ -17,7 +18,7 @@ class PopUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    MainController controller = Get.find();
+    LockScreenController controller = Get.put(LockScreenController());
     Widget shown = controller.isTestNotSolved.isTrue
         ? noTest(context)
         : controller.isTestResultReady.isTrue
@@ -41,7 +42,7 @@ Column checkedTest(BuildContext context) {
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      lockedTextContainer(GroupTextUtil.lockScreencheckedTestString),
+      lockedTextContainer(GroupTextUtil.lockScreencheckedTestString, false),
       CustomButton(
           textColor: Colors.white,
           container:
@@ -59,7 +60,16 @@ Column uncheckedTest() {
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      lockedTextContainer(GroupTextUtil.lockScreenText),
+      lockedTextContainer(GroupTextUtil.lockScreenText, true),
+      TwoRowShortContainer(
+        firstIconData: IconUtility.navProfile,
+        row1Text: GroupTextUtil.therapistTwoDot + "Yesim Salkim",
+        purpose: ContainerPurpose.seminar,
+        secondIconData: IconUtility.navActivities,
+        row2Text: "12/2/2222 20.00",
+        buttonText: GroupTextUtil.join,
+        firstOnTap: () {},
+      )
     ],
   );
 }
@@ -67,7 +77,7 @@ Column uncheckedTest() {
 Column noTest(BuildContext context) {
   return Column(
     children: [
-      lockedTextContainer(GroupTextUtil.lockScreenText),
+      lockedTextContainer(GroupTextUtil.lockScreenText, false),
       const PurpleTextContainer(text: GroupTextUtil.lockScreenText),
       testButton(context)
     ],
@@ -91,17 +101,22 @@ GestureDetector testButton(BuildContext context) {
       ));
 }
 
-Widget lockedTextContainer(String text) {
+Widget lockedTextContainer(String text, bool isWithTwoRow) {
   return Container(
       margin: const EdgeInsets.symmetric(vertical: SizeUtil.smallValueHeight),
       width: SizeUtil.largeValueWidth,
-      height: SizeUtil.mediumValueHeight,
+      height: isWithTwoRow
+          ? SizeUtil.normalValueHeight
+          : SizeUtil.mediumValueHeight,
       color: AppColors.transparent,
       child: Text(
         text,
-        style: AppTextStyles.heading(false).copyWith(
-          color: AppColors.white,
-        ),
+        style: isWithTwoRow == true
+            ? AppTextStyles.aboutMeTextStyle(false)
+                .copyWith(color: AppColors.white)
+            : AppTextStyles.heading(false).copyWith(
+                color: AppColors.white,
+              ),
         textAlign: TextAlign.center,
       ));
 }

@@ -51,6 +51,14 @@ class TGroupAddView extends StatelessWidget {
                     textController: controller.groupNameController,
                     isRowModel: false),
                 MiniHeading(
+                    name: GroupTextUtil.groupCategory,
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
+                Election(
+                    firstRow: category(controller),
+                    rows: categories(controller),
+                    isSelectedValue: controller.isGroupCategoryElectionOpen),
+                MiniHeading(
                     name: GroupTextUtil.secondTherapistText,
                     isInMiddle: false,
                     isAlignedInCenter: false),
@@ -59,6 +67,24 @@ class TGroupAddView extends StatelessWidget {
                     firstRow: secTherapist(controller),
                     rows: persons(controller, context)),
                 button(context, controller, false),
+                MiniHeading(
+                    name: "Hafta Sayisi",
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
+                CustomTextField(
+                    isBig: true,
+                    textController: controller.numberOfWeek,
+                    isRowModel: false,
+                    isOne: true),
+                MiniHeading(
+                    name: "Seans Sayisi",
+                    isInMiddle: false,
+                    isAlignedInCenter: false),
+                CustomTextField(
+                    isBig: true,
+                    textController: controller.numberOfSession,
+                    isRowModel: false,
+                    isOne: true),
                 MiniHeading(
                     name: GroupTextUtil.meetDayText,
                     isAlignedInCenter: false,
@@ -118,6 +144,26 @@ class TGroupAddView extends StatelessWidget {
               controller.changeSecTherapistElection();
             },
             row: secTherapistRowModel(controller)),
+      ),
+    );
+  }
+
+  Obx category(TGroupAddController controller) {
+    return Obx(
+      () => SizedBox(
+        child: SeminarMin(
+            onTap: () {
+              controller.changeGroupCategoryElection();
+              ;
+            },
+            row: RowModel(
+              text: controller.GroupCategoryName.value,
+              isAlignmentBetween: true,
+              textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
+              trailingIcon: controller.isGroupCategoryElectionOpen.value
+                  ? IconUtility.arrowUp
+                  : IconUtility.arrowDown,
+            )),
       ),
     );
   }
@@ -202,6 +248,30 @@ class TGroupAddView extends StatelessWidget {
       person("Mikasa Ackerman", context, controller),
       person("Eren Jeager", context, controller),
       person("Levi Ackerman", context, controller)
+    ];
+  }
+
+  PersonMin groupCategory(String name, TGroupAddController controller) {
+    return PersonMin(
+      onTap: () {
+        controller.changeGroupCategory(name);
+        controller.changeGroupCategoryElection();
+      },
+      isBorderPurple: false,
+      row: RowModel(
+          text: name,
+          textStyle: AppTextStyles.groupTextStyle(true),
+          isAlignmentBetween: false),
+    );
+  }
+
+  List<PersonMin> categories(TGroupAddController controller) {
+    return [
+      groupCategory("Depresyon", controller),
+      groupCategory("Anksiyete", controller),
+      groupCategory("Yeme Bozuklugu", controller),
+      groupCategory("Psikotik", controller),
+      groupCategory("Otizm", controller),
     ];
   }
 

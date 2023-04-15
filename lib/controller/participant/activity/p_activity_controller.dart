@@ -6,6 +6,7 @@ import '../../../core/extension/context_extension.dart';
 import '../../../core/managers/videosdk/i_video_sdk_manager.dart';
 import '../../../core/managers/videosdk/video_sdk_manager.dart';
 import '../../../model/common/activity/t_activity_model.dart';
+import '../../../model/common/video_call/video_call_token_model.dart';
 import '../../../screen/therapist/video_call/t_group_call/t_group_call_view.dart';
 import '../../../service/_participant/activity/i_p_activity_service.dart';
 import '../../../service/_participant/activity/p_activity_service.dart';
@@ -74,10 +75,14 @@ class PActivityController extends GetxController with BaseController {
         // ));
         return;
       }
-      context.pushTrueRootNavigatorAndRemove(TGroupCallView(
-        meetingId: activity.meetingId!,
-        token: videoSdkManager.token,
-      ));
+      context.pushTrueRootNavigatorAndRemove(
+        TGroupCallView(
+          videoCallToken: VideoCallTokenModel(
+            meetingId: activity.meetingId!,
+            token: videoSdkManager.token,
+          ),
+        ),
+      );
     } catch (e) {
       await crashlyticsManager.sendACrash(
         error: e.toString(),

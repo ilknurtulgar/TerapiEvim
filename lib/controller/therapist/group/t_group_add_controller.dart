@@ -61,6 +61,15 @@ class TGroupAddController extends GetxController with BaseController {
 
   //grup eklmee kismi icin controller
   var isSecTherapistElectionOpen = false.obs;
+  var isGroupCategoryElectionOpen = false.obs;
+  var GroupCategoryName = "Yok".obs;
+  void changeGroupCategory(String categoryName) {
+    GroupCategoryName.value = categoryName;
+  }
+
+  void changeGroupCategoryElection() {
+    isGroupCategoryElectionOpen.value = !isGroupCategoryElectionOpen.value;
+  }
 
   void changeSecTherapistElection() {
     isSecTherapistElectionOpen.value = !isSecTherapistElectionOpen.isTrue;
@@ -122,4 +131,9 @@ class TGroupAddController extends GetxController with BaseController {
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ));
   }
+
+  //seans ve hafta sayisi
+  TextEditingController numberOfSession =
+      TextEditingController(); //nasil obs olacak
+  TextEditingController numberOfWeek = TextEditingController();
 }

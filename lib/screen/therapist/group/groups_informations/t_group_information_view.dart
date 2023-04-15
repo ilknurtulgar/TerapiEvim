@@ -57,7 +57,8 @@ class TGroupInformationView extends StatelessWidget {
                 Election(
                     isSelectedValue: controller.isParticipantElectionOpen,
                     firstRow: Obx(() => SizedBox(
-                          child: participants(controller),
+                          child:
+                              participants(controller, participantRow.length),
                         )),
                     rows: participantRow),
                 navMethod(DemoInformation.methods, () {
@@ -94,14 +95,15 @@ class TGroupInformationView extends StatelessWidget {
     ];
   }
 
-  SeminarMin participants(TGroupInformationController controller) {
+  SeminarMin participants(
+      TGroupInformationController controller, int numberOfParticipants) {
     return SeminarMin(
       isBorderPurple: true,
       onTap: () {
         controller.changeParticipantElection();
       },
       row: RowModel(
-        text: GroupTextUtil.participantsText,
+        text: GroupTextUtil.participantsText + numberOfParticipants.toString(),
         textStyle: AppTextStyles.aboutMeTextStyle(false),
         leadingIcon: IconUtility.groupsIcon,
         isAlignmentBetween: true,

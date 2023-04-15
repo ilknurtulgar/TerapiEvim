@@ -6,12 +6,16 @@ part 't_initial_data.g.dart';
 
 @JsonSerializable()
 class TInitialData extends INetworkModel<TInitialData> {
-
   bool? isTherapistConfirmed;
   bool? isTherapistBeingReviewed;
+  bool? isBeingAdvisorAccepted;
+  int? maxNumberOfHelpingGroups;
 
   TInitialData({
     this.isTherapistConfirmed,
+    this.isTherapistBeingReviewed,
+    this.isBeingAdvisorAccepted,
+    this.maxNumberOfHelpingGroups,
   });
 
   @override

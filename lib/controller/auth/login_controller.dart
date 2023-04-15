@@ -99,7 +99,11 @@ class LoginController extends GetxController with BaseController {
   Future<void> _initialDataOfTherapist(LoginResponseModel loginResponse) async {
     final TInitialData? initialDataOfTherapist =
         await authService.fetchInitialDataOfTherapist();
-    await localManager.setStringValue(LocalManagerKeys.aboutMe, loginResponse.aboutMe ?? "");
+    await localManager.setStringValue(
+        LocalManagerKeys.aboutMe, loginResponse.aboutMe ?? "");
+    await localManager.setBoolValue(LocalManagerKeys.isTherapistConfirmed,
+        initialDataOfTherapist?.isTherapistConfirmed ?? false);
+
     ///TODO: save initial Data to cache
   }
 

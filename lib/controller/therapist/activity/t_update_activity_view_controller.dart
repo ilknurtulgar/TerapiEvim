@@ -8,22 +8,23 @@ class TUpdateActivityViewController extends ITModifyActivityController {
   @override
   void setContext(BuildContext context) => controllerContext = context;
 
-  void setActivity(TActivityModel activity) => activity = _activity;
-
-  late final TActivityModel _activity;
-
   @override
   void onInit() {
-    activityNameController.text = _activity.title ?? '';
-
-    activityDescriptionController.text = _activity.description ?? '';
-
-    activityDateController.text = _activity.dateTime.toString();
-
-    activityTimeController.text = _activity.dateTime.toString();
-
     super.onInit();
   }
+
+  void setActivity(TActivityModel activity) {
+    _activity = activity;
+    activityNameController.text = _activity!.title ?? '';
+
+    activityDescriptionController.text = _activity!.description ?? '';
+
+    activityDateController.text = _activity!.dateTime.toString();
+
+    activityTimeController.text = _activity!.dateTime.toString();
+  }
+
+  TActivityModel? _activity;
 
   Future<bool> updateActivity() async {
     final bool isValidated = validateActivity();

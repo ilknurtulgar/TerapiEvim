@@ -25,7 +25,7 @@ class TMyActivityListView extends StatelessWidget {
             childCount: 5,
             activityType: ActivityType.myactivity,
             sLiverListWidget: ActivityBox(
-                onButtonTap: () {},
+                rightButtonTap: () {},
                 istwobutton: false,
                 buttonText: ActivityTextUtil.watchTheRecording,
                 containerModel: AppContainers.containerButton(true),

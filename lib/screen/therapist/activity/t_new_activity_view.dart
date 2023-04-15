@@ -10,7 +10,6 @@ import '../../../core/base/view/base_view.dart';
 import '../../../model/common/activity/t_activity_model.dart';
 
 import '../../../product/widget/common/button/butterfly_button.dart';
-import '../../../product/widget/common/textfield/date_text_field.dart';
 import '../../../product/widget/common/textfield/text_field.dart';
 
 import '../../../product/widget/common/group/mini_headings.dart';

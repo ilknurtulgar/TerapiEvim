@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
@@ -10,44 +11,53 @@ import '../../../core/base/view/base_view.dart';
 import 't_add_hours_view.dart';
 
 class TAvailableHoursView extends StatelessWidget {
-  const TAvailableHoursView({super.key});
-
+  TAvailableHoursView({super.key});
   @override
   Widget build(BuildContext context) {
     return BaseView<TAvailableHoursViewController>(
-      getController: TAvailableHoursViewController(),
-      onPageBuilder: (context, TAvailableHoursViewController controller) =>
-          Scaffold(
-        appBar: MyAppBar(
-          title: HomeTextUtil.myAvailableHours,
-          actions: [
-            IconButton(
-                onPressed: () {
-                  context.push(const TAddHoursView());
-                },
-                icon: IconUtility.addcircleIcon)
-          ],
-        ),
-        body: Padding(
-          padding: AppPaddings.pagePadding,
-          child: choosingtime(),
-        ),
+        getController: TAvailableHoursViewController(),
+        onPageBuilder: (context, TAvailableHoursViewController controller) =>
+            Scaffold(
+              appBar: MyAppBar(
+                title: HomeTextUtil.myAvailableHours,
+                actions: [
+                  IconButton(
+                      onPressed: () {
+                        context.push(TAddHoursView());
+                      },
+                      icon: IconUtility.addcircleIcon)
+                ],
+              ),
+              body: choosingtime(controller),
+            ));
+  }
+
+  Widget choosingtime(TAvailableHoursViewController controller) {
+    return  Obx(
+      () => ListView.builder(
+            padding: EdgeInsets.zero,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: AppPaddings.timeChossingBetweenPadding,
+                child:  ChoosingTimeForSCContainer(
+                      date: controller.sessionTimeList[index].date, //[index].value.date, //DemoInformation.dateList[index],
+                      timeList: controller.sessionTimeList[index].timeList, //DemoInformation.timelist,
+                      isForParticipant: false)
+                );
+            },
+            itemCount: controller.sessionTimeList.length,
       ),
     );
   }
+}
 
-  ListView choosingtime() {
-    return ListView.builder(
-      padding: EdgeInsets.zero,
-      itemBuilder: (context, index) {
-        return Padding(
-            padding: AppPaddings.timeChossingBetweenPadding,
-            child: ChoosingTimeForSCContainer(
-                date: DemoInformation.dateList[index],
-                timeList: DemoInformation.timelist,
-                isForParticipant: false));
-      },
-      itemCount: 5,
-    );
+extension ListDynamicExtension on List<dynamic> {
+  List<String> allToString() {
+    List<String> newList = [];
+    int i = 0;
+    for (i = 0; i < length; i++) {
+      newList[i] = this[i].toString();
+    }
+    return newList;
   }
 }

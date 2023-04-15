@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/core/base/component/buttons/custom_button.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/ui_models/container_model.dart';
 import 'package:terapievim/core/base/ui_models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/product/widget/t_activity/row_button.dart';
 
 class ActivityBox extends StatelessWidget {
   ActivityBox({
@@ -15,9 +15,10 @@ class ActivityBox extends StatelessWidget {
     required this.arowModel,
     required this.isactivity,
     required this.clockModel,
-    required this.onButtonTap,
+    this.leftButtonTapped,
     this.onTap,
     this.ayrowwModel,
+    required this.rightButtonTap,
   });
 
   final ContainerModel containerModel;
@@ -26,7 +27,8 @@ class ActivityBox extends StatelessWidget {
   final RowModel clockModel;
   final bool isactivity;
   final bool istwobutton;
-  final Function()? onButtonTap, onTap;
+  final Function()? leftButtonTapped, onTap;
+  final Function() rightButtonTap;
   final String buttonText;
 
   @override
@@ -58,32 +60,24 @@ class ActivityBox extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     istwobutton
-                        ? rowbutton(
-                            onButtonTap!,
-                            ActivityTextUtil.updateMyInformation,
-                            AppContainers.hugeContainerButton())
-                        : const SizedBox.shrink(),
-                    rowbutton(onButtonTap!, buttonText,
-                        AppContainers.containerButton(false)),
+                        ? RowButton(
+                            buttonText: ActivityTextUtil.updateMyInformation,
+                            containerbutton:
+                                AppContainers.hugeContainerButton(),
+                            onTap: leftButtonTapped == null
+                                ? null
+                                : leftButtonTapped)
+                        : SizedBox.shrink(),
+                    RowButton(
+                        buttonText: buttonText,
+                        containerbutton: AppContainers.containerButton(false),
+                        onTap: rightButtonTap),
                   ],
                 ),
               )
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget rowbutton(
-      Function() onTap, String buttonText, ContainerModel containerbutton) {
-    return Padding(
-      padding: AppPaddings.rowViewPadding,
-      child: CustomButton(
-        textColor: AppColors.white,
-        container: containerbutton,
-        onTap: onTap,
-        text: buttonText,
       ),
     );
   }

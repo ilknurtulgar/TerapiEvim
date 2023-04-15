@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/therapist/home/session/t_available_hours_view_controller.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:terapievim/screen/therapist/home/t_available_hours_view.dart';
 
 import '../../../controller/therapist/home/session/t_add_hours_view_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/component/group/choosing_time_group_therapy.dart';
 import '../../../core/base/component/group/custom_heading.dart';
+import '../../../core/base/component/group/deleting_time_button.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
@@ -12,8 +16,25 @@ import '../../../product/widget/common/button/butterfly_button.dart';
 import '../../../product/widget/common/profile/utility/textfield_utility.dart';
 import '../../../product/widget/common/textfield/date_text_field.dart';
 
-class TAddHoursView extends StatelessWidget {
-  const TAddHoursView({super.key});
+class TAddHoursView extends StatefulWidget {
+  TAddHoursView({super.key});
+
+  @override
+  State<TAddHoursView> createState() => _TAddHoursViewState();
+}
+
+class _TAddHoursViewState extends State<TAddHoursView> {
+  void initState() {
+    mainController = Get.find();
+    super.initState();
+  }
+
+  late TAvailableHoursViewController mainController;
+  SessionTime sessionTime = SessionTime(date: '', timeList: []);
+
+  RxList<String> timeList = RxList<String>.empty();
+
+  String chosenDate = '';
 
   @override
   Widget build(BuildContext context) {
@@ -32,8 +53,32 @@ class TAddHoursView extends StatelessWidget {
               _minHeading(ActivityTextUtil.addClock),
               clockAddTime(controller),
               _minHeading(ActivityTextUtil.clocks),
+              Obx(
+                () => ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: timeList.length,
+                  itemBuilder: (context, index) {
+                    return Obx(
+                      () => DeletingTimeButton(
+                        time: timeList[index],
+                        onDeleted: () {
+                          timeList.remove(timeList[index]);
+                        },
+                      ),
+                    );
+                  },
+                ),
+              ),
               ButterFlyButton(
-                  buttonOnTap: () {}, buttonName: ActivityTextUtil.save)
+                  buttonOnTap: () {
+                    sessionTime.date = controller.dateAddController.text;
+                    sessionTime.timeList = timeList;
+                    mainController.sessionTimeList.add(sessionTime);
+                    print(mainController.sessionTimeList[0].date);
+                    print(mainController.sessionTimeList[0].timeList);
+                    context.pop();
+                  },
+                  buttonName: ActivityTextUtil.save)
             ],
           ),
         ),
@@ -57,7 +102,15 @@ class TAddHoursView extends StatelessWidget {
           ),
           CircleAvatar(
             backgroundColor: AppColors.butterflyBush,
-            child: IconButton(onPressed: () {}, icon: IconUtility.addIcon),
+            child: IconButton(
+                onPressed: () {
+                  String time;
+                  time =
+                      '${controller.chosenHour.value}:${controller.chosenMinutes.value}';
+                  timeList.add(time);
+                  print(timeList);
+                },
+                icon: IconUtility.addIcon),
           )
         ],
       ),
@@ -80,4 +133,13 @@ DateTextField _dateAdd(TAddHoursViewController controller) {
     isBig: true,
     dateTapped: () => choosingBirthday(controller.dateAddController),
   );
+}
+
+class SessionTime {
+  String date;
+  List<String> timeList;
+  SessionTime({
+    required this.date,
+    required this.timeList,
+  });
 }

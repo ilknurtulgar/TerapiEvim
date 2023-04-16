@@ -81,7 +81,7 @@ class AuthService extends IAuthService with BaseService {
       final bool isSuccess = await manager.createWithDocId(
           collectionPath: APIConst.users,
           docId: result.user!.uid,
-          value: signUpModel.toJson()!);
+          data: signUpModel.toJson()!);
       if (isSuccess == false) {
         throw Exception('Could not create user at auth_service');
       }

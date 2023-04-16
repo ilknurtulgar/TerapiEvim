@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist/home/session/t_available_hours_view_controller.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/therapist/home/t_available_hours_view.dart';
-
 import '../../../controller/therapist/home/session/t_add_hours_view_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/component/group/choosing_time_group_therapy.dart';

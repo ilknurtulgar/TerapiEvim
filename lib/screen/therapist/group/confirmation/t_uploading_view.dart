@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/controller/therapist/group/t_uploaded_controller.dart';
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 
-import '../../../../controller/therapist/group/t_group_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
@@ -14,8 +14,8 @@ class TUploadConfirmView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<TGroupController>(
-      getController: TGroupController(),
+    return BaseView<TUploadedController>(
+      getController: TUploadedController(),
       onPageBuilder: (context, controller) => Scaffold(
         appBar: MyAppBar(title: GroupTextUtil.confirmingText),
         body: SafeArea(
@@ -65,7 +65,7 @@ class TUploadConfirmView extends StatelessWidget {
                       SizeUtil.smallValueWidth),
                   onTap: () {
                     controller.changeIsTherapistLoaded();
-                    controller.changeIsLockOpen();
+                    //birde burdaa diger controllerla baglanti kurup giris yapilmasi lazim
                     context
                         .pop(); //iki kere yapmam gerekiyor cunku lock screeenin tekrar build edilmesi gerekiyor
                     context.pop();

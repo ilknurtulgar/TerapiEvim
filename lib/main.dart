@@ -1,13 +1,10 @@
 import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/screen/participant/group/category_determination/group_categories/p_group_categories_view.dart';
-
 import 'controller/auth/auth_controller.dart';
 import 'controller/participant/group/p_group_controller.dart';
 import 'controller/main_controller.dart';
@@ -16,6 +13,8 @@ import 'controller/video_call/group_therapy_call_controller.dart';
 import 'core/base/util/base_utility.dart';
 import 'core/init/cache/local_manager.dart';
 import 'core/init/config/config.dart';
+import 'screen/common/home/main_home.dart';
+import 'screen/common/sign_in/sign_in_view.dart';
 import 'service/firebase_options.dart';
 
 void main() async {
@@ -56,7 +55,6 @@ class _TerapiEvimState extends State<TerapiEvim> {
         () => _authController.isLogged.isTrue
             ? const MainHome()
             : const SignInView(),
-
       ),
     );
   }

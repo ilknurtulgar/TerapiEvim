@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
+import 'package:terapievim/core/base/view/base_view.dart';
 
 import '../../../../controller/therapist/group/t_group_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
@@ -14,66 +14,68 @@ class TUploadConfirmView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TGroupController controller = Get.find();
-    return Scaffold(
-      appBar: MyAppBar(title: GroupTextUtil.confirmingText),
-      body: SafeArea(
-          child: Padding(
-        padding: AppPaddings.pagePadding,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Container(
-              padding: AppPaddings.appBarPadding,
-              width: SizeUtil.generalWidth,
-              decoration: AppBoxDecoration.purpleBorder,
-              // height: SizeUtil.bigValueHeight,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    GroupTextUtil.whyConfirmingText,
-                    style: AppTextStyles.aboutMeTextStyle(false),
-                  ),
-                  const SizedBox(
-                    height: SizeUtil.normalValueHeight,
-                  ),
-                  Text(
-                    GroupTextUtil.pdfUploadingText,
-                    style: AppTextStyles.aboutMeTextStyle(false),
-                  ),
-                  sizedBox(),
-                  CustomButton(
-                      textColor: AppColors.white,
-                      container: AppContainers.purpleButtonContainer(
-                          SizeUtil.smallValueWidth),
-                      onTap: () {
-                        //yukleyeccek
-                      },
-                      text: GroupTextUtil.uploadText),
-                  // smallSizedBox()
-                ],
+    return BaseView<TGroupController>(
+      getController: TGroupController(),
+      onPageBuilder: (context, controller) => Scaffold(
+        appBar: MyAppBar(title: GroupTextUtil.confirmingText),
+        body: SafeArea(
+            child: Padding(
+          padding: AppPaddings.pagePadding,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                padding: AppPaddings.appBarPadding,
+                width: SizeUtil.generalWidth,
+                decoration: AppBoxDecoration.purpleBorder,
+                // height: SizeUtil.bigValueHeight,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      GroupTextUtil.whyConfirmingText,
+                      style: AppTextStyles.aboutMeTextStyle(false),
+                    ),
+                    const SizedBox(
+                      height: SizeUtil.normalValueHeight,
+                    ),
+                    Text(
+                      GroupTextUtil.pdfUploadingText,
+                      style: AppTextStyles.aboutMeTextStyle(false),
+                    ),
+                    sizedBox(),
+                    CustomButton(
+                        textColor: AppColors.white,
+                        container: AppContainers.purpleButtonContainer(
+                            SizeUtil.smallValueWidth),
+                        onTap: () {
+                          //yukleyeccek
+                        },
+                        text: GroupTextUtil.uploadText),
+                    // smallSizedBox()
+                  ],
+                ),
               ),
-            ),
-            // const SizedBox(
-            //   height: SizeUtil.normalValueHeight,
-            // ),
-            CustomButton(
-                textColor: AppColors.white,
-                container: AppContainers.purpleButtonContainer(
-                    SizeUtil.smallValueWidth),
-                onTap: () {
-                  controller.changeIsTherapistLoaded();
-                  controller.changeIsLockOpen();
-                  context
-                      .pop(); //iki kere yapmam gerekiyor cunku lock screeenin tekrar build edilmesi gerekiyor
-                  context.pop();
-                  context.push(const TLockView());
-                },
-                text: GroupTextUtil.confirmText)
-          ],
-        ),
-      )),
+              // const SizedBox(
+              //   height: SizeUtil.normalValueHeight,
+              // ),
+              CustomButton(
+                  textColor: AppColors.white,
+                  container: AppContainers.purpleButtonContainer(
+                      SizeUtil.smallValueWidth),
+                  onTap: () {
+                    controller.changeIsTherapistLoaded();
+                    controller.changeIsLockOpen();
+                    context
+                        .pop(); //iki kere yapmam gerekiyor cunku lock screeenin tekrar build edilmesi gerekiyor
+                    context.pop();
+                    context.push(const TLockView());
+                  },
+                  text: GroupTextUtil.confirmText)
+            ],
+          ),
+        )),
+      ),
     );
   }
 }

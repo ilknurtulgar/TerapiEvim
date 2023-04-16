@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/screen/participant/group/category_determination/group_categories/p_group_categories_view.dart';
 
 import 'controller/auth/auth_controller.dart';
 import 'controller/participant/group/p_group_controller.dart';
@@ -15,7 +16,6 @@ import 'controller/video_call/group_therapy_call_controller.dart';
 import 'core/base/util/base_utility.dart';
 import 'core/init/cache/local_manager.dart';
 import 'core/init/config/config.dart';
-import 'screen/common/home/main_home.dart';
 import 'service/firebase_options.dart';
 
 void main() async {
@@ -52,13 +52,12 @@ class _TerapiEvimState extends State<TerapiEvim> {
               selectedItemColor: AppColors.black,
               unselectedItemColor: AppColors.dustyGray,
               elevation: 70)),
-      // home: Obx(
-      //   () => _authController.isLogged.isTrue
-      //       ? const MainHome()
-      //       : const SignInView(),
+      home: Obx(
+        () => _authController.isLogged.isTrue
+            ? const MainHome()
+            : const SignInView(),
 
-      // ),
-      home: MainHome(),
+      ),
     );
   }
 }

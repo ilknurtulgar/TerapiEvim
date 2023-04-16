@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/view/base_view.dart';
 
 import '../../../../controller/therapist/group/t_group_verification_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
@@ -15,23 +16,25 @@ class TLockView extends StatelessWidget {
 //conform edilme suresinde acilacak sayfa??
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        alignment: AlignmentDirectional.center,
-        children: [
-          // const MyGroups(),
-          Container(
-            color: Colors.black.withOpacity(0.8),
-          ),
-          popUp(context)
-        ],
+    return BaseView<TGroupVerificationController>(
+      getController: TGroupVerificationController(),
+      onPageBuilder: (context, controller) => Scaffold(
+        body: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            // const MyGroups(),
+            Container(
+              color: Colors.black.withOpacity(0.8),
+            ),
+            popUp(context, controller)
+          ],
+        ),
       ),
     );
   }
 }
 
-Widget popUp(BuildContext context) {
-  TGroupVerificationController controller = Get.find();
+Widget popUp(BuildContext context, TGroupVerificationController controller) {
   Widget shown = controller.isTherapistUploaded.isFalse
       ? noUpload(context)
       : controller.isLockedOpen.isTrue

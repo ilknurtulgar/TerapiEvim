@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
-import '../../../../../core/extension/context_extension.dart';
-import '../../../../controller/therapist/video_call/t_group_call_controller.dart';
-import '../../../../core/base/component/video_call/buttons/video_call_buttons.dart';
-import '../../../../core/base/util/base_utility.dart';
-import '../../../../core/base/util/text_utility.dart';
-import '../../../../core/base/view/base_view.dart';
-import '../../../../model/common/video_call/video_call_token_model.dart';
-import '../../../../product/widget/common/video_call/participant_tile.dart';
+import '../../../../core/extension/context_extension.dart';
+import '../../../controller/video_call/group_call_controller.dart';
+import '../../../core/base/component/video_call/buttons/video_call_buttons.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/view/base_view.dart';
+import '../../../model/common/video_call/video_call_token_model.dart';
+import '../../../product/widget/common/video_call/participant_tile.dart';
 
-class TGroupCallView extends StatelessWidget {
+class GroupCallView extends StatelessWidget {
   final VideoCallTokenModel videoCallToken;
 
-  const TGroupCallView({
+  const GroupCallView({
     Key? key,
     required this.videoCallToken,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<TGroupCallController>(
-      getController: TGroupCallController(),
+    return BaseView<GroupCallController>(
+      getController: GroupCallController(),
       onModelReady: (controller) {
         controller.setContext(context);
         controller.setToken(videoCallToken);
@@ -101,37 +99,5 @@ class TGroupCallView extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  // void openTherapistTab(List<PersonInCallModel> participants) {
-  //   Get.snackbar('', '',
-  //       padding: EdgeInsets.zero,
-  //       borderRadius: 0,
-  //       margin: EdgeInsets.zero,
-  //       backgroundColor: AppColors.mineShaft,
-  //       titleText: TherapistTab(participants: participants),
-  //       messageText: const SizedBox.shrink(),
-  //       snackPosition: SnackPosition.BOTTOM,
-  //       duration: const Duration(minutes: 1));
-  // }
-
-  void sendIsolatedCall(String name) {
-    Get.dialog(AlertDialog(
-      content: Text('$name ${VideoCallTextUtil.sendIsolatedCall}'),
-      actions: [
-        TextButton(
-            onPressed: () => Get.back(),
-            child: Text(
-              VideoCallTextUtil.no,
-              style: AppTextStyles.groupTextStyle(false),
-            )),
-        TextButton(
-            onPressed: () => Get.back(),
-            child: Text(
-              VideoCallTextUtil.yes,
-              style: AppTextStyles.groupTextStyle(false),
-            )),
-      ],
-    ));
   }
 }

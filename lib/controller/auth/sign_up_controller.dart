@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -87,7 +86,6 @@ class SignUpController extends GetxController with BaseController {
   }
 
   Future<void> signUpWithEmail(BuildContext context, String userRole) async {
-
     _userRole = userRole;
 
     final bool isValidated = _validateSignUp();

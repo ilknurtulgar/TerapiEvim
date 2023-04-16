@@ -60,7 +60,7 @@ class PGroupService extends IPGroupService with BaseService {
       final result = await manager.createWithDocId(
         collectionPath: APIConst.participant,
         docId: userId!,
-        value: joinGroup.toJson()!,
+        data: joinGroup.toJson()!,
       );
 
       return result;

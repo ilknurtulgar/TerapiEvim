@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class LockScreenController extends GetxController {
+class PLockScreenController extends GetxController {
   var isTestNotSolved = false.obs;
   var isTestResultReady = false.obs;
 

@@ -16,7 +16,6 @@ import 'core/base/util/base_utility.dart';
 import 'core/init/cache/local_manager.dart';
 import 'core/init/config/config.dart';
 import 'screen/common/home/main_home.dart';
-import 'screen/common/sign_in/sign_in_view.dart';
 import 'service/firebase_options.dart';
 
 void main() async {
@@ -53,11 +52,13 @@ class _TerapiEvimState extends State<TerapiEvim> {
               selectedItemColor: AppColors.black,
               unselectedItemColor: AppColors.dustyGray,
               elevation: 70)),
-      home: Obx(
-        () => _authController.isLogged.isTrue
-            ? const MainHome()
-            : const SignInView(),
-      ),
+      // home: Obx(
+      //   () => _authController.isLogged.isTrue
+      //       ? const MainHome()
+      //       : const SignInView(),
+
+      // ),
+      home: MainHome(),
     );
   }
 }

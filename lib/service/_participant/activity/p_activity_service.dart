@@ -99,4 +99,19 @@ class PActivityService extends IPActivityService with BaseService {
 
     return result.data ?? [];
   }
+
+  @override
+  Future<bool> setActivityAttended(TActivityModel activity) async {
+    if (userId == null) return false;
+
+    final result = await manager.createWithDocId(
+      collectionPath: APIConst.participant,
+      docId: userId!,
+      collectionPath2: APIConst.joinedActivities,
+      docId2: activity.id,
+      data: activity.toJson()!,
+    );
+
+    return result;
+  }
 }

@@ -18,7 +18,9 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
   Future<bool> createWithDocId({
     required String collectionPath,
     required String docId,
-    required Map<String, dynamic> value,
+    String? collectionPath2,
+    String? docId2,
+    required Map<String, dynamic> data,
   });
 
   Future<IResponseModel<R?, E?>> read<T extends INetworkModel<T>, R>({

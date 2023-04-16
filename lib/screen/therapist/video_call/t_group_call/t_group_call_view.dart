@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
 import '../../../../../core/extension/context_extension.dart';
 import '../../../../controller/therapist/video_call/t_group_call_controller.dart';
 import '../../../../core/base/component/video_call/buttons/video_call_buttons.dart';
@@ -22,6 +23,7 @@ class TGroupCallView extends StatelessWidget {
     return BaseView<TGroupCallController>(
       getController: TGroupCallController(),
       onModelReady: (controller) {
+        controller.setContext(context);
         controller.setToken(videoCallToken);
       },
       onPageBuilder: (context, controller) => Scaffold(
@@ -76,13 +78,21 @@ class TGroupCallView extends StatelessWidget {
                 right: 0,
                 child: VideoCallButtonsRow(
                   onToggleMicButtonPressed: () {
-                    controller.micEnabled ? controller.room.muteMic() : controller.room.unmuteMic();
+                    ///TODO: extract to a controller
+                    controller.micEnabled
+                        ? controller.room.muteMic()
+                        : controller.room.unmuteMic();
                     controller.micEnabled = !controller.micEnabled;
                   },
                   onToggleCameraButtonPressed: () {
-                    controller.camEnabled ? controller.room.disableCam() : controller.room.enableCam();
+                    ///TODO: extract to a controller
+                    controller.camEnabled
+                        ? controller.room.disableCam()
+                        : controller.room.enableCam();
                     controller.camEnabled = !controller.camEnabled;
                   },
+
+                  ///TODO: extract to a controller
                   onLeaveButtonPressed: () => controller.room.leave(),
                 ),
               ),

@@ -1,42 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/group/choosing_category.dart';
 import 'package:terapievim/core/base/component/group/participant_container.dart';
 import 'package:terapievim/core/base/component/home/custom_container.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/core/base/util/text_utility.dart';
+import 'package:terapievim/screen/therapist/home/session/test_result_view.dart';
 
+// ignore: must_be_immutable
 class ChoosingCategoryView extends StatelessWidget {
   ChoosingCategoryView({super.key});
-  RxList<bool> isSelected = RxList.filled(categories.length, false);
-  late List<Widget> children = List.generate(categories.length, (index) => iconButtonWithText(index));
+
   TextEditingController textController = TextEditingController();
+  String chosenCategory = '';
   RxBool isTextfieldVisible = false.obs;
-  // TO DO
-     // Kaydet butonu
-     // Appbar
+
+  void callBack(String chosenInComponent) {
+    chosenCategory = chosenInComponent;
+    print(chosenCategory);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: testViewPageAppBar('Danışanın Grubunu Belirleme', context),
       body: SingleChildScrollView(
         child: Padding(
-          padding: AppPaddings.pagePadding,
+          padding: AppPaddings.pagePaddingHorizontal,
           child: Column(
             children: [
-              participantContainer(DemoInformation.cardModelhome, 70), // ikonlu container gelecek
-              CustomContainer(
-                containerModel: AppContainers.classicWhiteContainer,
-                isThereCardModel: false,
-                widget: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10,top: 20),
-                      child: Text('Danışanın grubunu seçiniz.'),
-                    ),
-                    toggleButtons(),
-                    animatedTextfield(),
-                  ],
-                ),
-              ),
+              participantContainer(DemoInformation.personCardModel, 60),
+              container(),
+              testViewPageButton(() {
+                if (chosenCategory == 'Diğer')
+                  chosenCategory = textController.text;
+                print(chosenCategory);
+              }, ActivityTextUtil.save), // kaydetme butonu
             ],
           ),
         ),
@@ -44,75 +43,54 @@ class ChoosingCategoryView extends StatelessWidget {
     );
   }
 
-  Align toggleButtons() {
-    return Align(
-                  alignment: Alignment.centerLeft,
-                  child: Padding(
-                    padding: AppPaddings.componentOnlyPadding(4),
-                    child: ToggleButtons(
-                      onPressed: (index) {
-                        for (int i = 0; i < categories.length; i++) {
-                          isSelected[i] = i == index;
-                        }
-                        if (isSelected.last == true) isTextfieldVisible.value = true;
-                        else isTextfieldVisible.value =false;
-                      },
-                      direction: Axis.vertical,
-                      color: AppColors.black,
-                      borderColor: AppColors.transparent,
-                      selectedBorderColor: AppColors.transparent,
-                      fillColor: AppColors.transparent,
-                      splashColor: AppColors.transparent,
-                      children: children,
-                      isSelected: isSelected,
-                    ),
-                  ),
-                );
-  }
-
-  Obx animatedTextfield() {
-    return Obx(
-                  () => AnimatedContainer(
-                    duration: Duration(seconds: 1),
-                    height: isTextfieldVisible.value ? 70 : 0,
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 40, right: 20, bottom: 20),
-                      child: TextField(
-                              controller: textController,
-                              decoration: InputDecoration(
-                                focusedBorder: textfieldBorder(),
-                                enabledBorder: textfieldBorder()
-                              ),
-                      ),
-                    ),
-                  ),
-                );
-  }
-
-  OutlineInputBorder textfieldBorder() {
-    return OutlineInputBorder(
-                                  borderRadius: AppBorderRadius.generalBorderRadius,
-                                  borderSide: BorderSide(
-                                    color: isTextfieldVisible.value ? AppColors.dustyGray : AppColors.transparent,
-                                    width: isTextfieldVisible.value ? 1 : 0,
-                                  ),
-                                );
-  }
-
-  Widget iconButtonWithText(int index) {
-    return Row(
-      children: [
-        Obx(() => isSelected[index]
-            ? IconUtility.filledCircle
-            : IconUtility.circleIcon),
-        Padding(
-          padding: AppPaddings.componentOnlyPadding(4),
-          child: Text(categories[index]),
-        ),
-      ],
+  CustomContainer container() {
+    return CustomContainer(
+      containerModel: AppContainers.classicWhiteContainer,
+      isThereCardModel: false,
+      widget: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(left: 10, top: 20),
+            child: Text(
+              'Danışanın grubunu seçiniz.',
+              style: AppTextStyles.normalTextStyle('medium', false),
+            ),
+          ),
+          ChoosingCategoryForParticipant(
+              textfieldVisible: isTextfieldVisible,
+              isWithIconButton: true,
+              callBack: callBack),
+          animatedTextfield(textController,isTextfieldVisible,const EdgeInsets.only(left: 40, right: 20, bottom: 20),),
+        ],
+      ),
     );
   }
 }
+
+Obx animatedTextfield(TextEditingController controller,RxBool isVisible,EdgeInsets padding) {
+    return Obx(() => isVisible.value
+        ? Padding(
+            padding: padding,
+            child: TextField(
+              controller: controller,
+              decoration: InputDecoration(
+                  focusedBorder: textfieldBorder(),
+                  enabledBorder: textfieldBorder(),
+                  fillColor: AppColors.white,
+                  filled: true),
+            ),
+          )
+        : const SizedBox());
+  }
+OutlineInputBorder textfieldBorder() {
+    return OutlineInputBorder(
+        borderRadius: AppBorderRadius.generalBorderRadius,
+        borderSide: BorderSide(
+          color: AppColors.dustyGray,
+          width: 1,
+        ));
+  }
 
 List<String> categories = [
   'Somatizasyon',

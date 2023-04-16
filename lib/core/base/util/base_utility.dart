@@ -15,6 +15,7 @@ import '../../../screen/participant/group/p_group_view.dart';
 import '../../../screen/participant/home/p_home_view.dart';
 import '../../../screen/participant/profile/p_profile_view.dart';
 import '../../../screen/therapist/activity/t_activity_view.dart';
+import '../../../screen/therapist/home/session/choosing_category_view.dart';
 import '../../../screen/therapist/home/t_home_view.dart';
 import '../../../screen/therapist/message/t_message_view.dart';
 import '../../init/managers/responsiveness_manager.dart';
@@ -875,6 +876,12 @@ class DemoInformation {
       List.generate(5, (index) => 'Seminar  seminneeerrrrr ${index + 1}');
   static List<String> advisorNames =
       List.generate(5, (index) => 'Yeşim ${index + 1}');
+
+  static CardModel personCardModel =
+      CardModel(imagePath: imagePath, title: 'Kerem Görkem');
+
+  static List<int> result = List.generate(categories.length,(index) => index); 
+  
 }
 
 Divider divider(bool issearch) {

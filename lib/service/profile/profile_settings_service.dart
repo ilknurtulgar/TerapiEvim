@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:firebase_auth/firebase_auth.dart';
 
-import '../../core/base/service/base_service.dart';
 import '../../core/constants/api_const.dart';
 import '../../core/constants/utils/text_constants/error_text_const.dart';
 import '../../core/init/network/model/error_model_custom.dart';
@@ -12,13 +11,15 @@ import '../../core/managers/firebase/storage/storage_manager.dart';
 import '../../model/common/profile/about_me_model.dart';
 import '../../model/common/profile/birth_date_model.dart';
 import '../../model/common/profile/gender_model.dart';
+import '../../model/common/profile/is_being_advisor_accepted_model.dart';
+import '../../model/common/profile/max_number_of_groups_model.dart';
 import '../../model/common/profile/name_model.dart';
 import '../../model/common/profile/password_model.dart';
 import '../../model/common/profile/phone_number_model.dart';
 import '../../model/common/profile/user_avatar_model.dart';
 import 'i_profile_settings_service.dart';
 
-class ProfileSettingsService extends IProfileSettingsService with BaseService {
+class ProfileSettingsService extends IProfileSettingsService {
   ProfileSettingsService(IFirestoreManager<ErrorModelCustom> manager)
       : super(manager);
 
@@ -124,11 +125,41 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
     return null;
   }
 
+  @override
+  Future<String?> updateMaxNumberOfHelpingGroups(
+      MaxNumberOfGroupsModel maxNumber) async {
+    if (userId == null) return 'UserId is null';
+
+    final result = await manager.update<MaxNumberOfGroupsModel, EmptyModel>(
+      collectionPath: APIConst.therapist,
+      docId: userId!,
+      data: maxNumber,
+    );
+    if (result.error != null) {
+      return result.error?.description;
+    }
+    return null;
+  }
+
+ @override
+  Future<String?> setIsBeingAdvisorAccepted(
+     IsBeingAdvisorAcceptedModel isBeingAdvisorAccepted) async {
+    if (userId == null) return 'UserId is null';
+
+    final result = await manager.update<IsBeingAdvisorAcceptedModel, EmptyModel>(
+      collectionPath: APIConst.therapist,
+      docId: userId!,
+      data: isBeingAdvisorAccepted,
+    );
+    if (result.error != null) {
+      return result.error?.description;
+    }
+    return null;
+  }
+
   Future<String?> uploadAvatarImage(String fileString) async {
     try {
-      if (userId == null) {
-        return null;
-      }
+      if (userId == null) return null;
 
       FirebaseStorageManager storageManager = FirebaseStorageManager.instance;
 
@@ -136,6 +167,7 @@ class ProfileSettingsService extends IProfileSettingsService with BaseService {
           folder: APIConst.storageImages,
           fileName: userId!,
           file: File(fileString));
+
       if (imageUrl == null) return null;
 
       await manager.update<UserAvatarModel, EmptyModel>(

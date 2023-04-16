@@ -81,12 +81,25 @@ class FirestoreManager<E extends INetworkModel<E>?>
   }
 
   @override
-  Future<bool> createWithDocId(
-      {required String collectionPath,
-      required String docId,
-      required Map<String, dynamic> value}) async {
+  Future<bool> createWithDocId({
+    required String collectionPath,
+    required String docId,
+    String? collectionPath2,
+    String? docId2,
+    required Map<String, dynamic> data,
+  }) async {
     try {
-      await _database.collection(collectionPath).doc(docId).set(value);
+      if (collectionPath2 != null) {
+        await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .doc(docId2)
+            .set(data);
+      } else {
+        await _database.collection(collectionPath).doc(docId).set(data);
+      }
+
       return true;
     } catch (e) {
       await crashlyticsManager.sendACrash(

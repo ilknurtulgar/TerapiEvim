@@ -9,15 +9,16 @@ abstract class IPSessionService {
 
   final IFirestoreManager<ErrorModelCustom> manager;
 
-  /// If you need to get sessions that are finished, set isFinished true
-  Future<List<TSessionModel?>> getAvailableSessionsOrdered(
-      {String lastDocId,
-      String orderField,
-      bool isDescending,
-      bool isFinished});
+  Future<List<TSessionModel?>> getAvailableSessionsOrdered({
+    String lastDocId,
+    String orderField,
+    bool isDescending,
+  });
 
   /// If result is null, there is something wrong
   Future<TJoinVideoCallResultModel?> joinAVideoCall(TSessionModel session);
 
   Future<CreatedIdResponse?> selectASession(String sessionId);
+
+  Future<CreatedIdResponse?> createSession(String freeTimeId);
 }

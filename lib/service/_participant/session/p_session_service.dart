@@ -38,7 +38,6 @@ class PSessionService extends IPSessionService with BaseService {
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
-    bool isFinished = false,
   }) async {
     if (userId == null) return [];
 
@@ -47,8 +46,8 @@ class PSessionService extends IPSessionService with BaseService {
       collectionPath: APIConst.sessions,
       parseModel: TSessionModel(),
       orderField: orderField,
-      whereField: AppConst.therapistId,
-      whereIsEqualTo: userId!,
+      whereField: AppConst.isFinished,
+      whereIsEqualTo: false,
       isDescending: isDescending,
       lastDocumentId: lastDocId,
     );
@@ -57,5 +56,11 @@ class PSessionService extends IPSessionService with BaseService {
     }
 
     return result.data!;
+  }
+
+  @override
+  Future<CreatedIdResponse?> createSession(String freeTimeId) {
+    // TODO: implement createSession
+    throw UnimplementedError();
   }
 }

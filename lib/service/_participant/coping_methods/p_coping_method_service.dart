@@ -53,4 +53,19 @@ class PCopingMethodService extends IPCopingMethodService with BaseService {
 
     return result.data;
   }
+
+  @override
+  Future<bool> setCopingMethodViewed(TCopingMethodModel copingMethod) async {
+    if (userId == null) return false;
+
+    final result = await manager.createWithDocId(
+      collectionPath: APIConst.participant,
+      docId: userId!,
+      collectionPath2: APIConst.viewedCopingMethods,
+      docId2: copingMethod.id,
+      data: copingMethod.toJson()!,
+    );
+
+    return result;
+  }
 }

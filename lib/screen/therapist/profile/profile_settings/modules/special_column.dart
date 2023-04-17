@@ -13,7 +13,7 @@ Widget specialColumn(
             isForMakingShortCall: false,
             acceptionFunction: () =>
                 therapistProfileController.acceptionFunction(),
-            value: therapistProfileController.isBeingAdvisorAccepted.value,
+            value: therapistProfileController.updatedisBeingAdvisorAccepted.value,
           ),
         ),
         _animatedNumberOfGroupsRow(context, therapistProfileController),

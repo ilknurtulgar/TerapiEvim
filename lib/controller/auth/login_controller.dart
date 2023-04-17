@@ -103,6 +103,10 @@ class LoginController extends GetxController with BaseController {
         LocalManagerKeys.aboutMe, loginResponse.aboutMe ?? "");
     await localManager.setBoolValue(LocalManagerKeys.isTherapistConfirmed,
         initialDataOfTherapist?.isTherapistConfirmed ?? false);
+    await localManager.setBoolValue(LocalManagerKeys.isBeingAdvisorAccepted,
+        initialDataOfTherapist?.isBeingAdvisorAccepted ?? false);
+    await localManager.setIntValue(LocalManagerKeys.maxNumberOfGroups,
+        initialDataOfTherapist?.maxNumberOfHelpingGroups ?? 0);
 
     ///TODO: save initial Data to cache
   }

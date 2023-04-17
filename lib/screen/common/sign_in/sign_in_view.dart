@@ -5,8 +5,6 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/common/sign_in/util/sign_in_view_utility.dart';
 import '../../../controller/auth/login_controller.dart';
-import '../../../core/base/component/login/custom_textfield.dart';
-import '../../../core/base/ui_models/row_model.dart';
 import '../../../product/widget/common/profile/utility/textfield_utility.dart';
 import '../sign_up/before_sign_up_view.dart';
 
@@ -83,37 +81,6 @@ class _SignInViewState extends State<SignInView> {
         textfieldUtility.passwordTextfield(
             _loginController.passwordController, true),
         forgotYourPasswordTextButton(),
-        CustomTextField(
-            isOne: false,
-            title: "Şifre",
-            textController: _loginController.passwordController,
-            rowModel: RowModel(
-              text: "",
-              textStyle: const TextStyle(color: AppColors.black),
-              isAlignmentBetween: false,
-              leadingIcon: IconUtility.lockSmall,
-              trailingIcon: IconButton(
-                  icon: Icon(
-                    IconUtility.visibilityoffIcon.icon,
-                    color: AppColors.black,
-                  ),
-                  onPressed: () {}),
-            ),
-            isBig: true,
-            isRowModel: true),
-        CustomTextField(
-            isOne: false,
-            title: "E Posta",
-            textController: _loginController.passwordController,
-            rowModel: RowModel(
-                text2: "abcde@gmail.com",
-                text: "",
-                textStyle: const TextStyle(color: AppColors.black),
-                isAlignmentBetween: false,
-                leadingIcon: IconUtility.emailIcon),
-            isBig: true,
-            obsecureText: false,
-            isRowModel: true),
       ],
     );
   }

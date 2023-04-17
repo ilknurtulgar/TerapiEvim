@@ -49,7 +49,7 @@ class TSettingsView extends StatelessWidget {
   InkWell accountRow(BuildContext context) {
     return InkWell(
       onTap: () {
-        context.push(const TProfileSettingsView());
+        context.push(TProfileSettingsView());
       },
       child: RowView(
           rowModel: RowModel(

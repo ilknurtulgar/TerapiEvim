@@ -10,10 +10,10 @@ import '../../core/extension/context_extension.dart';
 import '../../model/common/video_call/video_call_token_model.dart';
 import '../../screen/common/home/main_home.dart';
 import '../base/base_controller_2.dart';
+import '../main_controller.dart';
 import 'base_video_call_controller.dart';
 
 class GroupCallController extends BaseController2 with BaseVideoCallController {
-
   @override
   void setContext(BuildContext context) => controllerContext = context;
 
@@ -22,6 +22,9 @@ class GroupCallController extends BaseController2 with BaseVideoCallController {
 
   @override
   void onInit() {
+
+    _mainController = Get.find();
+
     // Create instance of Room (Meeting)
     room = VideoSDK.createRoom(
       roomId: currentToken.meetingId,
@@ -40,6 +43,8 @@ class GroupCallController extends BaseController2 with BaseVideoCallController {
 
     super.onInit();
   }
+
+  late MainController _mainController;
 
   var shareAuthority = false.obs;
 
@@ -82,7 +87,6 @@ class GroupCallController extends BaseController2 with BaseVideoCallController {
   void onOffFunction(RxBool variable) {
     variable.value = !variable.value;
   }
-
 
   void therapistSwitchButtonFunction(bool isToOpenMics, bool value,
       {List<PersonInCallModel>? participants}) {

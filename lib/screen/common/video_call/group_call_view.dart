@@ -10,7 +10,7 @@ import '../../../product/widget/common/video_call/participant_tile.dart';
 
 class GroupCallView extends StatelessWidget {
   final VideoCallTokenModel videoCallToken;
-
+  final bool isMainTherapist = false;
   const GroupCallView({
     Key? key,
     required this.videoCallToken,

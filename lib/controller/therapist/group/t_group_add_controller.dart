@@ -37,23 +37,30 @@ class TGroupAddController extends GetxController with BaseController {
     if (groupNameController.text.isEmpty) {
       flutterErrorToast("isim bos");
       return false;
-    } else if (GroupCategoryName == "Yok") {
+    }
+    if (groupCategoryName == "Yok") {
       flutterErrorToast("Kategori Bos");
       return false;
-    } else if (choosenSecTherapist == "Yok") {
+    }
+    if (choosenSecTherapist == "Yok") {
       flutterErrorToast("Yardimci Terapist Secilmedi");
       return false;
-    } else if (choosenDay == "Yok") {
+    }
+    if (choosenDay == "Yok") {
       flutterErrorToast("Terapi Gunu Secilmedi");
       return false;
-    } else if (numberOfWeek.text.isEmpty) {
+    }
+    if (numberOfWeek.text.isEmpty) {
       flutterErrorToast("Kac Hafta terapi yapilacagi secilmedi");
       return false;
-    } else if (numberOfSession.text.isEmpty) {
+    }
+    if (numberOfSession.text.isEmpty) {
       flutterErrorToast("Kac terapi yapilacagi secilmedi");
       return false;
-    } else if (chosenHour.isEmpty) {
+    }
+    if (chosenHour.isEmpty) {
       flutterErrorToast("Saat Bilgisi Secilmedi");
+      return false;
     }
     return true;
   }
@@ -63,7 +70,7 @@ class TGroupAddController extends GetxController with BaseController {
     final bool isValidated = _validateNewGroup();
     if (isValidated == false) return;
     final TGroupModel groupModel = TGroupModel(
-      groupCategory: GroupCategoryName.value,
+      groupCategory: groupCategoryName.value,
       therapistHelperName: choosenSecTherapist.value,
       name: groupNameController.text.trim(),
       dateTime: Timestamp.fromDate(DateTime.now()),
@@ -93,9 +100,9 @@ class TGroupAddController extends GetxController with BaseController {
   }
 
   var isGroupCategoryElectionOpen = false.obs;
-  var GroupCategoryName = "Yok".obs;
+  var groupCategoryName = "Yok".obs;
   void changeGroupCategory(String categoryName) {
-    GroupCategoryName.value = categoryName;
+    groupCategoryName.value = categoryName;
   }
 
   void changeGroupCategoryElection() {

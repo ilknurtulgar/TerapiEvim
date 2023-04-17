@@ -53,7 +53,6 @@ class TGroupAddView extends StatelessWidget {
                     isInMiddle: false,
                     isAlignedInCenter: false),
                 CustomTextField(
-                
                     isOne: true,
                     isBig: true,
                     textController: controller.groupNameController,
@@ -165,7 +164,7 @@ class TGroupAddView extends StatelessWidget {
               ;
             },
             row: RowModel(
-              text: controller.GroupCategoryName.value,
+              text: controller.groupCategoryName.value,
               isAlignmentBetween: true,
               textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
               trailingIcon: controller.isGroupCategoryElectionOpen.value

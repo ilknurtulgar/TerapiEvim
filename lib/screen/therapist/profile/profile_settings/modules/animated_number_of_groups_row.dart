@@ -32,11 +32,13 @@ Widget _animatedNumberOfGroupsRow(
           ),
           Align(
               alignment: Alignment.bottomRight,
-              child: CustomListWheelScrollView(
-                whatIsFor: ScrollPurpose.groupNumber,
-                onSelectedItemChanged: (value) => therapistProfileController.chooseGroupNumber(value),
-                initialValue: 5, // kaydedilen grup sayısı gelecek
-                isNumberVisible: therapistProfileController.isNumberVisible,))
+              child: Obx(
+                () => CustomListWheelScrollView(
+                  whatIsFor: ScrollPurpose.groupNumber,
+                  onSelectedItemChanged: (value) => therapistProfileController.chooseGroupNumber(value),
+                  initialValue: therapistProfileController.updatedNumberOfGroups.value, // kaydedilen grup sayısı gelecek
+                  isNumberVisible: therapistProfileController.isNumberVisible,),
+              ))
         ]),
       ),
     ),

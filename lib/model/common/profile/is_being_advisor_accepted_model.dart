@@ -7,7 +7,7 @@ part 'is_being_advisor_accepted_model.g.dart';
 @JsonSerializable()
 class IsBeingAdvisorAcceptedModel
     extends INetworkModel<IsBeingAdvisorAcceptedModel> {
-  String? isBeingAdvisorAccepted;
+  bool? isBeingAdvisorAccepted;
 
   IsBeingAdvisorAcceptedModel({
     this.isBeingAdvisorAccepted,

@@ -3,9 +3,10 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 
 import '../../core/base/component/video_call/tab/therapist_tab.dart';
-import '../../core/base/util/base_utility.dart';
 import '../../core/base/ui_models/video_call/person_in_call_model.dart';
+import '../../core/base/util/base_utility.dart';
 
+///TODO: combine with GroupCallController
 class PGroupCallController extends GetxController {
   void onOffFunction(RxBool variable) {
     variable.value = !variable.value;
@@ -16,15 +17,26 @@ class PGroupCallController extends GetxController {
   var hasSecondTherapistControl =
       TherapistTabControle.SecondTherapistHasNotControl.obs;
 
-  void therapistSwitchButtonFunction(bool isToOpenMics, bool value,{List<PersonInCallModel>? participants}) {
+  void therapistSwitchButtonFunction(bool isToOpenMics, bool value,
+      {List<PersonInCallModel>? participants}) {
     if (isToOpenMics) {
-        openAllMics.value = value;
-        if(value) participants!.forEach((element) {element.isMicOn.value=true;});
-        else participants!.forEach((element) {element.isMicOn.value=false;});
+      openAllMics.value = value;
+      if (value)
+        participants!.forEach((element) {
+          element.isMicOn.value = true;
+        });
+      else
+        participants!.forEach((element) {
+          element.isMicOn.value = false;
+        });
     } else {
       shareAuthority.value = value;
-        if (value) hasSecondTherapistControl.value = TherapistTabControle.SecondTherapistHasControl;
-        else hasSecondTherapistControl.value = TherapistTabControle.SecondTherapistHasNotControl;
+      if (value)
+        hasSecondTherapistControl.value =
+            TherapistTabControle.SecondTherapistHasControl;
+      else
+        hasSecondTherapistControl.value =
+            TherapistTabControle.SecondTherapistHasNotControl;
     }
   }
 

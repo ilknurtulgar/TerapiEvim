@@ -12,5 +12,6 @@ enum LocalManagerKeys {
   joinedGroupId,// bool
   isTherapistConfirmed, // bool
   isBeingAdvisorAccepted, // bool
-  maxNumberOfGroups // int
+  maxNumberOfGroups, // int
+  isTDiplomaUploaded, // bool
 }

@@ -16,9 +16,9 @@ JoinableGroupModel _$JoinableGroupModelFromJson(Map<String, dynamic> json) =>
       therapistHelperId: json['therapistHelperId'] as String?,
       therapistHelperName: json['therapistHelperName'] as String?,
       therapistHelperImageUrl: json['therapistHelperImageUrl'] as String?,
-      participantNumber: json['participantNumber'] as String?,
-      numberOfSessions: json['numberOfSessions'] as String?,
-      numberOfWeeks: json['numberOfWeeks'] as String?,
+      participantNumber: json['participantNumber'] as int?,
+      numberOfSessions: json['numberOfSessions'] as int?,
+      numberOfWeeks: json['numberOfWeeks'] as int?,
     );
 
 Map<String, dynamic> _$JoinableGroupModelToJson(JoinableGroupModel instance) =>

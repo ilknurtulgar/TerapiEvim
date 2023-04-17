@@ -75,6 +75,7 @@ class _TAddHoursViewState extends State<TAddHoursView> {
                     print(mainController.sessionTimeList[0].date);
                     print(mainController.sessionTimeList[0].timeList);
                     context.pop();
+                    controller.createFreeDate();
                   },
                   buttonName: ActivityTextUtil.save)
             ],

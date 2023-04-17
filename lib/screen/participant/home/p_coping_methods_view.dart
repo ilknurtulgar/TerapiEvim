@@ -39,6 +39,7 @@ class PCopingMethodsView extends StatelessWidget {
 
   CustomDropDown _orderdrop(PCopingMethodsController controller) {
     return CustomDropDown(
+      isLogin: false,
       width: SizeUtil.normalValueWidth,
       height: SizeUtil.smallValueHeight,
       selectedText: controller.orderValue,
@@ -53,6 +54,10 @@ class PCopingMethodsView extends StatelessWidget {
 }
 
 class CopingListView extends StatelessWidget {
+  const CopingListView({
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return SliverPadding(

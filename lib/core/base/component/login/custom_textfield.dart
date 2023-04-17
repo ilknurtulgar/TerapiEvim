@@ -31,11 +31,6 @@ class CustomTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /*  if (isBig == true && rowModel == null) {
-      throw Exception(
-          "cant help is big true and row model is null in customtextfield");
-    }*/
-    print("maxlines");
     return isOne ? textField(context) : columnTextField(context);
   }
 
@@ -67,32 +62,22 @@ class CustomTextField extends StatelessWidget {
         readOnly: onTap != null ? true : false,
         onTap: onTap,
         decoration: InputDecoration(
+          constraints: BoxConstraints.loose(Size.fromHeight(50)),
           contentPadding:
-              isBig ? const EdgeInsets.all(17) : AppPaddings.contentPadding,
+              const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
           filled: true,
           fillColor: AppColors.white,
           suffix:
               isBig ? (rowModel == null ? null : rowModel!.trailingIcon) : null,
           prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
-          hintText: rowModel?.text2,
-          hintStyle: rowModel?.textStyle2 ??
+          hintText: rowModel?.text,
+          hintStyle: rowModel?.textStyle ??
               AppTextStyles.normalTextStyle("small", false),
           prefixText: prefixText,
-          enabledBorder: bordercolor(isBig),
-          focusedBorder: bordercolor(isBig),
+          enabledBorder: AppBoxDecoration.borderColor(isBig),
+          focusedBorder: AppBoxDecoration.borderColor(isBig),
         ),
       ),
     );
   }
-}
-
-OutlineInputBorder bordercolor(bool isBig) {
-  return OutlineInputBorder(
-      borderRadius: AppBorderRadius.generalBorderRadius,
-      borderSide: BorderSide(
-        color: isBig
-            ? BorderColorUtil.textfieldBorderColor
-            : BorderColorUtil.generalBorderColor,
-        width: 2,
-      ));
 }

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
-import '../../../../core/base/component/activtiy/drop_down.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 
 class PProfileViewUtility {
@@ -27,7 +26,8 @@ class PProfileViewUtility {
                 size: 25,
               )));
 
-  static Widget profilePagePersonImage(RxString imageUrl, bool isThereEditButton,
+  static Widget profilePagePersonImage(
+          RxString imageUrl, bool isThereEditButton,
           {Function()? onPressed}) =>
       Align(
         alignment: Alignment.center,
@@ -38,7 +38,8 @@ class PProfileViewUtility {
           child: Stack(
             children: [
               Positioned.fill(
-                  child: Obx(() => CustomCircleAvatar(imagePath: imageUrl.value,big: true, shadow: true))),
+                  child: Obx(() => CustomCircleAvatar(
+                      imagePath: imageUrl.value, big: true, shadow: true))),
               isThereEditButton
                   ? Align(
                       alignment: Alignment.bottomRight,
@@ -54,23 +55,4 @@ class PProfileViewUtility {
       );
 
   //TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20),
-
-  static CustomDropDown genderDropDown(
-    bool isInProfilePage,
-    RxBool isBoxSelected,
-    RxString selectedText,
-    Function() onDropDownTapped,
-    Function(int) onValueSelected,
-  ) {
-    return CustomDropDown(
-      width: isInProfilePage ? SizeUtil.specialSize : SizeUtil.generalWidth,
-      height:
-          isInProfilePage ? SizeUtil.lowValueHeight : SizeUtil.generalHeight,
-      isBoxSelected: isBoxSelected,
-      selectedText: selectedText,
-      textList: DemoInformation.genderList,
-      onDropDownTapped: onDropDownTapped,
-      onValueSelected: onValueSelected,
-    );
-  }
 }

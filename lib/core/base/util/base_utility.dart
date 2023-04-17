@@ -484,6 +484,21 @@ class AppBoxDecoration {
     color: AppColors.white,
     borderRadius: AppBorderRadius.generalBorderRadius,
   );
+  static BoxDecoration dropDownDecoration = BoxDecoration(
+      color: AppColors.white,
+      borderRadius: AppBorderRadius.generalBorderRadius,
+      border:
+          Border.all(color: BorderColorUtil.textfieldBorderColor, width: 2));
+  static OutlineInputBorder borderColor(bool isBig) {
+    return OutlineInputBorder(
+        borderRadius: AppBorderRadius.generalBorderRadius,
+        borderSide: BorderSide(
+          color: isBig
+              ? BorderColorUtil.textfieldBorderColor
+              : BorderColorUtil.generalBorderColor,
+          width: 2,
+        ));
+  }
 //  BoxDecoration(
 //       border: Border.all(color: borderColor!.withOpacity(1)),
 //       borderRadius: AppBorderRadius.generalBorderRadius,
@@ -880,8 +895,7 @@ class DemoInformation {
   static CardModel personCardModel =
       CardModel(imagePath: imagePath, title: 'Kerem Görkem');
 
-  static List<int> result = List.generate(categories.length,(index) => index); 
-  
+  static List<int> result = List.generate(categories.length, (index) => index);
 }
 
 Divider divider(bool issearch) {
@@ -946,6 +960,7 @@ class SizeUtil {
   static const double highestValueWidth =
       350; //danışan sayfasındaki groupContainerWidth
   // height
+  static const double specialValueWidth = 370;
   static const double lowValueHeight =
       35; //animatedContainerHeight(listwheelscrollviewdaki),profil sayfasındaki genderDropDownHeight,miniContainerHeight,purpleButtonHeight
   static const double smallValueHeight =

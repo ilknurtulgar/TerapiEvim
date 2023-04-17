@@ -8,6 +8,7 @@ import '../../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../../core/base/ui_models/card_model.dart';
 import '../../../../../core/base/util/base_utility.dart';
 import '../../../../../core/base/util/text_utility.dart';
+import '../../../../../model/participant/group/joinable_group_model.dart';
 
 class PGroupCategoriesView extends StatelessWidget {
   const PGroupCategoriesView({super.key});
@@ -28,7 +29,7 @@ class PGroupCategoriesView extends StatelessWidget {
         padding: AppPaddings.pagePadding,
         itemCount: controller.groups.length,
         itemBuilder: (context, index) {
-          final TGroupModel group = controller.groups[index];
+          final JoinableGroupModel group = controller.groups[index];
           return Padding(
             padding: AppPaddings.componentPadding,
             child: controller.groups.isEmpty
@@ -40,7 +41,7 @@ class PGroupCategoriesView extends StatelessWidget {
                         DemoInformation.therapistName),
                     secondTherapist: therapists(DemoInformation.imagePath,
                         DemoInformation.therapistName2),
-                    numberOfParticipant: group.participantsId?.length ?? 0,
+                    numberOfParticipant: group.participantNumber ?? 0,
                     numberOfWeek: DemoInformation.tmpCount,
                     numberOfSession: DemoInformation.tmpSessionNumber),
           );

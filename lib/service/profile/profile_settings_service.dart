@@ -130,15 +130,15 @@ class ProfileSettingsService extends IProfileSettingsService {
       MaxNumberOfGroupsModel maxNumber) async {
     if (userId == null) return 'UserId is null';
 
-    final result = await manager.create(
+    final result = await manager.createWithDocId(
       collectionPath: APIConst.therapist,
       docId: userId!,
       data: maxNumber.toJson()!,
     );
-    if (result != null) {
+    if (result == true) {
       return null;
     }
-    return 'error';
+    return 'could not update';
   }
 
   @override
@@ -146,15 +146,15 @@ class ProfileSettingsService extends IProfileSettingsService {
       IsBeingAdvisorAcceptedModel isBeingAdvisorAccepted) async {
     if (userId == null) return 'UserId is null';
 
-    final result = await manager.create(
+    final result = await manager.createWithDocId(
       collectionPath: APIConst.therapist,
       docId: userId!,
       data: isBeingAdvisorAccepted.toJson()!,
     );
-    if (result != null) {
+    if (result == true) {
       return null;
     }
-    return 'error';
+    return 'could not set';
   }
 
   Future<String?> uploadAvatarImage(String fileString) async {

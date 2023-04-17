@@ -16,6 +16,8 @@ class TGroupModel extends INetworkModel<TGroupModel> {
   String? therapistHelperName;
   bool? hasHelperTherapistAccepted;
 
+  int? numberOfWeeks, numberOfSessions;
+
   List<String>? participantsId;
 
   /// Timestamp.fromDate(DateTime.now()) is an example of using timeStamp

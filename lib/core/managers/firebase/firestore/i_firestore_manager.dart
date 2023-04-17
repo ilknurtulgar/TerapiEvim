@@ -15,6 +15,7 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
     String? collectionPath2,
   });
 
+  /// True is success
   Future<bool> createWithDocId({
     required String collectionPath,
     required String docId,

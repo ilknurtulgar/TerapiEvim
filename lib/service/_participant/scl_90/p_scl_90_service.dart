@@ -25,13 +25,13 @@ class PScl90Service extends IPScl90Service with BaseService {
 
     if (createdIdResponse == null) return null;
 
-    final result = await manager.create(
+    final result = await manager.createWithDocId(
       collectionPath: APIConst.participant,
       docId: userId!,
       data: Scl90SubmissionModel(isScl90Submitted: true).toJson()!,
     );
 
-    if (result == null) return null;
+    if (result == false) return null;
 
     return createdIdResponse;
   }

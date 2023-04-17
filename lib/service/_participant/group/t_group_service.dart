@@ -4,19 +4,19 @@ import '../../../core/constants/app_const.dart';
 import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../model/participant/group/join_group_id_model.dart';
-import '../../../model/therapist/group/t_group_model.dart';
+import '../../../model/participant/group/joinable_group_model.dart';
 import 'i_p_group_service.dart';
 
 class PGroupService extends IPGroupService with BaseService {
   PGroupService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
 
   @override
-  Future<TGroupModel?> getGroupById(String groupId) async {
+  Future<JoinableGroupModel?> getGroupById(String groupId) async {
     if (userId == null) return null;
-    final result = await manager.readOne<TGroupModel, TGroupModel>(
+    final result = await manager.readOne<JoinableGroupModel, JoinableGroupModel>(
       collectionPath: APIConst.groups,
       docId: groupId,
-      parseModel: TGroupModel(),
+      parseModel: JoinableGroupModel(),
     );
     if (result.error != null) {
       return null;
@@ -26,7 +26,7 @@ class PGroupService extends IPGroupService with BaseService {
   }
 
   @override
-  Future<List<TGroupModel>> getGroupsByCategory({
+  Future<List<JoinableGroupModel>> getGroupsByCategory({
     required String categoryName,
     String lastDocId = '',
     String orderField = AppConst.dateTime,
@@ -34,11 +34,11 @@ class PGroupService extends IPGroupService with BaseService {
   }) async {
     if (userId == null) return [];
     final result =
-        await manager.readOrderedWhere<TGroupModel, List<TGroupModel>>(
+        await manager.readOrderedWhere<JoinableGroupModel, List<JoinableGroupModel>>(
       collectionPath: APIConst.groups,
       whereField: AppConst.groupCategory,
       whereIsEqualTo: categoryName,
-      parseModel: TGroupModel(),
+      parseModel: JoinableGroupModel(),
       isDescending: isDescending,
       orderField: orderField,
       lastDocumentId: lastDocId,

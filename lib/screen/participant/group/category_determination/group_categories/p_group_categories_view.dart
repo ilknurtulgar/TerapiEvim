@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:terapievim/controller/participant/group/p_group_category_controller.dart';
 import 'package:terapievim/core/base/component/group/group_info_container.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
-import 'package:terapievim/model/therapist/group/t_group_model.dart';
 import '../../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../../core/base/ui_models/card_model.dart';
 import '../../../../../core/base/util/base_utility.dart';
@@ -37,13 +36,14 @@ class PGroupCategoriesView extends StatelessWidget {
                 : GroupInformationContainer(
                     onTap: controller.join,
                     groupName: group.name!,
-                    mainTherapist: therapists(DemoInformation.imagePath,
-                        DemoInformation.therapistName),
-                    secondTherapist: therapists(DemoInformation.imagePath,
-                        DemoInformation.therapistName2),
+                    mainTherapist: therapists(group.therapistImageUrl ?? "",
+                        group.therapistName ?? "yok"),
+                    secondTherapist: therapists(
+                        group.therapistHelperImageUrl ?? "",
+                        group.therapistHelperName ?? "yok"),
                     numberOfParticipant: group.participantNumber ?? 0,
-                    numberOfWeek: DemoInformation.tmpCount,
-                    numberOfSession: DemoInformation.tmpSessionNumber),
+                    numberOfWeek: group.numberOfWeeks ?? 0,
+                    numberOfSession: group.numberOfSessions ?? 0),
           );
         },
       ),

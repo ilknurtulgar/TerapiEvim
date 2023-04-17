@@ -37,11 +37,11 @@ class TLockView extends StatelessWidget {
 Widget popUp(BuildContext context, TLockScreenController controller) {
   Widget shown = controller.isUploaded.isFalse
       ? noUpload(context)
-      : controller.isConfermed.isTrue
+      : controller.isConfirmed.isTrue
           ? conformed(context)
           : unconfermed();
 
-  Icon lockicon = controller.isConfermed.isTrue
+  Icon lockicon = controller.isConfirmed.isTrue
       ? IconUtility.lockopen
       : IconUtility.lock(true);
   return BackdropFilter(

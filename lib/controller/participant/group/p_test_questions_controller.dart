@@ -115,20 +115,20 @@ class PTestQuestionsController extends GetxController with BaseController {
     }
     mentalIllnes /= somatizationIndex.length;
     mentalIllnes *= 25; //yuzdelik deger dondurur
-    return mentalIllnes;
+    return mentalIllnes.toPrecision(2);
   }
 
   void nextPage() {
     int i;
     bool canChangePage = true;
 
-    // for (i = 0; i < 9; i++) {
-    //   print(
-    //       "i = $i testPageIndex = ${testPageIndex.value} cevap: ${answer[i + testPageIndex.value * 9]}");
-    //   if (answer[i + testPageIndex.value * 9] == -1) {
-    //     canChangePage = false;
-    //   }
-    // }
+    for (i = 0; i < 9; i++) {
+      print(
+          "i = $i testPageIndex = ${testPageIndex.value} cevap: ${answer[i + testPageIndex.value * 9]}");
+      if (answer[i + testPageIndex.value * 9] == -1) {
+        canChangePage = false;
+      }
+    }
 
     if (canChangePage && testPageIndex.value != 9) {
       testPageIndex.value++;

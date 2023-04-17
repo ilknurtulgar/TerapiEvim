@@ -14,7 +14,9 @@ class GroupInformationContainer extends StatelessWidget {
       required this.secondTherapist,
       required this.numberOfParticipant,
       required this.numberOfWeek,
-      required this.numberOfSession});
+      required this.numberOfSession,
+      required this.onTap});
+  final Function onTap;
   final String groupName;
   final CardModel mainTherapist;
   final CardModel secondTherapist;
@@ -44,49 +46,67 @@ class GroupInformationContainer extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Center(child: paddedText(groupName,AppPaddings.componentOnlyPadding(2),AppTextStyles.groupTextStyle(false))),
-        therapistColumn(GroupTextUtil.gruopTherapist,mainTherapist,() {/* ana psikolog sayfasına gitme fonksiyonu */},context),
-        therapistColumn(GroupTextUtil.groupsecTherapist,secondTherapist,() {/* yardımcı psikolog sayfasına gitme fonksiyonu */},context),
-        Text(GroupTextUtil.participantNumber + numberOfParticipant.toString(),style: AppTextStyles.groupTextStyle(true)),
-        paddedText(GroupTextUtil.weekNumber + numberOfWeek.toString(),AppPaddings.componentOnlyPadding(1),AppTextStyles.groupTextStyle(true)),
-        paddedText(GroupTextUtil.sessionNumber + numberOfSession.toString(),AppPaddings.componentPadding,AppTextStyles.groupTextStyle(true)),
-        joinButton(),
+        Center(
+            child: paddedText(groupName, AppPaddings.componentOnlyPadding(2),
+                AppTextStyles.groupTextStyle(false))),
+        therapistColumn(GroupTextUtil.gruopTherapist, mainTherapist, () {
+          /* ana psikolog sayfasına gitme fonksiyonu */
+        }, context),
+        therapistColumn(GroupTextUtil.groupsecTherapist, secondTherapist, () {
+          /* yardımcı psikolog sayfasına gitme fonksiyonu */
+        }, context),
+        Text(GroupTextUtil.participantNumber + numberOfParticipant.toString(),
+            style: AppTextStyles.groupTextStyle(true)),
+        paddedText(
+            GroupTextUtil.weekNumber + numberOfWeek.toString(),
+            AppPaddings.componentOnlyPadding(1),
+            AppTextStyles.groupTextStyle(true)),
+        paddedText(GroupTextUtil.sessionNumber + numberOfSession.toString(),
+            AppPaddings.componentPadding, AppTextStyles.groupTextStyle(true)),
+        joinButton(onTap),
       ],
     );
   }
 
-  Align joinButton() {
+  Align joinButton(Function ontap) {
     return Align(
-          alignment: Alignment.centerRight,
-          child: CustomButton(
-            textColor: Colors.white,
-            container: AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
-            onTap: () {},
-            text: GroupTextUtil.join,
-          ));
+        alignment: Alignment.centerRight,
+        child: CustomButton(
+          textColor: Colors.white,
+          container:
+              AppContainers.purpleButtonContainer(SizeUtil.smallValueWidth),
+          onTap: () {
+            onTap();
+          },
+          text: GroupTextUtil.join,
+        ));
   }
 
-  Padding paddedText(String text,EdgeInsets padding,TextStyle textStyle) {
+  Padding paddedText(String text, EdgeInsets padding, TextStyle textStyle) {
     return Padding(
       padding: padding,
-      child: Text(text,style: textStyle,),
+      child: Text(
+        text,
+        style: textStyle,
+      ),
     );
   }
 
   Column therapistColumn(
-    String text,
-    CardModel therapist,
-    Function() func,
-    BuildContext context
-  ) {
+      String text, CardModel therapist, Function() func, BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(text,style: AppTextStyles.groupTextStyle(true)),
+        Text(text, style: AppTextStyles.groupTextStyle(true)),
         InkWell(
             onTap: func,
-            child: participantContainer(therapist,SizeUtil.normalValueHeight,width: context.width1 < 338 ? SizeUtil.mediumValueWidth-5: SizeUtil.largeValueWidth,
-        )),
+            child: participantContainer(
+              therapist,
+              SizeUtil.normalValueHeight,
+              width: context.width1 < 338
+                  ? SizeUtil.mediumValueWidth - 5
+                  : SizeUtil.largeValueWidth,
+            )),
       ],
     );
   }

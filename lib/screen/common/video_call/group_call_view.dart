@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import '../../../../../core/extension/context_extension.dart';
-import '../../../../controller/therapist/video_call/t_group_call_controller.dart';
-import '../../../../core/base/component/video_call/buttons/video_call_buttons.dart';
-import '../../../../core/base/util/base_utility.dart';
-import '../../../../core/base/util/text_utility.dart';
-import '../../../../core/base/view/base_view.dart';
-import '../../../../model/common/video_call/video_call_token_model.dart';
-import '../../../../product/widget/common/video_call/participant_tile.dart';
 
-class TGroupCallView extends StatelessWidget {
+import '../../../../core/extension/context_extension.dart';
+import '../../../controller/video_call/group_call_controller.dart';
+import '../../../core/base/component/video_call/buttons/video_call_buttons.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/view/base_view.dart';
+import '../../../model/common/video_call/video_call_token_model.dart';
+import '../../../product/widget/common/video_call/participant_tile.dart';
+
+class GroupCallView extends StatelessWidget {
   final VideoCallTokenModel videoCallToken;
-
-  const TGroupCallView({
+  final bool isMainTherapist = false;
+  const GroupCallView({
     Key? key,
     required this.videoCallToken,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BaseView<TGroupCallController>(
-      getController: TGroupCallController(),
+    return BaseView<GroupCallController>(
+      getController: GroupCallController(),
       onModelReady: (controller) {
+        controller.setContext(context);
         controller.setToken(videoCallToken);
       },
       onPageBuilder: (context, controller) => Scaffold(
@@ -76,13 +76,21 @@ class TGroupCallView extends StatelessWidget {
                 right: 0,
                 child: VideoCallButtonsRow(
                   onToggleMicButtonPressed: () {
-                    controller.micEnabled ? controller.room.muteMic() : controller.room.unmuteMic();
+                    ///TODO: extract to a controller
+                    controller.micEnabled
+                        ? controller.room.muteMic()
+                        : controller.room.unmuteMic();
                     controller.micEnabled = !controller.micEnabled;
                   },
                   onToggleCameraButtonPressed: () {
-                    controller.camEnabled ? controller.room.disableCam() : controller.room.enableCam();
+                    ///TODO: extract to a controller
+                    controller.camEnabled
+                        ? controller.room.disableCam()
+                        : controller.room.enableCam();
                     controller.camEnabled = !controller.camEnabled;
                   },
+
+                  ///TODO: extract to a controller
                   onLeaveButtonPressed: () => controller.room.leave(),
                 ),
               ),
@@ -91,37 +99,5 @@ class TGroupCallView extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  // void openTherapistTab(List<PersonInCallModel> participants) {
-  //   Get.snackbar('', '',
-  //       padding: EdgeInsets.zero,
-  //       borderRadius: 0,
-  //       margin: EdgeInsets.zero,
-  //       backgroundColor: AppColors.mineShaft,
-  //       titleText: TherapistTab(participants: participants),
-  //       messageText: const SizedBox.shrink(),
-  //       snackPosition: SnackPosition.BOTTOM,
-  //       duration: const Duration(minutes: 1));
-  // }
-
-  void sendIsolatedCall(String name) {
-    Get.dialog(AlertDialog(
-      content: Text('$name ${VideoCallTextUtil.sendIsolatedCall}'),
-      actions: [
-        TextButton(
-            onPressed: () => Get.back(),
-            child: Text(
-              VideoCallTextUtil.no,
-              style: AppTextStyles.groupTextStyle(false),
-            )),
-        TextButton(
-            onPressed: () => Get.back(),
-            child: Text(
-              VideoCallTextUtil.yes,
-              style: AppTextStyles.groupTextStyle(false),
-            )),
-      ],
-    ));
   }
 }

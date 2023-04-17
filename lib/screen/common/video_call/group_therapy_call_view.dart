@@ -1,25 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
-import 'package:terapievim/core/base/component/video_call/tab/therapist_tab.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/view/base_view.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-
 import '../../../controller/main_controller.dart';
-import '../../../controller/video_call/group_therapy_call_controller.dart';
+import '../../../controller/video_call/group_call_controller.dart';
+import '../../../core/base/component/video_call/buttons/video_call_buttons.dart';
 import '../../../core/base/component/video_call/container/video_call_person.dart';
-import 'util/utility.dart';
+import '../../../core/base/component/video_call/tab/therapist_tab.dart';
+import '../../../core/base/util/base_utility.dart';
+import '../../../core/base/view/base_view.dart';
+import '../../participant/video_call/util/utility.dart';
 
 // ignore: must_be_immutable
 class GroupTherapyCallView extends StatelessWidget {
   GroupTherapyCallView({super.key});
   MainController mainController = Get.find();
   bool isMainTherapist = false;
+
   @override
   Widget build(BuildContext context) {
-    return BaseView<PGroupCallController>(
-        getController: PGroupCallController(),
+    return BaseView<GroupCallController>(
+        getController: GroupCallController(),
         onModelReady: (model) {},
         onPageBuilder: (context, controller) {
           return Scaffold(
@@ -40,7 +40,7 @@ class GroupTherapyCallView extends StatelessWidget {
   }
 
   VideoCallPerson therapistView(
-      PGroupCallController videoCallController, BuildContext context) {
+      GroupCallController videoCallController, BuildContext context) {
     return VideoCallPerson(
       videoCallViewModel: VideoCallUtility.personBigView(
           DemoInformation.therapist, true, context),
@@ -53,7 +53,7 @@ class GroupTherapyCallView extends StatelessWidget {
   }
 
   Align participantsRowWithButtonsContainer(
-      PGroupCallController videoCallController, BuildContext context) {
+      GroupCallController videoCallController, BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -68,7 +68,7 @@ class GroupTherapyCallView extends StatelessWidget {
                   () => mainController.isTherapist.value
                       ? VideoCallUtility.therapistSpecialButton(() =>
                           videoCallController
-                              .openTherapistTab(DemoInformation.participants,isMainTherapist ? TherapistTabControle.MainTherapistHasControl.obs : videoCallController.hasSecondTherapistControl))
+                              .openTherapistTab(DemoInformation.participants,isMainTherapist ? TherapistTabController.MainTherapistHasControl.obs : videoCallController.hasSecondTherapistControl))
                       : VideoCallUtility.putYourHandsUpButton(
                           () => videoCallController.onOffFunction(
                               DemoInformation.participants[0].isHandsUp!),
@@ -84,7 +84,7 @@ class GroupTherapyCallView extends StatelessWidget {
     );
   }
 
-  Widget participantRow(PGroupCallController videoCallController) {
+  Widget participantRow(GroupCallController videoCallController) {
     return Expanded(
       child: Padding(
         padding: AppPaddings.smallHorizontalPadding,

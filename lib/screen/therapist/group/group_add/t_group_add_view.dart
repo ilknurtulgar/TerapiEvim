@@ -30,6 +30,13 @@ class TGroupAddView extends StatelessWidget {
               automaticallyImplyLeading: false,
               title: GroupTextUtil.addGroupText,
               actions: [
+                Obx(
+                  () => Container(
+                    child: controller.isCircularIndicatorOpen.value
+                        ? CircularProgressIndicator()
+                        : SizedBox(),
+                  ),
+                ),
                 IconButton(
                   icon: IconUtility.close,
                   onPressed: () {
@@ -157,7 +164,7 @@ class TGroupAddView extends StatelessWidget {
               ;
             },
             row: RowModel(
-              text: controller.GroupCategoryName.value,
+              text: controller.groupCategoryName.value,
               isAlignmentBetween: true,
               textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
               trailingIcon: controller.isGroupCategoryElectionOpen.value

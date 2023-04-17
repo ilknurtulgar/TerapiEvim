@@ -8,7 +8,7 @@ import '../../../core/managers/videosdk/i_video_sdk_manager.dart';
 import '../../../core/managers/videosdk/video_sdk_manager.dart';
 import '../../../model/common/activity/t_activity_model.dart';
 import '../../../model/common/video_call/video_call_token_model.dart';
-import '../../../screen/therapist/video_call/t_group_call/t_group_call_view.dart';
+import '../../../screen/common/video_call/group_call_view.dart';
 import '../../../service/_therapist/activity/i_t_activity_service.dart';
 import '../../../service/_therapist/activity/t_activity_service.dart';
 import '../../base/base_controller.dart';
@@ -117,7 +117,7 @@ class TActivityController extends GetxController with BaseController {
 
       navigationManager.pushAndRemoveUntil(
         navigator,
-        TGroupCallView(
+        GroupCallView(
           videoCallToken: VideoCallTokenModel(
             meetingId: activity.meetingId!,
             token: videoSdkManager.token,

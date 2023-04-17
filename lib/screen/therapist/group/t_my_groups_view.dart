@@ -5,6 +5,7 @@ import 'package:terapievim/screen/therapist/group/groups_informations/t_group_in
 import '../../../controller/therapist/group/t_group_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/component/group/group.dart';
+import '../../../core/base/ui_models/row_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
@@ -36,14 +37,17 @@ class TMyGroupsView extends StatelessWidget {
                 padding: AppPaddings.pagePadding,
                 itemCount: controller.fetchedGroups.length,
                 itemBuilder: (context, index) {
-                  final TGroupModel? group = controller.fetchedGroups[index];
+                  final TGroupModel group = controller.fetchedGroups[index]!;
                   return GroupClass(
                     onTap: () {
                       context.push(TGroupInformationView(currentGroup: group));
                     },
-                    row1: DemoInformation.groupTitle(group?.name ?? ''),
-                    row2: DemoInformation.row_2,
-                    row3: DemoInformation.row_3,
+                    row1: rows(group.name ?? "null", IconUtility.activityIcon),
+                    row2: rows(
+                        GroupTextUtil.secondTherapistText +
+                            group.therapistHelperName!,
+                        IconUtility.personIcon),
+                    row3: rows(group.groupCategory!, IconUtility.groupsIcon),
                     isBorderPurple: true,
                   );
                 },
@@ -51,5 +55,14 @@ class TMyGroupsView extends StatelessWidget {
             ),
           );
         });
+  }
+
+  RowModel rows(String name, Icon icon) {
+    return RowModel(
+      leadingIcon: icon,
+      isAlignmentBetween: false,
+      text: name,
+      textStyle: AppTextStyles.groupTextStyle(true),
+    );
   }
 }

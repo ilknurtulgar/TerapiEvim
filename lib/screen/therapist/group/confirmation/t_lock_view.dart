@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/therapist/group/t_lock_screen_controller.dart';
+import 'package:terapievim/core/base/view/base_view.dart';
 
-import '../../../../controller/therapist/group/t_group_verification_controller.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
@@ -15,30 +16,32 @@ class TLockView extends StatelessWidget {
 //conform edilme suresinde acilacak sayfa??
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        alignment: AlignmentDirectional.center,
-        children: [
-          // const MyGroups(),
-          Container(
-            color: Colors.black.withOpacity(0.8),
-          ),
-          popUp(context)
-        ],
+    return BaseView<TLockScreenController>(
+      getController: TLockScreenController(),
+      onPageBuilder: (context, controller) => Scaffold(
+        body: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            // const MyGroups(),
+            Container(
+              color: Colors.black.withOpacity(0.8),
+            ),
+            popUp(context, controller)
+          ],
+        ),
       ),
     );
   }
 }
 
-Widget popUp(BuildContext context) {
-  TGroupVerificationController controller = Get.find();
-  Widget shown = controller.isTherapistUploaded.isFalse
+Widget popUp(BuildContext context, TLockScreenController controller) {
+  Widget shown = controller.isUploaded.isFalse
       ? noUpload(context)
-      : controller.isLockedOpen.isTrue
+      : controller.isConfirmed.isTrue
           ? conformed(context)
           : unconfermed();
 
-  Icon lockicon = controller.isLockedOpen.isTrue
+  Icon lockicon = controller.isConfirmed.isTrue
       ? IconUtility.lockopen
       : IconUtility.lock(true);
   return BackdropFilter(

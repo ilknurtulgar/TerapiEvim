@@ -9,7 +9,7 @@ part of 'max_number_of_groups_model.dart';
 MaxNumberOfGroupsModel _$MaxNumberOfGroupsModelFromJson(
         Map<String, dynamic> json) =>
     MaxNumberOfGroupsModel(
-      maxNumberOfHelpingGroups: json['maxNumberOfHelpingGroups'] as String?,
+      maxNumberOfHelpingGroups: json['maxNumberOfHelpingGroups'] as int?,
     );
 
 Map<String, dynamic> _$MaxNumberOfGroupsModelToJson(

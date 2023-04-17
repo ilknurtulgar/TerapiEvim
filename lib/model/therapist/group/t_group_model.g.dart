@@ -19,7 +19,9 @@ TGroupModel _$TGroupModelFromJson(Map<String, dynamic> json) => TGroupModel(
           .toList(),
       dateTime:
           TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?),
-    );
+    )
+      ..numberOfWeeks = json['numberOfWeeks'] as int?
+      ..numberOfSessions = json['numberOfSessions'] as int?;
 
 Map<String, dynamic> _$TGroupModelToJson(TGroupModel instance) =>
     <String, dynamic>{
@@ -30,6 +32,8 @@ Map<String, dynamic> _$TGroupModelToJson(TGroupModel instance) =>
       'therapistHelperId': instance.therapistHelperId,
       'therapistHelperName': instance.therapistHelperName,
       'hasHelperTherapistAccepted': instance.hasHelperTherapistAccepted,
+      'numberOfWeeks': instance.numberOfWeeks,
+      'numberOfSessions': instance.numberOfSessions,
       'participantsId': instance.participantsId,
       'dateTime': TimeStampConverter.timestampToJson(instance.dateTime),
     };

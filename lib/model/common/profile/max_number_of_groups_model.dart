@@ -5,7 +5,7 @@ part 'max_number_of_groups_model.g.dart';
 
 @JsonSerializable()
 class MaxNumberOfGroupsModel extends INetworkModel<MaxNumberOfGroupsModel> {
-  String? maxNumberOfHelpingGroups;
+  int? maxNumberOfHelpingGroups;
 
   MaxNumberOfGroupsModel({
     this.maxNumberOfHelpingGroups,

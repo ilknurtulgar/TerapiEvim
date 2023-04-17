@@ -9,13 +9,14 @@ import 'package:terapievim/core/extension/context_extension.dart';
 import '../../../controller/main_controller.dart';
 import '../../../controller/video_call/group_therapy_call_controller.dart';
 import '../../../core/base/component/video_call/container/video_call_person.dart';
-import 'util/utility.dart';
+import '../../participant/video_call/util/utility.dart';
 
 // ignore: must_be_immutable
 class GroupTherapyCallView extends StatelessWidget {
   GroupTherapyCallView({super.key});
   MainController mainController = Get.find();
   bool isMainTherapist = false;
+
   @override
   Widget build(BuildContext context) {
     return BaseView<PGroupCallController>(

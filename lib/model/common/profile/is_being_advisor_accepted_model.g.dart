@@ -9,7 +9,7 @@ part of 'is_being_advisor_accepted_model.dart';
 IsBeingAdvisorAcceptedModel _$IsBeingAdvisorAcceptedModelFromJson(
         Map<String, dynamic> json) =>
     IsBeingAdvisorAcceptedModel(
-      isBeingAdvisorAccepted: json['isBeingAdvisorAccepted'] as String?,
+      isBeingAdvisorAccepted: json['isBeingAdvisorAccepted'] as bool?,
     );
 
 Map<String, dynamic> _$IsBeingAdvisorAcceptedModelToJson(

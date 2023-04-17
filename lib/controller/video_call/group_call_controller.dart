@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:videosdk/videosdk.dart';
 
-import '../../../core/extension/context_extension.dart';
-import '../../../model/common/video_call/video_call_token_model.dart';
-import '../../../screen/common/home/main_home.dart';
-import '../../base/base_controller.dart';
+import '../../core/extension/context_extension.dart';
+import '../../model/common/video_call/video_call_token_model.dart';
+import '../../screen/common/home/main_home.dart';
+import '../base/base_controller_2.dart';
+import 'base_video_call_controller.dart';
 
-class TGroupCallController extends GetxController with BaseController {
+class GroupCallController extends BaseController2 with BaseVideoCallController {
+
   @override
   void setContext(BuildContext context) => controllerContext = context;
 
+  @override
   void setToken(VideoCallTokenModel token) => currentToken = token;
 
   @override
@@ -24,14 +27,9 @@ class TGroupCallController extends GetxController with BaseController {
       camEnabled: camEnabled,
       maxResolution: 'hd',
       defaultCameraIndex: 1,
-      notification: const NotificationInfo(
-        title: "Video SDK",
-        message: "Video SDK is sharing screen in the meeting",
-        icon: "notification_share", // drawable icon name
-      ),
     );
 
-    setMeetingEventListener(room, controllerContext);
+    setMeetingEventListener(room);
 
     // Join meeting
     room.join();
@@ -39,13 +37,9 @@ class TGroupCallController extends GetxController with BaseController {
     super.onInit();
   }
 
-  late VideoCallTokenModel currentToken;
+  var shareAuthority = false.obs;
 
-  Map<String, Stream?> participantVideoStreams = {};
-
-  bool micEnabled = true;
-  bool camEnabled = true;
-  late Room room;
+  var openAllMics = false.obs;
 
   void setParticipantStreamEvents(Participant participant) {
     participant.on(Events.streamEnabled, (Stream stream) {
@@ -61,7 +55,7 @@ class TGroupCallController extends GetxController with BaseController {
     });
   }
 
-  void setMeetingEventListener(Room room, BuildContext context) {
+  void setMeetingEventListener(Room room) {
     setParticipantStreamEvents(room.localParticipant);
     room.on(
       Events.participantJoined,
@@ -74,7 +68,7 @@ class TGroupCallController extends GetxController with BaseController {
     });
     room.on(Events.roomLeft, () {
       participantVideoStreams.clear();
-      context.pushAndRemoveUntil(const MainHome());
+      controllerContext.pushAndRemoveUntil(const MainHome());
     });
   }
 
@@ -82,8 +76,7 @@ class TGroupCallController extends GetxController with BaseController {
     variable.value = !variable.value;
   }
 
-  var shareAuthority = false.obs;
-  var openAllMics = false.obs;
+
 
   void therapistSwitchButtonFunction(bool isToOpenMics, bool value) {
     if (isToOpenMics) {

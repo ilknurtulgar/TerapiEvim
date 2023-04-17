@@ -5,6 +5,10 @@ import 'package:terapievim/controller/base/base_controller.dart';
 
 import '../core/base/component/bottom_nav_bar/custom_tab_scaffold.dart';
 import '../core/base/component/toast/toast.dart';
+import '../core/constants/app_const.dart';
+import '../product/enum/local_keys_enum.dart';
+import 'participant/participant_controller.dart';
+import 'therapist/therapist_controller.dart';
 
 class MainController extends GetxController with BaseController {
   var currentScreenIndex = 0.obs;
@@ -25,9 +29,22 @@ class MainController extends GetxController with BaseController {
   void onInit() {
     tabController = CupertinoTabController();
 
-    /*  final String currentRole =
+    final String currentRole =
         localManager.getStringValue(LocalManagerKeys.role);
-    updateWhoItIs(currentRole);*/
+
+    if (currentRole.isEmpty) return;
+
+    updateWhoItIs(currentRole);
+
+    /// Else currentRole is therapist init therapist controller
+    if (currentRole == AppConst.therapist) {
+      Get.put(TherapistController());
+    }
+
+    /// Else currentRole is participant init participant controller
+    else {
+      Get.put(ParticipantController());
+    }
 
     super.onInit();
   }
@@ -50,6 +67,6 @@ class MainController extends GetxController with BaseController {
   }
 
   void updateWhoItIs(String userRole) {
-    isTherapist.value = (userRole == "therapist") ? true : false;
+    isTherapist.value = (userRole == AppConst.therapist) ? true : false;
   }
 }

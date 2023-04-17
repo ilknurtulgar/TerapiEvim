@@ -8,24 +8,30 @@ part of 'joinable_group_model.dart';
 
 JoinableGroupModel _$JoinableGroupModelFromJson(Map<String, dynamic> json) =>
     JoinableGroupModel(
-      groupName: json['groupName'] as String?,
-      therapistName: json['therapistName'] as String?,
-      therapistUrl: json['therapistUrl'] as String?,
-      advisorName: json['advisorName'] as String?,
-      advisorUrl: json['advisorUrl'] as String?,
-      participantNumber: json['participantNumber'] as int?,
-      sessionNumber: json['sessionNumber'] as int?,
       id: json['id'] as String?,
+      name: json['name'] as String?,
+      therapistId: json['therapistId'] as String?,
+      therapistName: json['therapistName'] as String?,
+      therapistImageUrl: json['therapistImageUrl'] as String?,
+      therapistHelperId: json['therapistHelperId'] as String?,
+      therapistHelperName: json['therapistHelperName'] as String?,
+      therapistHelperImageUrl: json['therapistHelperImageUrl'] as String?,
+      participantNumber: json['participantNumber'] as String?,
+      numberOfSessions: json['numberOfSessions'] as String?,
+      numberOfWeeks: json['numberOfWeeks'] as String?,
     );
 
 Map<String, dynamic> _$JoinableGroupModelToJson(JoinableGroupModel instance) =>
     <String, dynamic>{
-      'groupName': instance.groupName,
-      'therapistName': instance.therapistName,
-      'therapistUrl': instance.therapistUrl,
-      'advisorName': instance.advisorName,
-      'advisorUrl': instance.advisorUrl,
-      'participantNumber': instance.participantNumber,
-      'sessionNumber': instance.sessionNumber,
       'id': instance.id,
+      'name': instance.name,
+      'therapistId': instance.therapistId,
+      'therapistName': instance.therapistName,
+      'therapistImageUrl': instance.therapistImageUrl,
+      'therapistHelperId': instance.therapistHelperId,
+      'therapistHelperName': instance.therapistHelperName,
+      'therapistHelperImageUrl': instance.therapistHelperImageUrl,
+      'participantNumber': instance.participantNumber,
+      'numberOfSessions': instance.numberOfSessions,
+      'numberOfWeeks': instance.numberOfWeeks,
     };

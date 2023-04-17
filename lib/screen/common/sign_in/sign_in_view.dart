@@ -83,7 +83,7 @@ class _SignInViewState extends State<SignInView> {
         textfieldUtility.passwordTextfield(
             _loginController.passwordController, true),
         forgotYourPasswordTextButton(),
-        CustomTextField(
+        /*CustomTextField(
             isOne: false,
             title: "Şifre",
             textController: _loginController.passwordController,
@@ -113,7 +113,7 @@ class _SignInViewState extends State<SignInView> {
                 leadingIcon: IconUtility.emailIcon),
             isBig: true,
             obsecureText: false,
-            isRowModel: true),
+            isRowModel: true),*/
       ],
     );
   }

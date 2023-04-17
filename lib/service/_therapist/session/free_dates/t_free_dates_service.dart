@@ -9,7 +9,7 @@ import '../../../../model/therapist/session/free_date/t_free_date_model.dart';
 import '../../../../model/therapist/session/free_date/t_free_hours_model.dart';
 import 'i_t_free_dates_service.dart';
 
-class TFreeDateService extends ITFreeDateService  with BaseService{
+class TFreeDateService extends ITFreeDateService with BaseService {
   TFreeDateService(IFirestoreManager<ErrorModelCustom> manager)
       : super(manager);
 
@@ -24,7 +24,7 @@ class TFreeDateService extends ITFreeDateService  with BaseService{
       if (freeDate.hours.isEmpty) {
         throw Exception('freeDate.hours.isEmpty');
       }
-      
+
       final CreatedIdResponse? createdIdResponseOfDate = await manager.create(
         collectionPath: APIConst.freeDates,
         data: freeDate.toJson()!,

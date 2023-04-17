@@ -22,9 +22,8 @@ class DateTextField extends StatelessWidget {
         textController: textController,
         onTap: dateTapped,
         rowModel: RowModel(
-            text: "",
+            text: 'gg/aa/yyyy',
             textStyle: const TextStyle(color: AppColors.black),
-            text2: 'gg/aa/yyyy',
             isAlignmentBetween: false,
             leadingIcon: IconUtility.calendarIcon),
         isBig: isBig,

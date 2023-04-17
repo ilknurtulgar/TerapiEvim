@@ -13,10 +13,9 @@ class JoinableGroupModel extends INetworkModel<JoinableGroupModel> {
       therapistImageUrl,
       therapistHelperId,
       therapistHelperName,
-      therapistHelperImageUrl,
-      participantNumber,
-      numberOfSessions,
-      numberOfWeeks;
+      therapistHelperImageUrl;
+
+  int? participantNumber, numberOfSessions, numberOfWeeks;
 
   JoinableGroupModel({
     this.id,

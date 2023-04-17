@@ -25,11 +25,12 @@ class PGroupCategoryController extends GetxController with BaseController {
     print("Join Islemi yapilmali");
   }
 
-  Future<void> getGroups() async {
+  Future<List<TGroupModel>> getGroups() async {
     isLoading.value = true;
     final List<JoinableGroupModel> fetchedGroups =
         await groupService.getGroupsByCategory(categoryName: "Depresyon");
     groups.addAll(fetchedGroups);
     isLoading.value = false;
+    return fetchedGroups;
   }
 }

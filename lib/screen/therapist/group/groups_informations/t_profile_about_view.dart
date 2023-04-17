@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/controller/therapist/group/t_about_therapist.dart';
+import 'package:terapievim/core/base/view/base_view.dart';
 
 import '../../../../core/base/component/activtiy/seminers.dart';
 import '../../../../core/base/component/group/custom_heading.dart';
@@ -23,56 +25,59 @@ class TProfileView extends StatelessWidget {
       DemoInformation.grup1,
       DemoInformation.grup2
     ];
-    return Scaffold(
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Stack(
-            alignment: Alignment.center,
-            textDirection: TextDirection.rtl,
-            fit: StackFit.loose,
-            clipBehavior: Clip.hardEdge,
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  whiteBackground(context),
-                  Padding(
-                    padding: AppPaddings.pagePadding,
-                    child: Column(
-                      children: [
-                        heading(DemoInformation.therapistName2),
-                        aboutMe(DemoInformation.aboutme, context),
-                        isSecTherapist
-                            ? const SizedBox.shrink()
-                            : activity(UiBaseModel.basetmeMetotlari(), () {
-                                //buraya fonksiyonlari ekelenecek
-                                // print("basettin mi");
-                              }),
-                        activity(UiBaseModel.seminerleri(), () {
-                          //print("seminermismis");
-                        }),
-                        isSecTherapist
-                            ? otherGroups(groups)
-                            : const SizedBox.shrink()
-                      ],
-                    ),
-                  )
-                ],
-              ),
-              Positioned(
-                top: 87,
-                child: CustomCircleAvatar(
-                    imagePath: DemoInformation.imagePath,
-                    big: true,
-                    shadow: true),
-              ),
-              PProfileViewUtility.positionedIconButton(
-                  IconUtility.back.icon!,
-                  () => context.pop(),
-                  SizeUtil.lowValueWidth,
-                  Responsive.widthForBackIcon(context))
-            ],
+    return BaseView<TAboutTherapistController>(
+      getController: TAboutTherapistController(),
+      onPageBuilder: (context, controller) => Scaffold(
+        body: SafeArea(
+          child: SingleChildScrollView(
+            child: Stack(
+              alignment: Alignment.center,
+              textDirection: TextDirection.rtl,
+              fit: StackFit.loose,
+              clipBehavior: Clip.hardEdge,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: <Widget>[
+                    whiteBackground(context),
+                    Padding(
+                      padding: AppPaddings.pagePadding,
+                      child: Column(
+                        children: [
+                          heading(DemoInformation.therapistName2),
+                          aboutMe(DemoInformation.aboutme, context),
+                          isSecTherapist
+                              ? const SizedBox.shrink()
+                              : activity(UiBaseModel.basetmeMetotlari(), () {
+                                  //buraya fonksiyonlari ekelenecek
+                                  // print("basettin mi");
+                                }),
+                          activity(UiBaseModel.seminerleri(), () {
+                            //print("seminermismis");
+                          }),
+                          isSecTherapist
+                              ? otherGroups(groups)
+                              : const SizedBox.shrink()
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                Positioned(
+                  top: 87,
+                  child: CustomCircleAvatar(
+                      imagePath: DemoInformation.imagePath,
+                      big: true,
+                      shadow: true),
+                ),
+                PProfileViewUtility.positionedIconButton(
+                    IconUtility.back.icon!,
+                    () => context.pop(),
+                    SizeUtil.lowValueWidth,
+                    Responsive.widthForBackIcon(context))
+              ],
+            ),
           ),
         ),
       ),

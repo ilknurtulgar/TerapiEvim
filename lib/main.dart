@@ -1,12 +1,10 @@
 import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart' show kDebugMode, kIsWeb;
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-
 import 'controller/auth/auth_controller.dart';
 import 'controller/participant/group/p_group_controller.dart';
 import 'controller/main_controller.dart';

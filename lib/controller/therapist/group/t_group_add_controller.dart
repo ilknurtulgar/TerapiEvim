@@ -37,6 +37,23 @@ class TGroupAddController extends GetxController with BaseController {
     if (groupNameController.text.isEmpty) {
       flutterErrorToast("isim bos");
       return false;
+    } else if (GroupCategoryName == "Yok") {
+      flutterErrorToast("Kategori Bos");
+      return false;
+    } else if (choosenSecTherapist == "Yok") {
+      flutterErrorToast("Yardimci Terapist Secilmedi");
+      return false;
+    } else if (choosenDay == "Yok") {
+      flutterErrorToast("Terapi Gunu Secilmedi");
+      return false;
+    } else if (numberOfWeek.text.isEmpty) {
+      flutterErrorToast("Kac Hafta terapi yapilacagi secilmedi");
+      return false;
+    } else if (numberOfSession.text.isEmpty) {
+      flutterErrorToast("Kac terapi yapilacagi secilmedi");
+      return false;
+    } else if (chosenHour.isEmpty) {
+      flutterErrorToast("Saat Bilgisi Secilmedi");
     }
     return true;
   }
@@ -46,12 +63,15 @@ class TGroupAddController extends GetxController with BaseController {
     final bool isValidated = _validateNewGroup();
     if (isValidated == false) return;
     final TGroupModel groupModel = TGroupModel(
+      groupCategory: GroupCategoryName.value,
+      therapistHelperName: choosenSecTherapist.value,
       name: groupNameController.text.trim(),
       dateTime: Timestamp.fromDate(DateTime.now()),
       hasHelperTherapistAccepted: false,
       participantsId: [],
     );
     //page loading icin buradan yazabilirsin
+
     final CreatedIdResponse? idResponse =
         await tGroupService.createGroup(groupModel);
     //sonra tekrar false
@@ -61,6 +81,17 @@ class TGroupAddController extends GetxController with BaseController {
 
   //grup eklmee kismi icin controller
   var isSecTherapistElectionOpen = false.obs;
+  var choosenSecTherapist = "Yok".obs;
+  var isSecTherapistChoosed = false.obs;
+  void changeChoosenSecTherapist(String name) {
+    isSecTherapistChoosed.value = true;
+    choosenSecTherapist.value = name;
+  }
+
+  void changeSecTherapistElection() {
+    isSecTherapistElectionOpen.value = !isSecTherapistElectionOpen.isTrue;
+  }
+
   var isGroupCategoryElectionOpen = false.obs;
   var GroupCategoryName = "Yok".obs;
   void changeGroupCategory(String categoryName) {
@@ -69,10 +100,6 @@ class TGroupAddController extends GetxController with BaseController {
 
   void changeGroupCategoryElection() {
     isGroupCategoryElectionOpen.value = !isGroupCategoryElectionOpen.value;
-  }
-
-  void changeSecTherapistElection() {
-    isSecTherapistElectionOpen.value = !isSecTherapistElectionOpen.isTrue;
   }
 
   var isDayElectionOpen = false.obs;
@@ -86,13 +113,6 @@ class TGroupAddController extends GetxController with BaseController {
   }
 
   var choosenDay = "Gun Seciniz".obs;
-  var choosenSecTherapist = "Yok".obs;
-  var isSecTherapistChoosed = false.obs;
-
-  void changeChoosenSecTherapist(String name) {
-    isSecTherapistChoosed.value = true;
-    choosenSecTherapist.value = name;
-  }
 
   var isParticipantElectionOpen = false.obs;
 
@@ -136,4 +156,9 @@ class TGroupAddController extends GetxController with BaseController {
   TextEditingController numberOfSession =
       TextEditingController(); //nasil obs olacak
   TextEditingController numberOfWeek = TextEditingController();
+
+  var isCircularIndicatorOpen = false.obs;
+  changeCircularIndicatorValue() {
+    isCircularIndicatorOpen.value = !isCircularIndicatorOpen.value;
+  }
 }

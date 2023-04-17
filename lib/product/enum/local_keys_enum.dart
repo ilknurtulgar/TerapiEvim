@@ -10,5 +10,7 @@ enum LocalManagerKeys {
   imageUrl, // String
   isTermsOfUseAccepted, // bool
   joinedGroupId,// bool
-  isTherapistConfirmed // bool
+  isTherapistConfirmed, // bool
+  isBeingAdvisorAccepted, // bool
+  maxNumberOfGroups // int
 }

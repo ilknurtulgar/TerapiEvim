@@ -8,10 +8,10 @@ part of 'birth_date_model.dart';
 
 BirthDateModel _$BirthDateModelFromJson(Map<String, dynamic> json) =>
     BirthDateModel(
-      birthdate: json['birthdate'] as String?,
+      birthDate: json['birthDate'] as String?,
     );
 
 Map<String, dynamic> _$BirthDateModelToJson(BirthDateModel instance) =>
     <String, dynamic>{
-      'birthdate': instance.birthdate,
+      'birthDate': instance.birthDate,
     };

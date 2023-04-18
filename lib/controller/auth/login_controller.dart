@@ -116,7 +116,7 @@ class LoginController extends GetxController with BaseController {
         await authService.fetchInitialDataOfParticipant();
 
     /// Save joinedGroupId of a participant
-    localManager.setStringValue(LocalManagerKeys.joinedGroupId,
+    localManager.setStringValue(LocalManagerKeys.pJoinedGroupId,
         initialDataOfParticipantModel?.joinedGroupId ?? '');
 
     ///TODO: save initial Data to cache

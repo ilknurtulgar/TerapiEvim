@@ -34,20 +34,22 @@ class PGroupService extends IPGroupService with BaseService {
     String orderField = AppConst.dateTime,
     bool isDescending = false,
   }) async {
-    if (userId == null) return [];
-    final result = await manager
-        .readOrderedWhere<JoinableGroupModel, List<JoinableGroupModel>>(
-      collectionPath: APIConst.groups,
-      whereField: AppConst.groupCategory,
-      whereIsEqualTo: categoryName,
-      parseModel: JoinableGroupModel(),
-      isDescending: isDescending,
-      orderField: orderField,
-      lastDocumentId: lastDocId,
-    );
-    if (result.error != null || result.data == null) {
-      return [];
-    }
+    try {
+      if (userId == null) return [];
+      final result = await manager
+          .readOrderedWhere<JoinableGroupModel, List<JoinableGroupModel>>(
+        collectionPath: APIConst.groups,
+        whereField: AppConst.groupCategory,
+        whereIsEqualTo: categoryName,
+        parseModel: JoinableGroupModel(),
+        isDescending: isDescending,
+        orderField: orderField,
+        lastDocumentId: lastDocId,
+      );
+      if (result.error != null || result.data == null) {
+        return [];
+      }
+
 
     for (JoinableGroupModel joinableGroup in result.data!) {
       if (joinableGroup.therapistHelperId != null) {
@@ -62,7 +64,15 @@ class PGroupService extends IPGroupService with BaseService {
       joinableGroup.therapistName = therapist?.name ?? '';
     }
 
-    return result.data!;
+
+      return result.data!;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(),
+          stackTrace: StackTrace.current,
+          reason: 'getGroupsByCategory');
+      rethrow;
+    }
   }
 
   Future<UserModel?> _fetchUser(String userId) async {

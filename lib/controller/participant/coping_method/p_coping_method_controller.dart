@@ -18,7 +18,7 @@ class PCopingMethodsController extends DropDownController {
     final List<TCopingMethodModel?> result =
         await pCopingMethodService.getCopingMethods(
             groupId:
-                localManager.getStringValue(LocalManagerKeys.joinedGroupId));
+                localManager.getStringValue(LocalManagerKeys.pJoinedGroupId));
     fetchedCoping.addAll(result);
     super.onInit();
   }

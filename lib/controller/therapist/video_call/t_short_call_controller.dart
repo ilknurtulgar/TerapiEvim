@@ -1,12 +1,10 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:videosdk/src/core/room/participant.dart';
 import 'package:videosdk/src/core/room/room.dart';
-
 import '../../../model/common/video_call/video_call_token_model.dart';
-import '../../base/base_controller_2.dart';
 import '../../video_call/base_video_call_controller.dart';
 
-class TShortCallController extends BaseController2 with BaseVideoCallController{
+class TShortCallController extends BaseVideoCallController{
 
   @override
   void setContext(BuildContext context) => controllerContext = context;

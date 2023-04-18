@@ -5,8 +5,6 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/common/sign_in/util/sign_in_view_utility.dart';
 import '../../../controller/auth/login_controller.dart';
-import '../../../core/base/component/login/custom_textfield.dart';
-import '../../../core/base/ui_models/row_model.dart';
 import '../../../product/widget/common/profile/utility/textfield_utility.dart';
 import '../sign_up/before_sign_up_view.dart';
 

@@ -131,7 +131,7 @@ class ProfileSettingsService extends IProfileSettingsService {
     if (userId == null) return 'UserId is null';
 
     final result = await manager.update<MaxNumberOfGroupsModel, EmptyModel>(
-      collectionPath: APIConst.users,
+      collectionPath: APIConst.therapist,
       docId: userId!,
       data: maxNumber,
     );
@@ -149,7 +149,7 @@ class ProfileSettingsService extends IProfileSettingsService {
     if (userId == null) return 'UserId is null';
 
     final result = await manager.update<IsBeingAdvisorAcceptedModel, EmptyModel>(
-      collectionPath: APIConst.users,
+      collectionPath: APIConst.therapist,
       docId: userId!,
       data: isBeingAdvisorAccepted,
     );

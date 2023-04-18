@@ -3,6 +3,7 @@ import '../../../core/constants/api_const.dart';
 import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/created_id_response.dart';
+import '../../../core/managers/firebase/firestore/models/empty_model.dart';
 import '../../../model/common/scl_90/scl_90_result_model.dart';
 import '../../../model/participant/scl90test/scl_90_submission_model.dart';
 import 'i_p_scl_90_service.dart';
@@ -17,7 +18,6 @@ class PScl90Service extends IPScl90Service with BaseService {
     /// Setting id of a current participant
     scl90.participantId = userId;
 
-    /// TODO: test if it has created correctly
     final CreatedIdResponse? createdIdResponse = await manager.create(
       collectionPath: APIConst.scl90,
       data: scl90.toJson()!,
@@ -25,13 +25,13 @@ class PScl90Service extends IPScl90Service with BaseService {
 
     if (createdIdResponse == null) return null;
 
-    final result = await manager.createWithDocId(
+    final result = await manager.update<Scl90SubmissionModel,EmptyModel>(
       collectionPath: APIConst.participant,
       docId: userId!,
-      data: Scl90SubmissionModel(isScl90Submitted: true).toJson()!,
+      data: Scl90SubmissionModel(isScl90Submitted: true),
     );
 
-    if (result == false) return null;
+    if (result.error != null) return null;
 
     return createdIdResponse;
   }

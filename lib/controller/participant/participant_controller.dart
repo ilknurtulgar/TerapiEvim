@@ -30,6 +30,9 @@ class ParticipantController extends BaseController2 {
 
   RxBool isSessionComplete = false.obs;
 
+  RxBool isTestResultReady = false.obs;
+
+
   Future<void> _fetchInitialDataOfParticipant() async {
 
     final PInitialData? initialDataOfParticipantModel =
@@ -48,6 +51,9 @@ class ParticipantController extends BaseController2 {
     isSessionComplete.value =
         initialDataOfParticipantModel?.isSessionComplete ?? false;
 
+    isTestResultReady.value =
+        initialDataOfParticipantModel?.isTestResultReady ?? false;
+
     /// Save joinedGroupId of a participant
     localManager.setStringValue(
         LocalManagerKeys.pJoinedGroupId, joinedGroupId.value);
@@ -57,6 +63,9 @@ class ParticipantController extends BaseController2 {
 
     localManager.setBoolValue(
         LocalManagerKeys.pIsJoinedGroupLocked, isJoinedGroupLocked.value);
+
+    localManager.setBoolValue(
+        LocalManagerKeys.pIsTestResultReady, isTestResultReady.value);
 
     localManager.setBoolValue(
         LocalManagerKeys.pIsScl90Submitted, isScl90Submitted.value);

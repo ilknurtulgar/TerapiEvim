@@ -63,7 +63,7 @@ class TSessionView extends StatelessWidget {
               () => context.push(TestResultView()),
 
               ///TODO add real meetingId and token
-              () => context.push(ShortCallView(
+              () => context.pushAndRemoveUntil(ShortCallView(
                     videoCallToken:
                         VideoCallTokenModel(meetingId: '', token: ''),
                   )));

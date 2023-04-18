@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/screen/therapist/activity/t_my_activity_list_view.dart';
 import 'package:terapievim/screen/therapist/activity/t_new_activity_view.dart';
 import 'package:terapievim/screen/therapist/activity/t_update_activity_view.dart';
 
@@ -70,17 +71,26 @@ class TActivityView extends StatelessWidget {
                     context.push(const TActivityListView());
                   },
                 ),
-                _otherUpcomingActivities(),
+                _otherUpcomingActivities(controller.otherActivitieslist.isEmpty
+                    ? null
+                    : controller.otherActivitieslist.last),
                 HeadingMinto(
                   text: ActivityTextUtil.myActivty,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   isButterfly: true,
                   icon: IconUtility.forward,
                   onPressed: () {
-                    context.push(const TActivityListView());
+                    context.push(const TMyActivityListView());
                   },
                 ),
-                _myPastActivities(context, controller),
+                Obx(
+                  () => _myPastActivities(
+                      context,
+                      controller,
+                      controller.myPastActivitieslist.isEmpty
+                          ? null
+                          : controller.myPastActivitieslist.last),
+                ),
               ],
             ),
           ),
@@ -89,25 +99,29 @@ class TActivityView extends StatelessWidget {
     );
   }
 
-  ActivityBox _myPastActivities(
-      BuildContext context, TActivityController controller) {
+  ActivityBox _myPastActivities(BuildContext context,
+      TActivityController controller, TActivityModel? myPastActivity) {
     return ActivityBox(
         rightButtonTap: () {},
         istwobutton: false,
         buttonText: ActivityTextUtil.watchTheRecording,
         containerModel: AppContainers.containerButton(true),
         isactivity: true,
-        arowModel: DemoInformation.arowmodel,
-        clockModel: DemoInformation.clockmodel);
+        arowModel: DemoInformation.myPastActivities(
+            myPastActivity?.title ?? "tekno yeto"),
+        clockModel: DemoInformation.myPastActivitiesTime(
+            myPastActivity?.dateTime ?? Timestamp.now()));
   }
 
-  Widget _otherUpcomingActivities() => activitythreerowbox(
-      () {},
-      () {},
-      DemoInformation.arowmodel,
-      DemoInformation.clockmodel,
-      ActivityTextUtil.join,
-      DemoInformation.ayrowmodel);
+  Widget _otherUpcomingActivities(TActivityModel? otherUpComingActivity) =>
+      activitythreerowbox(
+          () {},
+          () {},
+          DemoInformation.myPastActivities(otherUpComingActivity?.title ?? ""),
+          DemoInformation.myPastActivitiesTime(
+              otherUpComingActivity?.dateTime ?? Timestamp.now()),
+          ActivityTextUtil.join,
+          DemoInformation.ayrowmodel);
 
   ActivityBox _myUpcomingActivities(
       BuildContext context,

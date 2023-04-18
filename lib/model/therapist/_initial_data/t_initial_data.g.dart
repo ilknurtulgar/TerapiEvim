@@ -11,6 +11,7 @@ TInitialData _$TInitialDataFromJson(Map<String, dynamic> json) => TInitialData(
       isTherapistBeingReviewed: json['isTherapistBeingReviewed'] as bool?,
       isBeingAdvisorAccepted: json['isBeingAdvisorAccepted'] as bool?,
       maxNumberOfHelpingGroups: json['maxNumberOfHelpingGroups'] as int?,
+      isDiplomaUploaded: json['isDiplomaUploaded'] as bool?,
     );
 
 Map<String, dynamic> _$TInitialDataToJson(TInitialData instance) =>
@@ -19,4 +20,5 @@ Map<String, dynamic> _$TInitialDataToJson(TInitialData instance) =>
       'isTherapistBeingReviewed': instance.isTherapistBeingReviewed,
       'isBeingAdvisorAccepted': instance.isBeingAdvisorAccepted,
       'maxNumberOfHelpingGroups': instance.maxNumberOfHelpingGroups,
+      'isDiplomaUploaded': instance.isDiplomaUploaded,
     };

@@ -9,13 +9,12 @@ class SliverType extends StatelessWidget {
     super.key,
     required this.activityType,
     required this.arrowOnTap,
-    required this.sLiverListWidget,
-    required this.childCount,
+    required this.delegate,
   });
   final Function() arrowOnTap;
   final ActivityType activityType;
-  final Widget sLiverListWidget;
-  final int childCount;
+
+  final SliverChildDelegate delegate;
   @override
   Widget build(BuildContext context) {
     late String activityTypeText = headingSet(activityType);
@@ -31,9 +30,7 @@ class SliverType extends StatelessWidget {
               icon: IconUtility.filterIcon),
         ),
         SliverList(
-          delegate: SliverChildBuilderDelegate((context, index) {
-            return sLiverListWidget;
-          }, childCount: childCount),
+          delegate: delegate,
         ),
       ],
     );

@@ -8,6 +8,7 @@ class TextFieldUtility {
   CustomTextField nameSurnameTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
+          isPassword: true,
           isOne: false,
           title: "Ad Soyad",
           textController: textController,
@@ -25,6 +26,7 @@ class TextFieldUtility {
   CustomTextField birthOfDateTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
+        isPassword: true,
         isOne: false,
         title: "Doğum Tarihi",
         textController: textController,
@@ -40,6 +42,7 @@ class TextFieldUtility {
   CustomTextField mailTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
+          isPassword: true,
           isOne: false,
           title: "E Posta",
           textController: textController,
@@ -56,6 +59,7 @@ class TextFieldUtility {
     var isObscured = true.obs;
     return Obx(
       () => CustomTextField(
+          isPassword: true,
           isOne: false,
           obsecureText: isObscured.value,
           title: "Şifre",
@@ -86,6 +90,7 @@ class TextFieldUtility {
   CustomTextField phoneTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
+          isPassword: true,
           isOne: false,
           title: 'Telefon Numarası',
           textController: textController,

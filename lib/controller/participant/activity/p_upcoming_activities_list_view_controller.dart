@@ -16,7 +16,7 @@ class PUpComingActivitiesListViewController extends GetxController
   Future<void> onInit() async {
     activityService = PActivityService(vexaFireManager.networkManager);
     final List<TActivityModel?> result =
-        await activityService.getRecentActivitiesOrdered();
+        await activityService.getRecentActivitiesOrdered(isDescending: true);
     upComingActivities.addAll(result);
     super.onInit();
   }

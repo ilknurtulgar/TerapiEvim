@@ -52,7 +52,7 @@ class PActivityController extends GetxController with BaseController {
 
   Future<void> fetchPastActivities() async {
     List<TActivityModel?> fetchedActivities =
-        await activityService.getRecentActivities();
+        await activityService.getPastActivitiesOrdered();
 
     pastActivities.addAll(fetchedActivities);
 

@@ -42,7 +42,7 @@ class TActivityListView extends StatelessWidget {
                           DemoInformation.myPastActivitiesTime(
                               activityModel?.dateTime ?? Timestamp.now()),
                           ActivityTextUtil.join,
-                          DemoInformation.ayrowmodel,
+                          DemoInformation.therapistnameActivityMod(""),
                         );
                       },
                     )),

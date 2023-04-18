@@ -596,18 +596,20 @@ class DemoInformation {
         leadingIcon: IconUtility.activityIcon);
   }
 
-  static RowModel ayrowmodel = RowModel(
-      isAlignmentBetween: false,
-      text: "Özlem Ulusan",
-      textStyle: const TextStyle(),
-      leadingIcon: IconUtility.personIcon);
-
-  static RowModel recentActivity(String therapistName) {
+  static RowModel therapistnameActivityMod(String therapistName) {
     return RowModel(
         isAlignmentBetween: false,
         text: therapistName,
         textStyle: const TextStyle(),
         leadingIcon: IconUtility.personIcon);
+  }
+
+  static RowModel titlenameActivityMod(String title) {
+    return RowModel(
+        isAlignmentBetween: false,
+        text: title,
+        textStyle: const TextStyle(),
+        leadingIcon: IconUtility.activityIcon);
   }
 
   static RowModel myPastActivitiesTime(Timestamp timestamp) {
@@ -686,12 +688,15 @@ class DemoInformation {
     trailingIcon: IconUtility.forward,
   );
 
-  static RowModel clockRow = RowModel(
-    leadingIcon: IconUtility.clockIcon,
-    text: "Her Pazartesi, 20:00",
-    textStyle: AppTextStyles.groupTextStyle(true),
-    isAlignmentBetween: false,
-  );
+  static RowModel clockRow(Timestamp timestamp) {
+    return RowModel(
+      leadingIcon: IconUtility.clockIcon,
+      text: DateTimeManager.getFormattedDateFromFormattedString(
+          value: timestamp.toDate().toIso8601String()),
+      textStyle: AppTextStyles.groupTextStyle(true),
+      isAlignmentBetween: false,
+    );
+  }
 
   static RowModel clockRow1(String text) {
     return RowModel(

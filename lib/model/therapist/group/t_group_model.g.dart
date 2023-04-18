@@ -19,9 +19,9 @@ TGroupModel _$TGroupModelFromJson(Map<String, dynamic> json) => TGroupModel(
           .toList(),
       dateTime:
           TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?),
-    )
-      ..numberOfWeeks = json['numberOfWeeks'] as int?
-      ..numberOfSessions = json['numberOfSessions'] as int?;
+      numberOfWeeks: json['numberOfWeeks'] as int?,
+      numberOfSessions: json['numberOfSessions'] as int?,
+    );
 
 Map<String, dynamic> _$TGroupModelToJson(TGroupModel instance) =>
     <String, dynamic>{

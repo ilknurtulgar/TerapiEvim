@@ -14,8 +14,6 @@ import '../../../../../core/base/view/base_view.dart';
 class PShortCallTimeView extends StatelessWidget {
   PShortCallTimeView({super.key});
 
-  // gecici
-
   @override
   Widget build(BuildContext context) {
     return BaseView<PDeterminingShortCallController>(

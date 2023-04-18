@@ -12,7 +12,7 @@ class PActivityService extends IPActivityService with BaseService {
       : super(manager);
 
   @override
-  Future<List<TActivityModel?>> getRecentActivities() async {
+  Future<List<TActivityModel>> getRecentActivities() async {
     if (userId == null) return [];
 
     final result =
@@ -76,7 +76,7 @@ class PActivityService extends IPActivityService with BaseService {
   }
 
   @override
-  Future<List<TActivityModel?>> getRecentActivitiesOrdered({
+  Future<List<TActivityModel>> getRecentActivitiesOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,

@@ -20,7 +20,9 @@ class PMyGroupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<PGroupController>(
       getController: PGroupController(),
-      onModelReady: (model) {},
+      onModelReady: (model) {
+        //seansa katilmali
+      },
       onPageBuilder: (context, controller) => Scaffold(
         appBar: MyAppBar(title: GroupTextUtil.myGroupText),
         body: SafeArea(
@@ -72,7 +74,6 @@ class PMyGroupView extends StatelessWidget {
         : type == RowType.secTherapist
             ? GroupTextUtil.secondTherapistText
             : "";
-    text += name;
 
     return RowModel(
       isAlignmentBetween: false,
@@ -80,7 +81,7 @@ class PMyGroupView extends StatelessWidget {
           type == RowType.date ? IconUtility.clockIcon : IconUtility.personIcon,
       text: text,
       textStyle: AppTextStyles.groupTextStyle(false),
-      text2: DemoInformation.therapistName,
+      text2: name,
       textStyle2: AppTextStyles.groupTextStyle(true),
     );
   }

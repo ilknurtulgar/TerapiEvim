@@ -15,26 +15,29 @@ class PPastActivitiesListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<PPastActivitiesListViwController>(
-      getController: PPastActivitiesListViwController(),
-      onPageBuilder: (context, PPastActivitiesListViwController controller) =>
-          Scaffold(
-        appBar: Search(rowModel: UiBaseModel.searchRow()),
-        body: Padding(
-          padding: AppPaddings.pagePadding,
-          child: SliverType(
-            activityType: ActivityType.pastactivities,
-            arrowOnTap: () {},
-            sLiverListWidget: activitythreerowbox(
-                () {},
-                () {},
-                DemoInformation.recentActivity("Sema kara"),
-                DemoInformation.clockRow,
-                ActivityTextUtil.watchTheRecording,
-                DemoInformation.ayrowmodel),
-            childCount: 3,
-          ),
-        ),
-      ),
-    );
+        getController: PPastActivitiesListViwController(),
+        onPageBuilder: (context, PPastActivitiesListViwController controller) =>
+            Scaffold(
+                appBar: Search(rowModel: UiBaseModel.searchRow()),
+                body: Padding(
+                  padding: AppPaddings.pagePadding,
+                  child: SliverType(
+                    activityType: ActivityType.pastactivities,
+                    arrowOnTap: () {},
+                    delegate: SliverChildBuilderDelegate(
+                      (context, index) {
+                        activitythreerowbox(
+                            () {},
+                            () {},
+                            DemoInformation.recentActivity("Sema kara"),
+                            DemoInformation.clockRow,
+                            ActivityTextUtil.watchTheRecording,
+                            DemoInformation.ayrowmodel);
+                        return null;
+                      },
+                      childCount: 3,
+                    ),
+                  ),
+                )));
   }
 }

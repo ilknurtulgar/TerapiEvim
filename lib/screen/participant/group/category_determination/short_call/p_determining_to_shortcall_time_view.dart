@@ -18,7 +18,6 @@ class PShortCallTimeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String hiUser = "Merhaba ${DemoInformation.userName}";
     return BaseView<PDeterminingShortCallController>(
       getController: PDeterminingShortCallController(),
       onPageBuilder: (context, controller) => Scaffold(
@@ -32,7 +31,7 @@ class PShortCallTimeView extends StatelessWidget {
                     padding: AppPaddings.appBarPadding),
                 line(),
                 CustomHeading(
-                  text: hiUser,
+                  text: "Merhaba ${DemoInformation.userName}",
                   isalignmentstart: false,
                 ),
                 const PurpleTextContainer(

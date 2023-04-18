@@ -13,6 +13,7 @@ import '../../../core/extension/context_extension.dart';
 import '../../therapist/profile/t_profile_view.dart';
 import 'p_attended_seminars_view.dart';
 import 'p_last_review_view.dart';
+import 'settings/p_settings_view.dart';
 import 'util/p_profile_view_utility.dart';
 
 class PProfileView extends StatelessWidget {
@@ -33,8 +34,7 @@ class PProfileView extends StatelessWidget {
                   PProfileViewUtility.backgroundOfTheView(),
                   PProfileViewUtility.positionedIconButton(
                       IconUtility.settingIcon.icon!,
-                      () {},
-                      /*() => context.push(PSettingsView())*/
+                      () => context.push(PSettingsView()),
                       Responsive.height(40, context),
                       Responsive.width(20, context)),
                   PProfileViewUtility.profilePagePersonImage(
@@ -59,9 +59,7 @@ class PProfileView extends StatelessWidget {
                               .groupInformation.mainTherapistName,
                           secondRowTextList:
                               DemoInformation.groupInformation.methodTitles,
-                          onTap: () {
-                            
-                          },
+                          onTap: () {},
                         ),
                         mediumSizedBox(),
                         UiBaseModel.boldMainTitleRowView(
@@ -70,17 +68,14 @@ class PProfileView extends StatelessWidget {
                           context.push(const PAttendedSeminarsView());
                         }),
                         ProfileViewListView(
-                            isForParticipant: true,
-                            isForMethod: false,
-                            firstRowTextList: DemoInformation
-                                .lastWatchedSeminars
-                                .getSeminarsTherapistName(),
-                            secondRowTextList: DemoInformation
-                                .lastWatchedSeminars
-                                .getSeminarTitles(),
-                                onTap: () {
-                                  
-                                },),
+                          isForParticipant: true,
+                          isForMethod: false,
+                          firstRowTextList: DemoInformation.lastWatchedSeminars
+                              .getSeminarsTherapistName(),
+                          secondRowTextList: DemoInformation.lastWatchedSeminars
+                              .getSeminarTitles(),
+                          onTap: () {},
+                        ),
                         mediumSizedBox(),
                       ],
                     ),

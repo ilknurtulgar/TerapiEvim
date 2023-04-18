@@ -8,8 +8,11 @@ class TGroupViewController extends BaseController2 {
   void setContext(BuildContext context) {
     // TODO: implement setContext
   }
+
   RxBool isLockedOpen = false.obs;
+  
   void changeisLockedOpen() {
     isLockedOpen.value = !isLockedOpen.value;
   }
+
 }

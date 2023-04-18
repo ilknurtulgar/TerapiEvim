@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/model/common/activity/t_activity_model.dart';
 
 import '../../../controller/participant/activity/p_upcoming_activities_list_view_controller.dart';
@@ -21,24 +23,28 @@ class PUpComingActivitiesListView extends StatelessWidget {
         appBar: Search(rowModel: UiBaseModel.searchRow()),
         body: Padding(
           padding: AppPaddings.pagePadding,
-          child: SliverType(
-              activityType: ActivityType.upcomingActivities,
-              arrowOnTap: () {},
-              delegate: SliverChildBuilderDelegate(
-                (context, index) {
-                  final TActivityModel? copingMethodModel =
-                      controller.upComingActivities[index];
-                  activitythreerowbox(
-                      () {},
-                      () {},
-                      DemoInformation.recentActivity("Sema koyu"),
-                      DemoInformation.clockRow,
-                      ActivityTextUtil.join,
-                      DemoInformation.ayrowmodel);
-                  return null;
-                },
-                childCount: 3,
-              )),
+          child: Obx(
+            () => SliverType(
+                activityType: ActivityType.upcomingActivities,
+                arrowOnTap: () {},
+                delegate: SliverChildBuilderDelegate(
+                  (context, index) {
+                    final TActivityModel? activityModel =
+                        controller.upComingActivities[index];
+                    return activitythreerowbox(
+                        () {},
+                        () {},
+                        DemoInformation.titlenameActivityMod(
+                            activityModel?.title ?? ""),
+                        DemoInformation.clockRow(
+                            activityModel?.dateTime ?? Timestamp.now()),
+                        ActivityTextUtil.join,
+                        DemoInformation.therapistnameActivityMod(
+                            activityModel?.therapistName ?? "empty"));
+                  },
+                  childCount: controller.upComingActivities.length,
+                )),
+          ),
         ),
       ),
     );

@@ -44,6 +44,7 @@ class PMessageView extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           CustomTextField(
+            isPassword: true,
             isOne: true,
             textController: textEditingController,
             isBig: false,

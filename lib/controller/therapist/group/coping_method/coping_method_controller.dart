@@ -26,6 +26,7 @@ class TCopingMethodsController extends GetxController with BaseController {
     titleController = TextEditingController();
 
     descriptionController = TextEditingController();
+    subjectTitleEditingController = TextEditingController();
 
     _copingMethodService = TCopingMethodService(vexaFireManager.networkManager);
 
@@ -40,6 +41,7 @@ class TCopingMethodsController extends GetxController with BaseController {
   void dispose() {
     titleController.dispose();
     descriptionController.dispose();
+    subjectTitleEditingController.dispose();
 
     super.dispose();
   }
@@ -52,6 +54,7 @@ class TCopingMethodsController extends GetxController with BaseController {
 
   late TextEditingController descriptionController;
   late TextEditingController titleController;
+  late TextEditingController subjectTitleEditingController;
 
   final PickerManager pickerManager = PickerManager.instance;
 

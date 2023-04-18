@@ -18,6 +18,7 @@ class Search extends StatelessWidget implements PreferredSizeWidget {
         backgroundColor: AppColors.blueChalk,
         elevation: 0,
         title: CustomTextField(
+          isPassword: true,
           isOne: true,
           isBig: true,
           isRowModel: true,

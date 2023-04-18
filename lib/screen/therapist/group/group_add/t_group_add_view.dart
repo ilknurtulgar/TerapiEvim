@@ -54,6 +54,7 @@ class TGroupAddView extends StatelessWidget {
                     isAlignedInCenter: false),
                 CustomTextField(
                     isOne: true,
+                    isPassword: false,
                     isBig: true,
                     textController: controller.groupNameController,
                     isRowModel: false),
@@ -79,6 +80,7 @@ class TGroupAddView extends StatelessWidget {
                     isInMiddle: false,
                     isAlignedInCenter: false),
                 CustomTextField(
+                    isPassword: false,
                     isBig: true,
                     textController: controller.numberOfWeek,
                     isRowModel: false,
@@ -88,6 +90,7 @@ class TGroupAddView extends StatelessWidget {
                     isInMiddle: false,
                     isAlignedInCenter: false),
                 CustomTextField(
+                    isPassword: false,
                     isBig: true,
                     textController: controller.numberOfSession,
                     isRowModel: false,

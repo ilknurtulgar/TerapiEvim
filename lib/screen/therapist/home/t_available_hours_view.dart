@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
 
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
@@ -33,31 +34,23 @@ class TAvailableHoursView extends StatelessWidget {
   }
 
   Widget choosingtime(TAvailableHoursViewController controller) {
-    return  Obx(
+    return Obx(
       () => ListView.builder(
-            padding: EdgeInsets.zero,
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: AppPaddings.timeChossingBetweenPadding,
-                child:  ChoosingTimeForSCContainer(
-                      date: controller.sessionTimeList[index].date, //[index].value.date, //DemoInformation.dateList[index],
-                      timeList: controller.sessionTimeList[index].timeList, //DemoInformation.timelist,
-                      isForParticipant: false)
-                );
-            },
-            itemCount: controller.sessionTimeList.length,
+        padding: EdgeInsets.zero,
+        itemBuilder: (context, index) {
+          final TFreeDateModel? tFreeDateModel =
+              controller.sessionTimeList[index];
+          return Padding(
+              padding: AppPaddings.timeChossingBetweenPadding,
+              child: ChoosingTimeForSCContainer(
+                  date:
+                      "", //(tFreeDateModel?.dateTime ??  Timestamp.fromDate(DateTime.now() as String)),
+                  timeList: DemoInformation
+                      .dateList, //tFreeDateModel?.hours.toList()?? ,
+                  isForParticipant: true));
+        },
+        itemCount: controller.sessionTimeList.length,
       ),
     );
-  }
-}
-
-extension ListDynamicExtension on List<dynamic> {
-  List<String> allToString() {
-    List<String> newList = [];
-    int i = 0;
-    for (i = 0; i < length; i++) {
-      newList[i] = this[i].toString();
-    }
-    return newList;
   }
 }

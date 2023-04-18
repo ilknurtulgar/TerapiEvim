@@ -59,6 +59,9 @@ class PProfileView extends StatelessWidget {
                               .groupInformation.mainTherapistName,
                           secondRowTextList:
                               DemoInformation.groupInformation.methodTitles,
+                          onTap: () {
+                            
+                          },
                         ),
                         mediumSizedBox(),
                         UiBaseModel.boldMainTitleRowView(
@@ -74,7 +77,10 @@ class PProfileView extends StatelessWidget {
                                 .getSeminarsTherapistName(),
                             secondRowTextList: DemoInformation
                                 .lastWatchedSeminars
-                                .getSeminarTitles()),
+                                .getSeminarTitles(),
+                                onTap: () {
+                                  
+                                },),
                         mediumSizedBox(),
                       ],
                     ),

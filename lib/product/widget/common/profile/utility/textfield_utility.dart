@@ -12,7 +12,7 @@ class TextFieldUtility {
           title: "Ad Soyad",
           textController: textController,
           rowModel: RowModel(
-            text: isBig ? 'Adınız Soyadınız' : "",
+            text: "",
             textStyle: const TextStyle(
                 color: AppColors
                     .black), // bunları öylesine verdim bunlar hint ve label textlere etki etmiyor,textfield içerisindeki labelStyle a asıl textstyle'ı verdim
@@ -30,9 +30,8 @@ class TextFieldUtility {
         textController: textController,
         onTap: () => choosingBirthday(textController),
         rowModel: RowModel(
-            text: isBig ? 'Doğum Tarihiniz' : "",
+            text: 'gg/aa/yyyy ',
             textStyle: const TextStyle(color: AppColors.black),
-            text2: 'gg/aa/yyyy',
             isAlignmentBetween: false,
             leadingIcon: IconUtility.calendarIcon),
         isBig: isBig,
@@ -45,8 +44,7 @@ class TextFieldUtility {
           title: "E Posta",
           textController: textController,
           rowModel: RowModel(
-              text2: "abcde@gmail.com",
-              text: isBig ? 'E Posta Adresiniz' : "",
+              text: "abcde@gmail.com",
               textStyle: const TextStyle(color: AppColors.black),
               isAlignmentBetween: false,
               leadingIcon: IconUtility.emailIcon),
@@ -63,7 +61,7 @@ class TextFieldUtility {
           title: "Şifre",
           textController: textController,
           rowModel: RowModel(
-            text: isBig ? 'Şifre' : "",
+            text: "",
             textStyle: const TextStyle(color: AppColors.black),
             isAlignmentBetween: false,
             leadingIcon: IconUtility.lockSmall,
@@ -92,7 +90,7 @@ class TextFieldUtility {
           title: 'Telefon Numarası',
           textController: textController,
           rowModel: RowModel(
-              text: isBig ? 'Telefon Numaranız' : "",
+              text: "",
               textStyle: const TextStyle(color: AppColors.black),
               isAlignmentBetween: false,
               leadingIcon: isBig ? IconUtility.contactPhoneIcon : null),

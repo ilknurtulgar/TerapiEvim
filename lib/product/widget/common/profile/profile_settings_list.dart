@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/controller/drop_down_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 import '../../../../controller/profile_settings_controller.dart';
@@ -6,9 +8,13 @@ import '../../../../core/base/component/profile/column_drop_down.dart';
 import 'utility/textfield_utility.dart';
 
 class ProfileSettingsList extends StatelessWidget {
-  ProfileSettingsList({Key? key, required this.profileController}) : super(key: key);
+  ProfileSettingsList(
+      {Key? key,
+      required this.profileController,
+      required this.dropDownController})
+      : super(key: key);
   final IProfileSettingsController profileController;
-
+  DropDownController dropDownController = Get.find();
   @override
   Widget build(BuildContext context) {
     TextFieldUtility textFieldUtility = TextFieldUtility();
@@ -23,7 +29,7 @@ class ProfileSettingsList extends StatelessWidget {
         textFieldUtility.birthOfDateTextfield(
             profileController.birthdayController, false),
         //  ProfilePageUtility.genderDropDown(true, profileController.genderController),
-        genderChoosing(),
+        genderChoosing(dropDownController),
         textFieldUtility.mailTextfield(
             profileController.emailController, false),
         textFieldUtility.passwordTextfield(
@@ -34,17 +40,20 @@ class ProfileSettingsList extends StatelessWidget {
     );
   }
 
-  Padding genderChoosing() {
+  Padding genderChoosing(DropDownController dropDownController) {
     return Padding(
-        padding: AppPaddings.componentPadding,
-        child: ColumnDropDown(
-          isInProfilePage: true,
-          title: "Cinsiyet",
-          onValueSelected: (int index) {},
-          onDropDownTapped: () {},
-          selectedText: '',
-          textList: [],
-        ),
-      );
+      padding: AppPaddings.componentPadding,
+      child: ColumnDropDown(
+        isBoxSelected: dropDownController.isBoxSelected,
+        isLogin: false,
+        isInProfilePage: true,
+        title: "Cinsiyet",
+        onValueSelected: (int index) {
+          dropDownController.setIsBoxSelected();
+        },
+        onDropDownTapped: () {},
+        selectedText: profileController.genders,
+      ),
+    );
   }
 }

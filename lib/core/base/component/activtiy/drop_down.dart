@@ -13,6 +13,8 @@ class CustomDropDown extends StatelessWidget {
     required this.isBoxSelected,
     required this.onDropDownTapped,
     required this.onValueSelected,
+    required this.isLogin,
+    this.alignment,
   });
 
   final double width;
@@ -22,15 +24,15 @@ class CustomDropDown extends StatelessWidget {
   final List<String> textList;
   final Function() onDropDownTapped;
   final Function(int) onValueSelected;
-
+  final AlignmentGeometry? alignment;
   final RxString selectedText;
-
+  final bool isLogin;
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: AppPaddings.componentPadding,
       child: Align(
-        alignment: Alignment.centerRight,
+        alignment: alignment ?? Alignment.centerRight,
         child: SizedBox(
           width: Responsive.width(width, context),
           child: Column(
@@ -39,7 +41,9 @@ class CustomDropDown extends StatelessWidget {
                 onTap: onDropDownTapped,
                 child: Container(
                     alignment: Alignment.center,
-                    decoration: AppBoxDecoration.purpleBorder,
+                    decoration: isLogin
+                        ? AppBoxDecoration.dropDownDecoration
+                        : AppBoxDecoration.purpleBorder,
                     height: height,
                     width: Responsive.width(width, context),
                     child: Obx(() => Text(selectedText.value))),
@@ -47,6 +51,7 @@ class CustomDropDown extends StatelessWidget {
               Obx(
                 () => isBoxSelected.value
                     ? _DropDownList(
+                        isLogin: isLogin,
                         onSelected: (int value) {
                           isBoxSelected.value = false;
                           onValueSelected(value);
@@ -69,18 +74,21 @@ class _DropDownList extends StatelessWidget {
     required this.setString,
     required this.textList,
     required this.onSelected,
+    required this.isLogin,
   });
 
   final List<String> textList;
   final RxString setString;
-
+  final bool isLogin;
   final void Function(int) onSelected;
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 75,
-      decoration: AppBoxDecoration.purpleBorder,
+      decoration: isLogin
+          ? AppBoxDecoration.dropDownDecoration
+          : AppBoxDecoration.purpleBorder,
       child: ListView.builder(
         shrinkWrap: true,
         physics: const NeverScrollableScrollPhysics(),

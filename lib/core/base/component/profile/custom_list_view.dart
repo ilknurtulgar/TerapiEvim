@@ -13,13 +13,15 @@ class ProfileViewListView extends StatelessWidget {
       this.firstRowTextList,
       this.mainTherapistName,
       required this.secondRowTextList,
-      this.groupNameList});
+      this.groupNameList,
+      required this.onTap});
   final bool isForParticipant;
   final bool isForMethod;
   final List<String>? firstRowTextList;
   final String? mainTherapistName;
   final List<String> secondRowTextList;
   final List<String>? groupNameList;
+  final Function() onTap;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -78,7 +80,7 @@ class ProfileViewListView extends StatelessWidget {
           : isForMethod
               ? TherapistProfileTextUtil.view
               : TherapistProfileTextUtil.watch,
-      firstOnTap: (){},
+      firstOnTap: onTap,
     );
   }
 }

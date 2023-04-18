@@ -18,6 +18,7 @@ class OrderDropDown extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomDropDown(
+      isLogin: false,
       selectedText: selectedText,
       isBoxSelected: isBoxSelected,
       onDropDownTapped: onDropDownTapped,

@@ -121,7 +121,7 @@ class TActivityView extends StatelessWidget {
           DemoInformation.myPastActivitiesTime(
               otherUpComingActivity?.dateTime ?? Timestamp.now()),
           ActivityTextUtil.join,
-          DemoInformation.ayrowmodel);
+          DemoInformation.therapistnameActivityMod(""));
 
   ActivityBox _myUpcomingActivities(
       BuildContext context,

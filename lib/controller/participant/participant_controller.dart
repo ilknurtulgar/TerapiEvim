@@ -32,9 +32,7 @@ class ParticipantController extends BaseController2 {
 
   RxBool isTestResultReady = false.obs;
 
-
   Future<void> _fetchInitialDataOfParticipant() async {
-
     final PInitialData? initialDataOfParticipantModel =
         await authService.fetchInitialDataOfParticipant();
 

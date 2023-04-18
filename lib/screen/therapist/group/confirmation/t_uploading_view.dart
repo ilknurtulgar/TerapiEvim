@@ -23,6 +23,7 @@ class TUploadConfirmView extends StatelessWidget {
           padding: AppPaddings.pagePadding,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
                 padding: AppPaddings.appBarPadding,

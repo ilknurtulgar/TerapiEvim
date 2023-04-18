@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -122,7 +123,7 @@ class TGroupInformationView extends StatelessWidget {
         buttonText: GroupTextUtil.startText,
         arowModel: DemoInformation.row2,
         isactivity: true,
-        clockModel: DemoInformation.clockRow);
+        clockModel: DemoInformation.clockRow(Timestamp.now()));
   }
 
   Padding navMethod(RowModel row, Function() func) {

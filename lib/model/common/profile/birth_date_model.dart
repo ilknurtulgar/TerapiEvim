@@ -5,10 +5,10 @@ part 'birth_date_model.g.dart';
 
 @JsonSerializable()
 class BirthDateModel extends INetworkModel<BirthDateModel> {
-  String? birthdate;
+  String? birthDate;
 
   BirthDateModel({
-    this.birthdate,
+    this.birthDate,
   });
 
   @override

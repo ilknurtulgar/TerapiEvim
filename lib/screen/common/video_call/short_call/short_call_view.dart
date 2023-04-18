@@ -1,20 +1,27 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/controller/video_call/p_short_call_controller.dart';
+import 'package:terapievim/controller/video_call/short_call_controller.dart';
 import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
 import 'package:terapievim/core/base/ui_models/video_call/person_in_call_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
-import '../../../core/base/component/video_call/container/video_call_person.dart';
-import 'util/utility.dart';
 
-// ignore: must_be_immutable
+import '../../../../core/base/component/video_call/container/video_call_person.dart';
+import '../../../../model/common/video_call/video_call_token_model.dart';
+import '../../../participant/video_call/util/utility.dart';
+
 class ShortCallView extends StatelessWidget {
-  ShortCallView({super.key});
+  ShortCallView({super.key, required this.videoCallToken});
+
+  final VideoCallTokenModel videoCallToken;
+
   @override
   Widget build(BuildContext context) {
-    return BaseView<PShortCallController>(
-        getController: PShortCallController(),
-        onModelReady: (model) {},
+    return BaseView<ShortCallController>(
+        getController: ShortCallController(),
+        onModelReady: (controller) {
+          controller.setContext(context);
+          controller.setToken(videoCallToken);
+        },
         onPageBuilder: (context, controller) {
           return Scaffold(
             backgroundColor: AppColors.mineShaft,
@@ -30,9 +37,11 @@ class ShortCallView extends StatelessWidget {
                       context), // participantCallView
                   mediumSizedBox(),
                   VideoCallButtonsRow(
-                    onLeaveButtonPressed: () {},
-                    onToggleCameraButtonPressed: () {},
-                    onToggleMicButtonPressed: () {},
+                    onToggleMicButtonPressed: () =>
+                        controller.triggerMicrophone(),
+                    onToggleCameraButtonPressed: () =>
+                        controller.triggerCamera(),
+                    onLeaveButtonPressed: () => controller.leaveRoom(),
                   ),
                 ],
               ),
@@ -41,7 +50,7 @@ class ShortCallView extends StatelessWidget {
         });
   }
 
-  Widget personCallView(PShortCallController videoCallController,
+  Widget personCallView(ShortCallController videoCallController,
       PersonInCallModel person, BuildContext context) {
     return VideoCallPerson(
       micOnOffFunction: () => videoCallController.onOffFunction(person.isMicOn),

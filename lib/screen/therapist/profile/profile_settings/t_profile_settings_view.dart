@@ -20,7 +20,6 @@ part 'modules/special_column.dart';
 
 class TProfileSettingsView extends StatelessWidget {
   TProfileSettingsView({super.key});
-  DropDownController dropDownController = Get.find();
   @override
   Widget build(BuildContext context) {
     return BaseView<TProfileSettingsController>(
@@ -40,7 +39,7 @@ class TProfileSettingsView extends StatelessWidget {
                 ProfileBackIconButton(
                   onTap: () => context.pop(),
                 ),
-                _bigColumn(context, controller, dropDownController),
+                _bigColumn(context, controller),
                 /*DemoInformation.isForParticipant == false
                   ? Positioned(
                       top: 940,

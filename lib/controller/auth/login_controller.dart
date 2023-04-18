@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/main_controller.dart';
+import 'package:terapievim/controller/participant/participant_controller.dart';
+import 'package:terapievim/controller/therapist/therapist_controller.dart';
+import 'package:videosdk/videosdk.dart';
 
 import '../../core/base/component/toast/toast.dart';
 import '../../core/constants/app_const.dart';
@@ -97,8 +100,11 @@ class LoginController extends GetxController with BaseController {
   }
 
   Future<void> _initialDataOfTherapist(LoginResponseModel loginResponse) async {
+    Get.put(TherapistController());
+
     final TInitialData? initialDataOfTherapist =
         await authService.fetchInitialDataOfTherapist();
+
     await localManager.setStringValue(
         LocalManagerKeys.aboutMe, loginResponse.aboutMe ?? "");
     await localManager.setBoolValue(LocalManagerKeys.isTherapistConfirmed,
@@ -112,6 +118,8 @@ class LoginController extends GetxController with BaseController {
   }
 
   Future<void> _fetchInitialDataOfParticipant() async {
+    Get.put(ParticipantController());
+
     final PInitialData? initialDataOfParticipantModel =
         await authService.fetchInitialDataOfParticipant();
 

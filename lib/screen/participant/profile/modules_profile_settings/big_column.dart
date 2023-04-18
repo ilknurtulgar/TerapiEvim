@@ -11,8 +11,7 @@ Padding _bigColumn(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           ProfileSettingsList(
-              profileController: pProfileController,
-              dropDownController: dropDownController),
+              profileController: pProfileController,),
           SaveButton(onSaved: () {
             pProfileController.save();
           }),

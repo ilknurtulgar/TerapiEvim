@@ -9,8 +9,9 @@ import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
+import '../../../model/common/video_call/video_call_token_model.dart';
 import '../../../product/widget/common/order_drop_down.dart';
-import '../../participant/video_call/short_call_view.dart';
+import '../../common/video_call/short_call/short_call_view.dart';
 import 'session/test_result_view.dart';
 import 't_available_hours_view.dart';
 
@@ -60,7 +61,12 @@ class TSessionView extends StatelessWidget {
               sessionModel?.participantName ?? "",
               (sessionModel?.dateTime ?? Timestamp.now()) as String,
               () => context.push(TestResultView()),
-              () => context.push(ShortCallView()));
+
+              ///TODO add real meetingId and token
+              () => context.pushAndRemoveUntil(ShortCallView(
+                    videoCallToken:
+                        VideoCallTokenModel(meetingId: '', token: ''),
+                  )));
         })));
   }
 

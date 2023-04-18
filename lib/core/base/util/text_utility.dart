@@ -6,6 +6,10 @@ class GroupTextUtil {
   static const String findAnotherTherapist = "Tekrar Psikolog Bul";
   static const String notificationSecThe = "Yardimci Psikolog Bulunmasi";
   //lockscreen
+  static const String lockScreenLockedText =
+      "Henüz Grubunuz Belli Olmadığı İçin Burası Kilitli";
+  static const String lockScreenNoTestDefinitionText =
+      "Aşağıda zaman zaman herkeste olabilecek yakınma ve sorunların bir listesi vardır. Lütfen her birini dikkatlice okuyunuz. Sonra bu durumun, bugün de dahil olmak üzere son onbeş gün içinde sizi ne ölçüde huzursuz ve tedirgin ettiğini göz önüne alarak, aşağıda belirtilen tanımlamalardan (Hiç / Çok az / Orta derecede / Oldukça fazla / Aşırı düzeyde) uygun olanının altındaki yeri işaretleyerek seçiniz.";
   static const String lockScreenText =
       "15 dakikalık seansınızı gerçekleştirdikten sonra grubunuz belli olacaktır.Seans bilgileriniz aşağıdaki gibidir.";
   static const String tlockScreenUnconformed =
@@ -19,6 +23,7 @@ class GroupTextUtil {
   static String confirmationText = "Belgeniz onaylandı devam edebilirsiniz.";
   static String lockScreenWarningText =
       "Terapist Onaylanmasi Gerçekletirilmeden Devam Edilemez";
+
   static String confirmText = "Onayla";
   static String confirmingText = "Onaylama";
   static String whyConfirmingText =
@@ -72,6 +77,7 @@ class GroupTextUtil {
   static String deleteParticipantText =
       "   kişisini gruptan çıkarmak istediğinize emin misiniz?";
   static String myGroupsText = "Gruplarım";
+  static String errorText = "Bir sorun olustu.. Daha sonra tekrar deneyiniz";
 
   //group info container
   static String gruopTherapist = 'Grup Terapisti: ';
@@ -80,7 +86,7 @@ class GroupTextUtil {
   static String sessionNumber = 'Seans Sayısı: ';
   static String weekNumber = 'Hafta Sayısı: ';
   static String join = 'Katıl';
-  static String therapistTwoDot = "Psikolog: ";
+  static String therapistTwoDot = "Grup Terapisti: ";
 
   //new metot
 

@@ -85,8 +85,7 @@ Column conformed(BuildContext context) {
           container:
               AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
           onTap: () {
-            context.push(const TMyGroupsView());
-            //buradan kategori sayfasina yonlendirilecek
+            context.pushAndRemoveUntil(const TMyGroupsView());
           }),
     ],
   );

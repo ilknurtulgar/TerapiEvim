@@ -694,7 +694,7 @@ class DemoInformation {
       text: DateTimeManager.getFormattedDateFromFormattedString(
           value: timestamp.toDate().toIso8601String()),
       textStyle: AppTextStyles.groupTextStyle(true),
-      isAlignmentBetween: false,
+      isAlignmentBetween: true,
     );
   }
 
@@ -782,7 +782,7 @@ class DemoInformation {
 
   static String imagePath = "assets/images/doctorfotosu.jpeg";
   static RowModel row = RowModel(
-    isAlignmentBetween: false,
+    isAlignmentBetween: true,
     leadingIcon: IconUtility.personIcon,
     text: "Grup Terapisti : ",
     textStyle: AppTextStyles.groupTextStyle(false),

@@ -12,6 +12,7 @@ PInitialData _$PInitialDataFromJson(Map<String, dynamic> json) => PInitialData(
       groupCategory: json['groupCategory'] as String?,
       isScl90Submitted: json['isScl90Submitted'] as bool?,
       isSessionComplete: json['isSessionComplete'] as bool?,
+      isTestResultReady: json['isTestResultReady'] as bool?,
     );
 
 Map<String, dynamic> _$PInitialDataToJson(PInitialData instance) =>
@@ -21,4 +22,5 @@ Map<String, dynamic> _$PInitialDataToJson(PInitialData instance) =>
       'groupCategory': instance.groupCategory,
       'isScl90Submitted': instance.isScl90Submitted,
       'isSessionComplete': instance.isSessionComplete,
+      'isTestResultReady': instance.isTestResultReady,
     };

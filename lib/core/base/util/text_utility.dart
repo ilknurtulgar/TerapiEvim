@@ -46,7 +46,7 @@ class GroupTextUtil {
   static String addGroupText = "Grup Ekle";
   static String groupNameText = "Grup İsmi";
   static String groupCategory = "Grup Kategorisi";
-  static String secondTherapistText = "Yardımcı Psikolog  ";
+  static String secondTherapistText = "Yardımcı Psikolog: ";
   static String meetDayText = "Görüşme Tarihi";
   static String dayText = "Gün";
   static String timeText = "Saat";

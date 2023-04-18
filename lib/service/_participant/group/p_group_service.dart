@@ -50,20 +50,20 @@ class PGroupService extends IPGroupService with BaseService {
         return [];
       }
 
-      for (JoinableGroupModel joinableGroup in result.data!) {
-        if (joinableGroup.therapistHelperId != null) {
-          final UserModel? therapistHelper =
-              await _fetchUser(joinableGroup.therapistHelperId!);
-          joinableGroup.therapistHelperImageUrl =
-              therapistHelper?.imageUrl ?? '';
-          joinableGroup.therapistHelperName = therapistHelper?.name ?? '';
-        }
 
-        final UserModel? therapist =
-            await _fetchUser(joinableGroup.therapistId!);
-        joinableGroup.therapistImageUrl = therapist?.imageUrl ?? '';
-        joinableGroup.therapistHelperName = therapist?.name ?? '';
+    for (JoinableGroupModel joinableGroup in result.data!) {
+      if (joinableGroup.therapistHelperId != null) {
+        final UserModel? therapistHelper =
+            await _fetchUser(joinableGroup.therapistHelperId!);
+        joinableGroup.therapistHelperImageUrl = therapistHelper?.imageUrl ?? '';
+        joinableGroup.therapistHelperName = therapistHelper?.name ?? '';
       }
+
+      final UserModel? therapist = await _fetchUser(joinableGroup.therapistId!);
+      joinableGroup.therapistImageUrl = therapist?.imageUrl ?? '';
+      joinableGroup.therapistName = therapist?.name ?? '';
+    }
+
 
       return result.data!;
     } catch (e) {

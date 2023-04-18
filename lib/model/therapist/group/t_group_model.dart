@@ -37,6 +37,8 @@ class TGroupModel extends INetworkModel<TGroupModel> {
     this.hasHelperTherapistAccepted,
     this.participantsId,
     this.dateTime,
+    this.numberOfWeeks,
+    this.numberOfSessions,
   });
 
   @override

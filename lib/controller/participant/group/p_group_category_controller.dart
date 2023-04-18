@@ -1,7 +1,7 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/base/base_controller.dart';
-import 'package:terapievim/service/_participant/group/t_group_service.dart';
+import 'package:terapievim/service/_participant/group/p_group_service.dart';
 
 import '../../../model/participant/group/joinable_group_model.dart';
 import '../../../service/_participant/group/i_p_group_service.dart';

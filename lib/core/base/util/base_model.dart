@@ -14,7 +14,7 @@ class UiBaseModel {
       leadingIcon: IconUtility.chatIcon,
       text: GroupTextUtil.messageToTherapist,
       textStyle: AppTextStyles.groupTextStyle(false),
-      isAlignmentBetween: false);
+      isAlignmentBetween: true);
   static RowModel searchModel(String text, Widget trailingIcon) => RowModel(
       isAlignmentBetween: true,
       text: text,

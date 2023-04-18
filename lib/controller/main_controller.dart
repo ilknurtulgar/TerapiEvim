@@ -12,8 +12,7 @@ import 'therapist/therapist_controller.dart';
 
 class MainController extends GetxController with BaseController {
   var currentScreenIndex = 0.obs;
-  var isGroupReady = true.obs;
-  var isTherapist = true.obs; //bunun degisimi yapilacak
+  var isTherapist = false.obs; //bunun degisimi yapilacak
 
   late final CupertinoTabController tabController;
 

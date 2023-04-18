@@ -66,7 +66,7 @@ class PLockView extends StatelessWidget {
             container:
                 AppContainers.purpleButtonContainer(SizeUtil.largeValueWidth),
             onTap: () {
-              context.push(const PGroupCategoriesView());
+              context.pushAndRemoveUntil(const PGroupCategoriesView());
             },
             text: "Grup Kategori Sayfasi ")
       ],
@@ -95,8 +95,9 @@ class PLockView extends StatelessWidget {
   Column noTest(BuildContext context) {
     return Column(
       children: [
-        lockedTextContainer(GroupTextUtil.lockScreenText, false),
-        const PurpleTextContainer(text: GroupTextUtil.lockScreenText),
+        lockedTextContainer(GroupTextUtil.lockScreenLockedText, false),
+        const PurpleTextContainer(
+            text: GroupTextUtil.lockScreenNoTestDefinitionText),
         testButton(context)
       ],
     );

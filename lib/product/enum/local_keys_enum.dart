@@ -9,9 +9,19 @@ enum LocalManagerKeys {
   phone, // String
   imageUrl, // String
   isTermsOfUseAccepted, // bool
-  joinedGroupId,// bool
+
+  /// Participant
+  pJoinedGroupId, // String
+  pGroupCategory, // String
+  pIsJoinedGroupLocked, // bool
+  pIsTestResultReady, // bool
+  pIsScl90Submitted, // bool
+  pIsSessionComplete, // bool
+  ///Therapist
   isTherapistConfirmed, // bool
+  isTherapistBeingReviewed, // bool
   isBeingAdvisorAccepted, // bool
+  isDiplomaUploaded, // bool
   maxNumberOfGroups, // int
   isTDiplomaUploaded, // bool
 }

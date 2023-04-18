@@ -12,6 +12,7 @@ class TextsField extends StatelessWidget {
     return CustomTextField(
         isOne: true,
         maxLines: maxLines,
+        isPassword: false,
         isBig: true,
         textController: textEditingController,
         isRowModel: false);

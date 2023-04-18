@@ -20,7 +20,9 @@ class PMyGroupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<PGroupController>(
       getController: PGroupController(),
-      onModelReady: (model) {},
+      onModelReady: (model) {
+        //seansa katilmali
+      },
       onPageBuilder: (context, controller) => Scaffold(
         appBar: MyAppBar(title: GroupTextUtil.myGroupText),
         body: SafeArea(
@@ -36,9 +38,12 @@ class PMyGroupView extends StatelessWidget {
                   buttonText: GroupTextUtil.joinText,
                   isactivity: false,
                   containerModel: AppContainers.containerButton(false),
-                  arowModel: DemoInformation.row,
-                  ayrowwModel: DemoInformation.row,
-                  clockModel: DemoInformation.row),
+                  arowModel:
+                      rows(DemoInformation.therapistName, RowType.therapist),
+                  ayrowwModel:
+                      rows(DemoInformation.therapistName, RowType.secTherapist),
+                  clockModel:
+                      rows(DemoInformation.therapistName, RowType.date)),
               CustomHeading(
                 text: GroupTextUtil.groupsInformationText,
                 isalignmentstart: true,
@@ -63,6 +68,24 @@ class PMyGroupView extends StatelessWidget {
     );
   }
 
+  RowModel rows(String name, RowType type) {
+    String text = type == RowType.therapist
+        ? GroupTextUtil.therapistTwoDot
+        : type == RowType.secTherapist
+            ? GroupTextUtil.secondTherapistText
+            : "";
+
+    return RowModel(
+      isAlignmentBetween: false,
+      leadingIcon:
+          type == RowType.date ? IconUtility.clockIcon : IconUtility.personIcon,
+      text: text,
+      textStyle: AppTextStyles.groupTextStyle(false),
+      text2: name,
+      textStyle2: AppTextStyles.groupTextStyle(true),
+    );
+  }
+
   PersonMin therapist(RowModel row, Function() fun) {
     return PersonMin(
       onTap: fun,
@@ -81,7 +104,7 @@ class PMyGroupView extends StatelessWidget {
   }
 }
 
-
+enum RowType { therapist, secTherapist, date }
 
 
 

@@ -399,8 +399,6 @@ class AppPaddings {
 
   static const EdgeInsets generalPadding = EdgeInsets.all(5);
 
-  static const EdgeInsets contentPadding = EdgeInsets.all(3);
-
   //grup
 //gruptan bu iki padding kaldi onlari da ben kullanmiyorum
   static EdgeInsets timeChossingBetweenPadding =
@@ -488,7 +486,7 @@ class AppBoxDecoration {
       color: AppColors.white,
       borderRadius: AppBorderRadius.generalBorderRadius,
       border:
-          Border.all(color: BorderColorUtil.textfieldBorderColor, width: 2));
+          Border.all(color: BorderColorUtil.textfieldBorderColor, width: 1));
   static OutlineInputBorder borderColor(bool isBig) {
     return OutlineInputBorder(
         borderRadius: AppBorderRadius.generalBorderRadius,
@@ -496,7 +494,7 @@ class AppBoxDecoration {
           color: isBig
               ? BorderColorUtil.textfieldBorderColor
               : BorderColorUtil.generalBorderColor,
-          width: 2,
+          width: 1,
         ));
   }
 //  BoxDecoration(
@@ -582,11 +580,13 @@ class DemoInformation {
 
 //activity
   static const String aboutActivtyName = "Grup Terapilerinin Etkisi";
-  static RowModel arowmodel = RowModel(
-      isAlignmentBetween: false,
-      text: "Grup Terapilerinin Etkisi",
-      textStyle: const TextStyle(),
-      leadingIcon: IconUtility.activityIcon);
+  static RowModel myPastActivities(String title) {
+    return RowModel(
+        isAlignmentBetween: false,
+        text: title,
+        textStyle: const TextStyle(),
+        leadingIcon: IconUtility.activityIcon);
+  }
 
   static RowModel recentActivityTitle(String title) {
     return RowModel(
@@ -596,13 +596,7 @@ class DemoInformation {
         leadingIcon: IconUtility.activityIcon);
   }
 
-  static RowModel ayrowmodel = RowModel(
-      isAlignmentBetween: false,
-      text: "Özlem Ulusan",
-      textStyle: const TextStyle(),
-      leadingIcon: IconUtility.personIcon);
-
-  static RowModel recentActivity(String therapistName) {
+  static RowModel therapistnameActivityMod(String therapistName) {
     return RowModel(
         isAlignmentBetween: false,
         text: therapistName,
@@ -610,11 +604,22 @@ class DemoInformation {
         leadingIcon: IconUtility.personIcon);
   }
 
-  static RowModel clockmodel = RowModel(
-      isAlignmentBetween: false,
-      text: "Ocak 15,2023,20:00",
-      textStyle: const TextStyle(),
-      leadingIcon: IconUtility.clockIcon);
+  static RowModel titlenameActivityMod(String title) {
+    return RowModel(
+        isAlignmentBetween: false,
+        text: title,
+        textStyle: const TextStyle(),
+        leadingIcon: IconUtility.activityIcon);
+  }
+
+  static RowModel myPastActivitiesTime(Timestamp timestamp) {
+    return RowModel(
+        isAlignmentBetween: false,
+        text: DateTimeManager.getFormattedDateFromFormattedString(
+            value: timestamp.toDate().toIso8601String()),
+        textStyle: const TextStyle(),
+        leadingIcon: IconUtility.clockIcon);
+  }
 
   static RowModel recentActivityTime(Timestamp timestamp) {
     return RowModel(
@@ -683,12 +688,15 @@ class DemoInformation {
     trailingIcon: IconUtility.forward,
   );
 
-  static RowModel clockRow = RowModel(
-    leadingIcon: IconUtility.clockIcon,
-    text: "Her Pazartesi, 20:00",
-    textStyle: AppTextStyles.groupTextStyle(true),
-    isAlignmentBetween: false,
-  );
+  static RowModel clockRow(Timestamp timestamp) {
+    return RowModel(
+      leadingIcon: IconUtility.clockIcon,
+      text: DateTimeManager.getFormattedDateFromFormattedString(
+          value: timestamp.toDate().toIso8601String()),
+      textStyle: AppTextStyles.groupTextStyle(true),
+      isAlignmentBetween: false,
+    );
+  }
 
   static RowModel clockRow1(String text) {
     return RowModel(

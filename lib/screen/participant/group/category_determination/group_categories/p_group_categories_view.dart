@@ -15,6 +15,9 @@ class PGroupCategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<PGroupCategoryController>(
+      onModelReady: (controller) {
+        controller.setContext(context);
+      },
       getController: PGroupCategoryController(),
       onPageBuilder: (context, controller) => Scaffold(
           appBar: MyAppBar(title: GroupTextUtil.groupCategoriesHeading),
@@ -34,7 +37,7 @@ class PGroupCategoriesView extends StatelessWidget {
             child: controller.groups.isEmpty
                 ? Text("Grup yok")
                 : GroupInformationContainer(
-                    onTap: controller.join,
+                    onTap: () => controller.join(group.id!),
                     groupName: group.name!,
                     mainTherapist: therapists(group.therapistImageUrl ?? "",
                         group.therapistName ?? "yok"),

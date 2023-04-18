@@ -10,12 +10,14 @@ class TInitialData extends INetworkModel<TInitialData> {
   bool? isTherapistBeingReviewed;
   bool? isBeingAdvisorAccepted;
   int? maxNumberOfHelpingGroups;
+  bool? isDiplomaUploaded;
 
   TInitialData({
     this.isTherapistConfirmed,
     this.isTherapistBeingReviewed,
     this.isBeingAdvisorAccepted,
     this.maxNumberOfHelpingGroups,
+    this.isDiplomaUploaded,
   });
 
   @override

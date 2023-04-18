@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/product/widget/common/group/coping_box.dart';
 
 import '../../../controller/therapist/home/t_home_view_controller.dart';
 import '../../../core/base/component/home/notification_container.dart';
@@ -26,11 +25,6 @@ class THomeView extends StatelessWidget {
             padding: AppPaddings.pagePadding,
             child: Column(
               children: [
-                CopingBox(
-                    copingText: "copingText",
-                    pdfName: "pdfName",
-                    onAddTapped: () {},
-                    onShareTapped: () {}),
                 headingText(true, true, GroupTextUtil.terapiEvim),
                 headingText(false, false, HomeTextUtil.welcome),
                 minDetailsBox(HomeTextUtil.myMinuteSessions,

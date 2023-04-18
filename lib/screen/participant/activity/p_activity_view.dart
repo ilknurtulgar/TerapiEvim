@@ -39,7 +39,14 @@ class PActivityView extends StatelessWidget {
                       },
                     ),
                   ),
-                  activityLoadSeminar(controller),
+                  Obx(
+                    () => _activityRecentSeminar(
+                        controller,
+                        context,
+                        controller.recentActivities.isEmpty
+                            ? null
+                            : controller.recentActivities.first),
+                  ),
                   SliverToBoxAdapter(
                     child: HeadingMinto(
                       text: ActivityTextUtil.pastActivities,
@@ -51,7 +58,11 @@ class PActivityView extends StatelessWidget {
                       },
                     ),
                   ),
-                  activityPastSeminar()
+                  Obx(() => _activityPastSeminar(
+                      context,
+                      controller.pastActivities.isEmpty
+                          ? null
+                          : controller.pastActivities.last))
                 ],
               ),
             ),
@@ -60,38 +71,37 @@ class PActivityView extends StatelessWidget {
   }
 }
 
-Widget activityLoadSeminar(PActivityController pActivityController) {
-  return Obx(() => SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (context, index) {
-            final TActivityModel activity =
-                pActivityController.recentActivities[index]!;
-            return activitythreerowbox(() {
-              context.push(const AboutActivityView());
-            }, () {
-              pActivityController.joinActivity(context, activity);
-            },
-                DemoInformation.recentActivity(activity.therapistName ?? ''),
-                DemoInformation.recentActivityTime(
-                    activity.dateTime ?? Timestamp.now()),
-                ActivityTextUtil.join,
-                DemoInformation.ayrowmodel);
-          },
-          childCount: pActivityController.recentActivities.length,
-        ),
-      ));
+Widget _activityRecentSeminar(PActivityController pActivityController,
+    BuildContext context, TActivityModel? recentactivity) {
+  return SliverToBoxAdapter(
+    child: activitythreerowbox(
+      () {
+        context.push(const AboutActivityView());
+      },
+      () {
+        pActivityController.joinActivity(context, recentactivity!);
+      },
+      DemoInformation.titlenameActivityMod(recentactivity?.title ?? ''),
+      DemoInformation.recentActivityTime(
+          recentactivity?.dateTime ?? Timestamp.now()),
+      ActivityTextUtil.join,
+      DemoInformation.therapistnameActivityMod("empty"),
+    ),
+  );
 }
 
-SliverList activityPastSeminar() {
-  return SliverList(
-    delegate: SliverChildBuilderDelegate(
-      (context, index) {
-        return activitythreerowbox(() {
-          context.push(const AboutActivityView());
-        }, () {}, DemoInformation.arowmodel, DemoInformation.clockmodel,
-            ActivityTextUtil.watchTheRecording, DemoInformation.ayrowmodel);
-      },
-      childCount: 2,
-    ),
+Widget _activityPastSeminar(
+    BuildContext context, TActivityModel? pastactivity) {
+  return SliverToBoxAdapter(
+    child: activitythreerowbox(() {
+      context.push(const AboutActivityView());
+    },
+        () {},
+        DemoInformation.myPastActivities(pastactivity?.title ?? ""),
+        DemoInformation.myPastActivitiesTime(
+            pastactivity?.dateTime ?? Timestamp.now()),
+        ActivityTextUtil.watchTheRecording,
+        DemoInformation.therapistnameActivityMod(
+            pastactivity?.therapistName ?? "empty")),
   );
 }

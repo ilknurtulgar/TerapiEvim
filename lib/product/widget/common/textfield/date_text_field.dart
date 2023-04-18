@@ -18,6 +18,7 @@ class DateTextField extends StatelessWidget {
     return Padding(
       padding: AppPaddings.componentPadding,
       child: CustomTextField(
+        isPassword: true,
         isOne: true,
         textController: textController,
         onTap: dateTapped,

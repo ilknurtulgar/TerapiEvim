@@ -1,6 +1,27 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class TLockScreenController extends GetxController {
-  var isConfirmed = false.obs;
-  var isUploaded = false.obs;
+import '../../base/base_controller_2.dart';
+import '../therapist_controller.dart';
+
+class TLockScreenController extends BaseController2 {
+  @override
+  void setContext(BuildContext context) {}
+
+  // @override
+  // void onInit() {
+  //   therapistController = Get.find();
+
+  //   isConfirmed = therapistController.isTherapistConfirmed;
+
+  //   isUploaded = therapistController.isDiplomaUploaded;
+
+  //   super.onInit();
+  // }
+
+  late TherapistController therapistController;
+
+  RxBool isConfirmed = true.obs;
+
+  RxBool isUploaded = true.obs;
 }

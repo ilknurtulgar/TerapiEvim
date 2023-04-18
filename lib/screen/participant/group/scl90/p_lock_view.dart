@@ -46,7 +46,7 @@ class PLockView extends StatelessWidget {
             controller.isTestResultReady.isTrue
                 ? IconUtility.lockopen
                 : IconUtility.lock(true),
-            controller.isTestNotSolved.isTrue
+            controller.isTestSolved.isFalse
                 ? noTest(context)
                 : controller.isTestResultReady.isTrue
                     ? checkedTest(context)

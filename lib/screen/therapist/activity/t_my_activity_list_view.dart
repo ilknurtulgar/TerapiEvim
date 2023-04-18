@@ -1,7 +1,10 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist/activity/t_my_activity_list_view_controller.dart';
 import 'package:terapievim/core/base/util/base_model.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
+import 'package:terapievim/model/common/activity/t_activity_model.dart';
 import 'package:terapievim/product/widget/t_activity/t_sliver_type_widget.dart';
 
 import '../../../core/base/component/group/group_box.dart';
@@ -16,25 +19,35 @@ class TMyActivityListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<TMyActivityListViewController>(
       getController: TMyActivityListViewController(),
-      onPageBuilder: (context, value) {
+      onPageBuilder: (context, controller) {
         return Scaffold(
-          appBar: Search(
-            rowModel: UiBaseModel.searchRow(),
-          ),
-          body: SliverType(
-            childCount: 5,
-            activityType: ActivityType.myactivity,
-            sLiverListWidget: ActivityBox(
-                rightButtonTap: () {},
-                istwobutton: false,
-                buttonText: ActivityTextUtil.watchTheRecording,
-                containerModel: AppContainers.containerButton(true),
-                isactivity: true,
-                arowModel: DemoInformation.arowmodel,
-                clockModel: DemoInformation.clockmodel),
-            arrowOnTap: () {},
-          ),
-        );
+            appBar: Search(
+              rowModel: UiBaseModel.searchRow(),
+            ),
+            body: Obx(
+              () => SliverType(
+                delegate: SliverChildBuilderDelegate(
+                    childCount: controller.fetchedMyActivity.length,
+                    (context, index) {
+                  final TActivityModel? activityModel =
+                      controller.fetchedMyActivity[index];
+
+                  return ActivityBox(
+                    rightButtonTap: () {},
+                    istwobutton: false,
+                    buttonText: ActivityTextUtil.watchTheRecording,
+                    containerModel: AppContainers.containerButton(true),
+                    isactivity: true,
+                    arowModel: DemoInformation.myPastActivities(
+                        activityModel?.title ?? ""),
+                    clockModel: DemoInformation.myPastActivitiesTime(
+                        activityModel?.dateTime ?? Timestamp.now()),
+                  );
+                }),
+                arrowOnTap: () {},
+                activityType: ActivityType.myactivity,
+              ),
+            ));
       },
     );
   }

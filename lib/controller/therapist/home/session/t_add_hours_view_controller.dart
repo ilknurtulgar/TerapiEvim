@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_hours_model.dart';
 import 'package:terapievim/service/_therapist/session/free_dates/i_t_free_dates_service.dart';
@@ -15,7 +16,7 @@ class TAddHoursViewController extends GetxController with BaseController {
     // TODO: implement setContext
   }
   @override
-  void onInit() {
+  Future<void> onInit() async {
     freeDateService = TFreeDateService(vexaFireManager.networkManager);
 
     super.onInit();
@@ -27,11 +28,30 @@ class TAddHoursViewController extends GetxController with BaseController {
   RxString chosenHour = '12'.obs;
   RxString chosenMinutes = '00'.obs;
 
+  bool _validateTAddHours() {
+    if (true) {
+      return false;
+    }
+    if (hour.trim().isEmpty) {
+      flutterErrorToast("Saat seçiniz");
+      return false;
+    }
+    return true;
+  }
+
+  RxList<TFreeHoursModel> timeList = RxList<TFreeHoursModel>.empty();
+
+  late RxString hour = "${chosenHour + ":" + chosenMinutes.string}".obs;
+  var isFree = true.obs;
+  final Timestamp? dateTime = Timestamp.fromDate(DateTime.now());
+
   Future<void> createFreeDate() async {
-    final resultId = await freeDateService.createFreeDate(TFreeDateModel(
-      dateTime: Timestamp.now(),
-      hours: [TFreeHoursModel(hour: "12.00", isFree: true)],
-    ));
+    final bool isValidated = _validateTAddHours();
+    if (isValidated == false) {
+      final resultId = await freeDateService
+          .createFreeDate(TFreeDateModel(dateTime: dateTime, hours: timeList));
+      print(resultId);
+    }
   }
 
   void chooseGroupTherapyTime(bool isHour, int value) {

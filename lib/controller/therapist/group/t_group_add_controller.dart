@@ -75,6 +75,8 @@ class TGroupAddController extends GetxController with BaseController {
       name: groupNameController.text.trim(),
       dateTime: Timestamp.fromDate(DateTime.now()),
       hasHelperTherapistAccepted: false,
+      numberOfSessions: int.parse(numberOfSession.text.trim()),
+      numberOfWeeks: int.parse(numberOfWeek.text.trim()),
       participantsId: [],
     );
     //page loading icin buradan yazabilirsin
@@ -90,6 +92,7 @@ class TGroupAddController extends GetxController with BaseController {
   var isSecTherapistElectionOpen = false.obs;
   var choosenSecTherapist = "Yok".obs;
   var isSecTherapistChoosed = false.obs;
+
   void changeChoosenSecTherapist(String name) {
     isSecTherapistChoosed.value = true;
     choosenSecTherapist.value = name;
@@ -101,6 +104,7 @@ class TGroupAddController extends GetxController with BaseController {
 
   var isGroupCategoryElectionOpen = false.obs;
   var groupCategoryName = "Yok".obs;
+
   void changeGroupCategory(String categoryName) {
     groupCategoryName.value = categoryName;
   }
@@ -137,6 +141,7 @@ class TGroupAddController extends GetxController with BaseController {
   RxString chosenHour = '12'.obs;
 
   RxString chosenMinutes = '00'.obs;
+
   void chooseGroupTherapyTime(bool isHour, int value) {
     String valueAsString = value.toString();
     if (valueAsString.length < 2) {
@@ -165,6 +170,7 @@ class TGroupAddController extends GetxController with BaseController {
   TextEditingController numberOfWeek = TextEditingController();
 
   var isCircularIndicatorOpen = false.obs;
+
   changeCircularIndicatorValue() {
     isCircularIndicatorOpen.value = !isCircularIndicatorOpen.value;
   }

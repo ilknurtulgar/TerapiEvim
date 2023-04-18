@@ -88,8 +88,12 @@ SliverList activityPastSeminar() {
       (context, index) {
         return activitythreerowbox(() {
           context.push(const AboutActivityView());
-        }, () {}, DemoInformation.arowmodel, DemoInformation.clockmodel,
-            ActivityTextUtil.watchTheRecording, DemoInformation.ayrowmodel);
+        },
+            () {},
+            DemoInformation.myPastActivities("title"),
+            DemoInformation.myPastActivitiesTime(Timestamp.now()),
+            ActivityTextUtil.watchTheRecording,
+            DemoInformation.ayrowmodel);
       },
       childCount: 2,
     ),

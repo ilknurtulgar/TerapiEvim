@@ -129,6 +129,28 @@ class TActivityService extends ITActivityService with BaseService {
   }
 
   @override
+  Future<TActivityModel?> getOtherRecentActivity() async {
+    if (userId == null) return null;
+
+    final result =
+        await manager.readOrderedWhere<TActivityModel, TActivityModel>(
+      collectionPath: APIConst.activities,
+      parseModel: TActivityModel(),
+      orderField: AppConst.dateTime,
+      whereField: AppConst.isFinished,
+      whereIsEqualTo: false,
+      isDescending: false,
+      lastDocumentId: '',
+      limit: 1,
+    );
+    if (result.error != null) {
+      return null;
+    }
+
+    return result.data ?? null;
+  }
+
+  @override
   Future<TActivityModel?> getActivityById(String activityId) async {
     if (userId == null) return null;
 

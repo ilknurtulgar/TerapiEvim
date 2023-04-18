@@ -17,6 +17,8 @@ abstract class ITActivityService {
 
   Future<TActivityModel?> getMyPastRecentActivity();
 
+  Future<TActivityModel?> getOtherRecentActivity();
+
   Future<TActivityModel?> getActivityById(String activityId);
 
   /// TODO past and recent activities functions should be combined into one

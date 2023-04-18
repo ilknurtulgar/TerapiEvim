@@ -8,11 +8,12 @@ class TextFieldUtility {
   CustomTextField nameSurnameTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
+          isPassword: true,
           isOne: false,
           title: "Ad Soyad",
           textController: textController,
           rowModel: RowModel(
-            text: isBig ? 'Adınız Soyadınız' : "",
+            text: "",
             textStyle: const TextStyle(
                 color: AppColors
                     .black), // bunları öylesine verdim bunlar hint ve label textlere etki etmiyor,textfield içerisindeki labelStyle a asıl textstyle'ı verdim
@@ -25,14 +26,14 @@ class TextFieldUtility {
   CustomTextField birthOfDateTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
+        isPassword: true,
         isOne: false,
         title: "Doğum Tarihi",
         textController: textController,
         onTap: () => choosingBirthday(textController),
         rowModel: RowModel(
-            text: isBig ? 'Doğum Tarihiniz' : "",
+            text: 'gg/aa/yyyy ',
             textStyle: const TextStyle(color: AppColors.black),
-            text2: 'gg/aa/yyyy',
             isAlignmentBetween: false,
             leadingIcon: IconUtility.calendarIcon),
         isBig: isBig,
@@ -41,12 +42,12 @@ class TextFieldUtility {
   CustomTextField mailTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
+          isPassword: true,
           isOne: false,
           title: "E Posta",
           textController: textController,
           rowModel: RowModel(
-              text2: "abcde@gmail.com",
-              text: isBig ? 'E Posta Adresiniz' : "",
+              text: "abcde@gmail.com",
               textStyle: const TextStyle(color: AppColors.black),
               isAlignmentBetween: false,
               leadingIcon: IconUtility.emailIcon),
@@ -58,12 +59,13 @@ class TextFieldUtility {
     var isObscured = true.obs;
     return Obx(
       () => CustomTextField(
+          isPassword: true,
           isOne: false,
           obsecureText: isObscured.value,
           title: "Şifre",
           textController: textController,
           rowModel: RowModel(
-            text: isBig ? 'Şifre' : "",
+            text: "",
             textStyle: const TextStyle(color: AppColors.black),
             isAlignmentBetween: false,
             leadingIcon: IconUtility.lockSmall,
@@ -88,11 +90,12 @@ class TextFieldUtility {
   CustomTextField phoneTextfield(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
+          isPassword: true,
           isOne: false,
           title: 'Telefon Numarası',
           textController: textController,
           rowModel: RowModel(
-              text: isBig ? 'Telefon Numaranız' : "",
+              text: "",
               textStyle: const TextStyle(color: AppColors.black),
               isAlignmentBetween: false,
               leadingIcon: isBig ? IconUtility.contactPhoneIcon : null),

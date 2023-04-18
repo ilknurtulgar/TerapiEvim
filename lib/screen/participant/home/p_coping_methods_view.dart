@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/home/home_component.dart';
 
@@ -7,6 +8,7 @@ import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
+import '../../../model/therapist/coping_method/t_coping_method_model.dart';
 
 class PCopingMethodsView extends StatelessWidget {
   const PCopingMethodsView({super.key});
@@ -31,7 +33,27 @@ class PCopingMethodsView extends StatelessWidget {
                   ],
                 ),
               ),
-              CopingListView(),
+              SliverPadding(
+                padding: AppPaddings.pagePadding,
+                sliver: SliverList(
+                  delegate: SliverChildBuilderDelegate(
+                    (context, index) {
+                      final TCopingMethodModel? copingMethodModel =
+                          controller.fetchedCoping[index];
+                      return HomeComponent(
+                          isForMethodReading: true,
+                          cardModel: DemoInformation.cardModelhome,
+                          time: (copingMethodModel?.dateTime ?? Timestamp.now())
+                              as String,
+                          title: copingMethodModel?.therapistName ?? "",
+                          explanation: copingMethodModel?.description ?? "",
+                          buttonOnTap: () {},
+                          buttonText: HomeTextUtil.readMethod);
+                    },
+                    childCount: controller.fetchedCoping.length,
+                  ),
+                ),
+              ),
             ]),
           );
         });
@@ -39,6 +61,7 @@ class PCopingMethodsView extends StatelessWidget {
 
   CustomDropDown _orderdrop(PCopingMethodsController controller) {
     return CustomDropDown(
+      isLogin: false,
       width: SizeUtil.normalValueWidth,
       height: SizeUtil.smallValueHeight,
       selectedText: controller.orderValue,
@@ -48,30 +71,6 @@ class PCopingMethodsView extends StatelessWidget {
         controller.setIsBoxSelected();
       },
       onValueSelected: (p0) {},
-    );
-  }
-}
-
-class CopingListView extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return SliverPadding(
-      padding: AppPaddings.pagePadding,
-      sliver: SliverList(
-        delegate: SliverChildBuilderDelegate(
-          (context, index) {
-            return HomeComponent(
-                isForMethodReading: true,
-                cardModel: DemoInformation.cardModelhome,
-                time: DemoInformation.clockabomeactivty,
-                title: 'başlık $index',
-                explanation: DemoInformation.home[index],
-                buttonOnTap: () {},
-                buttonText: HomeTextUtil.readMethod);
-          },
-          childCount: DemoInformation.home.length,
-        ),
-      ),
     );
   }
 }

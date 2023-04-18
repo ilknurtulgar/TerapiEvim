@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist/home/session/t_available_hours_view_controller.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:terapievim/model/therapist/session/free_date/t_free_hours_model.dart';
 import '../../../controller/therapist/home/session/t_add_hours_view_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/component/group/choosing_time_group_therapy.dart';
@@ -28,9 +29,7 @@ class _TAddHoursViewState extends State<TAddHoursView> {
   }
 
   late TAvailableHoursViewController mainController;
-  SessionTime sessionTime = SessionTime(date: '', timeList: []);
-
-  RxList<String> timeList = RxList<String>.empty();
+  // SessionTime sessionTime = SessionTime(date: '', timeList: []);
 
   String chosenDate = '';
 
@@ -44,40 +43,40 @@ class _TAddHoursViewState extends State<TAddHoursView> {
         ),
         body: Padding(
           padding: AppPaddings.pagePadding,
-          child: Column(
-            children: [
-              _minHeading(ActivityTextUtil.date),
-              _dateAdd(controller),
-              _minHeading(ActivityTextUtil.addClock),
-              clockAddTime(controller),
-              _minHeading(ActivityTextUtil.clocks),
-              Obx(
-                () => ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: timeList.length,
-                  itemBuilder: (context, index) {
-                    return Obx(
-                      () => DeletingTimeButton(
-                        time: timeList[index],
-                        onDeleted: () {
-                          timeList.remove(timeList[index]);
-                        },
-                      ),
-                    );
-                  },
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                _minHeading(ActivityTextUtil.date),
+                _dateAdd(controller),
+                _minHeading(ActivityTextUtil.addClock),
+                clockAddTime(controller),
+                _minHeading(ActivityTextUtil.clocks),
+                Obx(
+                  () => ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.timeList.length,
+                    itemBuilder: (context, index) {
+                      return Obx(
+                        () => DeletingTimeButton(
+                          time: controller.timeList[index].toString(),
+                          onDeleted: () {
+                            controller.timeList
+                                .remove(controller.timeList[index]);
+                          },
+                        ),
+                      );
+                    },
+                  ),
                 ),
-              ),
-              ButterFlyButton(
-                  buttonOnTap: () {
-                    sessionTime.date = controller.dateAddController.text;
-                    sessionTime.timeList = timeList;
-                    mainController.sessionTimeList.add(sessionTime);
-                    print(mainController.sessionTimeList[0].date);
-                    print(mainController.sessionTimeList[0].timeList);
-                    context.pop();
-                  },
-                  buttonName: ActivityTextUtil.save)
-            ],
+                ButterFlyButton(
+                    buttonOnTap: () {
+                      controller.createFreeDate();
+
+                      context.pop();
+                    },
+                    buttonName: ActivityTextUtil.save)
+              ],
+            ),
           ),
         ),
       ),
@@ -105,8 +104,7 @@ class _TAddHoursViewState extends State<TAddHoursView> {
                   String time;
                   time =
                       '${controller.chosenHour.value}:${controller.chosenMinutes.value}';
-                  timeList.add(time);
-                  print(timeList);
+                  controller.timeList.add(TFreeHoursModel(hour: time));
                 },
                 icon: IconUtility.addIcon),
           )
@@ -133,11 +131,11 @@ DateTextField _dateAdd(TAddHoursViewController controller) {
   );
 }
 
-class SessionTime {
+/*class SessionTime {
   String date;
   List<String> timeList;
   SessionTime({
     required this.date,
     required this.timeList,
   });
-}
+}*/

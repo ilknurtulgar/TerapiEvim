@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
     this.prefixText,
     this.maxLines,
     this.onTap,
+    required this.isPassword,
   }) : super(key: key);
 
   final RowModel? rowModel;
@@ -24,19 +25,14 @@ class CustomTextField extends StatelessWidget {
   final String? prefixText;
   final String? title;
   final Function()? onTap;
-
+  final bool isPassword;
   final bool isOne;
   final bool? obsecureText;
   final TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {
-    /*  if (isBig == true && rowModel == null) {
-      throw Exception(
-          "cant help is big true and row model is null in customtextfield");
-    }*/
-    print("maxlines");
-    return isOne ? textField(context) : columnTextField(context);
+    return isOne ? textField(context, isPassword) : columnTextField(context);
   }
 
   Padding columnTextField(
@@ -49,13 +45,13 @@ class CustomTextField extends StatelessWidget {
         children: [
           responsivenestext(
               title ?? "", AppTextStyles.normalTextStyle("medium", false)),
-          textField(context),
+          textField(context, isPassword),
         ],
       ),
     );
   }
 
-  Widget textField(BuildContext context) {
+  Widget textField(BuildContext context, bool isPasword) {
     return Padding(
       padding: AppPaddings.componentOnlyPadding(1),
       child: TextField(
@@ -67,32 +63,24 @@ class CustomTextField extends StatelessWidget {
         readOnly: onTap != null ? true : false,
         onTap: onTap,
         decoration: InputDecoration(
+          constraints: isPassword
+              ? BoxConstraints.loose(Size.fromHeight(50))
+              : BoxConstraints(),
           contentPadding:
-              isBig ? const EdgeInsets.all(17) : AppPaddings.contentPadding,
+              const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
           filled: true,
           fillColor: AppColors.white,
           suffix:
               isBig ? (rowModel == null ? null : rowModel!.trailingIcon) : null,
           prefixIcon: isRowModel ? rowModel?.leadingIcon : null,
-          hintText: rowModel?.text2,
-          hintStyle: rowModel?.textStyle2 ??
+          hintText: rowModel?.text,
+          hintStyle: rowModel?.textStyle ??
               AppTextStyles.normalTextStyle("small", false),
           prefixText: prefixText,
-          enabledBorder: bordercolor(isBig),
-          focusedBorder: bordercolor(isBig),
+          enabledBorder: AppBoxDecoration.borderColor(isBig),
+          focusedBorder: AppBoxDecoration.borderColor(isBig),
         ),
       ),
     );
   }
-}
-
-OutlineInputBorder bordercolor(bool isBig) {
-  return OutlineInputBorder(
-      borderRadius: AppBorderRadius.generalBorderRadius,
-      borderSide: BorderSide(
-        color: isBig
-            ? BorderColorUtil.textfieldBorderColor
-            : BorderColorUtil.generalBorderColor,
-        width: 2,
-      ));
 }

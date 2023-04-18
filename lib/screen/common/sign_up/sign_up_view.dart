@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/profile/column_drop_down.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/common/sign_in/sign_in_view.dart';
@@ -43,10 +44,16 @@ class _SignUpViewState extends State<SignUpView> {
         _signUpController.nameController, true),
     textfieldUtility.birthOfDateTextfield(
         _signUpController.birthDateController, true),
-
-    ///TODO: commented temporarily
-    // ProfilePageUtility.genderDropDown(
-    //     false, _signUpController.genderController),
+    ColumnDropDown(
+        isBoxSelected: _signUpController.isBoxSelected,
+        title: "Cinsiyet:",
+        isInProfilePage: false,
+        selectedText: _signUpController.genders,
+        onDropDownTapped: () {
+          _signUpController.setIsBoxSelected();
+        },
+        onValueSelected: (p0) {},
+        isLogin: true),
     textfieldUtility.mailTextfield(_signUpController.emailController, true),
     textfieldUtility.passwordTextfield(
         _signUpController.passwordController, true),
@@ -61,8 +68,6 @@ class _SignUpViewState extends State<SignUpView> {
         !controller.isTermsOfUseAccepted.value;
   }
 
-  ///TODO: use gender controller
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +76,8 @@ class _SignUpViewState extends State<SignUpView> {
           padding: AppPaddings.pagePaddingHorizontal,
           child: CustomScrollView(
             slivers: [
-              SliverToBoxAdapter(child: Center(child: SignInViewUtility.title(false))),
+              SliverToBoxAdapter(
+                  child: Center(child: SignInViewUtility.title(false))),
               textfieldListView(),
               SliverToBoxAdapter(child: mediumSizedBox()),
               SliverToBoxAdapter(
@@ -89,22 +95,31 @@ class _SignUpViewState extends State<SignUpView> {
 
   SliverToBoxAdapter buttonColumn(BuildContext context) {
     return SliverToBoxAdapter(
-              child: Column(
-                children: [
-                  SignInViewUtility.button(false,false,() {_signUpController.signUpWithEmail(context, _userRole);},),
-                  SignInViewUtility.lineWithOrText(context),
-                  SignInViewUtility.button(true,false,() => context.push(const SignInView()),),
-                ],
-              ),
-            );
+      child: Column(
+        children: [
+          SignInViewUtility.button(
+            false,
+            false,
+            () {
+              _signUpController.signUpWithEmail(context, _userRole);
+            },
+          ),
+          SignInViewUtility.lineWithOrText(context),
+          SignInViewUtility.button(
+            true,
+            false,
+            () => context.push(const SignInView()),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget textfieldListView() {
     return SliverList(
-      delegate: SliverChildBuilderDelegate( 
-        (context, index) => textfieldList[index],
-        childCount: textfieldList.length
-    ));
+        delegate: SliverChildBuilderDelegate(
+            (context, index) => textfieldList[index],
+            childCount: textfieldList.length));
   }
 
   Widget acceptMakingShortCallContainer(SignUpController controller) {

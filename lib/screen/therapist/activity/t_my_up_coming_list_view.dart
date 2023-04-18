@@ -1,5 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:terapievim/model/common/activity/t_activity_model.dart';
 
 import '../../../controller/therapist/activity/t_my_up_coming_list_view_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
@@ -20,20 +22,25 @@ class TMyUpComingActivitiesListView extends StatelessWidget {
             appBar: MyAppBar(title: ActivityTextUtil.myupcomingActivities),
             body: Padding(
               padding: AppPaddings.pagePaddingHorizontal,
-              child: ListView.builder(
-                itemBuilder: (context, index) {
-                  return ActivityBox(
-                      leftButtonTapped: () {},
-                      istwobutton: true,
-                      buttonText: ActivityTextUtil.start,
-                      containerModel: AppContainers.containerButton(false),
-                      isactivity: true,
-                      rightButtonTap: () {},
-                      arowModel: DemoInformation.recentActivityTitle('Empty'),
-                      clockModel:
-                          DemoInformation.recentActivityTime(Timestamp.now()));
-                },
-                itemCount: 2,
+              child: Obx(
+                () => ListView.builder(
+                  itemBuilder: (context, index) {
+                    final TActivityModel? activityModel =
+                        controller.fetchedactiviy[index];
+                    return ActivityBox(
+                        leftButtonTapped: () {},
+                        istwobutton: true,
+                        buttonText: ActivityTextUtil.start,
+                        containerModel: AppContainers.containerButton(false),
+                        isactivity: true,
+                        rightButtonTap: () {},
+                        arowModel: DemoInformation.recentActivityTitle(
+                            activityModel?.title ?? "boi"),
+                        clockModel: DemoInformation.recentActivityTime(
+                            activityModel?.dateTime ?? Timestamp.now()));
+                  },
+                  itemCount: controller.fetchedactiviy.length,
+                ),
               ),
             ));
       },

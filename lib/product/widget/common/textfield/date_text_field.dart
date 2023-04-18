@@ -18,13 +18,13 @@ class DateTextField extends StatelessWidget {
     return Padding(
       padding: AppPaddings.componentPadding,
       child: CustomTextField(
+        isPassword: true,
         isOne: true,
         textController: textController,
         onTap: dateTapped,
         rowModel: RowModel(
-            text: "",
+            text: 'gg/aa/yyyy',
             textStyle: const TextStyle(color: AppColors.black),
-            text2: 'gg/aa/yyyy',
             isAlignmentBetween: false,
             leadingIcon: IconUtility.calendarIcon),
         isBig: isBig,

@@ -14,6 +14,7 @@ enum LocalManagerKeys {
   pJoinedGroupId, // String
   pGroupCategory, // String
   pIsJoinedGroupLocked, // bool
+  pIsTestResultReady, // bool
   pIsScl90Submitted, // bool
   pIsSessionComplete, // bool
   ///Therapist

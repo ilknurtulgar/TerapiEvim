@@ -49,8 +49,6 @@ class PGroupService extends IPGroupService with BaseService {
       return [];
     }
 
-    ///TODO: fill nullable
-
     for (JoinableGroupModel joinableGroup in result.data!) {
       final UserModel? therapistHelper =
           await _fetchUser(joinableGroup.therapistHelperId!);

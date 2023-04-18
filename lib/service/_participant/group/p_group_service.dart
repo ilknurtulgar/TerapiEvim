@@ -34,33 +34,45 @@ class PGroupService extends IPGroupService with BaseService {
     String orderField = AppConst.dateTime,
     bool isDescending = false,
   }) async {
-    if (userId == null) return [];
-    final result = await manager
-        .readOrderedWhere<JoinableGroupModel, List<JoinableGroupModel>>(
-      collectionPath: APIConst.groups,
-      whereField: AppConst.groupCategory,
-      whereIsEqualTo: categoryName,
-      parseModel: JoinableGroupModel(),
-      isDescending: isDescending,
-      orderField: orderField,
-      lastDocumentId: lastDocId,
-    );
-    if (result.error != null || result.data == null) {
-      return [];
+    try {
+      if (userId == null) return [];
+      final result = await manager
+          .readOrderedWhere<JoinableGroupModel, List<JoinableGroupModel>>(
+        collectionPath: APIConst.groups,
+        whereField: AppConst.groupCategory,
+        whereIsEqualTo: categoryName,
+        parseModel: JoinableGroupModel(),
+        isDescending: isDescending,
+        orderField: orderField,
+        lastDocumentId: lastDocId,
+      );
+      if (result.error != null || result.data == null) {
+        return [];
+      }
+
+      for (JoinableGroupModel joinableGroup in result.data!) {
+        if (joinableGroup.therapistHelperId != null) {
+          final UserModel? therapistHelper =
+              await _fetchUser(joinableGroup.therapistHelperId!);
+          joinableGroup.therapistHelperImageUrl =
+              therapistHelper?.imageUrl ?? '';
+          joinableGroup.therapistHelperName = therapistHelper?.name ?? '';
+        }
+
+        final UserModel? therapist =
+            await _fetchUser(joinableGroup.therapistId!);
+        joinableGroup.therapistImageUrl = therapist?.imageUrl ?? '';
+        joinableGroup.therapistHelperName = therapist?.name ?? '';
+      }
+
+      return result.data!;
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(),
+          stackTrace: StackTrace.current,
+          reason: 'getGroupsByCategory');
+      rethrow;
     }
-
-    for (JoinableGroupModel joinableGroup in result.data!) {
-      final UserModel? therapistHelper =
-          await _fetchUser(joinableGroup.therapistHelperId!);
-      joinableGroup.therapistHelperImageUrl = therapistHelper?.imageUrl ?? '';
-      joinableGroup.therapistHelperName = therapistHelper?.name ?? '';
-
-      final UserModel? therapist = await _fetchUser(joinableGroup.therapistId!);
-      joinableGroup.therapistImageUrl = therapist?.imageUrl ?? '';
-      joinableGroup.therapistHelperName = therapist?.name ?? '';
-    }
-
-    return result.data!;
   }
 
   Future<UserModel?> _fetchUser(String userId) async {

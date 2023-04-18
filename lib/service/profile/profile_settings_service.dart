@@ -170,10 +170,10 @@ class ProfileSettingsService extends IProfileSettingsService {
 
       if (imageUrl == null) return null;
 
-      await manager.update<UserAvatarModel, EmptyModel>(
+      await manager.createWithDocId(
         collectionPath: APIConst.users,
         docId: userId!,
-        data: UserAvatarModel(imageUrl: imageUrl),
+        data: UserAvatarModel(imageUrl: imageUrl).toJson()!,
       );
 
       return imageUrl;

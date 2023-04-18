@@ -6,7 +6,7 @@ part 'user_model.g.dart';
 
 @JsonSerializable()
 class UserModel extends INetworkModel<UserModel> {
-  String? birthDate, email, gender, name, phone, role, id;
+  String? birthDate, imageUrl, email, gender, name, phone, role, id;
 
   UserModel({
     this.id,
@@ -16,6 +16,7 @@ class UserModel extends INetworkModel<UserModel> {
     this.name,
     this.phone,
     this.role,
+    this.imageUrl,
   });
 
   @override

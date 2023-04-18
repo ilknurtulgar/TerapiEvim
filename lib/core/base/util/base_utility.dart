@@ -399,8 +399,6 @@ class AppPaddings {
 
   static const EdgeInsets generalPadding = EdgeInsets.all(5);
 
-  static const EdgeInsets contentPadding = EdgeInsets.all(3);
-
   //grup
 //gruptan bu iki padding kaldi onlari da ben kullanmiyorum
   static EdgeInsets timeChossingBetweenPadding =
@@ -488,7 +486,7 @@ class AppBoxDecoration {
       color: AppColors.white,
       borderRadius: AppBorderRadius.generalBorderRadius,
       border:
-          Border.all(color: BorderColorUtil.textfieldBorderColor, width: 2));
+          Border.all(color: BorderColorUtil.textfieldBorderColor, width: 1));
   static OutlineInputBorder borderColor(bool isBig) {
     return OutlineInputBorder(
         borderRadius: AppBorderRadius.generalBorderRadius,
@@ -496,7 +494,7 @@ class AppBoxDecoration {
           color: isBig
               ? BorderColorUtil.textfieldBorderColor
               : BorderColorUtil.generalBorderColor,
-          width: 2,
+          width: 1,
         ));
   }
 //  BoxDecoration(

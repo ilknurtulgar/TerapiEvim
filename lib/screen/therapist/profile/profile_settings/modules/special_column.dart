@@ -13,7 +13,8 @@ Widget specialColumn(
             isForMakingShortCall: false,
             acceptionFunction: () =>
                 therapistProfileController.acceptionFunction(),
-            value: therapistProfileController.updatedisBeingAdvisorAccepted.value,
+            value:
+                therapistProfileController.updatedisBeingAdvisorAccepted.value,
           ),
         ),
         _animatedNumberOfGroupsRow(context, therapistProfileController),
@@ -28,6 +29,7 @@ Widget specialColumn(
           padding: AppPaddings.componentPadding,
           child: SizedBox(
               child: CustomTextField(
+            isPassword: true,
             isBig: true,
             textController: therapistProfileController.aboutMeController,
             isRowModel: false,

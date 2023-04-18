@@ -15,6 +15,7 @@ class CustomTextField extends StatelessWidget {
     this.prefixText,
     this.maxLines,
     this.onTap,
+    required this.isPassword,
   }) : super(key: key);
 
   final RowModel? rowModel;
@@ -24,14 +25,14 @@ class CustomTextField extends StatelessWidget {
   final String? prefixText;
   final String? title;
   final Function()? onTap;
-
+  final bool isPassword;
   final bool isOne;
   final bool? obsecureText;
   final TextEditingController textController;
 
   @override
   Widget build(BuildContext context) {
-    return isOne ? textField(context) : columnTextField(context);
+    return isOne ? textField(context, isPassword) : columnTextField(context);
   }
 
   Padding columnTextField(
@@ -44,13 +45,13 @@ class CustomTextField extends StatelessWidget {
         children: [
           responsivenestext(
               title ?? "", AppTextStyles.normalTextStyle("medium", false)),
-          textField(context),
+          textField(context, isPassword),
         ],
       ),
     );
   }
 
-  Widget textField(BuildContext context) {
+  Widget textField(BuildContext context, bool isPasword) {
     return Padding(
       padding: AppPaddings.componentOnlyPadding(1),
       child: TextField(
@@ -62,7 +63,9 @@ class CustomTextField extends StatelessWidget {
         readOnly: onTap != null ? true : false,
         onTap: onTap,
         decoration: InputDecoration(
-          constraints: BoxConstraints.loose(Size.fromHeight(50)),
+          constraints: isPassword
+              ? BoxConstraints.loose(Size.fromHeight(50))
+              : BoxConstraints(),
           contentPadding:
               const EdgeInsets.symmetric(vertical: 20, horizontal: 10),
           filled: true,

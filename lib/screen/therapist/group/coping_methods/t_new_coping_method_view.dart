@@ -39,25 +39,25 @@ class TNewCopingMethodView extends StatelessWidget {
               ? Center(
                   child: CircularProgressIndicator(),
                 )
-              : SafeArea(
-                  child: Padding(
-                    padding: AppPaddings.pagePadding,
-                    child: Column(
-                      children: [
-                        CopingBox(
-                          copingText: DemoInformation.tmpNewMetotText,
-                          pdfName: DemoInformation.tmppdfName,
-                          onAddTapped: () async {
-                            await controller.pickPdf();
-                          },
-                          onShareTapped: () async {
-                            await controller.shareCopingMethod();
-                          },
-                        ),
-                        // text(),
-                        _OtherGroupsList(controller: controller),
-                      ],
-                    ),
+              : Padding(
+                  padding: AppPaddings.pagePadding,
+                  child: Column(
+                    children: [
+                      CopingBox(
+                        subjectTitleTextController:
+                            controller.subjectTitleEditingController,
+                        copingText: DemoInformation.tmpNewMetotText,
+                        pdfName: DemoInformation.tmppdfName,
+                        onAddTapped: () async {
+                          await controller.pickPdf();
+                        },
+                        onShareTapped: () async {
+                          await controller.shareCopingMethod();
+                        },
+                      ),
+                      // text(),
+                      _OtherGroupsList(controller: controller),
+                    ],
                   ),
                 ),
         ),

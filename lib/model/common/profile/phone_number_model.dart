@@ -5,10 +5,10 @@ part 'phone_number_model.g.dart';
 
 @JsonSerializable()
 class PhoneNumberModel extends INetworkModel<PhoneNumberModel> {
-  String? gender;
+  String? phone;
 
   PhoneNumberModel({
-    this.gender,
+    this.phone,
   });
 
   @override

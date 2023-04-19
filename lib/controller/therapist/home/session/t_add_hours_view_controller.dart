@@ -15,6 +15,7 @@ class TAddHoursViewController extends GetxController with BaseController {
   void setContext(BuildContext context) {
     // TODO: implement setContext
   }
+
   @override
   Future<void> onInit() async {
     freeDateService = TFreeDateService(vexaFireManager.networkManager);
@@ -32,6 +33,7 @@ class TAddHoursViewController extends GetxController with BaseController {
     if (true) {
       return false;
     }
+
     if (hour.trim().isEmpty) {
       flutterErrorToast("Saat seçiniz");
       return false;
@@ -48,8 +50,11 @@ class TAddHoursViewController extends GetxController with BaseController {
   Future<void> createFreeDate() async {
     final bool isValidated = _validateTAddHours();
     if (isValidated == false) {
-      final resultId = await freeDateService
-          .createFreeDate(TFreeDateModel(dateTime: dateTime, hours: timeList));
+      final resultId = await freeDateService.createFreeDate(TFreeDateModel(
+        dateTime: dateTime,
+        hours: timeList,
+
+      ));
       print(resultId);
     }
   }

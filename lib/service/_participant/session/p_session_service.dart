@@ -22,18 +22,7 @@ class PSessionService extends IPSessionService with BaseService {
     return null;
   }
 
-  @override
-  Future<CreatedIdResponse?> selectASession(String sessionId) async {
-    if (userId == null) return null;
 
-    final CreatedIdResponse? result = await manager.create(
-      collectionPath: APIConst.participant,
-      docId: userId,
-      data: {AppConst.dateTime: sessionId},
-    );
-
-    return result;
-  }
 
   @override
   Future<List<TFreeDateModel>> getAvailableHoursOrdered({
@@ -99,5 +88,18 @@ class PSessionService extends IPSessionService with BaseService {
   Future<CreatedIdResponse?> createSession(String freeTimeId) {
     // TODO: implement createSession
     throw UnimplementedError();
+  }
+
+  @override
+  Future<CreatedIdResponse?> selectASession(String sessionId) async {
+    if (userId == null) return null;
+
+    final CreatedIdResponse? result = await manager.create(
+      collectionPath: APIConst.participant,
+      docId: userId,
+      data: {AppConst.dateTime: sessionId},
+    );
+
+    return result;
   }
 }

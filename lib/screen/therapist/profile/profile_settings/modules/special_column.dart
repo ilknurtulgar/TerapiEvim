@@ -11,6 +11,7 @@ Widget specialColumn(
         Obx(
           () => AcceptionRow(
             isForMakingShortCall: false,
+            explanation: ProfileSettingsTextUtil.therapistAcceptedRandomTherapistList,
             acceptionFunction: () =>
                 therapistProfileController.acceptionFunction(),
             value:

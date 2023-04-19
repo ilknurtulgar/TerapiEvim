@@ -36,12 +36,13 @@ class PPastActivitiesListView extends StatelessWidget {
                               () {},
                               () {},
                               DemoInformation.titlenameActivityMod(
-                                  activityModel?.title ?? ""),
+                                  activityModel?.title ?? "empty title"),
                               DemoInformation.clockRow(
                                   activityModel?.dateTime ?? Timestamp.now()),
                               ActivityTextUtil.watchTheRecording,
                               DemoInformation.therapistnameActivityMod(
-                                  activityModel?.therapistName ?? ""));
+                                  activityModel?.therapistName ??
+                                      "empty therapist name"));
                         },
                         childCount: controller.fetchedpastActivity.length,
                       ),

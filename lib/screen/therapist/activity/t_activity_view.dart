@@ -108,7 +108,7 @@ class TActivityView extends StatelessWidget {
         containerModel: AppContainers.containerButton(true),
         isactivity: true,
         arowModel: DemoInformation.myPastActivities(
-            myPastActivity?.title ?? "tekno yeto"),
+            myPastActivity?.title ?? "empty title"),
         clockModel: DemoInformation.myPastActivitiesTime(
             myPastActivity?.dateTime ?? Timestamp.now()));
   }
@@ -118,11 +118,11 @@ class TActivityView extends StatelessWidget {
           () {},
           () {},
           DemoInformation.myPastActivities(
-              otherUpComingActivity?.title ?? "empty"),
+              otherUpComingActivity?.title ?? "empty title"),
           DemoInformation.myPastActivitiesTime(
               otherUpComingActivity?.dateTime ?? Timestamp.now()),
           ActivityTextUtil.join,
-          DemoInformation.therapistnameActivityMod("empty"));
+          DemoInformation.therapistnameActivityMod("empty  therapist name"));
 
   ActivityBox _myUpcomingActivities(
       BuildContext context,
@@ -145,7 +145,7 @@ class TActivityView extends StatelessWidget {
           ));
         },
         arowModel: DemoInformation.recentActivityTitle(
-            recentActivity?.title ?? 'Empty'),
+            recentActivity?.title ?? 'Empty title'),
         clockModel: DemoInformation.recentActivityTime(
             recentActivity?.dateTime ?? Timestamp.now()));
   }

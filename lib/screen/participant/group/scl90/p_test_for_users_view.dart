@@ -19,7 +19,6 @@ class PTestView extends StatelessWidget {
   }
 }
 
-//daha duzenlenecek
 class ViewsForSCL extends StatelessWidget {
   ViewsForSCL({
     super.key,

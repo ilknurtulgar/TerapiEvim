@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
+import '../../../../model/therapist/session/free_date/t_free_hours_model.dart';
 import '../../ui_models/row_model.dart';
 import '../../util/base_model.dart';
 import '../../util/base_utility.dart';
@@ -22,7 +23,7 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
       this.listViewChosenList});
   final String? therapistName;
   final String date;
-  final List<String> timeList;
+  final List<TFreeHoursModel> timeList;
   final bool isForParticipant;
   final Function? callBack;
   final int? listViewIndex;
@@ -99,7 +100,7 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
         return isForParticipant
             ? participantChoosingTimeButton(index)
             : DeletingTimeButton(
-                time: newList[index],
+                time: newList[index].hour ?? "null",
                 onDeleted: () {
                   newList.remove(newList[index]);
                   if (newList.isEmpty) isVisible.value = false;
@@ -123,7 +124,7 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
   RowModel timeButtonInsideRow(int rowIndex) {
     return RowModel(
       isAlignmentBetween: true,
-      text: timeList[rowIndex],
+      text: timeList[rowIndex].hour ?? "null",
       textStyle: AppTextStyles.normalTextStyle('medium', false),
       leadingIcon: IconUtility.clockIcon,
       trailingIcon: Obx(() => Icon(Icons.check_circle_outline,

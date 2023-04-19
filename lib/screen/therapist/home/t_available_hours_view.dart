@@ -46,11 +46,11 @@ class TAvailableHoursView extends StatelessWidget {
               child: ChoosingTimeForSCContainer(
                 date: "",
                 //(tFreeDateModel?.dateTime ??  Timestamp.fromDate(DateTime.now() as String)),
-                timeList: DemoInformation.dateList,therapistName: '',
+                timeList: [], therapistName: '',
                 //tFreeDateModel?.hours.toList()?? ,
                 isForParticipant: true,
                 listViewChosenList: [true].obs,
-                callBack: (){},
+                callBack: () {},
               ));
         },
         itemCount: controller.sessionTimeList.length,

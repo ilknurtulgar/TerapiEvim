@@ -53,7 +53,6 @@ class TAvailableHoursView extends StatelessWidget {
                 //tFreeDateModel?.hours.toList()?? ,
                 isForParticipant: true,
                 listViewChosenList: [true].obs,
-                callBack: () {},
               ));
         },
         itemCount: controller.sessionTimeList.length,

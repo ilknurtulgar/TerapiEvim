@@ -33,7 +33,7 @@ class PDeterminingShortCallController extends BaseController2 {
       <TFreeDateModel>[].obs; //datalari vireda gostermen gerek
   Rx<TFreeHoursModel> _selectedHour = TFreeHoursModel().obs;
 
-  RxList<bool> isChosen = List.filled(DemoInformation.tmpCount, false).obs;
+  late RxList<bool> isChosen = List.filled(freeDates.length, false).obs;
   // String chosenDate = '';
   // String chosenTime = '';
 

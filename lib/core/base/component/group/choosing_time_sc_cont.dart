@@ -18,7 +18,6 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
       required this.date,
       required this.timeList,
       required this.isForParticipant,
-      this.callBack,
       this.dateIndex,
       this.listViewChosenList,
       required this.onSelectedHour});
@@ -26,7 +25,6 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
   final String date;
   final List<TFreeHoursModel> timeList;
   final bool isForParticipant;
-  final Function? callBack;
   final int? dateIndex;
   final RxList<bool>? listViewChosenList;
   final Function(int selectedHourId) onSelectedHour;
@@ -36,12 +34,12 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
 
   late RxList<bool> isChosen = RxList.filled(timeList.length, false);
 
-  void choose(int index, RxList<bool> list, bool isInsideComponent) {
+  void choose(int index, RxList<bool> list, bool isHour) {
     int i = 0;
     for (i = 0; i < list.length; i++) {
       if (i == index) {
         list[i] = true;
-        if (isInsideComponent) callBack!(date, timeList[i]);
+        if (isHour) onSelectedHour(index);
       } else {
         list[i] = false;
       }
@@ -116,7 +114,6 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
     return PersonMin(
       onTap: () {
         choose(dateIndex!, listViewChosenList!, false);
-        onSelectedHour(hourIndex);
         if (listViewChosenList![dateIndex!]) choose(hourIndex, isChosen, true);
       },
       row: timeButtonInsideRow(hourIndex),

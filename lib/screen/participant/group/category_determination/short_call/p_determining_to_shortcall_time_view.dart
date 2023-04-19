@@ -55,20 +55,26 @@ class PShortCallTimeView extends StatelessWidget {
   }
 
   Widget timeChoose(PDeterminingShortCallController controller) {
-    return ListView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemCount: controller.freeDates.length,
-      itemBuilder: (context, index) => Padding(
-        padding: AppPaddings.timeChossingBetweenPadding,
-        child: ChoosingTimeForSCContainer(
-          therapistName: controller.freeDates[index].therapistId,
-          isForParticipant: true,
-          date: controller.freeDates[index].dateTime.toString(),
-          timeList: controller.freeDates[index].hours,
-          callBack: controller.callBack,
-          listViewChosenList: controller.isChosen,
-          listViewIndex: index,
+    return Obx(
+      () => ListView.builder(
+        shrinkWrap: true,
+        physics: const NeverScrollableScrollPhysics(),
+        itemCount: controller.freeDates.length,
+        itemBuilder: (context, index) => Padding(
+          padding: AppPaddings.timeChossingBetweenPadding,
+          child: ChoosingTimeForSCContainer(
+            onSelectedHour: (int selectedHourIndex) =>
+                controller.onSelectedHour(
+                    controller.freeDates[index].hours[selectedHourIndex]),
+            therapistName: controller.freeDates[index].therapistName,
+            isForParticipant: true,
+            date:
+                controller.freeDates[index].dateTime?.toDate().toString() ?? "",
+            timeList: controller.freeDates[index].hours,
+            // callBack: controller.callBack,
+            listViewChosenList: controller.isChosen,
+            dateIndex: index,
+          ),
         ),
       ),
     );
@@ -99,7 +105,6 @@ Future<String?> saveShowDialog(
         TextButton(
           onPressed: () {
             Get.back();
-
             controller.saveButton();
           },
           child: Text(GroupTextUtil.yes),

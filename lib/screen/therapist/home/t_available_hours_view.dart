@@ -44,6 +44,7 @@ class TAvailableHoursView extends StatelessWidget {
           return Padding(
               padding: AppPaddings.timeChossingBetweenPadding,
               child: ChoosingTimeForSCContainer(
+                onSelectedHour: (selectedHourId) {},
                 date: "",
                 //(tFreeDateModel?.dateTime ??  Timestamp.fromDate(DateTime.now() as String)),
                 timeList: [], therapistName: '',

@@ -1,11 +1,13 @@
 import '../../../../core/base/service/base_service.dart';
 import '../../../../core/constants/api_const.dart';
 import '../../../../core/constants/app_const.dart';
+import '../../../../core/init/cache/local_manager.dart';
 import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../../model/therapist/session/free_date/t_free_date_model.dart';
 import '../../../../model/therapist/session/free_date/t_free_hours_model.dart';
+import '../../../../product/enum/local_keys_enum.dart';
 import 'i_t_free_dates_service.dart';
 
 class TFreeDateService extends ITFreeDateService with BaseService {
@@ -19,6 +21,10 @@ class TFreeDateService extends ITFreeDateService with BaseService {
 
       /// Setting id of a current therapist
       freeDate.therapistId = userId;
+
+      /// Setting name of a current therapist
+      freeDate.therapistName =
+          LocalManager.instance.getStringValue(LocalManagerKeys.name);
 
       if (freeDate.hours.isEmpty) {
         throw Exception('freeDate.hours.isEmpty');

@@ -111,6 +111,7 @@ class AuthService extends IAuthService with BaseService {
               isScl90Submitted: false,
               isSessionComplete: false,
               isTestResultReady: false,
+              isSessionSelected: false,
               joinedGroupId: '',
             ).toJson()!);
         if (_isSuccess == false) {

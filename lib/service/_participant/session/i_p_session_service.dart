@@ -20,6 +20,4 @@ abstract class IPSessionService {
   Future<TJoinVideoCallResultModel?> joinAVideoCall(TSessionModel session);
 
   Future<CreatedIdResponse?> selectASession(String sessionId);
-
-  Future<CreatedIdResponse?> createSession(String freeTimeId);
 }

@@ -8,16 +8,20 @@ part of 't_free_hours_model.dart';
 
 TFreeHoursModel _$TFreeHoursModelFromJson(Map<String, dynamic> json) =>
     TFreeHoursModel(
+      id: json['id'] as String?,
       hour: json['hour'] as String?,
       isFree: json['isFree'] as bool?,
       participantId: json['participantId'] as String?,
+      therapistId: json['therapistId'] as String?,
       freeDateId: json['freeDateId'] as String?,
     );
 
 Map<String, dynamic> _$TFreeHoursModelToJson(TFreeHoursModel instance) =>
     <String, dynamic>{
       'isFree': instance.isFree,
+      'id': instance.id,
       'participantId': instance.participantId,
+      'therapistId': instance.therapistId,
       'freeDateId': instance.freeDateId,
       'hour': instance.hour,
     };

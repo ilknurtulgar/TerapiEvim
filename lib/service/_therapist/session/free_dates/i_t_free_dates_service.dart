@@ -11,12 +11,12 @@ abstract class ITFreeDateService {
   /// if result is null, it means an session was not added
   Future<CreatedIdResponse?> createFreeDate(TFreeDateModel freeDate);
 
-  Future<String?> updateFreeDate(TFreeDateModel freeDate);
+  // Future<String?> updateFreeDate(TFreeDateModel freeDate);
 
   Future<TFreeDateModel?> getFreeDateById(String freeDate);
 
-  Future<List<TFreeDateModel?>> getMyFreeDatesOrdered(
+  Future<List<TFreeDateModel>> getMyFreeDatesOrdered(
       {String lastDocId, String orderField, bool isDescending});
 
-  Future<String?> deleteFreeDate(String freeDate);
+  // Future<String?> deleteFreeDate(String freeDate);
 }

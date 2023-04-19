@@ -61,13 +61,16 @@ class ShortCallView extends StatelessWidget {
                             .onOffFunction(DemoInformation.therapist.isMicOn);
                       },
                       onCameraTriggered: () {
-                        controller
-                            .onOffFunction(DemoInformation.therapist.isCamOn);
+                        // controller
+                        //     .onOffFunction(DemoInformation.therapist.isCamOn);
+                        print(
+                            'participantVideoStreams.values:${controller.participantVideoStreams.values.elementAt(2)}');
                       },
                       person: DemoInformation.therapist,
                       videoStream:
                           controller.participantVideoStreams.values.length == 2
-                              ? controller.participantVideoStreams.values.first
+                              ? controller.participantVideoStreams.values
+                                  .elementAt(1)
                                   ?.renderer
                               : null,
                     ),

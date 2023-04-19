@@ -21,7 +21,7 @@ class PLockScreenController extends BaseController2 {
 
   RxBool isTestSolved = true.obs;
 
-  RxBool isTestResultReady = false.obs;
+  RxBool isTestResultReady = true.obs;
 
   void testSolved() {
     isTestSolved.value = false;

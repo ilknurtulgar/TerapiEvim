@@ -1,12 +1,13 @@
 import '../../../../core/base/service/base_service.dart';
 import '../../../../core/constants/api_const.dart';
 import '../../../../core/constants/app_const.dart';
+import '../../../../core/init/cache/local_manager.dart';
 import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
-import '../../../../core/managers/firebase/firestore/models/empty_model.dart';
 import '../../../../model/therapist/session/free_date/t_free_date_model.dart';
 import '../../../../model/therapist/session/free_date/t_free_hours_model.dart';
+import '../../../../product/enum/local_keys_enum.dart';
 import 'i_t_free_dates_service.dart';
 
 class TFreeDateService extends ITFreeDateService with BaseService {
@@ -20,6 +21,10 @@ class TFreeDateService extends ITFreeDateService with BaseService {
 
       /// Setting id of a current therapist
       freeDate.therapistId = userId;
+
+      /// Setting name of a current therapist
+      freeDate.therapistName =
+          LocalManager.instance.getStringValue(LocalManagerKeys.name);
 
       if (freeDate.hours.isEmpty) {
         throw Exception('freeDate.hours.isEmpty');
@@ -35,13 +40,11 @@ class TFreeDateService extends ITFreeDateService with BaseService {
       }
 
       for (TFreeHoursModel hour in freeDate.hours) {
-        String uniqueId =
-            await manager.createAUniqueId(collectionPath: APIConst.freeDates);
-
+        hour.freeDateId = createdIdResponseOfDate!.id;
+        hour.isFree = true;
+        hour.participantId = '';
         final CreatedIdResponse? createdIdResponse = await manager.create(
-          collectionPath: APIConst.freeDates,
-          docId: createdIdResponseOfDate!.id!,
-          collectionPath2: uniqueId,
+          collectionPath: APIConst.freeHours,
           data: hour.toJson()!,
         );
 
@@ -60,46 +63,46 @@ class TFreeDateService extends ITFreeDateService with BaseService {
     }
   }
 
-  @override
-  Future<String?> updateFreeDate(TFreeDateModel freeDate) async {
-    try {
-      if (userId == null) {
-        throw Exception("userId is null in TFreeDateModel.");
-      }
-
-      if (freeDate.id == null) {
-        throw Exception("ID is null in TFreeDateModel.");
-      }
-      final result = await manager.update<TFreeDateModel, EmptyModel>(
-        collectionPath: APIConst.freeDates,
-        docId: freeDate.id!,
-        data: freeDate,
-      );
-      if (result.error != null) {
-        return result.error?.description;
-      }
-
-      return null;
-    } catch (e) {
-      await crashlyticsManager.sendACrash(
-          error: e.toString(), stackTrace: StackTrace.current, reason: '');
-      return e.toString();
-    }
-  }
-
-  @override
-  Future<String?> deleteFreeDate(String freeDateId) async {
-    if (userId == null) return null;
-
-    final result = await manager.delete(
-      collectionPath: APIConst.freeDates,
-      docId: freeDateId,
-    );
-    if (result == false) {
-      return "ERROR";
-    }
-    return null;
-  }
+  // @override
+  // Future<String?> updateFreeDate(TFreeDateModel freeDate) async {
+  //   try {
+  //     if (userId == null) {
+  //       throw Exception("userId is null in TFreeDateModel.");
+  //     }
+  //
+  //     if (freeDate.id == null) {
+  //       throw Exception("ID is null in TFreeDateModel.");
+  //     }
+  //     final result = await manager.update<TFreeDateModel, EmptyModel>(
+  //       collectionPath: APIConst.freeDates,
+  //       docId: freeDate.id!,
+  //       data: freeDate,
+  //     );
+  //     if (result.error != null) {
+  //       return result.error?.description;
+  //     }
+  //
+  //     return null;
+  //   } catch (e) {
+  //     await crashlyticsManager.sendACrash(
+  //         error: e.toString(), stackTrace: StackTrace.current, reason: '');
+  //     return e.toString();
+  //   }
+  // }
+  //
+  // @override
+  // Future<String?> deleteFreeDate(String freeDateId) async {
+  //   if (userId == null) return null;
+  //
+  //   final result = await manager.delete(
+  //     collectionPath: APIConst.freeDates,
+  //     docId: freeDateId,
+  //   );
+  //   if (result == false) {
+  //     return "ERROR";
+  //   }
+  //   return null;
+  // }
 
   @override
   Future<TFreeDateModel?> getFreeDateById(String freeDateId) async {
@@ -125,7 +128,7 @@ class TFreeDateService extends ITFreeDateService with BaseService {
   }
 
   @override
-  Future<List<TFreeDateModel?>> getMyFreeDatesOrdered({
+  Future<List<TFreeDateModel>> getMyFreeDatesOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
@@ -135,7 +138,7 @@ class TFreeDateService extends ITFreeDateService with BaseService {
 
       final result =
           await manager.readOrderedWhere<TFreeDateModel, List<TFreeDateModel>>(
-        collectionPath: APIConst.activities,
+        collectionPath: APIConst.freeDates,
         parseModel: TFreeDateModel(),
         orderField: orderField,
         whereField: AppConst.therapistId,
@@ -148,11 +151,12 @@ class TFreeDateService extends ITFreeDateService with BaseService {
       }
 
       for (TFreeDateModel freeDate in result.data!) {
+        if (freeDate.id == null) continue;
+
         final List<TFreeHoursModel> freeHours =
             await _getFreeHours(freeDate.id!);
-        if (freeHours.isNotEmpty) {
-          freeDate.hours.addAll(freeHours);
-        }
+
+        if (freeHours.isNotEmpty) freeDate.hours = [...freeHours];
       }
 
       return result.data!;
@@ -167,14 +171,18 @@ class TFreeDateService extends ITFreeDateService with BaseService {
 
   Future<List<TFreeHoursModel>> _getFreeHours(String freeDateId) async {
     try {
-      final freeDateHours =
-          await manager.read<TFreeHoursModel, List<TFreeHoursModel>>(
+      final freeDateHours = await manager
+          .readOrderedWhere<TFreeHoursModel, List<TFreeHoursModel>>(
         parseModel: TFreeHoursModel(),
-        collectionPath: APIConst.activities,
+        collectionPath: APIConst.freeHours,
         docId: freeDateId,
+        whereField: AppConst.freeDateId,
+        whereIsEqualTo: freeDateId,
         limit: AppConst.twentyItemsPerPage,
+        orderField: AppConst.hour,
+        lastDocumentId: '',
       );
-      if (freeDateHours.error == null || freeDateHours.data != null) {
+      if (freeDateHours.error != null || freeDateHours.data == null) {
         return [];
       }
       return freeDateHours.data!;

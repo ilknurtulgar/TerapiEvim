@@ -75,7 +75,7 @@ abstract class IProfileSettingsController extends DropDownController
 
     if (birthday != birthdayController.text.trim()) {
       final result = await service.updateBirthDate(
-          BirthDateModel(birthdate: birthdayController.text.trim()));
+          BirthDateModel(birthDate: birthdayController.text.trim()));
       if (result == null) {
         await localManager.setStringValue(
             LocalManagerKeys.birthDate, birthdayController.text.trim());
@@ -93,7 +93,7 @@ abstract class IProfileSettingsController extends DropDownController
 
     if (phoneNumber != phoneNumberController.text.trim()) {
       final result = await service.updatePhoneNumber(
-          PhoneNumberModel(gender: phoneNumberController.text.trim()));
+          PhoneNumberModel(phone: phoneNumberController.text.trim()));
       if (result == null) {
         await localManager.setStringValue(
             LocalManagerKeys.phone, phoneNumberController.text.trim());

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
@@ -13,6 +14,7 @@ import 't_add_hours_view.dart';
 
 class TAvailableHoursView extends StatelessWidget {
   TAvailableHoursView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BaseView<TAvailableHoursViewController>(
@@ -29,28 +31,34 @@ class TAvailableHoursView extends StatelessWidget {
                       icon: IconUtility.addcircleIcon)
                 ],
               ),
-              body: choosingtime(controller),
+              body: controller.sessionTimeList.isEmpty
+                  ? null
+                  : choosingtime(controller),
             ));
   }
 
   Widget choosingtime(TAvailableHoursViewController controller) {
-    return Obx(
-      () => ListView.builder(
-        padding: EdgeInsets.zero,
-        itemBuilder: (context, index) {
-          final TFreeDateModel? tFreeDateModel =
-              controller.sessionTimeList[index];
-          return Padding(
+    return Obx(() => ListView.builder(
+          padding: EdgeInsets.zero,
+          itemBuilder: (context, index) {
+            final TFreeDateModel? tFreeDateModel =
+                controller.sessionTimeList[index];
+            return Padding(
               padding: AppPaddings.timeChossingBetweenPadding,
               child: ChoosingTimeForSCContainer(
-                  date:
-                      "", //(tFreeDateModel?.dateTime ??  Timestamp.fromDate(DateTime.now() as String)),
-                  timeList: DemoInformation
-                      .dateList, //tFreeDateModel?.hours.toList()?? ,
-                  isForParticipant: true));
+                onSelectedHour: (selectedHourId) {},
+                date: "",
+                //(tFreeDateModel?.dateTime ??  Timestamp.fromDate(DateTime.now() as String)),
+                timeList: [], therapistName: '',
+                //tFreeDateModel?.hours.toList()?? ,
+                isForParticipant: true,
+                listViewChosenList: [true].obs,
+                callBack: () {},
+              ));
         },
         itemCount: controller.sessionTimeList.length,
       ),
     );
+
   }
 }

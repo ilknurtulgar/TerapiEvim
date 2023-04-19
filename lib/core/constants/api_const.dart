@@ -5,6 +5,7 @@ class APIConst {
   static const String joinedActivities = 'joinedActivities';
   static const String scl90 = 'scl90';
   static const String freeDates = 'freeDates';
+  static const String freeHours = 'freeHours';
   static const String sessions = 'sessions';
   static const String tConfirmation = 'tConfirmation';
   static const String groups = 'groups';

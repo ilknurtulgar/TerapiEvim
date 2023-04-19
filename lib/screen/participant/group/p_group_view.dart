@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/screen/participant/group/category_determination/short_call/p_determining_to_shortcall_time_view.dart';
 
 import '../../../controller/participant/participant_controller.dart';
-import 'category_determination/group_categories/p_group_categories_view.dart';
-import 'scl90/p_lock_view.dart';
 
 class PGroupView extends StatelessWidget {
   PGroupView({super.key});
@@ -13,7 +12,7 @@ class PGroupView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _controller.joinedGroupId.isNotEmpty
-        ? const PGroupCategoriesView()
-        : const PLockView();
+        ? const PShortCallTimeView()
+        : const PShortCallTimeView();
   }
 }

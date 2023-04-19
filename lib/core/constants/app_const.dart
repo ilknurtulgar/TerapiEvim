@@ -18,6 +18,7 @@ class AppConst {
   static const String participant = 'participant';
   static const String therapistId = 'therapistId';
   static const String isFinished = 'isFinished';
+  static const String isFree = 'isFree';
   static const String freeHour = 'freeHour';
   static const String freeDate = 'freeDate';
   static const String freeDateId = 'freeDateId';

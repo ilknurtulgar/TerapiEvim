@@ -7,11 +7,11 @@ abstract class IPActivityService {
 
   final IFirestoreManager<ErrorModelCustom> manager;
 
-  Future<List<TActivityModel?>> getRecentActivities();
+  Future<List<TActivityModel>> getRecentActivities();
 
   Future<TActivityModel?> getActivityById(String activityId);
 
-  Future<List<TActivityModel?>?> getRecentActivitiesOrdered(
+  Future<List<TActivityModel>> getRecentActivitiesOrdered(
       {String lastDocId, String orderField, bool isDescending});
 
   Future<List<TActivityModel?>> getPastActivitiesOrdered(

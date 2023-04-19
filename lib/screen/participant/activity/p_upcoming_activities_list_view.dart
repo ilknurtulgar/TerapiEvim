@@ -33,7 +33,10 @@ class PUpComingActivitiesListView extends StatelessWidget {
                         controller.upComingActivities[index];
                     return activitythreerowbox(
                         () {},
-                        () {},
+                        () {
+                          controller.joinActivity(context,activityModel!);
+
+                        },
                         DemoInformation.titlenameActivityMod(
                             activityModel?.title ?? ""),
                         DemoInformation.clockRow(

@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../model/common/activity/t_activity_model.dart';
 import '../../../model/therapist/coping_method/t_coping_method_model.dart';
-import '../../../model/therapist/group/t_group_model.dart';
 import '../../../product/enum/local_keys_enum.dart';
 import '../../../service/_participant/profile/i_p_profile_service.dart';
 import '../../base/base_controller.dart';

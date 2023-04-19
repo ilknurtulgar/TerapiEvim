@@ -63,6 +63,7 @@ class GroupTextUtil {
       'İstek gönderildikten itibaren geri dönüt alınmadan başka bir yardımcı terapiste istekte bulunulamaz.';
   static String cancelText = "İptal";
   static String sendRequestText = 'İstek Gonder';
+  static String shortCallSaveText = "Emin misiniz? ";
 
   //groupinformation
 

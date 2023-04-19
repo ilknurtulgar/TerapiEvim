@@ -10,7 +10,7 @@ abstract class IPSessionService {
 
   final IFirestoreManager<ErrorModelCustom> manager;
 
-  Future<List<TFreeDateModel?>> getAvailableHoursOrdered({
+  Future<List<TFreeDateModel>> getAvailableHoursOrdered({
     String lastDocId,
     String orderField,
     bool isDescending,

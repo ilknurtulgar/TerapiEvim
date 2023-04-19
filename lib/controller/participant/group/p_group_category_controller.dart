@@ -31,12 +31,14 @@ class PGroupCategoryController extends GetxController with BaseController {
     navigationManager.pushAndRemoveUntil(navigator, PMyGroupView());
   }
 
-  Future<List<JoinableGroupModel>> getGroups() async {
+  Future<void> getGroups() async {
     isLoading.value = true;
     final List<JoinableGroupModel> fetchedGroups =
         await groupService.getGroupsByCategory(categoryName: "Depresyon");
     groups.addAll(fetchedGroups);
+
     isLoading.value = false;
-    return fetchedGroups;
+
+    return;
   }
 }

@@ -36,7 +36,7 @@ class PSessionService extends IPSessionService with BaseService {
   }
 
   @override
-  Future<List<TFreeDateModel?>> getAvailableHoursOrdered({
+  Future<List<TFreeDateModel>> getAvailableHoursOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,

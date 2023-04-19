@@ -7,12 +7,14 @@ part 't_free_hours_model.g.dart';
 @JsonSerializable()
 class TFreeHoursModel extends INetworkModel<TFreeHoursModel> {
   bool? isFree;
-  String? participantId, freeDateId,hour;
+  String? id, participantId, therapistId, freeDateId, hour;
 
   TFreeHoursModel({
+    this.id,
     this.hour,
     this.isFree,
     this.participantId,
+    this.therapistId,
     this.freeDateId,
   });
 

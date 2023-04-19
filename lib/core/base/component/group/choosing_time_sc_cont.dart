@@ -19,15 +19,17 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
       required this.timeList,
       required this.isForParticipant,
       this.callBack,
-      this.listViewIndex,
-      this.listViewChosenList});
+      this.dateIndex,
+      this.listViewChosenList,
+      required this.onSelectedHour});
   final String? therapistName;
   final String date;
   final List<TFreeHoursModel> timeList;
   final bool isForParticipant;
   final Function? callBack;
-  final int? listViewIndex;
+  final int? dateIndex;
   final RxList<bool>? listViewChosenList;
+  final Function(int selectedHourId) onSelectedHour;
 
   late var newList = timeList.obs;
   var isVisible = true.obs;
@@ -69,7 +71,7 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
                     isForParticipant
                         ? RowView(
                             rowModel: UiBaseModel.secDeterminationModel(
-                                therapistName!, IconUtility.personIcon),
+                                therapistName ?? "", IconUtility.personIcon),
                             padding: AppPaddings.componentOnlyPadding(4))
                         : const SizedBox(),
                     RowView(
@@ -110,14 +112,14 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
     );
   }
 
-  Widget participantChoosingTimeButton(int rowIndex) {
+  Widget participantChoosingTimeButton(int hourIndex) {
     return PersonMin(
       onTap: () {
-        choose(listViewIndex!, listViewChosenList!, false);
-        if (listViewChosenList![listViewIndex!])
-          choose(rowIndex, isChosen, true);
+        choose(dateIndex!, listViewChosenList!, false);
+        onSelectedHour(hourIndex);
+        if (listViewChosenList![dateIndex!]) choose(hourIndex, isChosen, true);
       },
-      row: timeButtonInsideRow(rowIndex),
+      row: timeButtonInsideRow(hourIndex),
     );
   }
 
@@ -128,10 +130,9 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
       textStyle: AppTextStyles.normalTextStyle('medium', false),
       leadingIcon: IconUtility.clockIcon,
       trailingIcon: Obx(() => Icon(Icons.check_circle_outline,
-          color:
-              isChosen[rowIndex] == true && listViewChosenList![listViewIndex!]
-                  ? AppColors.black
-                  : AppColors.transparent)),
+          color: isChosen[rowIndex] == true && listViewChosenList![dateIndex!]
+              ? AppColors.black
+              : AppColors.transparent)),
     );
   }
 }

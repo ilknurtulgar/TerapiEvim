@@ -15,7 +15,7 @@ abstract class ITFreeDateService {
 
   Future<TFreeDateModel?> getFreeDateById(String freeDate);
 
-  Future<List<TFreeDateModel?>> getMyFreeDatesOrdered(
+  Future<List<TFreeDateModel>> getMyFreeDatesOrdered(
       {String lastDocId, String orderField, bool isDescending});
 
   // Future<String?> deleteFreeDate(String freeDate);

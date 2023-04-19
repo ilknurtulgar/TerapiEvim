@@ -122,7 +122,7 @@ class TFreeDateService extends ITFreeDateService with BaseService {
   }
 
   @override
-  Future<List<TFreeDateModel?>> getMyFreeDatesOrdered({
+  Future<List<TFreeDateModel>> getMyFreeDatesOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
@@ -149,11 +149,8 @@ class TFreeDateService extends ITFreeDateService with BaseService {
 
         final List<TFreeHoursModel> freeHours =
             await _getFreeHours(freeDate.id!);
-        if (freeHours.isNotEmpty) {
-          final List<TFreeHoursModel> freeHours =
-              await _getFreeHours(freeDate.id!);
-          freeDate.hours = [...freeHours];
-        }
+
+        if (freeHours.isNotEmpty) freeDate.hours = [...freeHours];
       }
 
       return result.data!;

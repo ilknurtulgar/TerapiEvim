@@ -5,9 +5,9 @@ import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_hours_model.dart';
 import 'package:terapievim/service/_therapist/session/free_dates/i_t_free_dates_service.dart';
-import 'package:terapievim/service/_therapist/session/free_dates/t_free_dates_service.dart';
 
 import '../../../../core/base/component/group/scrollable_time.dart';
+import '../../../../service/_therapist/session/free_dates/t_free_dates_service.dart';
 import '../../../base/base_controller.dart';
 
 class TAddHoursViewController extends GetxController with BaseController {

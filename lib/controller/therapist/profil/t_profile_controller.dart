@@ -15,7 +15,6 @@ class TProfileController extends GetxController with BaseController {
 
   @override
   Future<void> onInit() async {
-
     tProfileService = TProfileService(vexaFireManager.networkManager);
 
     name = localManager.getStringValue(LocalManagerKeys.name);
@@ -25,6 +24,8 @@ class TProfileController extends GetxController with BaseController {
     birthday = localManager.getStringValue(LocalManagerKeys.birthDate);
 
     imageUrl.value = localManager.getStringValue(LocalManagerKeys.imageUrl);
+
+    if (imageUrl == '') imageUrl.value = 'https://cdn.icon-icons.com/icons2/2645/PNG/512/person_circle_icon_159926.png';
 
     final List<TCopingMethodModel?>? fetchedCopingMethods =
         await tProfileService.getCopingMethodsOrdered();
@@ -70,5 +71,4 @@ class TProfileController extends GetxController with BaseController {
   String name = '';
 
   String birthday = '';
-
 }

@@ -39,13 +39,6 @@ class TProfileSettingsView extends StatelessWidget {
                   onTap: () => context.pop(),
                 ),
                 _bigColumn(context, controller),
-                /*DemoInformation.isForParticipant == false
-                  ? Positioned(
-                      top: 940,
-                      right: 25,
-                      child: CustomListWheelScrollView(
-                          whatIsFor: 'number of groups')) // eski değer 715
-                  : const SizedBox(),*/
               ],
             ),
           ),

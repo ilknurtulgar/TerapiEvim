@@ -35,7 +35,7 @@ class TMyUpComingActivitiesListView extends StatelessWidget {
                         isactivity: true,
                         rightButtonTap: () {},
                         arowModel: DemoInformation.recentActivityTitle(
-                            activityModel?.title ?? "boi"),
+                            activityModel?.title ?? "empty tite"),
                         clockModel: DemoInformation.recentActivityTime(
                             activityModel?.dateTime ?? Timestamp.now()));
                   },

@@ -8,7 +8,7 @@ part 't_session_model.g.dart';
 
 @JsonSerializable()
 class TSessionModel extends INetworkModel<TSessionModel> {
-  String? id, participantId, participantName;
+  String? id, participantId, freeDateId, therapistId, participantName;
   bool? isFinished;
 
   /// participant's selected date
@@ -23,6 +23,9 @@ class TSessionModel extends INetworkModel<TSessionModel> {
     this.participantId,
     this.participantName,
     this.isFinished,
+    this.therapistId,
+    this.dateTime,
+    this.freeDateId,
   });
 
   @override

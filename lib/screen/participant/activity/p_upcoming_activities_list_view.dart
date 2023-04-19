@@ -31,19 +31,18 @@ class PUpComingActivitiesListView extends StatelessWidget {
                   (context, index) {
                     final TActivityModel? activityModel =
                         controller.upComingActivities[index];
-                    return activitythreerowbox(
+                    return activitythreerowbox(() {
+                      controller.joinActivity(context, activityModel!);
+                    },
                         () {},
-                        () {
-                          controller.joinActivity(context,activityModel!);
-
-                        },
                         DemoInformation.titlenameActivityMod(
-                            activityModel?.title ?? ""),
+                            activityModel?.title ?? "empty title"),
                         DemoInformation.clockRow(
                             activityModel?.dateTime ?? Timestamp.now()),
                         ActivityTextUtil.join,
                         DemoInformation.therapistnameActivityMod(
-                            activityModel?.therapistName ?? "empty"));
+                            activityModel?.therapistName ??
+                                "empty therapist name"));
                   },
                   childCount: controller.upComingActivities.length,
                 )),

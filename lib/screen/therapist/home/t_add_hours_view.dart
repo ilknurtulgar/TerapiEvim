@@ -58,10 +58,12 @@ class _TAddHoursViewState extends State<TAddHoursView> {
                     itemBuilder: (context, index) {
                       return Obx(
                         () => DeletingTimeButton(
-                          time: controller.timeList[index].toString(),
+                          time: controller.timeList[index].hour.toString(),
                           onDeleted: () {
-                            controller.timeList
-                                .remove(controller.timeList[index]);
+                            controller.timeList.remove(TFreeHoursModel(
+                                hour: controller.timeList[index].hour));
+
+                            print(controller.timeList[index].hour);
                           },
                         ),
                       );

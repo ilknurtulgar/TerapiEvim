@@ -694,7 +694,7 @@ class DemoInformation {
       text: DateTimeManager.getFormattedDateFromFormattedString(
           value: timestamp.toDate().toIso8601String()),
       textStyle: AppTextStyles.groupTextStyle(true),
-      isAlignmentBetween: true,
+      isAlignmentBetween: false,
     );
   }
 

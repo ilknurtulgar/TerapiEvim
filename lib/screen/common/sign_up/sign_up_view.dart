@@ -9,6 +9,7 @@ import 'package:terapievim/screen/common/sign_in/util/sign_in_view_utility.dart'
 import '../../../controller/auth/sign_up_controller.dart';
 import '../../../controller/main_controller.dart';
 import '../../../core/base/component/profile/acception_row.dart';
+import '../../../core/base/util/text_utility.dart';
 import '../../../product/widget/common/profile/utility/textfield_utility.dart';
 
 class SignUpView extends StatefulWidget {
@@ -81,12 +82,8 @@ class _SignUpViewState extends State<SignUpView> {
               textfieldListView(),
               SliverToBoxAdapter(child: mediumSizedBox()),
               SliverToBoxAdapter(
-                child: Obx(
-                  () => mainController.isTherapist.value
-                      ? acceptMakingShortCallContainer(_signUpController)
-                      : const SizedBox(),
+                child: acceptMakingShortCallContainer(_signUpController)
                 ),
-              ),
               buttonColumn(context)
             ],
           ),
@@ -136,6 +133,7 @@ class _SignUpViewState extends State<SignUpView> {
               child: Obx(
                 () => AcceptionRow(
                   isForMakingShortCall: true,
+                  explanation: mainController.isTherapist.value ? LoginSignUpTextUtil.therapistAcceptedMakingShortCall : LoginSignUpTextUtil.participantAcceptionText,
                   acceptionFunction: () => acceptTermOfUse(controller),
                   value: controller.isTermsOfUseAccepted.value,
                 ),

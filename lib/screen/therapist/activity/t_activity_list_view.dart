@@ -38,11 +38,12 @@ class TActivityListView extends StatelessWidget {
                           () {},
                           () {},
                           DemoInformation.myPastActivities(
-                              activityModel?.title ?? ""),
+                              activityModel?.title ?? "empty title"),
                           DemoInformation.myPastActivitiesTime(
                               activityModel?.dateTime ?? Timestamp.now()),
                           ActivityTextUtil.join,
-                          DemoInformation.therapistnameActivityMod(""),
+                          DemoInformation.therapistnameActivityMod(
+                              "empty therapist name"),
                         );
                       },
                     )),

@@ -6,7 +6,6 @@ import 'package:terapievim/product/enum/local_keys_enum.dart';
 import 'package:terapievim/service/_participant/session/i_p_session_service.dart';
 import 'package:terapievim/service/_participant/session/p_session_service.dart';
 
-import '../../../core/base/util/base_utility.dart';
 import '../../base/base_controller_2.dart';
 
 class PDeterminingShortCallController extends BaseController2 {
@@ -16,6 +15,7 @@ class PDeterminingShortCallController extends BaseController2 {
   }
   @override
   Future<void> onInit() async {
+    super.onInit();
     // TODO: implement onInit
     pService = PSessionService(vexaFireManager.networkManager);
     participantName.value = localManager.getStringValue(LocalManagerKeys.name);
@@ -57,7 +57,7 @@ class PDeterminingShortCallController extends BaseController2 {
     isLoading.value = true;
 
     final List<TFreeDateModel> availableHours =
-        await pService.getAvailableHoursOrdered();
+        await pService.getAvailableDatesOrdered();
     freeDates.addAll(availableHours);
     isLoading.value = false;
     return;

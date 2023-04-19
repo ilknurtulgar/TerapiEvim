@@ -5,10 +5,12 @@ import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/constants/api_const.dart';
 import '../../../core/constants/app_const.dart';
+import '../../../core/init/cache/local_manager.dart';
 import '../../../model/therapist/session/free_date/t_free_date_model.dart';
 import '../../../model/therapist/session/free_date/t_free_hours_model.dart';
 import '../../../model/therapist/session/t_join_video_call_result_model.dart';
 import '../../../model/therapist/session/t_session_model.dart';
+import '../../../product/enum/local_keys_enum.dart';
 import 'i_p_session_service.dart';
 
 class PSessionService extends IPSessionService with BaseService {
@@ -22,10 +24,8 @@ class PSessionService extends IPSessionService with BaseService {
     return null;
   }
 
-
-
   @override
-  Future<List<TFreeDateModel>> getAvailableHoursOrdered({
+  Future<List<TFreeDateModel>> getAvailableDatesOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
@@ -85,21 +85,42 @@ class PSessionService extends IPSessionService with BaseService {
   }
 
   @override
-  Future<CreatedIdResponse?> createSession(String freeTimeId) {
-    // TODO: implement createSession
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<CreatedIdResponse?> selectASession(String sessionId) async {
+  Future<CreatedIdResponse?> selectASession(TFreeHoursModel freeHours) async {
     if (userId == null) return null;
 
     final CreatedIdResponse? result = await manager.create(
       collectionPath: APIConst.participant,
       docId: userId,
-      data: {AppConst.dateTime: sessionId},
+      data: {AppConst.sessionId: freeHours.id},
     );
 
+    final TSessionModel newSession = TSessionModel(
+      id: freeHours.id!,
+      freeDateId: freeHours.freeDateId,
+      isFinished: false,
+      participantId: userId,
+      participantName:
+          LocalManager.instance.getStringValue(LocalManagerKeys.name),
+      therapistId: freeHours.therapistId,
+    );
+
+    final bool isSessionCreated = await manager.createWithDocId(
+      collectionPath: APIConst.sessions,
+      docId: freeHours.id!,
+      data: newSession.toJson()!,
+    );
+
+    //   {
+    //     AppConst.sessionId: freeHours.id,
+    //   AppConst.participantId: userId!,
+    //   AppConst.therapistId: freeHours.therapistId!,
+    //
+    // }
     return result;
+  }
+
+  @override
+  Future<TFreeDateModel?> getAvailableDateById(String availableDate) async {
+    return null;
   }
 }

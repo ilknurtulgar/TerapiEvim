@@ -12,14 +12,13 @@ import 't_search_message_view.dart';
 
 class TMessageView extends StatelessWidget {
   const TMessageView({super.key});
+
 //kullanıcılar
   @override
   Widget build(BuildContext context) {
     return BaseView<TMessageController>(
       getController: TMessageController(),
       onPageBuilder: (context, controller) {
-        controller.getAllUsers();
-
         return Scaffold(
           appBar: MyAppBar(
             title: MessageTextUtil.messageapptext,

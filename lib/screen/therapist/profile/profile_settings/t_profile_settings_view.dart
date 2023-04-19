@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../controller/drop_down_controller.dart';
 import '../../../../controller/therapist/profil/t_profile_settings_controller.dart';
 import '../../../../core/base/component/buttons/save_button.dart';
 import '../../../../core/base/component/group/custom_list_wheel_scroll_view.dart';
@@ -20,7 +19,6 @@ part 'modules/special_column.dart';
 
 class TProfileSettingsView extends StatelessWidget {
   TProfileSettingsView({super.key});
-  DropDownController dropDownController = Get.find();
   @override
   Widget build(BuildContext context) {
     return BaseView<TProfileSettingsController>(
@@ -40,7 +38,7 @@ class TProfileSettingsView extends StatelessWidget {
                 ProfileBackIconButton(
                   onTap: () => context.pop(),
                 ),
-                _bigColumn(context, controller, dropDownController),
+                _bigColumn(context, controller),
                 /*DemoInformation.isForParticipant == false
                   ? Positioned(
                       top: 940,

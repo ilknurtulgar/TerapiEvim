@@ -26,6 +26,9 @@ class TGroupInformationController extends GetxController with BaseController {
   late final ITGroupService tGroupService;
 
   TGroupModel? currentGroupModel;
+  void deleteGroup() {
+    currentGroupModel!.id = '';
+  }
 
   //grup eklmee kismi icin controller
   var isParticipantElectionOpen = false.obs;

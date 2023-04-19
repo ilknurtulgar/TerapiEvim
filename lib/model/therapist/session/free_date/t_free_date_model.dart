@@ -10,7 +10,7 @@ part 't_free_date_model.g.dart';
 @JsonSerializable()
 class TFreeDateModel extends INetworkModel<TFreeDateModel> {
   String? id;
-  String? therapistId;
+  String? therapistId, therapistName;
   String? meetId;
 
   /// Timestamp.fromDate(DateTime.now()) is an example of using timestamp
@@ -26,6 +26,7 @@ class TFreeDateModel extends INetworkModel<TFreeDateModel> {
   TFreeDateModel({
     this.id,
     this.therapistId,
+    this.therapistName,
     this.dateTime,
     this.meetId,
     this.hours = const [],

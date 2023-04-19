@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/drop_down_controller.dart';
 
 import '../core/base/component/toast/toast.dart';
 import '../core/managers/picker/picker_manager.dart';
@@ -13,7 +14,7 @@ import '../service/profile/i_profile_settings_service.dart';
 import '../service/profile/profile_settings_service.dart';
 import 'base/base_controller.dart';
 
-abstract class IProfileSettingsController extends GetxController
+abstract class IProfileSettingsController extends DropDownController
     with BaseController {
   final PickerManager pickerManager = PickerManager.instance;
 
@@ -74,7 +75,7 @@ abstract class IProfileSettingsController extends GetxController
 
     if (birthday != birthdayController.text.trim()) {
       final result = await service.updateBirthDate(
-          BirthDateModel(birthdate: birthdayController.text.trim()));
+          BirthDateModel(birthDate: birthdayController.text.trim()));
       if (result == null) {
         await localManager.setStringValue(
             LocalManagerKeys.birthDate, birthdayController.text.trim());
@@ -92,7 +93,7 @@ abstract class IProfileSettingsController extends GetxController
 
     if (phoneNumber != phoneNumberController.text.trim()) {
       final result = await service.updatePhoneNumber(
-          PhoneNumberModel(gender: phoneNumberController.text.trim()));
+          PhoneNumberModel(phone: phoneNumberController.text.trim()));
       if (result == null) {
         await localManager.setStringValue(
             LocalManagerKeys.phone, phoneNumberController.text.trim());

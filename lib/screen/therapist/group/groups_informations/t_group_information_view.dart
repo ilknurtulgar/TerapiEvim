@@ -43,8 +43,8 @@ class TGroupInformationView extends StatelessWidget {
           return Scaffold(
             appBar: MyAppBar(
               title: controller.currentGroupModel?.name ?? '',
-              actions:
-                  _appBarActions(context, controller.currentGroupModel?.id),
+              actions: _appBarActions(
+                  context, controller.currentGroupModel?.id, controller),
             ),
             body: ListView(
               padding: AppPaddings.pagePaddingHorizontal,
@@ -71,13 +71,15 @@ class TGroupInformationView extends StatelessWidget {
         });
   }
 
-  List<Widget> _appBarActions(BuildContext context, String? currentGroupId) {
+  List<Widget> _appBarActions(BuildContext context, String? currentGroupId,
+      TGroupInformationController controller) {
     return [
       IconButton(
         icon: const Icon(Icons.create_new_folder_outlined),
         onPressed: () {
           if (currentGroup == null) {
             ///TODO : show a message that there is an error
+            errorDialog(context);
             return;
           }
           context.push(TNewCopingMethodView(groupId: currentGroupId!));
@@ -88,9 +90,10 @@ class TGroupInformationView extends StatelessWidget {
         onPressed: () {
           if (currentGroup == null) {
             ///TODO : show a message that there is an error
+            errorDialog(context);
             return;
           }
-          deleteGroupDialog(context, currentGroupId!);
+          deleteGroupDialog(context, currentGroupId!, controller);
         },
       )
     ];
@@ -133,7 +136,8 @@ class TGroupInformationView extends StatelessWidget {
     );
   }
 
-  Future<void> deleteGroupDialog(BuildContext context, String currentGroupId) {
+  Future<void> deleteGroupDialog(BuildContext context, String currentGroupId,
+      TGroupInformationController controller) {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -159,6 +163,8 @@ class TGroupInformationView extends StatelessWidget {
               onPressed: () {
                 ///TODO: user can delete with currentGroupId from controller
                 ///Note: using get.find is Ok, while it is only used in this view
+                controller.deleteGroup();
+
                 Get.back();
               },
             ),
@@ -192,6 +198,29 @@ class TGroupInformationView extends StatelessWidget {
       context: context,
       builder: (BuildContext context) => AlertDialog(
         title: Text(name + GroupTextUtil.deleteParticipantText),
+        actions: <Widget>[
+          TextButton(
+            onPressed: () => Get.back(),
+            child: Text(GroupTextUtil.cancelText),
+          ),
+          TextButton(
+            onPressed: () {
+              //participant silinecek
+
+              Get.back();
+            },
+            child: Text(GroupTextUtil.deleteText),
+          ),
+        ],
+      ),
+    );
+  }
+
+  errorDialog(BuildContext context) {
+    return showDialog<String>(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+        title: Text(GroupTextUtil.deleteParticipantText),
         actions: <Widget>[
           TextButton(
             onPressed: () => Get.back(),

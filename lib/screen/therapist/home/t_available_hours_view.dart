@@ -14,6 +14,7 @@ import 't_add_hours_view.dart';
 
 class TAvailableHoursView extends StatelessWidget {
   TAvailableHoursView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BaseView<TAvailableHoursViewController>(
@@ -45,14 +46,18 @@ class TAvailableHoursView extends StatelessWidget {
             return Padding(
               padding: AppPaddings.timeChossingBetweenPadding,
               child: ChoosingTimeForSCContainer(
-                  date: tFreeDateModel?.dateTime.toString() ??
-                      Timestamp.now().toString(),
-                  timeList:
-                      DemoInformation.dateList, //tFreeDateModel?.hours??  ,
-                  isForParticipant: true),
-            );
-          },
-          itemCount: controller.sessionTimeList.length,
-        ));
+                date: "",
+                //(tFreeDateModel?.dateTime ??  Timestamp.fromDate(DateTime.now() as String)),
+                timeList: [], therapistName: '',
+                //tFreeDateModel?.hours.toList()?? ,
+                isForParticipant: true,
+                listViewChosenList: [true].obs,
+                callBack: () {},
+              ));
+        },
+        itemCount: controller.sessionTimeList.length,
+      ),
+    );
+
   }
 }

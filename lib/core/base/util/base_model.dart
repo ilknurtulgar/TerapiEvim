@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/controller/participant/group/p_determining_short_call_time.dart';
 import 'package:terapievim/core/base/ui_models/row_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
@@ -14,7 +15,7 @@ class UiBaseModel {
       leadingIcon: IconUtility.chatIcon,
       text: GroupTextUtil.messageToTherapist,
       textStyle: AppTextStyles.groupTextStyle(false),
-      isAlignmentBetween: false);
+      isAlignmentBetween: true);
   static RowModel searchModel(String text, Widget trailingIcon) => RowModel(
       isAlignmentBetween: true,
       text: text,
@@ -132,8 +133,9 @@ class UiBaseModel {
       textStyle: AppTextStyles.heading(false),
       trailingIcon: trailingIcon,
       isAlignmentBetween: true);
-  static RowModel determiningappBar() =>
-      appBarModel(GroupTextUtil.terapiEvim, saveButton());
+  static RowModel determiningappBar(
+          BuildContext context, PDeterminingShortCallController controller) =>
+      appBarModel(GroupTextUtil.terapiEvim, saveButton(context, controller));
   static RowModel roleModel(String text, Widget leadingIcon) => RowModel(
         text: text,
         textStyle: AppTextStyles.groupTextStyle(false),

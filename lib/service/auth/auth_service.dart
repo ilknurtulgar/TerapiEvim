@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import '../../core/base/component/toast/toast.dart';
 import '../../core/base/service/base_service.dart';
 import '../../core/constants/api_const.dart';
+import '../../core/constants/app_const.dart';
 import '../../core/constants/utils/text_constants/error_text_const.dart';
 import '../../core/init/network/model/error_model_custom.dart';
 import '../../core/init/print_dev.dart';
@@ -82,6 +83,41 @@ class AuthService extends IAuthService with BaseService {
           collectionPath: APIConst.users,
           docId: result.user!.uid,
           data: signUpModel.toJson()!);
+      if (isSuccess == false) {
+        throw Exception('Could not create user at auth_service');
+      }
+
+      if (signUpModel.role == AppConst.therapist) {
+        final bool _isSuccess = await manager.createWithDocId(
+            collectionPath: APIConst.therapist,
+            docId: result.user!.uid,
+            data: TInitialData(
+              isDiplomaUploaded: false,
+              isTherapistBeingReviewed: false,
+              isTherapistConfirmed: false,
+              isBeingAdvisorAccepted: false,
+              maxNumberOfHelpingGroups: 0,
+            ).toJson()!);
+        if (_isSuccess == false) {
+          throw Exception('Could not create user at auth_service');
+        }
+      } else {
+        final bool _isSuccess = await manager.createWithDocId(
+            collectionPath: APIConst.participant,
+            docId: result.user!.uid,
+            data: PInitialData(
+              groupCategory: '',
+              isJoinedGroupLocked: true,
+              isScl90Submitted: false,
+              isSessionComplete: false,
+              isTestResultReady: false,
+              isSessionSelected: false,
+              joinedGroupId: '',
+            ).toJson()!);
+        if (_isSuccess == false) {
+          throw Exception('Could not create user at auth_service');
+        }
+      }
       if (isSuccess == false) {
         throw Exception('Could not create user at auth_service');
       }

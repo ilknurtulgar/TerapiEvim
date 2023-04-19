@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/main_controller.dart';
+import 'package:terapievim/controller/participant/participant_controller.dart';
+import 'package:terapievim/controller/therapist/therapist_controller.dart';
 
 import '../../core/base/component/toast/toast.dart';
 import '../../core/constants/app_const.dart';
-import '../../model/participant/_initial_data/p_initial_data.dart';
 import '../../model/common/login/login_model.dart';
 import '../../model/common/login/login_response_model.dart';
+import '../../model/participant/_initial_data/p_initial_data.dart';
 import '../../model/therapist/_initial_data/t_initial_data.dart';
 import '../../product/enum/local_keys_enum.dart';
 import '../../service/auth/auth_service.dart';
@@ -97,8 +99,11 @@ class LoginController extends GetxController with BaseController {
   }
 
   Future<void> _initialDataOfTherapist(LoginResponseModel loginResponse) async {
+    Get.put(TherapistController());
+
     final TInitialData? initialDataOfTherapist =
         await authService.fetchInitialDataOfTherapist();
+
     await localManager.setStringValue(
         LocalManagerKeys.aboutMe, loginResponse.aboutMe ?? "");
     await localManager.setBoolValue(LocalManagerKeys.isTherapistConfirmed,
@@ -112,11 +117,13 @@ class LoginController extends GetxController with BaseController {
   }
 
   Future<void> _fetchInitialDataOfParticipant() async {
+    Get.put(ParticipantController());
+
     final PInitialData? initialDataOfParticipantModel =
         await authService.fetchInitialDataOfParticipant();
 
     /// Save joinedGroupId of a participant
-    localManager.setStringValue(LocalManagerKeys.joinedGroupId,
+    localManager.setStringValue(LocalManagerKeys.pJoinedGroupId,
         initialDataOfParticipantModel?.joinedGroupId ?? '');
 
     ///TODO: save initial Data to cache

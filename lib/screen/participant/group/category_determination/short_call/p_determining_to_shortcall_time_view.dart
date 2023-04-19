@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/controller/participant/group/p_determining_short_call_time.dart';
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
@@ -12,13 +13,10 @@ import '../../../../../core/base/view/base_view.dart';
 
 // ignore: must_be_immutable
 class PShortCallTimeView extends StatelessWidget {
-  PShortCallTimeView({super.key});
-
-  // gecici
+  const PShortCallTimeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    String hiUser = "Merhaba ${DemoInformation.userName}";
     return BaseView<PDeterminingShortCallController>(
       getController: PDeterminingShortCallController(),
       onPageBuilder: (context, controller) => Scaffold(
@@ -28,11 +26,12 @@ class PShortCallTimeView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 RowView(
-                    rowModel: UiBaseModel.determiningappBar(),
+                    rowModel:
+                        UiBaseModel.determiningappBar(context, controller),
                     padding: AppPaddings.appBarPadding),
                 line(),
                 CustomHeading(
-                  text: hiUser,
+                  text: "Merhaba ${controller.participantName}",
                   isalignmentstart: false,
                 ),
                 const PurpleTextContainer(
@@ -59,15 +58,14 @@ class PShortCallTimeView extends StatelessWidget {
     return ListView.builder(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      itemCount: DemoInformation.tmpCount,
+      itemCount: controller.freeDates.length,
       itemBuilder: (context, index) => Padding(
         padding: AppPaddings.timeChossingBetweenPadding,
         child: ChoosingTimeForSCContainer(
-          //sizedBox vardı gerek kalmamıştır diye tahmin edip sildim
-          therapistName: DemoInformation.therapistName,
+          therapistName: controller.freeDates[index].therapistId,
           isForParticipant: true,
-          date: DemoInformation.dateList[index],
-          timeList: DemoInformation.timelist,
+          date: controller.freeDates[index].dateTime.toString(),
+          timeList: controller.freeDates[index].hours,
           callBack: controller.callBack,
           listViewChosenList: controller.isChosen,
           listViewIndex: index,
@@ -77,9 +75,36 @@ class PShortCallTimeView extends StatelessWidget {
   }
 }
 
-IconButton saveButton() {
+IconButton saveButton(
+    BuildContext context, PDeterminingShortCallController controller) {
   return IconButton(
     icon: IconUtility.save,
-    onPressed: () {},
+    onPressed: () {
+      saveShowDialog(context, controller);
+    },
+  );
+}
+
+Future<String?> saveShowDialog(
+    BuildContext context, PDeterminingShortCallController controller) {
+  return showDialog<String>(
+    context: context,
+    builder: (BuildContext context) => AlertDialog(
+      title: Text(GroupTextUtil.shortCallSaveText),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () => Get.back(),
+          child: Text(GroupTextUtil.cancelText),
+        ),
+        TextButton(
+          onPressed: () {
+            Get.back();
+
+            controller.saveButton();
+          },
+          child: Text(GroupTextUtil.yes),
+        ),
+      ],
+    ),
   );
 }

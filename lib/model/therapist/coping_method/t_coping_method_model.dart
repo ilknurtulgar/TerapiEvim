@@ -9,6 +9,8 @@ part 't_coping_method_model.g.dart';
 @JsonSerializable()
 class TCopingMethodModel extends INetworkModel<TCopingMethodModel> {
   String? id,
+      title,
+      groupName,
       therapistId,
       groupId,
       therapistName,
@@ -27,11 +29,13 @@ class TCopingMethodModel extends INetworkModel<TCopingMethodModel> {
     this.id,
     this.therapistId,
     this.groupId,
+    this.groupName,
     this.therapistName,
     this.therapistAvatarUrl,
     this.description,
     this.docUrl,
     this.dateTime,
+    this.title,
   });
 
   @override

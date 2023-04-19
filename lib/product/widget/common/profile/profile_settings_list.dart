@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:terapievim/controller/drop_down_controller.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 import '../../../../controller/profile_settings_controller.dart';
@@ -10,11 +8,9 @@ import 'utility/textfield_utility.dart';
 class ProfileSettingsList extends StatelessWidget {
   ProfileSettingsList(
       {Key? key,
-      required this.profileController,
-      required this.dropDownController})
+      required this.profileController,})
       : super(key: key);
   final IProfileSettingsController profileController;
-  DropDownController dropDownController = Get.find();
   @override
   Widget build(BuildContext context) {
     TextFieldUtility textFieldUtility = TextFieldUtility();
@@ -29,7 +25,7 @@ class ProfileSettingsList extends StatelessWidget {
         textFieldUtility.birthOfDateTextfield(
             profileController.birthdayController, false),
         //  ProfilePageUtility.genderDropDown(true, profileController.genderController),
-        genderChoosing(dropDownController),
+        genderChoosing(),
         textFieldUtility.mailTextfield(
             profileController.emailController, false),
         textFieldUtility.passwordTextfield(
@@ -40,16 +36,16 @@ class ProfileSettingsList extends StatelessWidget {
     );
   }
 
-  Padding genderChoosing(DropDownController dropDownController) {
+  Padding genderChoosing() {
     return Padding(
       padding: AppPaddings.componentPadding,
       child: ColumnDropDown(
-        isBoxSelected: dropDownController.isBoxSelected,
+        isBoxSelected: profileController.isBoxSelected,
         isLogin: false,
         isInProfilePage: true,
         title: "Cinsiyet",
         onValueSelected: (int index) {
-          dropDownController.setIsBoxSelected();
+          profileController.setIsBoxSelected();
         },
         onDropDownTapped: () {},
         selectedText: profileController.genders,

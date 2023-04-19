@@ -117,11 +117,12 @@ class TActivityView extends StatelessWidget {
       activitythreerowbox(
           () {},
           () {},
-          DemoInformation.myPastActivities(otherUpComingActivity?.title ?? ""),
+          DemoInformation.myPastActivities(
+              otherUpComingActivity?.title ?? "empty"),
           DemoInformation.myPastActivitiesTime(
               otherUpComingActivity?.dateTime ?? Timestamp.now()),
           ActivityTextUtil.join,
-          DemoInformation.therapistnameActivityMod(""));
+          DemoInformation.therapistnameActivityMod("empty"));
 
   ActivityBox _myUpcomingActivities(
       BuildContext context,

@@ -39,7 +39,7 @@ class TMyActivityListView extends StatelessWidget {
                     containerModel: AppContainers.containerButton(true),
                     isactivity: true,
                     arowModel: DemoInformation.myPastActivities(
-                        activityModel?.title ?? ""),
+                        activityModel?.title ?? "empty  title"),
                     clockModel: DemoInformation.myPastActivitiesTime(
                         activityModel?.dateTime ?? Timestamp.now()),
                   );

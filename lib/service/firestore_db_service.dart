@@ -8,8 +8,9 @@ class FirestoreDBService implements DataBase {
   Future<List<User>> getAllUser() async {
     QuerySnapshot querySnapshot = await _firebaseDB.collection("users").get();
     for (DocumentSnapshot tekUser in querySnapshot.docs) {
-      print("okunan user: " + tekUser.data.toString());
+      // User _singleUser= User.fromMap(tekUser.data());
+      print("okunan user:  " + tekUser.data.toString());
     }
-    return getAllUser();
+    return [];
   }
 }

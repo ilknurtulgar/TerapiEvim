@@ -42,7 +42,7 @@ class GroupClass extends StatelessWidget {
             borderRadius: AppBorderRadius.generalBorderRadius,
           ),
           child: Container(
-            width: Responsive.width(width!, context),
+            width: width,
             decoration: isBorderPurple!
                 ? AppBoxDecoration.purpleBorder
                 : AppBoxDecoration.sendDecoration,

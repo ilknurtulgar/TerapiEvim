@@ -191,6 +191,8 @@ class TGroupService extends ITGroupService with BaseService {
   }) async {
     if (userId == null) return [];
 
+    List<TGroupModel> groups = [];
+
     final result =
         await manager.readOrderedWhere<TGroupModel, List<TGroupModel>>(
       collectionPath: APIConst.groups,
@@ -204,6 +206,25 @@ class TGroupService extends ITGroupService with BaseService {
     if (result.error != null) {
       return [];
     }
+
+    final resultAsTherapistHelper =
+        await manager.readOrderedWhere<TGroupModel, List<TGroupModel>>(
+      collectionPath: APIConst.groups,
+      parseModel: TGroupModel(),
+      whereField: AppConst.therapistHelperId,
+      whereIsEqualTo: userId!,
+      isDescending: isDescending,
+      orderField: orderField,
+      lastDocumentId: lastDocId,
+    );
+
+    if (resultAsTherapistHelper.error != null) {
+      return [];
+    }
+
+    groups.addAll(result.data!);
+
+    groups.addAll(resultAsTherapistHelper.data!);
 
     return result.data ?? [];
   }
@@ -229,12 +250,12 @@ class TGroupService extends ITGroupService with BaseService {
   }
 
   @override
-  Future<List<TCopingMethodModel?>> getCopingMethods(
-      {required String groupId,
-        String lastDocId = '',
-        String orderField = AppConst.dateTime,
-        bool isDescending = false,}) async {
-
+  Future<List<TCopingMethodModel?>> getCopingMethods({
+    required String groupId,
+    String lastDocId = '',
+    String orderField = AppConst.dateTime,
+    bool isDescending = false,
+  }) async {
     if (userId == null) return [];
 
     final result = await manager.readOrderedWhere(

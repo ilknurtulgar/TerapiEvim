@@ -16,7 +16,7 @@ class PInitialData extends INetworkModel<PInitialData> {
   /// It will be completed after participant has a session with therapist
   bool? isSessionComplete;
 
-  bool? isTestResultReady;
+  bool? isTestResultReady, isSessionSelected;
 
   PInitialData({
     this.joinedGroupId,
@@ -25,6 +25,7 @@ class PInitialData extends INetworkModel<PInitialData> {
     this.isScl90Submitted,
     this.isSessionComplete,
     this.isTestResultReady,
+    this.isSessionSelected,
   });
 
   @override

@@ -13,6 +13,7 @@ PInitialData _$PInitialDataFromJson(Map<String, dynamic> json) => PInitialData(
       isScl90Submitted: json['isScl90Submitted'] as bool?,
       isSessionComplete: json['isSessionComplete'] as bool?,
       isTestResultReady: json['isTestResultReady'] as bool?,
+      isSessionSelected: json['isSessionSelected'] as bool?,
     );
 
 Map<String, dynamic> _$PInitialDataToJson(PInitialData instance) =>
@@ -23,4 +24,5 @@ Map<String, dynamic> _$PInitialDataToJson(PInitialData instance) =>
       'isScl90Submitted': instance.isScl90Submitted,
       'isSessionComplete': instance.isSessionComplete,
       'isTestResultReady': instance.isTestResultReady,
+      'isSessionSelected': instance.isSessionSelected,
     };

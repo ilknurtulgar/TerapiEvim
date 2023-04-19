@@ -9,9 +9,6 @@ abstract class ITProfileService {
 
   final IFirestoreManager<ErrorModelCustom> manager;
 
-  Future<List<TGroupModel?>> getGroupsOrdered(
-      {String lastDocId, String orderField, bool isDescending});
-
   Future<List<TCopingMethodModel?>?> getCopingMethodsOrdered(
       {String lastDocId, String orderField, bool isDescending});
 

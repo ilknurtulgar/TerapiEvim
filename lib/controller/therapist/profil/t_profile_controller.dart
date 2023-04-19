@@ -40,13 +40,6 @@ class TProfileController extends GetxController with BaseController {
       listOfActivities.addAll(fetchedActivities);
     }
 
-    final List<TGroupModel?>? fetchedGroups =
-        await tProfileService.getGroupsOrdered();
-
-    if (fetchedGroups != null) {
-      listOfGroups.addAll(fetchedGroups);
-    }
-
     super.onInit();
   }
 
@@ -56,8 +49,6 @@ class TProfileController extends GetxController with BaseController {
   }
 
   RxList<TCopingMethodModel?> listOfCopingMethods = <TCopingMethodModel?>[].obs;
-
-  RxList<TGroupModel?> listOfGroups = <TGroupModel?>[].obs;
 
   RxList<TActivityModel?> listOfActivities = <TActivityModel?>[].obs;
 

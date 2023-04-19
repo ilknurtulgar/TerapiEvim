@@ -21,6 +21,8 @@ class PProfileController extends GetxController with BaseController {
 
     imageUrl.value = localManager.getStringValue(LocalManagerKeys.imageUrl);
 
+    if (imageUrl == '') imageUrl.value = 'https://cdn.icon-icons.com/icons2/2645/PNG/512/person_circle_icon_159926.png';
+
     pProfileService = PProfileService(vexaFireManager.networkManager);
 
     final List<TCopingMethodModel?>? fetchedCopingMethods =
@@ -53,7 +55,7 @@ class PProfileController extends GetxController with BaseController {
 
   late IPProfileService pProfileService;
 
-  late Rx<TGroupModel?> myGroup;
+  Rx<TGroupModel?> myGroup = TGroupModel(name: "").obs;
 
   RxString imageUrl = "".obs;
 

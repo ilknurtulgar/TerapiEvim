@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/home/home_component.dart';
+import 'package:terapievim/core/base/ui_models/card_model.dart';
+import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
 
 import '../../../controller/therapist/profil/t_dealing_method_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
@@ -33,9 +36,17 @@ class TDealingMethodView extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (context, index) => Padding(
                   padding: AppPaddings.pagePaddingHorizontal,
-                  child: DemoInformation.demoLAstReviewContainer,
+                  child: HomeComponent(
+                    isForMethodReading: true,
+                    time: controller.listOfCopingMethods.getTimes[index],
+                    title: controller.listOfCopingMethods.getMethodTitles[index],
+                    cardModel: controller.listOfCopingMethods.getTherapist,
+                    explanation: controller.listOfCopingMethods.getExplanations[index],
+                    buttonOnTap: () {},
+                    buttonText: TherapistProfileTextUtil.view,
+                  ),
                 ),
-                childCount: 10,
+                childCount: controller.listOfCopingMethods.length,
               ),
             ),
           ],

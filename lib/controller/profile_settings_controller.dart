@@ -39,6 +39,8 @@ abstract class IProfileSettingsController extends DropDownController
 
     imageUrl.value = localManager.getStringValue(LocalManagerKeys.imageUrl);
 
+    if (imageUrl == '') imageUrl.value = 'https://cdn.icon-icons.com/icons2/2645/PNG/512/person_circle_icon_159926.png';
+
     super.onInit();
   }
 

@@ -9,7 +9,7 @@ part 't_session_model.g.dart';
 @JsonSerializable()
 class TSessionModel extends INetworkModel<TSessionModel> {
   String? id, participantId, freeDateId, therapistId, participantName;
-  bool? isFinished;
+  bool? isFinished, isGroupCategorySet;
 
   /// participant's selected date
   @JsonKey(
@@ -26,6 +26,7 @@ class TSessionModel extends INetworkModel<TSessionModel> {
     this.therapistId,
     this.dateTime,
     this.freeDateId,
+    this.isGroupCategorySet,
   });
 
   @override

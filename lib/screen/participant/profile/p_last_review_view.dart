@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/home/home_component.dart';
+import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
 import '../../../controller/participant/profil/p_last_review_controller.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
@@ -35,9 +37,17 @@ class PLastReviewView extends StatelessWidget {
                     delegate: SliverChildBuilderDelegate(
                       (context, index) => Padding(
                         padding: AppPaddings.pagePaddingHorizontal,
-                        child: DemoInformation.demoLAstReviewContainer,
+                        child: HomeComponent(
+                          isForMethodReading: true, 
+                          cardModel: controller.listOfCopingMethods.getTherapist,
+                          time: controller.listOfCopingMethods.getTimes[index],
+                          title: controller.listOfCopingMethods.getMethodTitles[index],
+                          explanation: controller.listOfCopingMethods.getExplanations[index],
+                          buttonOnTap: (){
+
+                          }, buttonText: ParticipantProfileTextUtil.readAgain),
                       ),
-                      childCount: 10,
+                      childCount: controller.listOfCopingMethods.length,
                     ),
                   ),
                 ],

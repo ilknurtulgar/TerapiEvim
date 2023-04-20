@@ -13,12 +13,14 @@ class AppConst {
   static const String id = 'id';
   static const String groupId = 'groupId';
   static const String sessionId = 'sessionId';
+  static const String isGroupCategorySet = 'isGroupCategorySet';
   static const String groupCategory = 'groupCategory';
   static const String role = 'role';
   static const String therapist = 'therapist';
   static const String participant = 'participant';
   static const String participantId = 'participant';
   static const String therapistId = 'therapistId';
+  static const String therapistHelperId = 'therapistHelperId';
   static const String isFinished = 'isFinished';
   static const String isFree = 'isFree';
   static const String freeHour = 'freeHour';

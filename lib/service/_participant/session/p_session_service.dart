@@ -30,6 +30,7 @@ class PSessionService extends IPSessionService with BaseService {
     String orderField = AppConst.dateTime,
     bool isDescending = false,
   }) async {
+
     if (userId == null) return [];
 
     final result =
@@ -85,14 +86,16 @@ class PSessionService extends IPSessionService with BaseService {
   }
 
   @override
-  Future<CreatedIdResponse?> selectASession(TFreeHoursModel freeHours) async {
-    if (userId == null) return null;
+  Future<bool> selectASession(TFreeHoursModel freeHours) async {
+    if (userId == null) return false;
 
     final CreatedIdResponse? result = await manager.create(
       collectionPath: APIConst.participant,
       docId: userId,
       data: {AppConst.sessionId: freeHours.id},
     );
+
+    if (result == null) return false;
 
     final TSessionModel newSession = TSessionModel(
       id: freeHours.id!,
@@ -110,13 +113,7 @@ class PSessionService extends IPSessionService with BaseService {
       data: newSession.toJson()!,
     );
 
-    //   {
-    //     AppConst.sessionId: freeHours.id,
-    //   AppConst.participantId: userId!,
-    //   AppConst.therapistId: freeHours.therapistId!,
-    //
-    // }
-    return result;
+    return isSessionCreated;
   }
 
   @override

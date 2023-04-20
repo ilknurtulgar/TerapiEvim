@@ -71,7 +71,6 @@ class PShortCallTimeView extends StatelessWidget {
             isForParticipant: true,
             date: controller.freeDates[index].dateTime ?? Timestamp.now(),
             timeList: controller.freeDates[index].hours,
-            // callBack: controller.callBack,
             listViewChosenList: controller.isChosen,
             dateIndex: index,
           ),
@@ -104,8 +103,8 @@ Future<String?> saveShowDialog(
         ),
         TextButton(
           onPressed: () {
-            Get.back();
             controller.saveButton();
+            Get.back();
           },
           child: Text(GroupTextUtil.yes),
         ),

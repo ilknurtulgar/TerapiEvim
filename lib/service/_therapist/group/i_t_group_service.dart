@@ -24,7 +24,7 @@ abstract class ITGroupService {
 
   Future<TAboutGroupModel?> getAboutGroup(String groupId);
 
-  Future<List<TGroupModel?>> getGroupsOrdered(
+  Future<List<TGroupModel>> getGroupsOrdered(
       {String lastDocId, String orderField, bool isDescending});
 
   Future<List<PPublicProfile>> getParticipantsList(

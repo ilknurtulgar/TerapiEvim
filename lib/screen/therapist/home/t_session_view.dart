@@ -51,7 +51,7 @@ class TSessionView extends StatelessWidget {
           return participantWithShortCallTime(
               sessionModel?.participantName ?? "",
               (sessionModel?.dateTime ?? Timestamp.now()) as String, () {
-            context.push(TestResultView());
+            context.push(TestResultView(session:sessionModel!));
           },
 
               ///TODO add real meetingId and token

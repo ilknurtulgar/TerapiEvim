@@ -8,8 +8,7 @@ import '../../../model/therapist/session/t_session_model.dart';
 import 'i_t_session_service.dart';
 
 class TSessionService extends ITSessionService with BaseService {
-  TSessionService(IFirestoreManager<ErrorModelCustom> manager)
-      : super(manager);
+  TSessionService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
 
   @override
   Future<TJoinVideoCallResultModel?> joinAVideoCall(
@@ -29,7 +28,7 @@ class TSessionService extends ITSessionService with BaseService {
     if (userId == null) return [];
 
     final result =
-        await manager.readOrderedWhere<TSessionModel, List<TSessionModel>>(
+        await manager.readOrderedWhere2<TSessionModel, List<TSessionModel>>(
       collectionPath: APIConst.sessions,
       parseModel: TSessionModel(),
       orderField: orderField,
@@ -37,6 +36,8 @@ class TSessionService extends ITSessionService with BaseService {
       whereIsEqualTo: userId!,
       isDescending: isDescending,
       lastDocumentId: lastDocId,
+      whereField2: AppConst.isGroupCategorySet,
+      whereIsEqualTo2: false,
     );
     if (result.error != null || result.data == null) {
       return [];

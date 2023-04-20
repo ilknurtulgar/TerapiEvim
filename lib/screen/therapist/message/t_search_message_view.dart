@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 
 import '../../../controller/therapist/message/t_message_all_users_list_controller.dart';
 import '../../../core/base/component/buttons/election.dart';
@@ -21,25 +22,27 @@ class TSearchMessageView extends StatelessWidget {
     return BaseView<TMessageAllUsersListController>(
       getController: TMessageAllUsersListController(),
       onPageBuilder: (context, controller) => Scaffold(
+        appBar: MyAppBar(title: "Kullanıcılar"),
         body: ListView.builder(
-          physics: const NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            return Obx(
-              () => Election(
-                  isSelectedValue: controller.personValue,
-                  firstRow: Container(
+            return Padding(
+              padding: AppPaddings.componentPadding,
+              child: Election(
+                  isSelectedValue: controller.isOpen[index],
+                  firstRow: Obx(
+                    () => Container(
                       width: SizeUtil.generalWidth,
                       height: SizeUtil.normalValueHeight,
                       decoration: AppBoxDecoration.sendDecoration,
                       child: InkWell(
-                        onTap: () {
-                          controller.onPersonListChange();
-                        },
+                        onTap: () => controller.onPersonListChange(index),
                         child: RowView(
                             rowModel: UiBaseModel.personviewRowModel(
-                                "Okb", controller),
+                                "Okb", controller, index),
                             padding: AppPaddings.generalPadding),
-                      )),
+                      ),
+                    ),
+                  ),
                   rows: person(context)),
             );
           },

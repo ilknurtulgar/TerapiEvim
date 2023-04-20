@@ -184,7 +184,7 @@ class TGroupService extends ITGroupService with BaseService {
   }
 
   @override
-  Future<List<TGroupModel?>> getGroupsOrdered({
+  Future<List<TGroupModel>> getGroupsOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,

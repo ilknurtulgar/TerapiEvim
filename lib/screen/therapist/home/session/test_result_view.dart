@@ -9,12 +9,18 @@ import '../../../../core/base/util/base_utility.dart';
 
 // ignore: must_be_immutable
 class TestResultView extends StatelessWidget {
-  TestResultView({super.key});
+  TestResultView({
+    super.key,
+  });
 
-  late List<TableRow> rows = List.generate(categories.length+1, (index) {
-    if (index == 0) return tableRow('Belirtiler', 'Puan',true);
-    else if(index == categories.length) return tableRow('','',false);
-    else return tableRow(categories[index-1], DemoInformation.result[index-1].toString(),false);
+  late List<TableRow> rows = List.generate(categories.length + 1, (index) {
+    if (index == 0)
+      return tableRow('Belirtiler', 'Puan', true);
+    else if (index == categories.length)
+      return tableRow('', '', false);
+    else
+      return tableRow(categories[index - 1],
+          DemoInformation.result[index - 1].toString(), false);
   });
 
   @override
@@ -28,7 +34,8 @@ class TestResultView extends StatelessWidget {
           children: [
             participantContainer(DemoInformation.personCardModel, 60),
             container(),
-            testViewPageButton(() => context.push(ChoosingCategoryView()),'Grubu Belirle')
+            testViewPageButton(
+                () => context.push(ChoosingCategoryView()), 'Grubu Belirle')
           ],
         ),
       ),
@@ -37,20 +44,21 @@ class TestResultView extends StatelessWidget {
 
   CustomContainer container() {
     return CustomContainer(
-            isThereCardModel: false,
-            containerModel: AppContainers.classicWhiteContainer,
-            widget: Table(
-              border: TableBorder.symmetric(inside: BorderSide(color: AppColors.black,width: 2)),
-              columnWidths: const <int, TableColumnWidth>{
-                0: FlexColumnWidth(),
-                1: FixedColumnWidth(70),
-              },
-              children: rows,
-            ),
-          );
+      isThereCardModel: false,
+      containerModel: AppContainers.classicWhiteContainer,
+      widget: Table(
+        border: TableBorder.symmetric(
+            inside: BorderSide(color: AppColors.black, width: 2)),
+        columnWidths: const <int, TableColumnWidth>{
+          0: FlexColumnWidth(),
+          1: FixedColumnWidth(70),
+        },
+        children: rows,
+      ),
+    );
   }
 
-  TableRow tableRow(String category,String point,bool isFirstRow) {
+  TableRow tableRow(String category, String point, bool isFirstRow) {
     return TableRow(children: [
       Padding(
         padding: EdgeInsets.only(left: 16, top: isFirstRow ? 20 : 5, bottom: 5),
@@ -60,7 +68,9 @@ class TestResultView extends StatelessWidget {
         ),
       ),
       TableCell(
-          verticalAlignment: isFirstRow ? TableCellVerticalAlignment.bottom :  TableCellVerticalAlignment.middle,
+          verticalAlignment: isFirstRow
+              ? TableCellVerticalAlignment.bottom
+              : TableCellVerticalAlignment.middle,
           child: Padding(
             padding: isFirstRow ? EdgeInsets.only(bottom: 5) : EdgeInsets.zero,
             child: Text(
@@ -73,23 +83,22 @@ class TestResultView extends StatelessWidget {
   }
 }
 
-MyAppBar testViewPageAppBar(String title,BuildContext context) => MyAppBar(
+MyAppBar testViewPageAppBar(String title, BuildContext context) => MyAppBar(
       title: title,
       leading:
           IconButton(onPressed: () => context.pop(), icon: IconUtility.back),
-  );
+    );
 
-Align testViewPageButton(Function() onTap,String buttonText) {
-    return Align(
-        alignment: Alignment.centerRight,
-        child: Padding(
-          padding: AppPaddings.componentOnlyPadding(1),
-          child: CustomButton(
-              container: AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
-              textColor: AppColors.white,
-              onTap: onTap,
-              text: buttonText),
-        ));
-  }
-
-
+Align testViewPageButton(Function() onTap, String buttonText) {
+  return Align(
+      alignment: Alignment.centerRight,
+      child: Padding(
+        padding: AppPaddings.componentOnlyPadding(1),
+        child: CustomButton(
+            container:
+                AppContainers.purpleButtonContainer(SizeUtil.normalValueWidth),
+            textColor: AppColors.white,
+            onTap: onTap,
+            text: buttonText),
+      ));
+}

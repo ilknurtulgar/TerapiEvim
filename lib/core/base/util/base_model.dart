@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/controller/participant/group/p_determining_short_call_time.dart';
+import 'package:terapievim/controller/therapist/message/t_message_all_users_list_controller.dart';
 import 'package:terapievim/core/base/ui_models/row_model.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
@@ -151,11 +153,15 @@ class UiBaseModel {
   static mesajGonder() =>
       roleModel(GroupTextUtil.sendMessageText, IconUtility.chatIcon);
 
-  static personviewRowModel(String groupName) => RowModel(
-      text: groupName,
-      textStyle: AppTextStyles.normalTextStyle("medium", false),
-      isAlignmentBetween: true,
-      trailingIcon: IconUtility.arrowDown);
+  static personviewRowModel(
+          String groupName, TMessageAllUsersListController controller) =>
+      RowModel(
+          text: groupName,
+          textStyle: AppTextStyles.normalTextStyle("medium", false),
+          isAlignmentBetween: true,
+          trailingIcon: controller.personValue.isTrue
+              ? IconUtility.arrowUp
+              : IconUtility.arrowDown);
 
   static groupInfoPerson(String name) => RowModel(
       text: name,
@@ -175,10 +181,4 @@ class UiBaseModel {
           textStyle: AppTextStyles.heading(isHeading),
           leadingIcon: leadingIcon,
           isAlignmentBetween: true);
-
-  static searchRow() => RowModel(
-      text: "Ara",
-      textStyle: const TextStyle(),
-      isAlignmentBetween: false,
-      leadingIcon: IconUtility.searchIcon);
 }

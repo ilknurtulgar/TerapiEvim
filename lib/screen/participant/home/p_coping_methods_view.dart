@@ -21,18 +21,6 @@ class PCopingMethodsView extends StatelessWidget {
           return Scaffold(
             appBar: MyAppBar(title: HomeTextUtil.copingMethods),
             body: CustomScrollView(slivers: [
-              SliverToBoxAdapter(
-                child: Stack(
-                  children: [
-                    Column(
-                      children: [
-                        sizedBox(),
-                      ],
-                    ),
-                    Positioned(right: 20, child: _orderdrop(controller)),
-                  ],
-                ),
-              ),
               SliverPadding(
                 padding: AppPaddings.pagePadding,
                 sliver: SliverList(

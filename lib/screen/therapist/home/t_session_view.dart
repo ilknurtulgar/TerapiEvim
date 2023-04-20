@@ -34,16 +34,6 @@ class TSessionView extends StatelessWidget {
                   icon: IconUtility.clockIcon),
             ]),
             body: CustomScrollView(slivers: [
-              SliverToBoxAdapter(
-                child: Stack(children: [
-                  Column(
-                    children: [
-                      sizedBox(),
-                    ],
-                  ),
-                  Positioned(right: 24, child: _orderdropdown(controller)),
-                ]),
-              ),
               _aboutparticipant(controller),
             ]),
           );
@@ -52,22 +42,26 @@ class TSessionView extends StatelessWidget {
 
   Widget _aboutparticipant(TSessionController controller) {
     return SliverPadding(
-        padding: AppPaddings.pagePadding,
-        sliver: SliverList(
-            delegate: SliverChildBuilderDelegate(
-                childCount: controller.fetchedSession.length, (context, index) {
+      padding: AppPaddings.pagePadding,
+      sliver: SliverList(
+        delegate: SliverChildBuilderDelegate(
+            childCount: controller.fetchedSession.length, (context, index) {
           final TSessionModel? sessionModel = controller.fetchedSession[index];
+
           return participantWithShortCallTime(
               sessionModel?.participantName ?? "",
-              (sessionModel?.dateTime ?? Timestamp.now()) as String,
-              () => context.push(TestResultView()),
+              (sessionModel?.dateTime ?? Timestamp.now()) as String, () {
+            context.push(TestResultView(session:sessionModel!));
+          },
 
               ///TODO add real meetingId and token
               () => context.pushAndRemoveUntil(ShortCallView(
                     videoCallToken:
                         VideoCallTokenModel(meetingId: '', token: ''),
                   )));
-        })));
+        }),
+      ),
+    );
   }
 
   Widget _orderdropdown(TSessionController controller) {

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/participant/group/p_determining_short_call_time.dart';
@@ -68,8 +69,7 @@ class PShortCallTimeView extends StatelessWidget {
                     controller.freeDates[index].hours[selectedHourIndex]),
             therapistName: controller.freeDates[index].therapistName,
             isForParticipant: true,
-            date:
-                controller.freeDates[index].dateTime?.toDate().toString() ?? "",
+            date: controller.freeDates[index].dateTime ?? Timestamp.now(),
             timeList: controller.freeDates[index].hours,
             // callBack: controller.callBack,
             listViewChosenList: controller.isChosen,

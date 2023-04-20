@@ -1,9 +1,11 @@
 // ignore: must_be_immutable
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import '../../../../model/therapist/session/free_date/t_free_hours_model.dart';
+import '../../../managers/converter/date_time_manager.dart';
 import '../../ui_models/row_model.dart';
 import '../../util/base_model.dart';
 import '../../util/base_utility.dart';
@@ -18,15 +20,13 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
       required this.date,
       required this.timeList,
       required this.isForParticipant,
-      this.callBack,
       this.dateIndex,
       this.listViewChosenList,
       required this.onSelectedHour});
   final String? therapistName;
-  final String date;
+  final Timestamp date;
   final List<TFreeHoursModel> timeList;
   final bool isForParticipant;
-  final Function? callBack;
   final int? dateIndex;
   final RxList<bool>? listViewChosenList;
   final Function(int selectedHourId) onSelectedHour;
@@ -36,12 +36,12 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
 
   late RxList<bool> isChosen = RxList.filled(timeList.length, false);
 
-  void choose(int index, RxList<bool> list, bool isInsideComponent) {
+  void choose(int index, RxList<bool> list, bool isHour) {
     int i = 0;
     for (i = 0; i < list.length; i++) {
       if (i == index) {
         list[i] = true;
-        if (isInsideComponent) callBack!(date, timeList[i]);
+        if (isHour) onSelectedHour(index);
       } else {
         list[i] = false;
       }
@@ -76,7 +76,8 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
                         : const SizedBox(),
                     RowView(
                         rowModel: UiBaseModel.secDeterminationModel(
-                            'Tarih: $date', IconUtility.calendarIcon),
+                            'Tarih: ${DateTimeManager.getFormattedDateFromFormattedString(value: date.toDate().toIso8601String())}',
+                            IconUtility.calendarIcon),
                         padding: AppPaddings.componentOnlyPadding(4)),
                     isForParticipant
                         ? timeButtonList()
@@ -116,7 +117,6 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
     return PersonMin(
       onTap: () {
         choose(dateIndex!, listViewChosenList!, false);
-        onSelectedHour(hourIndex);
         if (listViewChosenList![dateIndex!]) choose(hourIndex, isChosen, true);
       },
       row: timeButtonInsideRow(hourIndex),

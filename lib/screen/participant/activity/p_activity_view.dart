@@ -30,6 +30,7 @@ class PActivityView extends StatelessWidget {
                 slivers: [
                   SliverToBoxAdapter(
                     child: HeadingMinto(
+                      isIcon: true,
                       text: ActivityTextUtil.upcomingActivities,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       isButterfly: true,
@@ -49,6 +50,7 @@ class PActivityView extends StatelessWidget {
                   ),
                   SliverToBoxAdapter(
                     child: HeadingMinto(
+                      isIcon: true,
                       text: ActivityTextUtil.pastActivities,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       isButterfly: true,
@@ -81,11 +83,13 @@ Widget _activityRecentSeminar(PActivityController pActivityController,
       () {
         pActivityController.joinActivity(context, recentactivity!);
       },
-      DemoInformation.titlenameActivityMod(recentactivity?.title ?? ''),
+      DemoInformation.titlenameActivityMod(
+          recentactivity?.title ?? 'empty title'),
       DemoInformation.recentActivityTime(
           recentactivity?.dateTime ?? Timestamp.now()),
       ActivityTextUtil.join,
-      DemoInformation.therapistnameActivityMod("empty"),
+      DemoInformation.therapistnameActivityMod(
+          recentactivity?.therapistName ?? "empty therapist name"),
     ),
   );
 }
@@ -97,11 +101,11 @@ Widget _activityPastSeminar(
       context.push(const AboutActivityView());
     },
         () {},
-        DemoInformation.myPastActivities(pastactivity?.title ?? ""),
+        DemoInformation.myPastActivities(pastactivity?.title ?? "empty title"),
         DemoInformation.myPastActivitiesTime(
             pastactivity?.dateTime ?? Timestamp.now()),
         ActivityTextUtil.watchTheRecording,
         DemoInformation.therapistnameActivityMod(
-            pastactivity?.therapistName ?? "empty")),
+            pastactivity?.therapistName ?? "empty therapist name")),
   );
 }

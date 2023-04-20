@@ -1,6 +1,9 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
+import '../../../model/common/activity/t_activity_model.dart';
+import '../../../service/_participant/profile/i_p_profile_service.dart';
+import '../../../service/_participant/profile/p_profile_serice.dart';
 import '../../drop_down_controller.dart';
 
 class PAttendedSeminarsController extends DropDownController {
@@ -15,4 +18,22 @@ class PAttendedSeminarsController extends DropDownController {
   void setContext(BuildContext context) {
     // TODO: implement setContext
   }
+
+  @override
+  Future<void> onInit() async {
+    pProfileService = PProfileService(vexaFireManager.networkManager);
+
+    final List<TActivityModel?>? fetchedActivities =
+        await pProfileService.getMyJoinedActivities();
+
+    if (fetchedActivities != null) {
+      listOfActivities.addAll(fetchedActivities);
+    }
+
+    super.onInit();
+  }
+
+  RxList<TActivityModel?> listOfActivities = <TActivityModel?>[].obs;
+
+  late IPProfileService pProfileService;
 }

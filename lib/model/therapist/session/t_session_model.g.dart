@@ -12,14 +12,21 @@ TSessionModel _$TSessionModelFromJson(Map<String, dynamic> json) =>
       participantId: json['participantId'] as String?,
       participantName: json['participantName'] as String?,
       isFinished: json['isFinished'] as bool?,
-    )..dateTime =
-        TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?);
+      therapistId: json['therapistId'] as String?,
+      dateTime:
+          TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?),
+      freeDateId: json['freeDateId'] as String?,
+      isGroupCategorySet: json['isGroupCategorySet'] as bool?,
+    );
 
 Map<String, dynamic> _$TSessionModelToJson(TSessionModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'participantId': instance.participantId,
+      'freeDateId': instance.freeDateId,
+      'therapistId': instance.therapistId,
       'participantName': instance.participantName,
       'isFinished': instance.isFinished,
+      'isGroupCategorySet': instance.isGroupCategorySet,
       'dateTime': TimeStampConverter.timestampToJson(instance.dateTime),
     };

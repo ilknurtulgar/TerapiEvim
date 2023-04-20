@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
@@ -37,7 +38,7 @@ class TAvailableHoursView extends StatelessWidget {
   Widget choosingtime(TAvailableHoursViewController controller) {
     return Obx(
       () => ListView.builder(
-        padding: EdgeInsets.zero,
+        reverse: true,
         itemBuilder: (context, index) {
           final TFreeDateModel? tFreeDateModel =
               controller.sessionTimeList[index];
@@ -45,13 +46,12 @@ class TAvailableHoursView extends StatelessWidget {
               padding: AppPaddings.timeChossingBetweenPadding,
               child: ChoosingTimeForSCContainer(
                 onSelectedHour: (selectedHourId) {},
-                date: "",
-                //(tFreeDateModel?.dateTime ??  Timestamp.fromDate(DateTime.now() as String)),
-                timeList: [], therapistName: '',
-                //tFreeDateModel?.hours.toList()?? ,
+                date: tFreeDateModel?.dateTime ?? Timestamp.now(),
+                timeList: tFreeDateModel?.hours.toList() ?? [],
+                therapistName:
+                    tFreeDateModel?.therapistName ?? "therapist name empty",
                 isForParticipant: true,
                 listViewChosenList: [true].obs,
-                callBack: () {},
               ));
         },
         itemCount: controller.sessionTimeList.length,

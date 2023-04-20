@@ -4,6 +4,7 @@ import 'package:terapievim/model/therapist/coping_method/t_coping_method_model.d
 import '../../../controller/main_controller.dart';
 import '../../../controller/therapist/profil/t_profile_controller.dart';
 import '../../../core/base/component/profile/custom_list_view.dart';
+import '../../../core/base/ui_models/card_model.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
@@ -33,13 +34,8 @@ class TProfileView extends StatelessWidget {
                 child: Stack(
                   children: [
                     PProfileViewUtility.backgroundOfTheView(),
-                    PProfileViewUtility.profilePagePersonImage(
-                        controller.imageUrl, false),
-                    PProfileViewUtility.positionedIconButton(
-                        IconUtility.settingIcon.icon!,
-                        () => context.push(const TSettingsView()),
-                        Responsive.height(40, context),
-                        Responsive.width(20, context)),
+                    PProfileViewUtility.profilePagePersonImage(controller.imageUrl, false),
+                    PProfileViewUtility.positionedIconButton(IconUtility.settingIcon.icon!,() => context.push(const TSettingsView()),Responsive.height(40, context),Responsive.width(20, context)),
                     Padding(
                       padding: AppPaddings.profilePageBigPadding(true, false),
                       child: Column(
@@ -49,33 +45,11 @@ class TProfileView extends StatelessWidget {
                           mediumSizedBox(),
                           aboutMeColumn(controller),
                           mediumSizedBox(),
-                          UiBaseModel.boldMainTitleRowView(
-                              TherapistProfileTextUtil.methods,
-                              MainTitles.methods, () {
-                            context.push(const TDealingMethodView());
-                          }),
-                          ProfileViewListView(
-                            isForParticipant: false,
-                            isForMethod: true,
-                            firstRowTextList: DemoInformation.groupNameList,
-                            secondRowTextList: DemoInformation.methodNames,
-                            onTap: () {},
-                          ),
+                          UiBaseModel.boldMainTitleRowView(TherapistProfileTextUtil.methods,MainTitles.methods, () {context.push(const TDealingMethodView());}),
+                          methodsListview(controller),
                           mediumSizedBox(),
-                          UiBaseModel.boldMainTitleRowView(
-                              TherapistProfileTextUtil.seminars,
-                              MainTitles.seminars, () {
-                            context.push(const TAttendedSeminarsView());
-                          }),
-                          ProfileViewListView(
-                            isForParticipant: false,
-                            isForMethod: false,
-                            firstRowTextList:
-                                controller.listOfActivities.getTitles(),
-                            secondRowTextList:
-                                controller.listOfActivities.getDates(),
-                            onTap: () {},
-                          ),
+                          UiBaseModel.boldMainTitleRowView(TherapistProfileTextUtil.seminars,MainTitles.seminars, () {context.push(const TAttendedSeminarsView());}),
+                          seminarsListview(controller),
                           mediumSizedBox()
                         ],
                       ),
@@ -86,6 +60,31 @@ class TProfileView extends StatelessWidget {
             ),
           );
         });
+  }
+
+  Obx seminarsListview(TProfileController controller) {
+    return Obx(
+                        () => controller.listOfActivities.isNotEmpty ? ProfileViewListView(
+                            isForParticipant: false,
+                            isForMethod: false,
+                            firstRowTextList: controller.listOfActivities.getTitles,
+                            secondRowTextList: controller.listOfActivities.getDates,
+                            onTap: () {},
+                          ) : const SizedBox(),
+                       );
+  }
+
+  Obx methodsListview(TProfileController controller) {
+    return Obx(
+                         () => controller.listOfCopingMethods.isNotEmpty ? 
+                          ProfileViewListView(
+                            isForParticipant: false,
+                            isForMethod: true,
+                            firstRowTextList: controller.listOfCopingMethods.getGroupNames,
+                            secondRowTextList: controller.listOfCopingMethods.getMethodTitles,
+                            onTap: () {},
+                          ) : const SizedBox(),
+                        );
   }
 
   Padding therapistName(TProfileController controller) {
@@ -136,34 +135,69 @@ class TProfileView extends StatelessWidget {
 
 enum MainTitles { groups, methods, seminars }
 
-extension ActivitiesInProfile on RxList<TActivityModel?> {
-  List<String> getTherapistNames() {
+extension ActivitiesInProfileExtension on RxList<TActivityModel?> {
+  List<String> get getTherapistNames {
     List<String> names = [];
-    int i = 0;
-    for (i = 0; i < length; i++) names[i] = this[i]?.therapistName ?? "";
+    this.forEach((element) {
+      names.add(element?.therapistName ?? "");
+    });
     return names;
   }
 
-  List<String> getTitles() {
+  List<String> get getTitles {
     List<String> titles = [];
-    int i = 0;
-    for (i = 0; i < length; i++) titles[i] = this[i]?.title ?? "";
+    this.forEach((element) {
+      titles.add(element?.title ?? "");
+    });
     return titles;
   }
 
-  List<String> getDates() {
+  List<String> get getDates {
     List<String> dates = [];
-    int i = 0;
-    for (i = 0; i < length; i++) dates[i] = this[i]?.dateTime.toString() ?? "";
+    this.forEach((element) {
+      dates.add(element?.dateTime.toString() ?? "");
+    });
     return dates;
   }
 }
 
 extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
-  String getTherapistName() {
-    String name = '';
-    int i = 0;
-    name = this.first?.therapistName ?? "";
-    return name;
+  List<String> get getGroupNames {
+    List<String> groupName = [];
+    this.forEach((element) {
+      groupName.add(element?.groupName ?? "");
+    });
+    return groupName;
+  }
+
+  List<String> get getMethodTitles {
+    List<String> titles = [];
+    this.forEach((element) {
+      titles.add(element?.title ?? "");
+    });
+    return titles;
+  }
+
+  List<String> get getTimes {
+    List<String> timeList = [];
+    this.forEach((element) {
+      timeList.add(element?.dateTime.toString() ?? "");
+    });
+    return timeList;
+  }
+
+  List<String> get getExplanations {
+    List<String> explanations = [];
+    this.forEach((element) {
+      explanations.add(element?.description ?? "");
+    });
+    return explanations;
+  }
+
+  CardModel get getTherapist {
+    CardModel model = CardModel(imagePath: "", title: "");
+    model.title = this.first?.therapistName ?? "";
+    model.imagePath = this.first?.therapistAvatarUrl ?? "";
+    return model;
   }
 }

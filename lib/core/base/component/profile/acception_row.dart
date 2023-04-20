@@ -6,10 +6,12 @@ class AcceptionRow extends StatelessWidget {
   const AcceptionRow({
     super.key,
     required this.isForMakingShortCall,
+    required this.explanation,
     required this.acceptionFunction,
     required this.value,
   });
   final bool isForMakingShortCall;
+  final String explanation;
   final Function() acceptionFunction;
   final bool value;
   @override
@@ -21,18 +23,13 @@ class AcceptionRow extends StatelessWidget {
         textDirection:
             isForMakingShortCall ? TextDirection.ltr : TextDirection.rtl,
         children: [
-         IconButton(
+          IconButton(
               onPressed: acceptionFunction,
               icon: Icon(value == true
-                      ? IconUtility.checkCircleIcon.icon
-                      : IconUtility.circleIcon.icon
-                 )),
+                  ? IconUtility.checkCircleIcon.icon
+                  : IconUtility.circleIcon.icon)),
           Expanded(
-            child: responsivenestext(
-                isForMakingShortCall
-                    ? LoginSignUpTextUtil.therapistAcceptedMakingShortCall
-                    : ProfileSettingsTextUtil.therapistAcceptedRandomTherapistList,
-                const TextStyle()),
+            child: responsivenestext(explanation,const TextStyle()),
           )
         ]);
   }

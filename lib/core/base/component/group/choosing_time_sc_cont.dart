@@ -1,9 +1,11 @@
 // ignore: must_be_immutable
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import '../../../../model/therapist/session/free_date/t_free_hours_model.dart';
+import '../../../managers/converter/date_time_manager.dart';
 import '../../ui_models/row_model.dart';
 import '../../util/base_model.dart';
 import '../../util/base_utility.dart';
@@ -22,7 +24,7 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
       this.listViewChosenList,
       required this.onSelectedHour});
   final String? therapistName;
-  final String date;
+  final Timestamp date;
   final List<TFreeHoursModel> timeList;
   final bool isForParticipant;
   final int? dateIndex;
@@ -74,7 +76,8 @@ class ChoosingTimeForSCContainer extends StatelessWidget {
                         : const SizedBox(),
                     RowView(
                         rowModel: UiBaseModel.secDeterminationModel(
-                            'Tarih: $date', IconUtility.calendarIcon),
+                            'Tarih: ${DateTimeManager.getFormattedDateFromFormattedString(value: date.toDate().toIso8601String())}',
+                            IconUtility.calendarIcon),
                         padding: AppPaddings.componentOnlyPadding(4)),
                     isForParticipant
                         ? timeButtonList()

@@ -31,26 +31,25 @@ class TAvailableHoursView extends StatelessWidget {
                       icon: IconUtility.addcircleIcon)
                 ],
               ),
-              body: controller.sessionTimeList.isEmpty
-                  ? null
-                  : choosingtime(controller),
+              body: choosingtime(controller),
             ));
   }
 
   Widget choosingtime(TAvailableHoursViewController controller) {
-    return Obx(() => ListView.builder(
-          padding: EdgeInsets.zero,
-          itemBuilder: (context, index) {
-            final TFreeDateModel? tFreeDateModel =
-                controller.sessionTimeList[index];
-            return Padding(
+    return Obx(
+      () => ListView.builder(
+        reverse: true,
+        itemBuilder: (context, index) {
+          final TFreeDateModel? tFreeDateModel =
+              controller.sessionTimeList[index];
+          return Padding(
               padding: AppPaddings.timeChossingBetweenPadding,
               child: ChoosingTimeForSCContainer(
                 onSelectedHour: (selectedHourId) {},
-                date: "",
-                //(tFreeDateModel?.dateTime ??  Timestamp.fromDate(DateTime.now() as String)),
-                timeList: [], therapistName: '',
-                //tFreeDateModel?.hours.toList()?? ,
+                date: tFreeDateModel?.dateTime ?? Timestamp.now(),
+                timeList: tFreeDateModel?.hours.toList() ?? [],
+                therapistName:
+                    tFreeDateModel?.therapistName ?? "therapist name empty",
                 isForParticipant: true,
                 listViewChosenList: [true].obs,
               ));
@@ -58,6 +57,5 @@ class TAvailableHoursView extends StatelessWidget {
         itemCount: controller.sessionTimeList.length,
       ),
     );
-
   }
 }

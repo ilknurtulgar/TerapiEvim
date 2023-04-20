@@ -1,5 +1,6 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_hours_model.dart';
 import 'package:terapievim/product/enum/local_keys_enum.dart';
@@ -48,9 +49,13 @@ class PDeterminingShortCallController extends BaseController2 {
     _selectedHour.value = selectedHour;
   }
 
-  void saveButton() {
+  Future<void> saveButton() async {
     //burada save edilmeli
-    //pService.selectASession();
+    bool isSucces = await pService.selectASession(_selectedHour.value);
+    if (isSucces) {
+    } else {
+      flutterErrorToast("Tekrar Deneyiniz.");
+    }
   }
 
   Future<void> getAvailableHours() async {

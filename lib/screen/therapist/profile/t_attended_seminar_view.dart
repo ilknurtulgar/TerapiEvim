@@ -8,7 +8,6 @@ import '../../../controller/therapist/profil/t_attended_seminar_controller.dart'
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
-import '../../../product/widget/common/order_drop_down.dart';
 
 // ignore: must_be_immutable
 class TAttendedSeminarsView extends StatelessWidget {
@@ -20,51 +19,23 @@ class TAttendedSeminarsView extends StatelessWidget {
       getController: TAttendedSeminarsController(),
       onModelReady: (mode) {},
       onPageBuilder: (context, controller) => Scaffold(
-        appBar: MyAppBar(
-          title: ParticipantProfileTextUtil.attendedSeminar,
-        ),
-        body: CustomScrollView(
-          slivers: [
-            SliverPadding(
+          appBar: MyAppBar(
+            title: ParticipantProfileTextUtil.attendedSeminar,
+          ),
+          body: ListView.builder(
+            itemCount: controller.listOfActivities.length,
+            itemBuilder: (context, index) => Padding(
               padding: AppPaddings.pagePaddingHorizontal,
-              sliver: SliverToBoxAdapter(
-                child: _orderdropdown(controller),
+              child: TwoRowShortContainer(
+                row1Text: controller.listOfActivities.getTherapistNames[index],
+                row2Text: controller.listOfActivities.getTitles[index],
+                firstIconData: IconUtility.personIcon.icon!,
+                secondIconData: IconUtility.windowsIcon.icon!,
+                purpose: ContainerPurpose.seminar,
+                firstOnTap: () {},
               ),
             ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => Padding(
-                  padding: AppPaddings.pagePaddingHorizontal,
-                  child: TwoRowShortContainer(
-                    row1Text: controller.listOfActivities.getTherapistNames[index],
-                    row2Text: controller.listOfActivities.getTitles[index],
-                    firstIconData: IconUtility.personIcon.icon!,
-                    secondIconData: IconUtility.windowsIcon.icon!,
-                    purpose: ContainerPurpose.seminar,
-                    firstOnTap: () {
-                      
-                    },
-                  ),
-                ),
-                childCount: controller.listOfActivities.length,
-              ),
-            ),
-          ],
-        ),
-      ),
+          )),
     );
   }
-}
-
-Widget _orderdropdown(TAttendedSeminarsController controller) {
-  return OrderDropDown(
-    selectedText: controller.orderValue,
-    isBoxSelected: controller.isBoxSelected,
-    onDropDownTapped: () {
-      controller.setIsBoxSelected();
-    },
-    onValueSelected: (int index) {
-      print('index:${index}');
-    },
-  );
 }

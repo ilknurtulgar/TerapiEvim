@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
+import '../../../controller/main_controller.dart';
 import '../../../controller/participant/profil/p_profile_controller.dart';
 import '../../../core/base/component/group/group.dart';
 import '../../../core/base/component/group/row_view.dart';
@@ -45,37 +47,13 @@ class PProfileView extends StatelessWidget {
                       children: [
                         nameAndBirthDateColumn(controller),
                         smallSizedBox(),
-                        participantGroupColumn(),
+                        participantGroupColumn(controller),
                         mediumSizedBox(),
-                        UiBaseModel.boldMainTitleRowView(
-                            ParticipantProfileTextUtil.lastRead,
-                            MainTitles.methods, () {
-                          context.push(const PLastReviewView());
-                        }),
-                        ProfileViewListView(
-                          isForParticipant: true,
-                          isForMethod: true,
-                          mainTherapistName: DemoInformation
-                              .groupInformation.mainTherapistName,
-                          secondRowTextList:
-                              DemoInformation.groupInformation.methodTitles,
-                          onTap: () {},
-                        ),
+                        UiBaseModel.boldMainTitleRowView(ParticipantProfileTextUtil.lastRead,MainTitles.methods, () {context.push(const PLastReviewView());}),
+                        methodListview(controller),
                         mediumSizedBox(),
-                        UiBaseModel.boldMainTitleRowView(
-                            ParticipantProfileTextUtil.joinedSeminars,
-                            MainTitles.seminars, () {
-                          context.push(const PAttendedSeminarsView());
-                        }),
-                        ProfileViewListView(
-                          isForParticipant: true,
-                          isForMethod: false,
-                          firstRowTextList: DemoInformation.lastWatchedSeminars
-                              .getSeminarsTherapistName(),
-                          secondRowTextList: DemoInformation.lastWatchedSeminars
-                              .getSeminarTitles(),
-                          onTap: () {},
-                        ),
+                        UiBaseModel.boldMainTitleRowView(ParticipantProfileTextUtil.joinedSeminars,MainTitles.seminars, () {context.push(const PAttendedSeminarsView());}),
+                        seminarsListview(controller),
                         mediumSizedBox(),
                       ],
                     ),
@@ -87,7 +65,36 @@ class PProfileView extends StatelessWidget {
         });
   }
 
-  Column participantGroupColumn() {
+  Obx seminarsListview(PProfileController controller) {
+    return Obx(
+      () => controller.listOfActivities.isNotEmpty
+          ? ProfileViewListView(
+              isForParticipant: true,
+              isForMethod: false,
+              firstRowTextList: controller.listOfActivities.getTherapistNames,
+              secondRowTextList: controller.listOfActivities.getTitles,
+              onTap: () {},
+            )
+          : const SizedBox(),
+    );
+  }
+
+  Obx methodListview(PProfileController controller) {
+    return Obx(
+      () => controller.listOfCopingMethods.isNotEmpty
+          ? ProfileViewListView(
+              isForParticipant: true,
+              isForMethod: true,
+              mainTherapistName:
+                  controller.listOfCopingMethods.getTherapist.title,
+              secondRowTextList: controller.listOfCopingMethods.getMethodTitles,
+              onTap: () {},
+            )
+          : const SizedBox(),
+    );
+  }
+
+  Column participantGroupColumn(PProfileController controller) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,24 +105,26 @@ class PProfileView extends StatelessWidget {
                 IconUtility.navGroup,
                 AppTextStyles.profileTextStyles(true, true)),
             padding: EdgeInsets.zero),
-        participantGroupContainer(),
+        participantGroupContainer(controller),
       ],
     );
   }
 
-  Widget participantGroupContainer() {
+  Widget participantGroupContainer(PProfileController controller) {
+    MainController mainController = Get.find();
     return GroupClass(
       width: SizeUtil.highestValueWidth,
       isBorderPurple: true,
-      heading: DemoInformation.groupInformation.groupName,
-      onTap: () {},
-      // navigate to group page
+      heading: controller.myGroup.value?.name ?? "",
+      onTap: () => mainController.onPageChanged(2),
       row1: UiBaseModel.doubleTextRow(ParticipantProfileTextUtil.mainTherpist,
           DemoInformation.groupInformation.mainTherapistName, true),
-      row2: UiBaseModel.doubleTextRow(ParticipantProfileTextUtil.advisor,
-          DemoInformation.groupInformation.secondTherapistName, true),
+      row2: UiBaseModel.doubleTextRow(
+          ParticipantProfileTextUtil.advisor,
+          controller.myGroup.value?.therapistHelperName ?? "Bekleniyor..",
+          true),
       row3: UiBaseModel.normalTextRow(
-          DemoInformation.groupInformation.therapyTime,
+          controller.myGroup.value!.dateTime.toString(),
           IconUtility.clockIcon.icon!,
           AppTextStyles.normalTextStyle('medium', false)),
     );
@@ -136,25 +145,5 @@ class PProfileView extends StatelessWidget {
         ],
       ),
     );
-  }
-}
-
-extension SeminarListExtension on List<SeminarModelInProfileView> {
-  List<String> getSeminarTitles() {
-    int i = 0;
-    List<String> seminarTitles = [];
-    for (i = 0; i < length; i++) {
-      seminarTitles.add(this[i].seminarTitle);
-    }
-    return seminarTitles;
-  }
-
-  List<String> getSeminarsTherapistName() {
-    int i = 0;
-    List<String> therapistList = [];
-    for (i = 0; i < length; i++) {
-      therapistList.add(this[i].therapistName);
-    }
-    return therapistList;
   }
 }

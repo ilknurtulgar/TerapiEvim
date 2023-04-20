@@ -1,6 +1,8 @@
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:terapievim/core/base/component/profile/container/two_row_short_container.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
+import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
 
 import '../../../controller/therapist/profil/t_attended_seminar_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
@@ -33,9 +35,18 @@ class TAttendedSeminarsView extends StatelessWidget {
               delegate: SliverChildBuilderDelegate(
                 (context, index) => Padding(
                   padding: AppPaddings.pagePaddingHorizontal,
-                  child: DemoInformation.demoAttendedSeminars,
+                  child: TwoRowShortContainer(
+                    row1Text: controller.listOfActivities.getTherapistNames[index],
+                    row2Text: controller.listOfActivities.getTitles[index],
+                    firstIconData: IconUtility.personIcon.icon!,
+                    secondIconData: IconUtility.windowsIcon.icon!,
+                    purpose: ContainerPurpose.seminar,
+                    firstOnTap: () {
+                      
+                    },
+                  ),
                 ),
-                childCount: 10,
+                childCount: controller.listOfActivities.length,
               ),
             ),
           ],

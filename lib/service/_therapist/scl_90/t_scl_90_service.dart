@@ -48,7 +48,7 @@ class TScl90Service extends ITScl90Service with BaseService {
 
     final sessionResult = await manager.update<TSessionModel, EmptyModel>(
         collectionPath: APIConst.sessions,
-        docId: groupCategory.participantId,
+        docId: session.id!,
         data: session);
     if (categoryResult.error != null) {
       return false;

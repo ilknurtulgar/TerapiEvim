@@ -30,6 +30,7 @@ class PActivityView extends StatelessWidget {
                 slivers: [
                   SliverToBoxAdapter(
                     child: HeadingMinto(
+                      isIcon: true,
                       text: ActivityTextUtil.upcomingActivities,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       isButterfly: true,
@@ -49,6 +50,7 @@ class PActivityView extends StatelessWidget {
                   ),
                   SliverToBoxAdapter(
                     child: HeadingMinto(
+                      isIcon: true,
                       text: ActivityTextUtil.pastActivities,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       isButterfly: true,

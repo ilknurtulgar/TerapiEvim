@@ -6,15 +6,17 @@ class HeadingMinto extends StatelessWidget {
   const HeadingMinto(
       {super.key,
       required this.text,
-      required this.onPressed,
+      this.onPressed,
       required this.mainAxisAlignment,
       required this.isButterfly,
-      required this.icon});
+      this.icon,
+      required this.isIcon});
   final String text;
-  final Function() onPressed;
+  final Function()? onPressed;
   final MainAxisAlignment mainAxisAlignment;
   final bool isButterfly;
-  final Icon icon;
+  final Icon? icon;
+  final bool isIcon;
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -26,10 +28,12 @@ class HeadingMinto extends StatelessWidget {
               ? AppTextStyles.activityTextStyles()
               : AppTextStyles.normalTextStyle("medium", false),
         ),
-        IconButton(
-          icon: icon,
-          onPressed: onPressed,
-        ),
+        isIcon
+            ? IconButton(
+                icon: icon!,
+                onPressed: onPressed,
+              )
+            : SizedBox.shrink(),
       ],
     );
   }

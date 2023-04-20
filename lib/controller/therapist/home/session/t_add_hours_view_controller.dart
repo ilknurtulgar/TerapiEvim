@@ -1,12 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/toast/toast.dart';
+import 'package:terapievim/controller/therapist/home/session/t_available_hours_view_controller.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_hours_model.dart';
 import 'package:terapievim/service/_therapist/session/free_dates/i_t_free_dates_service.dart';
 
 import '../../../../core/base/component/group/scrollable_time.dart';
+import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../../service/_therapist/session/free_dates/t_free_dates_service.dart';
 import '../../../base/base_controller.dart';
 
@@ -30,14 +31,14 @@ class TAddHoursViewController extends GetxController with BaseController {
   RxString chosenMinutes = '00'.obs;
 
   bool _validateTAddHours() {
-    if (true) {
+    /* if (timeList.isEmpty) {
       return false;
     }
 
     if (hour.trim().isEmpty) {
       flutterErrorToast("Saat seçiniz");
       return false;
-    }
+    }*/
     return true;
   }
 
@@ -49,12 +50,20 @@ class TAddHoursViewController extends GetxController with BaseController {
 
   Future<void> createFreeDate() async {
     final bool isValidated = _validateTAddHours();
-    if (isValidated == false) {
-      final resultId = await freeDateService.createFreeDate(TFreeDateModel(
+    if (isValidated == true) {
+      final TFreeDateModel freeDate = TFreeDateModel(
         dateTime: dateTime,
         hours: timeList,
+      );
 
-      ));
+      final CreatedIdResponse? resultId =
+          await freeDateService.createFreeDate(freeDate);
+      if (resultId?.id == null) {
+        return;
+      }
+      TAvailableHoursViewController tAvailableHoursViewController = Get.find();
+      freeDate.id = resultId!.id;
+      tAvailableHoursViewController.sessionTimeList.add(freeDate);
       print(resultId);
     }
   }

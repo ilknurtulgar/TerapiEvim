@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/product/widget/common/order_drop_down.dart';
 import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
 import '../../../controller/participant/profil/p_attended_seminars_controller.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
@@ -18,48 +17,45 @@ class PAttendedSeminarsView extends StatelessWidget {
       getController: PAttendedSeminarsController(),
       onModelReady: (model) {},
       onPageBuilder: (context, controller) => Scaffold(
-        appBar: MyAppBar(title: ParticipantProfileTextUtil.attendedSeminar),
-        body: CustomScrollView(
-          slivers: [
-            SliverPadding(
+          appBar: MyAppBar(title: ParticipantProfileTextUtil.attendedSeminar),
+          body: ListView.builder(
+            itemCount: controller.listOfActivities.length,
+            itemBuilder: (context, index) => Padding(
               padding: AppPaddings.pagePaddingHorizontal,
-              sliver: SliverToBoxAdapter(child: _orderdropdown(controller)),
-            ),
-            SliverList(
-              delegate: SliverChildBuilderDelegate(
-                (context, index) => Padding(
-                  padding: AppPaddings.pagePaddingHorizontal,
-                  child: TwoRowShortContainer(
-                    row1Text: controller.listOfActivities.getTherapistNames[index],
-                    row2Text: controller.listOfActivities.getTitles[index],
-                    firstIconData: IconUtility.personIcon.icon!,
-                    secondIconData: IconUtility.windowsIcon.icon!,
-                    purpose: ContainerPurpose.seminar,
-                    buttonText: ParticipantProfileTextUtil.watchAgain,
-                    firstOnTap: () {
-                      
-                    },
-                  ),
-                ),
-                childCount: controller.listOfActivities.length,
+              child: TwoRowShortContainer(
+                row1Text: controller.listOfActivities.getTherapistNames[index],
+                row2Text: controller.listOfActivities.getTitles[index],
+                firstIconData: IconUtility.personIcon.icon!,
+                secondIconData: IconUtility.windowsIcon.icon!,
+                purpose: ContainerPurpose.seminar,
+                buttonText: ParticipantProfileTextUtil.watchAgain,
+                firstOnTap: () {},
               ),
             ),
-          ],
-        ),
-      ),
+          )),
     );
   }
 }
 
-Widget _orderdropdown(PAttendedSeminarsController controller) {
-  return OrderDropDown(
-    selectedText: controller.orderValue,
-    isBoxSelected: controller.isBoxSelected,
-    onDropDownTapped: () {
-      controller.setIsBoxSelected();
-    },
-    onValueSelected: (int index) {
-      print('index:${index}');
-    },
-  );
-}
+// CustomScrollView(
+//           slivers: [
+//             SliverList(
+//               delegate: SliverChildBuilderDelegate(
+//                 (context, index) => Padding(
+//                   padding: AppPaddings.pagePaddingHorizontal,
+//                   child: TwoRowShortContainer(
+//                     row1Text:
+//                         controller.listOfActivities.getTherapistNames[index],
+//                     row2Text: controller.listOfActivities.getTitles[index],
+//                     firstIconData: IconUtility.personIcon.icon!,
+//                     secondIconData: IconUtility.windowsIcon.icon!,
+//                     purpose: ContainerPurpose.seminar,
+//                     buttonText: ParticipantProfileTextUtil.watchAgain,
+//                     firstOnTap: () {},
+//                   ),
+//                 ),
+//                 childCount: controller.listOfActivities.length,
+//               ),
+//             ),
+//           ],
+//         ),

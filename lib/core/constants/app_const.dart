@@ -13,6 +13,7 @@ class AppConst {
   static const String id = 'id';
   static const String groupId = 'groupId';
   static const String sessionId = 'sessionId';
+  static const String isGroupCategorySet = 'isGroupCategorySet';
   static const String groupCategory = 'groupCategory';
   static const String role = 'role';
   static const String therapist = 'therapist';

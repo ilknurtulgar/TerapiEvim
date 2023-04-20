@@ -13,24 +13,19 @@ class TMessageAllUsersListController extends GetxController
   void setContext(BuildContext context) {
     // TODO: implement setContext
   }
-  var personValue = true.obs;
+  @override
+  Future<void> onInit() async {
+    firestoreDBService = MessageService(vexaFireManager.networkManager);
+    final groups = await firestoreDBService.getGroupsOrdered();
+    super.onInit();
+  }
+
   late List<RxBool> isOpen =
       List.generate(DemoInformation.groupList.length, (index) => false.obs);
-  //   List<RxBool>.filled(DemoInformation.groupList.length, false.obs);
 
   void onPersonListChange(int index) {
     isOpen[index].value = !isOpen[index].value;
     print(index);
-
-    // isOpen[index].value = value;
-    //  personValue.value = !personValue.value;
-  }
-
-  @override
-  void onInit() {
-    firestoreDBService = MessageService(vexaFireManager.networkManager);
-
-    super.onInit();
   }
 
   late IMessageService firestoreDBService;

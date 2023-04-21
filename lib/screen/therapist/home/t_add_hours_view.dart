@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist/home/session/t_available_hours_view_controller.dart';
@@ -127,10 +128,11 @@ class _TAddHoursViewState extends State<TAddHoursView> {
 
 DateTextField _dateAdd(TAddHoursViewController controller) {
   return DateTextField(
-    textController: controller.dateAddController,
-    isBig: true,
-    dateTapped: () => choosingBirthday(controller.dateAddController),
-  );
+      textController: controller.dateAddController,
+      isBig: true,
+      dateTapped: () {
+        choosingDate(controller.dateAddController, false, controller.dateTime.value,);
+      });
 }
 
 /*class SessionTime {

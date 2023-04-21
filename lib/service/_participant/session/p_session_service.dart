@@ -30,7 +30,6 @@ class PSessionService extends IPSessionService with BaseService {
     String orderField = AppConst.dateTime,
     bool isDescending = false,
   }) async {
-
     if (userId == null) return [];
 
     final result =

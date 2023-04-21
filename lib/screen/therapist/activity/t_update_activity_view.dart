@@ -50,6 +50,7 @@ class TUpdateActivityView extends StatelessWidget {
                     textController: controller.activityDateController,
                     hour: controller.chosenHour.value,
                     minutes: controller.chosenMinutes.value,
+                    timeStampInController: controller.dateTime,
                     choosingTimeTapped: () {
                       controller.showChoosingTimeDialog();
                     },

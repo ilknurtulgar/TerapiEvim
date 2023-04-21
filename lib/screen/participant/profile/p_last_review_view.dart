@@ -6,7 +6,6 @@ import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/util/base_utility.dart';
-import '../../../product/widget/common/order_drop_down.dart';
 
 class PLastReviewView extends StatelessWidget {
   const PLastReviewView({super.key});
@@ -20,51 +19,23 @@ class PLastReviewView extends StatelessWidget {
           return Scaffold(
               appBar:
                   const MyAppBar(title: ParticipantProfileTextUtil.lastReview),
-              body: CustomScrollView(
-                slivers: [
-                  SliverPadding(
-                    padding: AppPaddings.pagePaddingHorizontal,
-                    sliver:
-                        SliverToBoxAdapter(child: _orderdropdown(controller)),
-                  ),
-                  // SliverPadding(
-                  //   padding: AppPaddings.pagePaddingHorizontal,
-                  //   sliver: SliverToBoxAdapter(
-                  //     child: orderdropdown(),
-                  //   ),
-                  // ),
-                  SliverList(
-                    delegate: SliverChildBuilderDelegate(
-                      (context, index) => Padding(
+              body: ListView.builder(
+                  itemCount: controller.listOfCopingMethods.length,
+                  itemBuilder: (context, index) => Padding(
                         padding: AppPaddings.pagePaddingHorizontal,
                         child: HomeComponent(
-                          isForMethodReading: true, 
-                          cardModel: controller.listOfCopingMethods.getTherapist,
-                          time: controller.listOfCopingMethods.getTimes[index],
-                          title: controller.listOfCopingMethods.getMethodTitles[index],
-                          explanation: controller.listOfCopingMethods.getExplanations[index],
-                          buttonOnTap: (){
-
-                          }, buttonText: ParticipantProfileTextUtil.readAgain),
-                      ),
-                      childCount: controller.listOfCopingMethods.length,
-                    ),
-                  ),
-                ],
-              ));
+                            isForMethodReading: true,
+                            cardModel:
+                                controller.listOfCopingMethods.getTherapist,
+                            time:
+                                controller.listOfCopingMethods.getTimes[index],
+                            title: controller
+                                .listOfCopingMethods.getMethodTitles[index],
+                            explanation: controller
+                                .listOfCopingMethods.getExplanations[index],
+                            buttonOnTap: () {},
+                            buttonText: ParticipantProfileTextUtil.readAgain),
+                      )));
         });
   }
-}
-
-Widget _orderdropdown(PLastReviewController controller) {
-  return OrderDropDown(
-    selectedText: controller.orderValue,
-    isBoxSelected: controller.isBoxSelected,
-    onDropDownTapped: () {
-      controller.setIsBoxSelected();
-    },
-    onValueSelected: (int index) {
-      print('index:${index}');
-    },
-  );
 }

@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/base/component/group/choosing_time_group_therapy.dart';
@@ -13,10 +14,12 @@ class DateClockTextField extends StatelessWidget {
       required this.textController,
       required this.hour,
       required this.minutes,
+      required this.timeStampInController,
       required this.choosingTimeTapped});
   final TextEditingController textController;
   final String hour;
   final String minutes;
+  final Timestamp? timeStampInController;
   final Function() choosingTimeTapped;
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,9 @@ class DateClockTextField extends StatelessWidget {
         DateTextField(
             textController: textController,
             isBig: true,
-            dateTapped: () => choosingBirthday(textController)),
+            dateTapped: () => choosingDate(
+                  textController,false,timeStampInController
+                )),
         MiniHeading(
             name: ActivityTextUtil.clock,
             isInMiddle: false,

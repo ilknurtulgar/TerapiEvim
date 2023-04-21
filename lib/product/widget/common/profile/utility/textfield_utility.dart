@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 import '../../../../../core/base/component/login/custom_textfield.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,7 @@ class TextFieldUtility {
         isOne: false,
         title: "Doğum Tarihi",
         textController: textController,
-        onTap: () => choosingBirthday(textController),
+        onTap: () => choosingDate(textController, true),
         rowModel: RowModel(
             text: 'gg/aa/yyyy ',
             textStyle: const TextStyle(color: AppColors.black),
@@ -104,12 +105,12 @@ class TextFieldUtility {
           isRowModel: true);
 }
 
-Future<void> choosingBirthday(TextEditingController controller) async {
+Future<void> choosingDate(TextEditingController controller, bool isForBirthday,
+    [Timestamp? timeStamp,]) async {
   DateTime? pickedDate = await Get.dialog(DatePickerDialog(
       initialDate: DateTime(1990),
       firstDate: DateTime(1923),
-      lastDate: DateTime(2004)));
-  Date date = Date(text: '', dateValue: DateTime.now());
+      lastDate: DateTime(isForBirthday ? 2004 : 2050)));
   String? day;
   String? month;
   String? year;
@@ -121,17 +122,10 @@ Future<void> choosingBirthday(TextEditingController controller) async {
         ? '0${pickedDate.month.toString()}'
         : pickedDate.month.toString();
     year = pickedDate.year.toString();
-    date.text = '$day/$month/$year';
-    date.dateValue = pickedDate;
-    controller.text = date.text;
+    controller.text = '$day/$month/$year';
+    if (timeStamp != null) {
+      timeStamp = Timestamp.fromDate(pickedDate);
+      //print(Timestamp.fromDate(pickedDate));
+    }
   }
-}
-
-class Date {
-  String text;
-  DateTime dateValue;
-  Date({
-    required this.text,
-    required this.dateValue,
-  });
 }

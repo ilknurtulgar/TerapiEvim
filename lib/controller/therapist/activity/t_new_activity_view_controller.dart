@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../model/common/activity/t_activity_model.dart';
 import '../../../product/enum/local_keys_enum.dart';
@@ -15,6 +16,8 @@ class TNewActivityViewController extends ITModifyActivityController {
   @override
   void setContext(BuildContext context) => controllerContext = context;
 
+  Rx<Timestamp> dateTime = Timestamp.fromDate(DateTime.now()).obs;
+
   Future<bool> createActivity() async {
     final bool isValidated = validateActivity();
 
@@ -23,7 +26,7 @@ class TNewActivityViewController extends ITModifyActivityController {
     final TActivityModel activity = TActivityModel(
       title: activityNameController.text.trim(),
       description: activityDescriptionController.text.trim(),
-      dateTime: Timestamp.fromDate(DateTime.now()),
+      dateTime: dateTime.value,
       therapistName: localManager.getStringValue(LocalManagerKeys.name),
       participantsId: [],
       isFinished: false,

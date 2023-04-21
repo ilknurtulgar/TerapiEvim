@@ -26,6 +26,8 @@ class TUpdateActivityViewController extends ITModifyActivityController {
 
   TActivityModel? _activity;
 
+  final Timestamp? dateTime = Timestamp.fromDate(DateTime.now());
+
   Future<bool> updateActivity() async {
     final bool isValidated = validateActivity();
 
@@ -34,8 +36,7 @@ class TUpdateActivityViewController extends ITModifyActivityController {
     final TActivityModel activity = TActivityModel(
       title: activityNameController.text.trim(),
       description: activityDescriptionController.text.trim(),
-      dateTime: Timestamp.fromDate(DateTime.now()),
-
+      dateTime: dateTime,
       // participantsId: [],
       isFinished: false,
       isStarted: false,

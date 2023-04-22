@@ -11,6 +11,7 @@ abstract class ITActivityService {
   /// if result is null, it means an activity was not added
   Future<CreatedIdResponse?> createActivity(TActivityModel activity);
 
+  /// if result is null, it means success
   Future<String?> updateActivity(TActivityModel activity);
 
   Future<TActivityModel?> getMyRecentActivity();

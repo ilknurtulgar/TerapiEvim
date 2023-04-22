@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../model/common/activity/t_activity_model.dart';
 import '../../../model/therapist/coping_method/t_coping_method_model.dart';
-import '../../../model/therapist/group/t_group_model.dart';
 import '../../../product/enum/local_keys_enum.dart';
 import '../../../service/_therapist/profile/i_t_profile_service.dart';
 import '../../../service/_therapist/profile/t_profile_serice.dart';
@@ -25,7 +24,9 @@ class TProfileController extends GetxController with BaseController {
 
     imageUrl.value = localManager.getStringValue(LocalManagerKeys.imageUrl);
 
-    if (imageUrl == '') imageUrl.value = 'https://cdn.icon-icons.com/icons2/2645/PNG/512/person_circle_icon_159926.png';
+    if (imageUrl == '')
+      imageUrl.value =
+          'https://cdn.icon-icons.com/icons2/2645/PNG/512/person_circle_icon_159926.png';
 
     final List<TCopingMethodModel?>? fetchedCopingMethods =
         await tProfileService.getCopingMethodsOrdered();

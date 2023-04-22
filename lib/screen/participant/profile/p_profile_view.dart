@@ -6,7 +6,6 @@ import '../../../controller/participant/profil/p_profile_controller.dart';
 import '../../../core/base/component/group/group.dart';
 import '../../../core/base/component/group/row_view.dart';
 import '../../../core/base/component/profile/custom_list_view.dart';
-import '../../../core/base/ui_models/group_model.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
@@ -49,10 +48,18 @@ class PProfileView extends StatelessWidget {
                         smallSizedBox(),
                         participantGroupColumn(controller),
                         mediumSizedBox(),
-                        UiBaseModel.boldMainTitleRowView(ParticipantProfileTextUtil.lastRead,MainTitles.methods, () {context.push(const PLastReviewView());}),
+                        UiBaseModel.boldMainTitleRowView(
+                            ParticipantProfileTextUtil.lastRead,
+                            MainTitles.methods, () {
+                          context.push(const PLastReviewView());
+                        }),
                         methodListview(controller),
                         mediumSizedBox(),
-                        UiBaseModel.boldMainTitleRowView(ParticipantProfileTextUtil.joinedSeminars,MainTitles.seminars, () {context.push(const PAttendedSeminarsView());}),
+                        UiBaseModel.boldMainTitleRowView(
+                            ParticipantProfileTextUtil.joinedSeminars,
+                            MainTitles.seminars, () {
+                          context.push(const PAttendedSeminarsView());
+                        }),
                         seminarsListview(controller),
                         mediumSizedBox(),
                       ],

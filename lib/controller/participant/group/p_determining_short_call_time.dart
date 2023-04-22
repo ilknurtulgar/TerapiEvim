@@ -6,6 +6,7 @@ import 'package:terapievim/product/enum/local_keys_enum.dart';
 import 'package:terapievim/service/_participant/session/i_p_session_service.dart';
 import 'package:terapievim/service/_participant/session/p_session_service.dart';
 
+import '../../../core/base/component/toast/toast.dart';
 import '../../base/base_controller_2.dart';
 
 class PDeterminingShortCallController extends BaseController2 {
@@ -13,6 +14,7 @@ class PDeterminingShortCallController extends BaseController2 {
   void setContext(BuildContext context) {
     // TODO: implement setContext
   }
+
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -34,6 +36,7 @@ class PDeterminingShortCallController extends BaseController2 {
   Rx<TFreeHoursModel> _selectedHour = TFreeHoursModel().obs;
 
   late RxList<bool> isChosen = List.filled(freeDates.length, false).obs;
+
   // String chosenDate = '';
   // String chosenTime = '';
 
@@ -50,7 +53,11 @@ class PDeterminingShortCallController extends BaseController2 {
 
   void saveButton() {
     //burada save edilmeli
-    //pService.selectASession();
+    if (_selectedHour.value.id == null) {
+      flutterErrorToast('Please select a free time');
+      return;
+    }
+    pService.selectASession(_selectedHour.value);
   }
 
   Future<void> getAvailableHours() async {

@@ -25,16 +25,15 @@ class TSearchMessageView extends StatelessWidget {
       getController: TMessageAllUsersListController(),
       onPageBuilder: (context, controller) => Scaffold(
         appBar: MyAppBar(title: "Kullanıcılar"),
-        body: ListView.builder(
-          itemBuilder: (context, index) {
-            final TGroupModel? groupModel =
-                controller.groupIds[index] as TGroupModel?;
-            return Padding(
-              padding: AppPaddings.componentPadding,
-              child: Election(
-                  isSelectedValue: controller.isOpen[index],
-                  firstRow: Obx(
-                    () => Container(
+        body: Obx(
+          () => ListView.builder(
+            itemBuilder: (context, index) {
+              final TGroupModel groupModel = controller.groups[index];
+              return Padding(
+                padding: AppPaddings.componentPadding,
+                child: UsersListMessage(
+                    isSelectedValue: controller.isOpen[index],
+                    firstRow: Container(
                       width: SizeUtil.generalWidth,
                       height: SizeUtil.normalValueHeight,
                       decoration: AppBoxDecoration.sendDecoration,
@@ -42,17 +41,18 @@ class TSearchMessageView extends StatelessWidget {
                         onTap: () => controller.onPersonListChange(index),
                         child: RowView(
                             rowModel: UiBaseModel.personviewRowModel(
-                                groupModel?.name ?? "empty groupname",
+                                groupModel.name ?? "empty groupname",
                                 controller,
                                 index),
                             padding: AppPaddings.generalPadding),
                       ),
                     ),
-                  ),
-                  rows: person(context, groupModel!, controller)),
-            );
-          },
-          itemCount: controller.groupIds.length,
+                    rows:
+                        PersonList(controller: controller, groupIndex: index)),
+              );
+            },
+            itemCount: controller.groups.length,
+          ),
         ),
       ),
     );
@@ -60,27 +60,45 @@ class TSearchMessageView extends StatelessWidget {
 
   List<PersonMin> person(BuildContext context, TGroupModel groupModel,
       TMessageAllUsersListController controller) {
-    final List<UserModel> listOfUsers = controller.groupUsers[groupModel.id!]!;
     final List<PersonMin> personMinList = [];
-    for (UserModel user in listOfUsers) {
+    /*   for (UserModel user in listOfUsers) {
       personMinList
-          .add(chatperson(user.name ?? "", context, user.imageUrl ?? ""));
-    }
+          .add(chatPerson(user.name ?? "", context, user.imageUrl ?? ""));
+    }*/
     return personMinList;
   }
+}
 
-  PersonMin chatperson(
-      String therapistName, BuildContext context, String imagePath) {
-    return PersonMin(
-        onTap: () {
-          context.push(PMessageView());
-        },
-        row: RowModel(
-          text: therapistName,
-          leadingIcon: CustomCircleAvatar(
-              big: false, imagePath: imagePath, shadow: false),
-          textStyle: AppTextStyles.groupTextStyle(true),
-          isAlignmentBetween: true,
-        ));
+PersonMin chatPerson(
+    String therapistName, BuildContext context, String imagePath) {
+  return PersonMin(
+      onTap: () {
+        context.push(PMessageView());
+      },
+      row: RowModel(
+        text: therapistName,
+        leadingIcon:
+            CustomCircleAvatar(big: false, imagePath: imagePath, shadow: false),
+        textStyle: AppTextStyles.groupTextStyle(true),
+        isAlignmentBetween: true,
+      ));
+}
+
+class PersonList extends StatelessWidget {
+  const PersonList(
+      {super.key, required this.controller, required this.groupIndex});
+  final TMessageAllUsersListController controller;
+  final int groupIndex;
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        final List<UserModel> listOfUsers =
+            controller.groupUsers[controller.groupIds[index]]!;
+
+        return; // chatPerson(user.name ?? "", context, user.imageUrl ?? "");
+      },
+      itemCount: controller.groupUsers.length,
+    );
   }
 }

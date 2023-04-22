@@ -21,7 +21,9 @@ class PProfileController extends GetxController with BaseController {
 
     imageUrl.value = localManager.getStringValue(LocalManagerKeys.imageUrl);
 
-    if (imageUrl == '') imageUrl.value = 'https://cdn.icon-icons.com/icons2/2645/PNG/512/person_circle_icon_159926.png';
+    if (imageUrl == '')
+      imageUrl.value =
+          'https://cdn.icon-icons.com/icons2/2645/PNG/512/person_circle_icon_159926.png';
 
     pProfileService = PProfileService(vexaFireManager.networkManager);
 
@@ -39,7 +41,9 @@ class PProfileController extends GetxController with BaseController {
       listOfActivities.addAll(fetchedActivities);
     }
 
-    myGroup.value = await pProfileService.getJoinedGroup(localManager.getStringValue(LocalManagerKeys.pJoinedGroupId));
+    ///TODO bhz->gizem: getJoinedGroup value can be null, so it should be first checked before setting to myGroup
+    myGroup.value = await pProfileService.getJoinedGroup(
+        localManager.getStringValue(LocalManagerKeys.pJoinedGroupId));
 
     super.onInit();
   }

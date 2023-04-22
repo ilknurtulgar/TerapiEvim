@@ -1,11 +1,11 @@
-import 'package:terapievim/core/managers/firebase/firestore/models/created_id_response.dart';
-
 import '../../../../core/base/service/base_service.dart';
 import '../../../../core/init/network/model/error_model_custom.dart';
 import '../../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/constants/api_const.dart';
 import '../../../core/constants/app_const.dart';
 import '../../../core/init/cache/local_manager.dart';
+import '../../../core/managers/firebase/firestore/models/empty_model.dart';
+import '../../../model/participant/session/short_call_session_id_model.dart';
 import '../../../model/therapist/session/free_date/t_free_date_model.dart';
 import '../../../model/therapist/session/free_date/t_free_hours_model.dart';
 import '../../../model/therapist/session/t_join_video_call_result_model.dart';
@@ -85,38 +85,55 @@ class PSessionService extends IPSessionService with BaseService {
   }
 
   @override
-  Future<bool> selectASession(TFreeHoursModel freeHours) async {
+  Future<bool> selectASession(TFreeHoursModel freeHour) async {
     if (userId == null) return false;
 
-    final CreatedIdResponse? result = await manager.create(
-      collectionPath: APIConst.participant,
-      docId: userId,
-      data: {AppConst.sessionId: freeHours.id},
+    if (freeHour.id == null) return false;
+
+    ShortCallSessionIdModel shortCallSessionId =
+        ShortCallSessionIdModel(shortCallSessionId: freeHour.id);
+
+    freeHour.participantId = userId!;
+    freeHour.isFree = false;
+
+    final hourResult = await manager.update<TFreeHoursModel, EmptyModel>(
+      collectionPath: APIConst.freeHours,
+      docId: freeHour.id!,
+      data: freeHour,
     );
 
-    if (result == null) return false;
+    if (hourResult.error != null) return false;
+
+    final shortCallSessionIdResult = await manager.update<ShortCallSessionIdModel, EmptyModel>(
+      collectionPath: APIConst.participant,
+      docId: userId!,
+      data: shortCallSessionId,
+    );
+
+    if (shortCallSessionIdResult.error != null) return false;
 
     final TSessionModel newSession = TSessionModel(
-      id: freeHours.id!,
-      freeDateId: freeHours.freeDateId,
-      isFinished: false,
-      participantId: userId,
-      participantName:
-          LocalManager.instance.getStringValue(LocalManagerKeys.name),
-      therapistId: freeHours.therapistId,
-    );
+        id: freeHour.id!,
+        freeDateId: freeHour.freeDateId,
+        isFinished: false,
+        participantId: userId,
+        participantName:
+            LocalManager.instance.getStringValue(LocalManagerKeys.name),
+        therapistId: freeHour.therapistId,
+        isGroupCategorySet: false,
+        dateTime: null);
 
     final bool isSessionCreated = await manager.createWithDocId(
       collectionPath: APIConst.sessions,
-      docId: freeHours.id!,
+      docId: freeHour.id!,
       data: newSession.toJson()!,
     );
 
     return isSessionCreated;
   }
 
-  @override
-  Future<TFreeDateModel?> getAvailableDateById(String availableDate) async {
-    return null;
-  }
+// @override
+// Future<TFreeDateModel?> getAvailableDateById(String availableDate) async {
+//   return null;
+// }
 }

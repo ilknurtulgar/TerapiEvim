@@ -43,6 +43,7 @@ class TFreeDateService extends ITFreeDateService with BaseService {
         hour.freeDateId = createdIdResponseOfDate!.id;
         hour.isFree = true;
         hour.participantId = '';
+        hour.therapistId = userId!;
         final CreatedIdResponse? createdIdResponse = await manager.create(
           collectionPath: APIConst.freeHours,
           data: hour.toJson()!,

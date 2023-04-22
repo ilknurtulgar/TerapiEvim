@@ -107,6 +107,7 @@ class AuthService extends IAuthService with BaseService {
             docId: result.user!.uid,
             data: PInitialData(
               groupCategory: '',
+              shortCallSessionId: '',
               isJoinedGroupLocked: true,
               isScl90Submitted: false,
               isSessionComplete: false,

@@ -109,8 +109,6 @@ Column noUpload(BuildContext context) {
       ),
       GestureDetector(
           onTap: () {
-            //onaylama sayfasina gitmeli
-
             context.push(const TUploadConfirmView());
           },
           child: Container(

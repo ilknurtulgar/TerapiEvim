@@ -22,6 +22,8 @@ class TLockScreenController extends BaseController2 {
   late TherapistController therapistController;
 
   RxBool isConfirmed = true.obs;
-
   RxBool isUploaded = true.obs;
+  void therapistUploaded() {
+    isUploaded.value = true;
+  }
 }

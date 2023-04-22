@@ -14,6 +14,8 @@ TFreeHoursModel _$TFreeHoursModelFromJson(Map<String, dynamic> json) =>
       participantId: json['participantId'] as String?,
       therapistId: json['therapistId'] as String?,
       freeDateId: json['freeDateId'] as String?,
+      dateTime:
+          TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?),
     );
 
 Map<String, dynamic> _$TFreeHoursModelToJson(TFreeHoursModel instance) =>
@@ -24,4 +26,5 @@ Map<String, dynamic> _$TFreeHoursModelToJson(TFreeHoursModel instance) =>
       'therapistId': instance.therapistId,
       'freeDateId': instance.freeDateId,
       'hour': instance.hour,
+      'dateTime': TimeStampConverter.timestampToJson(instance.dateTime),
     };

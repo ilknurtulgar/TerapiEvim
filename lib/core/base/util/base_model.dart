@@ -153,13 +153,13 @@ class UiBaseModel {
   static mesajGonder() =>
       roleModel(GroupTextUtil.sendMessageText, IconUtility.chatIcon);
 
-  static personviewRowModel(
-          String groupName, TMessageAllUsersListController controller) =>
+  static personviewRowModel(String groupName,
+          TMessageAllUsersListController controller, int index) =>
       RowModel(
           text: groupName,
           textStyle: AppTextStyles.normalTextStyle("medium", false),
           isAlignmentBetween: true,
-          trailingIcon: controller.personValue.isTrue
+          trailingIcon: controller.isOpen[index].isTrue
               ? IconUtility.arrowUp
               : IconUtility.arrowDown);
 

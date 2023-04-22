@@ -9,6 +9,7 @@ abstract class IMessageService {
   final IFirestoreManager<ErrorModelCustom> manager;
 
   //tüm kullanıcıları bana getir
+  //group
   Future<List<UserModel>> getAllUsersByGroupId(String groupId);
 
   Future<List<TGroupModel>> getGroupsOrdered(

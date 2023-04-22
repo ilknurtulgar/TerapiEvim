@@ -1,5 +1,3 @@
-
-
 import '../../core/base/service/base_service.dart';
 import '../../core/constants/api_const.dart';
 import '../../core/constants/app_const.dart';
@@ -9,7 +7,7 @@ import '../../model/common/user/user_model.dart';
 import '../../model/therapist/group/t_group_model.dart';
 import 'i_message_service.dart';
 
-class MessageService extends IMessageService with BaseService{
+class MessageService extends IMessageService with BaseService {
   MessageService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
 
   @override
@@ -64,7 +62,7 @@ class MessageService extends IMessageService with BaseService{
     List<TGroupModel> groups = [];
 
     final result =
-    await manager.readOrderedWhere<TGroupModel, List<TGroupModel>>(
+        await manager.readOrderedWhere<TGroupModel, List<TGroupModel>>(
       collectionPath: APIConst.groups,
       parseModel: TGroupModel(),
       whereField: AppConst.therapistId,
@@ -78,7 +76,7 @@ class MessageService extends IMessageService with BaseService{
     }
 
     final resultAsTherapistHelper =
-    await manager.readOrderedWhere<TGroupModel, List<TGroupModel>>(
+        await manager.readOrderedWhere<TGroupModel, List<TGroupModel>>(
       collectionPath: APIConst.groups,
       parseModel: TGroupModel(),
       whereField: AppConst.therapistHelperId,

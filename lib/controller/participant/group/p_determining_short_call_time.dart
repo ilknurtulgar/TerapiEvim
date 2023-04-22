@@ -1,12 +1,12 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_hours_model.dart';
 import 'package:terapievim/product/enum/local_keys_enum.dart';
 import 'package:terapievim/service/_participant/session/i_p_session_service.dart';
 import 'package:terapievim/service/_participant/session/p_session_service.dart';
 
-import '../../../core/base/component/toast/toast.dart';
 import '../../base/base_controller_2.dart';
 
 class PDeterminingShortCallController extends BaseController2 {
@@ -14,7 +14,6 @@ class PDeterminingShortCallController extends BaseController2 {
   void setContext(BuildContext context) {
     // TODO: implement setContext
   }
-
   @override
   Future<void> onInit() async {
     super.onInit();
@@ -36,7 +35,6 @@ class PDeterminingShortCallController extends BaseController2 {
   Rx<TFreeHoursModel> _selectedHour = TFreeHoursModel().obs;
 
   late RxList<bool> isChosen = List.filled(freeDates.length, false).obs;
-
   // String chosenDate = '';
   // String chosenTime = '';
 
@@ -51,13 +49,13 @@ class PDeterminingShortCallController extends BaseController2 {
     _selectedHour.value = selectedHour;
   }
 
-  void saveButton() {
+  Future<void> saveButton() async {
     //burada save edilmeli
-    if (_selectedHour.value.id == null) {
-      flutterErrorToast('Please select a free time');
-      return;
+    bool isSucces = await pService.selectASession(_selectedHour.value);
+    if (isSucces) {
+    } else {
+      flutterErrorToast("Tekrar Deneyiniz.");
     }
-    pService.selectASession(_selectedHour.value);
   }
 
   Future<void> getAvailableHours() async {

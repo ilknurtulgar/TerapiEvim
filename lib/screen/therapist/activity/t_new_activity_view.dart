@@ -52,6 +52,7 @@ class TNewActivityView extends StatelessWidget {
                     textController: controller.activityDateController,
                     hour: controller.chosenHour.value,
                     minutes: controller.chosenMinutes.value,
+                    timeStampInController: controller.dateTime.value,
                     choosingTimeTapped: () {
                       controller.showChoosingTimeDialog();
                     },

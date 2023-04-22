@@ -29,7 +29,6 @@ class TUploadConfirmView extends StatelessWidget {
                 padding: AppPaddings.appBarPadding,
                 width: SizeUtil.generalWidth,
                 decoration: AppBoxDecoration.purpleBorder,
-                // height: SizeUtil.bigValueHeight,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -66,11 +65,7 @@ class TUploadConfirmView extends StatelessWidget {
                       SizeUtil.smallValueWidth),
                   onTap: () {
                     controller.changeIsTherapistLoaded();
-                    //birde burdaa diger controllerla baglanti kurup giris yapilmasi lazim
-                    context
-                        .pop(); //iki kere yapmam gerekiyor cunku lock screeenin tekrar build edilmesi gerekiyor
-                    context.pop();
-                    context.push(const TLockView());
+                    context.pushAndRemoveUntil(TLockView());
                   },
                   text: GroupTextUtil.confirmText)
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/home/home_component.dart';
+import 'package:terapievim/model/therapist/coping_method/t_coping_method_model.dart';
 import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
 
 import '../../../controller/therapist/profil/t_dealing_method_controller.dart';
@@ -22,21 +23,27 @@ class TDealingMethodView extends StatelessWidget {
             title: TherapistProfileTextUtil.dealingMetods,
           ),
           body: ListView.builder(
-            itemCount: controller.listOfCopingMethods.length,
-            itemBuilder: (context, index) => Padding(
-              padding: AppPaddings.pagePaddingHorizontal,
-              child: HomeComponent(
-                isForMethodReading: true,
-                time: controller.listOfCopingMethods.getTimes[index],
-                title: controller.listOfCopingMethods.getMethodTitles[index],
-                cardModel: controller.listOfCopingMethods.getTherapist,
-                explanation:
-                    controller.listOfCopingMethods.getExplanations[index],
-                buttonOnTap: () {},
-                buttonText: TherapistProfileTextUtil.view,
-              ),
-            ),
-          )),
+              itemCount: controller.listOfCopingMethods.length,
+              itemBuilder: (context, index) {
+                TCopingMethodModel copingMethod =
+                    controller.listOfCopingMethods[index]!; //sor
+                return Padding(
+                  padding: AppPaddings.pagePaddingHorizontal,
+                  child: HomeComponent(
+                    isForMethodReading: true,
+                    time: controller.listOfCopingMethods.getTimes[index],
+                    title:
+                        controller.listOfCopingMethods.getMethodTitles[index],
+                    cardModel: controller.listOfCopingMethods.getTherapist,
+                    explanation:
+                        controller.listOfCopingMethods.getExplanations[index],
+                    buttonOnTap: () {
+                      //o basetme motduna gitmeli
+                    },
+                    buttonText: TherapistProfileTextUtil.view,
+                  ),
+                );
+              })),
     );
   }
 }

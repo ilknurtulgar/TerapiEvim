@@ -8,6 +8,7 @@ part of 'p_initial_data.dart';
 
 PInitialData _$PInitialDataFromJson(Map<String, dynamic> json) => PInitialData(
       joinedGroupId: json['joinedGroupId'] as String?,
+      shortCallSessionId: json['shortCallSessionId'] as String?,
       isJoinedGroupLocked: json['isJoinedGroupLocked'] as bool?,
       groupCategory: json['groupCategory'] as String?,
       isScl90Submitted: json['isScl90Submitted'] as bool?,
@@ -19,6 +20,7 @@ PInitialData _$PInitialDataFromJson(Map<String, dynamic> json) => PInitialData(
 Map<String, dynamic> _$PInitialDataToJson(PInitialData instance) =>
     <String, dynamic>{
       'joinedGroupId': instance.joinedGroupId,
+      'shortCallSessionId': instance.shortCallSessionId,
       'isJoinedGroupLocked': instance.isJoinedGroupLocked,
       'groupCategory': instance.groupCategory,
       'isScl90Submitted': instance.isScl90Submitted,

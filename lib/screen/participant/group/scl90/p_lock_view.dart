@@ -10,7 +10,6 @@ import '../../../../core/base/component/profile/container/two_row_short_containe
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
-import '../category_determination/group_categories/p_group_categories_view.dart';
 import 'p_test_for_users_view.dart';
 
 class PLockView extends StatelessWidget {
@@ -49,13 +48,13 @@ class PLockView extends StatelessWidget {
             controller.isTestSolved.isFalse
                 ? noTest(context)
                 : controller.isTestResultReady.isTrue
-                    ? checkedTest(context)
+                    ? checkedTest(context,controller)
                     : uncheckedTest()
           ]),
     );
   }
 
-  Column checkedTest(BuildContext context) {
+  Column checkedTest(BuildContext context,PLockScreenController controller) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -66,7 +65,7 @@ class PLockView extends StatelessWidget {
             container:
                 AppContainers.purpleButtonContainer(SizeUtil.largeValueWidth),
             onTap: () {
-              context.pushAndRemoveUntil(const PGroupCategoriesView());
+             controller.lockScreenFinished();
             },
             text: "Grup Kategori Sayfasi ")
       ],
@@ -86,7 +85,9 @@ class PLockView extends StatelessWidget {
           secondIconData: IconUtility.navActivities,
           row2Text: "12/2/2222 20.00",
           buttonText: GroupTextUtil.join,
-          firstOnTap: () {},
+          firstOnTap: () {
+            //short calle gitmeli zamani geldiginde
+          },
         )
       ],
     );

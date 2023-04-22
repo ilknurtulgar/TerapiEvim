@@ -70,7 +70,6 @@ class TCopingMethodsController extends GetxController with BaseController {
 
   List<String> createdCopingMethodIds = [];
 
-  ///TODO: there is an issue: length of 10 shouldn't be const. Yes it was for demo purpose
   ///TODO Now it should be updated to handle real groups
   late List<bool> isButtonOn = List<bool>.filled(otherGroups.length, false).obs;
 
@@ -113,7 +112,6 @@ class TCopingMethodsController extends GetxController with BaseController {
       if (pdfUrl == null) {
         throw Exception('pdfUrl is null');
       }
-
       final String therapistName =
           localManager.getStringValue(LocalManagerKeys.name);
       final String imageUrl =

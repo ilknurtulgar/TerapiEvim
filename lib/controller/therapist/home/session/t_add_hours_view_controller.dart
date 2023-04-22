@@ -46,13 +46,13 @@ class TAddHoursViewController extends GetxController with BaseController {
 
   late RxString hour = "${chosenHour + ":" + chosenMinutes.string}".obs;
   var isFree = true.obs;
-  final Timestamp? dateTime = Timestamp.fromDate(DateTime.now());
+  Rx<Timestamp> dateTime = Timestamp.fromDate(DateTime.now()).obs;
 
   Future<void> createFreeDate() async {
     final bool isValidated = _validateTAddHours();
     if (isValidated == true) {
       final TFreeDateModel freeDate = TFreeDateModel(
-        dateTime: dateTime,
+        dateTime: dateTime.value,
         hours: timeList,
       );
 

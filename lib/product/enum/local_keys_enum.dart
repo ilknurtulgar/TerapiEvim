@@ -17,6 +17,7 @@ enum LocalManagerKeys {
   pIsTestResultReady, // bool
   pIsScl90Submitted, // bool
   pIsSessionComplete, // bool
+  pIsSessionSelected, // bool
   ///Therapist
   isTherapistConfirmed, // bool
   isTherapistBeingReviewed, // bool

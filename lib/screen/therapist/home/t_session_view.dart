@@ -10,7 +10,6 @@ import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
 import '../../../model/common/video_call/video_call_token_model.dart';
-import '../../../product/widget/common/order_drop_down.dart';
 import '../../common/video_call/short_call/short_call_view.dart';
 import 'session/test_result_view.dart';
 import 't_available_hours_view.dart';
@@ -51,7 +50,7 @@ class TSessionView extends StatelessWidget {
           return participantWithShortCallTime(
               sessionModel?.participantName ?? "",
               (sessionModel?.dateTime ?? Timestamp.now()) as String, () {
-            context.push(TestResultView(session:sessionModel!));
+            context.push(TestResultView(session: sessionModel!));
           },
 
               ///TODO add real meetingId and token
@@ -61,19 +60,6 @@ class TSessionView extends StatelessWidget {
                   )));
         }),
       ),
-    );
-  }
-
-  Widget _orderdropdown(TSessionController controller) {
-    return OrderDropDown(
-      selectedText: controller.orderValue,
-      isBoxSelected: controller.isBoxSelected,
-      onDropDownTapped: () {
-        controller.setIsBoxSelected();
-      },
-      onValueSelected: (int index) {
-        print('index:${index}');
-      },
     );
   }
 }

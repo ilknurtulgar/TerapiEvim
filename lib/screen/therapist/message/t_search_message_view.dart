@@ -12,6 +12,8 @@ import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
+import '../../../model/common/user/user_model.dart';
+import '../../../model/therapist/group/t_group_model.dart';
 import '../../participant/message/p_message_view.dart';
 
 class TSearchMessageView extends StatelessWidget {
@@ -25,6 +27,8 @@ class TSearchMessageView extends StatelessWidget {
         appBar: MyAppBar(title: "Kullanıcılar"),
         body: ListView.builder(
           itemBuilder: (context, index) {
+            final TGroupModel? groupModel =
+                controller.groupIds[index] as TGroupModel?;
             return Padding(
               padding: AppPaddings.componentPadding,
               child: Election(
@@ -38,26 +42,35 @@ class TSearchMessageView extends StatelessWidget {
                         onTap: () => controller.onPersonListChange(index),
                         child: RowView(
                             rowModel: UiBaseModel.personviewRowModel(
-                                "Okb", controller, index),
+                                groupModel?.name ?? "empty groupname",
+                                controller,
+                                index),
                             padding: AppPaddings.generalPadding),
                       ),
                     ),
                   ),
-                  rows: person(context)),
+                  rows: person(context, groupModel!, controller)),
             );
           },
-          itemCount: DemoInformation.groupList.length,
+          itemCount: controller.groupIds.length,
         ),
       ),
     );
   }
 
-  List<PersonMin> person(BuildContext context) => [
-        chatperson("therapistName", context),
-        chatperson("therapistName", context)
-      ];
+  List<PersonMin> person(BuildContext context, TGroupModel groupModel,
+      TMessageAllUsersListController controller) {
+    final List<UserModel> listOfUsers = controller.groupUsers[groupModel.id!]!;
+    final List<PersonMin> personMinList = [];
+    for (UserModel user in listOfUsers) {
+      personMinList
+          .add(chatperson(user.name ?? "", context, user.imageUrl ?? ""));
+    }
+    return personMinList;
+  }
 
-  PersonMin chatperson(String therapistName, BuildContext context) {
+  PersonMin chatperson(
+      String therapistName, BuildContext context, String imagePath) {
     return PersonMin(
         onTap: () {
           context.push(PMessageView());
@@ -65,7 +78,7 @@ class TSearchMessageView extends StatelessWidget {
         row: RowModel(
           text: therapistName,
           leadingIcon: CustomCircleAvatar(
-              big: false, imagePath: DemoInformation.imagePath, shadow: false),
+              big: false, imagePath: imagePath, shadow: false),
           textStyle: AppTextStyles.groupTextStyle(true),
           isAlignmentBetween: true,
         ));

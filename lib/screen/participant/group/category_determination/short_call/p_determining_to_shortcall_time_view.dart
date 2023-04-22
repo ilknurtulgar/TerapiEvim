@@ -20,6 +20,7 @@ class PShortCallTimeView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<PDeterminingShortCallController>(
       getController: PDeterminingShortCallController(),
+      onModelReady: (controller) =>controller.setContext(context) ,
       onPageBuilder: (context, controller) => Scaffold(
         body: SafeArea(
           child: SingleChildScrollView(

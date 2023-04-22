@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/toast/toast.dart';
-import 'package:terapievim/screen/participant/group/scl90/p_lock_view.dart';
+import 'package:terapievim/product/enum/local_keys_enum.dart';
+import 'package:terapievim/screen/participant/group/category_determination/short_call/p_determining_to_shortcall_time_view.dart';
 
 import '../../../model/common/scl_90/scl_90_result_model.dart';
 import '../../../model/participant/scl90test/answers.dart';
 import '../../../service/_participant/scl_90/i_p_scl_90_service.dart';
 import '../../../service/_participant/scl_90/p_scl_90_service.dart';
 import '../../base/base_controller.dart';
+import '../participant_controller.dart';
 
 //answer doldur
 class PTestQuestionsController extends GetxController with BaseController {
@@ -64,7 +66,11 @@ class PTestQuestionsController extends GetxController with BaseController {
     final idResponse = await pScl90Service.submitTest(model);
 
     if (idResponse != null) {
-      navigationManager.pushAndRemoveUntil(navigator, PLockView());
+      localManager.setBoolValue(LocalManagerKeys.pIsScl90Submitted, true);
+      final ParticipantController pController=Get.find();
+      pController.isScl90Submitted.value=true;
+
+      navigationManager.pushAndRemoveUntil(navigator, PShortCallTimeView());
     } else {
       flutterErrorToast("submit olamadi");
     }

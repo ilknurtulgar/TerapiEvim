@@ -6,7 +6,7 @@ part 'p_initial_data.g.dart';
 
 @JsonSerializable()
 class PInitialData extends INetworkModel<PInitialData> {
-  String? joinedGroupId;
+  String? joinedGroupId, shortCallSessionId;
   bool? isJoinedGroupLocked;
 
   /// The category is defined by a therapist in a session
@@ -20,6 +20,7 @@ class PInitialData extends INetworkModel<PInitialData> {
 
   PInitialData({
     this.joinedGroupId,
+    this.shortCallSessionId,
     this.isJoinedGroupLocked,
     this.groupCategory,
     this.isScl90Submitted,

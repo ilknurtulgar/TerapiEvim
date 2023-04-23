@@ -19,9 +19,12 @@ abstract class ITGroupService {
   Future<CreatedIdResponse?> createGroup(TGroupModel group);
 
   /// if result is null, it means an groupSession was not added
-  Future<CreatedIdResponse?> createGroupSession(TGroupSessionModel groupSession);
+  Future<CreatedIdResponse?> createGroupSession(
+      TGroupSessionModel groupSession);
 
   Future<UserModel?> findRandomTherapistHelper();
+
+  Future<TGroupSessionModel?> getRecentGroupSession(String groupId);
 
   /// if result is null, it means is is successful
   Future<String?> updateGroup(TGroupModel group);

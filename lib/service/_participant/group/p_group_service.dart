@@ -6,6 +6,7 @@ import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../model/common/user/user_model.dart';
 import '../../../model/participant/group/join_group_id_model.dart';
 import '../../../model/participant/group/joinable_group_model.dart';
+import '../../../model/therapist/group/t_group_session_model.dart';
 import 'i_p_group_service.dart';
 
 class PGroupService extends IPGroupService with BaseService {
@@ -50,20 +51,20 @@ class PGroupService extends IPGroupService with BaseService {
         return [];
       }
 
+      for (JoinableGroupModel joinableGroup in result.data!) {
+        if (joinableGroup.therapistHelperId != null) {
+          final UserModel? therapistHelper =
+              await _fetchUser(joinableGroup.therapistHelperId!);
+          joinableGroup.therapistHelperImageUrl =
+              therapistHelper?.imageUrl ?? '';
+          joinableGroup.therapistHelperName = therapistHelper?.name ?? '';
+        }
 
-    for (JoinableGroupModel joinableGroup in result.data!) {
-      if (joinableGroup.therapistHelperId != null) {
-        final UserModel? therapistHelper =
-            await _fetchUser(joinableGroup.therapistHelperId!);
-        joinableGroup.therapistHelperImageUrl = therapistHelper?.imageUrl ?? '';
-        joinableGroup.therapistHelperName = therapistHelper?.name ?? '';
+        final UserModel? therapist =
+            await _fetchUser(joinableGroup.therapistId!);
+        joinableGroup.therapistImageUrl = therapist?.imageUrl ?? '';
+        joinableGroup.therapistName = therapist?.name ?? '';
       }
-
-      final UserModel? therapist = await _fetchUser(joinableGroup.therapistId!);
-      joinableGroup.therapistImageUrl = therapist?.imageUrl ?? '';
-      joinableGroup.therapistName = therapist?.name ?? '';
-    }
-
 
       return result.data!;
     } catch (e) {
@@ -119,5 +120,26 @@ class PGroupService extends IPGroupService with BaseService {
       );
       return false;
     }
+  }
+
+  @override
+  Future<TGroupSessionModel?> getRecentGroupSession(String groupId) async {
+    if (userId == null) return null;
+
+    final result =
+        await manager.readWhere2<TGroupSessionModel, List<TGroupSessionModel>>(
+      collectionPath: APIConst.groupSession,
+      parseModel: TGroupSessionModel(),
+      limit: AppConst.oneItemPerPage,
+      whereField: AppConst.groupId,
+      whereIsEqualTo: groupId,
+      whereField2: AppConst.isFinished,
+      whereIsEqualTo2: false,
+    );
+
+    if (result.error != null) return null;
+    if (result.data == null) return null;
+
+    return result.data![0];
   }
 }

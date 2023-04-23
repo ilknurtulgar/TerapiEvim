@@ -108,17 +108,19 @@ class TGroupService extends ITGroupService with BaseService {
   }
 
   @override
-  Future<TAboutGroupModel?> getAboutGroup(String groupId) async {
+  Future<TAboutGroupModel?> getAboutTherapistHelper(String groupId) async {
     if (userId == null) return null;
 
     final TGroupModel? group = await _getGroup(groupId);
 
     if (group == null) return null;
 
-    final TPublicProfile? therapistProfile =
-        await _getTherapistProfile(group.therapistId!);
+    if (group.therapistHelperId == null) return null;
 
-    if (therapistProfile == null) return null;
+    final TPublicProfile? therapistHelper =
+        await _getTherapistProfile(group.therapistHelperId!);
+
+    if (therapistHelper == null) return null;
 
     final List<TGroupModel> helpingGroups =
         await _getHelpingGroups(group.participantsId);
@@ -127,9 +129,9 @@ class TGroupService extends ITGroupService with BaseService {
       id: group.id,
       therapistId: group.therapistId,
       groupName: group.name,
-      aboutTherapist: therapistProfile.aboutMe,
-      therapistName: therapistProfile.name,
-      therapistImageUrl: therapistProfile.imageUrl,
+      aboutTherapist: therapistHelper.aboutMe,
+      therapistName: therapistHelper.name,
+      therapistImageUrl: therapistHelper.imageUrl,
       listOfHelpingGroups: helpingGroups,
     );
 

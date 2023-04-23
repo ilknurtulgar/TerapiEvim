@@ -40,7 +40,7 @@ class TGroupAddController extends GetxController with BaseController {
       flutterErrorToast("isim bos");
       return false;
     }
-    if (groupCategoryName == "Yok") {
+    if (groupCategoryName == "Yok1") {
       flutterErrorToast("Kategori Bos");
       return false;
     }
@@ -74,7 +74,8 @@ class TGroupAddController extends GetxController with BaseController {
     final int numberOfWeeks = int.parse(numberOfWeek.text.trim());
     final TGroupModel group = TGroupModel(
       groupCategory: groupCategoryName.value,
-      therapistId: '',
+      therapistId: userId,
+      therapistHelperId: '',
       therapistName: localManager.getStringValue(LocalManagerKeys.name),
       therapistHelperName: chosenSecTherapist.value,
       name: groupNameController.text.trim(),
@@ -90,10 +91,18 @@ class TGroupAddController extends GetxController with BaseController {
 
     bool isSuccess = true;
 
+    final CreatedIdResponse? createGroupIdResponse =
+        await tGroupService.createGroup(group);
+    //sonra tekrar false
+    if (createGroupIdResponse == null) {
+      flutterErrorToast('could not create group');
+      return;
+    }
+
     for (int i = 0; i < numberOfWeeks; i++) {
       final Timestamp newWeeksGroupSessionTime =
           Timestamp.fromMillisecondsSinceEpoch(
-              group.dateTime!.microsecondsSinceEpoch +
+              group.dateTime!.millisecondsSinceEpoch +
                   millisecondsInWeek * (i + 1));
 
       final TGroupSessionModel groupSession = TGroupSessionModel(
@@ -101,7 +110,7 @@ class TGroupAddController extends GetxController with BaseController {
         therapistHelperId: group.therapistHelperId,
         dateTime: newWeeksGroupSessionTime,
         isFinished: false,
-        groupId: group.id,
+        groupId: createGroupIdResponse.id,
         therapistHelperName: group.therapistHelperName,
         therapistName: group.therapistName,
       );
@@ -119,13 +128,6 @@ class TGroupAddController extends GetxController with BaseController {
       return;
     }
 
-    final CreatedIdResponse? idResponse =
-        await tGroupService.createGroup(group);
-    //sonra tekrar false
-    if (idResponse == null) {
-      flutterErrorToast('could not create group');
-      return;
-    }
     navigationManager.maybePop(navigator);
   }
 

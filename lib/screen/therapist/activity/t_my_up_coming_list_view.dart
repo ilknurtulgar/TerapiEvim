@@ -25,21 +25,24 @@ class TMyUpComingActivitiesListView extends StatelessWidget {
               child: Obx(
                 () => ListView.builder(
                   itemBuilder: (context, index) {
-                    final TActivityModel? activityModel =
-                        controller.fetchedactiviy[index];
+                    final TActivityModel? activity =
+                        controller.fetchedActivity[index];
                     return ActivityBox(
                         leftButtonTapped: () {},
                         istwobutton: true,
                         buttonText: ActivityTextUtil.start,
                         containerModel: AppContainers.containerButton(false),
                         isactivity: true,
-                        rightButtonTap: () {},
+                        rightButtonTap: () {
+                          controller.createMeeting(
+                              context: context, activity: activity);
+                        },
                         arowModel: DemoInformation.recentActivityTitle(
-                            activityModel?.title ?? "empty tite"),
+                            activity?.title ?? "empty tite"),
                         clockModel: DemoInformation.recentActivityTime(
-                            activityModel?.dateTime ?? Timestamp.now()));
+                            activity?.dateTime ?? Timestamp.now()));
                   },
-                  itemCount: controller.fetchedactiviy.length,
+                  itemCount: controller.fetchedActivity.length,
                 ),
               ),
             ));

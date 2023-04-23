@@ -10,6 +10,10 @@ VideoCallTokenModel _$VideoCallTokenModelFromJson(Map<String, dynamic> json) =>
     VideoCallTokenModel(
       meetingId: json['meetingId'] as String,
       token: json['token'] as String,
+      therapistHelperId: json['therapistHelperId'] as String? ?? '',
+      participantId: json['participantId'] as String,
+      isTherapist: json['isTherapist'] as bool,
+      isMainTherapist: json['isMainTherapist'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$VideoCallTokenModelToJson(
@@ -17,4 +21,8 @@ Map<String, dynamic> _$VideoCallTokenModelToJson(
     <String, dynamic>{
       'meetingId': instance.meetingId,
       'token': instance.token,
+      'participantId': instance.participantId,
+      'therapistHelperId': instance.therapistHelperId,
+      'isTherapist': instance.isTherapist,
+      'isMainTherapist': instance.isMainTherapist,
     };

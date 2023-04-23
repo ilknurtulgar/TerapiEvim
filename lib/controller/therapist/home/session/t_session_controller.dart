@@ -28,13 +28,13 @@ class TSessionController extends DropDownController {
   }
 
   Future<void> joinShortCall(TSessionModel? session) async {
-
     if (session == null) {
       flutterErrorToast('session is null');
       return;
     }
 
-    final NavigatorState navigator = Navigator.of(controllerContext);
+    final NavigatorState navigator =
+        Navigator.of(controllerContext, rootNavigator: true);
 
     final IVideoSdkManager videoSdkManager = VideoSdkManager();
 
@@ -47,8 +47,13 @@ class TSessionController extends DropDownController {
 
     session.meetingId = meetingId;
 
-    final VideoCallTokenModel token =
-        VideoCallTokenModel(meetingId: meetingId, token: videoSdkManager.token);
+    final VideoCallTokenModel token = VideoCallTokenModel(
+      meetingId: meetingId,
+      token: videoSdkManager.token,
+      isTherapist: true,
+      participantId: userId!,
+      isMainTherapist: true,
+    );
 
     navigationManager.pushAndRemoveUntil(
         navigator, ShortCallView(videoCallToken: token));

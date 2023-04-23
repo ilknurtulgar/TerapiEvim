@@ -7,6 +7,7 @@ import '../../core/base/ui_models/video_call/person_in_call_model.dart';
 import '../../core/base/util/base_utility.dart';
 import '../../core/base/util/text_utility.dart';
 import '../../model/common/video_call/video_call_token_model.dart';
+import '../../product/enum/local_keys_enum.dart';
 import 'base_video_call_controller.dart';
 
 class GroupCallController extends BaseVideoCallController {
@@ -28,17 +29,17 @@ class GroupCallController extends BaseVideoCallController {
     room = VideoSDK.createRoom(
       roomId: currentToken.meetingId,
       token: currentToken.token,
-      displayName: "Hello World",
+      participantId: userId!,
+      displayName: localManager.getStringValue(LocalManagerKeys.name),
       micEnabled: micEnabled.value,
       camEnabled: camEnabled.value,
       maxResolution: 'hd',
       defaultCameraIndex: 1,
     );
-
-    setMeetingEventListener(room);
-
     // Join meeting
     room.join();
+
+    setMeetingEventListener(room);
   }
 
   // late MainController _mainController;
@@ -93,7 +94,8 @@ class GroupCallController extends BaseVideoCallController {
         duration: const Duration(minutes: 1));
   }
 
-  void sendIsolatedCall(String name) {
+  void sendIsolatedCall(
+      {required String name, required Function() onConfirmed}) {
     Get.dialog(AlertDialog(
       content: Text('$name ${VideoCallTextUtil.sendIsolatedCall}'),
       actions: [
@@ -104,12 +106,31 @@ class GroupCallController extends BaseVideoCallController {
               style: AppTextStyles.groupTextStyle(false),
             )),
         TextButton(
-            onPressed: () => Get.back(),
+            onPressed: () {
+              onConfirmed();
+              Get.back();
+            },
             child: Text(
               VideoCallTextUtil.yes,
               style: AppTextStyles.groupTextStyle(false),
             )),
       ],
     ));
+  }
+
+  Future<void> sendParticipantToIsolatedCall({
+    required String participantId
+  }) async {
+    try {
+
+
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+        error: e.toString(),
+        stackTrace: StackTrace.current,
+        reason: 'Error sendParticipantToIsolatedCall',
+      );
+      rethrow;
+    }
   }
 }

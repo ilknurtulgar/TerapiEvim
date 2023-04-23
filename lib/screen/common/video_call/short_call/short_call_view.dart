@@ -46,7 +46,6 @@ class ShortCallView extends StatelessWidget {
                       videoStream:
                           controller.participantVideoStreams.values.isNotEmpty
                               ? controller.participantVideoStreams.values.first
-                                  ?.renderer
                               : null,
                     ),
                   ),
@@ -71,7 +70,6 @@ class ShortCallView extends StatelessWidget {
                           controller.participantVideoStreams.values.length == 2
                               ? controller.participantVideoStreams.values
                                   .elementAt(1)
-                                  ?.renderer
                               : null,
                     ),
                   ),
@@ -122,7 +120,7 @@ class PersonCallView extends StatelessWidget {
   }) : super(key: key);
   final void Function() onMicTriggered, onCameraTriggered;
   final PersonInCallModel person;
-  final RTCVideoRenderer? videoStream;
+  final Stream? videoStream;
 
   @override
   Widget build(BuildContext context) {

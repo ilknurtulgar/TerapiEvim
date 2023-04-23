@@ -12,6 +12,7 @@ class TSessionModel extends INetworkModel<TSessionModel> {
       participantId,
       freeDateId,
       therapistId,
+      therapistName,
       participantName,
       meetingId;
   bool? isFinished, isGroupCategorySet;
@@ -30,6 +31,7 @@ class TSessionModel extends INetworkModel<TSessionModel> {
     this.participantName,
     this.isFinished,
     this.therapistId,
+    this.therapistName,
     this.dateTime,
     this.freeDateId,
     this.isGroupCategorySet,

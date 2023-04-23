@@ -19,6 +19,7 @@ abstract class IPSessionService {
   });
 
   Future<bool> selectASession(TFreeHoursModel freeHours);
+  Future<TSessionModel?> getASession(String sessionId);
 
   // Future<TFreeDateModel?> getAvailableDateById(String availableDate);
 }

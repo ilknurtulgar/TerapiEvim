@@ -55,6 +55,7 @@ abstract class BaseVideoCallController extends BaseController2 {
     room.on(Events.roomLeft, () {
       participantVideoStreams.clear();
 
+      /// TODO: send to select category page
       controllerContext.pushTrueRootNavigatorAndRemove(const MainHome());
     });
   }

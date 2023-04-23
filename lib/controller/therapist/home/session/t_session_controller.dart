@@ -33,7 +33,8 @@ class TSessionController extends DropDownController {
       return;
     }
 
-    final NavigatorState navigator = Navigator.of(controllerContext);
+    final NavigatorState navigator =
+        Navigator.of(controllerContext, rootNavigator: true);
 
     final IVideoSdkManager videoSdkManager = VideoSdkManager();
 

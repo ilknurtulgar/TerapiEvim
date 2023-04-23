@@ -83,10 +83,11 @@ class PLockView extends StatelessWidget {
         lockedTextContainer(GroupTextUtil.lockScreenText, true),
         TwoRowShortContainer(
           firstIconData: IconUtility.navProfile,
-          row1Text: GroupTextUtil.therapistTwoDot + controller.therapistName,
+          row1Text:
+              GroupTextUtil.therapistTwoDot + controller.therapistName.value,
           purpose: ContainerPurpose.seminar,
           secondIconData: IconUtility.navActivities,
-          row2Text: controller.shortCallTime,
+          row2Text: controller.shortCallTime.value,
           buttonText: GroupTextUtil.join,
           firstOnTap: () {
             //short calle gitmeli zamani geldiginde

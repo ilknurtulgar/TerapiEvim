@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/home/home_component.dart';
+import 'package:terapievim/model/therapist/coping_method/t_coping_method_model.dart';
 import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
 import '../../../controller/participant/profil/p_last_review_controller.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
@@ -13,29 +14,31 @@ class PLastReviewView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<PLastReviewController>(
-        getController: PLastReviewController(),
-        onModelReady: (model) {},
-        onPageBuilder: (context, controller) {
-          return Scaffold(
-              appBar:
-                  const MyAppBar(title: ParticipantProfileTextUtil.lastReview),
-              body: ListView.builder(
-                  itemCount: controller.listOfCopingMethods.length,
-                  itemBuilder: (context, index) => Padding(
-                        padding: AppPaddings.pagePaddingHorizontal,
-                        child: HomeComponent(
-                            isForMethodReading: true,
-                            cardModel:
-                                controller.listOfCopingMethods.getTherapist,
-                            time:
-                                controller.listOfCopingMethods.getTimes[index],
-                            title: controller
-                                .listOfCopingMethods.getMethodTitles[index],
-                            explanation: controller
-                                .listOfCopingMethods.getExplanations[index],
-                            buttonOnTap: () {},
-                            buttonText: ParticipantProfileTextUtil.readAgain),
-                      )));
-        });
+      getController: PLastReviewController(),
+      onModelReady: (model) {},
+      onPageBuilder: (context, controller) {
+        return Scaffold(
+          appBar: const MyAppBar(title: ParticipantProfileTextUtil.lastReview),
+          body: ListView.builder(
+            itemCount: controller.listOfCopingMethods.length,
+            itemBuilder: (context, index) {
+              final TCopingMethodModel copingMethod = controller.listOfCopingMethods[index];
+              return Padding(
+                padding: AppPaddings.pagePaddingHorizontal,
+                child: HomeComponent(
+                  isForMethodReading: true,
+                  cardModel: controller.listOfCopingMethods.getTherapist,
+                  time: copingMethod.dateTime.toString(),
+                  title: copingMethod.title,
+                  explanation: copingMethod.description ?? "",
+                  buttonOnTap: () => controller.openPdf(copingMethod.docUrl),
+                  buttonText: ParticipantProfileTextUtil.readAgain,
+                ),
+              );
+            },
+          ),
+        );
+      },
+    );
   }
 }

@@ -34,8 +34,13 @@ class TProfileView extends StatelessWidget {
                 child: Stack(
                   children: [
                     PProfileViewUtility.backgroundOfTheView(),
-                    PProfileViewUtility.profilePagePersonImage(controller.imageUrl, false),
-                    PProfileViewUtility.positionedIconButton(IconUtility.settingIcon.icon!,() => context.push(const TSettingsView()),Responsive.height(40, context),Responsive.width(20, context)),
+                    PProfileViewUtility.profilePagePersonImage(
+                        controller.imageUrl, false),
+                    PProfileViewUtility.positionedIconButton(
+                        IconUtility.settingIcon.icon!,
+                        () => context.push(const TSettingsView()),
+                        Responsive.height(40, context),
+                        Responsive.width(20, context)),
                     Padding(
                       padding: AppPaddings.profilePageBigPadding(true, false),
                       child: Column(
@@ -45,10 +50,18 @@ class TProfileView extends StatelessWidget {
                           mediumSizedBox(),
                           aboutMeColumn(controller),
                           mediumSizedBox(),
-                          UiBaseModel.boldMainTitleRowView(TherapistProfileTextUtil.methods,MainTitles.methods, () {context.push(const TDealingMethodView());}),
+                          UiBaseModel.boldMainTitleRowView(
+                              TherapistProfileTextUtil.methods,
+                              MainTitles.methods, () {
+                            context.push(const TDealingMethodView());
+                          }),
                           methodsListview(controller),
                           mediumSizedBox(),
-                          UiBaseModel.boldMainTitleRowView(TherapistProfileTextUtil.seminars,MainTitles.seminars, () {context.push(const TAttendedSeminarsView());}),
+                          UiBaseModel.boldMainTitleRowView(
+                              TherapistProfileTextUtil.seminars,
+                              MainTitles.seminars, () {
+                            context.push(const TAttendedSeminarsView());
+                          }),
                           seminarsListview(controller),
                           mediumSizedBox()
                         ],
@@ -64,27 +77,30 @@ class TProfileView extends StatelessWidget {
 
   Obx seminarsListview(TProfileController controller) {
     return Obx(
-                        () => controller.listOfActivities.isNotEmpty ? ProfileViewListView(
-                            isForParticipant: false,
-                            isForMethod: false,
-                            firstRowTextList: controller.listOfActivities.getTitles,
-                            secondRowTextList: controller.listOfActivities.getDates,
-                            onTap: () {},
-                          ) : const SizedBox(),
-                       );
+      () => controller.listOfActivities.isNotEmpty
+          ? ProfileViewListView(
+              isForParticipant: false,
+              isForMethod: false,
+              firstRowTextList: controller.listOfActivities.getTitles,
+              secondRowTextList: controller.listOfActivities.getDates,
+              onTap: () {},
+            )
+          : const SizedBox(),
+    );
   }
 
   Obx methodsListview(TProfileController controller) {
     return Obx(
-                         () => controller.listOfCopingMethods.isNotEmpty ? 
-                          ProfileViewListView(
-                            isForParticipant: false,
-                            isForMethod: true,
-                            firstRowTextList: controller.listOfCopingMethods.getGroupNames,
-                            secondRowTextList: controller.listOfCopingMethods.getMethodTitles,
-                            onTap: () {},
-                          ) : const SizedBox(),
-                        );
+      () => controller.listOfCopingMethods.isNotEmpty
+          ? ProfileViewListView(
+              isForParticipant: false,
+              isForMethod: true,
+              firstRowTextList: controller.listOfCopingMethods.getGroupNames,
+              secondRowTextList: controller.listOfCopingMethods.getMethodTitles,
+              onTap: () {},
+            )
+          : const SizedBox(),
+    );
   }
 
   Padding therapistName(TProfileController controller) {
@@ -195,9 +211,8 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   }
 
   CardModel get getTherapist {
-    CardModel model = CardModel(imagePath: "", title: "");
-    model.title = this.first?.therapistName ?? "";
-    model.imagePath = this.first?.therapistAvatarUrl ?? "";
-    return model;
+    return CardModel(
+        imagePath: this.first?.therapistAvatarUrl ?? "",
+        title: this.first?.therapistName ?? "");
   }
 }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/controller/therapist/activity/i_t_modify_activity_controller.dart';
 import 'package:terapievim/controller/therapist/home/session/t_available_hours_view_controller.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_hours_model.dart';
@@ -84,6 +85,8 @@ class TAddHoursViewController extends GetxController with BaseController {
       title: ScrollableTime(
         chooseHourFunction: (value) => chooseGroupTherapyTime(true, value),
         chooseMinuteFunction: (value) => chooseGroupTherapyTime(false, value),
+        hourInitialValue: chosenHour.value.turnInt(),
+        minuteInitialValue: chosenMinutes.value.turnInt(),
       ),
       titlePadding: const EdgeInsets.symmetric(vertical: 15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

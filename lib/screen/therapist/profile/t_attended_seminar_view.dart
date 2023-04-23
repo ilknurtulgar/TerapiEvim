@@ -8,6 +8,7 @@ import '../../../controller/therapist/profil/t_attended_seminar_controller.dart'
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
+import '../../../model/common/activity/t_activity_model.dart';
 
 // ignore: must_be_immutable
 class TAttendedSeminarsView extends StatelessWidget {
@@ -23,19 +24,23 @@ class TAttendedSeminarsView extends StatelessWidget {
             title: ParticipantProfileTextUtil.attendedSeminar,
           ),
           body: ListView.builder(
-            itemCount: controller.listOfActivities.length,
-            itemBuilder: (context, index) => Padding(
-              padding: AppPaddings.pagePaddingHorizontal,
-              child: TwoRowShortContainer(
-                row1Text: controller.listOfActivities.getTherapistNames[index],
-                row2Text: controller.listOfActivities.getTitles[index],
-                firstIconData: IconUtility.personIcon.icon!,
-                secondIconData: IconUtility.windowsIcon.icon!,
-                purpose: ContainerPurpose.seminar,
-                firstOnTap: () {},
-              ),
-            ),
-          )),
+              itemCount: controller.listOfActivities.length,
+              itemBuilder: (context, index) {
+                TActivityModel activity = controller.listOfActivities[index];
+                return Padding(
+                  padding: AppPaddings.pagePaddingHorizontal,
+                  child: TwoRowShortContainer(
+                    row1Text: activity.therapistName ?? "" ,
+                    row2Text: activity.title ?? "" ,
+                    firstIconData: IconUtility.personIcon.icon!,
+                    secondIconData: IconUtility.windowsIcon.icon!,
+                    purpose: ContainerPurpose.seminar,
+                    firstOnTap: () {
+                      // to do: watch seminar function
+                    },
+                  ),
+                );
+              })),
     );
   }
 }

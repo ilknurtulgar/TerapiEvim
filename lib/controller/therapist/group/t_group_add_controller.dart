@@ -40,7 +40,7 @@ class TGroupAddController extends GetxController with BaseController {
       flutterErrorToast("isim bos");
       return false;
     }
-    if (groupCategoryName == "Yok1") {
+    if (chosenCategory.value.isEmpty) {
       flutterErrorToast("Kategori Bos");
       return false;
     }
@@ -73,7 +73,7 @@ class TGroupAddController extends GetxController with BaseController {
     if (isValidated == false) return;
     final int numberOfWeeks = int.parse(numberOfWeek.text.trim());
     final TGroupModel group = TGroupModel(
-      groupCategory: groupCategoryName.value,
+      groupCategory: chosenCategory.value,
       therapistId: userId,
       therapistHelperId: '',
       therapistName: localManager.getStringValue(LocalManagerKeys.name),
@@ -145,17 +145,6 @@ class TGroupAddController extends GetxController with BaseController {
     isSecTherapistElectionOpen.value = !isSecTherapistElectionOpen.isTrue;
   }
 
-  var isGroupCategoryElectionOpen = false.obs;
-  var groupCategoryName = "Yok".obs;
-
-  void changeGroupCategory(String categoryName) {
-    groupCategoryName.value = categoryName;
-  }
-
-  void changeGroupCategoryElection() {
-    isGroupCategoryElectionOpen.value = !isGroupCategoryElectionOpen.value;
-  }
-
   var isDayElectionOpen = false.obs;
 
   void changeDayElection() {
@@ -194,6 +183,13 @@ class TGroupAddController extends GetxController with BaseController {
       chosenHour.value = valueAsString;
     else
       chosenMinutes.value = valueAsString;
+  }
+
+  RxString chosenCategory = ''.obs;
+  RxBool isDropDownClicked = false.obs;
+  void callBack(String chosenInComponent) {
+    chosenCategory.value = chosenInComponent;
+    print(chosenCategory);
   }
 
   void showChoosingTimeDialog() {

@@ -38,23 +38,26 @@ class PLockView extends StatelessWidget {
   BackdropFilter popUp(PLockScreenController controller, BuildContext context) {
     return BackdropFilter(
       filter: Filter.blur,
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            controller.isTestResultReady.isTrue
-                ? IconUtility.lockopen
-                : IconUtility.lock(true),
-            controller.isTestSolved.isFalse
-                ? noTest(context)
-                : controller.isTestResultReady.isTrue
-                    ? checkedTest(context,controller)
-                    : uncheckedTest()
-          ]),
+      child: SingleChildScrollView(
+        child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              controller.isTestResultReady.isTrue
+                  ? IconUtility.lockopen
+                  : IconUtility.lock(true),
+              controller.isTestSolved.isFalse
+                  ? noTest(context)
+                  : controller.isTestResultReady.isTrue
+                      ? checkedTest(context, controller)
+                      : uncheckedTest(controller),
+              hugeSizedBox()
+            ]),
+      ),
     );
   }
 
-  Column checkedTest(BuildContext context,PLockScreenController controller) {
+  Column checkedTest(BuildContext context, PLockScreenController controller) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,14 +68,14 @@ class PLockView extends StatelessWidget {
             container:
                 AppContainers.purpleButtonContainer(SizeUtil.largeValueWidth),
             onTap: () {
-             controller.lockScreenFinished();
+              controller.lockScreenFinished();
             },
             text: "Grup Kategori Sayfasi ")
       ],
     );
   }
 
-  Column uncheckedTest() {
+  Column uncheckedTest(PLockScreenController controller) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -80,10 +83,10 @@ class PLockView extends StatelessWidget {
         lockedTextContainer(GroupTextUtil.lockScreenText, true),
         TwoRowShortContainer(
           firstIconData: IconUtility.navProfile,
-          row1Text: GroupTextUtil.therapistTwoDot + "Yesim Salkim",
+          row1Text: GroupTextUtil.therapistTwoDot + controller.therapistName,
           purpose: ContainerPurpose.seminar,
           secondIconData: IconUtility.navActivities,
-          row2Text: "12/2/2222 20.00",
+          row2Text: controller.shortCallTime,
           buttonText: GroupTextUtil.join,
           firstOnTap: () {
             //short calle gitmeli zamani geldiginde
@@ -96,7 +99,7 @@ class PLockView extends StatelessWidget {
   Column noTest(BuildContext context) {
     return Column(
       children: [
-        lockedTextContainer(GroupTextUtil.lockScreenLockedText, false),
+        lockedTextContainer(GroupTextUtil.lockScreenLockedText, true),
         const PurpleTextContainer(
             text: GroupTextUtil.lockScreenNoTestDefinitionText),
         testButton(context)

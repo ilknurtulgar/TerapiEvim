@@ -13,24 +13,36 @@ class PLockScreenController extends BaseController2 {
   late ParticipantController participantController;
   @override
   void onInit() {
-     participantController = Get.find();
+    participantController = Get.find();
 
     isTestSolved = participantController.isScl90Submitted;
+    if (isTestSolved.value) {
+      getShortCallInformation();
+    }
 
     isTestResultReady = participantController.isTestResultReady;
 
     super.onInit();
   }
 
+  String therapistName = "";
+  String shortCallTime = '';
+  String sessionId = '';
+
+  void getShortCallInformation() {
+    sessionId = participantController.pSessionId.value;
+
+    //buradan session bilgileri alinacak
+    //burada therapistname ve short call time bilgileri girilmeli
+  }
+
   RxBool isTestSolved = true.obs;
 
   RxBool isTestResultReady = true.obs;
-  void lockScreenFinished(){
+  void lockScreenFinished() {
     //group id verilecek
     localManager.setStringValue(LocalManagerKeys.pJoinedGroupId, "groupId");
-    participantController.joinedGroupId.value="groupId";
+    participantController.joinedGroupId.value = "groupId";
     controllerContext.pushAndRemoveUntil(PMyGroupView());
   }
-
-
 }

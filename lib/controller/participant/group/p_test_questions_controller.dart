@@ -67,8 +67,8 @@ class PTestQuestionsController extends GetxController with BaseController {
 
     if (idResponse != null) {
       localManager.setBoolValue(LocalManagerKeys.pIsScl90Submitted, true);
-      final ParticipantController pController=Get.find();
-      pController.isScl90Submitted.value=true;
+      final ParticipantController pController = Get.find();
+      pController.isScl90Submitted.value = true;
 
       navigationManager.pushAndRemoveUntil(navigator, PShortCallTimeView());
     } else {

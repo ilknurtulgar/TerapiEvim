@@ -41,9 +41,9 @@ class TGroupInformationView extends StatelessWidget {
         onPageBuilder: (context, controller) {
           return Scaffold(
             appBar: MyAppBar(
-              title: controller.currentGroupModel?.name ?? '',
+              title: controller.currentGroup?.name ?? '',
               actions: _appBarActions(
-                  context, controller.currentGroupModel?.id, controller),
+                  context, controller.currentGroup?.id, controller),
             ),
             body: ListView(
               padding: AppPaddings.pagePaddingHorizontal,

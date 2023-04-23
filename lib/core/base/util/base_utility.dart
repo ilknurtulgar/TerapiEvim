@@ -903,7 +903,6 @@ class DemoInformation {
   static CardModel personCardModel =
       CardModel(imagePath: imagePath, title: 'Kerem Görkem');
 
-  static List<int> result = List.generate(categories.length, (index) => index);
 }
 
 Divider divider(bool issearch) {

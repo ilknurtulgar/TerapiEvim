@@ -8,13 +8,9 @@ class ScrollableTime extends StatelessWidget {
   const ScrollableTime(
       {super.key,
       required this.chooseHourFunction,
-      required this.chooseMinuteFunction,
-      required this.hourInitialValue,
-      required this.minuteInitialValue});
+      required this.chooseMinuteFunction,});
   final Function(int)? chooseHourFunction;
   final Function(int)? chooseMinuteFunction;
-  final int hourInitialValue;
-  final int minuteInitialValue;
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +23,11 @@ class ScrollableTime extends StatelessWidget {
               CustomListWheelScrollView(
                 whatIsFor: ScrollPurpose.hour,
                 onSelectedItemChanged: chooseHourFunction,
-                initialValue: hourInitialValue,
               ),
               colon(true),
               CustomListWheelScrollView(
                 whatIsFor: ScrollPurpose.minute,
                 onSelectedItemChanged: chooseMinuteFunction,
-                initialValue: minuteInitialValue,
               ),
             ]),
         okayTextButton(),

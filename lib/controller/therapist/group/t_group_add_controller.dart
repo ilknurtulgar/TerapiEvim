@@ -163,8 +163,6 @@ class TGroupAddController extends GetxController with BaseController {
       title: ScrollableTime(
         chooseHourFunction: (value) => chooseGroupTherapyTime(true, value),
         chooseMinuteFunction: (value) => chooseGroupTherapyTime(false, value),
-        hourInitialValue: chosenHour.value.turnInt(),
-        minuteInitialValue: chosenMinutes.value.turnInt(),
       ),
       titlePadding: const EdgeInsets.symmetric(vertical: 15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

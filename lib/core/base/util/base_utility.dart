@@ -15,7 +15,6 @@ import '../../../screen/participant/group/p_group_view.dart';
 import '../../../screen/participant/home/p_home_view.dart';
 import '../../../screen/participant/profile/p_profile_view.dart';
 import '../../../screen/therapist/activity/t_activity_view.dart';
-import '../../../screen/therapist/home/session/choosing_category_view.dart';
 import '../../../screen/therapist/home/t_home_view.dart';
 import '../../../screen/therapist/message/t_message_view.dart';
 import '../../init/managers/responsiveness_manager.dart';
@@ -441,6 +440,7 @@ SizedBox smallSizedBox() => const SizedBox(height: 8);
 SizedBox mediumSizedBox() => const SizedBox(height: 16);
 
 SizedBox largeSizedBox() => const SizedBox(height: 32);
+SizedBox hugeSizedBox() => const SizedBox(height: 50);
 
 class AppBorderRadius {
   static const BorderRadius generalBorderRadius =
@@ -902,7 +902,6 @@ class DemoInformation {
 
   static CardModel personCardModel =
       CardModel(imagePath: imagePath, title: 'Kerem Görkem');
-
 }
 
 Divider divider(bool issearch) {

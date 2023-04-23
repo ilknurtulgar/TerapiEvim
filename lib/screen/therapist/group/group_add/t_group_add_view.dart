@@ -21,13 +21,6 @@ import '../../../../product/widget/common/group/mini_headings.dart';
 class TGroupAddView extends StatelessWidget {
   TGroupAddView({super.key});
 
-  RxString chosenCategory = ''.obs;
-  RxBool isDropDownClicked = false.obs;
-  void callBack(String chosenInComponent) {
-    chosenCategory.value = chosenInComponent;
-    print(chosenCategory);
-  }
-
   @override
   Widget build(BuildContext context) {
     return BaseView<TGroupAddController>(
@@ -75,28 +68,37 @@ class TGroupAddView extends StatelessWidget {
                   () => Column(
                     children: [
                       InkWell(
-                          onTap: () => isDropDownClicked.value = !isDropDownClicked.value,
+                          onTap: () => controller.isDropDownClicked.value =
+                              !controller.isDropDownClicked.value,
                           child: Container(
                               height: SizeUtil.generalHeight,
-                              decoration: BoxDecoration(borderRadius: AppBorderRadius.generalBorderRadius,color: AppColors.white,border: Border.all(color: AppColors.black)),
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      AppBorderRadius.generalBorderRadius,
+                                  color: AppColors.white,
+                                  border: Border.all(color: AppColors.black)),
                               child: RowView(
                                   padding: AppPaddings.rowViewPadding,
                                   rowModel: RowModel(
-                                      text: chosenCategory.value,
+                                      text: controller.chosenCategory.value,
                                       textStyle: TextStyle(),
                                       isAlignmentBetween: false,
-                                      trailingIcon: isDropDownClicked.value
-                                          ? IconUtility.arrowUp
-                                          : IconUtility.arrowDown)))),
-                      isDropDownClicked.value
+                                      trailingIcon:
+                                          controller.isDropDownClicked.value
+                                              ? IconUtility.arrowUp
+                                              : IconUtility.arrowDown)))),
+                      controller.isDropDownClicked.value
                           ? Container(
-                              decoration: BoxDecoration(borderRadius: AppBorderRadius.generalBorderRadius,color: AppColors.white,border: Border.all(color: AppColors.black)),
+                              decoration: BoxDecoration(
+                                  borderRadius:
+                                      AppBorderRadius.generalBorderRadius,
+                                  color: AppColors.white,
+                                  border: Border.all(color: AppColors.black)),
                               child: ChoosingCategoryForParticipant(
                                   isWithIconButton: false,
-                                  callBack: callBack,
+                                  callBack: controller.callBack,
                                   onPressed: () {
-                                    isDropDownClicked.value = false;
-                                    print(isDropDownClicked);
+                                    controller.isDropDownClicked.value = false;
                                   }),
                             )
                           : const SizedBox(),
@@ -195,26 +197,6 @@ class TGroupAddView extends StatelessWidget {
     );
   }
 
-  Obx category(TGroupAddController controller) {
-    return Obx(
-      () => SizedBox(
-        child: SeminarMin(
-            onTap: () {
-              controller.changeGroupCategoryElection();
-              ;
-            },
-            row: RowModel(
-              text: controller.groupCategoryName.value,
-              isAlignmentBetween: true,
-              textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
-              trailingIcon: controller.isGroupCategoryElectionOpen.value
-                  ? IconUtility.arrowUp
-                  : IconUtility.arrowDown,
-            )),
-      ),
-    );
-  }
-
   RowModel secTherapistRowModel(TGroupAddController controller) {
     return RowModel(
       text: controller.chosenSecTherapist.value,
@@ -295,30 +277,6 @@ class TGroupAddView extends StatelessWidget {
       person("Mikasa Ackerman", context, controller),
       person("Eren Jeager", context, controller),
       person("Levi Ackerman", context, controller)
-    ];
-  }
-
-  PersonMin groupCategory(String name, TGroupAddController controller) {
-    return PersonMin(
-      onTap: () {
-        controller.changeGroupCategory(name);
-        controller.changeGroupCategoryElection();
-      },
-      isBorderPurple: false,
-      row: RowModel(
-          text: name,
-          textStyle: AppTextStyles.groupTextStyle(true),
-          isAlignmentBetween: false),
-    );
-  }
-
-  List<PersonMin> categories(TGroupAddController controller) {
-    return [
-      groupCategory("Depresyon", controller),
-      groupCategory("Anksiyete", controller),
-      groupCategory("Yeme Bozuklugu", controller),
-      groupCategory("Psikotik", controller),
-      groupCategory("Otizm", controller),
     ];
   }
 

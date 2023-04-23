@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,9 +19,9 @@ import '../coping_methods/t_new_coping_method_view.dart';
 import 't_profile_about_view.dart';
 
 class TGroupInformationView extends StatelessWidget {
-  const TGroupInformationView({super.key, this.currentGroup});
+  const TGroupInformationView({super.key, required this.currentGroup});
 
-  final TGroupModel? currentGroup;
+  final TGroupModel currentGroup;
 
   @override
   Widget build(BuildContext context) {
@@ -42,15 +41,15 @@ class TGroupInformationView extends StatelessWidget {
         onPageBuilder: (context, controller) {
           return Scaffold(
             appBar: MyAppBar(
-              title: controller.currentGroupModel?.name ?? '',
+              title: controller.currentGroup?.name ?? '',
               actions: _appBarActions(
-                  context, controller.currentGroupModel?.id, controller),
+                  context, controller.currentGroup?.id, controller),
             ),
             body: ListView(
               padding: AppPaddings.pagePaddingHorizontal,
               children: [
                 miniHeadings(GroupTextUtil.upcomingMeetingText, false),
-                meeting(),
+                meeting(controller),
                 miniHeadings(GroupTextUtil.groupsInformationText, false),
                 navMethod(DemoInformation.secTherapist, () {
                   context.push(const TProfileView(isSecTherapist: true));
@@ -118,15 +117,31 @@ class TGroupInformationView extends StatelessWidget {
     );
   }
 
-  ActivityBox meeting() {
-    return ActivityBox(
-        rightButtonTap: () {},
-        istwobutton: false,
-        containerModel: AppContainers.containerButton(false),
-        buttonText: GroupTextUtil.startText,
-        arowModel: DemoInformation.row2,
-        isactivity: true,
-        clockModel: DemoInformation.clockRow(Timestamp.now()));
+  Widget meeting(TGroupInformationController controller) {
+    return Obx(
+      () => ActivityBox(
+          rightButtonTap: () {
+            controller.onGroupSessionStarted();
+          },
+          istwobutton: false,
+          containerModel: AppContainers.containerButton(false),
+          buttonText: GroupTextUtil.startText,
+          arowModel: RowModel(
+            isAlignmentBetween: true,
+            leadingIcon: IconUtility.personIcon,
+            text: GroupTextUtil.secondTherapistText,
+            textStyle: AppTextStyles.groupTextStyle(false),
+            text2: controller.helperTherapistName.value,
+            textStyle2: AppTextStyles.groupTextStyle(true),
+          ),
+          isactivity: true,
+          clockModel: RowModel(
+            leadingIcon: IconUtility.clockIcon,
+            text: controller.meetingTime.value,
+            textStyle: AppTextStyles.groupTextStyle(true),
+            isAlignmentBetween: false,
+          )),
+    );
   }
 
   Padding navMethod(RowModel row, Function() func) {

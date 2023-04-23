@@ -51,12 +51,8 @@ class GroupCallView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ...controller.participantVideoStreams.values
-                              .map(
-                                (e) => ParticipantTile2(
-                                  stream: e!,
-                                ),
-                              )
-                              .toList(),
+                              .map((e) => ParticipantTile2(stream: e!))
+                              .toList()
                         ],
                       ),
                     ),

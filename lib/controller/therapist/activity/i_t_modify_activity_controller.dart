@@ -84,9 +84,45 @@ abstract class ITModifyActivityController extends GetxController
       title: ScrollableTime(
         chooseHourFunction: (value) => chooseGroupTherapyTime(true, value),
         chooseMinuteFunction: (value) => chooseGroupTherapyTime(false, value),
+        hourInitialValue: chosenHour.value.turnInt(),
+        minuteInitialValue: chosenMinutes.value.turnInt(),
       ),
       titlePadding: const EdgeInsets.symmetric(vertical: 15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
     ));
   }
 }
+
+extension GettingIntFromString on String {
+  int turnInt() {
+    int i = 0;
+    int j = 0;
+    int number = 0;
+    for (i = 0; i < length; i++) {
+      //this[i] = int.parse(this[i]) 
+      /*for (j = 0; j < integerAsStrings.length; j++) {
+        if (this[i] == integerAsStrings[j]) {
+          number = number + integers[j] * (10 ^ (length - i - 1));
+          print(number);
+        }
+      }*/
+    }
+
+    return number;
+  }
+}
+
+List<String> integerAsStrings = [
+  '0',
+  '1',
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9'
+];
+
+List<int> integers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];

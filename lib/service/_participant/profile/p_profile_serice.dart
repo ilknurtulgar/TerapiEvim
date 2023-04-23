@@ -29,12 +29,12 @@ class PProfileService extends IPProfileService with BaseService {
   }
 
   @override
-  Future<List<TCopingMethodModel?>?> getMyViewedCopingMethods({
+  Future<List<TCopingMethodModel>> getMyViewedCopingMethods({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
   }) async {
-    if (userId == null) return null;
+    if (userId == null) return [];
 
     final result =
         await manager.readOrdered<TCopingMethodModel, List<TCopingMethodModel>>(
@@ -50,11 +50,11 @@ class PProfileService extends IPProfileService with BaseService {
       return [];
     }
 
-    return result.data;
+    return result.data ?? [];
   }
 
   @override
-  Future<List<TActivityModel?>> getMyJoinedActivities({
+  Future<List<TActivityModel>> getMyJoinedActivities({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,

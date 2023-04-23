@@ -26,17 +26,15 @@ class TDealingMethodView extends StatelessWidget {
               itemCount: controller.listOfCopingMethods.length,
               itemBuilder: (context, index) {
                 TCopingMethodModel copingMethod =
-                    controller.listOfCopingMethods[index]!; //sor
+                    controller.listOfCopingMethods[index];
                 return Padding(
                   padding: AppPaddings.pagePaddingHorizontal,
                   child: HomeComponent(
                     isForMethodReading: true,
-                    time: controller.listOfCopingMethods.getTimes[index],
-                    title:
-                        controller.listOfCopingMethods.getMethodTitles[index],
+                    time: copingMethod.dateTime.toString(),//controller.listOfCopingMethods.getTimes[index],
+                    title: copingMethod.title,
                     cardModel: controller.listOfCopingMethods.getTherapist,
-                    explanation:
-                        controller.listOfCopingMethods.getExplanations[index],
+                    explanation: copingMethod.description ?? "",
                     buttonOnTap: () {
                       //o basetme motduna gitmeli
                     },

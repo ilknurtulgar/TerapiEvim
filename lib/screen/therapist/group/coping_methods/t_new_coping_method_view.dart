@@ -55,7 +55,6 @@ class TNewCopingMethodView extends StatelessWidget {
                           await controller.shareCopingMethod();
                         },
                       ),
-                      // text(),
                       _OtherGroupsList(controller: controller),
                     ],
                   ),
@@ -126,7 +125,7 @@ class TNewCopingMethodView extends StatelessWidget {
               child: Text(GroupTextUtil.deleteText),
               onPressed: () {
                 context.pop();
-                context.pop();
+                //silme islemi
               },
             ),
           ],

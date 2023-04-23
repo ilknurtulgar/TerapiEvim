@@ -11,12 +11,12 @@ class TProfileService extends ITProfileService with BaseService {
   TProfileService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
 
   @override
-  Future<List<TCopingMethodModel?>?> getCopingMethodsOrdered({
+  Future<List<TCopingMethodModel>> getCopingMethodsOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,
   }) async {
-    if (userId == null) return null;
+    if (userId == null) return [];
 
     final result =
         await manager.readOrdered<TCopingMethodModel, List<TCopingMethodModel>>(
@@ -31,11 +31,11 @@ class TProfileService extends ITProfileService with BaseService {
       return [];
     }
 
-    return result.data;
+    return result.data ?? [];
   }
 
   @override
-  Future<List<TActivityModel?>> getMyPastActivitiesOrdered({
+  Future<List<TActivityModel>> getMyPastActivitiesOrdered({
     String lastDocId = '',
     String orderField = AppConst.dateTime,
     bool isDescending = false,

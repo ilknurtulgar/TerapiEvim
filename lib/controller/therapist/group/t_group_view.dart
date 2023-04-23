@@ -10,9 +10,8 @@ class TGroupViewController extends BaseController2 {
   }
 
   RxBool isLockedOpen = false.obs;
-  
+
   void changeisLockedOpen() {
     isLockedOpen.value = !isLockedOpen.value;
   }
-
 }

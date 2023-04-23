@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../../core/base/service/base_service.dart';
 import '../../core/constants/api_const.dart';
 import '../../core/constants/app_const.dart';
@@ -9,6 +11,7 @@ import 'i_message_service.dart';
 
 class MessageService extends IMessageService with BaseService {
   MessageService(IFirestoreManager<ErrorModelCustom> manager) : super(manager);
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
 
   @override
   Future<List<UserModel>> getAllUsersByGroupId(String groupId) async {
@@ -23,12 +26,13 @@ class MessageService extends IMessageService with BaseService {
     if (group.participantsId == null) return [];
 
     List<UserModel> participants = [];
+    if (group.therapistHelperId != null) {
+      final UserModel? therapistHelper =
+          await _getUserById(group.therapistHelperId!);
 
-    final UserModel? therapistHelper =
-        await _getUserById(group.therapistHelperId!);
-
-    if (therapistHelper != null) {
-      participants.add(therapistHelper);
+      if (therapistHelper != null) {
+        participants.add(therapistHelper);
+      }
     }
 
     for (String userId in group.participantsId!) {
@@ -95,5 +99,14 @@ class MessageService extends IMessageService with BaseService {
     groups.addAll(resultAsTherapistHelper.data!);
 
     return result.data ?? [];
+  }
+
+  @override
+  Stream<QuerySnapshot<Map<String, dynamic>?>> getStatus(String userId) {
+    final Stream<QuerySnapshot<Map<String, dynamic>>> ref = _firebaseFirestore
+        .collection("messagegroups")
+        //  .where("participantId", isEqualTo: userId)
+        .snapshots();
+    return ref;
   }
 }

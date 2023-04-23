@@ -36,3 +36,35 @@ class Election extends StatelessWidget {
         ));
   }
 }
+
+class UsersListMessage extends StatelessWidget {
+  const UsersListMessage(
+      {super.key,
+      this.rows,
+      required this.firstRow,
+      required this.isSelectedValue});
+
+  final rows;
+  final Widget firstRow;
+  final RxBool isSelectedValue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Obx(() => Column(
+          children: [
+            firstRow,
+            isSelectedValue.value
+                ? SizedBox(
+                    width: Responsive.width(SizeUtil.hugeValueWidth, context),
+                    child: ListView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) => rows[index],
+                      itemCount: rows.length,
+                      shrinkWrap: true,
+                    ),
+                  )
+                : const SizedBox.shrink(),
+          ],
+        ));
+  }
+}

@@ -8,18 +8,16 @@ import '../../util/base_utility.dart';
 class ChoosingCategoryForParticipant extends StatelessWidget {
   ChoosingCategoryForParticipant(
       {super.key,
-      required this.textfieldVisible,
       required this.isWithIconButton,
       this.onPressed,
       required this.callBack});
-  RxBool textfieldVisible;
   bool isWithIconButton;
   Function()? onPressed;
   Function callBack;
 
-  RxList<bool> isSelected = RxList.filled(categories.length, false);
+  RxList<bool> isSelected = RxList.filled(groups.length, false);
   late List<Widget> children =
-      List.generate(categories.length, (index) => iconButtonWithText(index));
+      List.generate(groups.length, (index) => iconButtonWithText(index));
 
   String chosenCategory = '';
 
@@ -29,14 +27,10 @@ class ChoosingCategoryForParticipant extends StatelessWidget {
       alignment: Alignment.centerLeft,
       child: ToggleButtons(
         onPressed: (index) {
-          for (int i = 0; i < categories.length; i++) {
+          for (int i = 0; i < groups.length; i++) {
             isSelected[i] = i == index;
-            if (isSelected[i]) chosenCategory = categories[i];
+            if (isSelected[i]) chosenCategory = groups[i];
           }
-          if (isSelected.last == true)
-            textfieldVisible.value = true;
-          else
-            textfieldVisible.value = false;
           callBack(chosenCategory);
           onPressed != null ? onPressed!() : () {};
         },
@@ -66,7 +60,7 @@ class ChoosingCategoryForParticipant extends StatelessWidget {
         Padding(
           padding: AppPaddings.componentOnlyPadding(4),
           child: Text(
-            categories[index],
+            groups[index],
             style: AppTextStyles.normalTextStyle('medium', false),
           ),
         ),

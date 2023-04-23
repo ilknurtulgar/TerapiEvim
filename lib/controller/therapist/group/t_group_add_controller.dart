@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/base/base_controller.dart';
+import 'package:terapievim/controller/therapist/activity/i_t_modify_activity_controller.dart';
 import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/core/managers/firebase/firestore/models/created_id_response.dart';
 
@@ -162,6 +163,8 @@ class TGroupAddController extends GetxController with BaseController {
       title: ScrollableTime(
         chooseHourFunction: (value) => chooseGroupTherapyTime(true, value),
         chooseMinuteFunction: (value) => chooseGroupTherapyTime(false, value),
+        hourInitialValue: chosenHour.value.turnInt(),
+        minuteInitialValue: chosenMinutes.value.turnInt(),
       ),
       titlePadding: const EdgeInsets.symmetric(vertical: 15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

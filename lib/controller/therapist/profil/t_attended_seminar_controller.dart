@@ -16,17 +16,17 @@ class TAttendedSeminarsController extends DropDownController {
   Future<void> onInit() async {
     tProfileService = TProfileService(vexaFireManager.networkManager);
 
-    final List<TActivityModel?>? fetchedActivities =
+    final List<TActivityModel> fetchedActivities =
         await tProfileService.getMyPastActivitiesOrdered();
 
-    if (fetchedActivities != null) {
+    if (fetchedActivities.isNotEmpty) {
       listOfActivities.addAll(fetchedActivities);
     }
 
     super.onInit();
   }
 
-  RxList<TActivityModel?> listOfActivities = <TActivityModel?>[].obs;
+  RxList<TActivityModel> listOfActivities = <TActivityModel>[].obs;
 
   late ITProfileService tProfileService;
 }

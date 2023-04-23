@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/model/common/profile/p_public_profile_model.dart';
 
 import '../../../core/base/component/toast/toast.dart';
 import '../../../core/managers/videosdk/i_video_sdk_manager.dart';
@@ -17,6 +18,7 @@ class TGroupInformationController extends GetxController with BaseController {
   @override
   void setContext(BuildContext context) {
     controllerContext = context;
+    getParticipants();
   }
 
   void setCurrentGroup(TGroupModel? group) {
@@ -47,13 +49,18 @@ class TGroupInformationController extends GetxController with BaseController {
     super.dispose();
   }
 
+  late List<PPublicProfile> participants = <PPublicProfile>[].obs;
+
+  void getParticipants() async {
+    participants = await tGroupService.getParticipantsList(
+        participantsId: currentGroup?.participantsId ?? <String>[]);
+  }
+
   Future<void> onGroupSessionStarted() async {
     try {
       final IVideoSdkManager videoSdkManager = VideoSdkManager();
-
       final NavigatorState navigator =
           Navigator.of(controllerContext, rootNavigator: true);
-
       if (currentGroup?.id == null) {
         throw Exception('currentGroupModel is null');
       }
@@ -67,6 +74,7 @@ class TGroupInformationController extends GetxController with BaseController {
       if (recentSession == null) {
         throw Exception('recentSession is null');
       }
+
       recentSession!.meetingId = meetingId;
 
       final bool isSuccess =
@@ -98,8 +106,8 @@ class TGroupInformationController extends GetxController with BaseController {
   }
 
   void getMeetingInformation() async {
-    recentSession = await tGroupService
-        .getRecentGroupSession(currentGroup?.id ?? "null");
+    recentSession =
+        await tGroupService.getRecentGroupSession(currentGroup?.id ?? "null");
 
     helperTherapistName.value = recentSession?.therapistHelperName ?? "null";
 
@@ -125,6 +133,8 @@ class TGroupInformationController extends GetxController with BaseController {
 
   void deleteGroup() {
     currentGroup!.id = '';
+    NavigatorState navigator = Navigator.of(controllerContext);
+    navigator.pop();
   }
 
   //grup eklmee kismi icin controller

@@ -30,7 +30,7 @@ class TGroupAddController extends GetxController with BaseController {
 
   @override
   void setContext(BuildContext context) {
-    // TODO: implement setContext
+    controllerContext = context;
   }
 
   TextEditingController groupNameController = TextEditingController();
@@ -53,13 +53,11 @@ class TGroupAddController extends GetxController with BaseController {
       return false;
     }
     if (numberOfWeek.text.isEmpty) {
+      //integer olup olmadigi bakilmali
       flutterErrorToast("Kac Hafta terapi yapilacagi secilmedi");
       return false;
     }
-    if (numberOfSession.text.isEmpty) {
-      flutterErrorToast("Kac terapi yapilacagi secilmedi");
-      return false;
-    }
+
     if (chosenHour.isEmpty) {
       flutterErrorToast("Saat Bilgisi Secilmedi");
       return false;
@@ -81,7 +79,6 @@ class TGroupAddController extends GetxController with BaseController {
       name: groupNameController.text.trim(),
       dateTime: Timestamp.fromDate(DateTime.now()),
       hasHelperTherapistAccepted: false,
-      numberOfSessions: int.parse(numberOfSession.text.trim()),
       numberOfWeeks: int.parse(numberOfWeek.text.trim()),
       participantsId: [],
     );
@@ -204,8 +201,7 @@ class TGroupAddController extends GetxController with BaseController {
   }
 
   //seans ve hafta sayisi
-  TextEditingController numberOfSession =
-      TextEditingController(); //nasil obs olacak
+
   TextEditingController numberOfWeek = TextEditingController();
 
   var isCircularIndicatorOpen = false.obs;

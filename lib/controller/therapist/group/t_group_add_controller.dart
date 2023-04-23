@@ -2,12 +2,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/base/base_controller.dart';
+import 'package:terapievim/controller/therapist/activity/i_t_modify_activity_controller.dart';
 import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/core/managers/firebase/firestore/models/created_id_response.dart';
 
 import '../../../core/base/component/group/scrollable_time.dart';
 import '../../../model/common/user/user_model.dart';
 import '../../../model/therapist/group/t_group_model.dart';
+import '../../../product/enum/local_keys_enum.dart';
 import '../../../service/_therapist/group/i_t_group_service.dart';
 import '../../../service/_therapist/group/t_group_service.dart';
 
@@ -42,11 +44,11 @@ class TGroupAddController extends GetxController with BaseController {
       flutterErrorToast("Kategori Bos");
       return false;
     }
-    if (choosenSecTherapist == "Yok") {
+    if (chosenSecTherapist == "Yok") {
       flutterErrorToast("Yardimci Terapist Secilmedi");
       return false;
     }
-    if (choosenDay == "Yok") {
+    if (chosenDay == "Yok") {
       flutterErrorToast("Terapi Gunu Secilmedi");
       return false;
     }
@@ -69,9 +71,12 @@ class TGroupAddController extends GetxController with BaseController {
     final NavigatorState navigator = Navigator.of(context);
     final bool isValidated = _validateNewGroup();
     if (isValidated == false) return;
+
     final TGroupModel groupModel = TGroupModel(
       groupCategory: groupCategoryName.value,
-      therapistHelperName: choosenSecTherapist.value,
+      therapistId: '',
+      therapistName: localManager.getStringValue(LocalManagerKeys.name),
+      therapistHelperName: chosenSecTherapist.value,
       name: groupNameController.text.trim(),
       dateTime: Timestamp.fromDate(DateTime.now()),
       hasHelperTherapistAccepted: false,
@@ -90,12 +95,12 @@ class TGroupAddController extends GetxController with BaseController {
 
   //grup eklmee kismi icin controller
   var isSecTherapistElectionOpen = false.obs;
-  var choosenSecTherapist = "Yok".obs;
-  var isSecTherapistChoosed = false.obs;
+  var chosenSecTherapist = "Yok".obs;
+  var isSecTherapistChosen = false.obs;
 
-  void changeChoosenSecTherapist(String name) {
-    isSecTherapistChoosed.value = true;
-    choosenSecTherapist.value = name;
+  void changeChosenSecTherapist(String name) {
+    isSecTherapistChosen.value = true;
+    chosenSecTherapist.value = name;
   }
 
   void changeSecTherapistElection() {
@@ -120,10 +125,10 @@ class TGroupAddController extends GetxController with BaseController {
   }
 
   void changeChoosenDay(String day) {
-    choosenDay = RxString(day);
+    chosenDay = RxString(day);
   }
 
-  var choosenDay = "Gun Seciniz".obs;
+  var chosenDay = "Gun Seciniz".obs;
 
   var isParticipantElectionOpen = false.obs;
 
@@ -158,6 +163,8 @@ class TGroupAddController extends GetxController with BaseController {
       title: ScrollableTime(
         chooseHourFunction: (value) => chooseGroupTherapyTime(true, value),
         chooseMinuteFunction: (value) => chooseGroupTherapyTime(false, value),
+        hourInitialValue: chosenHour.value.turnInt(),
+        minuteInitialValue: chosenMinutes.value.turnInt(),
       ),
       titlePadding: const EdgeInsets.symmetric(vertical: 15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),

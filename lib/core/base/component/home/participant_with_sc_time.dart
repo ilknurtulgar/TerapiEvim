@@ -1,8 +1,13 @@
 import 'package:terapievim/core/base/component/profile/container/two_row_short_container.dart';
+
 import '../../util/base_utility.dart';
 
-TwoRowShortContainer participantWithShortCallTime(String participantName,
-        String time, Function() testResultOnTapped, Function() joinOnTapped) =>
+TwoRowShortContainer participantWithShortCallTime({
+  required String participantName,
+  required String time,
+  required Function() testResultOnTapped,
+  required Function() joinOnTapped,
+}) =>
     TwoRowShortContainer(
       row1Text: participantName,
       row2Text: time,

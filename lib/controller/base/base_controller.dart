@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/init/cache/local_manager.dart';
@@ -17,5 +18,6 @@ abstract class BaseController {
 
   final LocalManager localManager = LocalManager.instance;
   final PrintDev printDev = PrintDev.instance;
+  final String? userId = FirebaseAuth.instance.currentUser?.uid;
 
 }

@@ -18,9 +18,10 @@ class TMessageAllUsersListController extends GetxController
   @override
   Future<void> onInit() async {
     firestoreDBService = MessageService(vexaFireManager.networkManager);
-    final List<TGroupModel> groups =
-        await firestoreDBService.getGroupsOrdered();
-
+    groups.value = await firestoreDBService.getGroupsOrdered();
+    for (TGroupModel group in groups) {
+      groupUsers[group.id!] = [];
+    }
     for (TGroupModel group in groups) {
       groupIds.add(group.id!);
       groupUsers[group.id!] =
@@ -30,6 +31,7 @@ class TMessageAllUsersListController extends GetxController
     super.onInit();
   }
 
+  RxList<TGroupModel> groups = <TGroupModel>[].obs;
   List<String> groupIds = [];
 
   RxMap<String, List<UserModel>> groupUsers = <String, List<UserModel>>{}.obs;
@@ -43,20 +45,14 @@ class TMessageAllUsersListController extends GetxController
   }
 
   late IMessageService firestoreDBService;
-  List<String> data = [];
-  void coll() {
-    FirebaseFirestore.instance
-        .collection('messagegroups')
-        .get()
-        .then((QuerySnapshot querySnapshot) {
-      querySnapshot.docs.forEach((doc) {
-        data.add(doc['messagegroups']);
-      });
-    });
-  }
 
   Future<List<UserModel>> getAllUser() async {
     var allUserList = await firestoreDBService.getAllUsersByGroupId('');
     return allUserList;
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>?>> coll() {
+    final collects = firestoreDBService.getStatus("");
+    return collects;
   }
 }

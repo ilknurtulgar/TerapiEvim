@@ -23,17 +23,17 @@ class PAttendedSeminarsController extends DropDownController {
   Future<void> onInit() async {
     pProfileService = PProfileService(vexaFireManager.networkManager);
 
-    final List<TActivityModel?>? fetchedActivities =
+    final List<TActivityModel> fetchedActivities =
         await pProfileService.getMyJoinedActivities();
 
-    if (fetchedActivities != null) {
+    if (fetchedActivities.isNotEmpty) {
       listOfActivities.addAll(fetchedActivities);
     }
 
     super.onInit();
   }
 
-  RxList<TActivityModel?> listOfActivities = <TActivityModel?>[].obs;
+  RxList<TActivityModel> listOfActivities = <TActivityModel>[].obs;
 
   late IPProfileService pProfileService;
 }

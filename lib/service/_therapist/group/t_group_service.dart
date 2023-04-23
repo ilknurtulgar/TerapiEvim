@@ -58,6 +58,21 @@ class TGroupService extends ITGroupService with BaseService {
   }
 
   @override
+  Future<bool> updateGroupSession(TGroupSessionModel groupSession) async {
+    if (userId == null) return false;
+
+    final result = await manager.update<TGroupSessionModel, EmptyModel>(
+      collectionPath: APIConst.groupSession,
+      docId: groupSession.id!,
+      data: groupSession,
+    );
+
+    if (result.error != null) return false;
+
+    return true;
+  }
+
+  @override
   Future<TGroupSessionModel?> getRecentGroupSession(String groupId) async {
     if (userId == null) return null;
 

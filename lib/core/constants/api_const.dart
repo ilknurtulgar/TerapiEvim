@@ -9,6 +9,7 @@ class APIConst {
   static const String sessions = 'sessions';
   static const String tConfirmation = 'tConfirmation';
   static const String groups = 'groups';
+  static const String groupSession = 'groupSession';
   static const String copingMethods = 'copingMethods';
   static const String viewedCopingMethods = 'viewedCopingMethods';
   static const String therapist = 'therapist';

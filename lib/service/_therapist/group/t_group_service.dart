@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:terapievim/model/therapist/group/t_group_session_model.dart';
+
 import '../../../core/base/service/base_service.dart';
 import '../../../core/constants/api_const.dart';
 import '../../../core/constants/app_const.dart';
@@ -29,6 +31,23 @@ class TGroupService extends ITGroupService with BaseService {
     final CreatedIdResponse? createdIdResponse = await manager.create(
       collectionPath: APIConst.groups,
       data: group.toJson()!,
+    );
+
+    if (createdIdResponse != null) {
+      return createdIdResponse;
+    }
+
+    return null;
+  }
+
+  @override
+  Future<CreatedIdResponse?> createGroupSession(
+      TGroupSessionModel groupSession) async {
+    if (userId == null) return null;
+
+    final CreatedIdResponse? createdIdResponse = await manager.create(
+      collectionPath: APIConst.groupSession,
+      data: groupSession.toJson()!,
     );
 
     if (createdIdResponse != null) {

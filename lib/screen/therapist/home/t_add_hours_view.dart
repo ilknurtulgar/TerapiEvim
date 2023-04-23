@@ -1,9 +1,9 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist/home/session/t_available_hours_view_controller.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_hours_model.dart';
+
 import '../../../controller/therapist/home/session/t_add_hours_view_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/component/group/choosing_time_group_therapy.dart';
@@ -30,6 +30,7 @@ class _TAddHoursViewState extends State<TAddHoursView> {
   }
 
   late TAvailableHoursViewController mainController;
+
   // SessionTime sessionTime = SessionTime(date: '', timeList: []);
 
   String chosenDate = '';
@@ -131,7 +132,11 @@ DateTextField _dateAdd(TAddHoursViewController controller) {
       textController: controller.dateAddController,
       isBig: true,
       dateTapped: () {
-        choosingDate(controller.dateAddController, false, controller.dateTime.value,);
+        choosingDate(
+          controller.dateAddController,
+          false,
+          controller.dateTime.value,
+        );
       });
 }
 

@@ -138,7 +138,7 @@ class TGroupAddView extends StatelessWidget {
 
   RowModel dayRowModel(TGroupAddController controller) {
     return RowModel(
-        text: controller.choosenDay.value,
+        text: controller.chosenDay.value,
         textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
         isAlignmentBetween: true,
         trailingIcon: controller.isDayElectionOpen.isTrue
@@ -180,17 +180,17 @@ class TGroupAddView extends StatelessWidget {
 
   RowModel secTherapistRowModel(TGroupAddController controller) {
     return RowModel(
-      text: controller.choosenSecTherapist.value,
+      text: controller.chosenSecTherapist.value,
       textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
       isAlignmentBetween: true,
-      leadingIcon: controller.isSecTherapistChoosed.isTrue
+      leadingIcon: controller.isSecTherapistChosen.isTrue
           ? CustomCircleAvatar(
               imagePath: DemoInformation.imagePath, big: false, shadow: false)
           : const SizedBox.shrink(),
       trailingIcon: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          controller.isSecTherapistChoosed.isTrue
+          controller.isSecTherapistChosen.isTrue
               ? IconUtility.checkCircleIcon
               : const SizedBox(
                   width: 2,
@@ -299,7 +299,7 @@ class TGroupAddView extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              controller.changeChoosenSecTherapist(therapistName);
+              controller.changeChosenSecTherapist(therapistName);
               controller.changeSecTherapistElection();
               Get.back();
             },

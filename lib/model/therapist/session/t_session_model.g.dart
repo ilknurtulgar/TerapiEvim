@@ -9,6 +9,7 @@ part of 't_session_model.dart';
 TSessionModel _$TSessionModelFromJson(Map<String, dynamic> json) =>
     TSessionModel(
       id: json['id'] as String?,
+      meetingId: json['meetingId'] as String?,
       participantId: json['participantId'] as String?,
       participantName: json['participantName'] as String?,
       isFinished: json['isFinished'] as bool?,
@@ -26,6 +27,7 @@ Map<String, dynamic> _$TSessionModelToJson(TSessionModel instance) =>
       'freeDateId': instance.freeDateId,
       'therapistId': instance.therapistId,
       'participantName': instance.participantName,
+      'meetingId': instance.meetingId,
       'isFinished': instance.isFinished,
       'isGroupCategorySet': instance.isGroupCategorySet,
       'dateTime': TimeStampConverter.timestampToJson(instance.dateTime),

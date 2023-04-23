@@ -1,7 +1,5 @@
 import 'dart:math';
 
-import 'package:terapievim/model/common/profile/p_public_profile_model.dart';
-
 import '../../../core/base/service/base_service.dart';
 import '../../../core/constants/api_const.dart';
 import '../../../core/constants/app_const.dart';
@@ -9,6 +7,7 @@ import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../core/managers/firebase/firestore/models/empty_model.dart';
+import '../../../model/common/profile/p_public_profile_model.dart';
 import '../../../model/common/profile/t_public_profile_model.dart';
 import '../../../model/common/user/user_model.dart';
 import '../../../model/therapist/coping_method/t_coping_method_model.dart';

@@ -104,7 +104,8 @@ class PSessionService extends IPSessionService with BaseService {
 
     if (hourResult.error != null) return false;
 
-    final shortCallSessionIdResult = await manager.update<ShortCallSessionIdModel, EmptyModel>(
+    final shortCallSessionIdResult =
+        await manager.update<ShortCallSessionIdModel, EmptyModel>(
       collectionPath: APIConst.participant,
       docId: userId!,
       data: shortCallSessionId,
@@ -121,6 +122,7 @@ class PSessionService extends IPSessionService with BaseService {
             LocalManager.instance.getStringValue(LocalManagerKeys.name),
         therapistId: freeHour.therapistId,
         isGroupCategorySet: false,
+        meetingId: '',
         dateTime: null);
 
     final bool isSessionCreated = await manager.createWithDocId(

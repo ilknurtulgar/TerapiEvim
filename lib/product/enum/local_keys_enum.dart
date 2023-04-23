@@ -11,6 +11,7 @@ enum LocalManagerKeys {
   isTermsOfUseAccepted, // bool
 
   /// Participant
+  pSessionId,
   pJoinedGroupId, // String
   pGroupCategory, // String
   pIsJoinedGroupLocked, // bool

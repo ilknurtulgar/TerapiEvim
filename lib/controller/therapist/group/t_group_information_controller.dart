@@ -14,14 +14,17 @@ class TGroupInformationController extends GetxController with BaseController {
     controllerContext = context;
   }
 
-  void setCurrentGroup(TGroupModel? group) => currentGroupModel = group;
+  void setCurrentGroup(TGroupModel? group) {
+    currentGroupModel = group;
+    getMeetingInformation();
+  }
+
   RxString helperTherapistName = ''.obs;
   RxString meetingTime = ''.obs;
 
   @override
   void onInit() {
     tGroupService = TGroupService(vexaFireManager.networkManager);
-    getMeetingInformation();
 
     ///TODO: tGroupService.getParticipantsList
     super.onInit();
@@ -30,6 +33,10 @@ class TGroupInformationController extends GetxController with BaseController {
   @override
   void dispose() {
     super.dispose();
+  }
+
+  void onGroupSessionStarted() {
+    //videocall baslatilacak
   }
 
   void getMeetingInformation() async {

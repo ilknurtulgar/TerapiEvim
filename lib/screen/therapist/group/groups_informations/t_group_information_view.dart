@@ -19,9 +19,9 @@ import '../coping_methods/t_new_coping_method_view.dart';
 import 't_profile_about_view.dart';
 
 class TGroupInformationView extends StatelessWidget {
-  const TGroupInformationView({super.key, this.currentGroup});
+  const TGroupInformationView({super.key, required this.currentGroup});
 
-  final TGroupModel? currentGroup;
+  final TGroupModel currentGroup;
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +120,9 @@ class TGroupInformationView extends StatelessWidget {
   Widget meeting(TGroupInformationController controller) {
     return Obx(
       () => ActivityBox(
-          rightButtonTap: () {},
+          rightButtonTap: () {
+            controller.onGroupSessionStarted();
+          },
           istwobutton: false,
           containerModel: AppContainers.containerButton(false),
           buttonText: GroupTextUtil.startText,

@@ -114,16 +114,18 @@ class PSessionService extends IPSessionService with BaseService {
     if (shortCallSessionIdResult.error != null) return false;
 
     final TSessionModel newSession = TSessionModel(
-        id: freeHour.id!,
-        freeDateId: freeHour.freeDateId,
-        isFinished: false,
-        participantId: userId,
-        participantName:
-            LocalManager.instance.getStringValue(LocalManagerKeys.name),
-        therapistId: freeHour.therapistId,
-        isGroupCategorySet: false,
-        meetingId: '',
-        dateTime: null);
+      id: freeHour.id!,
+      freeDateId: freeHour.freeDateId,
+      isFinished: false,
+      participantId: userId,
+      participantName:
+          LocalManager.instance.getStringValue(LocalManagerKeys.name),
+      therapistId: freeHour.therapistId,
+      isGroupCategorySet: false,
+      meetingId: '',
+      dateTime: freeHour.dateTime,
+      therapistName: freeHour.therapistName,
+    );
 
     final bool isSessionCreated = await manager.createWithDocId(
       collectionPath: APIConst.sessions,
@@ -132,6 +134,22 @@ class PSessionService extends IPSessionService with BaseService {
     );
 
     return isSessionCreated;
+  }
+
+  @override
+  Future<TSessionModel?> getASession(String sessionId) async {
+    if (userId == null) return null;
+
+    final result = await manager.readWhere<TSessionModel, TSessionModel>(
+      collectionPath: APIConst.sessions,
+      parseModel: TSessionModel(),
+      whereField: AppConst.id,
+      whereIsEqualTo: sessionId,
+    );
+
+    if (result.error != null || result.data == null) return null;
+
+    return result.data!;
   }
 
 // @override

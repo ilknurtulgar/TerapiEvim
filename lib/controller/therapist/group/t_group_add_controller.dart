@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/base/base_controller.dart';
-import 'package:terapievim/controller/therapist/activity/i_t_modify_activity_controller.dart';
 import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/core/managers/firebase/firestore/models/created_id_response.dart';
+import 'package:terapievim/model/therapist/group/t_group_session_model.dart';
 
 import '../../../core/base/component/group/scrollable_time.dart';
 import '../../../model/common/user/user_model.dart';
@@ -40,7 +40,7 @@ class TGroupAddController extends GetxController with BaseController {
       flutterErrorToast("isim bos");
       return false;
     }
-    if (groupCategoryName == "Yok") {
+    if (groupCategoryName == "Yok1") {
       flutterErrorToast("Kategori Bos");
       return false;
     }
@@ -71,10 +71,11 @@ class TGroupAddController extends GetxController with BaseController {
     final NavigatorState navigator = Navigator.of(context);
     final bool isValidated = _validateNewGroup();
     if (isValidated == false) return;
-
-    final TGroupModel groupModel = TGroupModel(
+    final int numberOfWeeks = int.parse(numberOfWeek.text.trim());
+    final TGroupModel group = TGroupModel(
       groupCategory: groupCategoryName.value,
-      therapistId: '',
+      therapistId: userId,
+      therapistHelperId: '',
       therapistName: localManager.getStringValue(LocalManagerKeys.name),
       therapistHelperName: chosenSecTherapist.value,
       name: groupNameController.text.trim(),
@@ -86,10 +87,47 @@ class TGroupAddController extends GetxController with BaseController {
     );
     //page loading icin buradan yazabilirsin
 
-    final CreatedIdResponse? idResponse =
-        await tGroupService.createGroup(groupModel);
+    final int millisecondsInWeek = 604800000;
+
+    bool isSuccess = true;
+
+    final CreatedIdResponse? createGroupIdResponse =
+        await tGroupService.createGroup(group);
     //sonra tekrar false
-    if (idResponse == null) return;
+    if (createGroupIdResponse == null) {
+      flutterErrorToast('could not create group');
+      return;
+    }
+
+    for (int i = 0; i < numberOfWeeks; i++) {
+      final Timestamp newWeeksGroupSessionTime =
+          Timestamp.fromMillisecondsSinceEpoch(
+              group.dateTime!.millisecondsSinceEpoch +
+                  millisecondsInWeek * (i + 1));
+
+      final TGroupSessionModel groupSession = TGroupSessionModel(
+        therapistId: group.therapistId,
+        therapistHelperId: group.therapistHelperId,
+        dateTime: newWeeksGroupSessionTime,
+        isFinished: false,
+        groupId: createGroupIdResponse.id,
+        therapistHelperName: group.therapistHelperName,
+        therapistName: group.therapistName,
+      );
+
+      final CreatedIdResponse? idResponse =
+          await tGroupService.createGroupSession(groupSession);
+      if (idResponse == null) {
+        isSuccess = false;
+        break;
+      }
+    }
+
+    if (isSuccess == false) {
+      flutterErrorToast('could not create group Sessions');
+      return;
+    }
+
     navigationManager.maybePop(navigator);
   }
 

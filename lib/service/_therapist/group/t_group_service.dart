@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import 'package:terapievim/model/therapist/group/t_group_session_model.dart';
+
 import '../../../core/base/service/base_service.dart';
 import '../../../core/constants/api_const.dart';
 import '../../../core/constants/app_const.dart';
@@ -36,6 +38,47 @@ class TGroupService extends ITGroupService with BaseService {
     }
 
     return null;
+  }
+
+  @override
+  Future<CreatedIdResponse?> createGroupSession(
+      TGroupSessionModel groupSession) async {
+    if (userId == null) return null;
+
+    final CreatedIdResponse? createdIdResponse = await manager.create(
+      collectionPath: APIConst.groupSession,
+      data: groupSession.toJson()!,
+    );
+
+    if (createdIdResponse != null) {
+      return createdIdResponse;
+    }
+
+    return null;
+  }
+
+  @override
+  Future<TGroupSessionModel?> getRecentGroupSession(String groupId) async {
+    if (userId == null) return null;
+
+    final result = await manager
+        .readOrderedWhere2<TGroupSessionModel, List<TGroupSessionModel>>(
+      collectionPath: APIConst.groupSession,
+      parseModel: TGroupSessionModel(),
+      limit: AppConst.oneItemPerPage,
+      whereField: AppConst.groupId,
+      whereIsEqualTo: groupId,
+      whereField2: AppConst.isFinished,
+      whereIsEqualTo2: false,
+      orderField: AppConst.dateTime,
+      isDescending: false,
+      lastDocumentId: '',
+    );
+
+    if (result.error != null) return null;
+    if (result.data == null) return null;
+
+    return result.data![0];
   }
 
   @override

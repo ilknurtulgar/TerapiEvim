@@ -42,6 +42,18 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
     String? collectionPath2,
   });
 
+  Future<IResponseModel<R?, E?>> readWhere2<T extends INetworkModel<T>, R>({
+    required T parseModel,
+    required String collectionPath,
+    required String whereField,
+    required Object whereIsEqualTo,
+    required String whereField2,
+    required Object whereIsEqualTo2,
+    String? docId,
+    int limit,
+    String? collectionPath2,
+  });
+
   Future<IResponseModel<R?, E?>> readOne<T extends INetworkModel<T>, R>({
     required T parseModel,
     required String collectionPath,

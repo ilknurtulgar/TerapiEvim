@@ -11,7 +11,7 @@ import '../../base/base_controller.dart';
 class TGroupInformationController extends GetxController with BaseController {
   @override
   void setContext(BuildContext context) {
-    context = controllerContext;
+    controllerContext = context;
   }
 
   void setCurrentGroup(TGroupModel? group) => currentGroupModel = group;
@@ -21,6 +21,7 @@ class TGroupInformationController extends GetxController with BaseController {
   @override
   void onInit() {
     tGroupService = TGroupService(vexaFireManager.networkManager);
+    getMeetingInformation();
 
     ///TODO: tGroupService.getParticipantsList
     super.onInit();

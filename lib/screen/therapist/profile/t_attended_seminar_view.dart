@@ -1,5 +1,6 @@
 // ignore: must_be_immutable
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/profile/container/two_row_short_container.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
@@ -23,24 +24,26 @@ class TAttendedSeminarsView extends StatelessWidget {
           appBar: MyAppBar(
             title: ParticipantProfileTextUtil.attendedSeminar,
           ),
-          body: ListView.builder(
-              itemCount: controller.listOfActivities.length,
-              itemBuilder: (context, index) {
-                TActivityModel activity = controller.listOfActivities[index];
-                return Padding(
-                  padding: AppPaddings.pagePaddingHorizontal,
-                  child: TwoRowShortContainer(
-                    row1Text: activity.therapistName ?? "" ,
-                    row2Text: activity.title ?? "" ,
-                    firstIconData: IconUtility.personIcon.icon!,
-                    secondIconData: IconUtility.windowsIcon.icon!,
-                    purpose: ContainerPurpose.seminar,
-                    firstOnTap: () {
-                      // to do: watch seminar function
-                    },
-                  ),
-                );
-              })),
+          body: Obx(
+            () => ListView.builder(
+                itemCount: controller.listOfActivities.length,
+                itemBuilder: (context, index) {
+                  TActivityModel activity = controller.listOfActivities[index];
+                  return Padding(
+                    padding: AppPaddings.pagePaddingHorizontal,
+                    child: TwoRowShortContainer(
+                      row1Text: activity.therapistName ?? "" ,
+                      row2Text: activity.title ?? "" ,
+                      firstIconData: IconUtility.personIcon.icon!,
+                      secondIconData: IconUtility.windowsIcon.icon!,
+                      purpose: ContainerPurpose.seminar,
+                      firstOnTap: () {
+                        // to do: watch seminar function
+                      },
+                    ),
+                  );
+                }),
+          )),
     );
   }
 }

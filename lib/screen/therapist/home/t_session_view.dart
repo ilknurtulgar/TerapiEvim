@@ -9,8 +9,6 @@ import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
-import '../../../model/common/video_call/video_call_token_model.dart';
-import '../../common/video_call/short_call/short_call_view.dart';
 import 'session/test_result_view.dart';
 import 't_available_hours_view.dart';
 
@@ -21,7 +19,9 @@ class TSessionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<TSessionController>(
         getController: TSessionController(),
-        onModelReady: (model) {},
+        onModelReady: (controller) {
+          controller.setContext(context);
+        },
         onPageBuilder: (context, controller) {
           return Scaffold(
             appBar: MyAppBar(title: HomeTextUtil.myMinuteSessions, actions: [
@@ -50,17 +50,13 @@ class TSessionView extends StatelessWidget {
                 controller.fetchedSession[index];
 
             return participantWithShortCallTime(
-                sessionModel?.participantName ?? "",
-                (sessionModel?.dateTime?.toDate().toIso8601String() ?? 'none'),
-                () {
-              context.push(TestResultView(session: sessionModel!));
-            },
-
-                ///TODO add real meetingId and token
-                () => context.pushAndRemoveUntil(ShortCallView(
-                      videoCallToken:
-                          VideoCallTokenModel(meetingId: '', token: ''),
-                    )));
+              participantName: sessionModel?.participantName ?? "",
+              time: (sessionModel?.dateTime?.toDate().toIso8601String() ??
+                  'none'),
+              testResultOnTapped: () =>
+                  context.push(TestResultView(session: sessionModel!)),
+              joinOnTapped: () => controller.joinShortCall(sessionModel),
+            );
           }),
         ),
       ),

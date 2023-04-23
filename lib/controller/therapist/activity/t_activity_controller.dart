@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 
 import '../../../core/base/component/toast/toast.dart';
 import '../../../core/constants/app_const.dart';
-import '../../../core/init/navigation/navigation_manager.dart';
 import '../../../core/managers/videosdk/i_video_sdk_manager.dart';
 import '../../../core/managers/videosdk/video_sdk_manager.dart';
 import '../../../model/common/activity/t_activity_model.dart';
@@ -102,7 +101,6 @@ class TActivityController extends GetxController with BaseController {
 
       final NavigatorState navigator =
           Navigator.of(context, rootNavigator: true);
-      final NavigationManager navigationManager = NavigationManager.instance;
 
       if (activity?.id == null) {
         throw Exception('activity?.id is null');
@@ -122,15 +120,13 @@ class TActivityController extends GetxController with BaseController {
         return;
       }
 
-      navigationManager.pushAndRemoveUntil(
-        navigator,
-        ShortCallView(
-          videoCallToken: VideoCallTokenModel(
-            meetingId: activity.meetingId!,
-            token: videoSdkManager.token,
-          ),
-        ),
+      VideoCallTokenModel token = VideoCallTokenModel(
+        meetingId: activity.meetingId!,
+        token: videoSdkManager.token,
       );
+
+      navigationManager.pushAndRemoveUntil(
+          navigator, ShortCallView(videoCallToken: token));
     } catch (e) {
       await crashlyticsManager.sendACrash(
         error: e.toString(),

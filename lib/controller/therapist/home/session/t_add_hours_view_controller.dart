@@ -1,16 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist/activity/i_t_modify_activity_controller.dart';
-import 'package:terapievim/controller/therapist/home/session/t_available_hours_view_controller.dart';
-import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
-import 'package:terapievim/model/therapist/session/free_date/t_free_hours_model.dart';
-import 'package:terapievim/service/_therapist/session/free_dates/i_t_free_dates_service.dart';
-
 import '../../../../core/base/component/group/scrollable_time.dart';
 import '../../../../core/managers/firebase/firestore/models/created_id_response.dart';
+import '../../../../model/therapist/session/free_date/t_free_date_model.dart';
+import '../../../../model/therapist/session/free_date/t_free_hours_model.dart';
+import '../../../../service/_therapist/session/free_dates/i_t_free_dates_service.dart';
 import '../../../../service/_therapist/session/free_dates/t_free_dates_service.dart';
 import '../../../base/base_controller.dart';
+import 't_available_hours_view_controller.dart';
 
 class TAddHoursViewController extends GetxController with BaseController {
   @override
@@ -53,7 +51,8 @@ class TAddHoursViewController extends GetxController with BaseController {
     final bool isValidated = _validateTAddHours();
     if (isValidated == true) {
       final TFreeDateModel freeDate = TFreeDateModel(
-        dateTime: dateTime.value,
+        dateTime: dateTime.value,therapistId: userId,
+
         hours: timeList,
       );
 

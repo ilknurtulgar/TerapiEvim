@@ -14,6 +14,7 @@ TSessionModel _$TSessionModelFromJson(Map<String, dynamic> json) =>
       participantName: json['participantName'] as String?,
       isFinished: json['isFinished'] as bool?,
       therapistId: json['therapistId'] as String?,
+      therapistName: json['therapistName'] as String?,
       dateTime:
           TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?),
       freeDateId: json['freeDateId'] as String?,
@@ -26,6 +27,7 @@ Map<String, dynamic> _$TSessionModelToJson(TSessionModel instance) =>
       'participantId': instance.participantId,
       'freeDateId': instance.freeDateId,
       'therapistId': instance.therapistId,
+      'therapistName': instance.therapistName,
       'participantName': instance.participantName,
       'meetingId': instance.meetingId,
       'isFinished': instance.isFinished,

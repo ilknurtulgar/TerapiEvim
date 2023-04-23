@@ -5,14 +5,16 @@ part 'video_call_token_model.g.dart';
 
 @JsonSerializable()
 class VideoCallTokenModel extends INetworkModel<VideoCallTokenModel> {
-  final String meetingId, token, participantId;
-  final bool isTherapist;
+  final String meetingId, token, participantId, therapistHelperId;
+  final bool isTherapist, isMainTherapist;
 
   VideoCallTokenModel({
     required this.meetingId,
     required this.token,
+    this.therapistHelperId = '',
     required this.participantId,
     required this.isTherapist,
+    this.isMainTherapist = false,
   });
 
   @override

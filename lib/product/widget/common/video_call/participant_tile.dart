@@ -3,10 +3,12 @@ import 'package:videosdk/videosdk.dart';
 
 class ParticipantTile extends StatelessWidget {
   final Stream stream;
+  final String name;
 
   const ParticipantTile({
     Key? key,
     required this.stream,
+    required this.name,
     this.hasPadding = true,
   }) : super(key: key);
   final bool hasPadding;
@@ -20,10 +22,12 @@ class ParticipantTile extends StatelessWidget {
         child: SizedBox(
           height: 140,
           width: 100,
-          child: RTCVideoView(
-            stream.renderer!,
-            objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
-          ),
+          child: stream.renderer == null
+              ? Container()
+              : RTCVideoView(
+                  stream.renderer!,
+                  objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
+                ),
         ),
       ),
     );

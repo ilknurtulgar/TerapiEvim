@@ -17,7 +17,7 @@ class VideoCallPerson extends StatelessWidget {
     this.onLongPressed,
     required this.micOnOffFunction,
     required this.cameraOnOffFunction,
-    this.videoStream,
+    this.videoStream,this.name,
   });
 
   final VideoCallViewModel videoCallViewModel;
@@ -27,6 +27,7 @@ class VideoCallPerson extends StatelessWidget {
   final Function()? micOnOffFunction;
   final Function()? cameraOnOffFunction;
   final Stream? videoStream;
+  final String? name;
 
   @override
   Widget build(BuildContext context) {
@@ -39,20 +40,20 @@ class VideoCallPerson extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Expanded(
-            //   child: InkWell(
-            //     onTap: cameraOnOffFunction,
-            //     onDoubleTap: onDoubleTap,
-            //     onLongPress: onLongPressed,
-            //     child: Stack(children: [
-            //       personView(context, videoStream),
-            //       iconButtonsRow(context),
-            //     ]),
-            //   ),
-            // ),
-            // videoCallViewModel.isNameShown
-            //     ? nameSurnameText(videoCallViewModel.person.name)
-            //     : const SizedBox(),
+            Expanded(
+              child: InkWell(
+                onTap: cameraOnOffFunction,
+                onDoubleTap: onDoubleTap,
+                onLongPress: onLongPressed,
+                child: Stack(children: [
+                  personView(context, videoStream),
+                  iconButtonsRow(context),
+                ]),
+              ),
+            ),
+            videoCallViewModel.isNameShown
+                ? nameSurnameText(name ?? '')
+                : const SizedBox(),
             // videoCallViewModel.isNameShown
             //     ? nameSurnameText(videoCallViewModel.person.surname)
             //     : const SizedBox(),

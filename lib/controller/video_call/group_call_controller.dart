@@ -34,14 +34,12 @@ class GroupCallController extends BaseVideoCallController {
       micEnabled: micEnabled.value,
       camEnabled: camEnabled.value,
       maxResolution: 'hd',
-      defaultCameraIndex: currentToken.isTherapist ? 0 : 1,
+      defaultCameraIndex: 1,
     );
     // Join meeting
     room.join();
 
     setMeetingEventListener(room);
-
-
   }
 
   // late MainController _mainController;
@@ -96,7 +94,8 @@ class GroupCallController extends BaseVideoCallController {
         duration: const Duration(minutes: 1));
   }
 
-  void sendIsolatedCall(String name) {
+  void sendIsolatedCall(
+      {required String name, required Function() onConfirmed}) {
     Get.dialog(AlertDialog(
       content: Text('$name ${VideoCallTextUtil.sendIsolatedCall}'),
       actions: [
@@ -107,12 +106,31 @@ class GroupCallController extends BaseVideoCallController {
               style: AppTextStyles.groupTextStyle(false),
             )),
         TextButton(
-            onPressed: () => Get.back(),
+            onPressed: () {
+              onConfirmed();
+              Get.back();
+            },
             child: Text(
               VideoCallTextUtil.yes,
               style: AppTextStyles.groupTextStyle(false),
             )),
       ],
     ));
+  }
+
+  Future<void> sendParticipantToIsolatedCall({
+    required String participantId
+  }) async {
+    try {
+
+
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+        error: e.toString(),
+        stackTrace: StackTrace.current,
+        reason: 'Error sendParticipantToIsolatedCall',
+      );
+      rethrow;
+    }
   }
 }

@@ -51,6 +51,7 @@ class TSessionController extends DropDownController {
       token: videoSdkManager.token,
       isTherapist: true,
       participantId: userId!,
+      isMainTherapist: true,
     );
 
     navigationManager.pushAndRemoveUntil(

@@ -108,6 +108,7 @@ class TActivityController extends GetxController with BaseController {
       }
 
       final String? meetingId = await videoSdkManager.createMeeting();
+
       if (meetingId == null) {
         throw Exception('Received meeting Id is null');
       }

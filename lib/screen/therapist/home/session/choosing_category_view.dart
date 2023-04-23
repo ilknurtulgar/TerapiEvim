@@ -21,8 +21,6 @@ class ChoosingCategoryView extends StatelessWidget {
 
   String chosenCategory = '';
 
-  RxBool isTextfieldVisible = false.obs;
-
   void callBack(String chosenInComponent) {
     chosenCategory = chosenInComponent;
     print(chosenCategory);
@@ -74,36 +72,15 @@ class ChoosingCategoryView extends StatelessWidget {
             ),
           ),
           ChoosingCategoryForParticipant(
-              textfieldVisible: isTextfieldVisible,
               isWithIconButton: true,
               callBack: callBack),
-          animatedTextfield(
-            textController,
-            isTextfieldVisible,
-            const EdgeInsets.only(left: 40, right: 20, bottom: 20),
-          ),
         ],
       ),
     );
   }
 }
 
-Obx animatedTextfield(
-    TextEditingController controller, RxBool isVisible, EdgeInsets padding) {
-  return Obx(() => isVisible.value
-      ? Padding(
-          padding: padding,
-          child: TextField(
-            controller: controller,
-            decoration: InputDecoration(
-                focusedBorder: textfieldBorder(),
-                enabledBorder: textfieldBorder(),
-                fillColor: AppColors.white,
-                filled: true),
-          ),
-        )
-      : const SizedBox());
-}
+
 
 OutlineInputBorder textfieldBorder() {
   return OutlineInputBorder(
@@ -126,4 +103,20 @@ List<String> categories = [
   'Psikotizm',
   'Uyku-İştah',
   'Diğer',
+];
+
+List<String> groups = [
+'Depresyon',
+'Bipolar bozukluk',
+'Kişilik bozuklukları',
+'Obsesik kompulsif bozukluk',
+'Panik bozukluğu',
+'Anksiyete bozukluğu',
+'Yas ve kayıp problemleri',
+'Çocukluk travmaları',
+'Yeme bozuklukları',
+'Uyku bozuklukları',
+'Ebeveyn- çocuk ilişkisi', 
+'Stres bozukluğu',
+'Özgüven eksikliği'
 ];

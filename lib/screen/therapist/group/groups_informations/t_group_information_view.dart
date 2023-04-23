@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -50,7 +49,7 @@ class TGroupInformationView extends StatelessWidget {
               padding: AppPaddings.pagePaddingHorizontal,
               children: [
                 miniHeadings(GroupTextUtil.upcomingMeetingText, false),
-                meeting(),
+                meeting(controller),
                 miniHeadings(GroupTextUtil.groupsInformationText, false),
                 navMethod(DemoInformation.secTherapist, () {
                   context.push(const TProfileView(isSecTherapist: true));
@@ -118,15 +117,27 @@ class TGroupInformationView extends StatelessWidget {
     );
   }
 
-  ActivityBox meeting() {
+  ActivityBox meeting(TGroupInformationController controller) {
     return ActivityBox(
         rightButtonTap: () {},
         istwobutton: false,
         containerModel: AppContainers.containerButton(false),
         buttonText: GroupTextUtil.startText,
-        arowModel: DemoInformation.row2,
+        arowModel: RowModel(
+          isAlignmentBetween: true,
+          leadingIcon: IconUtility.personIcon,
+          text: GroupTextUtil.secondTherapistText,
+          textStyle: AppTextStyles.groupTextStyle(false),
+          text2: controller.helperTherapistName.value,
+          textStyle2: AppTextStyles.groupTextStyle(true),
+        ),
         isactivity: true,
-        clockModel: DemoInformation.clockRow(Timestamp.now()));
+        clockModel: RowModel(
+          leadingIcon: IconUtility.clockIcon,
+          text: controller.meetingTime.value,
+          textStyle: AppTextStyles.groupTextStyle(true),
+          isAlignmentBetween: false,
+        ));
   }
 
   Padding navMethod(RowModel row, Function() func) {

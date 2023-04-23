@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/model/common/activity/t_activity_model.dart';
 import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
 import '../../../controller/participant/profil/p_attended_seminars_controller.dart';
@@ -21,29 +20,27 @@ class PAttendedSeminarsView extends StatelessWidget {
         onPageBuilder: (context, controller) => Scaffold(
               appBar:
                   MyAppBar(title: ParticipantProfileTextUtil.attendedSeminar),
-              body: Obx(
-                () => ListView.builder(
-                    itemCount: controller.listOfActivities.length,
-                    itemBuilder: (context, index) {
-                      final TActivityModel activity =
-                          controller.listOfActivities[index];
-                      return Padding(
-                        padding: AppPaddings.pagePaddingHorizontal,
-                        child: TwoRowShortContainer(
-                          row1Text: activity.therapistName ??
-                              "", 
-                          row2Text: activity.title ?? "",
-                          firstIconData: IconUtility.personIcon.icon!,
-                          secondIconData: IconUtility.windowsIcon.icon!,
-                          purpose: ContainerPurpose.seminar,
-                          buttonText: ParticipantProfileTextUtil.watchAgain,
-                          firstOnTap: () {
-                            // TO DO: watch seminar 
-                          },
-                        ),
-                      );
-                    }),
-              ),
+              body: ListView.builder(
+                  itemCount: controller.listOfActivities.length,
+                  itemBuilder: (context, index) {
+                    final TActivityModel activity =
+                        controller.listOfActivities[index];
+                    return Padding(
+                      padding: AppPaddings.pagePaddingHorizontal,
+                      child: TwoRowShortContainer(
+                        row1Text: activity.therapistName ??
+                            "", 
+                        row2Text: activity.title ?? "",
+                        firstIconData: IconUtility.personIcon.icon!,
+                        secondIconData: IconUtility.windowsIcon.icon!,
+                        purpose: ContainerPurpose.seminar,
+                        buttonText: ParticipantProfileTextUtil.watchAgain,
+                        firstOnTap: () {
+                          // TO DO: watch seminar 
+                        },
+                      ),
+                    );
+                  }),
             ));
   }
 }

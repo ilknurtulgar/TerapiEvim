@@ -1,34 +1,34 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 't_session_model.dart';
+part of 't_group_session_model.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-TSessionModel _$TSessionModelFromJson(Map<String, dynamic> json) =>
-    TSessionModel(
+TGroupSessionModel _$TGroupSessionModelFromJson(Map<String, dynamic> json) =>
+    TGroupSessionModel(
       id: json['id'] as String?,
+      groupId: json['groupId'] as String?,
       meetingId: json['meetingId'] as String?,
-      participantId: json['participantId'] as String?,
-      participantName: json['participantName'] as String?,
-      isFinished: json['isFinished'] as bool?,
       therapistId: json['therapistId'] as String?,
+      therapistHelperId: json['therapistHelperId'] as String?,
+      therapistHelperName: json['therapistHelperName'] as String?,
+      therapistName: json['therapistName'] as String?,
       dateTime:
           TimeStampConverter.timestampFromJson(json['dateTime'] as Timestamp?),
-      freeDateId: json['freeDateId'] as String?,
-      isGroupCategorySet: json['isGroupCategorySet'] as bool?,
+      isFinished: json['isFinished'] as bool?,
     );
 
-Map<String, dynamic> _$TSessionModelToJson(TSessionModel instance) =>
+Map<String, dynamic> _$TGroupSessionModelToJson(TGroupSessionModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'participantId': instance.participantId,
-      'freeDateId': instance.freeDateId,
+      'groupId': instance.groupId,
       'therapistId': instance.therapistId,
-      'participantName': instance.participantName,
+      'therapistHelperId': instance.therapistHelperId,
       'meetingId': instance.meetingId,
+      'therapistHelperName': instance.therapistHelperName,
+      'therapistName': instance.therapistName,
       'isFinished': instance.isFinished,
-      'isGroupCategorySet': instance.isGroupCategorySet,
       'dateTime': TimeStampConverter.timestampToJson(instance.dateTime),
     };

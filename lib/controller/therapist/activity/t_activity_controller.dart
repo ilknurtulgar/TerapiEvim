@@ -3,12 +3,11 @@ import 'package:get/get.dart';
 
 import '../../../core/base/component/toast/toast.dart';
 import '../../../core/constants/app_const.dart';
-import '../../../core/init/navigation/navigation_manager.dart';
 import '../../../core/managers/videosdk/i_video_sdk_manager.dart';
 import '../../../core/managers/videosdk/video_sdk_manager.dart';
 import '../../../model/common/activity/t_activity_model.dart';
 import '../../../model/common/video_call/video_call_token_model.dart';
-import '../../../screen/common/video_call/short_call/short_call_view.dart';
+import '../../../screen/common/video_call/group_call/group_call_view.dart';
 import '../../../service/_therapist/activity/i_t_activity_service.dart';
 import '../../../service/_therapist/activity/t_activity_service.dart';
 import '../../base/base_controller.dart';
@@ -91,6 +90,7 @@ class TActivityController extends GetxController with BaseController {
   Future<void> createMeeting({
     required BuildContext context,
     required TActivityModel? activity,
+    required bool isMainTherapist,
   }) async {
     // bool isActive = false;
     // if (isActive == false) {
@@ -102,7 +102,6 @@ class TActivityController extends GetxController with BaseController {
 
       final NavigatorState navigator =
           Navigator.of(context, rootNavigator: true);
-      final NavigationManager navigationManager = NavigationManager.instance;
 
       if (activity?.id == null) {
         throw Exception('activity?.id is null');
@@ -122,15 +121,16 @@ class TActivityController extends GetxController with BaseController {
         return;
       }
 
-      navigationManager.pushAndRemoveUntil(
-        navigator,
-        ShortCallView(
-          videoCallToken: VideoCallTokenModel(
-            meetingId: activity.meetingId!,
-            token: videoSdkManager.token,
-          ),
-        ),
+      VideoCallTokenModel token = VideoCallTokenModel(
+        meetingId: activity.meetingId!,
+        token: videoSdkManager.token,
+        isTherapist: true,
+        participantId: userId!,
+        isMainTherapist: isMainTherapist,
       );
+
+      navigationManager.pushAndRemoveUntil(
+          navigator, GroupCallView(videoCallToken: token));
     } catch (e) {
       await crashlyticsManager.sendACrash(
         error: e.toString(),

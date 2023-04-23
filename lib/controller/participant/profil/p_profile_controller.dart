@@ -41,9 +41,15 @@ class PProfileController extends GetxController with BaseController {
       listOfActivities.addAll(fetchedActivities);
     }
 
-    ///TODO bhz->gizem: getJoinedGroup value can be null, so it should be first checked before setting to myGroup
-    myGroup.value = await pProfileService.getJoinedGroup(
-        localManager.getStringValue(LocalManagerKeys.pJoinedGroupId));
+    final String currentGroupId =
+        localManager.getStringValue(LocalManagerKeys.pJoinedGroupId);
+    if (currentGroupId.isNotEmpty){
+            final TGroupModel? joinedGroup = await pProfileService.getJoinedGroup(
+          localManager.getStringValue(LocalManagerKeys.pJoinedGroupId));
+    if (joinedGroup != null) {
+      myGroup.value = joinedGroup;
+     }
+    }
 
     super.onInit();
   }

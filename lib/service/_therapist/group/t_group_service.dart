@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:terapievim/model/common/profile/p_public_profile_model.dart';
+import 'package:terapievim/model/therapist/group/t_group_session_model.dart';
 
 import '../../../core/base/service/base_service.dart';
 import '../../../core/constants/api_const.dart';
@@ -9,6 +9,7 @@ import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/created_id_response.dart';
 import '../../../core/managers/firebase/firestore/models/empty_model.dart';
+import '../../../model/common/profile/p_public_profile_model.dart';
 import '../../../model/common/profile/t_public_profile_model.dart';
 import '../../../model/common/user/user_model.dart';
 import '../../../model/therapist/coping_method/t_coping_method_model.dart';
@@ -37,6 +38,47 @@ class TGroupService extends ITGroupService with BaseService {
     }
 
     return null;
+  }
+
+  @override
+  Future<CreatedIdResponse?> createGroupSession(
+      TGroupSessionModel groupSession) async {
+    if (userId == null) return null;
+
+    final CreatedIdResponse? createdIdResponse = await manager.create(
+      collectionPath: APIConst.groupSession,
+      data: groupSession.toJson()!,
+    );
+
+    if (createdIdResponse != null) {
+      return createdIdResponse;
+    }
+
+    return null;
+  }
+
+  @override
+  Future<TGroupSessionModel?> getRecentGroupSession(String groupId) async {
+    if (userId == null) return null;
+
+    final result = await manager
+        .readOrderedWhere2<TGroupSessionModel, List<TGroupSessionModel>>(
+      collectionPath: APIConst.groupSession,
+      parseModel: TGroupSessionModel(),
+      limit: AppConst.oneItemPerPage,
+      whereField: AppConst.groupId,
+      whereIsEqualTo: groupId,
+      whereField2: AppConst.isFinished,
+      whereIsEqualTo2: false,
+      orderField: AppConst.dateTime,
+      isDescending: false,
+      lastDocumentId: '',
+    );
+
+    if (result.error != null) return null;
+    if (result.data == null) return null;
+
+    return result.data![0];
   }
 
   @override
@@ -109,17 +151,19 @@ class TGroupService extends ITGroupService with BaseService {
   }
 
   @override
-  Future<TAboutGroupModel?> getAboutGroup(String groupId) async {
+  Future<TAboutGroupModel?> getAboutTherapistHelper(String groupId) async {
     if (userId == null) return null;
 
     final TGroupModel? group = await _getGroup(groupId);
 
     if (group == null) return null;
 
-    final TPublicProfile? therapistProfile =
-        await _getTherapistProfile(group.therapistId!);
+    if (group.therapistHelperId == null) return null;
 
-    if (therapistProfile == null) return null;
+    final TPublicProfile? therapistHelper =
+        await _getTherapistProfile(group.therapistHelperId!);
+
+    if (therapistHelper == null) return null;
 
     final List<TGroupModel> helpingGroups =
         await _getHelpingGroups(group.participantsId);
@@ -128,9 +172,9 @@ class TGroupService extends ITGroupService with BaseService {
       id: group.id,
       therapistId: group.therapistId,
       groupName: group.name,
-      aboutTherapist: therapistProfile.aboutMe,
-      therapistName: therapistProfile.name,
-      therapistImageUrl: therapistProfile.imageUrl,
+      aboutTherapist: therapistHelper.aboutMe,
+      therapistName: therapistHelper.name,
+      therapistImageUrl: therapistHelper.imageUrl,
       listOfHelpingGroups: helpingGroups,
     );
 

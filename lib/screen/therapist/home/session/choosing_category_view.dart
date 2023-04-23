@@ -13,15 +13,11 @@ import '../../../../core/base/view/base_view.dart';
 
 // ignore: must_be_immutable
 class ChoosingCategoryView extends StatelessWidget {
-  ChoosingCategoryView({super.key, required this.session});
+  ChoosingCategoryView({super.key,required this.session});
 
   final TSessionModel session;
 
-  TextEditingController textController = TextEditingController();
-
   String chosenCategory = '';
-
-  RxBool isTextfieldVisible = false.obs;
 
   void callBack(String chosenInComponent) {
     chosenCategory = chosenInComponent;
@@ -43,11 +39,9 @@ class ChoosingCategoryView extends StatelessWidget {
             padding: AppPaddings.pagePaddingHorizontal,
             child: Column(
               children: [
-                participantContainer(DemoInformation.personCardModel, 60),
+                participant(controller.session.participantName ?? ""),
                 container(),
                 testViewPageButton(() {
-                  if (chosenCategory == 'Diğer')
-                    chosenCategory = textController.text;
                   print(chosenCategory);
                   controller.setCategory();
                 }, ActivityTextUtil.save), // kaydetme butonu
@@ -74,36 +68,15 @@ class ChoosingCategoryView extends StatelessWidget {
             ),
           ),
           ChoosingCategoryForParticipant(
-              textfieldVisible: isTextfieldVisible,
               isWithIconButton: true,
               callBack: callBack),
-          animatedTextfield(
-            textController,
-            isTextfieldVisible,
-            const EdgeInsets.only(left: 40, right: 20, bottom: 20),
-          ),
         ],
       ),
     );
   }
 }
 
-Obx animatedTextfield(
-    TextEditingController controller, RxBool isVisible, EdgeInsets padding) {
-  return Obx(() => isVisible.value
-      ? Padding(
-          padding: padding,
-          child: TextField(
-            controller: controller,
-            decoration: InputDecoration(
-                focusedBorder: textfieldBorder(),
-                enabledBorder: textfieldBorder(),
-                fillColor: AppColors.white,
-                filled: true),
-          ),
-        )
-      : const SizedBox());
-}
+
 
 OutlineInputBorder textfieldBorder() {
   return OutlineInputBorder(
@@ -114,16 +87,35 @@ OutlineInputBorder textfieldBorder() {
       ));
 }
 
-List<String> categories = [
-  'Somatizasyon',
-  'Obsesif-Kompulsif',
-  'Kişiler Arası Duyarlılık',
-  'Depresyon',
-  'Kaygı',
-  'Ofke-Hostilite',
-  'Fobik Anksiyete',
-  'Paranoid Düşünce',
-  'Psikotizm',
-  'Uyku-İştah',
-  'Diğer',
+  CustomContainer participant(String name) {
+    return CustomContainer(
+                containerModel: AppContainers.classicWhiteContainer,
+                isThereCardModel: false,
+                widget: Padding(
+                  padding: const EdgeInsets.only(left:10,top: 10,bottom: 10),
+                  child: Row(children: [
+                    IconUtility.personIcon,
+                    Padding(
+                      padding: const EdgeInsets.only(left:10,),
+                      child: Text(name),
+                  )],),
+                ),);
+  }
+
+
+
+List<String> groups = [
+'Depresyon',
+'Bipolar bozukluk',
+'Kişilik bozuklukları',
+'Obsesik kompulsif bozukluk',
+'Panik bozukluğu',
+'Anksiyete bozukluğu',
+'Yas ve kayıp problemleri',
+'Çocukluk travmaları',
+'Yeme bozuklukları',
+'Uyku bozuklukları',
+'Ebeveyn- çocuk ilişkisi', 
+'Stres bozukluğu',
+'Özgüven eksikliği'
 ];

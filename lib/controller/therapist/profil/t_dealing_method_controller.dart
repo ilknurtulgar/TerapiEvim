@@ -16,18 +16,17 @@ class TDealingMethodController extends DropDownController {
   Future<void> onInit() async{
     tProfileService = TProfileService(vexaFireManager.networkManager);
 
-    final List<TCopingMethodModel?>? fetchedCopingMethods = await tProfileService.getCopingMethodsOrdered();
+    final List<TCopingMethodModel> fetchedCopingMethods = await tProfileService.getCopingMethodsOrdered();
 
-    if (fetchedCopingMethods != null) {
+    if (fetchedCopingMethods.isNotEmpty) {
       listOfCopingMethods.addAll(fetchedCopingMethods);
     }
 
     super.onInit();
   }
 
-  RxList<TCopingMethodModel?> listOfCopingMethods = <TCopingMethodModel?>[].obs;
+  RxList<TCopingMethodModel> listOfCopingMethods = <TCopingMethodModel>[].obs;
 
   late ITProfileService tProfileService;
-
 
 }

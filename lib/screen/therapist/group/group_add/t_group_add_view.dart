@@ -5,8 +5,10 @@ import '../../../../core/base/component/activtiy/seminers.dart';
 import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/component/buttons/election.dart';
+import '../../../../core/base/component/group/choosing_category.dart';
 import '../../../../core/base/component/group/choosing_time_group_therapy.dart';
 import '../../../../core/base/component/group/person.dart';
+import '../../../../core/base/component/group/row_view.dart';
 import '../../../../core/base/component/login/custom_textfield.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 import '../../../../core/base/ui_models/row_model.dart';
@@ -18,6 +20,13 @@ import '../../../../product/widget/common/group/mini_headings.dart';
 
 class TGroupAddView extends StatelessWidget {
   TGroupAddView({super.key});
+
+  RxString chosenCategory = ''.obs;
+  RxBool isDropDownClicked = false.obs;
+  void callBack(String chosenInComponent) {
+    chosenCategory.value = chosenInComponent;
+    print(chosenCategory);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,10 +71,38 @@ class TGroupAddView extends StatelessWidget {
                     name: GroupTextUtil.groupCategory,
                     isInMiddle: false,
                     isAlignedInCenter: false),
-                Election(
-                    firstRow: category(controller),
-                    rows: categories(controller),
-                    isSelectedValue: controller.isGroupCategoryElectionOpen),
+                Obx(
+                  () => Column(
+                    children: [
+                      InkWell(
+                          onTap: () => isDropDownClicked.value = !isDropDownClicked.value,
+                          child: Container(
+                              height: SizeUtil.generalHeight,
+                              decoration: BoxDecoration(borderRadius: AppBorderRadius.generalBorderRadius,color: AppColors.white,border: Border.all(color: AppColors.black)),
+                              child: RowView(
+                                  padding: AppPaddings.rowViewPadding,
+                                  rowModel: RowModel(
+                                      text: chosenCategory.value,
+                                      textStyle: TextStyle(),
+                                      isAlignmentBetween: false,
+                                      trailingIcon: isDropDownClicked.value
+                                          ? IconUtility.arrowUp
+                                          : IconUtility.arrowDown)))),
+                      isDropDownClicked.value
+                          ? Container(
+                              decoration: BoxDecoration(borderRadius: AppBorderRadius.generalBorderRadius,color: AppColors.white,border: Border.all(color: AppColors.black)),
+                              child: ChoosingCategoryForParticipant(
+                                  isWithIconButton: false,
+                                  callBack: callBack,
+                                  onPressed: () {
+                                    isDropDownClicked.value = false;
+                                    print(isDropDownClicked);
+                                  }),
+                            )
+                          : const SizedBox(),
+                    ],
+                  ),
+                ),
                 MiniHeading(
                     name: GroupTextUtil.secondTherapistText,
                     isInMiddle: false,
@@ -138,7 +175,7 @@ class TGroupAddView extends StatelessWidget {
 
   RowModel dayRowModel(TGroupAddController controller) {
     return RowModel(
-        text: controller.choosenDay.value,
+        text: controller.chosenDay.value,
         textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
         isAlignmentBetween: true,
         trailingIcon: controller.isDayElectionOpen.isTrue
@@ -180,17 +217,17 @@ class TGroupAddView extends StatelessWidget {
 
   RowModel secTherapistRowModel(TGroupAddController controller) {
     return RowModel(
-      text: controller.choosenSecTherapist.value,
+      text: controller.chosenSecTherapist.value,
       textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
       isAlignmentBetween: true,
-      leadingIcon: controller.isSecTherapistChoosed.isTrue
+      leadingIcon: controller.isSecTherapistChosen.isTrue
           ? CustomCircleAvatar(
               imagePath: DemoInformation.imagePath, big: false, shadow: false)
           : const SizedBox.shrink(),
       trailingIcon: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          controller.isSecTherapistChoosed.isTrue
+          controller.isSecTherapistChosen.isTrue
               ? IconUtility.checkCircleIcon
               : const SizedBox(
                   width: 2,
@@ -299,7 +336,7 @@ class TGroupAddView extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              controller.changeChoosenSecTherapist(therapistName);
+              controller.changeChosenSecTherapist(therapistName);
               controller.changeSecTherapistElection();
               Get.back();
             },

@@ -6,6 +6,7 @@ import '../../../model/common/user/user_model.dart';
 import '../../../model/therapist/coping_method/t_coping_method_model.dart';
 import '../../../model/therapist/group/t_about_group_model.dart';
 import '../../../model/therapist/group/t_group_model.dart';
+import '../../../model/therapist/group/t_group_session_model.dart';
 
 /// TODO: when therapist joins a group as a helper, add the groupId here: users:helpingGroupsId
 
@@ -14,15 +15,21 @@ abstract class ITGroupService {
 
   final IFirestoreManager<ErrorModelCustom> manager;
 
-  /// if result is null, it means an activity was not added
+  /// if result is null, it means an group was not added
   Future<CreatedIdResponse?> createGroup(TGroupModel group);
 
+  /// if result is null, it means an groupSession was not added
+  Future<CreatedIdResponse?> createGroupSession(
+      TGroupSessionModel groupSession);
+
   Future<UserModel?> findRandomTherapistHelper();
+
+  Future<TGroupSessionModel?> getRecentGroupSession(String groupId);
 
   /// if result is null, it means is is successful
   Future<String?> updateGroup(TGroupModel group);
 
-  Future<TAboutGroupModel?> getAboutGroup(String groupId);
+  Future<TAboutGroupModel?> getAboutTherapistHelper(String groupId);
 
   Future<List<TGroupModel>> getGroupsOrdered(
       {String lastDocId, String orderField, bool isDescending});

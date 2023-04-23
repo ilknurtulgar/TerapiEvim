@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import '../../util/text_utility.dart';
 
 class AcceptionRow extends StatelessWidget {
   const AcceptionRow({
@@ -10,10 +9,12 @@ class AcceptionRow extends StatelessWidget {
     required this.acceptionFunction,
     required this.value,
   });
+
   final bool isForMakingShortCall;
   final String explanation;
   final Function() acceptionFunction;
   final bool value;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -29,7 +30,7 @@ class AcceptionRow extends StatelessWidget {
                   ? IconUtility.checkCircleIcon.icon
                   : IconUtility.circleIcon.icon)),
           Expanded(
-            child: responsivenestext(explanation,const TextStyle()),
+            child: responsivenestext(explanation, const TextStyle()),
           )
         ]);
   }

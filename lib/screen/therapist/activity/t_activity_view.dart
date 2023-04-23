@@ -138,7 +138,10 @@ class TActivityView extends StatelessWidget {
         isactivity: true,
         rightButtonTap: () {
           therapistActivityController.createMeeting(
-              context: context, activity: recentActivity);
+            context: context,
+            activity: recentActivity,
+            isMainTherapist: true,
+          );
         },
         leftButtonTapped: () {
           print("here");

@@ -11,9 +11,9 @@ abstract class IPProfileService {
 
   Future<TGroupModel?> getJoinedGroup(String joinedGroupId);
 
-  Future<List<TCopingMethodModel?>?> getMyViewedCopingMethods(
+  Future<List<TCopingMethodModel>> getMyViewedCopingMethods(
       {String lastDocId, String orderField, bool isDescending});
 
-  Future<List<TActivityModel?>> getMyJoinedActivities(
+  Future<List<TActivityModel>> getMyJoinedActivities(
       {String lastDocId, String orderField, bool isDescending});
 }

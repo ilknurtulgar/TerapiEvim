@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/model/therapist/coping_method/t_coping_method_model.dart';
@@ -171,7 +172,7 @@ extension ActivitiesInProfileExtension on RxList<TActivityModel?> {
   List<String> get getDates {
     List<String> dates = [];
     this.forEach((element) {
-      dates.add(element?.dateTime.toString() ?? "");
+      dates.add(element?.dateTime!.toDate().toIso8601String() ?? "");
     });
     return dates;
   }
@@ -197,7 +198,7 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   List<String> get getTimes {
     List<String> timeList = [];
     this.forEach((element) {
-      timeList.add(element?.dateTime.toString() ?? "");
+      timeList.add(element?.dateTime!.toDate().toIso8601String() ?? "");
     });
     return timeList;
   }

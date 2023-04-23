@@ -22,7 +22,7 @@ abstract class ITGroupService {
   /// if result is null, it means is is successful
   Future<String?> updateGroup(TGroupModel group);
 
-  Future<TAboutGroupModel?> getAboutGroup(String groupId);
+  Future<TAboutGroupModel?> getAboutTherapistHelper(String groupId);
 
   Future<List<TGroupModel>> getGroupsOrdered(
       {String lastDocId, String orderField, bool isDescending});

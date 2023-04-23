@@ -15,6 +15,8 @@ class TGroupInformationController extends GetxController with BaseController {
   @override
   void onInit() {
     tGroupService = TGroupService(vexaFireManager.networkManager);
+
+    ///TODO: tGroupService.getParticipantsList
     super.onInit();
   }
 

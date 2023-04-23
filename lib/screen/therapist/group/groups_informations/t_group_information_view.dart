@@ -117,27 +117,29 @@ class TGroupInformationView extends StatelessWidget {
     );
   }
 
-  ActivityBox meeting(TGroupInformationController controller) {
-    return ActivityBox(
-        rightButtonTap: () {},
-        istwobutton: false,
-        containerModel: AppContainers.containerButton(false),
-        buttonText: GroupTextUtil.startText,
-        arowModel: RowModel(
-          isAlignmentBetween: true,
-          leadingIcon: IconUtility.personIcon,
-          text: GroupTextUtil.secondTherapistText,
-          textStyle: AppTextStyles.groupTextStyle(false),
-          text2: controller.helperTherapistName.value,
-          textStyle2: AppTextStyles.groupTextStyle(true),
-        ),
-        isactivity: true,
-        clockModel: RowModel(
-          leadingIcon: IconUtility.clockIcon,
-          text: controller.meetingTime.value,
-          textStyle: AppTextStyles.groupTextStyle(true),
-          isAlignmentBetween: false,
-        ));
+  Widget meeting(TGroupInformationController controller) {
+    return Obx(
+      () => ActivityBox(
+          rightButtonTap: () {},
+          istwobutton: false,
+          containerModel: AppContainers.containerButton(false),
+          buttonText: GroupTextUtil.startText,
+          arowModel: RowModel(
+            isAlignmentBetween: true,
+            leadingIcon: IconUtility.personIcon,
+            text: GroupTextUtil.secondTherapistText,
+            textStyle: AppTextStyles.groupTextStyle(false),
+            text2: controller.helperTherapistName.value,
+            textStyle2: AppTextStyles.groupTextStyle(true),
+          ),
+          isactivity: true,
+          clockModel: RowModel(
+            leadingIcon: IconUtility.clockIcon,
+            text: controller.meetingTime.value,
+            textStyle: AppTextStyles.groupTextStyle(true),
+            isAlignmentBetween: false,
+          )),
+    );
   }
 
   Padding navMethod(RowModel row, Function() func) {

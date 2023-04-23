@@ -7,6 +7,7 @@ import '../../core/base/ui_models/video_call/person_in_call_model.dart';
 import '../../core/base/util/base_utility.dart';
 import '../../core/base/util/text_utility.dart';
 import '../../model/common/video_call/video_call_token_model.dart';
+import '../../product/enum/local_keys_enum.dart';
 import 'base_video_call_controller.dart';
 
 class GroupCallController extends BaseVideoCallController {
@@ -28,17 +29,19 @@ class GroupCallController extends BaseVideoCallController {
     room = VideoSDK.createRoom(
       roomId: currentToken.meetingId,
       token: currentToken.token,
-      displayName: "Hello World",
+      participantId: userId!,
+      displayName: localManager.getStringValue(LocalManagerKeys.name),
       micEnabled: micEnabled.value,
       camEnabled: camEnabled.value,
       maxResolution: 'hd',
-      defaultCameraIndex: 1,
+      defaultCameraIndex: currentToken.isTherapist ? 0 : 1,
     );
+    // Join meeting
+    room.join();
 
     setMeetingEventListener(room);
 
-    // Join meeting
-    room.join();
+
   }
 
   // late MainController _mainController;

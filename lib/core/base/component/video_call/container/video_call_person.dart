@@ -26,7 +26,7 @@ class VideoCallPerson extends StatelessWidget {
   final Function()? onLongPressed;
   final Function()? micOnOffFunction;
   final Function()? cameraOnOffFunction;
-  final RTCVideoRenderer? videoStream;
+  final Stream? videoStream;
 
   @override
   Widget build(BuildContext context) {
@@ -39,23 +39,23 @@ class VideoCallPerson extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Expanded(
-              child: InkWell(
-                onTap: cameraOnOffFunction,
-                onDoubleTap: onDoubleTap,
-                onLongPress: onLongPressed,
-                child: Stack(children: [
-                  personView(context, videoStream),
-                  iconButtonsRow(context),
-                ]),
-              ),
-            ),
-            videoCallViewModel.isNameShown
-                ? nameSurnameText(videoCallViewModel.person.name)
-                : const SizedBox(),
-            videoCallViewModel.isNameShown
-                ? nameSurnameText(videoCallViewModel.person.surname)
-                : const SizedBox(),
+            // Expanded(
+            //   child: InkWell(
+            //     onTap: cameraOnOffFunction,
+            //     onDoubleTap: onDoubleTap,
+            //     onLongPress: onLongPressed,
+            //     child: Stack(children: [
+            //       personView(context, videoStream),
+            //       iconButtonsRow(context),
+            //     ]),
+            //   ),
+            // ),
+            // videoCallViewModel.isNameShown
+            //     ? nameSurnameText(videoCallViewModel.person.name)
+            //     : const SizedBox(),
+            // videoCallViewModel.isNameShown
+            //     ? nameSurnameText(videoCallViewModel.person.surname)
+            //     : const SizedBox(),
           ],
         ),
       ),
@@ -83,26 +83,25 @@ class VideoCallPerson extends StatelessWidget {
     );
   }
 
-  Container personView(BuildContext context, RTCVideoRenderer? videoStream) {
+  Container personView(BuildContext context, Stream? videoStream) {
     return Container(
-        height: videoCallViewModel.height,
-        width: videoCallViewModel.width,
-        decoration: BoxDecoration(
-            color: AppColors.doveGray,
-            border: whichPage == VideoCallPages.isolatedCall &&
-                    videoCallViewModel.height != context.height1
-                ? Border.all(color: AppColors.black, width: 1)
-                : null,
-            borderRadius:
-                BorderRadius.circular(videoCallViewModel.borderRadius)),
-        child:
-        // Obx(
+      height: videoCallViewModel.height,
+      width: videoCallViewModel.width,
+      decoration: BoxDecoration(
+          color: AppColors.doveGray,
+          border: whichPage == VideoCallPages.isolatedCall &&
+                  videoCallViewModel.height != context.height1
+              ? Border.all(color: AppColors.black, width: 1)
+              : null,
+          borderRadius: BorderRadius.circular(videoCallViewModel.borderRadius)),
+      child:
+          // Obx(
           // () => videoCallViewModel.person.isCamOn.value
           // () =>
           videoStream != null
               ? cameraOnView(videoStream)
               : initialLetterContainer(context),
-        // )
+      // )
     );
   }
 
@@ -133,13 +132,16 @@ class VideoCallPerson extends StatelessWidget {
     );
   }
 
-  ClipRRect cameraOnView(RTCVideoRenderer videoStream) {
-    return ClipRRect(
-        borderRadius: BorderRadius.circular(videoCallViewModel.borderRadius),
-        child: RTCVideoView(
-          videoStream,
-          objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
-        ));
+  Widget cameraOnView(Stream videoStream) {
+    return videoStream.renderer == null
+        ? Container()
+        : ClipRRect(
+            borderRadius:
+                BorderRadius.circular(videoCallViewModel.borderRadius),
+            child: RTCVideoView(
+              videoStream.renderer!,
+              objectFit: RTCVideoViewObjectFit.RTCVideoViewObjectFitCover,
+            ));
   }
 }
 

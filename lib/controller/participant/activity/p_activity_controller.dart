@@ -80,6 +80,8 @@ class PActivityController extends GetxController with BaseController {
           videoCallToken: VideoCallTokenModel(
             meetingId: activity.meetingId!,
             token: videoSdkManager.token,
+            participantId: userId!,
+            isTherapist: false,
           ),
         ),
       );

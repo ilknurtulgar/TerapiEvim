@@ -31,14 +31,14 @@ class ParticipantTile extends StatelessWidget {
 }
 
 class ParticipantTile2 extends StatelessWidget {
-  final Stream stream;
-
   const ParticipantTile2({
     Key? key,
     required this.stream,
     this.hasPadding = true,
   }) : super(key: key);
+
   final bool hasPadding;
+  final Stream stream;
 
   @override
   Widget build(BuildContext context) {

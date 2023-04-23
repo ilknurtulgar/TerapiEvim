@@ -18,17 +18,21 @@ abstract class BaseVideoCallController extends BaseController2 {
   RxBool camEnabled = true.obs;
 
   RxMap<String, Stream?> participantVideoStreams = <String, Stream?>{}.obs;
+  RxMap<String, dynamic> participantValues = <String, dynamic>{}.obs;
 
   void setParticipantStreamEvents(Participant participant) {
+    // if (participant.id == userId) return;
     participant.on(Events.streamEnabled, (Stream stream) {
       if (stream.kind == 'video') {
         participantVideoStreams[participant.id] = stream;
+        participantValues[participant.id] = participant.displayName;
       }
     });
 
     participant.on(Events.streamDisabled, (Stream stream) {
       if (stream.kind == 'video') {
-        participantVideoStreams.remove(participant.id);
+        // participantVideoStreams.remove(participant.id);
+        participantVideoStreams[participant.id] = null;
       }
     });
   }
@@ -42,10 +46,12 @@ abstract class BaseVideoCallController extends BaseController2 {
     room.on(Events.participantLeft, (String participantId) {
       if (participantVideoStreams.containsKey(participantId)) {
         participantVideoStreams.remove(participantId);
+        participantValues.remove(participantId);
       }
     });
     room.on(Events.roomLeft, () {
       participantVideoStreams.clear();
+      room.leave();
       controllerContext.pushTrueRootNavigatorAndRemove(const MainHome());
     });
   }

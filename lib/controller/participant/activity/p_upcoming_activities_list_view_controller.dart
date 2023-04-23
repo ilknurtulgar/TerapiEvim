@@ -14,7 +14,6 @@ import '../../base/base_controller.dart';
 
 class PUpComingActivitiesListViewController extends GetxController
     with BaseController {
-
   @override
   void setContext(BuildContext context) => controllerContext = context;
 
@@ -50,7 +49,10 @@ class PUpComingActivitiesListViewController extends GetxController
       context.pushTrueRootNavigatorAndRemove(
         GroupCallView(
           videoCallToken: VideoCallTokenModel(
-              meetingId: activity.meetingId!, token: videoSdkManager.token),
+              meetingId: activity.meetingId!,
+              token: videoSdkManager.token,
+              participantId: userId!,
+              isTherapist: false),
         ),
       );
     } catch (e) {

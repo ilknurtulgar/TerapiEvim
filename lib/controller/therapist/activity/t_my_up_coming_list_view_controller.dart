@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/base/base_controller.dart';
-import 'package:terapievim/service/_therapist/activity/t_activity_service.dart';
 
+import '../../../core/base/component/toast/toast.dart';
 import '../../../core/managers/videosdk/i_video_sdk_manager.dart';
 import '../../../core/managers/videosdk/video_sdk_manager.dart';
 import '../../../model/common/activity/t_activity_model.dart';
 import '../../../model/common/video_call/video_call_token_model.dart';
 import '../../../screen/common/video_call/group_call_view.dart';
+import '../../../screen/common/video_call/group_therapy_call_view.dart';
+import '../../../service/_therapist/activity/t_activity_service.dart';
+import '../../base/base_controller_2.dart';
 
-class TMyUpComingListViewController extends GetxController with BaseController {
+class TMyUpComingListViewController extends BaseController2 {
   @override
   void setContext(BuildContext context) {
     // TODO: implement setContext
   }
+
   @override
   Future<void> onInit() async {
     tActivityService = TActivityService(vexaFireManager.networkManager);
@@ -30,12 +33,11 @@ class TMyUpComingListViewController extends GetxController with BaseController {
     required BuildContext context,
     required TActivityModel? activity,
   }) async {
-
     try {
       final IVideoSdkManager videoSdkManager = VideoSdkManager();
 
       final NavigatorState navigator =
-      Navigator.of(context, rootNavigator: true);
+          Navigator.of(context, rootNavigator: true);
 
       if (activity?.id == null) {
         throw Exception('activity?.id is null');
@@ -48,20 +50,25 @@ class TMyUpComingListViewController extends GetxController with BaseController {
       activity!.meetingId = meetingId;
       activity.isStarted = true;
 
-      // final String? isError = await activityService.updateActivity(activity);
-      // if (isError != null) {
-      //   //TODO extract error string
-      //   flutterErrorToast("An error occurred");
-      //   return;
-      // }
+      final String? isError = await tActivityService.updateActivity(activity);
+      if (isError != null) {
+        flutterErrorToast("An error occurred");
+        return;
+      }
 
       VideoCallTokenModel token = VideoCallTokenModel(
         meetingId: activity.meetingId!,
         token: videoSdkManager.token,
+        participantId: userId!,
+        isTherapist: true,
       );
 
+      navigationManager.pushAndRemoveUntil(navigator, GroupTherapyCallView());
       navigationManager.pushAndRemoveUntil(
-          navigator, GroupCallView(videoCallToken: token));
+          navigator,
+          GroupCallView(
+            videoCallToken: token,
+          ));
     } catch (e) {
       await crashlyticsManager.sendACrash(
         error: e.toString(),
@@ -70,5 +77,4 @@ class TMyUpComingListViewController extends GetxController with BaseController {
       );
     }
   }
-
 }

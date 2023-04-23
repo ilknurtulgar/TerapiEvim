@@ -5,11 +5,14 @@ part 'video_call_token_model.g.dart';
 
 @JsonSerializable()
 class VideoCallTokenModel extends INetworkModel<VideoCallTokenModel> {
-  final String meetingId, token;
+  final String meetingId, token, participantId;
+  final bool isTherapist;
 
   VideoCallTokenModel({
     required this.meetingId,
     required this.token,
+    required this.participantId,
+    required this.isTherapist,
   });
 
   @override
@@ -21,5 +24,4 @@ class VideoCallTokenModel extends INetworkModel<VideoCallTokenModel> {
 
   @override
   Map<String, dynamic>? toJson() => _$VideoCallTokenModelToJson(this);
-
 }

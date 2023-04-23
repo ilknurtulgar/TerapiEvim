@@ -99,6 +99,10 @@ extension GettingIntFromString on String {
     int j = 0;
     int number = 0;
     for (i = 0; i < length; i++) {
+       
+       // buna sonradan bakıcam
+
+
       //this[i] = int.parse(this[i]) 
       /*for (j = 0; j < integerAsStrings.length; j++) {
         if (this[i] == integerAsStrings[j]) {

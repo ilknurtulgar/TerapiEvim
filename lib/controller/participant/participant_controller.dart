@@ -34,9 +34,12 @@ class ParticipantController extends BaseController2 {
 
   RxBool isSessionSelected = false.obs;
 
+  RxString pSessionId = "".obs;
+
   Future<void> _fetchInitialDataOfParticipant() async {
     final PInitialData? initialDataOfParticipantModel =
         await authService.fetchInitialDataOfParticipant();
+    pSessionId.value = initialDataOfParticipantModel?.shortCallSessionId ?? '';
 
     joinedGroupId.value = initialDataOfParticipantModel?.joinedGroupId ?? '';
 
@@ -59,6 +62,8 @@ class ParticipantController extends BaseController2 {
     /// Save joinedGroupId of a participant
     localManager.setStringValue(
         LocalManagerKeys.pJoinedGroupId, joinedGroupId.value);
+
+    localManager.setStringValue(LocalManagerKeys.pSessionId, pSessionId.value);
 
     localManager.setStringValue(
         LocalManagerKeys.pGroupCategory, groupCategory.value);

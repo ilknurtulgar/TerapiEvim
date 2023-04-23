@@ -148,7 +148,8 @@ class ProfileSettingsService extends IProfileSettingsService {
       IsBeingAdvisorAcceptedModel isBeingAdvisorAccepted) async {
     if (userId == null) return 'UserId is null';
 
-    final result = await manager.update<IsBeingAdvisorAcceptedModel, EmptyModel>(
+    final result =
+        await manager.update<IsBeingAdvisorAcceptedModel, EmptyModel>(
       collectionPath: APIConst.therapist,
       docId: userId!,
       data: isBeingAdvisorAccepted,
@@ -174,11 +175,17 @@ class ProfileSettingsService extends IProfileSettingsService {
 
       if (imageUrl == null) return null;
 
-      await manager.createWithDocId(
+      UserAvatarModel userAvatar = UserAvatarModel(imageUrl: imageUrl);
+
+      final result = await manager.update<UserAvatarModel, EmptyModel>(
         collectionPath: APIConst.users,
         docId: userId!,
-        data: UserAvatarModel(imageUrl: imageUrl).toJson()!,
+        data: userAvatar,
       );
+
+      if (result.error != null) {
+        return null;
+      }
 
       return imageUrl;
     } catch (e) {

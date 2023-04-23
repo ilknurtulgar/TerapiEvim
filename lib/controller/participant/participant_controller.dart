@@ -78,4 +78,9 @@ class ParticipantController extends BaseController2 {
     localManager.setBoolValue(
         LocalManagerKeys.pIsSessionSelected, isSessionSelected.value);
   }
+
+  Future<void> setIsSessionComplete(bool value) async {
+    isSessionComplete.value = true;
+    localManager.setBoolValue(LocalManagerKeys.pIsSessionComplete, true);
+  }
 }

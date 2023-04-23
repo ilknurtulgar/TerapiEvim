@@ -1,8 +1,12 @@
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/model/common/video_call/video_call_token_model.dart';
 import 'package:videosdk/videosdk.dart';
 
+import '../../model/common/video_call/video_call_token_model.dart';
+import '../../service/video_call/i_short_video_call_service.dart';
+import '../../service/video_call/short_video_call_service.dart';
+import '../participant/participant_controller.dart';
+import '../therapist/therapist_controller.dart';
 import 'base_video_call_controller.dart';
 
 class ShortCallController extends BaseVideoCallController {
@@ -11,8 +15,12 @@ class ShortCallController extends BaseVideoCallController {
 
   @override
   void onInit() {
+    shortCallService = ShortVideoCallService(vexaFireManager.networkManager);
+
     super.onInit();
   }
+
+  late IShortVideoCallService shortCallService;
 
   @override
   void setToken(VideoCallTokenModel token) {
@@ -38,7 +46,6 @@ class ShortCallController extends BaseVideoCallController {
   @override
   void setMeetingEventListener(Room room) {
     super.setMeetingEventListener(room);
-
   }
 
   @override
@@ -48,5 +55,20 @@ class ShortCallController extends BaseVideoCallController {
 
   void onOffFunction(RxBool variable) {
     variable.value = !variable.value;
+  }
+
+  @override
+  Future<void> leaveRoom() async {
+    if (currentToken.isTherapist) {
+      final TherapistController therapistController = Get.find();
+    } else {
+      final ParticipantController participantController = Get.find();
+
+      participantController.setIsSessionComplete(true);
+
+      await shortCallService.pSetIsSessionComplete();
+    }
+
+    super.leaveRoom();
   }
 }

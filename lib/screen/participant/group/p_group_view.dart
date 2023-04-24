@@ -16,7 +16,7 @@ class PGroupView extends StatelessWidget {
     return _controller.joinedGroupId.isNotEmpty
         ? const PMyGroupView()
         : _controller.isSessionSelected.isFalse
-            ? PShortCallTimeView()
+            ? PMyGroupView()
             : const PLockView();
   }
 }

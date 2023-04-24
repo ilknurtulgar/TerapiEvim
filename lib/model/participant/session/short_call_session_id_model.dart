@@ -7,9 +7,11 @@ part 'short_call_session_id_model.g.dart';
 @JsonSerializable()
 class ShortCallSessionIdModel extends INetworkModel<ShortCallSessionIdModel> {
   String? shortCallSessionId;
+  bool? isSessionSelected;
 
   ShortCallSessionIdModel({
     this.shortCallSessionId,
+    this.isSessionSelected,
   });
 
   @override

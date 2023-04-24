@@ -139,6 +139,7 @@ class PGroupService extends IPGroupService with BaseService {
 
     if (result.error != null) return null;
     if (result.data == null) return null;
+    if (result.data!.isEmpty) return null;
 
     return result.data![0];
   }

@@ -140,7 +140,7 @@ class PSessionService extends IPSessionService with BaseService {
   Future<TSessionModel?> getASession(String sessionId) async {
     if (userId == null) return null;
 
-    final result = await manager.readWhere<TSessionModel, TSessionModel>(
+    final result = await manager.readWhere<TSessionModel, List<TSessionModel>>(
       collectionPath: APIConst.sessions,
       parseModel: TSessionModel(),
       whereField: AppConst.id,
@@ -149,7 +149,7 @@ class PSessionService extends IPSessionService with BaseService {
 
     if (result.error != null || result.data == null) return null;
 
-    return result.data!;
+    return result.data![0];
   }
 
 // @override

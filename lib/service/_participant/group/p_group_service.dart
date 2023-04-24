@@ -144,8 +144,8 @@ class PGroupService extends IPGroupService with BaseService {
   Future<TGroupSessionModel?> getRecentGroupSession(String groupId) async {
     if (userId == null) return null;
 
-    final result =
-        await manager.readWhere2<TGroupSessionModel, List<TGroupSessionModel>>(
+    final result = await manager
+        .readOrderedWhere2<TGroupSessionModel, List<TGroupSessionModel>>(
       collectionPath: APIConst.groupSession,
       parseModel: TGroupSessionModel(),
       limit: AppConst.oneItemPerPage,
@@ -153,6 +153,9 @@ class PGroupService extends IPGroupService with BaseService {
       whereIsEqualTo: groupId,
       whereField2: AppConst.isFinished,
       whereIsEqualTo2: false,
+      orderField: AppConst.dateTime,
+      isDescending: false,
+      lastDocumentId: '',
     );
 
     if (result.error != null) return null;
@@ -165,7 +168,6 @@ class PGroupService extends IPGroupService with BaseService {
   @override
   Future<List<PPublicProfile>> getParticipantsList(
       {required List<String> participantsId}) async {
-
     final List<PPublicProfile> publicProfileList = [];
 
     for (String participantId in participantsId) {

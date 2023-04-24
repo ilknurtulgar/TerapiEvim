@@ -16,6 +16,7 @@ import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
+import '../../../../model/common/user/user_model.dart';
 import '../../../../product/widget/common/group/mini_headings.dart';
 
 class TGroupAddView extends StatelessWidget {
@@ -24,8 +25,10 @@ class TGroupAddView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BaseView<TGroupAddController>(
+        onModelReady: (controller) {
+          controller.setContext(context);
+        },
         getController: TGroupAddController(),
-        onModelReady: (model) {},
         onPageBuilder: (context, controller) {
           return Scaffold(
             appBar: MyAppBar(
@@ -72,7 +75,10 @@ class TGroupAddView extends StatelessWidget {
                 Election(
                     isSelectedValue: controller.isSecTherapistElectionOpen,
                     firstRow: secTherapist(controller),
-                    rows: persons(controller, context)),
+                    rows: controller.therapists
+                        .map((therapist) =>
+                            person(therapist, context, controller))
+                        .toList()),
                 button(context, controller, false),
                 MiniHeading(
                     name: "Hafta Sayisi",
@@ -191,12 +197,14 @@ class TGroupAddView extends StatelessWidget {
 
   RowModel secTherapistRowModel(TGroupAddController controller) {
     return RowModel(
-      text: controller.chosenSecTherapist.value,
+      text: controller.helperTherapist?.name ?? "null",
       textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
       isAlignmentBetween: true,
       leadingIcon: controller.isSecTherapistChosen.isTrue
           ? CustomCircleAvatar(
-              imagePath: DemoInformation.imagePath, big: false, shadow: false)
+              imagePath: controller.helperTherapist?.imageUrl ?? "null",
+              big: false,
+              shadow: false)
           : const SizedBox.shrink(),
       trailingIcon: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -214,7 +222,6 @@ class TGroupAddView extends StatelessWidget {
     );
   }
 
-//buttonlari ayristir
   Padding button(
       BuildContext context, TGroupAddController controller, bool isLastButton) {
     return Padding(
@@ -241,43 +248,44 @@ class TGroupAddView extends StatelessWidget {
     );
   }
 
-  PersonMin person(String therapistName, BuildContext context,
+  PersonMin person(UserModel therapist, BuildContext context,
       TGroupAddController controller) {
     Icon trailingIcon = IconUtility.emailIcon;
     return PersonMin(
         isBorderPurple: true,
         onTap: () {
-          secTherapistChooseDialog(context, therapistName, controller);
+          secTherapistChooseDialog(context, therapist, controller);
           trailingIcon = IconUtility.checkCircleIcon;
         },
         row: RowModel(
-            text: therapistName,
+            text: therapist.name ?? "null",
             leadingIcon: CustomCircleAvatar(
                 big: false,
-                imagePath: DemoInformation.imagePath,
+                imagePath: therapist.imageUrl ?? "null",
                 shadow: false),
             textStyle: AppTextStyles.groupTextStyle(true),
             isAlignmentBetween: true,
             trailingIcon: trailingIcon));
   }
 
-  List<PersonMin> persons(
-      TGroupAddController controller, BuildContext context) {
-    return [
-      //cikartamiyorum person widgeti kullanildi cunku
-      person("Nihat Turgutlu", context, controller),
-      person("Mikasa Ackerman", context, controller),
-      person("Eren Jeager", context, controller),
-      person("Levi Ackerman", context, controller)
-    ];
-  }
+  // List<PersonMin> persons(
+  //     TGroupAddController controller, BuildContext context) {
+  //   return [
+  //     //cikartamiyorum person widgeti kullanildi cunku
+  //     person("Nihat Turgutlu", context, controller),
+  //     person("Mikasa Ackerman", context, controller),
+  //     person("Eren Jeager", context, controller),
+  //     person("Levi Ackerman", context, controller)
+  //   ];
+  // }
 
   Future<String?> secTherapistChooseDialog(BuildContext context,
-      String therapistName, TGroupAddController controller) {
+      UserModel helperTherapist, TGroupAddController controller) {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text(therapistName + GroupTextUtil.secTherDialogText1),
+        title: Text(
+            helperTherapist.name ?? "null" + GroupTextUtil.secTherDialogText1),
         content: Text(GroupTextUtil.secTherDialogText2),
         actions: <Widget>[
           TextButton(
@@ -286,8 +294,8 @@ class TGroupAddView extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              controller.changeChosenSecTherapist(therapistName);
               controller.changeSecTherapistElection();
+              //yeski calistigi yardimci terapistlerden sectigini helpertherapist olarak eklenecek
               Get.back();
             },
             child: Text(GroupTextUtil.sendRequestText),
@@ -297,10 +305,10 @@ class TGroupAddView extends StatelessWidget {
     );
   }
 
-  PersonMin day(String dayName, TGroupAddController controller) {
+  PersonMin day(String dayName, int index, TGroupAddController controller) {
     return PersonMin(
         onTap: () {
-          controller.changeChoosenDay(dayName);
+          controller.changeChoosenDay(dayName, index);
           controller.changeDayElection();
         },
         row: RowModel(
@@ -312,13 +320,13 @@ class TGroupAddView extends StatelessWidget {
   List<PersonMin> days(TGroupAddController controller) {
     return [
       //fonksiyon
-      day(GroupTextUtil.monday, controller),
-      day(GroupTextUtil.tuesday, controller),
-      day(GroupTextUtil.wednesday, controller),
-      day(GroupTextUtil.thursday, controller),
-      day(GroupTextUtil.friday, controller),
-      day(GroupTextUtil.saturday, controller),
-      day(GroupTextUtil.sunday, controller),
+      day(GroupTextUtil.monday, 0, controller),
+      day(GroupTextUtil.tuesday, 1, controller),
+      day(GroupTextUtil.wednesday, 2, controller),
+      day(GroupTextUtil.thursday, 3, controller),
+      day(GroupTextUtil.friday, 4, controller),
+      day(GroupTextUtil.saturday, 5, controller),
+      day(GroupTextUtil.sunday, 6, controller),
     ];
   }
 }

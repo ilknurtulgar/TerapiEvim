@@ -30,6 +30,7 @@ class TGroupInformationView extends StatelessWidget {
     return BaseView<TGroupInformationController>(
         getController: TGroupInformationController(),
         onModelReady: (controller) {
+          controller.setContext(context);
           controller.setCurrentGroup(currentGroup);
         },
         onPageBuilder: (context, controller) {

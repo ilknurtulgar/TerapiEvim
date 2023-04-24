@@ -82,6 +82,5 @@ Future<void> initialize() async {
 
 void _initializeControllers() {
   Get.put(AuthController());
-  Get.put(PGroupController());
   Get.put(MainController());
 }

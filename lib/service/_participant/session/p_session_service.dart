@@ -90,8 +90,10 @@ class PSessionService extends IPSessionService with BaseService {
 
     if (freeHour.id == null) return false;
 
-    ShortCallSessionIdModel shortCallSessionId =
-        ShortCallSessionIdModel(shortCallSessionId: freeHour.id);
+    ShortCallSessionIdModel shortCallSessionId = ShortCallSessionIdModel(
+      shortCallSessionId: freeHour.id,
+      isSessionSelected: true,
+    );
 
     freeHour.participantId = userId!;
     freeHour.isFree = false;

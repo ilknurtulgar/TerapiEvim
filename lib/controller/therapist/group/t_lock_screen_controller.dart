@@ -8,21 +8,18 @@ class TLockScreenController extends BaseController2 {
   @override
   void setContext(BuildContext context) {}
 
-  // @override
-  // void onInit() {
-  //   therapistController = Get.find();
+  @override
+  void onInit() {
+    therapistController = Get.find();
+    isConfirmed = therapistController.isTherapistConfirmed;
+    isUploaded = therapistController.isDiplomaUploaded;
 
-  //   isConfirmed = therapistController.isTherapistConfirmed;
-
-  //   isUploaded = therapistController.isDiplomaUploaded;
-
-  //   super.onInit();
-  // }
+    super.onInit();
+  }
 
   late TherapistController therapistController;
-
-  RxBool isConfirmed = true.obs;
-  RxBool isUploaded = true.obs;
+  RxBool isConfirmed = false.obs;
+  RxBool isUploaded = false.obs;
   void therapistUploaded() {
     isUploaded.value = true;
   }

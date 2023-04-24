@@ -10,12 +10,15 @@ import '../../../../core/base/util/base_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/extension/context_extension.dart';
+import '../../../../model/therapist/group/t_group_model.dart';
 import '../../../participant/profile/util/p_profile_view_utility.dart';
 
 class TProfileView extends StatelessWidget {
-  const TProfileView({super.key, required this.isSecTherapist});
+  const TProfileView(
+      {super.key, required this.isSecTherapist, required this.groupId});
 
   final bool isSecTherapist;
+  final String groupId;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +29,10 @@ class TProfileView extends StatelessWidget {
       DemoInformation.grup2
     ];
     return BaseView<TAboutTherapistController>(
+      onModelReady: (controller) {
+        controller.setContext(context);
+        controller.setGroupId(groupId);
+      },
       getController: TAboutTherapistController(),
       onPageBuilder: (context, controller) => Scaffold(
         body: SafeArea(
@@ -45,19 +52,19 @@ class TProfileView extends StatelessWidget {
                       padding: AppPaddings.pagePadding,
                       child: Column(
                         children: [
-                          heading(DemoInformation.therapistName2),
-                          aboutMe(DemoInformation.aboutme, context),
+                          heading(controller.tModel?.therapistName ?? "Null"),
+                          aboutMe(controller.tModel?.aboutTherapist ?? "null",
+                              context),
                           isSecTherapist
                               ? const SizedBox.shrink()
                               : activity(UiBaseModel.basetmeMetotlari(), () {
-                                  //buraya fonksiyonlari ekelenecek
-                                  // print("basettin mi");
+                                  //buradan terapistin basetme metodlarina gitmesi gerekiyor
                                 }),
                           activity(UiBaseModel.seminerleri(), () {
-                            //print("seminermismis");
+                            //buradan terapistin seminerlerine gitmesi gerekiyor
                           }),
                           isSecTherapist
-                              ? otherGroups(groups)
+                              ? otherGroups(controller)
                               : const SizedBox.shrink()
                         ],
                       ),
@@ -67,7 +74,7 @@ class TProfileView extends StatelessWidget {
                 Positioned(
                   top: 87,
                   child: CustomCircleAvatar(
-                      imagePath: DemoInformation.imagePath,
+                      imagePath: controller.tModel?.therapistImageUrl ?? "",
                       big: true,
                       shadow: true),
                 ),
@@ -96,7 +103,7 @@ Widget activity(RowModel row, Function() func) {
   );
 }
 
-Widget otherGroups(List<RowModel> groups) {
+Widget otherGroups(TAboutTherapistController controller) {
   return Padding(
     padding: AppPaddings.miniTopPadding,
     child: Column(
@@ -106,10 +113,20 @@ Widget otherGroups(List<RowModel> groups) {
             text: GroupTextUtil.secTherapistGroupsText,
             isalignmentstart: true),
         ListView.builder(
-          shrinkWrap: true,
-          itemCount: groups.length,
-          itemBuilder: (context, index) => activity(groups[index], () => null),
-        )
+            shrinkWrap: true,
+            itemCount: controller.tModel?.listOfHelpingGroups?.length ?? 0,
+            itemBuilder: (context, index) {
+              TGroupModel group =
+                  controller.tModel!.listOfHelpingGroups![index];
+              return activity(
+                  RowModel(
+                    text: group.name ?? "null",
+                    textStyle: AppTextStyles.groupTextStyle(false),
+                    isAlignmentBetween: false,
+                    leadingIcon: IconUtility.groupsIcon,
+                  ),
+                  () {});
+            })
       ],
     ),
   );

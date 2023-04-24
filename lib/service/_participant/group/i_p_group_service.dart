@@ -2,6 +2,7 @@ import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../model/participant/group/join_group_id_model.dart';
 import '../../../model/participant/group/joinable_group_model.dart';
+import '../../../model/therapist/group/t_group_session_model.dart';
 
 abstract class IPGroupService {
   IPGroupService(this.manager);
@@ -22,4 +23,6 @@ abstract class IPGroupService {
   /// groupId should be saved in cache, so it can
   /// be used to load joinedGroup again
   Future<bool?> joinGroup(JoinGroupIdModel groupId);
+
+  Future<TGroupSessionModel?> getRecentGroupSession(String groupId);
 }

@@ -1,6 +1,4 @@
-
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/participant/participant_controller.dart';
 import 'package:terapievim/core/base/component/toast/toast.dart';
@@ -16,13 +14,15 @@ import '../../base/base_controller_2.dart';
 class PDeterminingShortCallController extends BaseController2 {
   @override
   void setContext(BuildContext context) {
-    controllerContext=context;
+    controllerContext = context;
   }
+
   @override
   Future<void> onInit() async {
     super.onInit();
     // TODO: implement onInit
     pService = PSessionService(vexaFireManager.networkManager);
+
     participantName.value = localManager.getStringValue(LocalManagerKeys.name);
     await getAvailableHours();
     super.onInit();
@@ -54,13 +54,12 @@ class PDeterminingShortCallController extends BaseController2 {
   }
 
   Future<void> saveButton() async {
-
-    NavigatorState navigator=Navigator.of(controllerContext);
+    NavigatorState navigator = Navigator.of(controllerContext);
     bool isSucces = await pService.selectASession(_selectedHour.value);
     if (isSucces) {
-      localManager.setBoolValue(LocalManagerKeys.pIsSessionSelected,true);
-      final ParticipantController pController=Get.find();
-      pController.isSessionSelected.value=true;
+      localManager.setBoolValue(LocalManagerKeys.pIsSessionSelected, true);
+      final ParticipantController pController = Get.find();
+      pController.isSessionSelected.value = true;
       navigationManager.pushAndRemoveUntil(navigator, PLockView());
     } else {
       flutterErrorToast("Tekrar Deneyiniz.");

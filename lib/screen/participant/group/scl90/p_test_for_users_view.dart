@@ -58,6 +58,7 @@ class ViewsForSCL extends StatelessWidget {
   ListView questionsWidget(PTestQuestionsController controller) {
     const List<String> questions = Scl90.questions;
     return ListView.builder(
+      physics: NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
         final questionIndex = index + controller.getTestPageIndex() * 9;
         print('questionIndex:${questionIndex}');

@@ -1,4 +1,5 @@
 import 'package:json_annotation/json_annotation.dart';
+
 import '../../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 
 part 'name_model.g.dart';
@@ -7,9 +8,7 @@ part 'name_model.g.dart';
 class NameModel extends INetworkModel<NameModel> {
   String? name;
 
-  NameModel({
-    this.name,
-  });
+  NameModel({this.name});
 
   @override
   NameModel fromJson(Map<String, dynamic> json) => NameModel.fromJson(json);

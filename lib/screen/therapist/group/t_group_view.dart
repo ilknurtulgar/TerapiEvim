@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/screen/therapist/group/confirmation/t_lock_view.dart';
 import 'package:terapievim/screen/therapist/group/t_my_groups_view.dart';
 
 import '../../../controller/therapist/group/t_group_view.dart';
@@ -13,7 +14,7 @@ class TGroupView extends StatelessWidget {
         getController: TGroupViewController(),
         onModelReady: (model) {},
         onPageBuilder: (context, controller) => controller.isLockedOpen.value
-            ? TMyGroupsView()
+            ? TLockView()
             : const TMyGroupsView());
   }
 }

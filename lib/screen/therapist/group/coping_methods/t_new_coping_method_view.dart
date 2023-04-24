@@ -13,6 +13,7 @@ import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
 import '../../../../model/therapist/group/t_group_model.dart';
 import '../../../../product/widget/common/group/coping_box.dart';
+import '../t_my_groups_view.dart';
 
 part 'modules/other_groups_list.dart';
 
@@ -126,8 +127,7 @@ class TNewCopingMethodView extends StatelessWidget {
             TextButton(
               child: Text(GroupTextUtil.deleteText),
               onPressed: () {
-                context.pop();
-                //silme islemi
+                context.pushAndRemoveUntil(TMyGroupsView());
               },
             ),
           ],

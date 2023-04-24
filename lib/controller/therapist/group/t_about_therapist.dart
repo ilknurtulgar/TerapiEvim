@@ -5,4 +5,6 @@ class TAboutTherapistController extends GetxController {
   void changeIsTherapistLoaded() {
     isTherapistUploaded.value = !isTherapistUploaded.value;
   }
+  //yapilmadi
+  //terapistin bilgielero alinmali
 }

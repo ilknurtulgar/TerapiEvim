@@ -72,7 +72,10 @@ class PMyGroupView extends StatelessWidget {
                         controller.tGroupSession.value?.therapistName ?? "null",
                         RowType.therapist,
                         true), () {
-                  context.push(const TProfileView(isSecTherapist: false));
+                  context.push(TProfileView(
+                    isSecTherapist: false,
+                    groupId: controller.currentGroupId,
+                  ));
                 }),
               ),
               therapist(UiBaseModel.messageToTherapist,
@@ -84,7 +87,10 @@ class PMyGroupView extends StatelessWidget {
                             'null',
                         RowType.secTherapist,
                         true), () {
-                  context.push(const TProfileView(isSecTherapist: true));
+                  context.push(TProfileView(
+                    isSecTherapist: true,
+                    groupId: controller.currentGroupId,
+                  ));
                 }),
               ),
               CustomHeading(

@@ -106,7 +106,7 @@ class TGroupInformationController extends GetxController with BaseController {
     }
   }
 
-  void getMeetingInformation() async {
+  Future<void> getMeetingInformation() async {
     recentSession =
         await tGroupService.getRecentGroupSession(currentGroup?.id ?? "null");
 

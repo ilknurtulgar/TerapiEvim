@@ -18,6 +18,8 @@ class TGroupAddController extends GetxController with BaseController {
 
   @override
   void onInit() {
+    date = DateTime.now();
+
     tGroupService = TGroupService(vexaFireManager.networkManager);
     super.onInit();
   }
@@ -34,7 +36,7 @@ class TGroupAddController extends GetxController with BaseController {
   }
 
   TextEditingController groupNameController = TextEditingController();
-
+  late DateTime date;
   bool _validateNewGroup() {
     if (groupNameController.text.isEmpty) {
       flutterErrorToast("isim bos");
@@ -44,7 +46,7 @@ class TGroupAddController extends GetxController with BaseController {
       flutterErrorToast("Kategori Bos");
       return false;
     }
-    if (chosenSecTherapist == "Yok") {
+    if (helperTherapist.isNull) {
       flutterErrorToast("Yardimci Terapist Secilmedi");
       return false;
     }
@@ -73,11 +75,11 @@ class TGroupAddController extends GetxController with BaseController {
     final TGroupModel group = TGroupModel(
       groupCategory: chosenCategory.value,
       therapistId: userId,
-      therapistHelperId: '',
+      therapistHelperId: helperTherapist?.id,
       therapistName: localManager.getStringValue(LocalManagerKeys.name),
-      therapistHelperName: chosenSecTherapist.value,
+      therapistHelperName: helperTherapist?.name,
       name: groupNameController.text.trim(),
-      dateTime: Timestamp.fromDate(DateTime.now()),
+      dateTime: Timestamp.fromDate(date),
       hasHelperTherapistAccepted: false,
       numberOfWeeks: int.parse(numberOfWeek.text.trim()),
       participantsId: [],
@@ -130,16 +132,17 @@ class TGroupAddController extends GetxController with BaseController {
 
   //grup eklmee kismi icin controller
   var isSecTherapistElectionOpen = false.obs;
-  var chosenSecTherapist = "Yok".obs;
   var isSecTherapistChosen = false.obs;
-
-  void changeChosenSecTherapist(String name) {
-    isSecTherapistChosen.value = true;
-    chosenSecTherapist.value = name;
-  }
+  List<UserModel> therapists = <UserModel>[].obs; //userModel listesi alinmali
 
   void changeSecTherapistElection() {
     isSecTherapistElectionOpen.value = !isSecTherapistElectionOpen.isTrue;
+  }
+
+  late UserModel? helperTherapist;
+  Future<void> setRandomUser() async {
+    helperTherapist = await tGroupService.findRandomTherapistHelper();
+    isSecTherapistChosen.value = true;
   }
 
   var isDayElectionOpen = false.obs;
@@ -148,22 +151,32 @@ class TGroupAddController extends GetxController with BaseController {
     isDayElectionOpen.value = !isDayElectionOpen.isTrue;
   }
 
-  void changeChoosenDay(String day) {
+  void changeChoosenDay(String day, int index) {
+    if (index > date.weekday) {
+      //o haftanin ileriki gunlerinde
+      date = date.copyWith(day: date.day + index - date.weekday);
+    } else if (index == date.weekday) {
+      //haftaya o gun
+      date = date.copyWith(day: date.day + 7);
+    } else {
+      //haftaya bugunden once
+      date = date.copyWith(day: date.day + 7 - (date.weekday - index));
+    }
+
+    date = date.copyWith(
+        hour: int.parse(chosenHour.value),
+        minute: int.parse(chosenMinutes.value));
+
     chosenDay = RxString(day);
   }
 
   var chosenDay = "Gun Seciniz".obs;
+  var choosenDayIndex = 0.obs;
 
   var isParticipantElectionOpen = false.obs;
 
   void changeParticipantElection() {
     isParticipantElectionOpen.value = !isParticipantElectionOpen.value;
-  }
-
-  Future<void> setRandomUser() async {
-    final UserModel? randomTherapist =
-        await tGroupService.findRandomTherapistHelper();
-    print(randomTherapist?.toJson());
   }
 
   //tgroup controllerdan gelenler

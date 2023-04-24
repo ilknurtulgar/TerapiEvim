@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/controller/therapist/group/t_uploaded_controller.dart';
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
+import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/extension/context_extension.dart';
-import 't_lock_view.dart';
 
 class TUploadConfirmView extends StatelessWidget {
   const TUploadConfirmView({super.key});
@@ -49,23 +49,23 @@ class TUploadConfirmView extends StatelessWidget {
                         container: AppContainers.purpleButtonContainer(
                             SizeUtil.smallValueWidth),
                         onTap: () {
-                          //yukleyeccek
+                          controller.pickPdf();
                         },
                         text: GroupTextUtil.uploadText),
-                    // smallSizedBox()
                   ],
                 ),
               ),
-              // const SizedBox(
-              //   height: SizeUtil.normalValueHeight,
-              // ),
               CustomButton(
                   textColor: AppColors.white,
                   container: AppContainers.purpleButtonContainer(
                       SizeUtil.smallValueWidth),
                   onTap: () {
-                    controller.changeIsTherapistLoaded();
-                    context.pushAndRemoveUntil(TLockView());
+                    if (controller.changeIsTherapistLoaded()) {
+                      context.pop();
+                    }
+                    flutterErrorToast("Pdf eklenmedi");
+                    context.pop(); //simdlilk bitsin
+                    //suan herhangi gercek bir confirm islem yapilmadigi icin direkt ekleniyor
                   },
                   text: GroupTextUtil.confirmText)
             ],

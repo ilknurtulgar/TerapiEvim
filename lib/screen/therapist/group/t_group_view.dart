@@ -14,7 +14,7 @@ class TGroupView extends StatelessWidget {
         getController: TGroupViewController(),
         onModelReady: (model) {},
         onPageBuilder: (context, controller) => controller.isLockedOpen.value
-            ? TLockView()
-            : const TMyGroupsView());
+            ? TMyGroupsView()
+            : const TLockView());
   }
 }

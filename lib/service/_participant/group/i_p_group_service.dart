@@ -2,6 +2,7 @@ import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../model/participant/group/join_group_id_model.dart';
 import '../../../model/participant/group/joinable_group_model.dart';
+import '../../../model/therapist/group/t_group_model.dart';
 import '../../../model/therapist/group/t_group_session_model.dart';
 
 abstract class IPGroupService {
@@ -11,6 +12,9 @@ abstract class IPGroupService {
 
   /// It is used for getting joinedGroup
   Future<JoinableGroupModel?> getGroupById(String groupId);
+
+
+  Future<TGroupModel?> getCurrentGroup(String groupId);
 
   Future<List<JoinableGroupModel>> getGroupsByCategory({
     required String categoryName,

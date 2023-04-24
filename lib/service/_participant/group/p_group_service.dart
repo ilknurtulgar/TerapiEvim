@@ -1,3 +1,5 @@
+import 'package:terapievim/model/therapist/group/t_group_model.dart';
+
 import '../../../core/base/service/base_service.dart';
 import '../../../core/constants/api_const.dart';
 import '../../../core/constants/app_const.dart';
@@ -20,6 +22,22 @@ class PGroupService extends IPGroupService with BaseService {
       collectionPath: APIConst.groups,
       docId: groupId,
       parseModel: JoinableGroupModel(),
+    );
+    if (result.error != null) {
+      return null;
+    }
+
+    return result.data;
+  }
+
+  @override
+  Future<TGroupModel?> getCurrentGroup(String groupId) async {
+    if (userId == null) return null;
+    final result =
+        await manager.readOne<TGroupModel, TGroupModel>(
+      collectionPath: APIConst.groups,
+      docId: groupId,
+      parseModel: TGroupModel(),
     );
     if (result.error != null) {
       return null;
@@ -143,4 +161,6 @@ class PGroupService extends IPGroupService with BaseService {
 
     return result.data![0];
   }
+
+
 }

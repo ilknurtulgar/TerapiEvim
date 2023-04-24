@@ -41,22 +41,24 @@ class TNewCopingMethodView extends StatelessWidget {
                 )
               : Padding(
                   padding: AppPaddings.pagePadding,
-                  child: Column(
-                    children: [
-                      CopingBox(
-                        subjectTitleTextController:
-                            controller.subjectTitleEditingController,
-                        copingText: DemoInformation.tmpNewMetotText,
-                        pdfName: DemoInformation.tmppdfName,
-                        onAddTapped: () async {
-                          await controller.pickPdf();
-                        },
-                        onShareTapped: () async {
-                          await controller.shareCopingMethod();
-                        },
-                      ),
-                      _OtherGroupsList(controller: controller),
-                    ],
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        CopingBox(
+                          subjectTitleTextController:
+                              controller.subjectTitleEditingController,
+                          copingText: DemoInformation.tmpNewMetotText,
+                          pdfName: DemoInformation.tmppdfName,
+                          onAddTapped: () async {
+                            await controller.pickPdf();
+                          },
+                          onShareTapped: () async {
+                            await controller.shareCopingMethod();
+                          },
+                        ),
+                        _OtherGroupsList(controller: controller),
+                      ],
+                    ),
                   ),
                 ),
         ),

@@ -11,6 +11,7 @@ class _OtherGroupsList extends StatelessWidget {
       padding: AppPaddings.rowViewPadding,
       child: Obx(
         () => ListView.builder(
+          physics: NeverScrollableScrollPhysics(),
           itemCount: controller.otherGroups.length,
           shrinkWrap: true,
           itemBuilder: (context, index) {

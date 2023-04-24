@@ -1,4 +1,4 @@
-package com.example.terapievim
+package com.terapievim.terapievim
 
 import io.flutter.embedding.android.FlutterActivity
 

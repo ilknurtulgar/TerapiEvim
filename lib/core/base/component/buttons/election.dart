@@ -21,7 +21,7 @@ class Election extends StatelessWidget {
     return Obx(() => Column(
           children: [
             firstRow,
-            isSelectedValue.value
+            isSelectedValue.value && !rows.isEmpty
                 ? SizedBox(
                     width: Responsive.width(SizeUtil.hugeValueWidth, context),
                     child: ListView.builder(

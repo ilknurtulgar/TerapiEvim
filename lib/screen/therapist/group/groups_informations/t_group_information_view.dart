@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
+import 'package:terapievim/screen/participant/home/p_coping_methods_view.dart';
 import '../../../../controller/therapist/group/t_group_information_controller.dart';
 import '../../../../core/base/component/activtiy/seminers.dart';
 import '../../../../core/base/component/app_bar/my_app_bar.dart';
@@ -8,8 +8,8 @@ import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/component/group/group_box.dart';
 import '../../../../core/base/component/group/person.dart';
 import '../../../../core/base/component/group/row_view.dart';
+import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 import '../../../../core/base/ui_models/row_model.dart';
-import '../../../../core/base/util/base_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
@@ -26,13 +26,7 @@ class TGroupInformationView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     /// TODO: it should be deleted
-    List<PersonMin> participantRow = [
-      person("Ali Kiran", context),
-      person("Yasemin Atmaca", context),
-      person("Kerem Bursin", context),
-      person("Osman Yigit", context),
-      person("Ali Kiran", context)
-    ];
+
     return BaseView<TGroupInformationController>(
         getController: TGroupInformationController(),
         onModelReady: (controller) {
@@ -52,23 +46,42 @@ class TGroupInformationView extends StatelessWidget {
                 miniHeadings(GroupTextUtil.upcomingMeetingText, false),
                 meeting(controller),
                 miniHeadings(GroupTextUtil.groupsInformationText, false),
-                navMethod(DemoInformation.secTherapist, () {
+                navMethod(
+                    row(controller, GroupTextUtil.secondTherapistText,
+                        controller.helperTherapistName.value), () {
                   context.push(const TProfileView(isSecTherapist: true));
                 }),
                 Election(
                     isSelectedValue: controller.isParticipantElectionOpen,
                     firstRow: Obx(() => SizedBox(
-                          child:
-                              participants(controller, participantRow.length),
+                          child: participants(
+                              controller, controller.participants.length),
                         )),
-                    rows: participantRow),
+                    rows: controller.participants
+                        .map((participant) => person(
+                            participant.name!, participant.imageUrl!, context))
+                        .toList()),
                 navMethod(DemoInformation.methods, () {
-                  //method sayfasina gidecek
+                  context.push(PCopingMethodsView());
                 }),
+                hugeSizedBox()
               ],
             ),
           );
         });
+  }
+
+  RowModel row(
+      TGroupInformationController controller, String definition, String name) {
+    return RowModel(
+      isAlignmentBetween: true,
+      leadingIcon: IconUtility.personIcon,
+      text: definition,
+      textStyle: AppTextStyles.aboutMeTextStyle(false),
+      text2: name,
+      textStyle2: AppTextStyles.groupTextStyle(true),
+      trailingIcon: IconUtility.forward,
+    );
   }
 
   List<Widget> _appBarActions(BuildContext context, String? currentGroupId,
@@ -78,7 +91,6 @@ class TGroupInformationView extends StatelessWidget {
         icon: const Icon(Icons.create_new_folder_outlined),
         onPressed: () {
           if (currentGroup == null) {
-            ///TODO : show a message that there is an error
             errorDialog(context);
             return;
           }
@@ -89,7 +101,6 @@ class TGroupInformationView extends StatelessWidget {
         icon: IconUtility.deleteIconOutlined,
         onPressed: () {
           if (currentGroup == null) {
-            ///TODO : show a message that there is an error
             errorDialog(context);
             return;
           }
@@ -140,7 +151,7 @@ class TGroupInformationView extends StatelessWidget {
             leadingIcon: IconUtility.clockIcon,
             text: controller.meetingTime.value,
             textStyle: AppTextStyles.groupTextStyle(true),
-            isAlignmentBetween: false,
+            isAlignmentBetween: true,
           )),
     );
   }
@@ -177,8 +188,6 @@ class TGroupInformationView extends StatelessWidget {
             TextButton(
               child: Text(GroupTextUtil.deleteText),
               onPressed: () {
-                ///TODO: user can delete with currentGroupId from controller
-                ///Note: using get.find is Ok, while it is only used in this view
                 controller.deleteGroup();
 
                 Get.back();
@@ -200,13 +209,19 @@ class TGroupInformationView extends StatelessWidget {
     );
   }
 
-  PersonMin person(String name, BuildContext context) {
+  PersonMin person(String name, String imagePath, BuildContext context) {
     return PersonMin(
         isBorderPurple: true,
         onTap: () {
           deleteParticipantDialog(context, name);
         },
-        row: UiBaseModel.groupInfoPerson(name));
+        row: RowModel(
+            text: name,
+            leadingIcon: CustomCircleAvatar(
+                big: false, imagePath: imagePath, shadow: false),
+            textStyle: AppTextStyles.groupTextStyle(true),
+            isAlignmentBetween: true,
+            trailingIcon: IconUtility.deleteIcon));
   }
 
   Future<String?> deleteParticipantDialog(BuildContext context, String name) {
@@ -236,21 +251,7 @@ class TGroupInformationView extends StatelessWidget {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text(GroupTextUtil.deleteParticipantText),
-        actions: <Widget>[
-          TextButton(
-            onPressed: () => Get.back(),
-            child: Text(GroupTextUtil.cancelText),
-          ),
-          TextButton(
-            onPressed: () {
-              //participant silinecek
-
-              Get.back();
-            },
-            child: Text(GroupTextUtil.deleteText),
-          ),
-        ],
+        title: Text("Hata olustu uygulamayi kapatip aciniz"),
       ),
     );
   }

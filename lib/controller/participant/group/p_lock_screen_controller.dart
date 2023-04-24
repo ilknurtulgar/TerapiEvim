@@ -60,9 +60,8 @@ class PLockScreenController extends BaseController2 {
     //burada therapistname ve short call time bilgileri girilmeli
   }
 
-  RxBool isTestSolved = true.obs;
-
-  RxBool isTestResultReady = true.obs;
+  RxBool isTestSolved = false.obs;
+  RxBool isTestResultReady = false.obs;
   void lockScreenFinished() {
     //group id verilecek
     localManager.setStringValue(LocalManagerKeys.pJoinedGroupId, "groupId");

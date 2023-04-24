@@ -1,3 +1,4 @@
+import 'package:terapievim/model/common/profile/p_public_profile_model.dart';
 import 'package:terapievim/model/therapist/group/t_group_model.dart';
 
 import '../../../core/base/service/base_service.dart';
@@ -33,8 +34,7 @@ class PGroupService extends IPGroupService with BaseService {
   @override
   Future<TGroupModel?> getCurrentGroup(String groupId) async {
     if (userId == null) return null;
-    final result =
-        await manager.readOne<TGroupModel, TGroupModel>(
+    final result = await manager.readOne<TGroupModel, TGroupModel>(
       collectionPath: APIConst.groups,
       docId: groupId,
       parseModel: TGroupModel(),
@@ -162,5 +162,25 @@ class PGroupService extends IPGroupService with BaseService {
     return result.data![0];
   }
 
+  @override
+  Future<List<PPublicProfile>> getParticipantsList(
+      {required List<String> participantsId}) async {
 
+    final List<PPublicProfile> publicProfileList = [];
+
+    for (String participantId in participantsId) {
+      final result = await manager.readWhere<PPublicProfile, PPublicProfile>(
+        collectionPath: APIConst.groups,
+        whereField: AppConst.id,
+        whereIsEqualTo: participantId,
+        parseModel: PPublicProfile(),
+      );
+
+      if (result.data != null) {
+        publicProfileList.add(result.data!);
+      }
+    }
+
+    return publicProfileList;
+  }
 }

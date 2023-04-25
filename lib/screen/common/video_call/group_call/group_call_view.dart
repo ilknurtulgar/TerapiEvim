@@ -11,10 +11,8 @@ import 'modules/therapist_view.dart';
 class GroupCallView extends StatelessWidget {
   final VideoCallTokenModel videoCallToken;
 
-  const GroupCallView({
-    Key? key,
-    required this.videoCallToken,
-  }) : super(key: key);
+  const GroupCallView({Key? key, required this.videoCallToken})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

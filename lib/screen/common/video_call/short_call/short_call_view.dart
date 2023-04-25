@@ -9,7 +9,7 @@ import '../../../../core/base/ui_models/video_call/person_in_call_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../model/common/video_call/video_call_token_model.dart';
-import '../../../participant/video_call/util/utility.dart';
+import '../util/utility.dart';
 
 class ShortCallView extends StatelessWidget {
   ShortCallView({super.key, required this.videoCallToken});

@@ -3,7 +3,8 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/video_call/container/circular_container.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/video_call/util/utility.dart';
+
+import '../../../../../screen/common/video_call/util/utility.dart';
 
 class CustomVideoCallButton extends StatelessWidget {
   const CustomVideoCallButton(

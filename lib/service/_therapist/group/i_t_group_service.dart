@@ -42,6 +42,9 @@ abstract class ITGroupService {
 
   Future<String?> deleteGroup(String groupId);
 
+  ///TODO: delete it in future
+  Future<bool> createIsolatedCall(String meetingId);
+
   Future<List<TCopingMethodModel?>?> getCopingMethods({
     required String groupId,
     String lastDocId,

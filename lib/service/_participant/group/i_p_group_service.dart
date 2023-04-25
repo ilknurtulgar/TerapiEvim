@@ -32,4 +32,6 @@ abstract class IPGroupService {
   Future<bool?> joinGroup(JoinGroupIdModel groupId);
 
   Future<TGroupSessionModel?> getRecentGroupSession(String groupId);
+
+  Future<String?> getIsolatedCallMeetingId();
 }

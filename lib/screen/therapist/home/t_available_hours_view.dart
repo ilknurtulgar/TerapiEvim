@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
@@ -37,22 +38,23 @@ class TAvailableHoursView extends StatelessWidget {
 
   Widget choosingtime(TAvailableHoursViewController controller) {
     return Obx(
-      () => ListView.builder(
-        itemBuilder: (context, index) {
-          final TFreeDateModel? tFreeDateModel =
-              controller.sessionTimeList[index];
-          return Padding(
-              padding: AppPaddings.timeChossingBetweenPadding,
-              child: ChoosingTimeForSCContainer(
-                onSelectedHour: (selectedHourId) {},
-                date: tFreeDateModel?.dateTime ?? Timestamp.now(),
-                timeList: tFreeDateModel?.hours.toList() ?? [],
-                isForParticipant: false,
-                //  listViewChosenList: [true].obs,
-              ));
-        },
-        itemCount: controller.sessionTimeList.length,
-      ),
+      () => controller.sessionTimeList.isEmpty
+          ? EmptySizedBoxText()
+          : ListView.builder(
+              itemBuilder: (context, index) {
+                final TFreeDateModel? tFreeDateModel =
+                    controller.sessionTimeList[index];
+                return Padding(
+                    padding: AppPaddings.timeChossingBetweenPadding,
+                    child: ChoosingTimeForSCContainer(
+                      onSelectedHour: (selectedHourId) {},
+                      date: tFreeDateModel?.dateTime ?? Timestamp.now(),
+                      timeList: tFreeDateModel?.hours.toList() ?? [],
+                      isForParticipant: false,
+                    ));
+              },
+              itemCount: controller.sessionTimeList.length,
+            ),
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 import '../../../controller/participant/activity/p_activity_controller.dart';
 import '../../../core/base/component/app_bar/heading_minto.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
@@ -41,12 +42,14 @@ class PActivityView extends StatelessWidget {
                     ),
                   ),
                   Obx(
-                    () => _activityRecentSeminar(
-                        controller,
-                        context,
-                        controller.recentActivities.isEmpty
-                            ? null
-                            : controller.recentActivities.first),
+                    () => controller.recentActivities.isEmpty
+                        ? SliverToBoxAdapter(child: EmptySizedBoxText())
+                        : _activityRecentSeminar(
+                            controller,
+                            context,
+                            controller.recentActivities.isEmpty
+                                ? null
+                                : controller.recentActivities.first),
                   ),
                   SliverToBoxAdapter(
                     child: HeadingMinto(
@@ -60,11 +63,13 @@ class PActivityView extends StatelessWidget {
                       },
                     ),
                   ),
-                  Obx(() => _activityPastSeminar(
-                      context,
-                      controller.pastActivities.isEmpty
-                          ? null
-                          : controller.pastActivities.last))
+                  Obx(() => controller.pastActivities.isEmpty
+                      ? SliverToBoxAdapter(child: EmptySizedBoxText())
+                      : _activityPastSeminar(
+                          context,
+                          controller.pastActivities.isEmpty
+                              ? null
+                              : controller.pastActivities.last))
                 ],
               ),
             ),

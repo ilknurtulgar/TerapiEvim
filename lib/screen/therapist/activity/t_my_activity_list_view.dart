@@ -5,6 +5,7 @@ import 'package:terapievim/controller/therapist/activity/t_my_activity_list_view
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 import 'package:terapievim/model/common/activity/t_activity_model.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 
 import '../../../core/base/component/group/group_box.dart';
 import '../../../core/base/util/base_utility.dart';
@@ -23,24 +24,29 @@ class TMyActivityListView extends StatelessWidget {
             title: ActivityTextUtil.myActivty,
           ),
           body: Obx(
-            () => ListView.builder(
-                itemCount: controller.fetchedMyActivity.length,
-                itemBuilder: (context, index) {
-                  final TActivityModel? activityModel =
-                      controller.fetchedMyActivity[index];
+            () => controller.fetchedMyActivity.isEmpty
+                ? EmptySizedBoxText()
+                : ListView.builder(
+                    itemCount: controller.fetchedMyActivity.length,
+                    itemBuilder: (context, index) {
+                      final TActivityModel? activityModel =
+                          controller.fetchedMyActivity[index];
 
-                  return ActivityBox(
-                    rightButtonTap: () {},
-                    istwobutton: false,
-                    buttonText: ActivityTextUtil.watchTheRecording,
-                    containerModel: AppContainers.containerButton(true),
-                    isactivity: true,
-                    arowModel: DemoInformation.myPastActivities(
-                        activityModel?.title ?? "empty  title"),
-                    clockModel: DemoInformation.myPastActivitiesTime(
-                        activityModel?.dateTime ?? Timestamp.now()),
-                  );
-                }),
+                      return Padding(
+                        padding: AppPaddings.pagePadding,
+                        child: ActivityBox(
+                          rightButtonTap: () {},
+                          istwobutton: false,
+                          buttonText: ActivityTextUtil.watchTheRecording,
+                          containerModel: AppContainers.containerButton(true),
+                          isactivity: true,
+                          arowModel: DemoInformation.myPastActivities(
+                              activityModel?.title ?? "empty  title"),
+                          clockModel: DemoInformation.myPastActivitiesTime(
+                              activityModel?.dateTime ?? Timestamp.now()),
+                        ),
+                      );
+                    }),
           ),
         );
       },

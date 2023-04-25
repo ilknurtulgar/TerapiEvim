@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/managers/converter/date_time_manager.dart';
 import 'package:terapievim/model/therapist/session/t_session_model.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 
 import '../../../controller/therapist/home/session/t_session_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
@@ -44,22 +45,27 @@ class TSessionView extends StatelessWidget {
     return SliverPadding(
       padding: AppPaddings.pagePadding,
       sliver: Obx(
-        () => SliverList(
-          delegate: SliverChildBuilderDelegate(
-              childCount: controller.fetchedSession.length, (context, index) {
-            final TSessionModel? sessionModel =
-                controller.fetchedSession[index];
+        () => controller.fetchedSession.isEmpty
+            ? SliverToBoxAdapter(child: EmptySizedBoxText())
+            : SliverList(
+                delegate: SliverChildBuilderDelegate(
+                    childCount: controller.fetchedSession.length,
+                    (context, index) {
+                  final TSessionModel? sessionModel =
+                      controller.fetchedSession[index];
 
-            return participantWithShortCallTime(
-              participantName: sessionModel?.participantName ?? "",
-              time: (DateTimeManager.getFormattedDateFromFormattedString(
-                  value: sessionModel?.dateTime?.toDate().toIso8601String())),
-              testResultOnTapped: () =>
-                  context.push(TestResultView(session: sessionModel!)),
-              joinOnTapped: () => controller.joinShortCall(sessionModel),
-            );
-          }),
-        ),
+                  return participantWithShortCallTime(
+                    participantName: sessionModel?.participantName ?? "",
+                    time: (DateTimeManager.getFormattedDateFromFormattedString(
+                        value: sessionModel?.dateTime
+                            ?.toDate()
+                            .toIso8601String())),
+                    testResultOnTapped: () =>
+                        context.push(TestResultView(session: sessionModel!)),
+                    joinOnTapped: () => controller.joinShortCall(sessionModel),
+                  );
+                }),
+              ),
       ),
     );
   }

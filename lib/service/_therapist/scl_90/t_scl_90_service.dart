@@ -21,8 +21,8 @@ class TScl90Service extends ITScl90Service with BaseService {
     final result =
         await manager.readWhere<Scl90ResultModel, List<Scl90ResultModel>>(
       collectionPath: APIConst.scl90,
-      whereIsEqualTo: APIConst.participantId,
-      whereField: participantId,
+      whereIsEqualTo: participantId,
+      whereField: APIConst.participantId,
       parseModel: Scl90ResultModel(),
       limit: AppConst.oneItemPerPage,
     );

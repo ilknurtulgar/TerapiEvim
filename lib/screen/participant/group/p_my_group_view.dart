@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/component/group/person.dart';
@@ -14,6 +15,7 @@ import '../../../core/base/ui_models/card_model.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
+import '../../../core/managers/converter/date_time_manager.dart';
 
 class PMyGroupView extends StatelessWidget {
   const PMyGroupView({super.key});
@@ -22,8 +24,8 @@ class PMyGroupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return BaseView<PGroupController>(
       getController: PGroupController(),
-      onModelReady: (model) {
-        //seansa katilmali
+      onModelReady: (controller) {
+        controller.setContext(context);
       },
       onPageBuilder: (context, controller) => Scaffold(
         appBar: MyAppBar(title: GroupTextUtil.myGroupText),
@@ -34,40 +36,69 @@ class PMyGroupView extends StatelessWidget {
               CustomHeading(
                   isalignmentstart: true,
                   text: GroupTextUtil.upcomingMeetingText),
-              ActivityBox(
-                  rightButtonTap: () {},
-                  istwobutton: false,
-                  buttonText: GroupTextUtil.joinText,
-                  isactivity: false,
-                  containerModel: AppContainers.containerButton(false),
-                  arowModel: rows(
-                      DemoInformation.therapistName, RowType.therapist, false),
-                  ayrowwModel: rows(DemoInformation.therapistName,
-                      RowType.secTherapist, false),
-                  clockModel:
-                      rows(DemoInformation.therapistName, RowType.date, false)),
+              Obx(
+                () => ActivityBox(
+                    rightButtonTap: () {
+                      controller.joinVideoCall();
+                    },
+                    istwobutton: false,
+                    buttonText: GroupTextUtil.joinText,
+                    isactivity: false,
+                    containerModel: AppContainers.containerButton(false),
+                    arowModel: rows(
+                        controller.tGroupSession.value?.therapistName ?? "null",
+                        RowType.therapist,
+                        false),
+                    ayrowwModel: rows(
+                        controller.tGroupSession.value?.therapistHelperName ??
+                            "null",
+                        RowType.secTherapist,
+                        false),
+                    clockModel: rows(
+                        DateTimeManager.getFormattedDateFromFormattedString(
+                            value: controller.tGroupSession.value?.dateTime
+                                ?.toDate()
+                                .toIso8601String()),
+                        RowType.date,
+                        false)),
+              ),
               CustomHeading(
                 text: GroupTextUtil.groupsInformationText,
                 isalignmentstart: true,
               ),
-              therapist(
-                  rows(DemoInformation.therapistName, RowType.therapist, true),
-                  () {
-                context.push(const TProfileView(isSecTherapist: false));
-              }),
+              Obx(
+                () => therapist(
+                    rows(
+                        controller.tGroupSession.value?.therapistName ?? "null",
+                        RowType.therapist,
+                        true), () {
+                  context.push(TProfileView(
+                    isSecTherapist: false,
+                    groupId: controller.currentGroupId,
+                  ));
+                }),
+              ),
               therapist(UiBaseModel.messageToTherapist,
                   () => context.push(PMessageView())),
-              therapist(
-                  rows(DemoInformation.therapistName2, RowType.secTherapist,
-                      true), () {
-                context.push(const TProfileView(isSecTherapist: true));
-              }),
+              Obx(
+                () => therapist(
+                    rows(
+                        controller.tGroupSession.value?.therapistHelperName ??
+                            'null',
+                        RowType.secTherapist,
+                        true), () {
+                  context.push(TProfileView(
+                    isSecTherapist: true,
+                    groupId: controller.currentGroupId,
+                  ));
+                }),
+              ),
               CustomHeading(
-                text: GroupTextUtil
-                    .participantsText, //buraya katilmiclarin kac kisi oldugu bilgisi gelecek
+                text: GroupTextUtil.participantsText +
+                    controller.participants.length.toString(),
                 isalignmentstart: true,
               ),
-              participants(),
+              participants(controller),
             ],
           ),
         ),
@@ -101,16 +132,19 @@ class PMyGroupView extends StatelessWidget {
     );
   }
 
-  ListView participants() {
+  Widget participants(PGroupController controller) {
     //participant listesi gelecek
-    return ListView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: DemoInformation.tmpParticipantNumber,
-      itemBuilder: ((context, index) => participantContainer(
-          CardModel(
-              imagePath: DemoInformation.imagePath, title: "Aleyna Tilki"),
-          SizeUtil.normalValueHeight)),
+    return Obx(
+      () => ListView.builder(
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: controller.participants.length,
+        itemBuilder: ((context, index) => participantContainer(
+            CardModel(
+                imagePath: controller.participants[index].imageUrl ?? "null",
+                title: controller.participants[index].name ?? "null"),
+            SizeUtil.normalValueHeight)),
+      ),
     );
   }
 }

@@ -15,8 +15,10 @@ class PGroupView extends StatelessWidget {
   Widget build(BuildContext context) {
     return _controller.joinedGroupId.isNotEmpty
         ? const PMyGroupView()
-        : _controller.isSessionSelected.isFalse
-            ? PShortCallTimeView()
-            : const PLockView();
+        : _controller.isScl90Submitted.isFalse
+            ? PLockView()
+            : _controller.isSessionSelected.isFalse
+                ? PShortCallTimeView()
+                : const PLockView();
   }
 }

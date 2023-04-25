@@ -90,7 +90,7 @@ class PLockView extends StatelessWidget {
           row2Text: controller.shortCallTime.value,
           buttonText: GroupTextUtil.join,
           firstOnTap: () {
-            //short calle gitmeli zamani geldiginde
+            controller.onShortCallPressed();
           },
         )
       ],

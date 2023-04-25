@@ -1,5 +1,6 @@
 import '../../../core/base/service/base_service.dart';
 import '../../../core/constants/api_const.dart';
+import '../../../core/constants/app_const.dart';
 import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/empty_model.dart';
@@ -17,16 +18,19 @@ class TScl90Service extends ITScl90Service with BaseService {
   }) async {
     if (userId == null) return null;
 
-    final result = await manager.readOne<Scl90ResultModel, Scl90ResultModel>(
+    final result =
+        await manager.readWhere<Scl90ResultModel, List<Scl90ResultModel>>(
       collectionPath: APIConst.scl90,
-      docId: participantId,
+      whereIsEqualTo: participantId,
+      whereField: APIConst.participantId,
       parseModel: Scl90ResultModel(),
+      limit: AppConst.oneItemPerPage,
     );
-    if (result.error != null) {
+    if (result.error != null && result.data == null) {
       return null;
     }
 
-    return result.data;
+    return result.data!.isNotEmpty ? result.data![0] : null;
   }
 
   @override
@@ -47,9 +51,7 @@ class TScl90Service extends ITScl90Service with BaseService {
     session.isFinished = true;
 
     final sessionResult = await manager.update<TSessionModel, EmptyModel>(
-        collectionPath: APIConst.sessions,
-        docId: session.id!,
-        data: session);
+        collectionPath: APIConst.sessions, docId: session.id!, data: session);
     if (categoryResult.error != null) {
       return false;
     }

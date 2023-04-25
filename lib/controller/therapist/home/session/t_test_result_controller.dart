@@ -11,18 +11,18 @@ class TTestResultController extends BaseController2{
   @override
   void setContext(BuildContext context) => controllerContext = context;
   
-  void setSessionModel(TSessionModel sessionModel) => session = sessionModel;
+  Future<void> setSessionModel(TSessionModel sessionModel) async{
+    session = sessionModel;
+    result.value = await sessionService.getSCLResultById(participantId: session.participantId ?? "");
+  } 
 
   @override 
   void onInit() async {
-    tSessionService = TScl90Service(vexaFireManager.networkManager);
-
-    result.value = await tSessionService.getSCLResultById(participantId: session.participantId ?? "");
-    
+    sessionService = TScl90Service(vexaFireManager.networkManager);
     super.onInit();
   }
 
-  late ITScl90Service tSessionService;
+  late ITScl90Service sessionService;
 
   Rx<Scl90ResultModel?> result = Scl90ResultModel().obs;
 

@@ -15,17 +15,18 @@ class PProfileService extends IPProfileService with BaseService {
   Future<TGroupModel?> getJoinedGroup(String joinedGroupId) async {
     if (userId == null) return null;
 
-    final result = await manager.readWhere<TGroupModel, TGroupModel>(
+    final result = await manager.readWhere<TGroupModel, List<TGroupModel>>(
       collectionPath: APIConst.groups,
       parseModel: TGroupModel(),
       whereField: AppConst.id,
       whereIsEqualTo: joinedGroupId,
+      limit: AppConst.oneItemPerPage,
     );
-    if (result.error != null) {
+    if (result.error != null || result.data == null) {
       return null;
     }
-
-    return result.data;
+    if (result.data!.isEmpty) return null;
+    return result.data![0];
   }
 
   @override

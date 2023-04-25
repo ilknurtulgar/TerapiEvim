@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/managers/converter/date_time_manager.dart';
 
 import '../../../controller/main_controller.dart';
 import '../../../controller/participant/profil/p_profile_controller.dart';
@@ -119,21 +120,23 @@ class PProfileView extends StatelessWidget {
 
   Widget participantGroupContainer(PProfileController controller) {
     MainController mainController = Get.find();
-    return GroupClass(
-      width: SizeUtil.highestValueWidth,
-      isBorderPurple: true,
-      heading: controller.myGroup.value?.name ?? "",
-      onTap: () => mainController.onPageChanged(2),
-      row1: UiBaseModel.doubleTextRow(ParticipantProfileTextUtil.mainTherpist,
-          DemoInformation.groupInformation.mainTherapistName, true),
-      row2: UiBaseModel.doubleTextRow(
-          ParticipantProfileTextUtil.advisor,
-          controller.myGroup.value?.therapistHelperName ?? "Bekleniyor..",
-          true),
-      row3: UiBaseModel.normalTextRow(
-          controller.myGroup.value!.dateTime.toString(),
-          IconUtility.clockIcon.icon!,
-          AppTextStyles.normalTextStyle('medium', false)),
+    return Obx(
+      () => GroupClass(
+        width: SizeUtil.highestValueWidth,
+        isBorderPurple: true,
+        heading: controller.myGroup.value?.name ?? "",
+        onTap: () => mainController.onPageChanged(2),
+        row1: UiBaseModel.doubleTextRow(ParticipantProfileTextUtil.mainTherpist,
+            controller.myGroup.value?.therapistName ?? "", true),
+        row2: UiBaseModel.doubleTextRow(
+            ParticipantProfileTextUtil.advisor,
+            controller.myGroup.value?.therapistHelperName ?? "Bekleniyor..",
+            true),
+        row3: UiBaseModel.normalTextRow(
+            DateTimeManager.getFormattedDateFromFormattedString(value: controller.myGroup.value!.dateTime!.toDate().toIso8601String(),),
+            IconUtility.clockIcon.icon!,
+            AppTextStyles.normalTextStyle('medium', false)),
+      ),
     );
   }
 

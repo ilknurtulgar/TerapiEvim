@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 import '../../../../controller/profile_settings_controller.dart';
@@ -37,6 +38,7 @@ class ProfileSettingsList extends StatelessWidget {
   }
 
   Padding genderChoosing() {
+    var gender = profileController.genderController.text.obs;
     return Padding(
       padding: AppPaddings.componentPadding,
       child: ColumnDropDown(
@@ -45,15 +47,13 @@ class ProfileSettingsList extends StatelessWidget {
         isInProfilePage: true,
         title: "Cinsiyet",
         onValueSelected: (int index) {
-          profileController.setIsBoxSelected();
+          profileController.genderController.text = gender.value;
+          print(profileController.genderController.text);
         },
         onDropDownTapped: () {
-          print(profileController.isBoxSelected.value);
-          profileController.isBoxSelected.value !=
-              profileController.isBoxSelected.value;
-          print(profileController.isBoxSelected.value);
+          profileController.setIsBoxSelected();
         },
-        selectedText: profileController.genders,
+        selectedText: gender,
       ),
     );
   }

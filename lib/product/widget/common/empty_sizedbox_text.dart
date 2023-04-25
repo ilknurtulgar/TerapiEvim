@@ -5,8 +5,13 @@ class EmptySizedBoxText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      child: Text("Bu kısımda veri bulunmamaktadır."),
+    return Align(
+      alignment: Alignment.centerLeft,
+      child: SizedBox(
+        child: Text(
+          "Bu kısımda veri bulunmamaktadır.",
+        ),
+      ),
     );
   }
 }

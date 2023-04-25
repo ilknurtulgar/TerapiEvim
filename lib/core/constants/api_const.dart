@@ -20,4 +20,5 @@ class APIConst {
   static const String storageImages = 'images';
   static const String storageCopingMethods = 'copingMethods';
   static const String storageTConfirmation = 'tConfirmation';
+  static const String tempIsolatedCall = 'tempIsolatedCall';
 }

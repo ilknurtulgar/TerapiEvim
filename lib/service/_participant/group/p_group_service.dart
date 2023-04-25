@@ -7,6 +7,7 @@ import '../../../core/constants/app_const.dart';
 import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../model/common/user/user_model.dart';
+import '../../../model/common/video_call/isolated_call_meeting_id_model.dart';
 import '../../../model/participant/group/join_group_id_model.dart';
 import '../../../model/participant/group/joinable_group_model.dart';
 import '../../../model/therapist/group/t_group_session_model.dart';
@@ -184,5 +185,19 @@ class PGroupService extends IPGroupService with BaseService {
     }
 
     return publicProfileList;
+  }
+
+  @override
+  Future<String?> getIsolatedCallMeetingId() async {
+    final result =
+        await manager.readOne<ShortCallMeetingIdModel, ShortCallMeetingIdModel>(
+            parseModel: ShortCallMeetingIdModel(),
+            collectionPath: APIConst.tempIsolatedCall,
+            docId: APIConst.tempIsolatedCall);
+
+    if (result.error != null) {
+      return null;
+    }
+    return result.data?.meetingId;
   }
 }

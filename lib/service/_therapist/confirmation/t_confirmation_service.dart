@@ -6,7 +6,9 @@ import '../../../core/constants/app_const.dart';
 import '../../../core/init/network/model/error_model_custom.dart';
 import '../../../core/managers/firebase/firestore/i_firestore_manager.dart';
 import '../../../core/managers/firebase/firestore/models/created_id_response.dart';
+import '../../../core/managers/firebase/firestore/models/empty_model.dart';
 import '../../../core/managers/firebase/storage/storage_manager.dart';
+import '../../../model/therapist/confirmation/is_diploma_uploaded_model.dart';
 import '../../../model/therapist/confirmation/t_confirmation_model.dart';
 import 'i_t_confirmation_service.dart';
 
@@ -40,11 +42,19 @@ class TConfirmationService extends ITConfirmationService with BaseService {
         data: confirmation.toJson()!,
       );
 
-      if (createdIdResponse != null) {
-        return createdIdResponse;
+      if (createdIdResponse?.id == null) {
+        return null;
       }
 
-      return null;
+      IsDiplomaUploadedModel isDiplomaUploaded =
+          IsDiplomaUploadedModel(isDiplomaUploaded: true);
+
+      await manager.update<IsDiplomaUploadedModel, EmptyModel>(
+          collectionPath: APIConst.therapist,
+          docId: userId!,
+          data: isDiplomaUploaded);
+
+      return createdIdResponse;
     } catch (e) {
       await crashlyticsManager.sendACrash(
           error: e.toString(),

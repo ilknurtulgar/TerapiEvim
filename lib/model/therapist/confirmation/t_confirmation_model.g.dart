@@ -11,7 +11,7 @@ ConfirmationModel _$ConfirmationModelFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String?,
       therapistId: json['therapistId'] as String?,
       uploadedPdfUrl: json['uploadedPdfUrl'] as String?,
-      isConfirmed: json['isConfirmed'] as String?,
+      isConfirmed: json['isConfirmed'] as bool?,
     );
 
 Map<String, dynamic> _$ConfirmationModelToJson(ConfirmationModel instance) =>

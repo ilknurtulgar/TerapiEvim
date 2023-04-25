@@ -9,21 +9,27 @@ import '../../../service/_therapist/profile/t_profile_serice.dart';
 class TAttendedSeminarsController extends DropDownController {
   @override
   void setContext(BuildContext context) {
-    // TODO: implement setContext
+    controllerContext = context;
   }
+
+  late final List<TActivityModel> fetchedActivities;
 
   @override
   Future<void> onInit() async {
     tProfileService = TProfileService(vexaFireManager.networkManager);
 
-    final List<TActivityModel> fetchedActivities =
-        await tProfileService.getMyPastActivitiesOrdered();
+    fetchedActivities = await tProfileService.getMyPastActivitiesOrdered();
 
     if (fetchedActivities.isNotEmpty) {
       listOfActivities.addAll(fetchedActivities);
     }
 
     super.onInit();
+  }
+
+  void watchSeminar(int index) {
+    //bu activitenin izlenmesi lazim
+    fetchedActivities[index];
   }
 
   RxList<TActivityModel> listOfActivities = <TActivityModel>[].obs;

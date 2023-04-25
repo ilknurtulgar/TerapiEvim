@@ -6,7 +6,8 @@ part 't_confirmation_model.g.dart';
 
 @JsonSerializable()
 class ConfirmationModel extends INetworkModel<ConfirmationModel> {
-  String? id, therapistId, uploadedPdfUrl, isConfirmed;
+  String? id, therapistId, uploadedPdfUrl;
+  bool? isConfirmed;
 
   /// pickedPdfPath is required
   @JsonKey(includeToJson: false, includeFromJson: false)

@@ -39,14 +39,6 @@ class PDeterminingShortCallController extends BaseController2 {
   Rx<TFreeHoursModel> _selectedHour = TFreeHoursModel().obs;
 
   late RxList<bool> isChosen = List.filled(freeDates.length, false).obs;
-  // String chosenDate = '';
-  // String chosenTime = '';
-
-  // void callBack(String chosenDateInContainer, String chosenTimeInContainer) {
-  //   chosenDate = chosenDateInContainer;
-  //   chosenTime = chosenTimeInContainer;
-  //   print('DATE $chosenDate TIME $chosenTime');
-  // }
 
   void onSelectedHour(TFreeHoursModel selectedHour) {
     print(selectedHour.toJson());

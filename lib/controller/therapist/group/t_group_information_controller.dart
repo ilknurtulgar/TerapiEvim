@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/model/common/profile/p_public_profile_model.dart';
 
 import '../../../core/base/component/toast/toast.dart';
+import '../../../core/managers/converter/date_time_manager.dart';
 import '../../../core/managers/videosdk/i_video_sdk_manager.dart';
 import '../../../core/managers/videosdk/video_sdk_manager.dart';
 import '../../../model/common/video_call/video_call_token_model.dart';
@@ -105,7 +106,7 @@ class TGroupInformationController extends GetxController with BaseController {
     }
   }
 
-  void getMeetingInformation() async {
+  Future<void> getMeetingInformation() async {
     recentSession =
         await tGroupService.getRecentGroupSession(currentGroup?.id ?? "null");
 
@@ -119,15 +120,17 @@ class TGroupInformationController extends GetxController with BaseController {
       DateTime dt =
           DateTime.fromMillisecondsSinceEpoch(ts.millisecondsSinceEpoch);
 
-      meetingTime.value = dt.day.toString() +
-          "/" +
-          dt.month.toString() +
-          "/" +
-          dt.year.toString() +
-          "   " +
-          dt.hour.toString() +
-          "." +
-          dt.minute.toString();
+      meetingTime.value = DateTimeManager.getFormattedDateFromFormattedString(
+          value: dt.toIso8601String());
+      // meetingTime.value = dt.day.toString() +
+      //     "/" +
+      //     dt.month.toString() +
+      //     "/" +
+      //     dt.year.toString() +
+      //     "   " +
+      //     dt.hour.toString() +
+      //     "." +
+      //     dt.minute.toString();
     }
   }
 

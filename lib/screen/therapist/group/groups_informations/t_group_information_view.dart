@@ -25,8 +25,6 @@ class TGroupInformationView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    /// TODO: it should be deleted
-
     return BaseView<TGroupInformationController>(
         getController: TGroupInformationController(),
         onModelReady: (controller) {
@@ -46,11 +44,16 @@ class TGroupInformationView extends StatelessWidget {
                 miniHeadings(GroupTextUtil.upcomingMeetingText, false),
                 meeting(controller),
                 miniHeadings(GroupTextUtil.groupsInformationText, false),
-                navMethod(
-                    row(controller, GroupTextUtil.secondTherapistText,
-                        controller.helperTherapistName.value), () {
-                  context.push(const TProfileView(isSecTherapist: true));
-                }),
+                Obx(
+                  () => navMethod(
+                      row(controller, GroupTextUtil.secondTherapistText,
+                          controller.helperTherapistName.value), () {
+                    context.push(TProfileView(
+                      isSecTherapist: true,
+                      groupId: controller.currentGroup?.id ?? "null",
+                    ));
+                  }),
+                ),
                 Election(
                     isSelectedValue: controller.isParticipantElectionOpen,
                     firstRow: Obx(() => SizedBox(

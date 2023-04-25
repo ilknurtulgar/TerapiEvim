@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/product/enum/local_keys_enum.dart';
 import 'package:terapievim/screen/participant/group/p_my_group_view.dart';
+import 'package:terapievim/service/_participant/group/p_group_service.dart';
 import 'package:terapievim/service/_participant/session/p_session_service.dart';
 
 import '../../../model/therapist/session/t_session_model.dart';
@@ -37,7 +38,7 @@ class PLockScreenController extends BaseController2 {
     PSessionService pSessionService =
         PSessionService(vexaFireManager.networkManager);
     TSessionModel? sessionModel = await pSessionService.getASession(sessionId);
-
+    PGroupService gService = PGroupService(vexaFireManager.networkManager);
     therapistName.value = sessionModel?.therapistName ?? "null";
     Timestamp? ts = sessionModel?.dateTime;
     if (ts.isNull) {
@@ -60,9 +61,8 @@ class PLockScreenController extends BaseController2 {
     //burada therapistname ve short call time bilgileri girilmeli
   }
 
-  RxBool isTestSolved = true.obs;
-
-  RxBool isTestResultReady = true.obs;
+  RxBool isTestSolved = false.obs;
+  RxBool isTestResultReady = false.obs;
   void lockScreenFinished() {
     //group id verilecek
     localManager.setStringValue(LocalManagerKeys.pJoinedGroupId, "groupId");

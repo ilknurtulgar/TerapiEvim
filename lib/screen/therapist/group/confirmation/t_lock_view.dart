@@ -26,7 +26,7 @@ class TLockView extends StatelessWidget {
             Container(
               color: Colors.black.withOpacity(0.8),
             ),
-            popUp(context, controller)
+            Obx(() => popUp(context, controller))
           ],
         ),
       ),

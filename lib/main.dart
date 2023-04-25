@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'controller/auth/auth_controller.dart';
-import 'controller/participant/group/p_group_controller.dart';
 import 'controller/main_controller.dart';
 import 'core/base/util/base_utility.dart';
 import 'core/init/cache/local_manager.dart';
@@ -82,6 +81,5 @@ Future<void> initialize() async {
 
 void _initializeControllers() {
   Get.put(AuthController());
-  Get.put(PGroupController());
   Get.put(MainController());
 }

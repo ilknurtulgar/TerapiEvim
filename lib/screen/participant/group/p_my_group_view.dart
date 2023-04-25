@@ -28,16 +28,17 @@ class PMyGroupView extends StatelessWidget {
       onModelReady: (controller) {
         controller.setContext(context);
       },
-      onPageBuilder: (context, controller) => Scaffold(
-        appBar: MyAppBar(title: GroupTextUtil.myGroupText),
-        floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.send),
-          onPressed: () {
-            controller.joinIsolatedCall();
-          },
-        ),
-        body: SafeArea(
-          child: ListView(
+      onPageBuilder: (context, controller) => SafeArea(
+        top: false,
+        child: Scaffold(
+          appBar: MyAppBar(title: GroupTextUtil.myGroupText),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.send),
+            onPressed: () {
+              controller.joinIsolatedCall();
+            },
+          ),
+          body: ListView(
             padding: AppPaddings.pagePadding,
             children: [
               CustomHeading(
@@ -53,7 +54,8 @@ class PMyGroupView extends StatelessWidget {
                     isactivity: false,
                     containerModel: AppContainers.containerButton(false),
                     arowModel: rows(
-                        controller.tGroupSession.value?.therapistName ?? "null",
+                        controller.tGroupSession.value?.therapistName ??
+                            "null",
                         RowType.therapist,
                         false),
                     ayrowwModel: rows(
@@ -76,7 +78,8 @@ class PMyGroupView extends StatelessWidget {
               Obx(
                 () => therapist(
                     rows(
-                        controller.tGroupSession.value?.therapistName ?? "null",
+                        controller.tGroupSession.value?.therapistName ??
+                            "null",
                         RowType.therapist,
                         true), () {
                   context.push(TProfileView(

@@ -82,7 +82,7 @@ class PMyGroupView extends StatelessWidget {
                             "null",
                         RowType.therapist,
                         true), () {
-                  context.push(TProfileView(
+                  context.push(TAboutProfileView(
                     isSecTherapist: false,
                     groupId: controller.currentGroupId,
                   ));
@@ -97,7 +97,7 @@ class PMyGroupView extends StatelessWidget {
                             'null',
                         RowType.secTherapist,
                         true), () {
-                  context.push(TProfileView(
+                  context.push(TAboutProfileView(
                     isSecTherapist: true,
                     groupId: controller.currentGroupId,
                   ));

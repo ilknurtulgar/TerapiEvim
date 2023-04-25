@@ -121,7 +121,7 @@ class PProfileView extends StatelessWidget {
   Widget participantGroupContainer(PProfileController controller) {
     MainController mainController = Get.find();
     return Obx(
-      () => GroupClass(
+      () => controller.myGroup.value?.id != null  ? GroupClass(
         width: SizeUtil.highestValueWidth,
         isBorderPurple: true,
         heading: controller.myGroup.value?.name ?? "",
@@ -133,10 +133,11 @@ class PProfileView extends StatelessWidget {
             controller.myGroup.value?.therapistHelperName ?? "Bekleniyor..",
             true),
         row3: UiBaseModel.normalTextRow(
-            DateTimeManager.getFormattedDateFromFormattedString(value: controller.myGroup.value!.dateTime!.toDate().toIso8601String(),),
+            DateTimeManager.getFormattedDateFromFormattedString(value: controller.myGroup.value?.dateTime?.toDate().toIso8601String(),),
             IconUtility.clockIcon.icon!,
             AppTextStyles.normalTextStyle('medium', false)),
-      ),
+      )
+    : const SizedBox()
     );
   }
 

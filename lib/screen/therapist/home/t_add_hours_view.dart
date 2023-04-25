@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist/home/session/t_available_hours_view_controller.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:terapievim/core/managers/converter/date_time_manager.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_hours_model.dart';
 
 import '../../../controller/therapist/home/session/t_add_hours_view_controller.dart';
@@ -76,7 +77,7 @@ class _TAddHoursViewState extends State<TAddHoursView> {
                 ButterFlyButton(
                     buttonOnTap: () {
                       controller.createFreeDate();
-
+              
                       context.pop();
                     },
                     buttonName: ActivityTextUtil.save)
@@ -110,6 +111,7 @@ class _TAddHoursViewState extends State<TAddHoursView> {
                   time =
                       '${controller.chosenHour.value}:${controller.chosenMinutes.value}';
                   controller.timeList.add(TFreeHoursModel(hour: time));
+                  print(DateTimeManager.getFormattedDateFromFormattedString(value: controller.dateTime.value.toDate().toIso8601String()));
                 },
                 icon: IconUtility.addIcon),
           )
@@ -136,7 +138,7 @@ DateTextField _dateAdd(TAddHoursViewController controller) {
         choosingDate(
           controller.dateAddController,
           false,
-          controller.dateTime.value,
+          controller.dateTime,
         );
       });
 }

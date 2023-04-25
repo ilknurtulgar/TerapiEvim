@@ -53,7 +53,10 @@ class _SignUpViewState extends State<SignUpView> {
         onDropDownTapped: () {
           _signUpController.setIsBoxSelected();
         },
-        onValueSelected: (p0) {},
+        onValueSelected: (p0) {
+          _signUpController.setTextController();
+          print(_signUpController.genderController.text);
+        },
         isLogin: true),
     textfieldUtility.mailTextfield(_signUpController.emailController, true),
     textfieldUtility.passwordTextfield(
@@ -82,8 +85,7 @@ class _SignUpViewState extends State<SignUpView> {
               textfieldListView(),
               SliverToBoxAdapter(child: mediumSizedBox()),
               SliverToBoxAdapter(
-                child: acceptMakingShortCallContainer(_signUpController)
-                ),
+                  child: acceptMakingShortCallContainer(_signUpController)),
               buttonColumn(context)
             ],
           ),
@@ -133,7 +135,9 @@ class _SignUpViewState extends State<SignUpView> {
               child: Obx(
                 () => AcceptionRow(
                   isForMakingShortCall: true,
-                  explanation: mainController.isTherapist.value ? LoginSignUpTextUtil.therapistAcceptedMakingShortCall : LoginSignUpTextUtil.participantAcceptionText,
+                  explanation: mainController.isTherapist.value
+                      ? LoginSignUpTextUtil.therapistAcceptedMakingShortCall
+                      : LoginSignUpTextUtil.participantAcceptionText,
                   acceptionFunction: () => acceptTermOfUse(controller),
                   value: controller.isTermsOfUseAccepted.value,
                 ),

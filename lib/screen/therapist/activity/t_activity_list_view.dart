@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 import 'package:terapievim/model/common/activity/t_activity_model.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 
 import '../../../controller/therapist/activity/t_activity_list_view_controller.dart';
 import '../../../core/base/util/base_utility.dart';
@@ -22,25 +23,27 @@ class TActivityListView extends StatelessWidget {
             appBar: MyAppBar(title: ActivityTextUtil.activity),
             body: Padding(
               padding: AppPaddings.pagePadding,
-              child: Obx(() => ListView.builder(
-                    itemCount: controller.activity.length,
-                    itemBuilder: (context, index) {
-                      final TActivityModel? activityModel =
-                          controller.activity[index];
+              child: Obx(() => controller.activity.isEmpty
+                  ? EmptySizedBoxText()
+                  : ListView.builder(
+                      itemCount: controller.activity.length,
+                      itemBuilder: (context, index) {
+                        final TActivityModel? activityModel =
+                            controller.activity[index];
 
-                      return activitythreerowbox(
-                        () {},
-                        () {},
-                        DemoInformation.myPastActivities(
-                            activityModel?.title ?? "empty title"),
-                        DemoInformation.myPastActivitiesTime(
-                            activityModel?.dateTime ?? Timestamp.now()),
-                        ActivityTextUtil.join,
-                        DemoInformation.therapistnameActivityMod(
-                            "empty therapist name"),
-                      );
-                    },
-                  )),
+                        return activitythreerowbox(
+                          () {},
+                          () {},
+                          DemoInformation.myPastActivities(
+                              activityModel?.title ?? "empty title"),
+                          DemoInformation.myPastActivitiesTime(
+                              activityModel?.dateTime ?? Timestamp.now()),
+                          ActivityTextUtil.join,
+                          DemoInformation.therapistnameActivityMod(
+                              "empty therapist name"),
+                        );
+                      },
+                    )),
             ));
       },
     );

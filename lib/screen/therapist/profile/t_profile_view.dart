@@ -11,6 +11,7 @@ import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
+import '../../../core/managers/converter/date_time_manager.dart';
 import '../../../model/common/activity/t_activity_model.dart';
 import 'settings/t_settings_view.dart';
 import 't_attended_seminar_view.dart';
@@ -172,7 +173,7 @@ extension ActivitiesInProfileExtension on RxList<TActivityModel?> {
   List<String> get getDates {
     List<String> dates = [];
     this.forEach((element) {
-      dates.add(element?.dateTime!.toDate().toIso8601String() ?? "");
+      dates.add(DateTimeManager.getFormattedDateFromFormattedString(value: element?.dateTime!.toDate().toIso8601String(),));
     });
     return dates;
   }
@@ -198,7 +199,7 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   List<String> get getTimes {
     List<String> timeList = [];
     this.forEach((element) {
-      timeList.add(element?.dateTime!.toDate().toIso8601String() ?? "");
+      timeList.add(DateTimeManager.getFormattedDateFromFormattedString(value: element?.dateTime!.toDate().toIso8601String()));
     });
     return timeList;
   }

@@ -9,6 +9,7 @@ import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../../model/common/video_call/video_call_token_model.dart';
 import '../util/utility.dart';
+import 'modules/therapist_isolated_view.dart';
 
 class IsolatedCallView extends StatelessWidget {
   IsolatedCallView({super.key, required this.videoCallToken});
@@ -27,7 +28,7 @@ class IsolatedCallView extends StatelessWidget {
           return Scaffold(
             body: SafeArea(
               child: Stack(children: [
-                personBigViewInCall(controller, context),
+                TherapistIsolatedView(controller: controller),
                 buttonsRowContainer(controller, context),
                 personSmallViewInCall(controller, context)
               ]),
@@ -44,6 +45,10 @@ class IsolatedCallView extends StatelessWidget {
         bottom: Responsive.height(120, context),
         child: Obx(
           () => VideoCallPerson(
+            videoStream:
+                videoCallController.participantVideoStreams.values.isNotEmpty
+                    ? videoCallController.participantVideoStreams.values.last
+                    : null,
             onDoubleTap: () => videoCallController.changeViewPlaces(),
             micOnOffFunction: () => videoCallController.onOffFunction(
                 videoCallController.isViewPlaceChanged.value

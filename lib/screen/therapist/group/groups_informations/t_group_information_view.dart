@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/screen/participant/home/p_coping_methods_view.dart';
+
 import '../../../../controller/therapist/group/t_group_information_controller.dart';
 import '../../../../core/base/component/activtiy/seminers.dart';
 import '../../../../core/base/component/app_bar/my_app_bar.dart';
@@ -32,43 +33,51 @@ class TGroupInformationView extends StatelessWidget {
           controller.setCurrentGroup(currentGroup);
         },
         onPageBuilder: (context, controller) {
-          return Scaffold(
-            appBar: MyAppBar(
-              title: controller.currentGroup?.name ?? '',
-              actions: _appBarActions(
-                  context, controller.currentGroup?.id, controller),
-            ),
-            body: ListView(
-              padding: AppPaddings.pagePaddingHorizontal,
-              children: [
-                miniHeadings(GroupTextUtil.upcomingMeetingText, false),
-                meeting(controller),
-                miniHeadings(GroupTextUtil.groupsInformationText, false),
-                Obx(
-                  () => navMethod(
-                      row(controller, GroupTextUtil.secondTherapistText,
-                          controller.helperTherapistName.value), () {
-                    context.push(TAboutProfileView(
-                      isSecTherapist: true,
-                      groupId: controller.currentGroup?.id ?? "null",
-                    ));
+          return SafeArea(
+            top: false,
+            child: Scaffold(
+              appBar: MyAppBar(
+                title: controller.currentGroup?.name ?? '',
+                actions: _appBarActions(
+                    context, controller.currentGroup?.id, controller),
+              ),
+              body: ListView(
+                padding: AppPaddings.pagePaddingHorizontal,
+                children: [
+                  miniHeadings(GroupTextUtil.upcomingMeetingText, false),
+                  meeting(controller),
+                  miniHeadings(GroupTextUtil.groupsInformationText, false),
+                  Obx(
+                    () => navMethod(
+                        row(controller, GroupTextUtil.secondTherapistText,
+                            controller.helperTherapistName.value), () {
+                      context.push(TAboutProfileView(
+                        isSecTherapist: true,
+                        groupId: controller.currentGroup?.id ?? "null",
+                      ));
+                    }),
+                  ),
+                  Election(
+                      isSelectedValue: controller.isParticipantElectionOpen,
+                      firstRow: Obx(() => SizedBox(
+                            child: participants(
+                                controller, controller.participants.length),
+                          )),
+                      rows: controller.participants
+                          .map((participant) => person(
+                              participant.name!, participant.imageUrl!, context))
+                          .toList()),
+                  navMethod(DemoInformation.methods, () {
+                    context.push(PCopingMethodsView());
                   }),
-                ),
-                Election(
-                    isSelectedValue: controller.isParticipantElectionOpen,
-                    firstRow: Obx(() => SizedBox(
-                          child: participants(
-                              controller, controller.participants.length),
-                        )),
-                    rows: controller.participants
-                        .map((participant) => person(
-                            participant.name!, participant.imageUrl!, context))
-                        .toList()),
-                navMethod(DemoInformation.methods, () {
-                  context.push(PCopingMethodsView());
-                }),
-                hugeSizedBox()
-              ],
+                  hugeSizedBox()
+                ],
+              ),
+              floatingActionButton: FloatingActionButton(
+                  onPressed: () async {
+                    await controller.startIsolatedCall();
+                  },
+                  child: Icon(Icons.send)),
             ),
           );
         });

@@ -11,7 +11,7 @@ import '../../core/base/util/text_utility.dart';
 import '../../model/common/video_call/video_call_token_model.dart';
 import '../../product/enum/local_keys_enum.dart';
 import '../../screen/common/home/main_home.dart';
-import '../../screen/participant/video_call/isolated_call_view.dart';
+import '../../screen/common/video_call/isolated_call/isolated_call_view.dart';
 import 'base_video_call_controller.dart';
 
 class GroupCallController extends BaseVideoCallController {
@@ -77,8 +77,17 @@ class GroupCallController extends BaseVideoCallController {
 
   void pushToIsolatedCall() {
     leaveRoom();
-    controllerContext.pushAndRemoveUntil(IsolatedCallView());
+    controllerContext.pushAndRemoveUntil(IsolatedCallView(
+      videoCallToken: VideoCallTokenModel(
+          meetingId: '',
+          participantId: '',
+          isTherapist: false,
+          token: '',
+          isMainTherapist: false,
+          therapistHelperId: ''),
+    ));
   }
+
   void endCallToMainView() {
     leaveRoom();
     controllerContext.pushAndRemoveUntil(MainHome());

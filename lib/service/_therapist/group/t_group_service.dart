@@ -334,4 +334,15 @@ class TGroupService extends ITGroupService with BaseService {
 
     return result.data;
   }
+
+  @override
+  Future<bool> createIsolatedCall(String meetingId) async {
+    if (userId == null) return false;
+    final result = await manager.createWithDocId(
+        collectionPath: APIConst.tempIsolatedCall,
+        docId: APIConst.tempIsolatedCall,
+        data: {AppConst.meetingId: meetingId});
+
+    return result;
+  }
 }

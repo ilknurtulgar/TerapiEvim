@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../../../controller/video_call/group_call_controller.dart';
 import '../../../../../core/extension/context_extension.dart';
-import '../../../../../screen/participant/video_call/util/utility.dart';
+import '../../../../../screen/common/video_call/util/utility.dart';
 import '../../../ui_models/container_model.dart';
 import '../../../ui_models/row_model.dart';
 import '../../../ui_models/video_call/person_in_call_model.dart';

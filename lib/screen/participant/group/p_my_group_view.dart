@@ -3,11 +3,12 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/group/custom_heading.dart';
 import 'package:terapievim/core/base/component/group/group_box.dart';
 import 'package:terapievim/core/base/component/group/person.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/ui_models/row_model.dart';
+import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/participant/message/p_message_view.dart';
 import 'package:terapievim/screen/therapist/group/groups_informations/t_profile_about_view.dart';
+
 import '../../../controller/participant/group/p_group_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/component/group/participant_container.dart';
@@ -27,10 +28,17 @@ class PMyGroupView extends StatelessWidget {
       onModelReady: (controller) {
         controller.setContext(context);
       },
-      onPageBuilder: (context, controller) => Scaffold(
-        appBar: MyAppBar(title: GroupTextUtil.myGroupText),
-        body: SafeArea(
-          child: ListView(
+      onPageBuilder: (context, controller) => SafeArea(
+        top: false,
+        child: Scaffold(
+          appBar: MyAppBar(title: GroupTextUtil.myGroupText),
+          floatingActionButton: FloatingActionButton(
+            child: Icon(Icons.send),
+            onPressed: () {
+              controller.joinIsolatedCall();
+            },
+          ),
+          body: ListView(
             padding: AppPaddings.pagePadding,
             children: [
               CustomHeading(
@@ -46,7 +54,8 @@ class PMyGroupView extends StatelessWidget {
                     isactivity: false,
                     containerModel: AppContainers.containerButton(false),
                     arowModel: rows(
-                        controller.tGroupSession.value?.therapistName ?? "null",
+                        controller.tGroupSession.value?.therapistName ??
+                            "null",
                         RowType.therapist,
                         false),
                     ayrowwModel: rows(
@@ -69,7 +78,8 @@ class PMyGroupView extends StatelessWidget {
               Obx(
                 () => therapist(
                     rows(
-                        controller.tGroupSession.value?.therapistName ?? "null",
+                        controller.tGroupSession.value?.therapistName ??
+                            "null",
                         RowType.therapist,
                         true), () {
                   context.push(TAboutProfileView(

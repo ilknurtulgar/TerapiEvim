@@ -6,15 +6,13 @@ import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/view/base_view.dart';
 import '../../../../model/common/video_call/video_call_token_model.dart';
 import 'modules/participants_box.dart';
-import 'modules/therapist_view.dart';
+import 'modules/therapist_group_view.dart';
 
 class GroupCallView extends StatelessWidget {
   final VideoCallTokenModel videoCallToken;
 
-  const GroupCallView({
-    Key? key,
-    required this.videoCallToken,
-  }) : super(key: key);
+  const GroupCallView({Key? key, required this.videoCallToken})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +29,7 @@ class GroupCallView extends StatelessWidget {
           width: context.width1,
           child: Stack(
             children: [
-              TherapistView(controller: controller),
+              TherapistGroupView(controller: controller),
               ParticipantsBoxGroupCall(videoCallController: controller),
             ],
           ),

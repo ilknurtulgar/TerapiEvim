@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/model/common/activity/t_activity_model.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 
 import '../../../controller/therapist/activity/t_my_up_coming_list_view_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
@@ -23,27 +24,30 @@ class TMyUpComingActivitiesListView extends StatelessWidget {
             body: Padding(
               padding: AppPaddings.pagePaddingHorizontal,
               child: Obx(
-                () => ListView.builder(
-                  itemBuilder: (context, index) {
-                    final TActivityModel? activity =
-                        controller.fetchedActivity[index];
-                    return ActivityBox(
-                        leftButtonTapped: () {},
-                        istwobutton: true,
-                        buttonText: ActivityTextUtil.start,
-                        containerModel: AppContainers.containerButton(false),
-                        isactivity: true,
-                        rightButtonTap: () {
-                          controller.createMeeting(
-                              context: context, activity: activity);
+                () => controller.fetchedActivity.isEmpty
+                    ? EmptySizedBoxText()
+                    : ListView.builder(
+                        itemBuilder: (context, index) {
+                          final TActivityModel? activity =
+                              controller.fetchedActivity[index];
+                          return ActivityBox(
+                              leftButtonTapped: () {},
+                              istwobutton: true,
+                              buttonText: ActivityTextUtil.start,
+                              containerModel:
+                                  AppContainers.containerButton(false),
+                              isactivity: true,
+                              rightButtonTap: () {
+                                controller.createMeeting(
+                                    context: context, activity: activity);
+                              },
+                              arowModel: DemoInformation.recentActivityTitle(
+                                  activity?.title ?? "empty tite"),
+                              clockModel: DemoInformation.recentActivityTime(
+                                  activity?.dateTime ?? Timestamp.now()));
                         },
-                        arowModel: DemoInformation.recentActivityTitle(
-                            activity?.title ?? "empty tite"),
-                        clockModel: DemoInformation.recentActivityTime(
-                            activity?.dateTime ?? Timestamp.now()));
-                  },
-                  itemCount: controller.fetchedActivity.length,
-                ),
+                        itemCount: controller.fetchedActivity.length,
+                      ),
               ),
             ));
       },

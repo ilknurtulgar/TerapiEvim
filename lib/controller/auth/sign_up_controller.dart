@@ -197,14 +197,10 @@ class SignUpController extends GetxController with BaseController {
 
   void setIsBoxSelected() {
     isBoxSelected.value = !isBoxSelected.value;
-    genderController.text = genders.value;
   }
 
-  RxInt selectedGenderIndex = (-1).obs;
-
-  void setSelectedValue(int value) {
-    selectedGenderIndex.value = value;
-    print('selectedGenderIndex.value:${selectedGenderIndex.value}');
+  void setTextController() {
+    genderController.text = genders.value;
   }
 
   RxString genders = "Seçiniz".obs;

@@ -7,7 +7,7 @@ import '../../../../../core/base/component/video_call/tab/therapist_tab.dart';
 import '../../../../../core/base/util/base_utility.dart';
 import '../../../../../core/extension/context_extension.dart';
 import '../../../../../model/common/video_call/video_call_token_model.dart';
-import '../../../../participant/video_call/util/utility.dart';
+import '../../util/utility.dart';
 import 'participants_list.dart';
 
 class ParticipantsBoxGroupCall extends StatelessWidget {

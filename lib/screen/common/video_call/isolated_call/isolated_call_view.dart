@@ -6,23 +6,30 @@ import 'package:terapievim/core/base/component/video_call/container/video_call_p
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 
-// ignore: must_be_immutable
+import '../../../../model/common/video_call/video_call_token_model.dart';
+import '../util/utility.dart';
+import 'modules/therapist_isolated_view.dart';
+
 class IsolatedCallView extends StatelessWidget {
-  IsolatedCallView({super.key});
+  IsolatedCallView({super.key, required this.videoCallToken});
+
+  final VideoCallTokenModel videoCallToken;
 
   @override
   Widget build(BuildContext context) {
     return BaseView<IsolatedCallController>(
         getController: IsolatedCallController(),
-        onModelReady: (model) {},
+        onModelReady: (controller) {
+          controller.setContext(context);
+          controller.setToken(videoCallToken);
+        },
         onPageBuilder: (context, controller) {
           return Scaffold(
             body: SafeArea(
               child: Stack(children: [
-                personBigViewInCall(controller, context),
-                buttonsRowContainer(context),
+                TherapistIsolatedView(controller: controller),
+                buttonsRowContainer(controller, context),
                 personSmallViewInCall(controller, context)
               ]),
             ),
@@ -38,6 +45,10 @@ class IsolatedCallView extends StatelessWidget {
         bottom: Responsive.height(120, context),
         child: Obx(
           () => VideoCallPerson(
+            videoStream:
+                videoCallController.participantVideoStreams.values.isNotEmpty
+                    ? videoCallController.participantVideoStreams.values.last
+                    : null,
             onDoubleTap: () => videoCallController.changeViewPlaces(),
             micOnOffFunction: () => videoCallController.onOffFunction(
                 videoCallController.isViewPlaceChanged.value
@@ -58,7 +69,8 @@ class IsolatedCallView extends StatelessWidget {
         ));
   }
 
-  Align buttonsRowContainer(BuildContext context) {
+  Align buttonsRowContainer(
+      IsolatedCallController controller, BuildContext context) {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
@@ -66,11 +78,11 @@ class IsolatedCallView extends StatelessWidget {
           height: Responsive.height(SizeUtil.mediumValueHeight, context),
           width: context.width1,
           child: VideoCallButtonsRow(
-            isCameraOn: true.obs,
-            isMicOn: true.obs,
-            onLeaveButtonPressed: () {},
-            onToggleCameraButtonPressed: () {},
-            onToggleMicButtonPressed: () {},
+            isCameraOn: controller.camEnabled,
+            isMicOn: controller.micEnabled,
+            onToggleMicButtonPressed: () => controller.triggerMicrophone(),
+            onToggleCameraButtonPressed: () => controller.triggerCamera(),
+            onLeaveButtonPressed: () => controller.leaveRoom(),
           )),
     );
   }

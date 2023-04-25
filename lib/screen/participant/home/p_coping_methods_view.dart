@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/home/home_component.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 
 import '../../../controller/participant/coping_method/p_coping_method_controller.dart';
 import '../../../core/base/component/activtiy/drop_down.dart';
@@ -23,23 +25,28 @@ class PCopingMethodsView extends StatelessWidget {
             body: CustomScrollView(slivers: [
               SliverPadding(
                 padding: AppPaddings.pagePadding,
-                sliver: SliverList(
-                  delegate: SliverChildBuilderDelegate(
-                    (context, index) {
-                      final TCopingMethodModel? copingMethodModel =
-                          controller.fetchedCoping[index];
-                      return HomeComponent(
-                          isForMethodReading: true,
-                          cardModel: DemoInformation.cardModelhome,
-                          time: (copingMethodModel?.dateTime ?? Timestamp.now())
-                              as String,
-                          title: copingMethodModel?.therapistName ?? "",
-                          explanation: copingMethodModel?.description ?? "",
-                          buttonOnTap: () {},
-                          buttonText: HomeTextUtil.readMethod);
-                    },
-                    childCount: controller.fetchedCoping.length,
-                  ),
+                sliver: Obx(
+                  () => controller.fetchedCoping.isEmpty
+                      ? SliverToBoxAdapter(child: EmptySizedBoxText())
+                      : SliverList(
+                          delegate: SliverChildBuilderDelegate(
+                            (context, index) {
+                              final TCopingMethodModel? copingMethodModel =
+                                  controller.fetchedCoping[index];
+                              return HomeComponent(
+                                  isForMethodReading: true,
+                                  cardModel: DemoInformation.cardModelhome,
+                                  time: (copingMethodModel?.dateTime ??
+                                      Timestamp.now()) as String,
+                                  title: copingMethodModel?.therapistName ?? "",
+                                  explanation:
+                                      copingMethodModel?.description ?? "",
+                                  buttonOnTap: () {},
+                                  buttonText: HomeTextUtil.readMethod);
+                            },
+                            childCount: controller.fetchedCoping.length,
+                          ),
+                        ),
                 ),
               ),
             ]),

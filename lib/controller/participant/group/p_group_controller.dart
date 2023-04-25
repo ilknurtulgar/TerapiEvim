@@ -10,6 +10,7 @@ import '../../../model/common/profile/p_public_profile_model.dart';
 import '../../../model/common/video_call/video_call_token_model.dart';
 import '../../../model/therapist/group/t_group_session_model.dart';
 import '../../../screen/common/video_call/group_call/group_call_view.dart';
+import '../../../screen/common/video_call/isolated_call/isolated_call_view.dart';
 import '../../../service/_participant/group/i_p_group_service.dart';
 import '../../../service/_participant/group/p_group_service.dart';
 import '../../base/base_controller_2.dart';
@@ -71,6 +72,37 @@ class PGroupController extends BaseController2 {
         GroupCallView(
           videoCallToken: VideoCallTokenModel(
             meetingId: tGroupSession.value!.meetingId!,
+            token: videoSdkManager.token,
+            participantId: userId!,
+            isTherapist: false,
+          ),
+        ),
+      );
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+        error: e.toString(),
+        stackTrace: StackTrace.current,
+        reason: 'Error joinVideoCall',
+      );
+      rethrow;
+    }
+  }
+
+  Future<void> joinIsolatedCall() async {
+    try {
+      final IVideoSdkManager videoSdkManager = VideoSdkManager();
+
+      final String? result = await _ipGroupService.getIsolatedCallMeetingId();
+
+      if (result == null) {
+        flutterErrorToast('could not join isolated call');
+        return;
+      }
+
+      controllerContext.pushTrueRootNavigatorAndRemove(
+        IsolatedCallView(
+          videoCallToken: VideoCallTokenModel(
+            meetingId: result,
             token: videoSdkManager.token,
             participantId: userId!,
             isTherapist: false,

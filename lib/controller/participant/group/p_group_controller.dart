@@ -102,7 +102,7 @@ class PGroupController extends BaseController2 {
       controllerContext.pushTrueRootNavigatorAndRemove(
         IsolatedCallView(
           videoCallToken: VideoCallTokenModel(
-            meetingId: tGroupSession.value!.meetingId!,
+            meetingId: result,
             token: videoSdkManager.token,
             participantId: userId!,
             isTherapist: false,

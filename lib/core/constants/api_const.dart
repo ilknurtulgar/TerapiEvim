@@ -14,6 +14,7 @@ class APIConst {
   static const String viewedCopingMethods = 'viewedCopingMethods';
   static const String therapist = 'therapist';
   static const String participant = 'participant';
+  static const String participantId = 'participantId';
 
   static const String storageImages = 'images';
   static const String storageCopingMethods = 'copingMethods';

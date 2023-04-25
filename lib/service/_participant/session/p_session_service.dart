@@ -5,6 +5,7 @@ import '../../../core/constants/api_const.dart';
 import '../../../core/constants/app_const.dart';
 import '../../../core/init/cache/local_manager.dart';
 import '../../../core/managers/firebase/firestore/models/empty_model.dart';
+import '../../../model/participant/_initial_data/is_session_complete_model.dart';
 import '../../../model/participant/session/short_call_session_id_model.dart';
 import '../../../model/therapist/session/free_date/t_free_date_model.dart';
 import '../../../model/therapist/session/free_date/t_free_hours_model.dart';
@@ -152,6 +153,21 @@ class PSessionService extends IPSessionService with BaseService {
     if (result.error != null || result.data == null) return null;
 
     return result.data![0];
+  }
+
+  @override
+  Future<bool> updateIsSessionComplete() async {
+    if (userId == null) return false;
+
+    IsSessionCompleteModel isComplete =
+        IsSessionCompleteModel(isSessionComplete: true);
+
+    final result = await manager.update<IsSessionCompleteModel, EmptyModel>(
+        collectionPath: APIConst.sessions, docId: userId!, data: isComplete);
+
+    if (result.error != null || result.data == null) return false;
+
+    return true;
   }
 
 // @override

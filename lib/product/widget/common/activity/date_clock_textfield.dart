@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../core/base/component/group/choosing_time_group_therapy.dart';
 import '../../../../core/base/util/base_utility.dart';
@@ -19,7 +20,7 @@ class DateClockTextField extends StatelessWidget {
   final TextEditingController textController;
   final String hour;
   final String minutes;
-  final Timestamp? timeStampInController;
+  final Rx<Timestamp>? timeStampInController;
   final Function() choosingTimeTapped;
   @override
   Widget build(BuildContext context) {

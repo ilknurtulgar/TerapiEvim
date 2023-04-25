@@ -85,7 +85,6 @@ class _DropDownList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 75,
       decoration: isLogin
           ? AppBoxDecoration.dropDownDecoration
           : AppBoxDecoration.purpleBorder,
@@ -107,6 +106,7 @@ class _DropDownList extends StatelessWidget {
           );
         },
         itemCount: textList.length,
+        padding: EdgeInsets.zero,
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 
 import '../../../../controller/profile_settings_controller.dart';
@@ -6,10 +7,10 @@ import '../../../../core/base/component/profile/column_drop_down.dart';
 import 'utility/textfield_utility.dart';
 
 class ProfileSettingsList extends StatelessWidget {
-  ProfileSettingsList(
-      {Key? key,
-      required this.profileController,})
-      : super(key: key);
+  ProfileSettingsList({
+    Key? key,
+    required this.profileController,
+  }) : super(key: key);
   final IProfileSettingsController profileController;
   @override
   Widget build(BuildContext context) {
@@ -37,6 +38,7 @@ class ProfileSettingsList extends StatelessWidget {
   }
 
   Padding genderChoosing() {
+    var gender = profileController.genderController.text.obs;
     return Padding(
       padding: AppPaddings.componentPadding,
       child: ColumnDropDown(
@@ -45,10 +47,13 @@ class ProfileSettingsList extends StatelessWidget {
         isInProfilePage: true,
         title: "Cinsiyet",
         onValueSelected: (int index) {
+          profileController.genderController.text = gender.value;
+          print(profileController.genderController.text);
+        },
+        onDropDownTapped: () {
           profileController.setIsBoxSelected();
         },
-        onDropDownTapped: () {},
-        selectedText: profileController.genders,
+        selectedText: gender,
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../model/common/activity/t_activity_model.dart';
 import 'i_t_modify_activity_controller.dart';
@@ -26,7 +27,7 @@ class TUpdateActivityViewController extends ITModifyActivityController {
 
   TActivityModel? _activity;
 
-  final Timestamp? dateTime = Timestamp.fromDate(DateTime.now());
+  final Rx<Timestamp>? dateTime = Timestamp.fromDate(DateTime.now()).obs;
 
   Future<bool> updateActivity() async {
     final bool isValidated = validateActivity();
@@ -36,7 +37,7 @@ class TUpdateActivityViewController extends ITModifyActivityController {
     final TActivityModel activity = TActivityModel(
       title: activityNameController.text.trim(),
       description: activityDescriptionController.text.trim(),
-      dateTime: dateTime,
+      dateTime: dateTime?.value,
       // participantsId: [],
       isFinished: false,
       isStarted: false,

@@ -17,7 +17,6 @@ class PProfileSettingsView extends StatelessWidget {
   PProfileSettingsView({
     super.key,
   });
-  DropDownController dropDownController = Get.find();
   @override
   Widget build(BuildContext context) {
     return BaseView<PProfileSettingsController>(
@@ -40,7 +39,7 @@ class PProfileSettingsView extends StatelessWidget {
                     context.push(const PProfileView()); //
                   },
                 ),
-                _bigColumn(context, controller, dropDownController),
+                _bigColumn(context, controller),
               ],
             ),
           ),

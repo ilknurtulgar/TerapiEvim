@@ -17,7 +17,8 @@ class VideoCallPerson extends StatelessWidget {
     this.onLongPressed,
     required this.micOnOffFunction,
     required this.cameraOnOffFunction,
-    this.videoStream,this.name,
+    this.videoStream,
+    this.name,
   });
 
   final VideoCallViewModel videoCallViewModel;
@@ -78,7 +79,9 @@ class VideoCallPerson extends StatelessWidget {
                 : const SizedBox(),
           ),
           VideoCallUtility.micIconButton(
-              micOnOffFunction!, false, videoCallViewModel.person.isMicOn)
+              onTap: micOnOffFunction!,
+              isInsideContainer: false,
+              isMicOn: videoCallViewModel.person.isMicOn)
         ],
       ),
     );

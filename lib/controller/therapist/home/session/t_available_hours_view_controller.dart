@@ -8,15 +8,13 @@ import '../../../../service/_therapist/session/free_dates/t_free_dates_service.d
 
 class TAvailableHoursViewController extends GetxController with BaseController {
   @override
-  void setContext(BuildContext context) {
-    // TODO: implement setContext
-  }
+  void setContext(BuildContext context) {}
 
   @override
   Future<void> onInit() async {
     freeDateService = TFreeDateService(vexaFireManager.networkManager);
     final List<TFreeDateModel?> result =
-        await freeDateService.getMyFreeDatesOrdered();
+        await freeDateService.getMyFreeDatesOrdered(isDescending: true);
     sessionTimeList.addAll(result);
 
     print(result);

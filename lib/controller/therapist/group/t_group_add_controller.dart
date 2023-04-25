@@ -14,7 +14,11 @@ import '../../../service/_therapist/group/i_t_group_service.dart';
 import '../../../service/_therapist/group/t_group_service.dart';
 
 class TGroupAddController extends GetxController with BaseController {
-  late final ITGroupService tGroupService;
+
+  @override
+  void setContext(BuildContext context) {
+    controllerContext = context;
+  }
 
   @override
   void onInit() {
@@ -30,13 +34,13 @@ class TGroupAddController extends GetxController with BaseController {
     groupNameController.dispose();
   }
 
-  @override
-  void setContext(BuildContext context) {
-    controllerContext = context;
-  }
+  late final ITGroupService tGroupService;
+
+  late DateTime date;
+
+  UserModel? helperTherapist;
 
   TextEditingController groupNameController = TextEditingController();
-  late DateTime date;
   bool _validateNewGroup() {
     if (groupNameController.text.isEmpty) {
       flutterErrorToast("isim bos");
@@ -139,7 +143,6 @@ class TGroupAddController extends GetxController with BaseController {
     isSecTherapistElectionOpen.value = !isSecTherapistElectionOpen.isTrue;
   }
 
-  late UserModel? helperTherapist;
   Future<void> setRandomUser() async {
     helperTherapist = await tGroupService.findRandomTherapistHelper();
     isSecTherapistChosen.value = true;

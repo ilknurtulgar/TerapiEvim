@@ -31,6 +31,10 @@ class ParticipantsRow extends StatelessWidget {
               final stream =
                   controller.participantVideoStreams.values.elementAt(index);
 
+              if (participantId == controller.userId) {
+                return Container();
+              }
+
               return Padding(
                 padding: AppPaddings.smallPersonViewPadding,
                 child: VideoCallPerson(
@@ -40,15 +44,15 @@ class ParticipantsRow extends StatelessWidget {
                   videoCallViewModel: VideoCallUtility.personSmallView(
                       DemoInformation.participants[index], true, context),
                   onLongPressed: () {
-                    if (isMainTherapist &&
-                        controller.currentToken.therapistHelperId.isNotEmpty) {
-                      controller.sendIsolatedCall(
-                          name: participantName,
-                          onConfirmed: () {
-                            controller.sendParticipantToIsolatedCall(
-                                participantId: participantId);
-                          });
-                    }
+                    // if (isMainTherapist &&
+                    //     controller.currentToken.therapistHelperId.isNotEmpty) {
+                    controller.sendIsolatedCall(
+                        name: participantName,
+                        onConfirmed: () {
+                          controller.sendParticipantToIsolatedCall(
+                              participantId: participantId);
+                        });
+                    // }
                   },
                   micOnOffFunction: () => controller.onOffFunction(
                       DemoInformation.participants[index].isMicOn),

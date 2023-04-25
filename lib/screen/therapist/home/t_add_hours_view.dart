@@ -56,6 +56,7 @@ class _TAddHoursViewState extends State<TAddHoursView> {
                 Obx(
                   () => ListView.builder(
                     shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
                     itemCount: controller.timeList.length,
                     itemBuilder: (context, index) {
                       return Obx(

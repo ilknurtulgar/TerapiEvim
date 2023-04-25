@@ -1,6 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:videosdk/videosdk.dart';
+import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:videosdk/videosdk.dart' as videoCall;
 
 import '../../core/base/component/video_call/tab/therapist_tab.dart';
 import '../../core/base/ui_models/video_call/person_in_call_model.dart';
@@ -8,6 +10,8 @@ import '../../core/base/util/base_utility.dart';
 import '../../core/base/util/text_utility.dart';
 import '../../model/common/video_call/video_call_token_model.dart';
 import '../../product/enum/local_keys_enum.dart';
+import '../../screen/common/home/main_home.dart';
+import '../../screen/participant/video_call/isolated_call_view.dart';
 import 'base_video_call_controller.dart';
 
 class GroupCallController extends BaseVideoCallController {
@@ -16,7 +20,7 @@ class GroupCallController extends BaseVideoCallController {
 
   @override
   void onInit() {
-    // _mainController = Get.find();
+    // _groupCallService = GroupCallService(vexaFireManager.networkManager);
 
     super.onInit();
   }
@@ -26,7 +30,7 @@ class GroupCallController extends BaseVideoCallController {
     currentToken = token;
 
     // Create instance of Room (Meeting)
-    room = VideoSDK.createRoom(
+    room = videoCall.VideoSDK.createRoom(
       roomId: currentToken.meetingId,
       token: currentToken.token,
       participantId: userId!,
@@ -40,10 +44,51 @@ class GroupCallController extends BaseVideoCallController {
     room.join();
 
     setMeetingEventListener(room);
+
+    if (currentToken.isTherapist == false) {
+      // _groupCallService.pInit(
+      //     participantGroupCall: ParticipantGroupCallModel(
+      //   participantId: userId!,
+      //   canCamBeEnabled: true,
+      //   canMicBeEnabled: true,
+      //   isParticipantKicked: false,
+      //   meetingId: currentToken.meetingId,
+      // ));
+      // stream = _groupCallService.pSetRoomListener(
+      //   meetingId: currentToken.meetingId,
+      //   participantId: userId!,
+      // );
+      //
+      // if (stream != null) {
+      //   stream!.listen((event) {
+      //     if (event.data() == null) return;
+      //     final ParticipantGroupCallModel groupCallEvent =
+      //         ParticipantGroupCallModel.fromJson(event.data()!);
+      //
+      //     ///Send participant to isolated Video call
+      //     if (groupCallEvent.isParticipantKicked!) {
+      //       pushToIsolatedCall();
+      //     }
+      //
+      //   });
+      // }
+    }
   }
 
-  // late MainController _mainController;
+  void pushToIsolatedCall() {
+    leaveRoom();
+    controllerContext.pushAndRemoveUntil(IsolatedCallView());
+  }
+  void endCallToMainView() {
+    leaveRoom();
+    controllerContext.pushAndRemoveUntil(MainHome());
+  }
 
+  RxMap<String, dynamic> pGroupCallListener = <String, dynamic>{}.obs;
+
+  // late IGroupCallService _groupCallService;
+
+  Stream<DocumentSnapshot<Map<String, dynamic>>>? stream;
   var shareAuthority = false.obs;
 
   var openAllMics = false.obs;
@@ -118,13 +163,9 @@ class GroupCallController extends BaseVideoCallController {
     ));
   }
 
-  Future<void> sendParticipantToIsolatedCall({
-    required String participantId
-  }) async {
-    try {
-
-
-    } catch (e) {
+  Future<void> sendParticipantToIsolatedCall(
+      {required String participantId}) async {
+    try {} catch (e) {
       await crashlyticsManager.sendACrash(
         error: e.toString(),
         stackTrace: StackTrace.current,

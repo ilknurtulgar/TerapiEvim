@@ -22,5 +22,7 @@ abstract class IPSessionService {
 
   Future<TSessionModel?> getASession(String sessionId);
 
+  Future<bool> updateIsSessionComplete();
+
   // Future<TFreeDateModel?> getAvailableDateById(String availableDate);
 }

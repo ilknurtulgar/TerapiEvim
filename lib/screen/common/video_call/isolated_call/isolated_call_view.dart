@@ -46,7 +46,7 @@ class IsolatedCallView extends StatelessWidget {
         child: Obx(
           () => VideoCallPerson(
             videoStream:
-                videoCallController.participantVideoStreams.values.isNotEmpty
+                videoCallController.participantVideoStreams.values.length == 2
                     ? videoCallController.participantVideoStreams.values.last
                     : null,
             onDoubleTap: () => videoCallController.changeViewPlaces(),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 
-import '../../../../controller/main_controller.dart';
 import '../../../../controller/video_call/group_call_controller.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/view/base_view.dart';
@@ -20,7 +18,6 @@ class GroupCallView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final MainController mainController = Get.find();
     return BaseView<GroupCallController>(
       getController: GroupCallController(),
       onModelReady: (controller) {
@@ -35,12 +32,7 @@ class GroupCallView extends StatelessWidget {
           child: Stack(
             children: [
               TherapistView(controller: controller),
-              ParticipantsBoxGroupCall(
-                videoCallController: controller,
-                mainController: mainController,
-                context: context,
-                isMainTherapist: videoCallToken.isMainTherapist,
-              ),
+              ParticipantsBoxGroupCall(videoCallController: controller),
             ],
           ),
         ),

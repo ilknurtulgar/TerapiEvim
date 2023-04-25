@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 import 'package:terapievim/screen/therapist/activity/t_my_activity_list_view.dart';
 import 'package:terapievim/screen/therapist/activity/t_new_activity_view.dart';
 import 'package:terapievim/screen/therapist/activity/t_update_activity_view.dart';
@@ -56,12 +57,14 @@ class TActivityView extends StatelessWidget {
                   },
                 ),
                 Obx(
-                  () => _myUpcomingActivities(
-                      context,
-                      controller,
-                      controller.myRecentActivities.isEmpty
-                          ? null
-                          : controller.myRecentActivities[0]),
+                  () => controller.myRecentActivities.isEmpty
+                      ? EmptySizedBoxText()
+                      : _myUpcomingActivities(
+                          context,
+                          controller,
+                          controller.myRecentActivities.isEmpty
+                              ? null
+                              : controller.myRecentActivities[0]),
                 ),
                 HeadingMinto(
                   isIcon: true,
@@ -73,9 +76,14 @@ class TActivityView extends StatelessWidget {
                     context.push(const TActivityListView());
                   },
                 ),
-                _otherUpcomingActivities(controller.otherActivitieslist.isEmpty
-                    ? null
-                    : controller.otherActivitieslist.last),
+                Obx(
+                  () => controller.otherActivitieslist.isEmpty
+                      ? EmptySizedBoxText()
+                      : _otherUpcomingActivities(
+                          controller.otherActivitieslist.isEmpty
+                              ? null
+                              : controller.otherActivitieslist.last),
+                ),
                 HeadingMinto(
                   isIcon: true,
                   text: ActivityTextUtil.myActivty,
@@ -87,12 +95,14 @@ class TActivityView extends StatelessWidget {
                   },
                 ),
                 Obx(
-                  () => _myPastActivities(
-                      context,
-                      controller,
-                      controller.myPastActivitieslist.isEmpty
-                          ? null
-                          : controller.myPastActivitieslist.last),
+                  () => controller.myPastActivitieslist.isEmpty
+                      ? EmptySizedBoxText()
+                      : _myPastActivities(
+                          context,
+                          controller,
+                          controller.myPastActivitieslist.isEmpty
+                              ? null
+                              : controller.myPastActivitieslist.last),
                 ),
               ],
             ),

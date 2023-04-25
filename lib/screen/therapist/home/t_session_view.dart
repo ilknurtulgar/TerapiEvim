@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/managers/converter/date_time_manager.dart';
 import 'package:terapievim/model/therapist/session/t_session_model.dart';
 
 import '../../../controller/therapist/home/session/t_session_controller.dart';
@@ -51,8 +52,8 @@ class TSessionView extends StatelessWidget {
 
             return participantWithShortCallTime(
               participantName: sessionModel?.participantName ?? "",
-              time: (sessionModel?.dateTime?.toDate().toIso8601String() ??
-                  'none'),
+              time: (DateTimeManager.getFormattedDateFromFormattedString(
+                  value: sessionModel?.dateTime?.toDate().toIso8601String())),
               testResultOnTapped: () =>
                   context.push(TestResultView(session: sessionModel!)),
               joinOnTapped: () => controller.joinShortCall(sessionModel),

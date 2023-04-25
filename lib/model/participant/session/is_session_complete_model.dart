@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 import '../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 
-part 'short_call_session_id_model.g.dart';
+part 'is_session_complete_model.g.dart';
 
 @JsonSerializable()
 class IsSessionCompleteModel extends INetworkModel<IsSessionCompleteModel> {

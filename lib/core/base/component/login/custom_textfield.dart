@@ -63,6 +63,7 @@ class CustomTextField extends StatelessWidget {
         maxLines: maxLines ?? 1,
         controller: textController,
         obscureText: obsecureText ?? false,
+
         textAlign: TextAlign.start,
         textAlignVertical: TextAlignVertical.center,
         readOnly: onTap != null ? true : false,

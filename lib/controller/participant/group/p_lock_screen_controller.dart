@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/product/enum/local_keys_enum.dart';
 import 'package:terapievim/screen/participant/group/p_my_group_view.dart';
 import 'package:terapievim/service/_participant/session/p_session_service.dart';
 
@@ -79,9 +78,6 @@ class PLockScreenController extends BaseController2 {
   }
 
   void lockScreenFinished() {
-    //group id verilecek
-    localManager.setStringValue(LocalManagerKeys.pJoinedGroupId, "groupId");
-    participantController.joinedGroupId.value = "groupId";
     controllerContext.pushAndRemoveUntil(PMyGroupView());
   }
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/controller/therapist/group/t_about_therapist.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 
@@ -52,9 +53,15 @@ class TProfileView extends StatelessWidget {
                       padding: AppPaddings.pagePadding,
                       child: Column(
                         children: [
-                          heading(controller.tModel?.therapistName ?? "Null"),
-                          aboutMe(controller.tModel?.aboutTherapist ?? "null",
-                              context),
+                          Obx(
+                            () => heading(
+                                controller.tModel.value.therapistName ?? ""),
+                          ),
+                          Obx(
+                            () => aboutMe(
+                                controller.tModel.value.aboutTherapist ?? "",
+                                context),
+                          ),
                           isSecTherapist
                               ? const SizedBox.shrink()
                               : activity(UiBaseModel.basetmeMetotlari(), () {
@@ -73,10 +80,13 @@ class TProfileView extends StatelessWidget {
                 ),
                 Positioned(
                   top: 87,
-                  child: CustomCircleAvatar(
-                      imagePath: controller.tModel?.therapistImageUrl ?? "",
-                      big: true,
-                      shadow: true),
+                  child: Obx(
+                    () => CustomCircleAvatar(
+                        imagePath:
+                            controller.tModel.value.therapistImageUrl ?? "",
+                        big: true,
+                        shadow: true),
+                  ),
                 ),
                 PProfileViewUtility.positionedIconButton(
                     IconUtility.back.icon!,
@@ -112,21 +122,24 @@ Widget otherGroups(TAboutTherapistController controller) {
             padding: AppPaddings.miniHeadingPadding(false),
             text: GroupTextUtil.secTherapistGroupsText,
             isalignmentstart: true),
-        ListView.builder(
-            shrinkWrap: true,
-            itemCount: controller.tModel?.listOfHelpingGroups?.length ?? 0,
-            itemBuilder: (context, index) {
-              TGroupModel group =
-                  controller.tModel!.listOfHelpingGroups![index];
-              return activity(
-                  RowModel(
-                    text: group.name ?? "null",
-                    textStyle: AppTextStyles.groupTextStyle(false),
-                    isAlignmentBetween: false,
-                    leadingIcon: IconUtility.groupsIcon,
-                  ),
-                  () {});
-            })
+        Obx(
+          () => ListView.builder(
+              shrinkWrap: true,
+              itemCount:
+                  controller.tModel.value.listOfHelpingGroups?.length ?? 0,
+              itemBuilder: (context, index) {
+                TGroupModel group =
+                    controller.tModel.value.listOfHelpingGroups![index];
+                return activity(
+                    RowModel(
+                      text: group.name ?? "null",
+                      textStyle: AppTextStyles.groupTextStyle(false),
+                      isAlignmentBetween: false,
+                      leadingIcon: IconUtility.groupsIcon,
+                    ),
+                    () {});
+              }),
+        )
       ],
     ),
   );

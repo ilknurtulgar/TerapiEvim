@@ -31,22 +31,20 @@ class ParticipantsBoxGroupCall extends StatelessWidget {
                   controller: videoCallController,
                   isMainTherapist: currentToken.isMainTherapist),
               VideoCallButtonsRow(
-                firstButton: Obx(
-                  () => currentToken.isTherapist
-                      ? VideoCallUtility.therapistSpecialButton(() =>
-                          videoCallController.openTherapistTab(
-                              DemoInformation.participants,
-                              currentToken.isMainTherapist
-                                  ? TherapistTabController
-                                      .MainTherapistHasControl.obs
-                                  : videoCallController
-                                      .hasSecondTherapistControl))
-                      : VideoCallUtility.putYourHandsUpButton(
-                          () => videoCallController.onOffFunction(
-                              DemoInformation.participants[0].isHandsUp!),
-                          DemoInformation.participants[0].isHandsUp!,
-                        ),
-                ),
+                firstButton: currentToken.isTherapist
+                    ? VideoCallUtility.therapistSpecialButton(() =>
+                        videoCallController.openTherapistTab(
+                            DemoInformation.participants,
+                            currentToken.isMainTherapist
+                                ? TherapistTabController
+                                    .MainTherapistHasControl.obs
+                                : videoCallController
+                                    .hasSecondTherapistControl))
+                    : VideoCallUtility.putYourHandsUpButton(
+                        () => videoCallController.onOffFunction(
+                            DemoInformation.participants[0].isHandsUp!),
+                        DemoInformation.participants[0].isHandsUp!,
+                      ),
                 onToggleMicButtonPressed: () =>
                     videoCallController.triggerMicrophone(),
                 onToggleCameraButtonPressed: () =>

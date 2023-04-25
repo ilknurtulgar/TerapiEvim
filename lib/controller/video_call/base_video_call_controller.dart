@@ -35,6 +35,8 @@ abstract class BaseVideoCallController extends BaseController2 {
       if (stream.kind == 'video') {
         participantVideoStreams.remove(participant.id);
         participantVideoStreams[participant.id] = null;
+        participantVideoStreams.add();
+
       }
     });
   }

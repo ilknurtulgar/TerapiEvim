@@ -44,11 +44,11 @@ class TAvailableHoursView extends StatelessWidget {
           return Padding(
               padding: AppPaddings.timeChossingBetweenPadding,
               child: ChoosingTimeForSCContainer(
-                onSelectedHour: (selectedHourId) {}, 
+                onSelectedHour: (selectedHourId) {},
                 date: tFreeDateModel?.dateTime ?? Timestamp.now(),
                 timeList: tFreeDateModel?.hours.toList() ?? [],
                 isForParticipant: false,
-              //  listViewChosenList: [true].obs,
+                //  listViewChosenList: [true].obs,
               ));
         },
         itemCount: controller.sessionTimeList.length,

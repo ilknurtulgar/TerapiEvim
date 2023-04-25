@@ -51,7 +51,7 @@ class ParticipantsBoxGroupCall extends StatelessWidget {
                     videoCallController.triggerMicrophone(),
                 onToggleCameraButtonPressed: () =>
                     videoCallController.triggerCamera(),
-                onLeaveButtonPressed: () => videoCallController.leaveRoom(),
+                onLeaveButtonPressed: () => videoCallController.endCallToMainView(),
               ),
             ],
           )),

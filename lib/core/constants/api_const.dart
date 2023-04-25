@@ -7,6 +7,7 @@ class APIConst {
   static const String freeDates = 'freeDates';
   static const String freeHours = 'freeHours';
   static const String sessions = 'sessions';
+  static const String groupRoom = 'groupRoom';
   static const String tConfirmation = 'tConfirmation';
   static const String groups = 'groups';
   static const String groupSession = 'groupSession';

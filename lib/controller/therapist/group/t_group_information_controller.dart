@@ -66,6 +66,22 @@ class TGroupInformationController extends GetxController with BaseController {
         throw Exception('currentGroupModel is null');
       }
 
+      /// If it is therapist helper
+      if (recentSession!.therapistId != userId) {
+        VideoCallTokenModel token = VideoCallTokenModel(
+          meetingId: recentSession!.meetingId!,
+          token: videoSdkManager.token,
+          isTherapist: true,
+          participantId: userId!,
+          isMainTherapist: false,
+        );
+
+        navigationManager.pushAndRemoveUntil(
+            navigator, GroupCallView(videoCallToken: token));
+
+        return;
+      }
+
       final String? meetingId = await videoSdkManager.createMeeting();
 
       if (meetingId == null) {
@@ -86,14 +102,12 @@ class TGroupInformationController extends GetxController with BaseController {
         return;
       }
 
-      final bool isMainTherapist = recentSession!.therapistId == userId!;
-
       VideoCallTokenModel token = VideoCallTokenModel(
         meetingId: meetingId,
         token: videoSdkManager.token,
         isTherapist: true,
         participantId: userId!,
-        isMainTherapist: isMainTherapist,
+        isMainTherapist: true,
       );
 
       navigationManager.pushAndRemoveUntil(

@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
 import 'package:videosdk/videosdk.dart';
 
-import '../../core/extension/context_extension.dart';
 import '../../model/common/video_call/video_call_token_model.dart';
-import '../../screen/common/home/main_home.dart';
 import '../base/base_controller_2.dart';
 
 abstract class BaseVideoCallController extends BaseController2 {
@@ -68,9 +66,6 @@ abstract class BaseVideoCallController extends BaseController2 {
     });
     room.on(Events.roomLeft, () {
       participantVideoStreams.clear();
-
-      /// TODO: send to select category page
-      controllerContext.pushTrueRootNavigatorAndRemove(const MainHome());
     });
   }
 

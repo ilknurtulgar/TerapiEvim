@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 import '../crashlytics_manager.dart';
 import 'interface/i_fire_response_model.dart';
 import 'interface/i_network_model.dart';
@@ -22,6 +24,13 @@ abstract class IFirestoreManager<E extends INetworkModel<E>?> {
     String? collectionPath2,
     String? docId2,
     required Map<String, dynamic> data,
+  });
+
+  Stream<DocumentSnapshot<Map<String, dynamic>>>? setStreamListener({
+    required String collectionPath,
+    required String docId,
+    String? collectionPath2,
+    String? docId2,
   });
 
   Future<IResponseModel<R?, E?>> read<T extends INetworkModel<T>, R>({

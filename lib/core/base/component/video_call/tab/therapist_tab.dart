@@ -148,9 +148,9 @@ class TherapistTab extends StatelessWidget {
                         : IconUtility.micoffIcon,
                   )
                 : VideoCallUtility.micIconButton(
-                    () => controller.onOffFunction(participants[index].isMicOn),
-                    false,
-                    participants[index].isMicOn),
+                 onTap:    () => controller.onOffFunction(participants[index].isMicOn),
+                isInsideContainer:     false,
+                  isMicOn:   participants[index].isMicOn),
           )
         : Padding(
             padding: AppPaddings.componentOnlyPadding(4),

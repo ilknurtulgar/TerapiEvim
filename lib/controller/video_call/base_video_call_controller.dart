@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
 import 'package:videosdk/videosdk.dart';
 
-import '../../core/extension/context_extension.dart';
 import '../../model/common/video_call/video_call_token_model.dart';
-import '../../screen/common/home/main_home.dart';
 import '../base/base_controller_2.dart';
 
 abstract class BaseVideoCallController extends BaseController2 {
@@ -25,16 +23,30 @@ abstract class BaseVideoCallController extends BaseController2 {
     // if (participant.id == userId) return;
     participant.on(Events.streamEnabled, (Stream stream) {
       if (stream.kind == 'video') {
+
         participantVideoStreams[participant.id] = stream;
+
         participantNames[participant.id] = participant.displayName;
+
         participantIds[participant.id] = participant.id;
+
       }
     });
 
     participant.on(Events.streamDisabled, (Stream stream) {
       if (stream.kind == 'video') {
         participantVideoStreams.remove(participant.id);
+
         participantVideoStreams[participant.id] = null;
+
+        participantIds.remove(participant.id);
+
+        participantIds[participant.id] = participant.id;
+
+        participantNames.remove(participant.id);
+
+        participantNames[participant.id] = participant.displayName;
+
       }
     });
   }
@@ -54,9 +66,6 @@ abstract class BaseVideoCallController extends BaseController2 {
     });
     room.on(Events.roomLeft, () {
       participantVideoStreams.clear();
-
-      /// TODO: send to select category page
-      controllerContext.pushTrueRootNavigatorAndRemove(const MainHome());
     });
   }
 

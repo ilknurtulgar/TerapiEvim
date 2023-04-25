@@ -55,12 +55,14 @@ class TMyUpComingListViewController extends BaseController2 {
         return;
       }
 
+      final bool isMainTherapist = activity.therapistId == userId!;
+
       VideoCallTokenModel token = VideoCallTokenModel(
         meetingId: activity.meetingId!,
         token: videoSdkManager.token,
         participantId: userId!,
         isTherapist: true,
-        isMainTherapist: true,
+        isMainTherapist: isMainTherapist,
       );
 
       // navigationManager.pushAndRemoveUntil(navigator, GroupTherapyCallView());

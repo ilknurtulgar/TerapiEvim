@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
 
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
@@ -10,6 +9,7 @@ import '../../../controller/therapist/home/session/t_available_hours_view_contro
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/component/group/choosing_time_sc_cont.dart';
 import '../../../core/base/view/base_view.dart';
+import '../../../model/therapist/session/free_date/t_free_date_model.dart';
 import 't_add_hours_view.dart';
 
 class TAvailableHoursView extends StatelessWidget {
@@ -31,11 +31,11 @@ class TAvailableHoursView extends StatelessWidget {
                       icon: IconUtility.addcircleIcon)
                 ],
               ),
-              body: choosingtime(controller),
+              body: choosingTime(controller),
             ));
   }
 
-  Widget choosingtime(TAvailableHoursViewController controller) {
+  Widget choosingTime(TAvailableHoursViewController controller) {
     return Obx(
       () => ListView.builder(
         itemBuilder: (context, index) {

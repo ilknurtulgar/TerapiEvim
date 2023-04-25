@@ -16,7 +16,7 @@ class TAvailableHoursViewController extends GetxController with BaseController {
   Future<void> onInit() async {
     freeDateService = TFreeDateService(vexaFireManager.networkManager);
     final List<TFreeDateModel?> result =
-        await freeDateService.getMyFreeDatesOrdered();
+        await freeDateService.getMyFreeDatesOrdered(isDescending: true);
     sessionTimeList.addAll(result);
 
     print(result);

@@ -38,7 +38,6 @@ class TAvailableHoursView extends StatelessWidget {
   Widget choosingtime(TAvailableHoursViewController controller) {
     return Obx(
       () => ListView.builder(
-        reverse: true,
         itemBuilder: (context, index) {
           final TFreeDateModel? tFreeDateModel =
               controller.sessionTimeList[index];

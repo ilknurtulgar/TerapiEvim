@@ -4,6 +4,7 @@ import '../../../../../core/base/component/login/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/base/ui_models/row_model.dart';
 import '../../../../../core/base/util/base_utility.dart';
+import '../../../../../core/managers/converter/date_time_manager.dart';
 
 class TextFieldUtility {
   CustomTextField nameSurnameTextfield(
@@ -54,7 +55,8 @@ class TextFieldUtility {
               leadingIcon: IconUtility.emailIcon),
           isBig: isBig,
           obsecureText: false,
-          isRowModel: true,keyboardType: TextInputType.emailAddress);
+          isRowModel: true,
+          keyboardType: TextInputType.emailAddress);
 
   Widget passwordTextfield(TextEditingController textController, bool isBig) {
     var isObscured = true.obs;
@@ -105,8 +107,11 @@ class TextFieldUtility {
           isRowModel: true);
 }
 
-Future<void> choosingDate(TextEditingController controller, bool isForBirthday,
-    [Timestamp? timeStamp,]) async {
+Future<void> choosingDate(
+  TextEditingController controller,
+  bool isForBirthday, [
+  Rx<Timestamp>? timeStamp,
+]) async {
   DateTime? pickedDate = await Get.dialog(DatePickerDialog(
       initialDate: DateTime(1990),
       firstDate: DateTime(1923),
@@ -124,8 +129,7 @@ Future<void> choosingDate(TextEditingController controller, bool isForBirthday,
     year = pickedDate.year.toString();
     controller.text = '$day/$month/$year';
     if (timeStamp != null) {
-      timeStamp = Timestamp.fromDate(pickedDate);
-      //print(Timestamp.fromDate(pickedDate));
+      timeStamp.value = Timestamp.fromDate(pickedDate);
     }
   }
 }

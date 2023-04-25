@@ -6,10 +6,10 @@ import '../../../../core/base/component/profile/column_drop_down.dart';
 import 'utility/textfield_utility.dart';
 
 class ProfileSettingsList extends StatelessWidget {
-  ProfileSettingsList(
-      {Key? key,
-      required this.profileController,})
-      : super(key: key);
+  ProfileSettingsList({
+    Key? key,
+    required this.profileController,
+  }) : super(key: key);
   final IProfileSettingsController profileController;
   @override
   Widget build(BuildContext context) {
@@ -47,7 +47,12 @@ class ProfileSettingsList extends StatelessWidget {
         onValueSelected: (int index) {
           profileController.setIsBoxSelected();
         },
-        onDropDownTapped: () {},
+        onDropDownTapped: () {
+          print(profileController.isBoxSelected.value);
+          profileController.isBoxSelected.value !=
+              profileController.isBoxSelected.value;
+          print(profileController.isBoxSelected.value);
+        },
         selectedText: profileController.genders,
       ),
     );

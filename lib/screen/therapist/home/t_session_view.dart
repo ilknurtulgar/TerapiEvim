@@ -52,8 +52,7 @@ class TSessionView extends StatelessWidget {
 
             return participantWithShortCallTime(
               participantName: sessionModel?.participantName ?? "",
-              time: (DateTimeManager.getFormattedDateFromFormattedString(
-                  value: sessionModel?.dateTime?.toDate().toIso8601String())),
+              time: DateTimeManager.getFormattedDateFromFormattedString(value:  sessionModel?.dateTime?.toDate().toIso8601String()),
               testResultOnTapped: () =>
                   context.push(TestResultView(session: sessionModel!)),
               joinOnTapped: () => controller.joinShortCall(sessionModel),

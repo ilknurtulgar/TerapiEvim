@@ -86,12 +86,14 @@ class TGroupInformationController extends GetxController with BaseController {
         return;
       }
 
+      final bool isMainTherapist = recentSession!.therapistId == userId!;
+
       VideoCallTokenModel token = VideoCallTokenModel(
         meetingId: meetingId,
         token: videoSdkManager.token,
         isTherapist: true,
         participantId: userId!,
-        isMainTherapist: true,
+        isMainTherapist: isMainTherapist,
       );
 
       navigationManager.pushAndRemoveUntil(

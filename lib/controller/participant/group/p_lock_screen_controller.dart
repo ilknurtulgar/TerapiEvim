@@ -88,6 +88,8 @@ class PLockScreenController extends BaseController2 {
       final TSessionModel? session =
           await pSessionService.getASession(sessionId);
 
+      await pSessionService.updateIsSessionComplete();
+
       if (session?.meetingId == null) return;
       if (session!.meetingId!.isEmpty) {
         flutterInfoToast("Activity is not started");

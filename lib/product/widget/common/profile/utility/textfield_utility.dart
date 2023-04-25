@@ -54,7 +54,7 @@ class TextFieldUtility {
               leadingIcon: IconUtility.emailIcon),
           isBig: isBig,
           obsecureText: false,
-          isRowModel: true);
+          isRowModel: true,keyboardType: TextInputType.emailAddress);
 
   Widget passwordTextfield(TextEditingController textController, bool isBig) {
     var isObscured = true.obs;

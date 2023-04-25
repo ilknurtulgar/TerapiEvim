@@ -31,6 +31,8 @@ class ParticipantsBoxGroupCall extends StatelessWidget {
                   controller: videoCallController,
                   isMainTherapist: currentToken.isMainTherapist),
               VideoCallButtonsRow(
+                isCameraOn: videoCallController.camEnabled,
+                isMicOn: videoCallController.micEnabled,
                 firstButton: currentToken.isTherapist
                     ? VideoCallUtility.therapistSpecialButton(() =>
                         videoCallController.openTherapistTab(

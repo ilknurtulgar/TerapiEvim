@@ -11,6 +11,7 @@ import 'package:terapievim/screen/participant/video_call/util/utility.dart';
 // ignore: must_be_immutable
 class IsolatedCallView extends StatelessWidget {
   IsolatedCallView({super.key});
+
   @override
   Widget build(BuildContext context) {
     return BaseView<IsolatedCallController>(
@@ -32,8 +33,8 @@ class IsolatedCallView extends StatelessWidget {
   Positioned personSmallViewInCall(
       IsolatedCallController videoCallController, BuildContext context) {
     return Positioned(
-        right: Responsive.height(20,
-            context), // eşit oranda değişsinler diye responsive height kullandım burada da(responsive width ile güzel durmadı)
+        right: Responsive.height(20, context),
+        // eşit oranda değişsinler diye responsive height kullandım burada da(responsive width ile güzel durmadı)
         bottom: Responsive.height(120, context),
         child: Obx(
           () => VideoCallPerson(
@@ -65,6 +66,8 @@ class IsolatedCallView extends StatelessWidget {
           height: Responsive.height(SizeUtil.mediumValueHeight, context),
           width: context.width1,
           child: VideoCallButtonsRow(
+            isCameraOn: true.obs,
+            isMicOn: true.obs,
             onLeaveButtonPressed: () {},
             onToggleCameraButtonPressed: () {},
             onToggleMicButtonPressed: () {},

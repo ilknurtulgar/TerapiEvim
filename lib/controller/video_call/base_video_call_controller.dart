@@ -25,17 +25,29 @@ abstract class BaseVideoCallController extends BaseController2 {
     // if (participant.id == userId) return;
     participant.on(Events.streamEnabled, (Stream stream) {
       if (stream.kind == 'video') {
+
         participantVideoStreams[participant.id] = stream;
+
         participantNames[participant.id] = participant.displayName;
+
         participantIds[participant.id] = participant.id;
+
       }
     });
 
     participant.on(Events.streamDisabled, (Stream stream) {
       if (stream.kind == 'video') {
         participantVideoStreams.remove(participant.id);
+
         participantVideoStreams[participant.id] = null;
-        participantVideoStreams.add();
+
+        participantIds.remove(participant.id);
+
+        participantIds[participant.id] = participant.id;
+
+        participantNames.remove(participant.id);
+
+        participantNames[participant.id] = participant.displayName;
 
       }
     });

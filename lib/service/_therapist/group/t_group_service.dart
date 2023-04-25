@@ -285,7 +285,7 @@ class TGroupService extends ITGroupService with BaseService {
 
     groups.addAll(resultAsTherapistHelper.data!);
 
-    return result.data ?? [];
+    return groups;
   }
 
   @override

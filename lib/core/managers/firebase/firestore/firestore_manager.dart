@@ -111,6 +111,33 @@ class FirestoreManager<E extends INetworkModel<E>?>
   }
 
   @override
+  Stream<DocumentSnapshot<Map<String, dynamic>>>? setStreamListener({
+    required String collectionPath,
+    required String docId,
+    String? collectionPath2,
+    String? docId2,
+  }) {
+    try {
+      if (collectionPath2 != null) {
+        return _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .doc(docId2)
+            .snapshots();
+      } else {
+        return _database.collection(collectionPath).doc(docId).snapshots();
+      }
+    } catch (e) {
+      crashlyticsManager.sendACrash(
+          error: e.toString(),
+          stackTrace: StackTrace.current,
+          reason: 'error at firestore_manager/setStreamListener');
+      return null;
+    }
+  }
+
+  @override
   Future<IResponseModel<R?, E?>> read<T extends INetworkModel<T>, R>(
       {required T parseModel,
       required String collectionPath,

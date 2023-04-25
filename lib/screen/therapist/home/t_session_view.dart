@@ -54,18 +54,16 @@ class TSessionView extends StatelessWidget {
                   final TSessionModel? sessionModel =
                       controller.fetchedSession[index];
 
-                  return participantWithShortCallTime(
-                    participantName: sessionModel?.participantName ?? "",
-                    time: (DateTimeManager.getFormattedDateFromFormattedString(
-                        value: sessionModel?.dateTime
-                            ?.toDate()
-                            .toIso8601String())),
-                    testResultOnTapped: () =>
-                        context.push(TestResultView(session: sessionModel!)),
-                    joinOnTapped: () => controller.joinShortCall(sessionModel),
-                  );
-                }),
-              ),
+
+            return participantWithShortCallTime(
+              participantName: sessionModel?.participantName ?? "",
+              time: DateTimeManager.getFormattedDateFromFormattedString(value:  sessionModel?.dateTime?.toDate().toIso8601String()),
+              testResultOnTapped: () =>
+                  context.push(TestResultView(session: sessionModel!)),
+              joinOnTapped: () => controller.joinShortCall(sessionModel),
+            );
+          }),
+        ),
       ),
     );
   }

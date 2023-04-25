@@ -14,8 +14,8 @@ import '../../../../core/extension/context_extension.dart';
 import '../../../../model/therapist/group/t_group_model.dart';
 import '../../../participant/profile/util/p_profile_view_utility.dart';
 
-class TProfileView extends StatelessWidget {
-  const TProfileView(
+class TAboutProfileView extends StatelessWidget {
+  const TAboutProfileView(
       {super.key, required this.isSecTherapist, required this.groupId});
 
   final bool isSecTherapist;

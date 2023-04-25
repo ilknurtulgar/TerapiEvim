@@ -28,4 +28,5 @@ class AppConst {
   static const String freeDateId = 'freeDateId';
   static const String hour = 'hour';
   static const String emptyString = '';
+  static const String meetingId = 'meetingId';
 }

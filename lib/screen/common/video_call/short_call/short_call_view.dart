@@ -77,6 +77,8 @@ class ShortCallView extends StatelessWidget {
                   //     context), // participantCallView
                   mediumSizedBox(),
                   VideoCallButtonsRow(
+                    isMicOn: controller.micEnabled,
+                    isCameraOn: controller.camEnabled,
                     onToggleMicButtonPressed: () =>
                         controller.triggerMicrophone(),
                     onToggleCameraButtonPressed: () =>

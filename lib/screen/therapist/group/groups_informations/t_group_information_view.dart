@@ -48,7 +48,7 @@ class TGroupInformationView extends StatelessWidget {
                   () => navMethod(
                       row(controller, GroupTextUtil.secondTherapistText,
                           controller.helperTherapistName.value), () {
-                    context.push(TProfileView(
+                    context.push(TAboutProfileView(
                       isSecTherapist: true,
                       groupId: controller.currentGroup?.id ?? "null",
                     ));

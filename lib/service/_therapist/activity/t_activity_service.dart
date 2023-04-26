@@ -133,7 +133,7 @@ class TActivityService extends ITActivityService with BaseService {
     if (userId == null) return null;
 
     final result =
-        await manager.readOrderedWhere<TActivityModel, TActivityModel>(
+        await manager.readOrderedWhere<TActivityModel, List<TActivityModel>>(
       collectionPath: APIConst.activities,
       parseModel: TActivityModel(),
       orderField: AppConst.dateTime,
@@ -143,11 +143,14 @@ class TActivityService extends ITActivityService with BaseService {
       lastDocumentId: '',
       limit: 1,
     );
-    if (result.error != null) {
+    if (result.error != null || result.data == null) {
+      return null;
+    }
+    if (result.data!.isEmpty) {
       return null;
     }
 
-    return result.data ?? null;
+    return result.data![0] ;
   }
 
   @override

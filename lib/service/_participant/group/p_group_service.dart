@@ -172,15 +172,19 @@ class PGroupService extends IPGroupService with BaseService {
     final List<PPublicProfile> publicProfileList = [];
 
     for (String participantId in participantsId) {
-      final result = await manager.readWhere<PPublicProfile, PPublicProfile>(
-        collectionPath: APIConst.groups,
+      final result =
+          await manager.readWhere<PPublicProfile, List<PPublicProfile>>(
+        collectionPath: APIConst.users,
         whereField: AppConst.id,
         whereIsEqualTo: participantId,
         parseModel: PPublicProfile(),
       );
 
-      if (result.data != null) {
-        publicProfileList.add(result.data!);
+      if (result.data == null) {
+        continue;
+      }
+      if (result.data!.isNotEmpty) {
+        publicProfileList.add(result.data![0]);
       }
     }
 

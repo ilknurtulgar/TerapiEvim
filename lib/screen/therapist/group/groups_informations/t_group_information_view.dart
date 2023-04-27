@@ -57,16 +57,17 @@ class TGroupInformationView extends StatelessWidget {
                       ));
                     }),
                   ),
-                  Election(
-                      isSelectedValue: controller.isParticipantElectionOpen,
-                      firstRow: Obx(() => SizedBox(
-                            child: participants(
-                                controller, controller.participants.length),
-                          )),
-                      rows: controller.participants
-                          .map((participant) => person(participant.name!,
-                              participant.imageUrl!, context))
-                          .toList()),
+                  Obx(() =>  Election(
+                        isSelectedValue: controller.isParticipantElectionOpen,
+                        firstRow: SizedBox(
+                              child: participants(
+                                  controller, controller.participants.length),
+                            ),
+                        rows: controller.participants
+                            .map((participant) => person(participant.name!,
+                                participant.imageUrl??"", context))
+                            .toList()),
+                  ),
                   navMethod(DemoInformation.methods, () {
                     context.push(PCopingMethodsView());
                   }),
@@ -74,10 +75,11 @@ class TGroupInformationView extends StatelessWidget {
                 ],
               ),
               floatingActionButton: FloatingActionButton(
+                backgroundColor: AppColors.meteorite,
                   onPressed: () async {
                     await controller.startIsolatedCall();
                   },
-                  child: Icon(Icons.send)),
+                  child: Icon(Icons.directions_run)),
             ),
           );
         });
@@ -121,22 +123,22 @@ class TGroupInformationView extends StatelessWidget {
       )
     ];
   }
-
-  SeminarMin participants(
+  Widget participants(
       TGroupInformationController controller, int numberOfParticipants) {
-    return SeminarMin(
-      isBorderPurple: true,
-      onTap: () {
-        controller.changeParticipantElection();
-      },
-      row: RowModel(
-        text: GroupTextUtil.participantsText + numberOfParticipants.toString(),
-        textStyle: AppTextStyles.aboutMeTextStyle(false),
-        leadingIcon: IconUtility.groupsIcon,
-        isAlignmentBetween: true,
-        trailingIcon: controller.isParticipantElectionOpen.isTrue
-            ? IconUtility.arrowUp
-            : IconUtility.arrowDown,
+    return Obx(() =>  SeminarMin(
+        isBorderPurple: true,
+        onTap: () {
+          controller.changeParticipantElection();
+        },
+        row: RowModel(
+          text: GroupTextUtil.participantsText + numberOfParticipants.toString(),
+          textStyle: AppTextStyles.aboutMeTextStyle(false),
+          leadingIcon: IconUtility.groupsIcon,
+          isAlignmentBetween: true,
+          trailingIcon: controller.isParticipantElectionOpen.isTrue
+              ? IconUtility.arrowUp
+              : IconUtility.arrowDown,
+        ),
       ),
     );
   }

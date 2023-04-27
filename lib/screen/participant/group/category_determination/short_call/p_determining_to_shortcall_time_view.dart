@@ -5,6 +5,7 @@ import 'package:terapievim/controller/participant/group/p_determining_short_call
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 
 import '../../../../../core/base/component/group/choosing_time_sc_cont.dart';
 import '../../../../../core/base/component/group/custom_heading.dart';
@@ -13,7 +14,6 @@ import '../../../../../core/base/util/text_utility.dart';
 import '../../../../../core/base/view/base_view.dart';
 import '../../../../../model/therapist/session/free_date/t_free_date_model.dart';
 
-// ignore: must_be_immutable
 class PShortCallTimeView extends StatelessWidget {
   const PShortCallTimeView({super.key});
 
@@ -59,30 +59,32 @@ class PShortCallTimeView extends StatelessWidget {
 
   Widget timeChoose(PDeterminingShortCallController controller) {
     return Obx(
-      () => ListView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: controller.freeDates.length,
-        itemBuilder: (context, index) {
-          final TFreeDateModel freeDate = controller.freeDates[index];
+      () => controller.freeDates.isEmpty
+          ? EmptySizedBoxText()
+          : ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: controller.freeDates.length,
+              itemBuilder: (context, index) {
+                final TFreeDateModel freeDate = controller.freeDates[index];
 
-          if (freeDate.hours.isEmpty) return SizedBox();
+                if (freeDate.hours.isEmpty) return SizedBox();
 
-          return Padding(
-            padding: AppPaddings.timeChossingBetweenPadding,
-            child: ChoosingTimeForSCContainer(
-              onSelectedHour: (int selectedHourIndex) =>
-                  controller.onSelectedHour(freeDate.hours[selectedHourIndex]),
-              therapistName: freeDate.therapistName,
-              isForParticipant: true,
-              date: freeDate.dateTime ?? Timestamp.now(),
-              timeList: freeDate.hours,
-              listViewChosenList: controller.isChosen,
-              dateIndex: index,
+                return Padding(
+                  padding: AppPaddings.timeChossingBetweenPadding,
+                  child: ChoosingTimeForSCContainer(
+                    onSelectedHour: (int selectedHourIndex) => controller
+                        .onSelectedHour(freeDate.hours[selectedHourIndex]),
+                    therapistName: freeDate.therapistName,
+                    isForParticipant: true,
+                    date: freeDate.dateTime ?? Timestamp.now(),
+                    timeList: freeDate.hours,
+                    listViewChosenList: controller.isChosen,
+                    dateIndex: index,
+                  ),
+                );
+              },
             ),
-          );
-        },
-      ),
     );
   }
 }

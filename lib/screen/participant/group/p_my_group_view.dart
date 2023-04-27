@@ -6,6 +6,7 @@ import 'package:terapievim/core/base/component/group/person.dart';
 import 'package:terapievim/core/base/ui_models/row_model.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 import 'package:terapievim/screen/participant/message/p_message_view.dart';
 import 'package:terapievim/screen/therapist/group/groups_informations/t_profile_about_view.dart';
 
@@ -45,63 +46,72 @@ class PMyGroupView extends StatelessWidget {
                   isalignmentstart: true,
                   text: GroupTextUtil.upcomingMeetingText),
               Obx(
-                () => ActivityBox(
-                    rightButtonTap: () {
-                      controller.joinVideoCall();
-                    },
-                    istwobutton: false,
-                    buttonText: GroupTextUtil.joinText,
-                    isactivity: false,
-                    containerModel: AppContainers.containerButton(false),
-                    arowModel: rows(
-                        controller.tGroupSession.value?.therapistName ??
-                            "null",
-                        RowType.therapist,
-                        false),
-                    ayrowwModel: rows(
-                        controller.tGroupSession.value?.therapistHelperName ??
-                            "null",
-                        RowType.secTherapist,
-                        false),
-                    clockModel: rows(
-                        DateTimeManager.getFormattedDateFromFormattedString(
-                            value: controller.tGroupSession.value?.dateTime
-                                ?.toDate()
-                                .toIso8601String()),
-                        RowType.date,
-                        false)),
+                //sor0
+                () => controller.participants.isEmpty
+                    ? EmptySizedBoxText()
+                    : ActivityBox(
+                        rightButtonTap: () {
+                          controller.joinVideoCall();
+                        },
+                        istwobutton: false,
+                        buttonText: GroupTextUtil.joinText,
+                        isactivity: false,
+                        containerModel: AppContainers.containerButton(false),
+                        arowModel: rows(
+                            controller.tGroupSession.value?.therapistName ??
+                                "null",
+                            RowType.therapist,
+                            false),
+                        ayrowwModel: rows(
+                            controller
+                                    .tGroupSession.value?.therapistHelperName ??
+                                "null",
+                            RowType.secTherapist,
+                            false),
+                        clockModel: rows(
+                            DateTimeManager.getFormattedDateFromFormattedString(
+                                value: controller.tGroupSession.value?.dateTime
+                                    ?.toDate()
+                                    .toIso8601String()),
+                            RowType.date,
+                            false)),
               ),
               CustomHeading(
                 text: GroupTextUtil.groupsInformationText,
                 isalignmentstart: true,
               ),
               Obx(
-                () => therapist(
-                    rows(
-                        controller.tGroupSession.value?.therapistName ??
-                            "null",
-                        RowType.therapist,
-                        true), () {
-                  context.push(TAboutProfileView(
-                    isSecTherapist: false,
-                    groupId: controller.currentGroupId,
-                  ));
-                }),
+                () => controller.participants.isEmpty
+                    ? EmptySizedBoxText()
+                    : therapist(
+                        rows(
+                            controller.tGroupSession.value?.therapistName ??
+                                "null",
+                            RowType.therapist,
+                            true), () {
+                        context.push(TAboutProfileView(
+                          isSecTherapist: false,
+                          groupId: controller.currentGroupId,
+                        ));
+                      }),
               ),
               therapist(UiBaseModel.messageToTherapist,
                   () => context.push(PMessageView())),
               Obx(
-                () => therapist(
-                    rows(
-                        controller.tGroupSession.value?.therapistHelperName ??
-                            'null',
-                        RowType.secTherapist,
-                        true), () {
-                  context.push(TAboutProfileView(
-                    isSecTherapist: true,
-                    groupId: controller.currentGroupId,
-                  ));
-                }),
+                () => controller.participants.isEmpty
+                    ? EmptySizedBoxText()
+                    : therapist(
+                        rows(
+                            controller
+                                    .tGroupSession.value?.therapistHelperName ??
+                                'null',
+                            RowType.secTherapist,
+                            true), () {
+                        context.push(TAboutProfileView(
+                          isSecTherapist: true,
+                          groupId: controller.currentGroupId,
+                        ));
+                      }),
               ),
               CustomHeading(
                 text: GroupTextUtil.participantsText +
@@ -145,16 +155,19 @@ class PMyGroupView extends StatelessWidget {
   Widget participants(PGroupController controller) {
     //participant listesi gelecek
     return Obx(
-      () => ListView.builder(
-        physics: const NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: controller.participants.length,
-        itemBuilder: ((context, index) => participantContainer(
-            CardModel(
-                imagePath: controller.participants[index].imageUrl ?? "null",
-                title: controller.participants[index].name ?? "null"),
-            SizeUtil.normalValueHeight)),
-      ),
+      () => controller.participants.isEmpty
+          ? EmptySizedBoxText()
+          : ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+              shrinkWrap: true,
+              itemCount: controller.participants.length,
+              itemBuilder: ((context, index) => participantContainer(
+                  CardModel(
+                      imagePath:
+                          controller.participants[index].imageUrl ?? "null",
+                      title: controller.participants[index].name ?? "null"),
+                  SizeUtil.normalValueHeight)),
+            ),
     );
   }
 }

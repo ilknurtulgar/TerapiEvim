@@ -382,6 +382,8 @@ class AppPaddings {
   );
   static const EdgeInsets pagePadding =
       EdgeInsets.only(left: 24, right: 24, bottom: 80, top: 15);
+  static const EdgeInsets sizedEmpty =
+      EdgeInsets.only(left: 24, right: 24, top: 15, bottom: 15);
 
   static const EdgeInsets pagePaddingHorizontal =
       EdgeInsets.symmetric(horizontal: 24);
@@ -441,6 +443,7 @@ SizedBox mediumSizedBox() => const SizedBox(height: 16);
 
 SizedBox largeSizedBox() => const SizedBox(height: 32);
 SizedBox hugeSizedBox() => const SizedBox(height: 50);
+SizedBox huge2xSizedBox() => const SizedBox(height: 100);
 
 class AppBorderRadius {
   static const BorderRadius generalBorderRadius =

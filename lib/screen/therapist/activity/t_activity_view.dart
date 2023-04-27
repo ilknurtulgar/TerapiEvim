@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 import 'package:terapievim/screen/therapist/activity/t_my_activity_list_view.dart';
 import 'package:terapievim/screen/therapist/activity/t_new_activity_view.dart';
@@ -115,13 +116,15 @@ class TActivityView extends StatelessWidget {
   ActivityBox _myPastActivities(BuildContext context,
       TActivityController controller, TActivityModel? myPastActivity) {
     return ActivityBox(
-        rightButtonTap: () {},
+        rightButtonTap: () {
+          flutterErrorToast(EmptyTextUtil.emptyText);
+        },
         istwobutton: false,
         buttonText: ActivityTextUtil.watchTheRecording,
         containerModel: AppContainers.containerButton(true),
         isactivity: true,
         arowModel: DemoInformation.myPastActivities(
-            myPastActivity?.title ?? "empty title"),
+            myPastActivity?.title ?? "Nefes Egzersizleri"),
         clockModel: DemoInformation.myPastActivitiesTime(
             myPastActivity?.dateTime ?? Timestamp.now()));
   }
@@ -162,7 +165,7 @@ class TActivityView extends StatelessWidget {
           ));
         },
         arowModel: DemoInformation.recentActivityTitle(
-            recentActivity?.title ?? 'Empty title'),
+            recentActivity?.title ?? 'Nefes Egzersizleri'),
         clockModel: DemoInformation.recentActivityTime(
             recentActivity?.dateTime ?? Timestamp.now()));
   }

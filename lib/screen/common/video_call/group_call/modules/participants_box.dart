@@ -42,16 +42,13 @@ class ParticipantsBoxGroupCall extends StatelessWidget {
                                     .MainTherapistHasControl.obs
                                 : videoCallController
                                     .hasSecondTherapistControl))
-                    : VideoCallUtility.putYourHandsUpButton(
-                        () => videoCallController.onOffFunction(
-                            DemoInformation.participants[0].isHandsUp!),
-                        DemoInformation.participants[0].isHandsUp!,
-                      ),
+                    : SizedBox.shrink(),
                 onToggleMicButtonPressed: () =>
                     videoCallController.triggerMicrophone(),
                 onToggleCameraButtonPressed: () =>
                     videoCallController.triggerCamera(),
-                onLeaveButtonPressed: () => videoCallController.endCallToMainView(),
+                onLeaveButtonPressed: () =>
+                    videoCallController.endCallToMainView(),
               ),
             ],
           )),

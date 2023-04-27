@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 
 import '../../../controller/therapist/message/t_message_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
@@ -12,8 +13,7 @@ import 't_search_message_view.dart';
 
 class TMessageView extends StatelessWidget {
   const TMessageView({super.key});
-
-//kullanıcılar
+  final bool isService = false;
   @override
   Widget build(BuildContext context) {
     return BaseView<TMessageController>(
@@ -30,24 +30,29 @@ class TMessageView extends StatelessWidget {
                   icon: IconUtility.addmesaage),
             ],
           ),
-          body: ListView.builder(
-            padding: AppPaddings.pagePadding,
-            itemBuilder: (context, index) {
-              return ChatInformation(
-                cardModel: cardModelhome(controller),
-              );
-            },
-            itemCount: 2,
-          ),
+          body: isService == false
+              ? Padding(
+                  padding: AppPaddings.pagePadding, child: EmptySizedBoxText())
+              : ListView.builder(
+                  padding: AppPaddings.pagePadding,
+                  itemBuilder: (context, index) {
+                    return ChatInformation(
+                      cardModel: cardModels[index],
+                    );
+                  },
+                  itemCount: 2,
+                ),
         );
       },
     );
   }
 }
 
-CardModel cardModelhome(TMessageController tMessageController) {
-  return CardModel(
-      subtitle: "Uzman Psikolog",
-      imagePath: "assets/images/doctorfotosu.jpeg",
-      title: "Günay Kara");
+List cardModels = [
+  cardModelhome(
+      "Uzman Psikolog", "assets/images/doctorfotosu.jpeg", "Günay Kara"),
+  cardModelhome("Uzman Psikolog", "assets/images/f1.jpg", "Yasemin Kara"),
+];
+CardModel cardModelhome(String subtitle, String imgePath, String title) {
+  return CardModel(subtitle: subtitle, imagePath: imgePath, title: title);
 }

@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:terapievim/model/participant/video_call/therapist_helper_group_call_model.dart';
 
 import '../../../core/constants/api_const.dart';
 import '../../../core/constants/app_const.dart';
@@ -57,6 +58,37 @@ class GroupCallService extends IGroupCallService {
       docId: meetingId,
       collectionPath2: participantId,
       docId2: participantId,
+    );
+    return stream;
+  }
+
+  @override
+  Future<bool> tHelperInit(
+      {required TherapistHelperGroupCallModel therapistHelperGroupCall}) async {
+    if (userId == null) return false;
+
+    ///groupRoom/meetingId/participantId/participantId
+    final isSuccess = await manager.createWithDocId(
+      collectionPath: APIConst.groupRoom,
+      docId: therapistHelperGroupCall.meetingId!,
+      collectionPath2: therapistHelperGroupCall.therapistHelperId!,
+      docId2: therapistHelperGroupCall.therapistHelperId!,
+      data: therapistHelperGroupCall.toJson()!,
+    );
+
+    return isSuccess;
+  }
+
+  @override
+  Stream<DocumentSnapshot<Map<String, dynamic>>>? tHelperSetRoomListener({
+    required String meetingId,
+    required String therapistHelperId,
+  }) {
+    final stream = manager.setStreamListener(
+      collectionPath: APIConst.groupRoom,
+      docId: meetingId,
+      collectionPath2: therapistHelperId,
+      docId2: therapistHelperId,
     );
     return stream;
   }

@@ -23,11 +23,11 @@ class MainHome extends StatefulWidget {
 }
 
 class _MainHomeState extends State<MainHome> {
-  late final MainController _controller = Get.find();
+  late final MainController _controller;
 
   // main controller burada kalınca hata verdi o yüzden mecburi olarak main dart içerisinde get put ettim
 
-  /*@override
+  @override
   void initState() {
     _controller = Get.put(MainController());
     super.initState();
@@ -38,7 +38,7 @@ class _MainHomeState extends State<MainHome> {
     _controller.dispose();
     Get.delete<MainController>();
     super.dispose();
-  }*/
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,19 +53,21 @@ class _MainHomeState extends State<MainHome> {
     );
   }
 
-  CupertinoTabScaffold buildCupertinoTabScaffold(BuildContext context) {
-    return CupertinoTabScaffold(
-      controller: _controller.tabController,
-      tabBar: CupertinoTabBar(
-        border: Border.all(color: context.theme.scaffoldBackgroundColor),
-        height: SizeUtil.bnbHeight,
-        currentIndex: _controller.currentScreenIndex.toInt(),
-        onTap: (int value) {
-          _controller.onPageChanged(value);
-        },
-        items: _bottomNavBarItems(context),
+  Widget buildCupertinoTabScaffold(BuildContext context) {
+    return Obx(
+      () => CupertinoTabScaffold(
+        controller: _controller.tabController,
+        tabBar: CupertinoTabBar(
+          border: Border.all(color: context.theme.scaffoldBackgroundColor),
+          height: SizeUtil.bnbHeight,
+          currentIndex: _controller.currentScreenIndex.toInt(),
+          onTap: (int value) {
+            _controller.onPageChanged(value);
+          },
+          items: _bottomNavBarItems(context),
+        ),
+        tabBuilder: _tabBuilder(),
       ),
-      tabBuilder: _tabBuilder(),
     );
   }
 }

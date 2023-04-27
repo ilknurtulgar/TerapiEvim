@@ -4,7 +4,6 @@ import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:videosdk/videosdk.dart';
 
-import '../../../../../screen/common/video_call/util/utility.dart';
 import '../../../ui_models/video_call/video_call_view_model.dart';
 
 class VideoCallPerson extends StatelessWidget {
@@ -71,10 +70,10 @@ class VideoCallPerson extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          VideoCallUtility.micIconButton(
+          /*  VideoCallUtility.micIconButton(
               onTap: micOnOffFunction!,
               isInsideContainer: false,
-              isMicOn: videoCallViewModel.person.isMicOn)
+              isMicOn: videoCallViewModel.person.isMicOn)*/
         ],
       ),
     );

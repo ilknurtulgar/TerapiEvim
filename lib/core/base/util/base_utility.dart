@@ -539,7 +539,7 @@ class NavigateUtil {
     const PActivityView(),
     PGroupView(),
     // MessageScreen(),
-    const PProfileView(),
+    PProfileView(),
   ];
 }
 
@@ -658,17 +658,15 @@ class DemoInformation {
   static const String message =
       "Flutter, Google tarafından oluşturulan açık kaynaklı bir UI yazılım geliştirme kitidir. Android, iOS, Windows, Mac, Linux ve web için uygulamalar geliştirmek için kullanılıyor. Flutter'ın ilk sürümü  olarak biliniyordu ve Android işletim sisteminde çalışıyordu.";
   static const List<String> home = [
-    "fdvd deneme deneme deneme deneme ssssdsfsmbfdmösfbsfösbnöfmbsöbfnömsbfö deneme deneme deneme deneme denemeee deneme deneme deneme",
-    "yasemin",
-    "gizem",
-    "ilknur",
-    "behzat"
+    "Baş etme metotumu incelemeyi unutmayın",
+    "Stres ile ilgili metotlarımı incelemenizi önemli rica ederim",
   ];
   static CardModel cardModelhome = CardModel(
       subtitle: "Uzman Psikolog",
-      imagePath: "assets/images/doctorfotosu.jpeg",
-      title: "Günay Kara");
-  static const String name = "Yasemin";
+      imagePath: "assets/images/f1.jpg",
+      title: "Rümeysa Kara");
+  static const String name = "Stres ile Başa Çıkma";
+  static const String therpyname = "İçimizdeki Çocuk";
 
   RowModel rowModel = RowModel(
       text: "Okb danışan",

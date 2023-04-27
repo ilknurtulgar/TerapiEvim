@@ -208,6 +208,44 @@ class FirestoreManager<E extends INetworkModel<E>?>
   }
 
   @override
+  Future<IResponseModel<R?, E?>> readContainsArray<T extends INetworkModel<T>, R>(
+      {required T parseModel,
+        required String collectionPath,
+        required String whereField,
+        required Object arrayContains,
+        String? docId,
+        int limit = AppConst.tenItemsPerPage,
+        String? collectionPath2}) async {
+    QuerySnapshot? response;
+    try {
+      /// return paginated items
+      if (collectionPath2 != null) {
+        response = await _database
+            .collection(collectionPath)
+            .doc(docId)
+            .collection(collectionPath2)
+            .where(whereField, arrayContains: arrayContains)
+            .limit(limit)
+            .get();
+      } else {
+        response = await _database
+            .collection(collectionPath)
+            .where(whereField, isEqualTo: arrayContains)
+            .limit(limit)
+            .get();
+      }
+
+      final List<QueryDocumentSnapshot<Object?>> queryList = response.docs;
+
+      return _getResponseResult<T, R>(queryList, parseModel);
+    } catch (e) {
+      await crashlyticsManager.sendACrash(
+          error: e.toString(), stackTrace: StackTrace.current, reason: '');
+      return _onError(e);
+    }
+  }
+
+  @override
   Future<IResponseModel<R?, E?>> readWhere2<T extends INetworkModel<T>, R>(
       {required T parseModel,
       required String collectionPath,

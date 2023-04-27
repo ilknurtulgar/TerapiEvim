@@ -74,6 +74,7 @@ class GroupTextUtil {
   static String upcomingMeetingText = "Yaklaşan Toplantı";
   static String groupsInformationText = "Grubun Bilgileri";
   static String participantsText = "Katılımcılar:  20/";
+  static String getParticipants(String number)=> "Katılımcılar $number/20";
   static String startText = "Başlat";
   static String deleteGroupConfirmText =
       "Grubu Silmek İstediğinize Emin Misiniz? ";

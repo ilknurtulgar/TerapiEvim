@@ -23,7 +23,9 @@ class PGroupController extends BaseController2 {
   @override
   Future<void> onInit() async {
     _ipGroupService = PGroupService(vexaFireManager.networkManager);
+    await fetchMyGroup();
     await fetchRecentGroupSession();
+    await getParticipants();
     super.onInit();
   }
 
@@ -34,7 +36,7 @@ class PGroupController extends BaseController2 {
   var selectedValue = 2.obs;
   String currentGroupId = '';
 
-  Rx<TGroupSessionModel?> tGroupSession = TGroupSessionModel().obs;
+  Rx<TGroupSessionModel> tGroupSession = TGroupSessionModel().obs;
   TGroupModel? currentGroup;
 
   Future<void> fetchRecentGroupSession() async {
@@ -62,8 +64,8 @@ class PGroupController extends BaseController2 {
     try {
       final IVideoSdkManager videoSdkManager = VideoSdkManager();
 
-      if (tGroupSession.value?.meetingId == null) return;
-      if (tGroupSession.value!.meetingId!.isEmpty) {
+      if (tGroupSession.value.meetingId == null) return;
+      if (tGroupSession.value.meetingId!.isEmpty) {
         flutterInfoToast("Group session is not started");
         return;
       }
@@ -71,7 +73,7 @@ class PGroupController extends BaseController2 {
       controllerContext.pushTrueRootNavigatorAndRemove(
         GroupCallView(
           videoCallToken: VideoCallTokenModel(
-            meetingId: tGroupSession.value!.meetingId!,
+            meetingId: tGroupSession.value.meetingId!,
             token: videoSdkManager.token,
             participantId: userId!,
             isTherapist: false,
@@ -125,11 +127,15 @@ class PGroupController extends BaseController2 {
 
 //my group bilgileri alinmali
 //terapist isim yardimci terapist isiim en yakin meeting tarihi ve saati katilimcilarin isimleri ve imageleri
-  late List<PPublicProfile> participants = <PPublicProfile>[].obs;
+  RxList<PPublicProfile> participants = <PPublicProfile>[].obs;
 
   Future<void> getParticipants() async {
-    participants = await _ipGroupService.getParticipantsList(
-        participantsId: currentGroup?.participantsId ?? <String>[]);
+    final List<PPublicProfile> result =
+        await _ipGroupService.getParticipantsList(
+            participantsId: currentGroup?.participantsId ?? <String>[]);
+    if (result.isNotEmpty) {
+      participants.addAll(result);
+    }
   }
 
   Future<void> fetchMyGroup() async {

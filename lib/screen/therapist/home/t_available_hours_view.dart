@@ -5,8 +5,6 @@ import 'package:get/get.dart';
 import 'package:terapievim/model/therapist/session/free_date/t_free_date_model.dart';
 import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 
-
-
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/extension/context_extension.dart';
@@ -14,7 +12,6 @@ import '../../../controller/therapist/home/session/t_available_hours_view_contro
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/component/group/choosing_time_sc_cont.dart';
 import '../../../core/base/view/base_view.dart';
-import '../../../model/therapist/session/free_date/t_free_date_model.dart';
 import 't_add_hours_view.dart';
 
 class TAvailableHoursView extends StatelessWidget {
@@ -36,7 +33,10 @@ class TAvailableHoursView extends StatelessWidget {
                       icon: IconUtility.addcircleIcon)
                 ],
               ),
-              body: choosingTime(controller),
+              body: Padding(
+                padding: AppPaddings.pagePadding,
+                child: choosingTime(controller),
+              ),
             ));
   }
 

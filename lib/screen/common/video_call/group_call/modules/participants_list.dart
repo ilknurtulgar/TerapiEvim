@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../controller/video_call/group_call_controller.dart';
+import '../../../../../core/base/component/toast/toast.dart';
 import '../../../../../core/base/component/video_call/container/video_call_person.dart';
 import '../../../../../core/base/util/base_utility.dart';
 import '../../util/utility.dart';
@@ -44,11 +45,17 @@ class ParticipantsRow extends StatelessWidget {
                   videoCallViewModel: VideoCallUtility.personSmallView(
                       DemoInformation.participants[index], true, context),
                   onLongPressed: () {
-                    // if (isMainTherapist &&
-                    //     controller.currentToken.therapistHelperId.isNotEmpty) {
-                      controller.sendIsolatedCall(
-                          name: participantName, participantId: participantId);
-                    // }
+                    if (participantId ==
+                        controller.currentToken.therapistHelperId) {
+                      flutterInfoToast(
+                          'You are trying to send therapist helper to isolated call');
+                      return;
+                    }
+                    if (isMainTherapist &&
+                        controller.currentToken.therapistHelperId.isNotEmpty) {
+                    controller.sendIsolatedCall(
+                        name: participantName, participantId: participantId);
+                    }
                   },
                   micOnOffFunction: () => controller.onOffFunction(
                       DemoInformation.participants[index].isMicOn),

@@ -74,6 +74,7 @@ class TGroupInformationController extends GetxController with BaseController {
         VideoCallTokenModel token = VideoCallTokenModel(
           meetingId: recentSession!.meetingId!,
           token: videoSdkManager.token,
+          therapistHelperId: recentSession!.therapistHelperId!,
           isTherapist: true,
           participantId: userId!,
           isMainTherapist: false,
@@ -111,6 +112,7 @@ class TGroupInformationController extends GetxController with BaseController {
         isTherapist: true,
         participantId: userId!,
         isMainTherapist: true,
+        therapistHelperId: recentSession!.therapistHelperId!,
       );
 
       navigationManager.pushAndRemoveUntil(

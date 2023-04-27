@@ -222,16 +222,22 @@ class GroupCallController extends BaseVideoCallController {
       {required String participantId}) async {
     try {
       final IVideoSdkManager videoSdkManager = VideoSdkManager();
-      final String? meetingId = await videoSdkManager.createMeeting();
-      if (meetingId == null) {
+      final String? newMeetingId = await videoSdkManager.createMeeting();
+      if (newMeetingId == null) {
         flutterErrorToast('Could not create a meeting id');
         return;
       }
 
       final result = await _groupCallService.tSendParticipantToIsolatedCall(
-          meetingId: meetingId,
+        groupCallModel: ParticipantGroupCallModel(
           participantId: participantId,
-          therapistHelperId: currentToken.therapistHelperId);
+          meetingId: newMeetingId,
+          isParticipantKicked: true,
+        ),
+        previousMeetingId: currentToken.meetingId,
+        therapistHelperId: currentToken.therapistHelperId,
+      );
+
       if (result == false) {
         flutterErrorToast('Error occurred');
       }

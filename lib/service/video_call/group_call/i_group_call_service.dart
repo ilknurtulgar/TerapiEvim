@@ -13,10 +13,11 @@ abstract class IGroupCallService extends BaseService {
 
   Future<bool> tSetAGroupRoom(String meetingId);
 
-  Future<bool> tSendParticipantToIsolatedCall(
-      {required String meetingId,
-      required String therapistHelperId,
-      required String participantId});
+  Future<bool> tSendParticipantToIsolatedCall({
+    required String therapistHelperId,
+    required String previousMeetingId,
+    required ParticipantGroupCallModel groupCallModel,
+  });
 
   Future<bool> pInit({required ParticipantGroupCallModel participantGroupCall});
 
@@ -26,7 +27,6 @@ abstract class IGroupCallService extends BaseService {
   Stream<DocumentSnapshot<Map<String, dynamic>>>? pSetRoomListener({
     required String meetingId,
     required String participantId,
-
   });
 
   Stream<DocumentSnapshot<Map<String, dynamic>>>? tHelperSetRoomListener({

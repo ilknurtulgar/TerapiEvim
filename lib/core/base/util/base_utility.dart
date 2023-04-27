@@ -665,7 +665,8 @@ class DemoInformation {
       subtitle: "Uzman Psikolog",
       imagePath: "assets/images/f1.jpg",
       title: "Rümeysa Kara");
-  static const String name = "Yasemin";
+  static const String name = "Stres ile Başa Çıkma";
+  static const String therpyname = "İçimizdeki Çocuk";
 
   RowModel rowModel = RowModel(
       text: "Okb danışan",

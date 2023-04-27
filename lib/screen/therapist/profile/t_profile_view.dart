@@ -1,4 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/model/therapist/coping_method/t_coping_method_model.dart';
@@ -157,7 +156,7 @@ extension ActivitiesInProfileExtension on RxList<TActivityModel?> {
   List<String> get getTherapistNames {
     List<String> names = [];
     this.forEach((element) {
-      names.add(element?.therapistName ?? "");
+      names.add(element?.therapistName ?? EmptyTextUtil.emptyText);
     });
     return names;
   }
@@ -165,7 +164,7 @@ extension ActivitiesInProfileExtension on RxList<TActivityModel?> {
   List<String> get getTitles {
     List<String> titles = [];
     this.forEach((element) {
-      titles.add(element?.title ?? "");
+      titles.add(element?.title ?? EmptyTextUtil.emptyText);
     });
     return titles;
   }
@@ -173,7 +172,9 @@ extension ActivitiesInProfileExtension on RxList<TActivityModel?> {
   List<String> get getDates {
     List<String> dates = [];
     this.forEach((element) {
-      dates.add(DateTimeManager.getFormattedDateFromFormattedString(value: element?.dateTime!.toDate().toIso8601String(),));
+      dates.add(DateTimeManager.getFormattedDateFromFormattedString(
+        value: element?.dateTime!.toDate().toIso8601String(),
+      ));
     });
     return dates;
   }
@@ -183,7 +184,7 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   List<String> get getGroupNames {
     List<String> groupName = [];
     this.forEach((element) {
-      groupName.add(element?.groupName ?? "");
+      groupName.add(element?.groupName ?? EmptyTextUtil.emptyText);
     });
     return groupName;
   }
@@ -191,7 +192,7 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   List<String> get getMethodTitles {
     List<String> titles = [];
     this.forEach((element) {
-      titles.add(element?.title ?? "");
+      titles.add(element?.title ?? EmptyTextUtil.emptyText);
     });
     return titles;
   }
@@ -199,7 +200,8 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   List<String> get getTimes {
     List<String> timeList = [];
     this.forEach((element) {
-      timeList.add(DateTimeManager.getFormattedDateFromFormattedString(value: element?.dateTime!.toDate().toIso8601String()));
+      timeList.add(DateTimeManager.getFormattedDateFromFormattedString(
+          value: element?.dateTime!.toDate().toIso8601String()));
     });
     return timeList;
   }
@@ -207,7 +209,7 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   List<String> get getExplanations {
     List<String> explanations = [];
     this.forEach((element) {
-      explanations.add(element?.description ?? "");
+      explanations.add(element?.description ?? EmptyTextUtil.emptyText);
     });
     return explanations;
   }
@@ -215,6 +217,6 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   CardModel get getTherapist {
     return CardModel(
         imagePath: this.first?.therapistAvatarUrl ?? "",
-        title: this.first?.therapistName ?? "");
+        title: this.first?.therapistName ?? EmptyTextUtil.emptyText);
   }
 }

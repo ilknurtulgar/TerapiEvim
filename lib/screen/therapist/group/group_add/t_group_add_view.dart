@@ -197,12 +197,13 @@ class TGroupAddView extends StatelessWidget {
 
   RowModel secTherapistRowModel(TGroupAddController controller) {
     return RowModel(
-      text: controller.helperTherapist?.name ?? "null",
+      text: controller.helperTherapist?.name ?? EmptyTextUtil.emptyText,
       textStyle: AppTextStyles.buttonTextStyle(AppColors.black),
       isAlignmentBetween: true,
       leadingIcon: controller.isSecTherapistChosen.isTrue
           ? CustomCircleAvatar(
-              imagePath: controller.helperTherapist?.imageUrl ?? "null",
+              imagePath: controller.helperTherapist?.imageUrl ??
+                  EmptyTextUtil.emptyText,
               big: false,
               shadow: false)
           : const SizedBox.shrink(),
@@ -258,10 +259,10 @@ class TGroupAddView extends StatelessWidget {
           trailingIcon = IconUtility.checkCircleIcon;
         },
         row: RowModel(
-            text: therapist.name ?? "null",
+            text: therapist.name ?? EmptyTextUtil.emptyText,
             leadingIcon: CustomCircleAvatar(
                 big: false,
-                imagePath: therapist.imageUrl ?? "null",
+                imagePath: therapist.imageUrl ?? EmptyTextUtil.emptyText,
                 shadow: false),
             textStyle: AppTextStyles.groupTextStyle(true),
             isAlignmentBetween: true,
@@ -284,8 +285,8 @@ class TGroupAddView extends StatelessWidget {
     return showDialog<String>(
       context: context,
       builder: (BuildContext context) => AlertDialog(
-        title: Text(
-            helperTherapist.name ?? "null" + GroupTextUtil.secTherDialogText1),
+        title: Text(helperTherapist.name ??
+            EmptyTextUtil.emptyText + GroupTextUtil.secTherDialogText1),
         content: Text(GroupTextUtil.secTherDialogText2),
         actions: <Widget>[
           TextButton(

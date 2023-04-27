@@ -55,11 +55,13 @@ class TAboutProfileView extends StatelessWidget {
                         children: [
                           Obx(
                             () => heading(
-                                controller.tModel.value.therapistName ?? ""),
+                                controller.tModel.value.therapistName ??
+                                    EmptyTextUtil.emptyText),
                           ),
                           Obx(
                             () => aboutMe(
-                                controller.tModel.value.aboutTherapist ?? "",
+                                controller.tModel.value.aboutTherapist ??
+                                    EmptyTextUtil.emptyText,
                                 context),
                           ),
                           isSecTherapist

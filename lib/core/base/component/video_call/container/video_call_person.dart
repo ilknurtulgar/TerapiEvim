@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/video_call/container/circular_container.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
@@ -72,12 +71,6 @@ class VideoCallPerson extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Obx(
-            () => videoCallViewModel.person.isHandsUp!.value &&
-                    whichPage == VideoCallPages.groupCall
-                ? IconUtility.handsUp
-                : const SizedBox(),
-          ),
           VideoCallUtility.micIconButton(
               onTap: micOnOffFunction!,
               isInsideContainer: false,

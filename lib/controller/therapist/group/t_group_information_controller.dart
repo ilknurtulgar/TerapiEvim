@@ -53,10 +53,10 @@ class TGroupInformationController extends GetxController with BaseController {
 
 
 
-  late List<PPublicProfile> participants = <PPublicProfile>[].obs;
+   RxList<PPublicProfile> participants = <PPublicProfile>[].obs;
 
   void getParticipants() async {
-    participants = await tGroupService.getParticipantsList(
+    participants.value = await tGroupService.getParticipantsList(
         participantsId: currentGroup?.participantsId ?? <String>[]);
   }
 

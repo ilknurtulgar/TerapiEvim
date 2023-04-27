@@ -34,7 +34,8 @@ class PMyGroupView extends StatelessWidget {
         child: Scaffold(
           appBar: MyAppBar(title: GroupTextUtil.myGroupText),
           floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.send),
+            backgroundColor: AppColors.meteorite,
+            child: Icon(Icons.directions_run),
             onPressed: () {
               controller.joinIsolatedCall();
             },

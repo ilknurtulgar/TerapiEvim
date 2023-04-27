@@ -57,16 +57,17 @@ class TGroupInformationView extends StatelessWidget {
                       ));
                     }),
                   ),
-                  Election(
-                      isSelectedValue: controller.isParticipantElectionOpen,
-                      firstRow: Obx(() => SizedBox(
-                            child: participants(
-                                controller, controller.participants.length),
-                          )),
-                      rows: controller.participants
-                          .map((participant) => person(participant.name!,
-                              participant.imageUrl!, context))
-                          .toList()),
+                  Obx(() =>  Election(
+                        isSelectedValue: controller.isParticipantElectionOpen,
+                        firstRow: SizedBox(
+                              child: participants(
+                                  controller, controller.participants.length),
+                            ),
+                        rows: controller.participants
+                            .map((participant) => person(participant.name!,
+                                participant.imageUrl??"", context))
+                            .toList()),
+                  ),
                   navMethod(DemoInformation.methods, () {
                     context.push(PCopingMethodsView());
                   }),
@@ -74,10 +75,11 @@ class TGroupInformationView extends StatelessWidget {
                 ],
               ),
               floatingActionButton: FloatingActionButton(
+                backgroundColor: AppColors.meteorite,
                   onPressed: () async {
                     await controller.startIsolatedCall();
                   },
-                  child: Icon(Icons.send)),
+                  child: Icon(Icons.directions_run)),
             ),
           );
         });

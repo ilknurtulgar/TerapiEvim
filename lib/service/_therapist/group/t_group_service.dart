@@ -254,14 +254,14 @@ class TGroupService extends ITGroupService with BaseService {
 
     final result =
         await manager.readOrderedWhere<TGroupModel, List<TGroupModel>>(
-      collectionPath: APIConst.groups,
-      parseModel: TGroupModel(),
-      whereField: AppConst.therapistId,
-      whereIsEqualTo: userId!,
-      isDescending: isDescending,
-      orderField: orderField,
-      lastDocumentId: lastDocId,
-    );
+            collectionPath: APIConst.groups,
+            parseModel: TGroupModel(),
+            whereField: AppConst.therapistId,
+            whereIsEqualTo: userId!,
+            isDescending: isDescending,
+            orderField: orderField,
+            lastDocumentId: lastDocId,
+            limit: 100);
     if (result.error != null) {
       return [];
     }

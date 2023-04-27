@@ -1,6 +1,10 @@
 //buraya sadece uygulamada fix duracak olan textler konacaktir
 class SettingsTextUtil {}
 
+class EmptyTextUtil {
+  static const String emptyText = "Bu kısımda veri bulunmamaktadır.";
+}
+
 class GroupTextUtil {
   static const String messageToTherapist = "Grup Terapistine Mesaj Gonder";
   static const String findAnotherTherapist = "Tekrar Psikolog Bul";

@@ -12,7 +12,9 @@ import '../../../core/base/view/base_view.dart';
 import '../../../product/widget/common/activity/activity_boxes.dart';
 
 class PPastActivitiesListView extends StatelessWidget {
-  const PPastActivitiesListView({super.key});
+  const PPastActivitiesListView({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

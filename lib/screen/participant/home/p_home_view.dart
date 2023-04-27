@@ -4,17 +4,17 @@ import 'package:terapievim/core/extension/context_extension.dart';
 
 import '../../../controller/participant/home/p_home_view_controller.dart';
 import '../../../core/base/component/activtiy/seminers.dart';
-import '../../../core/base/component/home/reminder.dart';
 import '../../../core/base/ui_models/card_model.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
+import '../../../product/widget/common/empty_sizedbox_text.dart';
 import 'p_coping_methods_view.dart';
 
 class PHomeView extends StatelessWidget {
   const PHomeView({super.key});
-
+  final isService = false;
   @override
   Widget build(BuildContext context) {
     return BaseView<PHomeViewController>(
@@ -33,14 +33,16 @@ class PHomeView extends StatelessWidget {
                   child: minDetailsBox(HomeTextUtil.copingMethods,
                       () => context.push(const PCopingMethodsView()), context),
                 ),
-                notification(DemoInformation.cardModelhome,
-                    DemoInformation.home, DemoInformation.home.length),
-                SliverToBoxAdapter(
+                isService
+                    ? notification(DemoInformation.cardModelhome,
+                        DemoInformation.home, DemoInformation.home.length)
+                    : SliverToBoxAdapter(child: EmptySizedBoxText()),
+/*SliverToBoxAdapter(
                   child: const Reminder(
                       reminderType: ReminderType.activity,
                       name: "Gizem Göksu",
                       time: "10.12.13"),
-                ),
+                ),*/
               ],
             ),
           ),

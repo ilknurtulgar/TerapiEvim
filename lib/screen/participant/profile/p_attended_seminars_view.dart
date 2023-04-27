@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:terapievim/model/common/activity/t_activity_model.dart';
-import 'package:terapievim/screen/therapist/profile/t_profile_view.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 import '../../../controller/participant/profil/p_attended_seminars_controller.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
@@ -20,27 +21,34 @@ class PAttendedSeminarsView extends StatelessWidget {
         onPageBuilder: (context, controller) => Scaffold(
               appBar:
                   MyAppBar(title: ParticipantProfileTextUtil.attendedSeminar),
-              body: ListView.builder(
-                  itemCount: controller.listOfActivities.length,
-                  itemBuilder: (context, index) {
-                    final TActivityModel activity =
-                        controller.listOfActivities[index];
-                    return Padding(
-                      padding: AppPaddings.pagePaddingHorizontal,
-                      child: TwoRowShortContainer(
-                        row1Text: activity.therapistName ??
-                            "", 
-                        row2Text: activity.title ?? "",
-                        firstIconData: IconUtility.personIcon.icon!,
-                        secondIconData: IconUtility.windowsIcon.icon!,
-                        purpose: ContainerPurpose.seminar,
-                        buttonText: ParticipantProfileTextUtil.watchAgain,
-                        firstOnTap: () {
-                          // TO DO: watch seminar 
-                        },
-                      ),
-                    );
-                  }),
+              body: Padding(
+                padding: AppPaddings.pagePadding,
+                child: Obx(
+                  () => controller.listOfActivities.isEmpty
+                      ? EmptySizedBoxText()
+                      : ListView.builder(
+                          itemCount: controller.listOfActivities.length,
+                          itemBuilder: (context, index) {
+                            final TActivityModel activity =
+                                controller.listOfActivities[index];
+                            return Padding(
+                              padding: AppPaddings.pagePaddingHorizontal,
+                              child: TwoRowShortContainer(
+                                row1Text: activity.therapistName ?? "",
+                                row2Text: activity.title ?? "",
+                                firstIconData: IconUtility.personIcon.icon!,
+                                secondIconData: IconUtility.windowsIcon.icon!,
+                                purpose: ContainerPurpose.seminar,
+                                buttonText:
+                                    ParticipantProfileTextUtil.watchAgain,
+                                firstOnTap: () {
+                                  // TO DO: watch seminar
+                                },
+                              ),
+                            );
+                          }),
+                ),
+              ),
             ));
   }
 }

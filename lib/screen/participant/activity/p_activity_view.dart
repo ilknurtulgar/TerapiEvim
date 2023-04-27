@@ -83,10 +83,12 @@ Widget _activityRecentSeminar(PActivityController pActivityController,
   return SliverToBoxAdapter(
     child: activitythreerowbox(
       () {
-        context.push(const AboutActivityView());
+        pActivityController.joinActivity(context, recentactivity!);
       },
       () {
-        pActivityController.joinActivity(context, recentactivity!);
+        context.push(const AboutActivityView(
+          isService: false,
+        ));
       },
       DemoInformation.titlenameActivityMod(
           recentactivity?.title ?? 'empty title'),
@@ -102,10 +104,11 @@ Widget _activityRecentSeminar(PActivityController pActivityController,
 Widget _activityPastSeminar(
     BuildContext context, TActivityModel? pastactivity) {
   return SliverToBoxAdapter(
-    child: activitythreerowbox(() {
-      context.push(const AboutActivityView());
+    child: activitythreerowbox(() {}, () {
+      context.push(const AboutActivityView(
+        isService: false,
+      ));
     },
-        () {},
         DemoInformation.myPastActivities(pastactivity?.title ?? "empty title"),
         DemoInformation.myPastActivitiesTime(
             pastactivity?.dateTime ?? Timestamp.now()),

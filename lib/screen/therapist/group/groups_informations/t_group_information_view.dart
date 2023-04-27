@@ -121,22 +121,22 @@ class TGroupInformationView extends StatelessWidget {
       )
     ];
   }
-
-  SeminarMin participants(
+  Widget participants(
       TGroupInformationController controller, int numberOfParticipants) {
-    return SeminarMin(
-      isBorderPurple: true,
-      onTap: () {
-        controller.changeParticipantElection();
-      },
-      row: RowModel(
-        text: GroupTextUtil.participantsText + numberOfParticipants.toString(),
-        textStyle: AppTextStyles.aboutMeTextStyle(false),
-        leadingIcon: IconUtility.groupsIcon,
-        isAlignmentBetween: true,
-        trailingIcon: controller.isParticipantElectionOpen.isTrue
-            ? IconUtility.arrowUp
-            : IconUtility.arrowDown,
+    return Obx(() =>  SeminarMin(
+        isBorderPurple: true,
+        onTap: () {
+          controller.changeParticipantElection();
+        },
+        row: RowModel(
+          text: GroupTextUtil.participantsText + numberOfParticipants.toString(),
+          textStyle: AppTextStyles.aboutMeTextStyle(false),
+          leadingIcon: IconUtility.groupsIcon,
+          isAlignmentBetween: true,
+          trailingIcon: controller.isParticipantElectionOpen.isTrue
+              ? IconUtility.arrowUp
+              : IconUtility.arrowDown,
+        ),
       ),
     );
   }

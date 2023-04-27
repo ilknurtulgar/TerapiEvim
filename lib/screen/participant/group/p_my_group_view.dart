@@ -47,7 +47,7 @@ class PMyGroupView extends StatelessWidget {
                   text: GroupTextUtil.upcomingMeetingText),
               Obx(
                 //sor0
-                () => controller.participants.isEmpty
+                () => controller.tGroupSession.value.id == null
                     ? EmptySizedBoxText()
                     : ActivityBox(
                         rightButtonTap: () {
@@ -58,19 +58,19 @@ class PMyGroupView extends StatelessWidget {
                         isactivity: false,
                         containerModel: AppContainers.containerButton(false),
                         arowModel: rows(
-                            controller.tGroupSession.value?.therapistName ??
+                            controller.tGroupSession.value.therapistName ??
                                 "null",
                             RowType.therapist,
                             false),
                         ayrowwModel: rows(
                             controller
-                                    .tGroupSession.value?.therapistHelperName ??
+                                    .tGroupSession.value.therapistHelperName ??
                                 "null",
                             RowType.secTherapist,
                             false),
                         clockModel: rows(
                             DateTimeManager.getFormattedDateFromFormattedString(
-                                value: controller.tGroupSession.value?.dateTime
+                                value: controller.tGroupSession.value.dateTime
                                     ?.toDate()
                                     .toIso8601String()),
                             RowType.date,
@@ -81,11 +81,9 @@ class PMyGroupView extends StatelessWidget {
                 isalignmentstart: true,
               ),
               Obx(
-                () => controller.participants.isEmpty
-                    ? EmptySizedBoxText()
-                    : therapist(
+                () =>  therapist(
                         rows(
-                            controller.tGroupSession.value?.therapistName ??
+                            controller.tGroupSession.value.therapistName ??
                                 "null",
                             RowType.therapist,
                             true), () {
@@ -98,12 +96,10 @@ class PMyGroupView extends StatelessWidget {
               therapist(UiBaseModel.messageToTherapist,
                   () => context.push(PMessageView())),
               Obx(
-                () => controller.participants.isEmpty
-                    ? EmptySizedBoxText()
-                    : therapist(
+                () =>  therapist(
                         rows(
                             controller
-                                    .tGroupSession.value?.therapistHelperName ??
+                                    .tGroupSession.value.therapistHelperName ??
                                 'null',
                             RowType.secTherapist,
                             true), () {
@@ -113,10 +109,11 @@ class PMyGroupView extends StatelessWidget {
                         ));
                       }),
               ),
-              CustomHeading(
-                text: GroupTextUtil.participantsText +
-                    controller.participants.length.toString(),
-                isalignmentstart: true,
+              Obx(()=>
+                 CustomHeading(
+                  text: GroupTextUtil.getParticipants(controller.participants.length.toString()),
+                  isalignmentstart: true,
+                ),
               ),
               participants(controller),
             ],
@@ -155,9 +152,7 @@ class PMyGroupView extends StatelessWidget {
   Widget participants(PGroupController controller) {
     //participant listesi gelecek
     return Obx(
-      () => controller.participants.isEmpty
-          ? EmptySizedBoxText()
-          : ListView.builder(
+      () => ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               itemCount: controller.participants.length,

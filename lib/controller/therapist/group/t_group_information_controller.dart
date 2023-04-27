@@ -20,24 +20,7 @@ class TGroupInformationController extends GetxController with BaseController {
   @override
   void setContext(BuildContext context) {
     controllerContext = context;
-    getParticipants();
   }
-
-  void setCurrentGroup(TGroupModel? group) {
-    currentGroup = group;
-    getMeetingInformation();
-  }
-
-  late final ITGroupService tGroupService;
-
-  TGroupModel? currentGroup;
-
-  TGroupSessionModel? recentSession;
-
-  RxString helperTherapistName = ''.obs;
-
-  RxString meetingTime = ''.obs;
-
   @override
   void onInit() {
     tGroupService = TGroupService(vexaFireManager.networkManager);
@@ -50,6 +33,25 @@ class TGroupInformationController extends GetxController with BaseController {
   void dispose() {
     super.dispose();
   }
+
+  void setCurrentGroup(TGroupModel? group) {
+    currentGroup = group;
+    getMeetingInformation();
+    getParticipants();
+
+  }
+
+  late final ITGroupService tGroupService;
+
+  TGroupModel? currentGroup;
+
+  TGroupSessionModel? recentSession;
+
+  RxString helperTherapistName = ''.obs;
+
+  RxString meetingTime = ''.obs;
+
+
 
   late List<PPublicProfile> participants = <PPublicProfile>[].obs;
 

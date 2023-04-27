@@ -296,9 +296,10 @@ class TGroupService extends ITGroupService with BaseService {
     for (String participantId in participantsId) {
       final result = await manager.readWhere<PPublicProfile, PPublicProfile>(
         collectionPath: APIConst.groups,
-        whereField: AppConst.id,
+        whereField: AppConst.participantIds,
         whereIsEqualTo: participantId,
         parseModel: PPublicProfile(),
+        limit: 1,
       );
 
       if (result.data != null) {

@@ -18,7 +18,8 @@ class AppConst {
   static const String role = 'role';
   static const String therapist = 'therapist';
   static const String participant = 'participant';
-  static const String participantId = 'participant';
+  static const String participantId = 'participantId';
+  static const String participantIds = 'participantIds';
   static const String therapistId = 'therapistId';
   static const String therapistHelperId = 'therapistHelperId';
   static const String isFinished = 'isFinished';

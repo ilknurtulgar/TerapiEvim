@@ -39,7 +39,9 @@ class PSettingsView extends StatelessWidget {
                 deleteAccount(context);
               }),
               textButton(ProfileSettingsTextUtil.signOut, () {
-                signOut(context);
+                signOut(context, () {
+                  controller.onSignOut(context);
+                });
               }),
             ],
           ),

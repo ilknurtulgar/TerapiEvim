@@ -44,15 +44,15 @@ class ParticipantsRow extends StatelessWidget {
                   videoCallViewModel: VideoCallUtility.personSmallView(
                       DemoInformation.participants[index], true, context),
                   onLongPressed: () {
-                    // if (isMainTherapist &&
-                    //     controller.currentToken.therapistHelperId.isNotEmpty) {
+                    if (isMainTherapist &&
+                        controller.currentToken.therapistHelperId.isNotEmpty) {
                     controller.sendIsolatedCall(
                         name: participantName,
                         onConfirmed: () {
                           controller.sendParticipantToIsolatedCall(
                               participantId: participantId);
                         });
-                    // }
+                    }
                   },
                   micOnOffFunction: () => controller.onOffFunction(
                       DemoInformation.participants[index].isMicOn),

@@ -21,7 +21,7 @@ class MainController extends GetxController with BaseController {
 
   @override
   void setContext(BuildContext context) {
-    // TODO: implement setContext
+    controllerContext = context;
   }
 
   @override
@@ -38,11 +38,15 @@ class MainController extends GetxController with BaseController {
     /// Else currentRole is therapist init therapist controller
     if (currentRole == AppConst.therapist) {
       Get.put(TherapistController());
+      isTherapist.value = true;
+      currentScreenIndex.value = 0;
     }
 
     /// Else currentRole is participant init participant controller
     else {
       Get.put(ParticipantController());
+      isTherapist.value = false;
+      currentScreenIndex.value = 0;
     }
 
     super.onInit();

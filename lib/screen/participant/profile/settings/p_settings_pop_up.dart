@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -37,7 +36,7 @@ deleteAccount(BuildContext context) {
   );
 }
 
-signOut(BuildContext context) {
+signOut(BuildContext context, Function() onSignOut) {
   return showDialog<String>(
     context: context,
     builder: (BuildContext context) => AlertDialog(
@@ -56,8 +55,7 @@ signOut(BuildContext context) {
         ),
         TextButton(
           onPressed: () {
-            ///TODO: bhz: I added it temporarily. But it should be called from AuthService
-            FirebaseAuth.instance.signOut();
+            onSignOut();
             Get.back();
           },
           child: Text(

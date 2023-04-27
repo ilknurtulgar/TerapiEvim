@@ -48,10 +48,14 @@ class TMessageView extends StatelessWidget {
   }
 }
 
-List cardModels = [
+List<CardModel> cardModels = [
   cardModelhome(
-      "Uzman Psikolog", "assets/images/doctorfotosu.jpeg", "Günay Kara"),
-  cardModelhome("Uzman Psikolog", "assets/images/f1.jpg", "Yasemin Kara"),
+      "Uzman Psikolog", "assets/images/doctorfotosu.jpeg", "Yasemin Kara"),
+  cardModelhome("Uzman Psikolog", "assets/images/f1.jpg", "Gizem Kara"),
+];
+List<CardModel> cardModelsx = [
+  cardModelhome("Uzman Psikolog", "assets/images/f1.jpg", "Rümeysa Kara"),
+  cardModelhome("Uzman Psikolog", "assets/images/f1.jpg", "Rümeysa Kara"),
 ];
 CardModel cardModelhome(String subtitle, String imgePath, String title) {
   return CardModel(subtitle: subtitle, imagePath: imgePath, title: title);

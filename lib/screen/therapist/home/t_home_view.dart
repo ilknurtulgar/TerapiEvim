@@ -15,7 +15,7 @@ class THomeView extends StatelessWidget {
   THomeView({
     super.key,
   });
-  final bool isService = false;
+  final bool isService = true;
   @override
   Widget build(BuildContext context) {
     return BaseView<THomeViewController>(
@@ -31,8 +31,7 @@ class THomeView extends StatelessWidget {
                 minDetailsBox(HomeTextUtil.myMinuteSessions,
                     () => context.push(const TSessionView()), context),
                 isService == false ? EmptySizedBoxText() : reminderactivity(),
-
-                //notificationcontainer()
+                notificationcontainer()
               ],
             ),
           ),

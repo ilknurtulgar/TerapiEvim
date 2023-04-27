@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 
 import '../../../controller/therapist/home/t_home_view_controller.dart';
 import '../../../core/base/component/home/notification_container.dart';
@@ -14,7 +15,7 @@ class THomeView extends StatelessWidget {
   THomeView({
     super.key,
   });
-
+  final bool isService = false;
   @override
   Widget build(BuildContext context) {
     return BaseView<THomeViewController>(
@@ -29,8 +30,9 @@ class THomeView extends StatelessWidget {
                 headingText(false, false, HomeTextUtil.welcome),
                 minDetailsBox(HomeTextUtil.myMinuteSessions,
                     () => context.push(const TSessionView()), context),
-                reminderactivity(),
-                notificationcontainer()
+                isService == false ? EmptySizedBoxText() : reminderactivity(),
+
+                //notificationcontainer()
               ],
             ),
           ),

@@ -31,10 +31,12 @@ class TDealingMethodView extends StatelessWidget {
                   padding: AppPaddings.pagePaddingHorizontal,
                   child: HomeComponent(
                     isForMethodReading: true,
-                    time: copingMethod.dateTime.toString(),//controller.listOfCopingMethods.getTimes[index],
+                    time: copingMethod.dateTime
+                        .toString(), //controller.listOfCopingMethods.getTimes[index],
                     title: copingMethod.title,
                     cardModel: controller.listOfCopingMethods.getTherapist,
-                    explanation: copingMethod.description ?? "",
+                    explanation:
+                        copingMethod.description ?? EmptyTextUtil.emptyText,
                     buttonOnTap: () {
                       //o basetme motduna gitmeli
                     },

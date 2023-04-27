@@ -1,10 +1,11 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/model/therapist/coping_method/t_coping_method_model.dart';
+import 'package:terapievim/screen/participant/home/p_coping_methods_view.dart';
 import '../../../controller/main_controller.dart';
 import '../../../controller/therapist/profil/t_profile_controller.dart';
 import '../../../core/base/component/profile/custom_list_view.dart';
+import '../../../core/base/component/toast/toast.dart';
 import '../../../core/base/ui_models/card_model.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
@@ -13,6 +14,7 @@ import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
 import '../../../core/managers/converter/date_time_manager.dart';
 import '../../../model/common/activity/t_activity_model.dart';
+import '../../participant/profile/p_profile_view.dart';
 import 'settings/t_settings_view.dart';
 import 't_attended_seminar_view.dart';
 import '../../participant/profile/util/p_profile_view_utility.dart';
@@ -77,31 +79,44 @@ class TProfileView extends StatelessWidget {
         });
   }
 
-  Obx seminarsListview(TProfileController controller) {
-    return Obx(
-      () => controller.listOfActivities.isNotEmpty
-          ? ProfileViewListView(
-              isForParticipant: false,
-              isForMethod: false,
-              firstRowTextList: controller.listOfActivities.getTitles,
-              secondRowTextList: controller.listOfActivities.getDates,
-              onTap: () {},
-            )
-          : const SizedBox(),
+  Widget seminarsListview(TProfileController controller) {
+    return
+        //  () => controller.listOfActivities.isNotEmpty
+        ProfileViewListView(
+      isForParticipant: false,
+      isForMethod: false,
+      firstRowTextList: profileSeminar,
+      //controller.listOfActivities.getTitles,
+      secondRowTextList: profileSecond,
+      //controller.listOfActivities.getDates,
+      onTap: () {
+        flutterErrorToast("Kayıt bulunamamaktadır");
+      },
+
+      //  : const SizedBox(),
     );
   }
 
-  Obx methodsListview(TProfileController controller) {
-    return Obx(
-      () => controller.listOfCopingMethods.isNotEmpty
-          ? ProfileViewListView(
-              isForParticipant: false,
-              isForMethod: true,
-              firstRowTextList: controller.listOfCopingMethods.getGroupNames,
-              secondRowTextList: controller.listOfCopingMethods.getMethodTitles,
-              onTap: () {},
-            )
-          : const SizedBox(),
+  Widget methodsListview(TProfileController controller) {
+    return
+        // () => controller.listOfCopingMethods.isNotEmpty
+        ProfileViewListView(
+      isForParticipant: false,
+      isForMethod: true,
+      firstRowTextList: [
+        "Yasemin Kara",
+        "Gizem Tunç",
+        "Mert Kara",
+        "Yusuf Yekta"
+      ],
+      //controller.listOfCopingMethods.getGroupNames,
+      secondRowTextList: dateTimes,
+      //controller.listOfCopingMethods.getMethodTitles,
+      onTap: () {
+        flutterErrorToast("Kayıt bulunmamaktadır");
+      },
+
+      // : const SizedBox(),
     );
   }
 
@@ -157,7 +172,7 @@ extension ActivitiesInProfileExtension on RxList<TActivityModel?> {
   List<String> get getTherapistNames {
     List<String> names = [];
     this.forEach((element) {
-      names.add(element?.therapistName ?? "");
+      names.add(element?.therapistName ?? EmptyTextUtil.emptyText);
     });
     return names;
   }
@@ -165,7 +180,7 @@ extension ActivitiesInProfileExtension on RxList<TActivityModel?> {
   List<String> get getTitles {
     List<String> titles = [];
     this.forEach((element) {
-      titles.add(element?.title ?? "");
+      titles.add(element?.title ?? EmptyTextUtil.emptyText);
     });
     return titles;
   }
@@ -173,7 +188,9 @@ extension ActivitiesInProfileExtension on RxList<TActivityModel?> {
   List<String> get getDates {
     List<String> dates = [];
     this.forEach((element) {
-      dates.add(DateTimeManager.getFormattedDateFromFormattedString(value: element?.dateTime!.toDate().toIso8601String(),));
+      dates.add(DateTimeManager.getFormattedDateFromFormattedString(
+        value: element?.dateTime!.toDate().toIso8601String(),
+      ));
     });
     return dates;
   }
@@ -183,7 +200,7 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   List<String> get getGroupNames {
     List<String> groupName = [];
     this.forEach((element) {
-      groupName.add(element?.groupName ?? "");
+      groupName.add(element?.groupName ?? EmptyTextUtil.emptyText);
     });
     return groupName;
   }
@@ -191,7 +208,7 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   List<String> get getMethodTitles {
     List<String> titles = [];
     this.forEach((element) {
-      titles.add(element?.title ?? "");
+      titles.add(element?.title ?? EmptyTextUtil.emptyText);
     });
     return titles;
   }
@@ -199,7 +216,8 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   List<String> get getTimes {
     List<String> timeList = [];
     this.forEach((element) {
-      timeList.add(DateTimeManager.getFormattedDateFromFormattedString(value: element?.dateTime!.toDate().toIso8601String()));
+      timeList.add(DateTimeManager.getFormattedDateFromFormattedString(
+          value: element?.dateTime!.toDate().toIso8601String()));
     });
     return timeList;
   }
@@ -207,7 +225,7 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   List<String> get getExplanations {
     List<String> explanations = [];
     this.forEach((element) {
-      explanations.add(element?.description ?? "");
+      explanations.add(element?.description ?? EmptyTextUtil.emptyText);
     });
     return explanations;
   }
@@ -215,6 +233,6 @@ extension CopingMethodsInProfileExtension on RxList<TCopingMethodModel?> {
   CardModel get getTherapist {
     return CardModel(
         imagePath: this.first?.therapistAvatarUrl ?? "",
-        title: this.first?.therapistName ?? "");
+        title: this.first?.therapistName ?? EmptyTextUtil.emptyText);
   }
 }

@@ -28,10 +28,16 @@ class TActivityController extends GetxController with BaseController {
         await activityService.getMyPastRecentActivity();
     TActivityModel? otherActivity =
         await activityService.getOtherRecentActivity();
+    if (myPastActivitieslist.isNotEmpty || (myPastActivitieslist != null)) {
+      myPastActivitieslist.add(myPastActivity);
+    }
+    if (recentActivity != null) {
+      myRecentActivities.add(recentActivity);
+    }
 
-    myPastActivitieslist.add(myPastActivity);
-    myRecentActivities.add(recentActivity);
-    otherActivitieslist.add(otherActivity);
+    if (otherActivity != null) {
+      otherActivitieslist.add(otherActivity);
+    }
 
     super.onInit();
   }

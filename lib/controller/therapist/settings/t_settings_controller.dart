@@ -1,8 +1,15 @@
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/base/base_controller.dart';
 
-class TSettingsController extends GetxController with BaseController {
+import '../../base/base_controller_2.dart';
+
+class TSettingsController extends BaseController2 {
+  @override
+  void setContext(BuildContext context) {
+    controllerContext = context;
+  }
+
   RxBool notificationButton = false.obs;
 
   bool getNotificationValue() {
@@ -14,8 +21,10 @@ class TSettingsController extends GetxController with BaseController {
     notifyChildrens();
   }
 
-  @override
-  void setContext(BuildContext context) {
-    // TODO: implement setContext
+  Future<void> onSignOut(BuildContext context) async {
+    final NavigatorState navigator = Navigator.of(context, rootNavigator: true);
+    await localManager.clearAll();
+    FirebaseAuth.instance.signOut();
+    //navigationManager.pushAndRemoveUntil(navigator, SignInView());
   }
 }

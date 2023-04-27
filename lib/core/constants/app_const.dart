@@ -6,8 +6,8 @@ class AppConst {
 
   static const String pdf = 'pdf';
   static const String jpg = 'jpg';
-  static const String temporaryImage = 'https://picsum.photos/200/300';
-
+  static const String temporaryImage =
+      ' https://cdn.icon-icons.com/icons2/2645/PNG/512/person_circle_icon_159926.png';
 
   static const String dateTime = 'dateTime';
   static const String id = 'id';
@@ -18,7 +18,8 @@ class AppConst {
   static const String role = 'role';
   static const String therapist = 'therapist';
   static const String participant = 'participant';
-  static const String participantId = 'participant';
+  static const String participantId = 'participantId';
+  static const String participantIds = 'participantIds';
   static const String therapistId = 'therapistId';
   static const String therapistHelperId = 'therapistHelperId';
   static const String isFinished = 'isFinished';

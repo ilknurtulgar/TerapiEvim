@@ -25,7 +25,9 @@ class TMyActivityListView extends StatelessWidget {
           ),
           body: Obx(
             () => controller.fetchedMyActivity.isEmpty
-                ? EmptySizedBoxText()
+                ? Padding(
+                    padding: AppPaddings.pagePadding,
+                    child: EmptySizedBoxText())
                 : ListView.builder(
                     itemCount: controller.fetchedMyActivity.length,
                     itemBuilder: (context, index) {

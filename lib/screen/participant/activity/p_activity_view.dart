@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
 import '../../../controller/participant/activity/p_activity_controller.dart';
 import '../../../core/base/component/app_bar/heading_minto.dart';
@@ -83,10 +84,12 @@ Widget _activityRecentSeminar(PActivityController pActivityController,
   return SliverToBoxAdapter(
     child: activitythreerowbox(
       () {
-        context.push(const AboutActivityView());
+        pActivityController.joinActivity(context, recentactivity!);
       },
       () {
-        pActivityController.joinActivity(context, recentactivity!);
+        context.push(const AboutActivityView(
+          isService: false,
+        ));
       },
       DemoInformation.titlenameActivityMod(
           recentactivity?.title ?? 'empty title'),
@@ -103,9 +106,12 @@ Widget _activityPastSeminar(
     BuildContext context, TActivityModel? pastactivity) {
   return SliverToBoxAdapter(
     child: activitythreerowbox(() {
-      context.push(const AboutActivityView());
+      flutterErrorToast("Aktivite kaydı bulunmamaktadır");
+    }, () {
+      context.push(const AboutActivityView(
+        isService: false,
+      ));
     },
-        () {},
         DemoInformation.myPastActivities(pastactivity?.title ?? "empty title"),
         DemoInformation.myPastActivitiesTime(
             pastactivity?.dateTime ?? Timestamp.now()),

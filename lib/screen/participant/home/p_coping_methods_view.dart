@@ -35,7 +35,7 @@ class PCopingMethodsView extends StatelessWidget {
                           cardModel: DemoInformation.cardModelhome,
                           time:
                               //copingMethodModel?.dateTime ??
-                              dateTime[index],
+                              dateTimes[index],
                           title:
                               // copingMethodModel?.therapistName ??
                               "",
@@ -73,8 +73,8 @@ class PCopingMethodsView extends StatelessWidget {
   }
 }
 
-List dateTime = ["11.02.23", "10.22.22", "11.15.23", "05.08.22"];
-List explantaionList = [
+List<String> dateTimes = ["11.02.23", "10.22.22", "11.15.23", "05.08.22"];
+List<String> explantaionList = [
   "Baş etme metotunu incelemeyi unutmayınız",
   "Stres ile ilgili metotu incelemenizi öneririm",
   "Nefes egzersizlerini yapmanızı tavsiye ederim",

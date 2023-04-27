@@ -9,7 +9,7 @@ class CustomCircleAvatar extends StatelessWidget {
       this.imagePath = AppConst.temporaryImage,
       required this.big,
       required this.shadow,
-      this.isNetworkImage=false});
+      this.isNetworkImage = false});
   final String imagePath;
   final bool big; //buyukse radius 100 kkucuk ise 40
   final bool shadow; //mor golge var mi yok mu
@@ -26,8 +26,6 @@ class CustomCircleAvatar extends StatelessWidget {
             ),
           )
         : CircleAvatar(
-            backgroundImage: AssetImage(imagePath),
-            radius: big ? 100 : 20,
-          );
+            backgroundImage: AssetImage(imagePath), radius: big ? 100 : 20);
   }
 }

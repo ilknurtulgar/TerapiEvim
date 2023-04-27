@@ -79,7 +79,7 @@ class PProfileView extends StatelessWidget {
         ProfileViewListView(
       isForParticipant: true,
       isForMethod: false,
-      firstRowTextList: profileSemiar,
+      firstRowTextList: profileSeminar,
       //controller.listOfActivities.getTherapistNames,
       secondRowTextList: profileSecond,
       //controller.listOfActivities.getTitles,
@@ -89,8 +89,6 @@ class PProfileView extends StatelessWidget {
     );
   }
 
-  List<String> profileSemiar = ["Terapi Etkileri  ", "Stres İle Başa Çıkma"];
-  List<String> profileSecond = ["11.22.10 22:10", "10.05.23 15:00"];
   Widget methodListview(PProfileController controller) {
     return
         //  () => controller.listOfCopingMethods.isNotEmpty
@@ -109,12 +107,6 @@ class PProfileView extends StatelessWidget {
     );
   }
 
-  List<String> dateTime = [
-    "11.02.23 11:10",
-    "10.22.22 12:22",
-    "11.15.23 20:10",
-    "05.08.22 13:10"
-  ];
   List explantaionList = [
     "Baş etme metotunu incelemeyi unutmayınız",
     "Stres ile ilgili metotu incelemenizi öneririm",
@@ -142,7 +134,7 @@ class PProfileView extends StatelessWidget {
     MainController mainController = Get.find();
     return Obx(() => controller.myGroup.value?.id != null
         ? GroupClass(
-            width: SizeUtil.highestValueWidth,
+            width: SizeUtil.hugeValueWidth,
             isBorderPurple: true,
             heading: controller.myGroup.value?.name ?? "",
             onTap: () => mainController.onPageChanged(2),
@@ -183,3 +175,12 @@ class PProfileView extends StatelessWidget {
     );
   }
 }
+
+List<String> profileSeminar = ["Terapi Etkileri  ", "Stres İle Başa Çıkma"];
+List<String> profileSecond = ["11.22.10 22:10", "10.05.23 15:00"];
+List<String> dateTime = [
+  "11.02.23 11:10",
+  "10.22.22 12:22",
+  "11.15.23 20:10",
+  "05.08.22 13:10"
+];

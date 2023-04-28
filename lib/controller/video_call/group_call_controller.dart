@@ -135,13 +135,14 @@ class GroupCallController extends BaseVideoCallController {
       required bool isTherapistHelper,
       required String therapistHelperId}) {
     leaveRoom();
-
+    final IVideoSdkManager videoSdkManager = VideoSdkManager();
+    final String token=videoSdkManager.token;
     controllerContext.pushAndRemoveUntil(IsolatedCallView(
       videoCallToken: VideoCallTokenModel(
           meetingId: meetingId,
           participantId: userId!,
           isTherapist: isTherapistHelper,
-          token: '',
+          token: token,
           isMainTherapist: isTherapistHelper,
           therapistHelperId: therapistHelperId),
     ));

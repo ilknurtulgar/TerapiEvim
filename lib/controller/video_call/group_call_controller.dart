@@ -4,10 +4,13 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:videosdk/videosdk.dart' as videoCall;
 
+import '../../core/base/component/toast/toast.dart';
 import '../../core/base/component/video_call/tab/therapist_tab.dart';
 import '../../core/base/ui_models/video_call/person_in_call_model.dart';
 import '../../core/base/util/base_utility.dart';
 import '../../core/base/util/text_utility.dart';
+import '../../core/managers/videosdk/i_video_sdk_manager.dart';
+import '../../core/managers/videosdk/video_sdk_manager.dart';
 import '../../model/common/video_call/video_call_token_model.dart';
 import '../../model/participant/video_call/participant_group_call_model.dart';
 import '../../model/participant/video_call/therapist_helper_group_call_model.dart';
@@ -84,7 +87,7 @@ class GroupCallController extends BaseVideoCallController {
 
           ///Send participant to isolated Video call
           if (groupCallEvent.isParticipantKicked ?? false) {
-            pushToIsolatedCall(
+            navigateToIsolatedCall(
                 meetingId: groupCallEvent.meetingId!,
                 therapistHelperId: currentToken.therapistHelperId,
                 isTherapistHelper: false);
@@ -112,7 +115,7 @@ class GroupCallController extends BaseVideoCallController {
 
           ///Send participant to isolated Video call
           if (groupCallEvent.isTherapistSendToIsolatedCall ?? false) {
-            pushToIsolatedCall(
+            navigateToIsolatedCall(
                 meetingId: groupCallEvent.meetingId!,
                 therapistHelperId: userId!,
                 isTherapistHelper: true);
@@ -127,18 +130,19 @@ class GroupCallController extends BaseVideoCallController {
     super.dispose();
   }
 
-  void pushToIsolatedCall(
+  void navigateToIsolatedCall(
       {required String meetingId,
       required bool isTherapistHelper,
       required String therapistHelperId}) {
     leaveRoom();
-
+    final IVideoSdkManager videoSdkManager = VideoSdkManager();
+    final String token=videoSdkManager.token;
     controllerContext.pushAndRemoveUntil(IsolatedCallView(
       videoCallToken: VideoCallTokenModel(
           meetingId: meetingId,
           participantId: userId!,
           isTherapist: isTherapistHelper,
-          token: '',
+          token: token,
           isMainTherapist: isTherapistHelper,
           therapistHelperId: therapistHelperId),
     ));
@@ -192,8 +196,7 @@ class GroupCallController extends BaseVideoCallController {
         duration: const Duration(minutes: 1));
   }
 
-  void sendIsolatedCall(
-      {required String name, required Function() onConfirmed}) {
+  void sendIsolatedCall({required String name, required String participantId}) {
     Get.dialog(AlertDialog(
       content: Text('$name ${VideoCallTextUtil.sendIsolatedCall}'),
       actions: [
@@ -205,7 +208,7 @@ class GroupCallController extends BaseVideoCallController {
             )),
         TextButton(
             onPressed: () {
-              onConfirmed();
+              sendParticipantToIsolatedCall(participantId: participantId);
               Get.back();
             },
             child: Text(
@@ -218,7 +221,28 @@ class GroupCallController extends BaseVideoCallController {
 
   Future<void> sendParticipantToIsolatedCall(
       {required String participantId}) async {
-    try {} catch (e) {
+    try {
+      final IVideoSdkManager videoSdkManager = VideoSdkManager();
+      final String? newMeetingId = await videoSdkManager.createMeeting();
+      if (newMeetingId == null) {
+        flutterErrorToast('Could not create a meeting id');
+        return;
+      }
+
+      final result = await _groupCallService.tSendParticipantToIsolatedCall(
+        groupCallModel: ParticipantGroupCallModel(
+          participantId: participantId,
+          meetingId: newMeetingId,
+          isParticipantKicked: true,
+        ),
+        previousMeetingId: currentToken.meetingId,
+        therapistHelperId: currentToken.therapistHelperId,
+      );
+
+      if (result == false) {
+        flutterErrorToast('Error occurred');
+      }
+    } catch (e) {
       await crashlyticsManager.sendACrash(
         error: e.toString(),
         stackTrace: StackTrace.current,

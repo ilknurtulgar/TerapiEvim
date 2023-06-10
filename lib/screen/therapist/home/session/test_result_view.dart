@@ -8,7 +8,6 @@ import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/model/therapist/session/t_session_model.dart';
 import 'package:terapievim/screen/therapist/home/session/choosing_category_view.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
-import '../../../../core/base/component/group/participant_container.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../model/common/scl_90/scl_90_result_model.dart';
 

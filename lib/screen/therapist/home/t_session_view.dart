@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/managers/converter/date_time_manager.dart';
 import 'package:terapievim/model/therapist/session/t_session_model.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 
 import '../../../controller/therapist/home/session/t_session_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';

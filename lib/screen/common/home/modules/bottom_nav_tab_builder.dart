@@ -2,7 +2,6 @@ part of '../main_home.dart';
 
 Widget Function(BuildContext, int) _tabBuilder() {
   MainController controller = Get.find();
-  bool isTherapist = controller.isTherapist.value;
   RxList<Widget> screens = controller.isTherapist.value
       ? NavigateUtil.therapisty.obs
       : NavigateUtil.screen.obs;

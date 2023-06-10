@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/video_call/isolated_call_controller.dart';
-import 'package:terapievim/core/base/component/video_call/buttons/video_call_buttons.dart';
-import 'package:terapievim/core/base/component/video_call/container/video_call_person.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/view/base_view.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
 
+import '../../../../controller/video_call/isolated_call_controller.dart';
+import '../../../../core/base/component/video_call/buttons/video_call_buttons.dart';
+import '../../../../core/base/component/video_call/container/video_call_person.dart';
+import '../../../../core/base/util/base_utility.dart';
+import '../../../../core/base/view/base_view.dart';
+import '../../../../core/extension/context_extension.dart';
 import '../../../../model/common/video_call/video_call_token_model.dart';
 import '../util/utility.dart';
 import 'modules/therapist_isolated_view.dart';

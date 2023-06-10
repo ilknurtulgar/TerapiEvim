@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../../controller/therapist/group/t_group_add_controller.dart';
-import '../../../../core/base/component/activtiy/seminers.dart';
+import '../../../../core/base/component/activity/seminars.dart';
 import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/buttons/custom_button.dart';
 import '../../../../core/base/component/buttons/election.dart';

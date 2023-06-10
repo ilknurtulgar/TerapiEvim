@@ -4,7 +4,7 @@ import 'package:terapievim/core/base/component/group/purple_text_container.dart'
 import 'package:terapievim/core/base/util/base_utility.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 import 'package:terapievim/screen/participant/profile/util/p_profile_view_utility.dart';
 import 'package:terapievim/screen/therapist/group/groups_informations/t_profile_about_view.dart';
 import '../../../core/base/component/profile/image/custom_circle_avatar.dart';
@@ -38,7 +38,7 @@ class AboutActivityView extends StatelessWidget {
                                 DemoInformation.aboutActivtyName,
                                 IconUtility.activityIcon),
                             () {}),
-                        aboutactivtynamebox(),
+                        aboutActivityNameBox(),
                         activity(
                             UiBaseModel.aboutrowmodel(ActivityTextUtil.seminars,
                                 IconUtility.activityIcon),
@@ -52,7 +52,7 @@ class AboutActivityView extends StatelessWidget {
                       ],
                     ),
                   ),
-                  positionedcircle(),
+                  positionedCircle(),
                 ],
               ),
             )
@@ -60,7 +60,7 @@ class AboutActivityView extends StatelessWidget {
     );
   }
 
-  Positioned positionedcircle() {
+  Positioned positionedCircle() {
     return const Positioned(
       top: 70,
       left: 50,
@@ -70,7 +70,7 @@ class AboutActivityView extends StatelessWidget {
     );
   }
 
-  Padding aboutactivtynamebox() {
+  Padding aboutActivityNameBox() {
     return const Padding(
       padding: AppPaddings.rowViewProfilePadding,
       child: PurpleTextContainer(text: DemoInformation.aboutmeabactivity),

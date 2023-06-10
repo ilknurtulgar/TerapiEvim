@@ -4,10 +4,10 @@ import '../../../../core/base/component/group/group_box.dart';
 import '../../../../core/base/ui_models/row_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 
-Widget activitythreerowbox(
+Widget activityThreeRowBox(
     Function() onButtonTap,
     Function()? onTap,
-    RowModel arowModel,
+    RowModel arrowModel,
     RowModel clockModel,
     String buttonText,
     RowModel ayrowModel) {
@@ -17,7 +17,7 @@ Widget activitythreerowbox(
       istwobutton: false,
       buttonText: buttonText,
       containerModel: AppContainers.containerButton(false),
-      arowModel: arowModel,
+      arowModel: arrowModel,
       isactivity: false,
       clockModel: clockModel,
       rightButtonTap: onButtonTap);

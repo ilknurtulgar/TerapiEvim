@@ -49,9 +49,6 @@ class ShortCallView extends StatelessWidget {
                               : null,
                     ),
                   ),
-                  // personCallView(
-                  //     controller, DemoInformation.therapist, context),
-                  // therapistCallView
                   mediumSizedBox(),
                   Obx(
                     () => PersonCallView(
@@ -59,12 +56,7 @@ class ShortCallView extends StatelessWidget {
                         controller
                             .onOffFunction(DemoInformation.therapist.isMicOn);
                       },
-                      onCameraTriggered: () {
-                        // controller
-                        //     .onOffFunction(DemoInformation.therapist.isCamOn);
-                        print(
-                            'participantVideoStreams.values:${controller.participantVideoStreams.values.elementAt(2)}');
-                      },
+                      onCameraTriggered: () {},
                       person: DemoInformation.therapist,
                       videoStream:
                           controller.participantVideoStreams.values.length == 2
@@ -73,8 +65,6 @@ class ShortCallView extends StatelessWidget {
                               : null,
                     ),
                   ),
-                  // personCallView(controller, DemoInformation.personNo1,
-                  //     context), // participantCallView
                   mediumSizedBox(),
                   VideoCallButtonsRow(
                     isMicOn: controller.micEnabled,
@@ -91,25 +81,6 @@ class ShortCallView extends StatelessWidget {
           );
         });
   }
-
-// Widget personCallView(ShortCallController videoCallController,
-//     PersonInCallModel person, BuildContext context) {
-//   return Obx(
-//     () => VideoCallPerson(
-//         micOnOffFunction: () =>
-//             videoCallController.onOffFunction(person.isMicOn),
-//         cameraOnOffFunction: () =>
-//             videoCallController.onOffFunction(person.isCamOn),
-//         videoCallViewModel:
-//             VideoCallUtility.personShortCallView(person, context),
-//         whichPage: VideoCallPages.shortCall,
-//         videoStream:
-//             videoCallController.participantVideoStreams.values.isNotEmpty
-//                 ? videoCallController
-//                     .participantVideoStreams.values.first?.renderer
-//                 : null),
-//   );
-// }
 }
 
 class PersonCallView extends StatelessWidget {

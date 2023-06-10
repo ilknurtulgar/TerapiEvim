@@ -6,14 +6,14 @@ import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:terapievim/screen/therapist/message/t_message_view.dart';
 
 import '../../../controller/participant/home/p_home_view_controller.dart';
-import '../../../core/base/component/activtiy/seminers.dart';
+import '../../../core/base/component/activity/seminars.dart';
 import '../../../core/base/component/home/reminder.dart';
 import '../../../core/base/ui_models/card_model.dart';
 import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
-import '../../../product/widget/common/empty_sizedbox_text.dart';
+import '../../../product/widget/common/empty_sized_box_text.dart';
 import 'p_coping_methods_view.dart';
 
 class PHomeView extends StatelessWidget {

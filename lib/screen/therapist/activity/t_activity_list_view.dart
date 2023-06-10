@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 import 'package:terapievim/model/common/activity/t_activity_model.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 
 import '../../../controller/therapist/activity/t_activity_list_view_controller.dart';
 import '../../../core/base/util/base_utility.dart';
@@ -31,7 +31,7 @@ class TActivityListView extends StatelessWidget {
                         final TActivityModel? activityModel =
                             controller.activity[index];
 
-                        return activitythreerowbox(
+                        return activityThreeRowBox(
                           () {},
                           () {},
                           DemoInformation.myPastActivities(

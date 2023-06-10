@@ -1,7 +1,7 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
-import '../../../core/base/component/activtiy/drop_down.dart';
+import '../../../core/base/component/activity/drop_down.dart';
 import '../../../core/base/util/base_utility.dart';
 
 class OrderDropDown extends StatelessWidget {

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/group/custom_heading.dart';
-import 'package:terapievim/core/base/component/group/group_box.dart';
-import 'package:terapievim/core/base/component/group/person.dart';
-import 'package:terapievim/core/base/ui_models/row_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
-import 'package:terapievim/screen/participant/message/p_message_view.dart';
-import 'package:terapievim/screen/therapist/group/groups_informations/t_profile_about_view.dart';
 
 import '../../../controller/participant/group/p_group_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
+import '../../../core/base/component/group/custom_heading.dart';
+import '../../../core/base/component/group/group_box.dart';
 import '../../../core/base/component/group/participant_container.dart';
+import '../../../core/base/component/group/person.dart';
 import '../../../core/base/ui_models/card_model.dart';
+import '../../../core/base/ui_models/row_model.dart';
 import '../../../core/base/util/base_model.dart';
+import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
+import '../../../core/extension/context_extension.dart';
 import '../../../core/managers/converter/date_time_manager.dart';
+import '../../../product/widget/common/empty_sized_box_text.dart';
+import '../../../screen/participant/message/p_message_view.dart';
+import '../../therapist/group/groups_informations/t_profile_about_view.dart';
 
 class PMyGroupView extends StatelessWidget {
   const PMyGroupView({super.key});
@@ -82,37 +82,34 @@ class PMyGroupView extends StatelessWidget {
                 isalignmentstart: true,
               ),
               Obx(
-                () =>  therapist(
-                        rows(
-                            controller.tGroupSession.value.therapistName ??
-                                "null",
-                            RowType.therapist,
-                            true), () {
-                        context.push(TAboutProfileView(
-                          isSecTherapist: false,
-                          groupId: controller.currentGroupId,
-                        ));
-                      }),
+                () => therapist(
+                    rows(controller.tGroupSession.value.therapistName ?? "null",
+                        RowType.therapist, true), () {
+                  context.push(TAboutProfileView(
+                    isSecTherapist: false,
+                    groupId: controller.currentGroupId,
+                  ));
+                }),
               ),
               therapist(UiBaseModel.messageToTherapist,
                   () => context.push(PMessageView())),
               Obx(
-                () =>  therapist(
-                        rows(
-                            controller
-                                    .tGroupSession.value.therapistHelperName ??
-                                'null',
-                            RowType.secTherapist,
-                            true), () {
-                        context.push(TAboutProfileView(
-                          isSecTherapist: true,
-                          groupId: controller.currentGroupId,
-                        ));
-                      }),
+                () => therapist(
+                    rows(
+                        controller.tGroupSession.value.therapistHelperName ??
+                            'null',
+                        RowType.secTherapist,
+                        true), () {
+                  context.push(TAboutProfileView(
+                    isSecTherapist: true,
+                    groupId: controller.currentGroupId,
+                  ));
+                }),
               ),
-              Obx(()=>
-                 CustomHeading(
-                  text: GroupTextUtil.getParticipants(controller.participants.length.toString()),
+              Obx(
+                () => CustomHeading(
+                  text: GroupTextUtil.getParticipants(
+                      controller.participants.length.toString()),
                   isalignmentstart: true,
                 ),
               ),
@@ -154,16 +151,15 @@ class PMyGroupView extends StatelessWidget {
     //participant listesi gelecek
     return Obx(
       () => ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              itemCount: controller.participants.length,
-              itemBuilder: ((context, index) => participantContainer(
-                  CardModel(
-                      imagePath:
-                          controller.participants[index].imageUrl ?? "null",
-                      title: controller.participants[index].name ?? "null"),
-                  SizeUtil.normalValueHeight)),
-            ),
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: controller.participants.length,
+        itemBuilder: ((context, index) => participantContainer(
+            CardModel(
+                imagePath: controller.participants[index].imageUrl ?? "null",
+                title: controller.participants[index].name ?? "null"),
+            SizeUtil.normalValueHeight)),
+      ),
     );
   }
 }

@@ -6,7 +6,6 @@ import '../../model/common/video_call/video_call_token_model.dart';
 import '../../service/video_call/i_short_video_call_service.dart';
 import '../../service/video_call/short_video_call_service.dart';
 import '../participant/participant_controller.dart';
-import '../therapist/therapist_controller.dart';
 import 'base_video_call_controller.dart';
 
 class ShortCallController extends BaseVideoCallController {
@@ -60,7 +59,7 @@ class ShortCallController extends BaseVideoCallController {
   @override
   Future<void> leaveRoom() async {
     if (currentToken.isTherapist) {
-      final TherapistController therapistController = Get.find();
+      // final TherapistController therapistController = Get.find();
     } else {
       final ParticipantController participantController = Get.find();
 

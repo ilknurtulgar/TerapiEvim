@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/toast/toast.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 import 'package:terapievim/screen/therapist/activity/t_my_activity_list_view.dart';
 import 'package:terapievim/screen/therapist/activity/t_new_activity_view.dart';
 import 'package:terapievim/screen/therapist/activity/t_update_activity_view.dart';
@@ -130,7 +130,7 @@ class TActivityView extends StatelessWidget {
   }
 
   Widget _otherUpcomingActivities(TActivityModel? otherUpComingActivity) =>
-      activitythreerowbox(
+      activityThreeRowBox(
           () {},
           () {},
           DemoInformation.myPastActivities(

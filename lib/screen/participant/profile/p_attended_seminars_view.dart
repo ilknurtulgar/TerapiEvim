@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/model/common/activity/t_activity_model.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 import '../../../controller/participant/profil/p_attended_seminars_controller.dart';
 import 'package:terapievim/core/base/util/text_utility.dart';
 import 'package:terapievim/core/base/view/base_view.dart';

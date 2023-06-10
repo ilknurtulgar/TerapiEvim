@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/group/choosing_category.dart';
-import 'package:terapievim/core/base/component/group/participant_container.dart';
-import 'package:terapievim/core/base/component/home/custom_container.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/base/util/text_utility.dart';
-import 'package:terapievim/model/therapist/session/t_session_model.dart';
-import 'package:terapievim/screen/therapist/home/session/test_result_view.dart';
 
 import '../../../../controller/therapist/home/session/t_choose_category_controller.dart';
+import '../../../../core/base/component/group/choosing_category.dart';
+import '../../../../core/base/component/home/custom_container.dart';
+import '../../../../core/base/util/base_utility.dart';
+import '../../../../core/base/util/text_utility.dart';
 import '../../../../core/base/view/base_view.dart';
+import '../../../../model/therapist/session/t_session_model.dart';
+import '../../../../screen/therapist/home/session/test_result_view.dart';
 
 // ignore: must_be_immutable
 class ChoosingCategoryView extends StatelessWidget {
-  ChoosingCategoryView({super.key,required this.session});
+  ChoosingCategoryView({super.key, required this.session});
 
   final TSessionModel session;
 
@@ -68,15 +66,12 @@ class ChoosingCategoryView extends StatelessWidget {
             ),
           ),
           ChoosingCategoryForParticipant(
-              isWithIconButton: true,
-              callBack: callBack),
+              isWithIconButton: true, callBack: callBack),
         ],
       ),
     );
   }
 }
-
-
 
 OutlineInputBorder textfieldBorder() {
   return OutlineInputBorder(
@@ -87,35 +82,39 @@ OutlineInputBorder textfieldBorder() {
       ));
 }
 
-  CustomContainer participant(String name) {
-    return CustomContainer(
-                containerModel: AppContainers.classicWhiteContainer,
-                isThereCardModel: false,
-                widget: Padding(
-                  padding: const EdgeInsets.only(left:10,top: 10,bottom: 10),
-                  child: Row(children: [
-                    IconUtility.personIcon,
-                    Padding(
-                      padding: const EdgeInsets.only(left:10,),
-                      child: Text(name),
-                  )],),
-                ),);
-  }
-
-
+CustomContainer participant(String name) {
+  return CustomContainer(
+    containerModel: AppContainers.classicWhiteContainer,
+    isThereCardModel: false,
+    widget: Padding(
+      padding: const EdgeInsets.only(left: 10, top: 10, bottom: 10),
+      child: Row(
+        children: [
+          IconUtility.personIcon,
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 10,
+            ),
+            child: Text(name),
+          )
+        ],
+      ),
+    ),
+  );
+}
 
 List<String> groups = [
-'Depresyon',
-'Bipolar bozukluk',
-'Kişilik bozuklukları',
-'Obsesik kompulsif bozukluk',
-'Panik bozukluğu',
-'Anksiyete bozukluğu',
-'Yas ve kayıp problemleri',
-'Çocukluk travmaları',
-'Yeme bozuklukları',
-'Uyku bozuklukları',
-'Ebeveyn- çocuk ilişkisi', 
-'Stres bozukluğu',
-'Özgüven eksikliği'
+  'Depresyon',
+  'Bipolar bozukluk',
+  'Kişilik bozuklukları',
+  'Obsesik kompulsif bozukluk',
+  'Panik bozukluğu',
+  'Anksiyete bozukluğu',
+  'Yas ve kayıp problemleri',
+  'Çocukluk travmaları',
+  'Yeme bozuklukları',
+  'Uyku bozuklukları',
+  'Ebeveyn- çocuk ilişkisi',
+  'Stres bozukluğu',
+  'Özgüven eksikliği'
 ];

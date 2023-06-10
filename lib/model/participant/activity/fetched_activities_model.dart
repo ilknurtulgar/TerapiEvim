@@ -1,8 +1,9 @@
-import 'package:vexana/vexana.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 import 'activities_model.dart';
+
 part 'fetched_activities_model.g.dart';
 
 @JsonSerializable()

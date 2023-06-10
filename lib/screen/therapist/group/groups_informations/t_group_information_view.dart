@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/screen/participant/home/p_coping_methods_view.dart';
 
 import '../../../../controller/therapist/group/t_group_information_controller.dart';
-import '../../../../core/base/component/activtiy/seminers.dart';
+import '../../../../core/base/component/activity/seminars.dart';
 import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/component/group/group_box.dart';
@@ -57,15 +57,16 @@ class TGroupInformationView extends StatelessWidget {
                       ));
                     }),
                   ),
-                  Obx(() =>  Election(
+                  Obx(
+                    () => Election(
                         isSelectedValue: controller.isParticipantElectionOpen,
                         firstRow: SizedBox(
-                              child: participants(
-                                  controller, controller.participants.length),
-                            ),
+                          child: participants(
+                              controller, controller.participants.length),
+                        ),
                         rows: controller.participants
                             .map((participant) => person(participant.name!,
-                                participant.imageUrl??"", context))
+                                participant.imageUrl ?? "", context))
                             .toList()),
                   ),
                   navMethod(DemoInformation.methods, () {
@@ -75,7 +76,7 @@ class TGroupInformationView extends StatelessWidget {
                 ],
               ),
               floatingActionButton: FloatingActionButton(
-                backgroundColor: AppColors.meteorite,
+                  backgroundColor: AppColors.meteorite,
                   onPressed: () async {
                     await controller.startIsolatedCall();
                   },
@@ -104,34 +105,29 @@ class TGroupInformationView extends StatelessWidget {
       IconButton(
         icon: const Icon(Icons.create_new_folder_outlined),
         onPressed: () {
-          if (currentGroup == null) {
-            errorDialog(context);
-            return;
-          }
           context.push(TNewCopingMethodView(groupId: currentGroupId!));
         },
       ),
       IconButton(
         icon: IconUtility.deleteIconOutlined,
         onPressed: () {
-          if (currentGroup == null) {
-            errorDialog(context);
-            return;
-          }
           deleteGroupDialog(context, currentGroupId!, controller);
         },
       )
     ];
   }
+
   Widget participants(
       TGroupInformationController controller, int numberOfParticipants) {
-    return Obx(() =>  SeminarMin(
+    return Obx(
+      () => SeminarMin(
         isBorderPurple: true,
         onTap: () {
           controller.changeParticipantElection();
         },
         row: RowModel(
-          text: GroupTextUtil.participantsText + numberOfParticipants.toString(),
+          text:
+              GroupTextUtil.participantsText + numberOfParticipants.toString(),
           textStyle: AppTextStyles.aboutMeTextStyle(false),
           leadingIcon: IconUtility.groupsIcon,
           isAlignmentBetween: true,

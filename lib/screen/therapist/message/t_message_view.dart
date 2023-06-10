@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 
 import '../../../controller/therapist/message/t_message_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';

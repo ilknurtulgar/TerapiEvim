@@ -25,8 +25,6 @@ class MainHome extends StatefulWidget {
 class _MainHomeState extends State<MainHome> {
   late final MainController _controller;
 
-  // main controller burada kalınca hata verdi o yüzden mecburi olarak main dart içerisinde get put ettim
-
   @override
   void initState() {
     _controller = Get.put(MainController());

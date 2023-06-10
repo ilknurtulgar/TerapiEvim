@@ -21,7 +21,7 @@ class ProfileSettingsList extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       children: [
-        textFieldUtility.nameSurnameTextfield(
+        textFieldUtility.nameSurnameTextField(
             profileController.nameController, false),
         textFieldUtility.birthOfDateTextfield(
             profileController.birthdayController, false),

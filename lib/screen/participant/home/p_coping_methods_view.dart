@@ -3,7 +3,6 @@ import 'package:terapievim/core/base/component/home/home_component.dart';
 import 'package:terapievim/core/base/component/toast/toast.dart';
 
 import '../../../controller/participant/coping_method/p_coping_method_controller.dart';
-import '../../../core/base/component/activtiy/drop_down.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
@@ -55,21 +54,6 @@ class PCopingMethodsView extends StatelessWidget {
             ]),
           );
         });
-  }
-
-  CustomDropDown _orderdrop(PCopingMethodsController controller) {
-    return CustomDropDown(
-      isLogin: false,
-      width: SizeUtil.normalValueWidth,
-      height: SizeUtil.smallValueHeight,
-      selectedText: controller.orderValue,
-      textList: DemoInformation.orderingList,
-      isBoxSelected: controller.isBoxSelected,
-      onDropDownTapped: () {
-        controller.setIsBoxSelected();
-      },
-      onValueSelected: (p0) {},
-    );
   }
 }
 

@@ -5,7 +5,7 @@ import 'package:terapievim/controller/participant/group/p_determining_short_call
 import 'package:terapievim/core/base/component/group/purple_text_container.dart';
 import 'package:terapievim/core/base/component/group/row_view.dart';
 import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 
 import '../../../../../core/base/component/group/choosing_time_sc_cont.dart';
 import '../../../../../core/base/component/group/custom_heading.dart';

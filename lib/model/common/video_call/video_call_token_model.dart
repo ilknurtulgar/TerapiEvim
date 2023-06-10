@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:vexana/vexana.dart';
+
+import '../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 
 part 'video_call_token_model.g.dart';
 

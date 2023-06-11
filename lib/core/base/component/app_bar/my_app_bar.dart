@@ -22,7 +22,6 @@ class MyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-
       padding: AppPaddings.appBarPaddingNew,
       child: AppBar(
         backgroundColor: AppColors.blueChalk,

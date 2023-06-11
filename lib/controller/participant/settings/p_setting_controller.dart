@@ -20,7 +20,6 @@ class PSettingsController extends BaseController2 {
   }
 
   Future<void> onSignOut(BuildContext context) async {
-    final NavigatorState navigator = Navigator.of(context, rootNavigator: true);
     await localManager.clearAll();
     FirebaseAuth.instance.signOut();
     //navigationManager.pushAndRemoveUntil(navigator, SignInView());

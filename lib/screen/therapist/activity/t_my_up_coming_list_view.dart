@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/model/common/activity/t_activity_model.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 
 import '../../../controller/therapist/activity/t_my_up_coming_list_view_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';

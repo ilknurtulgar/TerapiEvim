@@ -41,7 +41,7 @@ class _SignUpViewState extends State<SignUpView> {
   TextFieldUtility textfieldUtility = TextFieldUtility();
 
   late List<Widget> textfieldList = [
-    textfieldUtility.nameSurnameTextfield(
+    textfieldUtility.nameSurnameTextField(
         _signUpController.nameController, true),
     textfieldUtility.birthOfDateTextfield(
         _signUpController.birthDateController, true),

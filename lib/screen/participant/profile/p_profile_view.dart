@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/toast/toast.dart';
 import 'package:terapievim/core/managers/converter/date_time_manager.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 
 import '../../../controller/main_controller.dart';
 import '../../../controller/participant/profil/p_profile_controller.dart';
@@ -107,7 +107,7 @@ class PProfileView extends StatelessWidget {
     );
   }
 
-  List explantaionList = [
+  final List explanationList = [
     "Baş etme metotunu incelemeyi unutmayınız",
     "Stres ile ilgili metotu incelemenizi öneririm",
     "Nefes egzersizlerini yapmanızı tavsiye ederim",

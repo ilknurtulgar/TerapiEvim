@@ -1,17 +1,18 @@
-import 'package:vexana/vexana.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 part 'mainpage.g.dart';
 
 @JsonSerializable()
-class Mainpage extends INetworkModel<Mainpage> with EquatableMixin {
+class MainPage extends INetworkModel<MainPage> with EquatableMixin  {
   String? username;
   String? avatarUrl;
   String? usertitle;
   String? description;
   String? id;
 
-  Mainpage({
+  MainPage({
     this.username,
     this.avatarUrl,
     this.usertitle,
@@ -20,9 +21,9 @@ class Mainpage extends INetworkModel<Mainpage> with EquatableMixin {
   });
 
   @override
-  Mainpage fromJson(Map<String, dynamic> json) => Mainpage.fromJson(json);
+  MainPage fromJson(Map<String, dynamic> json) => MainPage.fromJson(json);
 
-  factory Mainpage.fromJson(Map<String, dynamic> json) =>
+  factory MainPage.fromJson(Map<String, dynamic> json) =>
       _$MainpageFromJson(json);
 
   @override
@@ -31,14 +32,14 @@ class Mainpage extends INetworkModel<Mainpage> with EquatableMixin {
   @override
   List<Object?> get props => [username, avatarUrl, usertitle, description, id];
 
-  Mainpage copyWith({
+  MainPage copyWith({
     String? username,
     String? avatarUrl,
     String? usertitle,
     String? description,
     String? id,
   }) {
-    return Mainpage(
+    return MainPage(
       username: username ?? this.username,
       avatarUrl: avatarUrl ?? this.avatarUrl,
       usertitle: usertitle ?? this.usertitle,

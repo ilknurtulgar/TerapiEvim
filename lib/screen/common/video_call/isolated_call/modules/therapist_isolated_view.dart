@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../../controller/video_call/group_call_controller.dart';
 import '../../../../../controller/video_call/isolated_call_controller.dart';
 import '../../../../../core/base/component/video_call/container/video_call_person.dart';
 import '../../../../../core/base/util/base_utility.dart';

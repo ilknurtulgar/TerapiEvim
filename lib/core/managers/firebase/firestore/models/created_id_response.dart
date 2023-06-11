@@ -1,5 +1,6 @@
-import 'package:vexana/vexana.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../interface/i_network_model.dart';
 part 'created_id_response.g.dart';
 
 @JsonSerializable()

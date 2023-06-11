@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 
 import '../../../core/base/component/group/custom_heading.dart';
 import '../../../core/base/component/profile/image/custom_circle_avatar.dart';

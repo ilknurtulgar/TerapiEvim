@@ -1,11 +1,12 @@
-import 'package:vexana/vexana.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 part 'isolated_call_model.g.dart';
 
 @JsonSerializable()
-class IsolatedCallModel extends INetworkModel<IsolatedCallModel>
-    with EquatableMixin {
+class IsolatedCallModel extends INetworkModel<IsolatedCallModel> with EquatableMixin
+{
   String? advisorId;
   String? advisorName;
   String? roomId;

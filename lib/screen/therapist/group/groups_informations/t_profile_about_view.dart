@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/controller/therapist/group/t_about_therapist.dart';
-import 'package:terapievim/core/base/view/base_view.dart';
 
-import '../../../../core/base/component/activtiy/seminers.dart';
+import '../../../../controller/therapist/group/t_about_therapist.dart';
+import '../../../../core/base/component/activity/seminars.dart';
 import '../../../../core/base/component/group/custom_heading.dart';
 import '../../../../core/base/component/profile/image/custom_circle_avatar.dart';
 import '../../../../core/base/ui_models/row_model.dart';
 import '../../../../core/base/util/base_model.dart';
 import '../../../../core/base/util/base_utility.dart';
 import '../../../../core/base/util/text_utility.dart';
+import '../../../../core/base/view/base_view.dart';
 import '../../../../core/extension/context_extension.dart';
 import '../../../../model/therapist/group/t_group_model.dart';
 import '../../../participant/profile/util/p_profile_view_utility.dart';
@@ -23,12 +23,6 @@ class TAboutProfileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<RowModel> groups = [
-      DemoInformation.grup1,
-      DemoInformation.grup2,
-      DemoInformation.grup1,
-      DemoInformation.grup2
-    ];
     return BaseView<TAboutTherapistController>(
       onModelReady: (controller) {
         controller.setContext(context);

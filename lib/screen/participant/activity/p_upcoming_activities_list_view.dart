@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 import 'package:terapievim/model/common/activity/t_activity_model.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 
 import '../../../controller/participant/activity/p_upcoming_activities_list_view_controller.dart';
 import '../../../core/base/util/base_utility.dart';
@@ -24,27 +24,31 @@ class PUpComingActivitiesListView extends StatelessWidget {
           padding: AppPaddings.pagePadding,
           child: Obx(() => controller.upComingActivities.isEmpty
               ? EmptySizedBoxText()
-              : ListView.builder(
-                  itemBuilder: (context, index) {
-                    final TActivityModel? activityModel =
-                        controller.upComingActivities[index];
-                    return activitythreerowbox(() {
-                      controller.joinActivity(context, activityModel!);
-                    },
-                        () {},
-                        DemoInformation.titlenameActivityMod(
-                            activityModel?.title ?? "empty title"),
-                        DemoInformation.clockRow(
-                            activityModel?.dateTime ?? Timestamp.now()),
-                        ActivityTextUtil.join,
-                        DemoInformation.therapistnameActivityMod(
-                            activityModel?.therapistName ??
-                                "empty therapist name"));
-                  },
-                  itemCount: controller.upComingActivities.length,
-                )),
+              : upcomingActivitiesListView(controller)),
         ),
       ),
+    );
+  }
+
+  ListView upcomingActivitiesListView(
+      PUpComingActivitiesListViewController controller) {
+    return ListView.builder(
+      itemBuilder: (context, index) {
+        final TActivityModel? activityModel =
+            controller.upComingActivities[index];
+        return activityThreeRowBox(() {
+          controller.joinActivity(context, activityModel!);
+        },
+            () {},
+            DemoInformation.titlenameActivityMod(
+                activityModel?.title ?? "empty title"),
+            DemoInformation.clockRow(
+                activityModel?.dateTime ?? Timestamp.now()),
+            ActivityTextUtil.join,
+            DemoInformation.therapistnameActivityMod(
+                activityModel?.therapistName ?? "empty therapist name"));
+      },
+      itemCount: controller.upComingActivities.length,
     );
   }
 }

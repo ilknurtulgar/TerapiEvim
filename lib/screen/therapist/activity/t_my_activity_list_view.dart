@@ -5,7 +5,7 @@ import 'package:terapievim/controller/therapist/activity/t_my_activity_list_view
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
 import 'package:terapievim/core/base/view/base_view.dart';
 import 'package:terapievim/model/common/activity/t_activity_model.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 
 import '../../../core/base/component/group/group_box.dart';
 import '../../../core/base/util/base_utility.dart';

@@ -1,10 +1,11 @@
-import 'package:vexana/vexana.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 part 'active_group.g.dart';
 
 @JsonSerializable()
-class ActiveGroup extends INetworkModel<ActiveGroup> with EquatableMixin {
+class ActiveGroup extends INetworkModel<ActiveGroup> with EquatableMixin  {
   String? id;
   String? groupName;
   String? therapistName;

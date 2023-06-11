@@ -4,10 +4,9 @@ import '../../../../../core/base/component/login/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/base/ui_models/row_model.dart';
 import '../../../../../core/base/util/base_utility.dart';
-import '../../../../../core/managers/converter/date_time_manager.dart';
 
 class TextFieldUtility {
-  CustomTextField nameSurnameTextfield(
+  CustomTextField nameSurnameTextField(
           TextEditingController textController, bool isBig) =>
       CustomTextField(
           isPassword: true,

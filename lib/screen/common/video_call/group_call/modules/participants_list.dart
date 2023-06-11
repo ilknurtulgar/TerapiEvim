@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:videosdk/src/core/room/stream.dart';
 
 import '../../../../../controller/video_call/group_call_controller.dart';
 import '../../../../../core/base/component/toast/toast.dart';
@@ -20,52 +21,71 @@ class ParticipantsRow extends StatelessWidget {
       child: Padding(
         padding: AppPaddings.smallHorizontalPadding,
         child: Obx(
-          () => ListView.builder(
-            scrollDirection: Axis.horizontal,
-            padding: EdgeInsets.zero,
-            itemCount: controller.participantVideoStreams.values.length,
-            itemBuilder: ((context, index) {
-              final String participantName =
-                  controller.participantNames.values.elementAt(index);
-              final String participantId =
-                  controller.participantIds.values.elementAt(index);
-              final stream =
-                  controller.participantVideoStreams.values.elementAt(index);
-
-              if (participantId == controller.userId) {
-                return Container();
-              }
-
-              return Padding(
-                padding: AppPaddings.smallPersonViewPadding,
-                child: VideoCallPerson(
-                  whichPage: VideoCallPages.groupCall,
-                  name: participantName,
-                  videoStream: stream,
-                  videoCallViewModel: VideoCallUtility.personSmallView(
-                      DemoInformation.participants[index], true, context),
-                  onLongPressed: () {
-                    if (participantId ==
-                        controller.currentToken.therapistHelperId) {
-                      flutterInfoToast(
-                          'You are trying to send therapist helper to isolated call');
-                      return;
-                    }
-                    if (isMainTherapist &&
-                        controller.currentToken.therapistHelperId.isNotEmpty) {
-                    controller.sendIsolatedCall(
-                        name: participantName, participantId: participantId);
-                    }
-                  },
-                  micOnOffFunction: () => controller.onOffFunction(
-                      DemoInformation.participants[index].isMicOn),
-                  cameraOnOffFunction: () => controller.onOffFunction(
-                      DemoInformation.participants[index].isCamOn),
-                ),
-              );
-            }),
-          ),
+          () => _listViewBuilder(),
         ),
+      ),
+    );
+  }
+
+  ListView _listViewBuilder() {
+    return ListView.builder(
+      scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.zero,
+      itemCount: controller.participantVideoStreams.values.length,
+      itemBuilder: ((context, index) {
+        final String participantName =
+            controller.participantNames.values.elementAt(index);
+        final String participantId =
+            controller.participantIds.values.elementAt(index);
+        final stream =
+            controller.participantVideoStreams.values.elementAt(index);
+
+        if (participantId == controller.userId) {
+          return Container();
+        }
+
+        return _buildVideoCallPerson(
+          participantName: participantName,
+          stream: stream,
+          index: index,
+          context: context,
+          participantId: participantId,
+        );
+      }),
+    );
+  }
+
+  Widget _buildVideoCallPerson({
+    required String participantName,
+    Stream? stream,
+    required int index,
+    required BuildContext context,
+    required String participantId,
+  }) {
+    return Padding(
+      padding: AppPaddings.smallPersonViewPadding,
+      child: VideoCallPerson(
+        whichPage: VideoCallPages.groupCall,
+        name: participantName,
+        videoStream: stream,
+        videoCallViewModel: VideoCallUtility.personSmallView(
+            DemoInformation.participants[index], true, context),
+        onLongPressed: () {
+          if (participantId == controller.currentToken.therapistHelperId) {
+            flutterInfoToast(
+                'You are trying to send therapist helper to isolated call');
+            return;
+          }
+          if (isMainTherapist &&
+              controller.currentToken.therapistHelperId.isNotEmpty) {
+            controller.sendIsolatedCall(
+                name: participantName, participantId: participantId);
+          }
+        },
+        micOnOffFunction: () => controller
+            .onOffFunction(DemoInformation.participants[index].isMicOn),
+        cameraOnOffFunction: () => controller
+            .onOffFunction(DemoInformation.participants[index].isCamOn),
       ),
     );
   }

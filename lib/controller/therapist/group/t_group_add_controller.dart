@@ -50,7 +50,7 @@ class TGroupAddController extends GetxController with BaseController {
       flutterErrorToast("Kategori Bos");
       return false;
     }
-    if (helperTherapist.isNull) {
+    if (helperTherapist == null) {
       flutterErrorToast("Yardimci Terapist Secilmedi");
       return false;
     }

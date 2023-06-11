@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:terapievim/screen/participant/home/p_coping_methods_view.dart';
 
 import '../../../../controller/therapist/group/t_group_information_controller.dart';
-import '../../../../core/base/component/activtiy/seminers.dart';
+import '../../../../core/base/component/activity/seminars.dart';
 import '../../../../core/base/component/app_bar/my_app_bar.dart';
 import '../../../../core/base/component/buttons/election.dart';
 import '../../../../core/base/component/group/group_box.dart';
@@ -37,7 +37,7 @@ class TGroupInformationView extends StatelessWidget {
             top: false,
             child: Scaffold(
               appBar: MyAppBar(
-                title: controller.currentGroup?.name ?? '',
+                title: controller.currentGroup?.name ?? EmptyTextUtil.emptyText,
                 actions: _appBarActions(
                     context, controller.currentGroup?.id, controller),
               ),
@@ -53,20 +53,22 @@ class TGroupInformationView extends StatelessWidget {
                             controller.helperTherapistName.value), () {
                       context.push(TAboutProfileView(
                         isSecTherapist: true,
-                        groupId: controller.currentGroup?.id ?? "null",
+                        groupId: controller.currentGroup?.id ?? '',
                       ));
                     }),
                   ),
-                  Election(
-                      isSelectedValue: controller.isParticipantElectionOpen,
-                      firstRow: Obx(() => SizedBox(
-                            child: participants(
-                                controller, controller.participants.length),
-                          )),
-                      rows: controller.participants
-                          .map((participant) => person(
-                              participant.name!, participant.imageUrl!, context))
-                          .toList()),
+                  Obx(
+                    () => Election(
+                        isSelectedValue: controller.isParticipantElectionOpen,
+                        firstRow: SizedBox(
+                          child: participants(
+                              controller, controller.participants.length),
+                        ),
+                        rows: controller.participants
+                            .map((participant) => person(participant.name!,
+                                participant.imageUrl ?? "", context))
+                            .toList()),
+                  ),
                   navMethod(DemoInformation.methods, () {
                     context.push(PCopingMethodsView());
                   }),
@@ -74,10 +76,11 @@ class TGroupInformationView extends StatelessWidget {
                 ],
               ),
               floatingActionButton: FloatingActionButton(
+                  backgroundColor: AppColors.meteorite,
                   onPressed: () async {
                     await controller.startIsolatedCall();
                   },
-                  child: Icon(Icons.send)),
+                  child: Icon(Icons.directions_run)),
             ),
           );
         });
@@ -102,41 +105,36 @@ class TGroupInformationView extends StatelessWidget {
       IconButton(
         icon: const Icon(Icons.create_new_folder_outlined),
         onPressed: () {
-          if (currentGroup == null) {
-            errorDialog(context);
-            return;
-          }
           context.push(TNewCopingMethodView(groupId: currentGroupId!));
         },
       ),
       IconButton(
         icon: IconUtility.deleteIconOutlined,
         onPressed: () {
-          if (currentGroup == null) {
-            errorDialog(context);
-            return;
-          }
           deleteGroupDialog(context, currentGroupId!, controller);
         },
       )
     ];
   }
 
-  SeminarMin participants(
+  Widget participants(
       TGroupInformationController controller, int numberOfParticipants) {
-    return SeminarMin(
-      isBorderPurple: true,
-      onTap: () {
-        controller.changeParticipantElection();
-      },
-      row: RowModel(
-        text: GroupTextUtil.participantsText + numberOfParticipants.toString(),
-        textStyle: AppTextStyles.aboutMeTextStyle(false),
-        leadingIcon: IconUtility.groupsIcon,
-        isAlignmentBetween: true,
-        trailingIcon: controller.isParticipantElectionOpen.isTrue
-            ? IconUtility.arrowUp
-            : IconUtility.arrowDown,
+    return Obx(
+      () => SeminarMin(
+        isBorderPurple: true,
+        onTap: () {
+          controller.changeParticipantElection();
+        },
+        row: RowModel(
+          text:
+              GroupTextUtil.participantsText + numberOfParticipants.toString(),
+          textStyle: AppTextStyles.aboutMeTextStyle(false),
+          leadingIcon: IconUtility.groupsIcon,
+          isAlignmentBetween: true,
+          trailingIcon: controller.isParticipantElectionOpen.isTrue
+              ? IconUtility.arrowUp
+              : IconUtility.arrowDown,
+        ),
       ),
     );
   }
@@ -179,7 +177,7 @@ class TGroupInformationView extends StatelessWidget {
       TGroupInformationController controller) {
     return showDialog<void>(
       context: context,
-      barrierDismissible: false, // user must tap button!
+      barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
           title: Text(GroupTextUtil.deleteGroupConfirmText),
@@ -201,7 +199,6 @@ class TGroupInformationView extends StatelessWidget {
               child: Text(GroupTextUtil.deleteText),
               onPressed: () {
                 controller.deleteGroup();
-
                 Get.back();
               },
             ),
@@ -248,7 +245,7 @@ class TGroupInformationView extends StatelessWidget {
           ),
           TextButton(
             onPressed: () {
-              //participant silinecek
+              //participant silme
 
               Get.back();
             },

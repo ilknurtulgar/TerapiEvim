@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:terapievim/core/base/component/app_bar/my_app_bar.dart';
+import 'package:terapievim/product/widget/common/empty_sized_box_text.dart';
 
 import '../../../controller/therapist/message/t_message_all_users_list_controller.dart';
 import '../../../core/base/component/buttons/election.dart';
@@ -12,48 +12,48 @@ import '../../../core/base/util/base_model.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
-import '../../../model/common/user/user_model.dart';
 import '../../../model/therapist/group/t_group_model.dart';
 import '../../participant/message/p_message_view.dart';
 
 class TSearchMessageView extends StatelessWidget {
   const TSearchMessageView({super.key});
-
+  final bool isService = true;
   @override
   Widget build(BuildContext context) {
     return BaseView<TMessageAllUsersListController>(
       getController: TMessageAllUsersListController(),
       onPageBuilder: (context, controller) => Scaffold(
         appBar: MyAppBar(title: "Kullanıcılar"),
-        body: Obx(
-          () => ListView.builder(
-            itemBuilder: (context, index) {
-              final TGroupModel groupModel = controller.groups[index];
-              return Padding(
-                padding: AppPaddings.componentPadding,
-                child: UsersListMessage(
-                    isSelectedValue: controller.isOpen[index],
-                    firstRow: Container(
-                      width: SizeUtil.generalWidth,
-                      height: SizeUtil.normalValueHeight,
-                      decoration: AppBoxDecoration.sendDecoration,
-                      child: InkWell(
-                        onTap: () => controller.onPersonListChange(index),
-                        child: RowView(
-                            rowModel: UiBaseModel.personviewRowModel(
-                                groupModel.name ?? "empty groupname",
-                                controller,
-                                index),
-                            padding: AppPaddings.generalPadding),
-                      ),
-                    ),
-                    rows:
-                        PersonList(controller: controller, groupIndex: index)),
-              );
-            },
-            itemCount: controller.groups.length,
-          ),
-        ),
+        body: isService
+            ? Padding(
+                padding: AppPaddings.pagePadding, child: EmptySizedBoxText())
+            : ListView.builder(
+                itemBuilder: (context, index) {
+                  final TGroupModel groupModel = controller.groups[index];
+                  return Padding(
+                    padding: AppPaddings.componentPadding,
+                    child: UsersListMessage(
+                        isSelectedValue: controller.isOpen[index],
+                        firstRow: Container(
+                          width: SizeUtil.generalWidth,
+                          height: SizeUtil.normalValueHeight,
+                          decoration: AppBoxDecoration.sendDecoration,
+                          child: InkWell(
+                            onTap: () => controller.onPersonListChange(index),
+                            child: RowView(
+                                rowModel: UiBaseModel.personviewRowModel(
+                                    groupModel.name ?? "empty groupname",
+                                    controller,
+                                    index),
+                                padding: AppPaddings.generalPadding),
+                          ),
+                        ),
+                        rows: PersonList(
+                            controller: controller, groupIndex: index)),
+                  );
+                },
+                itemCount: controller.groupUsers.length,
+              ),
       ),
     );
   }
@@ -93,9 +93,6 @@ class PersonList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
-        final List<UserModel> listOfUsers =
-            controller.groupUsers[controller.groupIds[index]]!;
-
         return; // chatPerson(user.name ?? "", context, user.imageUrl ?? "");
       },
       itemCount: controller.groupUsers.length,

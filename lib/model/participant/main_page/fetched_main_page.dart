@@ -1,16 +1,18 @@
-import 'package:vexana/vexana.dart';
 import 'package:equatable/equatable.dart';
 import 'package:json_annotation/json_annotation.dart';
+
+import '../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 import 'mainpage.dart';
+
 part 'fetched_main_page.g.dart';
 
 @JsonSerializable()
 class FetchedMainPage extends INetworkModel<FetchedMainPage>
     with EquatableMixin {
-  List<Mainpage>? mainpage;
+  List<MainPage>? mainPage;
 
   FetchedMainPage({
-    this.mainpage,
+    this.mainPage,
   });
 
   @override
@@ -24,13 +26,13 @@ class FetchedMainPage extends INetworkModel<FetchedMainPage>
   Map<String, dynamic>? toJson() => _$FetchedMainPageToJson(this);
 
   @override
-  List<Object?> get props => [mainpage];
+  List<Object?> get props => [mainPage];
 
   FetchedMainPage copyWith({
-    List<Mainpage>? mainpage,
+    List<MainPage>? mainpage,
   }) {
     return FetchedMainPage(
-      mainpage: mainpage ?? this.mainpage,
+      mainPage: mainpage ?? this.mainPage,
     );
   }
 }

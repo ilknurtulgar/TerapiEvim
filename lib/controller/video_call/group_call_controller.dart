@@ -4,14 +4,21 @@ import 'package:get/get.dart';
 import 'package:terapievim/core/extension/context_extension.dart';
 import 'package:videosdk/videosdk.dart' as videoCall;
 
+import '../../core/base/component/toast/toast.dart';
 import '../../core/base/component/video_call/tab/therapist_tab.dart';
 import '../../core/base/ui_models/video_call/person_in_call_model.dart';
 import '../../core/base/util/base_utility.dart';
 import '../../core/base/util/text_utility.dart';
+import '../../core/managers/videosdk/i_video_sdk_manager.dart';
+import '../../core/managers/videosdk/video_sdk_manager.dart';
 import '../../model/common/video_call/video_call_token_model.dart';
+import '../../model/participant/video_call/participant_group_call_model.dart';
+import '../../model/participant/video_call/therapist_helper_group_call_model.dart';
 import '../../product/enum/local_keys_enum.dart';
 import '../../screen/common/home/main_home.dart';
 import '../../screen/common/video_call/isolated_call/isolated_call_view.dart';
+import '../../service/video_call/group_call/group_call_service.dart';
+import '../../service/video_call/group_call/i_group_call_service.dart';
 import 'base_video_call_controller.dart';
 
 class GroupCallController extends BaseVideoCallController {
@@ -20,10 +27,22 @@ class GroupCallController extends BaseVideoCallController {
 
   @override
   void onInit() {
-    // _groupCallService = GroupCallService(vexaFireManager.networkManager);
+    _groupCallService = GroupCallService(vexaFireManager.networkManager);
 
     super.onInit();
   }
+
+  RxMap<String, dynamic> pGroupCallListener = <String, dynamic>{}.obs;
+
+  late IGroupCallService _groupCallService;
+
+  Stream<DocumentSnapshot<Map<String, dynamic>>>? stream;
+  var shareAuthority = false.obs;
+
+  var openAllMics = false.obs;
+
+  var hasSecondTherapistControl =
+      TherapistTabController.SecondTherapistHasNotControl.obs;
 
   @override
   void setToken(VideoCallTokenModel token) {
@@ -45,46 +64,87 @@ class GroupCallController extends BaseVideoCallController {
 
     setMeetingEventListener(room);
 
-    if (currentToken.isTherapist == false) {
-      // _groupCallService.pInit(
-      //     participantGroupCall: ParticipantGroupCallModel(
-      //   participantId: userId!,
-      //   canCamBeEnabled: true,
-      //   canMicBeEnabled: true,
-      //   isParticipantKicked: false,
-      //   meetingId: currentToken.meetingId,
-      // ));
-      // stream = _groupCallService.pSetRoomListener(
-      //   meetingId: currentToken.meetingId,
-      //   participantId: userId!,
-      // );
-      //
-      // if (stream != null) {
-      //   stream!.listen((event) {
-      //     if (event.data() == null) return;
-      //     final ParticipantGroupCallModel groupCallEvent =
-      //         ParticipantGroupCallModel.fromJson(event.data()!);
-      //
-      //     ///Send participant to isolated Video call
-      //     if (groupCallEvent.isParticipantKicked!) {
-      //       pushToIsolatedCall();
-      //     }
-      //
-      //   });
-      // }
+    if (currentToken.isTherapist == false &&
+        currentToken.isMainTherapist == false) {
+      _groupCallService.pInit(
+          participantGroupCall: ParticipantGroupCallModel(
+        participantId: userId!,
+        canCamBeEnabled: true,
+        canMicBeEnabled: true,
+        isParticipantKicked: false,
+        meetingId: currentToken.meetingId,
+      ));
+      stream = _groupCallService.pSetRoomListener(
+        meetingId: currentToken.meetingId,
+        participantId: userId!,
+      );
+
+      if (stream != null) {
+        stream!.listen((event) {
+          if (event.data() == null) return;
+          final ParticipantGroupCallModel groupCallEvent =
+              ParticipantGroupCallModel.fromJson(event.data()!);
+
+          ///Send participant to isolated Video call
+          if (groupCallEvent.isParticipantKicked ?? false) {
+            navigateToIsolatedCall(
+                meetingId: groupCallEvent.meetingId!,
+                therapistHelperId: currentToken.therapistHelperId,
+                isTherapistHelper: false);
+          }
+        });
+      }
+    } else if (currentToken.isMainTherapist == false &&
+        currentToken.isTherapist == true) {
+      _groupCallService.tHelperInit(
+          therapistHelperGroupCall: TherapistHelperGroupCallModel(
+        therapistHelperId: userId!,
+        hasTherapistHelperControl: false,
+        meetingId: currentToken.meetingId,
+      ));
+      stream = _groupCallService.tHelperSetRoomListener(
+        meetingId: currentToken.meetingId,
+        therapistHelperId: userId!,
+      );
+
+      if (stream != null) {
+        stream!.listen((event) {
+          if (event.data() == null) return;
+          final TherapistHelperGroupCallModel groupCallEvent =
+              TherapistHelperGroupCallModel.fromJson(event.data()!);
+
+          ///Send participant to isolated Video call
+          if (groupCallEvent.isTherapistSendToIsolatedCall ?? false) {
+            navigateToIsolatedCall(
+                meetingId: groupCallEvent.meetingId!,
+                therapistHelperId: userId!,
+                isTherapistHelper: true);
+          }
+        });
+      }
     }
   }
 
-  void pushToIsolatedCall() {
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
+  void navigateToIsolatedCall(
+      {required String meetingId,
+      required bool isTherapistHelper,
+      required String therapistHelperId}) {
     leaveRoom();
+    final IVideoSdkManager videoSdkManager = VideoSdkManager();
+    final String token=videoSdkManager.token;
     controllerContext.pushAndRemoveUntil(IsolatedCallView(
       videoCallToken: VideoCallTokenModel(
-          meetingId: '',
-          participantId: '',
-          isTherapist: false,
-          token: '',
-          isMainTherapist: false,
-          therapistHelperId: ''),
+          meetingId: meetingId,
+          participantId: userId!,
+          isTherapist: isTherapistHelper,
+          token: token,
+          isMainTherapist: isTherapistHelper,
+          therapistHelperId: therapistHelperId),
     ));
   }
 
@@ -92,18 +152,6 @@ class GroupCallController extends BaseVideoCallController {
     leaveRoom();
     controllerContext.pushAndRemoveUntil(MainHome());
   }
-
-  RxMap<String, dynamic> pGroupCallListener = <String, dynamic>{}.obs;
-
-  // late IGroupCallService _groupCallService;
-
-  Stream<DocumentSnapshot<Map<String, dynamic>>>? stream;
-  var shareAuthority = false.obs;
-
-  var openAllMics = false.obs;
-
-  var hasSecondTherapistControl =
-      TherapistTabController.SecondTherapistHasNotControl.obs;
 
   void onOffFunction(RxBool variable) {
     variable.value = !variable.value;
@@ -148,8 +196,7 @@ class GroupCallController extends BaseVideoCallController {
         duration: const Duration(minutes: 1));
   }
 
-  void sendIsolatedCall(
-      {required String name, required Function() onConfirmed}) {
+  void sendIsolatedCall({required String name, required String participantId}) {
     Get.dialog(AlertDialog(
       content: Text('$name ${VideoCallTextUtil.sendIsolatedCall}'),
       actions: [
@@ -161,7 +208,7 @@ class GroupCallController extends BaseVideoCallController {
             )),
         TextButton(
             onPressed: () {
-              onConfirmed();
+              sendParticipantToIsolatedCall(participantId: participantId);
               Get.back();
             },
             child: Text(
@@ -174,7 +221,28 @@ class GroupCallController extends BaseVideoCallController {
 
   Future<void> sendParticipantToIsolatedCall(
       {required String participantId}) async {
-    try {} catch (e) {
+    try {
+      final IVideoSdkManager videoSdkManager = VideoSdkManager();
+      final String? newMeetingId = await videoSdkManager.createMeeting();
+      if (newMeetingId == null) {
+        flutterErrorToast('Could not create a meeting id');
+        return;
+      }
+
+      final result = await _groupCallService.tSendParticipantToIsolatedCall(
+        groupCallModel: ParticipantGroupCallModel(
+          participantId: participantId,
+          meetingId: newMeetingId,
+          isParticipantKicked: true,
+        ),
+        previousMeetingId: currentToken.meetingId,
+        therapistHelperId: currentToken.therapistHelperId,
+      );
+
+      if (result == false) {
+        flutterErrorToast('Error occurred');
+      }
+    } catch (e) {
       await crashlyticsManager.sendACrash(
         error: e.toString(),
         stackTrace: StackTrace.current,

@@ -19,7 +19,7 @@ class _OtherGroupsList extends StatelessWidget {
 
             return Obx(
               () => ButtonWithGroupName(
-                text: otherGroup?.name ?? '',
+                text: otherGroup?.name ?? EmptyTextUtil.emptyText,
                 onTap: (value) => controller.switchButtonFunction(index, value),
                 switchButtonValue: controller.isButtonOn[index],
               ),

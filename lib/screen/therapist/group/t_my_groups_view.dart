@@ -42,12 +42,15 @@ class TMyGroupsView extends StatelessWidget {
                     onTap: () {
                       context.push(TGroupInformationView(currentGroup: group));
                     },
-                    row1: rows(group.name ?? "null", IconUtility.activityIcon),
+                    row1: rows(group.name ?? EmptyTextUtil.emptyText,
+                        IconUtility.activityIcon),
                     row2: rows(
                         GroupTextUtil.secondTherapistText +
-                            group.therapistHelperName!,
+                            (group.therapistHelperName ??
+                                EmptyTextUtil.emptyText),
                         IconUtility.personIcon),
-                    row3: rows(group.groupCategory!, IconUtility.groupsIcon),
+                    row3: rows(group.groupCategory ?? EmptyTextUtil.emptyText,
+                        IconUtility.groupsIcon),
                     isBorderPurple: true,
                   );
                 },

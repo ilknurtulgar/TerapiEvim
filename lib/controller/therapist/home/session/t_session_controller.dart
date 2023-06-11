@@ -46,7 +46,7 @@ class TSessionController extends DropDownController {
     }
 
     session.meetingId = meetingId;
-
+    await tSessionService.updateSession(session);
     final VideoCallTokenModel token = VideoCallTokenModel(
       meetingId: meetingId,
       token: videoSdkManager.token,

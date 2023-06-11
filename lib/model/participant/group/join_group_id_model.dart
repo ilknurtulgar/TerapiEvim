@@ -1,5 +1,6 @@
 import 'package:json_annotation/json_annotation.dart';
-import 'package:vexana/vexana.dart';
+
+import '../../../core/managers/firebase/firestore/interface/i_network_model.dart';
 
 part 'join_group_id_model.g.dart';
 

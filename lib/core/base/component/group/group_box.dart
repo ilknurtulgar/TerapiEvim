@@ -44,17 +44,24 @@ class ActivityBox extends StatelessWidget {
             children: [
               Expanded(
                   child: RowView(
-                      rowModel: arowModel,
-                      padding: AppPaddings.rowViewPadding)),
+                rowModel: arowModel,
+                padding: AppPaddings.rowViewPadding,
+                innerPadding: AppPaddings.rowViewPadding,
+              )),
               isactivity
                   ? const SizedBox.shrink()
                   : (ayrowwModel == null
                       ? const SizedBox.shrink()
                       : RowView(
                           rowModel: ayrowwModel!,
-                          padding: AppPaddings.rowViewPadding)),
+                          padding: AppPaddings.rowViewPadding,
+                          innerPadding: AppPaddings.rowViewPadding,
+                        )),
               RowView(
-                  rowModel: clockModel, padding: AppPaddings.rowViewPadding),
+                rowModel: clockModel,
+                padding: AppPaddings.rowViewPadding,
+                innerPadding: AppPaddings.rowViewPadding,
+              ),
               Expanded(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

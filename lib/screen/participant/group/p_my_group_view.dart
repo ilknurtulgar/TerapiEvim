@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/core/base/component/group/custom_heading.dart';
-import 'package:terapievim/core/base/component/group/group_box.dart';
-import 'package:terapievim/core/base/component/group/person.dart';
-import 'package:terapievim/core/base/ui_models/row_model.dart';
-import 'package:terapievim/core/base/util/base_utility.dart';
-import 'package:terapievim/core/extension/context_extension.dart';
-import 'package:terapievim/screen/participant/message/p_message_view.dart';
-import 'package:terapievim/screen/therapist/group/groups_informations/t_profile_about_view.dart';
 
 import '../../../controller/participant/group/p_group_controller.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
+import '../../../core/base/component/group/custom_heading.dart';
+import '../../../core/base/component/group/group_box.dart';
 import '../../../core/base/component/group/participant_container.dart';
+import '../../../core/base/component/group/person.dart';
 import '../../../core/base/ui_models/card_model.dart';
+import '../../../core/base/ui_models/row_model.dart';
 import '../../../core/base/util/base_model.dart';
+import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
+import '../../../core/extension/context_extension.dart';
 import '../../../core/managers/converter/date_time_manager.dart';
+import '../../../product/widget/common/empty_sized_box_text.dart';
+import '../../../screen/participant/message/p_message_view.dart';
+import '../../therapist/group/groups_informations/t_profile_about_view.dart';
 
 class PMyGroupView extends StatelessWidget {
   const PMyGroupView({super.key});
@@ -33,7 +34,8 @@ class PMyGroupView extends StatelessWidget {
         child: Scaffold(
           appBar: MyAppBar(title: GroupTextUtil.myGroupText),
           floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.send),
+            backgroundColor: AppColors.meteorite,
+            child: Icon(Icons.directions_run),
             onPressed: () {
               controller.joinIsolatedCall();
             },
@@ -45,31 +47,35 @@ class PMyGroupView extends StatelessWidget {
                   isalignmentstart: true,
                   text: GroupTextUtil.upcomingMeetingText),
               Obx(
-                () => ActivityBox(
-                    rightButtonTap: () {
-                      controller.joinVideoCall();
-                    },
-                    istwobutton: false,
-                    buttonText: GroupTextUtil.joinText,
-                    isactivity: false,
-                    containerModel: AppContainers.containerButton(false),
-                    arowModel: rows(
-                        controller.tGroupSession.value?.therapistName ??
-                            "null",
-                        RowType.therapist,
-                        false),
-                    ayrowwModel: rows(
-                        controller.tGroupSession.value?.therapistHelperName ??
-                            "null",
-                        RowType.secTherapist,
-                        false),
-                    clockModel: rows(
-                        DateTimeManager.getFormattedDateFromFormattedString(
-                            value: controller.tGroupSession.value?.dateTime
-                                ?.toDate()
-                                .toIso8601String()),
-                        RowType.date,
-                        false)),
+                //sor0
+                () => controller.tGroupSession.value.id == null
+                    ? EmptySizedBoxText()
+                    : ActivityBox(
+                        rightButtonTap: () {
+                          controller.joinVideoCall();
+                        },
+                        istwobutton: false,
+                        buttonText: GroupTextUtil.joinText,
+                        isactivity: false,
+                        containerModel: AppContainers.containerButton(false),
+                        arowModel: rows(
+                            controller.tGroupSession.value.therapistName ??
+                                "null",
+                            RowType.therapist,
+                            false),
+                        ayrowwModel: rows(
+                            controller
+                                    .tGroupSession.value.therapistHelperName ??
+                                "null",
+                            RowType.secTherapist,
+                            false),
+                        clockModel: rows(
+                            DateTimeManager.getFormattedDateFromFormattedString(
+                                value: controller.tGroupSession.value.dateTime
+                                    ?.toDate()
+                                    .toIso8601String()),
+                            RowType.date,
+                            false)),
               ),
               CustomHeading(
                 text: GroupTextUtil.groupsInformationText,
@@ -77,11 +83,8 @@ class PMyGroupView extends StatelessWidget {
               ),
               Obx(
                 () => therapist(
-                    rows(
-                        controller.tGroupSession.value?.therapistName ??
-                            "null",
-                        RowType.therapist,
-                        true), () {
+                    rows(controller.tGroupSession.value.therapistName ?? "null",
+                        RowType.therapist, true), () {
                   context.push(TAboutProfileView(
                     isSecTherapist: false,
                     groupId: controller.currentGroupId,
@@ -93,7 +96,7 @@ class PMyGroupView extends StatelessWidget {
               Obx(
                 () => therapist(
                     rows(
-                        controller.tGroupSession.value?.therapistHelperName ??
+                        controller.tGroupSession.value.therapistHelperName ??
                             'null',
                         RowType.secTherapist,
                         true), () {
@@ -103,10 +106,12 @@ class PMyGroupView extends StatelessWidget {
                   ));
                 }),
               ),
-              CustomHeading(
-                text: GroupTextUtil.participantsText +
-                    controller.participants.length.toString(),
-                isalignmentstart: true,
+              Obx(
+                () => CustomHeading(
+                  text: GroupTextUtil.getParticipants(
+                      controller.participants.length.toString()),
+                  isalignmentstart: true,
+                ),
               ),
               participants(controller),
             ],

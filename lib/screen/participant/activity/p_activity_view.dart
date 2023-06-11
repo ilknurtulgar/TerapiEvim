@@ -1,16 +1,18 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:terapievim/product/widget/common/empty_sizedbox_text.dart';
+
 import '../../../controller/participant/activity/p_activity_controller.dart';
 import '../../../core/base/component/app_bar/heading_minto.dart';
 import '../../../core/base/component/app_bar/my_app_bar.dart';
+import '../../../core/base/component/toast/toast.dart';
 import '../../../core/base/util/base_utility.dart';
 import '../../../core/base/util/text_utility.dart';
 import '../../../core/base/view/base_view.dart';
 import '../../../core/extension/context_extension.dart';
 import '../../../model/common/activity/t_activity_model.dart';
 import '../../../product/widget/common/activity/activity_boxes.dart';
+import '../../../product/widget/common/empty_sized_box_text.dart';
 import '../../common/activity/about_activity.dart';
 import 'p_past_activities_list_view.dart';
 import 'p_upcoming_activities_list_view.dart';
@@ -29,18 +31,7 @@ class PActivityView extends StatelessWidget {
               padding: AppPaddings.pagePadding,
               child: CustomScrollView(
                 slivers: [
-                  SliverToBoxAdapter(
-                    child: HeadingMinto(
-                      isIcon: true,
-                      text: ActivityTextUtil.upcomingActivities,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      isButterfly: true,
-                      icon: IconUtility.forward,
-                      onPressed: () {
-                        context.push(PUpComingActivitiesListView());
-                      },
-                    ),
-                  ),
+                  upcomingActivities(context),
                   Obx(
                     () => controller.recentActivities.isEmpty
                         ? SliverToBoxAdapter(child: EmptySizedBoxText())
@@ -51,18 +42,7 @@ class PActivityView extends StatelessWidget {
                                 ? null
                                 : controller.recentActivities.first),
                   ),
-                  SliverToBoxAdapter(
-                    child: HeadingMinto(
-                      isIcon: true,
-                      text: ActivityTextUtil.pastActivities,
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      isButterfly: true,
-                      icon: IconUtility.forward,
-                      onPressed: () {
-                        context.push(PPastActivitiesListView());
-                      },
-                    ),
-                  ),
+                  pastActivities(context),
                   Obx(() => controller.pastActivities.isEmpty
                       ? SliverToBoxAdapter(child: EmptySizedBoxText())
                       : _activityPastSeminar(
@@ -76,17 +56,49 @@ class PActivityView extends StatelessWidget {
           );
         });
   }
+
+  SliverToBoxAdapter pastActivities(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: HeadingMinto(
+        isIcon: true,
+        text: ActivityTextUtil.pastActivities,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        isButterfly: true,
+        icon: IconUtility.forward,
+        onPressed: () {
+          context.push(PPastActivitiesListView());
+        },
+      ),
+    );
+  }
+
+  SliverToBoxAdapter upcomingActivities(BuildContext context) {
+    return SliverToBoxAdapter(
+      child: HeadingMinto(
+        isIcon: true,
+        text: ActivityTextUtil.upcomingActivities,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        isButterfly: true,
+        icon: IconUtility.forward,
+        onPressed: () {
+          context.push(PUpComingActivitiesListView());
+        },
+      ),
+    );
+  }
 }
 
 Widget _activityRecentSeminar(PActivityController pActivityController,
     BuildContext context, TActivityModel? recentactivity) {
   return SliverToBoxAdapter(
-    child: activitythreerowbox(
-      () {
-        context.push(const AboutActivityView());
-      },
+    child: activityThreeRowBox(
       () {
         pActivityController.joinActivity(context, recentactivity!);
+      },
+      () {
+        context.push(const AboutActivityView(
+          isService: false,
+        ));
       },
       DemoInformation.titlenameActivityMod(
           recentactivity?.title ?? 'empty title'),
@@ -102,10 +114,13 @@ Widget _activityRecentSeminar(PActivityController pActivityController,
 Widget _activityPastSeminar(
     BuildContext context, TActivityModel? pastactivity) {
   return SliverToBoxAdapter(
-    child: activitythreerowbox(() {
-      context.push(const AboutActivityView());
+    child: activityThreeRowBox(() {
+      flutterErrorToast("Aktivite kaydı bulunmamaktadır");
+    }, () {
+      context.push(const AboutActivityView(
+        isService: false,
+      ));
     },
-        () {},
         DemoInformation.myPastActivities(pastactivity?.title ?? "empty title"),
         DemoInformation.myPastActivitiesTime(
             pastactivity?.dateTime ?? Timestamp.now()),

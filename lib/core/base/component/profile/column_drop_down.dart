@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../util/base_utility.dart';
-import '../activtiy/drop_down.dart';
+import '../activity/drop_down.dart';
 
 class ColumnDropDown extends StatelessWidget {
   const ColumnDropDown({

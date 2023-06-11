@@ -254,14 +254,14 @@ class TGroupService extends ITGroupService with BaseService {
 
     final result =
         await manager.readOrderedWhere<TGroupModel, List<TGroupModel>>(
-      collectionPath: APIConst.groups,
-      parseModel: TGroupModel(),
-      whereField: AppConst.therapistId,
-      whereIsEqualTo: userId!,
-      isDescending: isDescending,
-      orderField: orderField,
-      lastDocumentId: lastDocId,
-    );
+            collectionPath: APIConst.groups,
+            parseModel: TGroupModel(),
+            whereField: AppConst.therapistId,
+            whereIsEqualTo: userId!,
+            isDescending: isDescending,
+            orderField: orderField,
+            lastDocumentId: lastDocId,
+            limit: 100);
     if (result.error != null) {
       return [];
     }
@@ -294,15 +294,20 @@ class TGroupService extends ITGroupService with BaseService {
     final List<PPublicProfile> publicProfileList = [];
 
     for (String participantId in participantsId) {
-      final result = await manager.readWhere<PPublicProfile, PPublicProfile>(
-        collectionPath: APIConst.groups,
+      final result = await manager.readWhere<PPublicProfile, List<PPublicProfile>>(
+        collectionPath: APIConst.users,
         whereField: AppConst.id,
         whereIsEqualTo: participantId,
         parseModel: PPublicProfile(),
+        limit: 1,
       );
 
-      if (result.data != null) {
-        publicProfileList.add(result.data!);
+      if (result.data == null) {
+        continue;
+      }
+      if(result.data!.isNotEmpty){
+        publicProfileList.add(result.data![0]);
+
       }
     }
     return publicProfileList;

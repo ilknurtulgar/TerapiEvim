@@ -46,6 +46,6 @@ https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/06860e51-bb45-4bcf-b1
 
 <br />
 
-![1685455020837](https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/b873b88e-4524-4a9c-882b-99b56b508522)
+<img align="left" alt="" width="400" src="https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/b873b88e-4524-4a9c-882b-99b56b508522)](https://user-images.githubusercontent.com/63793311/224953868-7c2cd7e3-d850-4ab8-804c-d12e578526eb.svg" />
 
-![1685455005508](https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/32896e6b-1c52-4a3b-a3ec-f6abe56dbdf6)
+<img align="left" alt="" width="400" src="https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/206e4125-000c-4f30-85fb-7424d8bd8402" />

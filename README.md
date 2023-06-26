@@ -20,6 +20,8 @@ TerapiEvim is a mobile application developed by integrating group therapies into
 
 ## Previews
 
+### [Figma UI source](https://www.figma.com/file/emWuxDc4LTPIxKvDtCVOwh/Terapi-Evim?type=design&node-id=0%3A1&mode=design&t=3pA507Z9cmcXBo4y-1)
+
 https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/06860e51-bb45-4bcf-b1f9-1067a5dd40e5
 
 ### Participant's UI

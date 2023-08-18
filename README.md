@@ -38,7 +38,7 @@ https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/06860e51-bb45-4bcf-b1
 
 ![Screenshot (435)](https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/ef034830-b9bb-4c25-8fec-4b347900e29f)
 
-![Screenshot (436)](https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/9657fbd0-b099-4d04-a6d5-08137605f677)
+![Screenshot (4361)](https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/9657fbd0-b099-4d04-a6d5-08137605f677)
 ## Our Team 
 
  - [İlknur Tulgar](https://github.com/ilknurtulgar)

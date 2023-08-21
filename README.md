@@ -39,13 +39,11 @@ https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/06860e51-bb45-4bcf-b1
 ![Screenshot (435)](https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/ef034830-b9bb-4c25-8fec-4b347900e29f)
 
 ![Screenshot (4361)](https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/9657fbd0-b099-4d04-a6d5-08137605f677)
-## Our Team 
-
- - [İlknur Tulgar](https://github.com/ilknurtulgar)
- - [Gizem Göksu](https://github.com/GizemGoksu)
- - [Yasemin Atmaca](https://github.com/jjasminn)
- - [Behzod Faiziev](https://github.com/behzodfaiziev)
-
+## Our Team
+<a href="https://github.com/ilknurtulgar/TerapiEvim/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=ilknurtulgar/TerapiEvim" />
+</a>
+<br />
 <br />
 
 <img align="left" alt="" width="400" src="https://github.com/ilknurtulgar/TerapiEvim/assets/63793311/b873b88e-4524-4a9c-882b-99b56b508522)](https://user-images.githubusercontent.com/63793311/224953868-7c2cd7e3-d850-4ab8-804c-d12e578526eb.svg" />
